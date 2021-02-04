@@ -1,0 +1,13 @@
+#if not research-completed ri-elite-skirmisher
+  load "research/archery_range/prerequisites.aoe2ai"
+  //load "research/town_center/castle_age.aoe2ai"
+
+  #if research-available ri-elite-skirmisher
+    #if up-research-status c: ri-elite-skirmisher < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-elite-skirmisher
+    #end if
+  #end if
+#end if

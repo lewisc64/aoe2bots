@@ -1,0 +1,200 @@
+load "military/uu_counters.aoe2ai"
+
+#if current-age == feudal-age
+  #respond to archery-range building
+    goal produce-skirmishers = 1
+  #end respond
+  
+  #respond to stable building
+    #if unit-type-count-total spearman-line < 5
+      goal produce-spearmen = 1
+    #end if
+  #end respond
+#end if
+
+#if current-age <= feudal-age or true
+  goal allowed-skirmishers = 1
+#else
+  goal allowed-skirmishers = 0
+#end if
+
+#respond to min-detection-units battering-ram-line
+  goal produce-knights = 1
+#end respond
+
+#if current-age == feudal-age and goal produce-archers 1
+  //goal produce-skirmishers = 1
+#end if
+
+#respond to min-detection-units hand-cannoneer
+  goal produce-archers = 1
+  goal produce-militia = 0
+#end respond
+
+#respond to min-detection-units monk-set
+  goal produce-knights = 0
+  goal produce-battle-elephants = 0
+  goal produce-archers = 1
+  goal produce-mangonels = 1
+#end respond
+
+#respond to min-detection-units archer-line
+  goal produce-spearmen = 0
+  goal produce-camels = 0
+  goal produce-militia = 0
+  goal produce-mangonels = 1
+  goal produce-battle-elephants = 0
+  #if goal allowed-skirmishers 1 and goal produce-scouts 0
+    goal produce-skirmishers = 1
+  #end if
+  #if current-age >= castle-age
+    goal produce-knights = 1
+  #end if
+  goal produce-scorpions = 1
+  goal produce-hand-cannoneers = 0
+  #if current-age == castle-age and building-type-count-total siege-workshop == 0 and goal military-superiority 1
+    escrow 90 wood
+  #end if
+#end respond
+
+#respond to min-detection-units cavalry-archer-line
+  goal produce-spearmen = 0
+  goal produce-militia = 0
+  goal produce-mangonels = 1
+  goal produce-battle-elephants = 0
+  #if goal allowed-skirmishers 1
+    goal produce-skirmishers = 1
+  #end if
+  #if current-age >= castle-age
+    goal produce-knights = 1
+    goal produce-hand-cannoneers = 0
+  #end if
+#end respond
+
+#respond to min-detection-units skirmisher-line
+  #if current-age <= castle-age
+    goal produce-archers = 0
+    goal produce-cavalry-archers = 0
+  #end if
+  #if goal allowed-skirmishers 1 and goal produce-scouts 0
+    goal produce-skirmishers = 1
+  #end if
+  goal produce-mangonels = 1
+  #if current-age >= castle-age
+    goal produce-eagles = 1
+    goal produce-knights = 1
+    goal produce-scouts = 1
+  #end if
+  goal produce-scorpions = 0
+  goal produce-monks = 0
+#end respond
+
+#respond to min-detection-units spearman-line
+  goal produce-camels = 0
+  goal produce-scouts = 0
+  goal produce-knights = 0
+  goal produce-battle-elephants = 0
+  goal produce-scorpions = 1
+  goal produce-archers = 1
+  goal produce-cavalry-archers = 1
+  goal produce-hand-cannoneers = 1
+#end respond
+
+#respond to min-detection-units camel-line
+  goal produce-scouts = 0
+  goal produce-knights = 0
+  goal produce-battle-elephants = 0
+  goal produce-spearmen = 1
+  goal produce-archers = 1
+  goal produce-eagles = 1
+#end respond
+
+#respond to min-detection-units militiaman-line
+  goal produce-eagles = 0
+  goal produce-archers = 1
+  goal produce-cavalry-archers = 1
+  goal produce-hand-cannoneers = 1
+#end respond
+
+#respond to min-detection-units eagle-warrior-line
+  goal produce-archers = 0
+  goal produce-cavalry-archers = 0
+  goal produce-skirmishers = 0
+  goal produce-militia = 1
+#end respond
+
+#respond to min-detection-units scout-cavalry-line
+  #if current-age <= feudal-age
+    #if unit-type-count-total spearman-line < 5
+      goal produce-spearmen = 1
+    #end if
+  #else
+    goal produce-spearmen = 1
+  #end if
+  //goal produce-camels = 1
+#end respond
+
+#respond to 20 scout-cavalry-line
+  goal produce-hand-cannoneers = 0
+#end respond
+
+#respond to min-detection-units battle-elephant-line
+  goal produce-camels = 1
+  goal produce-spearmen = 1
+  goal produce-monks = 1
+  goal produce-skirmishers = 0
+#end respond
+
+#respond to min-detection-units knight-line
+  goal produce-eagles = 0
+  goal produce-skirmishers = 0
+  goal produce-spearmen = 1
+  goal produce-camels = 1
+#end respond
+
+#respond to min-detection-units mangonel-line
+  goal produce-scorpions = 0
+  #if current-age <= castle-age
+    goal produce-archers = 0
+    goal produce-cavalry = 0
+  #end if
+  goal produce-skirmishers = 0
+  goal produce-scouts = 1
+  goal produce-knights = 1
+  goal produce-eagles = 1
+  //goal produce-mangonels = 1
+#end respond
+
+#respond to min-detection-units scorpion-line
+  goal produce-mangonels = 1
+#end respond
+
+#respond to trebuchet-set
+  goal produce-bombard-cannons = 1
+#end respond
+
+#if current-age == feudal-age
+  #respond to min-detection-units archer-line
+    goal produce-spearmen = 0
+  #end respond
+#end if
+
+#respond to wonder building
+  goal produce-rams = 1
+  goal produce-trebuchets = 1
+#end respond
+
+#respond to castle building
+  goal produce-rams = 1
+  goal produce-trebuchets = 1
+#end respond
+
+#respond to watch-tower-line building
+  goal produce-rams = 1
+  goal produce-trebuchets = 1
+#end respond
+
+#respond to bombard-tower building
+  goal produce-rams = 1
+  goal produce-trebuchets = 1
+#end respond

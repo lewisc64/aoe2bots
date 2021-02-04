@@ -1,0 +1,87 @@
+load "templates/fast_castle.aoe2ai"
+
+#if up-research-status c: castle-age >= research-pending
+  #do once
+    
+    sn-maximum-attack-group-size = 5
+    sn-minimum-attack-group-size = 5
+    sn-number-attack-groups = 500
+    sn-special-attack-type2 = villager
+    sn-disable-tower-priority = 1
+    
+    target walls
+  
+    assign 16 builders to castle
+    assign 2 builders to barracks
+    assign 2 builders to archery-range
+    
+    distribute villagers 45 40 15 0
+    
+    escrow 10 wood
+    escrow 10 food
+    escrow 10 gold
+  #end do
+  
+  research imperial-age with food and gold escrow
+  
+  research lumber camp upgrades with food and gold escrow
+  research mill upgrades with food and gold escrow
+  research gold mining camp upgrades with food and gold escrow
+  
+  research ri-bloodlines with food and gold escrow
+  research ri-husbandry with food escrow
+  
+  research blacksmith ranged upgrades with food and gold escrow
+  research ri-heavy-cavalry-archer with food and gold escrow
+  
+  research ri-thumb-ring with wood and food escrow
+  research ri-parthian-tactics with food and gold escrow
+  
+  research ri-ballistics with wood and gold escrow
+  research ri-chemistry with food and gold escrow
+  #if building-type-count-total castle >= 1
+    research ri-murder-holes with food and stone escrow
+  #end if
+  
+  research ri-conscription with food and gold escrow
+  
+  build 1 barracks
+  #if current-age <= castle-age
+    build 3 archery-range
+  #else
+    build 4 archery-range
+  #end if
+  build 1 stable
+  build 1 blacksmith
+  build 1 market
+  build 1 university
+  build 1 monastery
+  build forward 5 castle
+  
+  train 120 villager
+  train cavalry-archer-line
+  train petard
+  #if unit-type-count-total monk-set < 1
+    train monk
+  #end if
+  
+  #if gold-amount < 1500
+    sell wood when wood > 1500
+    sell food when food > 1500
+  #else
+    buy food when food < 1500
+    buy wood when wood < 1500
+    buy stone when stone < 650
+  #end if
+  
+  build houses with 15 headroom
+  build lumber camps maintaining 2 tiles
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 15
+  #end when
+  #if wood-amount >= 100
+    build farms
+  #end if
+#end if

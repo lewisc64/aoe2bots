@@ -1,0 +1,13 @@
+#if not research-completed ri-fervor
+  load "research/monastery/prerequisites.aoe2ai"
+  //load "research/town_center/castle_age.aoe2ai"
+
+  #if research-available ri-fervor
+    #if up-research-status c: ri-fervor < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-fervor
+    #end if
+  #end if
+#end if

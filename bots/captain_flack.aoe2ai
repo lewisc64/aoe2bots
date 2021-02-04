@@ -1,0 +1,362 @@
+const ri-obsidian-arrows = 485
+
+#do once
+  set up basics
+  #delay by 4 minutes
+    take boar
+  #end delay
+  
+  goal clangs = 0
+  
+  chat to all "Hi."
+  #delay by 5 seconds
+    #select random
+      chat to all "My plan is to kill everyone."
+      #delay by 8 seconds
+        chat to all "I am very unfriendly."
+      #end delay
+    #randor
+      chat to all "Please do not be alarmed."
+      #delay by 8 seconds
+        chat to all "I am very friendly."
+      #end delay
+    #randor
+      chat to all "I have a confession..."
+      #delay by 8 seconds
+        chat to all "I'm going to go easy on you."
+      #end delay
+    #end select
+  #end delay
+  
+  target walls
+  
+  assign 8 builders to castle
+  
+#end do
+
+#if current-age >= feudal-age
+  research ri-loom with gold escrow
+#end if
+
+#when
+  research ri-obsidian-arrows
+#then
+  goal researched-obs-arrows = 1
+  #select random
+    chat to all "The spark of hope, snuffed out."
+  #randor
+    chat to all "The glint in the darkest night."
+  #end select
+#end when
+#when
+  research ri-wheel-barrow
+#then
+  #select random
+    chat to all "Better supply, greater power."
+  #randor
+    chat to all "Efficiency is the key to your death."
+  #end select
+#end when
+#when
+  research ri-hand-cart
+#then
+  #select random
+    chat to all "The people yearn for blood. Excitement."
+  #randor
+    chat to all "The people roar with laughter at your pathetic tactics."
+  #end select
+#end when
+research lumber camp upgrades
+research mill upgrades
+research ri-gold-mining
+
+#when
+  research ri-chemistry
+#then
+  #select random
+    chat to all "The moon shines down a ghastly red light."
+  #randor
+    chat to all "A single black feather flutters down, an omen."
+  #randor
+    chat to all "Searing flesh."
+  #end select
+#end when
+
+#when
+  research ri-crossbow
+#then
+  #select random
+    chat to all "The sun looks especially beautiful today."
+    chat to all "But all good things come to an end."
+  #randor
+    chat to all "The fire of the forge, the tautness of strings..."
+  #randor
+    chat to all "A new plan, born in fire."
+  #randor
+    chat to all "Releasing death upon enemies, one missile at a time."
+  #end select
+#end when
+#when
+  research ri-arbalest
+#then
+  #select random
+    chat to all "Precision engineering."
+  #randor
+    chat to all "Apex predator."
+  #randor
+    chat to all "Perforating, machinating..."
+  #end select
+#end when
+#when
+  research ri-thumb-ring
+#then
+  #select random
+    chat to all "Thread the needle."
+  #randor
+    chat to all "Accuracy is the key to victory."
+  #end select
+#end when
+research blacksmith ranged upgrades
+#when
+  research ri-ballistics
+#then
+  #select random
+    chat to all "You are predictable, and pathetic."
+  #randor
+    chat to all "Tactical genesis."
+  #randor
+    chat to all "Understanding the battlefield..."
+  #end select
+#end when
+#when
+  research ri-conscription
+#then
+  #select random
+    chat to all "There is very little hope for you."
+  #randor
+    chat to all "Ah, hope. Do you feel it? You shouldn't."
+  #randor
+    chat to all "You are a most miserable opponent."
+  #end select
+#end when
+
+#if current-age == imperial-age
+  train archer-line
+#else
+  train 20 archer-line
+#end if
+
+#if goal researched-obs-arrows 1
+
+  #if military-population >= 50
+    #do once
+      #select random
+        chat to all "Here we go."
+      #randor
+        chat to all "It's time."
+      #randor
+        chat to all "Rain death."
+      #end select
+    #end do once
+    #if not(enemy-buildings-in-town)
+      increase town size by 10
+    #else
+      decrease town size by 1
+    #end if
+  #else
+    set town size to 40
+  #end if
+#end if
+
+build 1 town-center
+build safety mill
+build mills
+
+build 2 archery-range
+build 1 university
+
+#if building-type-count-total castle >= 1
+  build 3 castle
+  build forward castle
+#end if
+
+#if building-type-count-total archery-range >= 1
+  #when
+    build 1 blacksmith
+  #then
+    chat to all "The hammers clang..."
+    goal clangs = 20
+  #end when
+#end if
+
+#if not goal clangs 0
+  #repeat every 10 seconds
+    chat to all "40*clang*."
+    goal clangs -= 1
+  #end repeat
+#end if
+
+#do once
+  #respond to mangonel-line
+    chat to all "Throwing rocks is such a futile effort."
+  #end respond
+  #respond to scorpion-line
+    chat to all "Big arrows are unwieldy."
+    #delay by 6 seconds
+      chat to all "Arrows are for precision, you imbecile."
+    #end delay
+  #end respond
+  #respond to knight-line
+    chat to all "No horse is immune to cloudbursts of steel."
+  #end respond
+  #respond to battering-ram-line
+    chat to all "Little rooves? Over a log? Just a big target."
+    #delay by 10 seconds
+      chat to all "Give up."
+    #end delay
+  #end respond
+#end do
+
+#when
+  build lumber camps
+#then
+  sn-camp-max-distance += 3
+#end when
+
+#if current-age >= feudal-age
+  build 1 barracks
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 15
+  #end when
+#end if
+
+#if current-age >= castle-age
+  build 15 farm
+#end if
+
+#if current-age == dark-age
+  #do once
+    distribute villagers 20 80 0 0
+  #end do
+  
+  #if civilian-population >= 30
+    #when
+      research feudal-age
+    #then
+      distribute villagers 40 50 10 0
+      #select random
+        chat to all "The volcanic fires yearn for new blood."
+      #randor
+        chat to all "Peace doesn't exist. Never will."
+      #randor
+        chat to all "Becoming stronger is the only option."
+      #end select
+    #end when
+  #end if
+  
+  build 3 farm
+  #delay by 14 minutes
+    build 10 farm
+  #end delay
+  
+  build houses with 5 headroom
+
+#else if current-age == feudal-age
+  #do once
+    distribute villagers 40 45 15 0
+    set town size to 16
+  #end do
+  
+  #when
+    research castle-age
+  #then
+    distribute villagers 20 30 10 40
+    #select random
+      chat to all "Visions of crumbling."
+    #randor
+      chat to all "Hot magma, new ideas."
+    #randor
+      chat to all "Technology is key."
+    #end select
+  #end when
+  
+  build 10 farm
+  build houses with 10 headroom
+  #if building-type-count-total blacksmith >= 1
+    build 1 market
+  #end if
+  
+  sell wood when wood >= 300
+  sell food when food >= 900
+  buy food when gold >= 300
+
+#else if current-age == castle-age
+  #do once
+    distribute villagers 20 30 10 40
+    set town size to 20
+  #end do
+  
+  build stone mining camps
+  
+  build houses with 15 headroom
+  
+  #when
+    build 1 castle
+  #then
+    distribute villagers 35 40 20 5
+  #end when
+  
+  sell wood when wood >= 200
+  sell food when food >= 1100
+  buy food when gold >= 900
+  
+  #when
+    research imperial-age
+  #then
+    distribute villagers 55 20 40 5
+    #select random
+      chat to all "Every time I close my eyes, I see images of ruin."
+      chat to all "You are not long for this world."
+    #randor
+      chat to all "You know, it's hard to live life without seeing your own failures."
+      chat to all "I shall highlight them for you."
+    #randor
+      chat to all "The power of mountains. I will obtain it."
+    #end select
+  #end when
+
+#else
+  #do once
+    distribute villagers 55 20 40 5
+    set town size to 25
+  #end do
+  
+  build houses with 15 headroom
+  build 4 archery-range
+  
+  #if gold-amount < 2000
+    sell wood when wood > 2000
+    sell food when food > 2000
+  #else if wood-amount < 2000
+    buy wood when gold >= 2000
+  #end if
+  
+  delete walls
+
+#end if
+
+train 120 villager
+
+#when
+  research ri-loom
+#then
+  #select random
+    chat to all "I shall spin the thread of victory."
+  #randor
+    chat to all "The fabric of life will be torn."
+  #randor
+    chat to all "Careful preparation."
+  #end select
+#end when

@@ -1,0 +1,180 @@
+#do once
+  set up basics
+  take boar and deer
+  assign 8 builders to castle
+#end do once
+
+research feudal-age with food escrow
+research castle-age with food and gold escrow
+research imperial-age with food and gold escrow
+
+research blacksmith upgrades with food and gold escrow
+research archery range upgrades with food and gold escrow
+research stable upgrades with food and gold escrow
+research barracks upgrades with food and gold escrow
+research town center upgrades with food and gold escrow
+research lumber camp upgrades with food and gold escrow
+research mining camp upgrades with food and gold escrow
+research mill upgrades with food and gold escrow
+research castle upgrades with food and gold escrow
+research university upgrades with food and gold escrow
+
+build houses
+build mills
+build safety mill
+build lumber camps
+build 1 monastery
+build forward bombard-tower
+build bombard-tower
+build forward castle
+build 3 castle
+
+build 1 blacksmith with wood escrow
+build 1 market
+build 1 university
+
+#if current-age >= feudal-age
+  escrow 10 wood
+  escrow 10 food
+  escrow 10 gold
+#end if
+
+#if current-age == feudal-age
+  sell wood when wood > 500
+  sell food when food > 1000
+  buy food when gold > 400
+#end if
+
+#if civilian-population >= 35
+  build 2 archery-range
+  build 2 stable
+  build 2 barracks
+#end if
+
+#if military-population > 30
+  #repeat every 60 seconds
+    attack
+  #end repeat
+  #do once
+    attack
+  #end do
+#else if military-population < 15
+  //retreat
+#end if
+
+train 1 monk
+
+#if current-age == feudal-age and not(town-under-attack)
+  #if food-amount < 800
+    escrow 20 food
+  #else
+    escrow 0 food
+  #end if
+  #if gold-amount < 200
+    escrow 20 gold
+  #else
+    escrow 0 gold
+  #end if
+#else if current-age == castle-age and not(town-under-attack)
+  #if food-amount < 1200
+    escrow 10 food
+  #else
+    escrow 0 food
+  #end if
+  #if gold-amount < 800
+    escrow 10 gold
+  #else
+    escrow 0 gold
+  #end if
+#else
+  escrow 0 food
+  escrow 0 gold
+#end if
+
+#if current-age == dark-age
+  
+  #do once
+    distribute villagers 20 80 0 0
+  #end do once
+  
+  train 21 villager
+  
+  #if game-time > 720
+    build 8 farm
+  #end if
+  
+#else
+  
+  #do once
+    distribute villagers 40 35 20 5
+    set town size to 20
+  #end do once
+  
+  #repeat every 30 seconds
+    #if wood-amount > 1000
+      distribute 8 villagers from wood to food and gold
+    #end if
+    
+    #if food-amount > 1000
+      distribute 8 villagers from food to wood and gold
+    #end if
+    
+    #if gold-amount > 1000
+      distribute 8 villagers from gold to wood and food
+    #end if
+  #end repeat
+  
+  build farms
+  
+  build houses with 15 headroom
+  build 1 barracks
+  build 2 archery-range
+  build 2 siege-workshop
+  
+  #when
+    build gold mining camps
+    build stone mining camps
+  #then
+    sn-camp-max-distance += 3
+  #end when
+  
+  train 50 villager
+  train 5 battering-ram
+  train 5 trebuchet
+  
+  goal responding = 0
+  #when
+    respond to archer-line with knight-line
+    respond to skirmisher-line with knight-line
+    respond to skirmisher-line with scout-cavalry-line
+    respond to knight-line with camel-line
+    respond to 2 scout-cavalry-line with camel-line
+    respond to battle-elephant-line with camel-line
+    
+    respond to archer-line with mangonel-line
+    respond to mangonel-line with mangonel-line
+    respond to scorpion-line with mangonel-line
+    respond to spearman-line with scorpion-line
+    respond to militiaman-line with scorpion-line
+    
+    respond to archer-line with skirmisher-line
+    respond to monk with archer-line
+    respond to spearman-line with archer-line
+    respond to spearman-line with skirmisher-line
+    respond to militiaman-line with archer-line
+    
+    respond to knight-line with spearman-line
+    respond to 2 scout-cavalry-line with spearman-line
+    respond to battle-elephant-line with spearman-line
+    respond to 2 eagle-warrior-line with spearman-line
+    respond to skirmisher-line with eagle-warrior-line
+    respond to battering-ram with militiaman-line
+  #then
+    goal responding = 1
+  #end when
+  
+  #if goal responding 0
+    train archer-line
+  #end if
+  
+#end if

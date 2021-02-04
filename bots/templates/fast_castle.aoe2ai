@@ -1,0 +1,66 @@
+#do once
+  set up basics
+  take boar
+#end do once
+
+#if current-age <= feudal-age
+  
+  #if civilian-population >= 27
+    research feudal-age
+  #end if
+  research castle-age
+
+  build houses
+  build mills
+  build lumber camps
+  build 1 market
+  build 1 blacksmith
+  build 1 town-center
+  
+#end if
+
+#if current-age == dark-age
+
+  #do once
+    distribute villagers 20 80 0 0
+    sn-enable-training-queue = 1
+  #end do once
+  
+  research ri-loom
+  
+  train villager
+  #if civilian-population >= 25
+    sn-enable-training-queue = 0
+  #end if
+  
+  #if up-pending-objects c: villager <= 1 and strategic-number sn-enable-training-queue == 1
+    drop off food
+  #end if
+  
+  #if building-type-count-total lumber-camp >= 1
+    build 8 farm
+  #end if
+  
+  build safety mill
+  
+#else if current-age == feudal-age
+  
+  #if wood-amount > 100
+    build 6 farm
+  #end if
+  
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 3
+  #end when
+  
+  #do once
+    distribute villagers 50 20 30 0
+  #end do once
+  train villager
+  sell wood when wood >= 200
+  buy food when gold >= 300
+  sell food when food >= 900
+
+#end if

@@ -1,0 +1,93 @@
+#do once
+  goal attack-ready = 0
+  goal attacking = 0
+  goal emergency-trash-mode = 0
+#end do
+
+#if dropsite-min-distance gold == -1 and resource-found gold and goal produce-trade-carts 0
+  goal emergency-trash-mode = 1
+#end if
+
+#if goal emergency-trash-mode 1
+  chat to all "EMERGENCY TRASH MODE!!!!!!!"
+  goal produce-archers = 0
+  goal produce-hand-cannoneers = 0
+  goal produce-cavalry-archers = 0
+  // goal produce-militia = 0
+  goal produce-eagles = 0
+  goal produce-knights = 0
+  goal produce-camels = 0
+  goal produce-battle-elephants = 0
+  goal produce-mangonels = 0
+  goal produce-scorpions = 0
+  goal produce-monks = 0
+  goal produce-unique-units = 0
+#end if
+
+load "directives/age/random.aoe2ai"
+load "directives/do_misc_research.aoe2ai"
+load "directives/fortification/random.aoe2ai"
+
+load "units/all_switched.aoe2ai"
+
+#if goal attack-ready 1
+  #do once
+    chat to self "attack ready!"
+  #end do
+  
+  load "directives/civ_decisions.aoe2ai"
+  load "directives/attacking/random.aoe2ai"
+  load "directives/research/random.aoe2ai"
+#else
+  goal do-research = 1
+  goal produce-units = 0
+#end if
+
+#if current-age == feudal-age
+  goal desired-military-buildings-per-type = 2
+#else if current-age == castle-age
+  goal desired-military-buildings-per-type = 3
+#else if current-age == imperial-age
+  goal desired-military-buildings-per-type = 5
+#end if
+
+#if current-age == castle-age or building-type-count-total castle == 0
+  #if unit-type-count-total battering-ram-line < 5 and (military-population >= 20 or enemy-buildings-in-town)
+    goal produce-battering-rams = 1
+  #else
+    goal produce-battering-rams = 0
+  #end if
+  goal produce-trebuchets = 0
+#else if current-age == imperial-age
+  goal produce-battering-rams = 0
+  goal produce-trebuchets = 1
+#end if
+
+#if goal attempted-researches 0
+  sn-enable-training-queue = 1
+#else
+  sn-enable-training-queue = 0
+#end if
+
+#repeat every 10 minutes
+  #select random
+    target attacking enemy
+  #randor
+    target closest enemy
+  #end select
+#end repeat
+
+#if goal attacking 1
+  sn-maximum-town-size = 255
+  #if current-age >= castle-age
+    delete walls
+  #end if
+#else
+  #if up-research-status c: imperial-age >= research-pending
+    sn-maximum-town-size = imperial-age-town-size
+  #else if up-research-status c: castle-age >= research-pending
+    sn-maximum-town-size = castle-age-town-size
+  #else if up-research-status c: feudal-age >= research-pending
+    sn-maximum-town-size = feudal-age-town-size
+  #end if
+#end if

@@ -1,0 +1,140 @@
+const ri-treadmill-crane = 54
+const town-size = 30
+
+#do once
+  set up scouting
+  set up new building system
+  set up micro
+  chat to all "21I look forward to you joining my side."
+#end do once
+
+build houses
+#if wood-amount > 200
+  build monastery
+#end if
+build lumber camps
+build mills
+build 1 blacksmith
+build 1 market
+build 1 university
+build stone walls with perimeter 2
+build stone gates on perimeter 2
+build bombard-tower
+build watch-tower-line
+
+#if building-type-count-total mill == 0 and game-time >= 360
+  build 1 mill
+#end if
+
+research feudal-age
+research castle-age
+research imperial-age
+
+train 2 monk
+
+research ri-loom
+research ri-fervor
+research ri-atonement
+research ri-redemption
+research ri-sanctity
+research ri-faith
+research ri-illumination
+research ri-block-printing
+research ri-theocracy
+#respond to 20 monk-set
+  #do once
+    chat to all "Shall it be a war of words, then? So be it."
+  #end do once
+  research ri-heresy
+#end respond
+
+research ri-masonry
+research ri-fortified-wall
+research ri-architecture
+research ri-treadmill-crane
+research ri-murder-holes
+research ri-arrowslits
+research ri-chemistry
+research ri-ballistics
+
+research ri-fletching
+research ri-bodkin-arrow
+research ri-bracer
+
+research ri-guard-tower
+research ri-keep
+research ri-bombard-tower
+
+//build 1 barracks
+//build 1 archery-range
+//respond to archer-line with skirmisher-line
+
+train monk
+#when
+  #if military-population >= 50 and not(enemy-buildings-in-town)
+    sn-maximum-town-size += 5
+  #else if strategic-number sn-maximum-town-size > town-size
+    sn-maximum-town-size -= 1
+  #end if
+#then
+  #do once
+    chat to all "I am sending out diplomats to convice you that our cause is just."
+    #delay by 10 seconds
+      chat to all "You will see sense."
+    #end delay
+  #end do once
+#end when
+
+#if current-age == dark-age
+  #do once
+    distribute villagers 20 80 0 0
+  #end do once
+  train 27 villager
+  build 3 farm
+  
+#end if
+
+#if current-age >= feudal-age
+
+  build 6 farm
+  #add action up-modify-sn sn-camp-max-distance c:+ 3
+    build gold mining camps
+  #remove action
+
+#end if
+
+#if current-age == feudal-age
+  
+  #do once
+    distribute villagers 50 20 30 0
+  #end do once
+  train 29 villager
+  sell wood when wood >= 200
+  buy food when gold >= 300
+  sell food when food >= 900
+
+#end if
+
+#if current-age >= castle-age
+  #do once
+    distribute villagers 20 15 45 20
+    enable walls with perimeter 2
+    sn-maximum-town-size = town-size
+  #end do once
+  train 130 villager
+  build houses with 15 headroom
+  //sell stone when stone >= 750
+  build gold mining camps
+
+#end if
+
+#if unit-type-count-total villager >= 130
+  delete unit villager
+#end if
+
+#if current-age == castle-age
+  
+  buy food when gold >= 900
+  sell food when food >= 1300
+
+#end if

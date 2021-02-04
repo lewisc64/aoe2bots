@@ -1,0 +1,119 @@
+#do once
+  set up scouting
+  set up new building system
+  set up micro
+  target walls
+  take boar
+  chat to all "Patience is a virtue."
+  distribute villagers 20 80 0 0
+  #delay by 5 seconds
+    chat to all "Number 5, I think."
+  #end delay
+#end do once
+
+research feudal-age
+research castle-age
+research imperial-age with food escrow
+research my-unique-research with food and gold escrow
+#when
+  research ri-heavy-scorpion with wood and food escrow
+#then
+  escrow 0 wood
+  escrow 0 food
+  escrow 0 gold
+#end when
+research ri-capped-ram with wood and food escrow
+research ri-siege-ram with wood and food escrow
+research ri-loom
+research ri-wheel-barrow
+research ri-hand-cart
+research ri-double-bit-axe
+research ri-two-man-saw
+research ri-horse-collar
+research ri-gold-mining
+research ri-masonry
+research ri-fortified-wall
+research ri-chemistry
+research ri-murder-holes
+research ri-fletching
+research ri-siege-engineers
+
+train 100 villager
+train 5 battering-ram-line
+train scorpion-line
+#if food-amount > 200
+  train my-unique-unit
+#end if
+
+#repeat every 30 seconds
+  attack with 30 units
+#end repeat
+
+build houses
+build lumber camps
+build mills
+build 3 siege-workshop
+build 3 town-center
+build 1 university
+build stone walls on perimeter 2
+build stone gates on perimeter 2
+build 1 castle
+build forward 5 castle
+
+#if building-type-count-total mill == 0 and game-time >= 360
+  build 1 mill
+#end if
+
+#if town-under-attack
+  #do once
+    chat to all "Settle down. There will be time for fighting later."  
+  #end do once
+#end if
+
+#if current-age == dark-age
+  
+  #if building-type-count-total lumber-camp >= 1
+    build 6 farm
+  #end if
+  
+#else if current-age == feudal-age
+
+  build 8 farm
+  
+  buy food when gold >= 400
+  sell food when food >= 800
+  
+  #do once
+    distribute villagers 20 60 10 10
+    chat to all "Good things come to those who wait."
+  #end do once
+
+#else
+
+  build farms
+  
+  enable walls on perimeter 2
+  
+  buy stone when gold >= 1500
+  sell food when food >= 1500
+  sell wood when wood >= 1500
+  
+  #do once
+    distribute villagers 40 30 20 10  
+    chat to all "Nearly time now... please be patient."
+    escrow 10 wood
+    escrow 10 food
+    escrow 10 gold
+  #end do once
+  
+#end if
+
+#if current-age >= feudal-age
+  #when
+    build gold mining camps
+    build stone mining camps  
+  #then
+    sn-camp-max-distance += 15
+  #end when
+
+#end if

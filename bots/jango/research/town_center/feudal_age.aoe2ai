@@ -1,0 +1,15 @@
+#if not research-completed feudal-age
+  load "research/town_center/prerequisites.aoe2ai"
+
+  load "research/lumber_camp/prerequisites.aoe2ai"
+  load "research/mill/prerequisites.aoe2ai"
+
+  #if research-available feudal-age
+    #if up-research-status c: feudal-age < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research feudal-age
+    #end if
+  #end if
+#end if

@@ -1,0 +1,21 @@
+#do once
+  set up basics
+  distribute villagers 20 80 0 0
+#end do
+
+build houses
+build lumber camps
+train villager
+build mill
+
+#add action up-get-fact unit-type-count villager 1
+#add action up-modify-goal 1 s:* sn-food-gatherer-percentage
+#add action up-modify-goal 1 c:/ 100
+rule
+#remove action
+#remove action
+#remove action
+
+#add action up-chat-data-to-all "food vills: %d" g: 1
+rule
+#remove action

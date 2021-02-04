@@ -1,0 +1,20 @@
+//load "research/town_center/feudal_age.aoe2ai"
+load "research/stable/prerequisites.aoe2ai"
+
+#if unit-available scout-cavalry-line
+  #if current-age == castle-age
+    load "research/stable/light_cavalry.aoe2ai"
+  #else if current-age == imperial-age
+    load "research/stable/hussar.aoe2ai"
+  #end if
+  
+  load "units/types/cavalry.aoe2ai"
+  
+  #if goal produce-units 1
+    #when
+      train scout-cavalry-line
+    #then
+      goal trained-unit = 1
+    #end when
+  #end if
+#end if

@@ -1,0 +1,49 @@
+#do once
+  set up basics
+  sn-ignore-tower-elevation = 1
+  take boar
+  distribute villagers 20 80 0 0
+  assign 8 builders to watch-tower-line
+#end do
+
+research feudal-age
+#add condition can-research feudal-age
+  scout opposite
+#remove condition
+research castle-age
+
+research ri-murder-holes
+//research ri-fletching
+
+#if current-age == dark-age and food-amount < 300 or current-age == feudal-age and unit-type-count-total villager < 30 or current-age >= castle-age
+  train 100 villager
+#end if
+#add action attack-now
+  train 2 mangonel-line
+  #if unit-type-count-total mangonel-line >= 2
+    train battering-ram-line
+  #end if
+#remove action
+
+build forward 20 watch-tower-line
+
+build lumber camps
+
+#if current-age >= feudal-age
+  #do once
+    distribute villagers 40 35 15 10
+  #end do
+  build gold mining camps
+  build stone mining camps
+#else if building-type-count-total lumber-camp > 0
+  build mills  
+#end if
+
+build houses with 5 headroom
+build 6 farm
+#if building-type-count-total watch-tower-line > 0
+  build 1 blacksmith
+  build 1 market
+  build 2 siege-workshop
+  build 1 university
+#end if

@@ -1,0 +1,17 @@
+//load "research/town_center/imperial_age.aoe2ai"
+load "research/siege_workshop/prerequisites.aoe2ai"
+
+#if unit-available hand-cannoneer
+  
+  load "research/archery_range/prerequisites.aoe2ai"
+  
+  load "research/blacksmith/ring_archer_armor.aoe2ai"
+
+  #if goal produce-units 1
+    #when
+      train hand-cannoneer
+    #then
+      goal trained-unit = 1
+    #end when
+  #end if
+#end if

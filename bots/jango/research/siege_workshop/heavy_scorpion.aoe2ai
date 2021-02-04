@@ -1,0 +1,13 @@
+#if not research-completed ri-heavy-scorpion
+  load "research/siege_workshop/prerequisites.aoe2ai"
+  //load "research/town_center/imperial_age.aoe2ai"
+
+  #if research-available ri-heavy-scorpion
+    #if up-research-status c: ri-heavy-scorpion < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-heavy-scorpion
+    #end if
+  #end if
+#end if

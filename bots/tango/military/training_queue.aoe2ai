@@ -1,0 +1,140 @@
+
+sn-enable-training-queue = 1
+
+#if strategic-number sn-enable-training-queue == 1
+
+  // TC
+  #if not(research-completed ri-loom) or not(research-completed feudal-age)
+    sn-enable-training-queue = 0
+  #end if
+
+  #if up-research-status c: feudal-age >= research-pending
+    // TC
+    #if not(research-completed castle-age) or not(research-completed ri-wheel-barrow)
+      sn-enable-training-queue = 0
+    #end if
+    
+    // barracks
+    #if goal producing-infantry 1 and not(research-completed ri-tracking)
+      sn-enable-training-queue = 0
+    #end if
+    #if goal produce-militia 1 and not(research-completed ri-man-at-arms)
+      sn-enable-training-queue = 0
+    #end if
+    
+    // stable
+    #if goal producing-cavalry 1 and not(research-completed ri-bloodlines) and research-available ri-bloodlines
+      sn-enable-training-queue = 0
+    #end if
+  #end if
+
+  #if up-research-status c: castle-age >= research-pending
+    // TC
+    #if not(research-completed imperial-age) or not(research-completed ri-hand-cart)
+      sn-enable-training-queue = 0
+    #end if
+    
+    // archery range
+    #if goal producing-ranged 1 and not(research-completed ri-thumb-ring)
+      sn-enable-training-queue = 0
+    #end if
+    #if goal produce-archers 1
+      #if not(research-completed ri-crossbow) and research-available ri-crossbow
+        sn-enable-training-queue = 0
+      #end if
+    #end if
+    #if goal produce-skirmishers 1
+      #if not(research-completed ri-elite-skirmisher) and research-available ri-elite-skirmisher
+        sn-enable-training-queue = 0
+      #end if
+    #end if
+    
+    // barracks
+    #if goal producing-infantry 1
+      #if not(research-completed ri-squires) and research-available ri-squires or not(research-completed ri-arson) and research-available ri-arson
+        sn-enable-training-queue = 0
+      #end if
+    #end if
+    #if goal produce-militia 1 and not(research-completed ri-long-swordsman)
+      sn-enable-training-queue = 0
+    #end if
+    #if goal produce-spearmen 1 and not(research-completed ri-pikeman) and research-available ri-pikeman
+      sn-enable-training-queue = 0
+    #end if
+    #if goal produce-eagles 1 and not(research-completed ri-eagle-warrior)
+      sn-enable-training-queue = 0
+    #end if
+    
+    // stable
+    #if goal producing-cavalry 1 and not(research-completed ri-husbandry) and research-available ri-husbandry
+      sn-enable-training-queue = 0
+    #end if
+    #if goal produce-scouts 1 and not(research-completed ri-light-cavalry) and research-available ri-light-cavalry
+      sn-enable-training-queue = 0
+    #end if
+  #end if
+
+  #if up-research-status c: imperial-age >= research-pending
+    // archery range
+    #if goal produce-archers 1
+      #if not(research-completed ri-arbalest) and research-available ri-arbalest
+        sn-enable-training-queue = 0
+      #end if
+    #end if
+    #if goal produce-skirmishers 1
+      #if not(research-completed ri-imperial-skirmisher) and research-available ri-imperial-skirmisher
+        sn-enable-training-queue = 0
+      #end if
+    #end if
+    #if goal produce-cavalry-archers 1
+      #if not(research-completed ri-heavy-cavalry-archer) and research-available ri-heavy-cavalry-archer or not(research-completed ri-parthian-tactics) and research-available ri-parthian-tactics
+        sn-enable-training-queue = 0
+      #end if
+    #end if
+    
+    // barracks
+    #if goal produce-militia 1
+      #if not(research-completed ri-two-handed-swordsman) and research-available ri-two-handed-swordsman or not(research-completed ri-champion) and research-available ri-champion
+        sn-enable-training-queue = 0
+      #end if
+    #end if
+    #if goal produce-spearmen 1 and not(research-completed ri-halberdier) and research-available ri-halberdier
+      sn-enable-training-queue = 0
+    #end if
+    #if goal produce-eagles 1 and not(research-completed ri-elite-eagle-warrior) and research-available ri-elite-eagle-warrior
+      sn-enable-training-queue = 0
+    #end if
+    
+    // stable
+    #if goal produce-scouts 1 and not(research-completed ri-hussar) and research-available ri-hussar
+      sn-enable-training-queue = 0
+    #end if
+    #if goal produce-knights 1
+      #if not(research-completed ri-cavalier) and research-available ri-cavalier or not(research-completed ri-paladin) and research-available ri-paladin
+        sn-enable-training-queue = 0
+      #end if
+    #end if
+    #if goal produce-camels 1 and not(research-completed ri-heavy-camel) and research-available ri-heavy-camel
+      sn-enable-training-queue = 0
+    #end if
+    #if goal produce-battle-elephants 1 and not(research-completed ri-elite-battle-elephant) and research-available ri-elite-battle-elephant
+      sn-enable-training-queue = 0
+    #end if
+    
+    // siege workshop
+    #if goal produce-rams 1
+      #if not(research-completed ri-capped-ram) and research-available ri-capped-ram or not(research-completed ri-siege-ram) and research-available ri-siege-ram
+        sn-enable-training-queue = 0
+      #end if
+    #end if
+    #if goal produce-mangonels 1
+      #if not(research-completed ri-onager) and research-available ri-onager or not(research-completed ri-siege-onager) and research-available ri-siege-onager
+        sn-enable-training-queue = 0
+      #end if
+    #end if
+    #if goal produce-scorpions 1 and not(research-completed ri-heavy-scorpion) and research-available ri-heavy-scorpion
+      sn-enable-training-queue = 0
+    #end if
+  #end if
+
+#end if

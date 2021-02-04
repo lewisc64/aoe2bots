@@ -1,0 +1,59 @@
+#if civ-selected aztec
+  // no substitution
+#end if
+
+#if civ-selected berbers or civ-selected briton or civ-selected chinese or civ-selected mayan or civ-selected mongol or civ-selected korean or civ-selected indian or civ-selected italian or civ-selected burmese
+  #if goal produce-archers 1 or goal produce-cavalry-archers 1
+    goal produce-archers = 0
+    goal produce-cavalry-archers = 0
+    goal produce-unique-unit = 1
+  #end if
+#end if
+
+#if civ-selected ethiopian or civ-selected teutonic or civ-selected viking or civ-selected celtic or civ-selected frankish or civ-selected japanese or civ-selected malay or civ-selected malian
+  #if goal produce-militia 1
+    goal produce-militia = 0
+    goal produce-unique-unit = 1
+  #end if
+#end if
+
+#if civ-selected vietnamese or civ-selected gothic
+  #if goal produce-skirmishers 1
+    goal produce-skirmishers = 0
+    goal produce-unique-unit = 1
+  #end if
+#end if
+
+#if civ-selected byzantine or civ-selected persian or civ-selected slavic or civ-selected magyar
+  #if goal produce-knights 1 or goal produce-scouts 1
+    goal produce-knights = 0
+    goal produce-scouts = 0
+    goal produce-unique-unit = 1
+  #end if
+#end if
+
+#if civ-selected hun
+  // no substitution
+#end if
+
+#if civ-selected incan and goal produce-spearmen 1
+  goal produce-spearmen = 0
+  goal produce-unique-unit = 1
+#end if
+
+#if civ-selected khmer and goal produce-scorpions 1
+  goal produce-scorpions = 0
+  goal produce-unique-unit = 1
+#end if
+
+#if civ-selected spanish or civ-selected turkish or civ-selected portuguese
+  #if goal produce-hand-cannoneers 1
+    goal produce-hand-cannoneers = 0
+    goal produce-unique-unit = 1
+  #end if
+#end if
+
+#if civ-selected saracen and goal produce-camels 1
+  goal produce-camels = 0
+  goal produce-unique-unit = 1
+#end if

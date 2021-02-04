@@ -1,0 +1,162 @@
+#if goal research-economy-upgrades 1
+  load "economy/economy_research.aoe2ai"
+#end if
+
+#if current-age >= castle-age
+  delete walls
+#end if
+
+// villager training
+goal should-make-villagers = 0
+#if up-compare-goal desired-villagers g:< total-villagers and population-headroom == 0 and housing-headroom == 0
+  delete unit villager
+#else if unit-type-count-total trade-cart > 0
+  #if up-compare-goal total-villagers g:< desired-villagers-with-trade
+    goal should-make-villagers = 1
+  #end if
+#else
+  #if up-compare-goal total-villagers g:< desired-villagers
+    goal should-make-villagers = 1
+  #end if
+#end if
+
+#if goal should-make-villagers 1
+  train villager
+#end if
+
+#if goal team-game 1 and current-age >= castle-age and military-population >= min-army
+  #if players-building-type-count any-ally market >= 1
+    #if up-compare-goal total-trade g:< desired-trade
+      train trade-cart
+    #end if
+  #else
+    #do once
+      chat to allies "Market?"
+    #end do
+  #end if
+#end if
+
+// monk to gather relics
+#if unit-type-count-total monk-set == 0
+  train 1 monk
+#end if
+
+#if up-compare-goal non-escrowed-food < 50 and goal should-make-villagers 1 and current-age <= dark-age
+  drop off food
+#end if
+
+#when
+  build lumber camps maintaining 2 tiles
+#then
+  sn-camp-max-distance += 4
+#end when
+
+build mills
+#if building-type-count-total mill == 0 and game-time >= 360
+  build 1 mill with wood escrow
+#end if
+
+#if not death-match-game
+  build wonder
+#end if
+
+build 1 town-center with wood and stone escrow
+#if goal boom 1 and goal should-make-villagers 1
+  #if current-age >= castle-age and building-type-count-total town-center < 3
+    escrow 100 wood
+    escrow 100 stone
+  #end if
+  build 3 town-center with wood and stone escrow
+#end if
+build max-town-centers town-center
+
+#if civilian-population >= 20 or death-match-game
+  build 1 blacksmith
+  #if building-type-count-total blacksmith > 0
+    build 1 market with wood escrow
+  #end if
+#end if
+
+build 1 university
+build 1 monastery
+build 5 bombard-tower
+
+#if goal attacking 1 and goal use-town-size-attack 0
+  build forward 5 castle
+#else
+  build 5 castle
+#end if
+
+#if military-population < 5 and town-under-attack and current-age <= feudal-age
+  assign 10 builders to watch-tower-line
+  build 3 watch-tower-line with wood and stone escrow
+#end if
+
+#if up-research-status c: feudal-age < research-pending
+  
+  #if building-type-count-total lumber-camp > 0
+    build 3 farm
+  #end if
+  
+  #do once
+    #if building-type-count-total house == 0
+      assign 2 builders to house
+    #else
+      assign 1 builder to house
+    #end if
+  #end do
+  
+  build houses with 5 headroom
+  
+#else if up-research-status c: feudal-age >= research-pending and up-research-status c: castle-age < research-pending
+  
+  build houses with 10 headroom
+  build 2 lumber-camp
+  
+  #if building-type-count-total barracks >= 1
+    build 1 mining-camp with wood escrow
+  #end if
+  
+  // market abuse for castle
+  sell wood when wood >= 400
+  sell food when food >= 900
+  buy food when gold >= 400
+  
+#else
+  build stone mining camps
+  build houses with 20 headroom
+  #if population-headroom != 0 and housing-headroom == 0
+    #repeat every 1 minute
+      chat to all "I'm housed! Panic!"
+      sn-minimum-town-size += 5
+      sn-maximum-town-size += 5
+    #end repeat
+  #end if
+#end if
+
+#if current-age == castle-age
+  // market abuse for imperial
+  buy food when gold >= 1000
+  sell wood when wood >= 800
+#end if
+
+#if up-research-status c: feudal-age >= research-pending or wood-amount > 200
+  #if up-compare-goal non-escrowed-wood > 100 and dropsite-min-distance wood < 10
+    load "economy/farming.aoe2ai"
+  #end if
+  
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 10
+  #end when
+  
+  #if goal build-walls 1
+    #do once
+      enable walls on perimeter 2
+    #end do
+    build stone walls with perimeter 2
+    build stone gates on perimeter 2
+  #end if
+  
+#end if

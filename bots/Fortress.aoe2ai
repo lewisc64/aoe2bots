@@ -1,0 +1,96 @@
+const ri-arquebus = 573
+
+load "templates/fast_castle.aoe2ai"
+
+#if current-age >= castle-age
+  
+  #do once
+    distribute villagers 45 25 10 20
+    enable walls on perimeter 2
+    assign 8 builders to castle
+    assign 4 builders to watch-tower-line
+    assign 8 builders to town-center-foundation
+    assign 8 builders to bombard-tower
+    target walls
+    sn-special-attack-type2 = trebuchet
+  #end do
+  
+  #if current-age == castle-age
+    sell wood when wood > 500
+    sell food when food > 1500
+    buy food when gold > 1000
+  #else if current-age == imperial-age
+    sell wood when wood > 2000
+    sell food when food > 2000
+    buy stone when gold > 2000
+  #end if
+  
+  train 100 villager
+  train bombard-cannon
+  
+  research imperial-age
+  
+  research mining camp upgrades
+  research lumber camp upgrades
+  research mill upgrades
+  research town center upgrades
+  
+  research ri-fletching
+  research ri-bodkin-arrow
+  research ri-bracer
+  research ri-hoardings
+  research ri-fortified-wall
+  research ri-murder-holes
+  research ri-masonry
+  research ri-architecture
+  research ri-ballistics
+  #when
+    research ri-chemistry
+  #then
+    distribute 10 villagers from wood to gold
+  #end when
+  research ri-arquebus
+  research ri-siege-engineers
+  research ri-bombard-tower
+  research ri-guard-tower
+  research ri-keep
+  research ri-arrowslits
+  
+  #if military-population >= 50
+    build forward bombard-tower
+    #if enemy-buildings-in-town
+      sn-maximum-town-size -= 1
+    #else
+      sn-maximum-town-size += 5
+    #end if
+  #else if strategic-number sn-maximum-town-size > 40
+    sn-maximum-town-size = 40
+  #end if
+  
+  #when
+    build lumber camps
+  #then
+    sn-camp-max-distance += 3
+  #end when
+  #when
+    build stone mining camps
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 10
+  #end when
+  
+  build houses
+  build 3 town-center
+  build farms
+  build 1 blacksmith
+  build 1 market
+  build 1 university
+  build 2 siege-workshop
+  build 5 castle
+  #if building-type-count-total castle > 0
+    build stone walls on perimeter 2
+    build stone gates on perimeter 2
+    build 3 watch-tower-line
+    build 8 bombard-tower
+  #end if
+#end if

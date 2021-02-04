@@ -1,0 +1,14 @@
+#if not research-completed ri-iron-casting
+  load "research/blacksmith/prerequisites.aoe2ai"
+  //load "research/town_center/castle_age.aoe2ai"
+  load "research/blacksmith/forging.aoe2ai"
+
+  #if research-available ri-iron-casting
+    #if up-research-status c: ri-iron-casting < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-iron-casting
+    #end if
+  #end if
+#end if

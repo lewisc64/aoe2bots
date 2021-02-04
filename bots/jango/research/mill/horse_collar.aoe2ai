@@ -1,0 +1,13 @@
+#if not research-completed ri-horse-collar
+  load "research/mill/prerequisites.aoe2ai"
+  //load "research/town_center/feudal_age.aoe2ai"
+
+  #if research-available ri-horse-collar
+    #if up-research-status c: ri-horse-collar < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-horse-collar
+    #end if
+  #end if
+#end if

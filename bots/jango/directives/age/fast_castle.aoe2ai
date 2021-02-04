@@ -1,0 +1,15 @@
+#if civilian-population >= 27
+  load "research/town_center/imperial_age.aoe2ai"
+#end if
+
+#if up-research-status c: castle-age >= research-pending
+  goal attack-ready = 1
+#else
+  #if food-amount < 800
+    buy food when gold >= 300
+  #end if
+  #if gold-amount < 200
+    sell wood when wood >= 200
+    sell food when food >= 900
+  #end if
+#end if

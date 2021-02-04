@@ -1,0 +1,10 @@
+#if building-type-count-total archery-range == 0
+  //load "research/town_center/feudal_age.aoe2ai"
+  #if up-research-status c: feudal-age >= research-pending
+    load "research/barracks/prerequisites.aoe2ai"
+  #end if
+
+  #if building-type-count barracks >= 1
+    build 1 archery-range
+  #end if
+#end if

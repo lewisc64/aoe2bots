@@ -1,0 +1,23 @@
+#if players-current-age any-ally == dark-age and game-time >= 900
+  #do once
+    chat to this-any-ally "Come on! Age up! Make sure you have a lumber camp and a mill."
+    chat to this-any-ally "I'll send you food when I'm able to."
+  #end do
+  #if food-amount > 200 and up-allied-resource-amount this-any-ally food < 500
+    tribute 100 food to this-any-ally
+  #end if
+#end if
+
+#if players-current-age any-ally == feudal-age and game-time >= 1800 and current-age >= castle-age
+  #do once
+    chat to this-any-ally "Don't feel like going to the castle age?"
+    chat to this-any-ally "Make sure you have a blacksmith, and either a market or a military building."
+    chat to this-any-ally "I can send you the resources when I have enough."
+  #end do
+  #if food-amount > 200 and up-allied-resource-amount this-any-ally food < 800
+    tribute 100 food to this-any-ally
+  #end if
+  #if gold-amount > 200 and up-allied-resource-amount this-any-ally food < 200
+    tribute 100 gold to this-any-ally
+  #end if
+#end if

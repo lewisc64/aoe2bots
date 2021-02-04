@@ -1,0 +1,27 @@
+//#if up-pending-objects c: farm < 5
+//  #if idle-farm-count < 3
+//    build farm
+//  #end if
+//#end if
+
+//build 8 farm
+
+goal current-farm-count = 0
+@up-get-fact building-type-count-total farm current-farm-count
+#if up-compare-goal current-farm-count g:< expected-food-gatherers
+  build farm
+#end if
+
+#if building-type-count-total mill <= 1 and building-type-count-total farm >= 17
+  build mill
+#else if building-type-count-total mill <= 2 and building-type-count-total farm >= 24
+  build mill
+#else if building-type-count-total mill <= 3 and building-type-count-total farm >= 31
+  build mill
+#else if building-type-count-total mill <= 4 and building-type-count-total farm >= 38
+  build mill
+#else if building-type-count-total mill <= 5 and building-type-count-total farm >= 45
+  build mill
+#else if building-type-count-total mill <= 6 and building-type-count-total farm >= 52
+  build mill
+#end if

@@ -1,0 +1,45 @@
+#do once
+  chat to allies "I'm going to be aggressive in the feudal age."
+
+  distribute villagers 20 80 0 0
+  goal age-up = 0
+  sn-enable-training-queue = 1
+
+  #if current-age == dark-age
+    
+    #if civilian-population >= 20
+      sn-enable-training-queue = 0
+    #end if
+    #if civilian-population >= 21
+      goal age-up = 1
+    #end if
+  
+  #end if
+  
+  #if up-research-status c: feudal-age >= research-pending
+    goal militant = 1
+    
+    #if false // DISABLED FOR PREDICTIVE
+      goal choose-initial-balance = 1
+      #delay by 2 minutes
+        goal choose-initial-balance = 0
+      #end delay
+      
+      #if goal choose-initial-balance 1
+        
+        #if goal produce-archers 1
+          distribute villagers 40 35 25 0
+        #else if goal produce-eagles 1
+          distribute villagers 35 35 30 0
+        #else if goal produce-militia 1 or goal produce-scouts 1
+          distribute villagers 35 55 10 0
+        #else
+          distribute villagers 40 45 15 0
+        #end if
+        
+      #end if
+    #end if
+    
+  #end if
+  
+#end do

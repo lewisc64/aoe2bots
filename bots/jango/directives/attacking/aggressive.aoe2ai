@@ -1,0 +1,15 @@
+#repeat every 60 seconds
+  #if current-age == feudal-age
+    #if military-population >= 12
+      goal attacking = 1
+    #else
+      goal attacking = 0
+    #end if
+  #else
+    #if military-population >= 30
+      goal attacking = 1
+    #else
+      goal attacking = 0
+    #end if
+  #end if
+#end repeat

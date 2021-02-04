@@ -1,0 +1,13 @@
+#if not research-completed ri-two-man-saw
+  load "research/lumber_camp/prerequisites.aoe2ai"
+  load "research/lumber_camp/bow_saw.aoe2ai"
+
+  #if research-available ri-two-man-saw
+    #if up-research-status c: ri-two-man-saw < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-two-man-saw
+    #end if
+  #end if
+#end if

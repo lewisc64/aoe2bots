@@ -1,0 +1,130 @@
+
+#if goal team-game 1
+  load "chat/commands.aoe2ai"
+#end if
+
+#if goal resign 1
+  #do once
+    chat to all "Nice moves! I could do with some lessons!"
+  #end do
+#end if
+
+#do once
+  #if game-time < 5
+    #select random
+      chat to all "Let's dance, punk!"
+    #randor
+      chat to all "Do a headstand!"
+    #randor
+      chat to all "Hit the floor!"
+    #randor
+      chat to all "Hit it!"
+    #randor
+      chat to all "Man, I like the vibe in here."
+    #randor
+      chat to all "Start the music!"
+    #randor
+      chat to all "Let's turn it up a notch."
+    #randor
+      chat to all "Turn up the volume!"
+    #end select
+  #end if
+  goal taunt-allies = 0
+  goal taunt-enemies = 0
+#end do
+
+#delay by 2 hours
+  #do once
+    #select random
+      chat to all "This party's getting a bit stale..."
+    #randor
+      chat to all "I'm getting a little tired..."
+    #randor
+      chat to all "It's been a long night..."
+    #randor
+      chat to all "All this dancing is giving me a headache..."
+    #end select
+  #end do
+#end delay
+
+#if goal taunt-allies 1
+  #select random
+    chat to allies "1I'll dance to that!"
+  #randor
+    chat to allies "1Right away."
+  #randor
+    chat to allies "1Gotcha!"
+  #end select
+  goal taunt-allies = 0
+#end if
+
+#if goal taunt-allies 2
+  #select random
+    chat to allies "2Not really feelin' the vibe..."
+  #randor
+    chat to allies "2Nah."
+  #randor
+    chat to allies "2No can-do, matey."
+  #end select
+  goal taunt-allies = 0
+#end if
+
+#if goal taunt-allies 3
+  #select random
+    chat to allies "3Any extra grub?"
+  #randor
+    chat to allies "3Man, I'm starving."
+  #randor
+    chat to allies "3Working up an appetite here. Help?"
+  #end select
+  goal taunt-allies = 0
+#end if
+
+#if goal taunt-allies 4
+  #select random
+    chat to allies "4Need wood. For plates?"
+  #randor
+    chat to allies "4The stove's run out of fuel! You don't want me to freeze, right?"
+  #end select
+  goal taunt-allies = 0
+#end if
+
+#if goal taunt-allies 5
+  #select random
+    chat to allies "5Spent all my money on drinks..."
+  #randor
+    chat to allies "5Out of cash. Fix me up?"
+  #end select
+  goal taunt-allies = 0
+#end if
+
+#if goal taunt-allies 6
+  #select random
+    chat to allies "6Need some rocks to throw."
+  #randor
+    chat to allies "6I fancy getting a bit stoned tonight."
+  #end select
+  goal taunt-allies = 0
+#end if
+
+#if goal taunt-allies 12
+  #select random
+    chat to allies "12Could use some help here!"
+  #randor
+    chat to allies "12It's not looking good."
+  #randor
+    chat to allies "12Nasties in my base! Help?"
+  #end select
+  goal taunt-allies = 0
+#end if
+
+#if goal taunt-allies 31
+  #select random
+    chat to allies "31Let's rock and roll!"
+  #randor
+    chat to allies "31It's time to boogie!"
+  #randor
+    chat to allies "31Let's waltz on in there!"
+  #end select
+  goal taunt-allies = 0
+#end if

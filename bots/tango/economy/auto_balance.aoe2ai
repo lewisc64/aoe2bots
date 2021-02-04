@@ -1,0 +1,149 @@
+#if goal team-game 1 and gold-amount > max-gold
+
+  #if wood-amount > max-wood
+    #if up-allied-resource-amount any-ally wood < max-wood
+      tribute 100 wood to this-any-ally
+    #else
+      sell wood when gold < max-gold
+    #end if
+  #end if
+  
+  #if food-amount > max-food
+    #if up-allied-resource-amount any-ally food < max-food
+      tribute 100 food to this-any-ally
+    #else
+      sell food when gold < max-gold
+    #end if
+  #end if
+  
+  #if up-allied-resource-amount any-ally gold < max-gold
+    tribute 100 gold to this-any-ally
+  #end if
+
+#else if gold-amount < max-gold
+  sell wood when wood > max-wood
+  sell food when food > max-food
+#end if
+
+sell stone when stone > max-stone
+
+load "economy/auto_balance_predictive.aoe2ai"
+
+#if true // enabled
+  #if up-compare-goal total-wood-gatherer-percentage < min-wood-percentage
+    @up-modify-goal food-modifier-percentage c:- 1
+    @up-modify-goal gold-modifier-percentage c:- 1
+    @up-modify-goal wood-modifier-percentage c:+ 2
+  #end if
+
+  #if up-compare-goal total-food-gatherer-percentage < min-food-percentage
+    @up-modify-goal wood-modifier-percentage c:- 1
+    @up-modify-goal gold-modifier-percentage c:- 1
+    @up-modify-goal food-modifier-percentage c:+ 2
+  #end if
+
+  #if up-compare-goal total-gold-gatherer-percentage < min-gold-percentage
+    @up-modify-goal wood-modifier-percentage c:- 1
+    @up-modify-goal food-modifier-percentage c:- 1
+    @up-modify-goal gold-modifier-percentage c:+ 2
+  #end if
+
+  #repeat every 30 seconds
+    #if up-compare-goal non-escrowed-wood <= low-wood
+      #if up-compare-goal non-escrowed-food <= low-food
+        #if up-compare-goal non-escrowed-gold >= high-gold
+          #if up-compare-goal total-gold-gatherer-percentage > min-gold-percentage
+            @up-modify-goal gold-modifier-percentage c:- 4
+            @up-modify-goal wood-modifier-percentage c:+ 2
+            @up-modify-goal food-modifier-percentage c:+ 2
+          #end if
+        #end if
+      #else if up-compare-goal non-escrowed-food >= high-food
+        #if up-compare-goal non-escrowed-gold <= low-gold and goal producing-trash 0
+          #if up-compare-goal total-food-gatherer-percentage > min-food-percentage
+            @up-modify-goal food-modifier-percentage c:- 4
+            @up-modify-goal wood-modifier-percentage c:+ 2
+            @up-modify-goal gold-modifier-percentage c:+ 2
+          #end if
+        #else if up-compare-goal non-escrowed-gold >= high-gold
+          #if up-compare-goal total-food-gatherer-percentage > min-food-percentage and up-compare-goal total-gold-gatherer-percentage > min-gold-percentage
+            @up-modify-goal food-modifier-percentage c:- 2
+            @up-modify-goal gold-modifier-percentage c:- 2
+            @up-modify-goal wood-modifier-percentage c:+ 4
+          #end if
+        #else
+          #if up-compare-goal total-food-gatherer-percentage > min-food-percentage
+            @up-modify-goal food-modifier-percentage c:- 4
+            @up-modify-goal wood-modifier-percentage c:+ 4
+          #end if
+        #end if
+      #else
+        #if up-compare-goal non-escrowed-gold >= high-gold
+          #if up-compare-goal total-gold-gatherer-percentage > min-gold-percentage
+            @up-modify-goal gold-modifier-percentage c:- 4
+            @up-modify-goal wood-modifier-percentage c:+ 4
+          #end if
+        #end if
+      #end if
+    #else if up-compare-goal non-escrowed-wood >= high-wood
+      #if up-compare-goal non-escrowed-food <= low-food
+        #if up-compare-goal non-escrowed-gold <= low-gold and goal producing-trash 0
+          #if up-compare-goal total-wood-gatherer-percentage > min-wood-percentage
+            @up-modify-goal wood-modifier-percentage c:- 4
+            @up-modify-goal food-modifier-percentage c:+ 2
+            @up-modify-goal gold-modifier-percentage c:+ 2
+          #end if
+        #else if up-compare-goal non-escrowed-gold >= high-gold
+          #if up-compare-goal total-wood-gatherer-percentage > min-wood-percentage and up-compare-goal total-gold-gatherer-percentage > min-gold-percentage
+            @up-modify-goal wood-modifier-percentage c:- 2
+            @up-modify-goal gold-modifier-percentage c:- 2
+            @up-modify-goal food-modifier-percentage c:+ 4
+          #end if
+        #else
+          #if up-compare-goal total-wood-gatherer-percentage > min-wood-percentage
+            @up-modify-goal wood-modifier-percentage c:- 4
+            @up-modify-goal food-modifier-percentage c:+ 4
+          #end if
+        #end if
+      #else if up-compare-goal non-escrowed-food >= high-food
+        #if up-compare-goal non-escrowed-gold <= low-gold and goal producing-trash 0
+          #if up-compare-goal total-wood-gatherer-percentage > min-wood-percentage and up-compare-goal total-food-gatherer-percentage > min-food-percentage
+            @up-modify-goal wood-modifier-percentage c:- 2
+            @up-modify-goal food-modifier-percentage c:- 2
+            @up-modify-goal gold-modifier-percentage c:+ 4
+          #end if
+        #end if
+      #else
+        #if up-compare-goal non-escrowed-gold <= low-gold and goal producing-trash 0
+          #if up-compare-goal total-wood-gatherer-percentage > min-wood-percentage
+            @up-modify-goal wood-modifier-percentage c:- 4
+            @up-modify-goal food-modifier-percentage c:+ 4
+          #end if
+        #end if
+      #end if
+    #else
+      #if up-compare-goal non-escrowed-food <= low-food
+        #if up-compare-goal non-escrowed-gold >= high-gold
+          #if up-compare-goal total-gold-gatherer-percentage > min-gold-percentage
+            @up-modify-goal gold-modifier-percentage c:- 4
+            @up-modify-goal food-modifier-percentage c:+ 4
+          #end if
+        #end if
+      #else if up-compare-goal non-escrowed-food >= high-food
+        #if up-compare-goal non-escrowed-gold <= low-gold and goal producing-trash 0
+          #if up-compare-goal total-food-gatherer-percentage > min-food-percentage
+            @up-modify-goal food-modifier-percentage c:- 4
+            @up-modify-goal gold-modifier-percentage c:+ 4
+          #end if
+        #end if
+      #end if
+    #end if
+  #end repeat
+#end if
+
+#if false // DEBUG
+  @up-chat-data-to-all "wood: %d" g: total-wood-gatherer-percentage
+  @up-chat-data-to-all "food: %d" g: total-food-gatherer-percentage
+  @up-chat-data-to-all "gold: %d" g: total-gold-gatherer-percentage
+  @up-chat-data-to-all "stone: %d" g: total-stone-gatherer-percentage
+#end if

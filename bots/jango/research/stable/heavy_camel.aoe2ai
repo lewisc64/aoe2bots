@@ -1,0 +1,13 @@
+#if not research-completed ri-heavy-camel
+  load "research/stable/prerequisites.aoe2ai"
+  //load "research/town_center/imperial_age.aoe2ai"
+
+  #if research-available ri-heavy-camel
+    #if up-research-status c: ri-heavy-camel < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-heavy-camel
+    #end if
+  #end if
+#end if

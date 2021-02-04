@@ -1,0 +1,330 @@
+goal produce-militia = 0
+goal produce-spearmen = 0
+goal produce-condottiero = 0
+goal produce-archers = 0
+goal produce-skirmishers = 0
+goal produce-scouts = 0
+goal produce-knights = 0
+goal produce-rams = 1
+goal produce-mangonels = 0
+goal produce-scorpions = 0
+goal produce-unique-unit = 0
+goal produce-monks = 0
+goal produce-trebuchets = 0
+goal produce-battle-elephants = 0
+goal produce-camels = 0
+goal produce-cavalry-archers = 0
+goal produce-eagles = 0
+goal produce-hand-cannoneers = 0
+goal produce-bombard-cannons = 0
+
+#if (dropsite-min-distance gold > 5 or dropsite-min-distance gold == -1) and unit-type-count-total trade-cart == 0 and current-age >= feudal-age
+  goal producing-trash = 1
+#else
+  goal producing-trash = 0
+#end if
+
+#if up-research-status c: feudal-age < research-pending or current-age == dark-age and death-match-game
+  goal produce-militia = 1
+#else
+  load "military/civ_unit_decisions.aoe2ai"
+  load "military/counters.aoe2ai"
+  #if goal producing-trash 1
+    load "military/trash_substitutions.aoe2ai"
+  #end if
+#end if
+
+// unable due to civ or age, make substitutions to fight vaguely the same way
+
+#if goal produce-unique-unit 1 and not(unit-available my-unique-unit)
+  goal produce-unique-unit = 0
+#end if
+
+#if goal produce-eagles 1 and not(unit-available eagle-warrior-line) 
+  goal produce-eagles = 0
+#end if
+
+#if goal produce-cavalry-archers 1 and not(unit-available cavalry-archer-line)
+  goal produce-cavalry-archers = 0
+  goal produce-archers = 1
+#end if
+
+#if goal produce-knights 1 and not(unit-available knight-line)
+  goal produce-knights = 0
+  goal produce-scouts = 1
+#end if
+
+#if goal produce-scouts 1 and not(unit-available scout-cavalry-line)
+  goal produce-scouts = 0
+#end if
+
+#if goal produce-camels 1 and not(unit-available camel-line)
+  goal produce-camels = 0
+  goal produce-spearmen = 1
+#end if
+
+#if goal produce-battle-elephants 1 and not(unit-available battle-elephant-line)
+  goal produce-battle-elephants = 0
+#end if
+
+#if goal produce-hand-cannoneers 1 and not(unit-available hand-cannoneer)
+  goal produce-hand-cannoneers = 0
+#end if
+
+#if goal produce-trebuchets 1 and (not(unit-available trebuchet) or current-age <= castle-age)
+  goal produce-trebuchets = 0
+#end if
+
+#if goal produce-rams 1 and not(unit-available battering-ram-line)
+  goal produce-rams = 0
+#end if
+
+#if goal produce-mangonels 1 and not(unit-available mangonel-line)
+  goal produce-mangonels = 0
+#end if
+
+#if goal produce-scorpions 1 and not(unit-available scorpion-line)
+  goal produce-scorpions = 0
+#end if
+
+#if goal produce-bombard-cannons 1 and not(unit-available bombard-cannon)
+  goal produce-bombard-cannons = 0
+#end if
+
+#if goal produce-condottiero 1 and not(unit-available condottiero)
+  goal produce-condottiero = 0
+#end if
+
+#if goal produce-monks 1 and not(unit-available monk)
+  goal produce-monks = 0
+#end if
+
+// not viable with techs
+
+#if current-age >= castle-age
+  #if goal produce-archers 1 and not(research-available ri-crossbow) and up-research-status c: ri-crossbow < research-pending
+    goal produce-archers = 0
+  #end if
+  #if goal produce-skirmishers 1 and not(research-available ri-elite-skirmisher) and up-research-status c: ri-elite-skirmisher < research-pending
+    goal produce-skirmishers = 0
+  #end if
+  #if goal produce-scouts 1 and not(research-available ri-light-cavalry) and up-research-status c: ri-light-cavalry < research-pending
+    goal produce-scouts = 0
+  #end if
+  #if goal produce-spearmen 1 and not(research-available ri-pikeman) and up-research-status c: ri-pikeman < research-pending
+    goal produce-spearmen = 0
+  #end if
+  #if goal produce-cavalry-archers 1 and not(research-available ri-parthian-tactics) and up-research-status c: ri-parthian-tactics < research-pending
+    goal produce-cavalry-archers = 0
+  #end if
+#end if
+
+#if current-age == imperial-age
+  #if goal produce-archers 1 and research-completed ri-crossbow and not(research-available ri-arbalest) and up-research-status c: ri-arbalest < research-pending
+    goal produce-archers = 0
+    goal produce-cavalry-archers = 1
+  #end if
+  #if goal produce-scouts 1 and research-completed ri-light-cavalry and not(research-available ri-hussar) and up-research-status c: ri-hussar < research-pending
+    goal produce-scouts = 0
+  #end if
+  #if goal produce-knights 1 and not(research-available ri-cavalier) and up-research-status c: ri-cavalier < research-pending
+    goal produce-knights = 0
+  #end if
+  #if goal produce-camels 1 and not(research-available ri-heavy-camel) and up-research-status c: ri-heavy-camel < research-pending
+    goal produce-camels = 0
+    goal produce-spearmen = 1
+  #end if
+  #if goal produce-rams 1 and not(research-available ri-capped-ram) and up-research-status c: ri-capped-ram < research-pending and building-type-count castle >= 1
+    goal produce-rams = 0
+    goal produce-trebuchets = 1
+  #end if
+  #if goal produce-mangonels 1 and not(research-available ri-onager) and up-research-status c: ri-onager < research-pending
+    goal produce-mangonels = 0
+  #end if
+  #if goal produce-scorpions 1 and not(research-available ri-heavy-scorpion) and up-research-status c: ri-heavy-scorpion < research-pending
+    goal produce-scorpions = 0
+  #end if
+  #if goal produce-spearmen 1 and research-completed ri-pikeman and not(research-available ri-halberdier) and up-research-status c: ri-halberdier < research-pending
+    goal produce-spearmen = 0
+  #end if
+  #if goal produce-monks 1 and not(research-available ri-theocracy) and up-research-status c: ri-theocracy < research-pending
+    goal produce-monks = 0
+  #end if
+#end if
+
+// reduction
+
+#if goal produce-archers 1 or goal produce-cavalry-archers 1
+  #if goal produce-knights 1
+    goal produce-knights = 0
+  #end if
+  
+  #if goal produce-militia 1
+    goal produce-militia = 0
+  #end if
+#end if
+
+#if goal produce-knights 1 and goal produce-militia 1
+  goal produce-militia = 0
+#end if
+
+#if goal produce-knights 1 and goal produce-skirmishers 1
+  goal produce-skirmishers = 0
+#end if
+
+#if goal produce-cavalry-archers 1 and goal produce-archers 1
+  goal produce-archers = 0
+#end if
+
+#if goal produce-spearmen 1 and goal produce-camels 1
+  goal produce-spearmen = 0
+#end if
+
+#if goal produce-knights 1 and goal produce-scouts 1
+  goal produce-scouts = 0
+#end if
+
+#if goal produce-knights 1 and goal produce-camels 1
+  goal produce-knights = 0
+#end if
+
+#if goal produce-battle-elephants 1 and goal produce-knights 1
+  goal produce-knights = 0
+#end if
+
+#if goal produce-militia 1 and goal produce-condottiero 1
+  goal produce-militia = 0
+#end if
+
+#if goal produce-mangonels 1 and goal produce-scorpions 1
+  goal produce-scorpions = 0
+#end if
+
+#if goal produce-rams 1 and goal produce-trebuchets 1
+  goal produce-rams = 0
+#end if
+
+#if goal produce-eagles 1 and goal produce-militia 1
+  goal produce-eagles = 0
+#end if
+
+// unit caps
+
+#if goal produce-rams 1 and unit-type-count-total battering-ram-line >= max-rams
+  goal produce-rams = 0
+#end if
+
+#if goal produce-trebuchets 1 and unit-type-count-total trebuchet-set >= max-trebuchets
+  goal produce-trebuchets = 0
+#end if
+
+#if current-age == feudal-age
+  //#if goal produce-archers 1 and goal produce-scouts 1
+  //  goal produce-scouts = 0
+  //#end if
+
+  #if goal produce-scouts 1 and goal produce-skirmishers 1
+    goal produce-skirmishers = 0
+  #end if
+  
+  //#if goal produce-scouts 1 and goal produce-militia 1
+  //  goal produce-militia = 0
+  //#end if
+  
+  //#if goal produce-eagles 1 and goal produce-skirmishers 1
+  //  goal produce-skirmishers = 0
+  //#end if
+#end if
+
+// broad production detection
+
+goal producing-infantry = 0
+goal producing-cavalry = 0
+goal producing-ranged = 0
+goal producing-siege = 0
+
+#if goal produce-militia 1 or goal produce-spearmen 1 or goal produce-eagles 1 or goal produce-condottiero 1
+  goal producing-infantry = 1
+#end if
+
+#if goal produce-archers 1 or goal produce-skirmishers 1 or goal produce-cavalry-archers 1 or goal produce-hand-cannoneers 1
+  goal producing-ranged = 1
+#end if
+
+#if goal produce-scouts 1 or goal produce-knights 1 or goal produce-battle-elephants 1 or goal produce-camels 1
+  goal producing-cavalry = 1
+#end if
+
+#if goal produce-rams 1 or goal produce-mangonels 1 or goal produce-scorpions 1 or goal produce-bombard-cannons 1
+  goal producing-siege = 1
+#end if
+
+#if building-type-count castle >= 2 and goal producing-trash 0
+  load "military/uu_substitutions.aoe2ai"
+#end if
+
+//DEBUG
+
+#if false
+
+chat to self "-----------------"
+
+#if goal produce-militia 1
+  chat to self "making militia"
+#end if
+#if goal produce-spearmen 1
+  chat to self "making spearmen"
+#end if
+#if goal produce-condottiero 1
+  chat to self "making condottiero"
+#end if
+#if goal produce-archers 1
+  chat to self "making archers"
+#end if
+#if goal produce-skirmishers 1
+  chat to self "making skirmishers"
+#end if
+#if goal produce-scouts 1
+  chat to self "making scouts"
+#end if
+#if goal produce-knights 1
+  chat to self "making knights"
+#end if
+#if goal produce-rams 1
+  chat to self "making rams"
+#end if
+#if goal produce-mangonels 1
+  chat to self "making mangonels"
+#end if
+#if goal produce-scorpions 1
+  chat to self "making scorpions"
+#end if
+#if goal produce-unique-unit 1
+  chat to self "making unique-unit"
+#end if
+#if goal produce-monks 1
+  chat to self "making monks"
+#end if
+#if goal produce-trebuchets 1
+  chat to self "making trebuchets"
+#end if
+#if goal produce-battle-elephants 1
+  chat to self "making battle-elephants"
+#end if
+#if goal produce-camels 1
+  chat to self "making camels"
+#end if
+#if goal produce-cavalry-archers 1
+  chat to self "making cavalry-archers"
+#end if
+#if goal produce-eagles 1
+  chat to self "making eagles"
+#end if
+#if goal produce-hand-cannoneers 1
+  chat to self "making hand-cannoneers"
+#end if
+#if goal produce-bombard-cannons 1
+  chat to self "making bombard-cannons"
+#end if
+
+#end if

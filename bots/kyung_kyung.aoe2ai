@@ -1,0 +1,104 @@
+#do once
+  goal early-aggressive = 0
+  assign 8 builders to castle
+  chat to all "Kyung know war."
+#end do
+
+load "templates/fast_castle.aoe2ai"
+
+#if town-under-attack
+  #do once
+    chat to all "Kyung see threat."
+  #end do
+  build 1 watch-tower-line
+#end if
+
+#if up-research-status c: castle-age >= research-pending
+
+  #do once
+    enable walls on perimeter 2
+    distribute villagers 50 20 30 10
+    escrow 10 wood
+    escrow 10 food
+    escrow 10 gold
+    
+    assign 4 builders to town-center-foundation
+    assign 8 builders to castle
+  #end do
+  
+  build 1 siege-workshop with wood escrow
+  build 1 market with wood escrow
+  build 1 blacksmith with wood escrow
+  build 1 stable with wood escrow
+  build 1 archery-range with wood escrow 
+  build 1 university with wood escrow
+
+  build farms
+  build lumber camps
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 15
+  #end when
+  build stone mining camps
+  build houses with 10 headroom
+  
+  build 3 town-center
+  
+  #if building-type-count-total town-center >= 3
+    build stone walls on perimeter 2
+    build stone gates on perimeter 2
+    build castle
+    build forward castle
+    #if building-type-count-total castle >= 3
+      research ri-murder-holes with food escrow
+      research ri-masonry with wood and food escrow
+      research ri-architecture with wood and food escrow
+    #end if
+  #end if
+  
+  research mill upgrades with wood and food escrow
+  research lumber camp upgrades with food and gold escrow
+  research stone mining camp upgrades with food and gold escrow
+  
+  research imperial-age with food and gold escrow
+  research blacksmith ranged upgrades with food and gold escrow
+  research ri-chemistry with food and gold escrow
+  research ri-ballistics with wood and gold escrow
+  research ri-husbandry with food escrow
+  research ri-conscription with food and gold escrow
+  research my-unique-unit-upgrade with food and gold escrow
+  
+  #if current-age == imperial-age
+    research ri-fortified-wall with food and wood escrow
+  #end if
+  
+  train 120 villager
+  #if current-age == imperial-age
+    train my-unique-unit => train my-unique-unit => train my-unique-unit => train my-unique-unit => train trebuchet
+  #else
+    train my-unique-unit => train my-unique-unit => train my-unique-unit => train my-unique-unit => train battering-ram-line
+  #end if
+  
+  #if military-population >= 35
+    sn-maximum-town-size = 255
+    #do once
+      chat to all "Enemy must be fear."
+      chat to all "No stopping Kyung."
+    #end do
+  #else
+    sn-maximum-town-size = 25
+  #end if
+  
+  sell wood when wood > 2000
+  sell food when food > 2000
+  
+  #if building-type-count-total castle == 0
+    buy stone when gold > 500
+  #else if current-age == imperial-age
+    buy wood when gold > 2000
+  #else
+    buy food when gold > 2000
+  #end if
+
+#end if

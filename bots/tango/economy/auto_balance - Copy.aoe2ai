@@ -1,0 +1,622 @@
+//#repeat every 60 seconds
+//  #if wood-amount > max-wood and strategic-number sn-gold-gatherer-percentage >= 14
+//    distribute 4 villagers from wood to food and gold
+//  #end if
+//  #if food-amount > max-food and strategic-number sn-gold-gatherer-percentage >= 24
+//    distribute 4 villagers from food to wood and gold
+//  #end if
+//  #if gold-amount > max-gold and strategic-number sn-gold-gatherer-percentage >= 14
+//    distribute 4 villagers from gold to wood and food
+//  #end if
+//#end repeat
+
+//#if goal militant 1
+//  #if current-age <= feudal-age
+//    distribute villagers 45 45 10 0
+//  #else
+//    distribute villagers 40 50 10 5
+//  #end if
+
+//  #if goal produce-archers 1 or goal produce-cavalry-archers 1
+//    distribute 10 villagers from food to gold
+//    distribute 5 villagers from food to wood
+//  #end if
+
+//  #if goal produce-skirmishers 1 or goal produce-spearmen 1
+//    // no action
+//  #end if
+
+//  #if goal produce-militia 1
+//    distribute 20 villagers from wood to food and gold
+//  #end if
+
+//  #if goal produce-eagles 1 or goal produce-knights 1 or goal produce-camels 1 or goal produce-battle-elephants 1
+//    distribute 10 villagers from wood to gold
+//  #end if
+
+//  #if goal produce-scouts 1
+//    distribute 16 villagers from wood to food
+//  #end if
+
+//  #if goal produce-monks 1
+//    distribute 12 villagers from wood and food to gold
+//  #end if
+
+//  #if false
+//    #add action up-chat-data-to-all "wood: %d" s: sn-wood-gatherer-percentage
+//      #add action up-chat-data-to-all "food: %d" s: sn-food-gatherer-percentage
+//        #add action up-chat-data-to-all "gold: %d" s: sn-gold-gatherer-percentage
+//          #add action up-chat-data-to-all "stone: %d" s: sn-stone-gatherer-percentage
+//            rule
+//          #remove action
+//        #remove action
+//      #remove action
+//    #remove action
+//  #end if
+//#end if
+
+#if goal team-game 1 and gold-amount > max-gold
+
+  #if wood-amount > max-wood
+    #if up-allied-resource-amount any-ally wood < max-wood
+      tribute 100 wood to this-any-ally
+    #else
+      sell wood when gold < max-gold
+    #end if
+  #end if
+  
+  #if food-amount > max-food
+    #if up-allied-resource-amount any-ally food < max-food
+      tribute 100 food to this-any-ally
+    #else
+      sell food when gold < max-gold
+    #end if
+  #end if
+  
+  #if up-allied-resource-amount any-ally gold < max-gold
+    tribute 100 gold to this-any-ally
+  #end if
+
+#else if gold-amount < max-gold
+  sell wood when wood > max-wood
+  sell food when food > max-food
+#end if
+
+sell stone when stone > max-stone
+
+#when // debug
+
+  // BEGIN!!!!
+  
+  #if false
+    #repeat every 1 minute
+      goal total-score = 0
+      goal wood-score = 0
+      goal food-score = 0
+      goal gold-score = 0
+      #do once
+        goal creation-time = 0
+        goal current-score = 0
+        goal resource-multiplier = 1000
+        goal multiplier = 0
+        goal temp = 0
+      #end do
+      
+      @up-get-fact building-type-count town-center multiplier
+      goal wood-score-subtotal = 0
+      goal food-score-subtotal = 0
+      goal gold-score-subtotal = 0
+      goal score-additions-count = 0
+      
+      #if goal should-make-villagers 1
+        goal creation-time = 25
+        goal current-score = 50 // food
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal food-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      @up-modify-goal wood-score-subtotal g:/ score-additions-count
+      @up-modify-goal food-score-subtotal g:/ score-additions-count
+      @up-modify-goal gold-score-subtotal g:/ score-additions-count
+      @up-modify-goal wood-score g:+ wood-score-subtotal
+      @up-modify-goal food-score g:+ food-score-subtotal
+      @up-modify-goal gold-score g:+ gold-score-subtotal
+      
+      @up-get-fact building-type-count-total barracks multiplier
+      goal wood-score-subtotal = 0
+      goal food-score-subtotal = 0
+      goal gold-score-subtotal = 0
+      goal score-additions-count = 0
+      
+      #if goal produce-militia 1
+        goal creation-time = 21
+        goal current-score = 60 // food
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal food-score-subtotal g:+ current-score
+        goal current-score = 20 // gold
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal gold-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      #if goal produce-spearmen 1
+        goal creation-time = 22
+        goal current-score = 35 // food
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal food-score-subtotal g:+ current-score
+        goal current-score = 25 // wood
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal wood-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      #if goal produce-condottiero 1
+        goal creation-time = 18
+        goal current-score = 50 // food
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal food-score-subtotal g:+ current-score
+        goal current-score = 35 // gold
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal gold-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      #if goal produce-eagles 1
+        #if research-completed ri-elite-eagle-warrior
+          goal creation-time = 20
+        #else if research-completed ri-eagle-warrior
+          goal creation-time = 35
+        #else
+          goal creation-time = 60
+        #end if
+        goal current-score = 20 // food
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal food-score-subtotal g:+ current-score
+        goal current-score = 50 // gold
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal gold-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      @up-modify-goal wood-score-subtotal g:/ score-additions-count
+      @up-modify-goal food-score-subtotal g:/ score-additions-count
+      @up-modify-goal gold-score-subtotal g:/ score-additions-count
+      @up-modify-goal wood-score g:+ wood-score-subtotal
+      @up-modify-goal food-score g:+ food-score-subtotal
+      @up-modify-goal gold-score g:+ gold-score-subtotal
+      
+      @up-get-fact building-type-count-total archery-range multiplier
+      goal wood-score-subtotal = 0
+      goal food-score-subtotal = 0
+      goal gold-score-subtotal = 0
+      goal score-additions-count = 0
+      
+      #if goal produce-archers 1
+        #if research-completed ri-crossbow
+          goal creation-time = 27
+        #else
+          goal creation-time = 35
+        #end if
+        goal current-score = 25 // wood
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal wood-score-subtotal g:+ current-score
+        goal current-score = 45 // gold
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal gold-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      #if goal produce-skirmishers 1
+        goal creation-time = 22
+        goal current-score = 25 // food
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal food-score-subtotal g:+ current-score
+        goal current-score = 35 // wood
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal wood-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      #if goal produce-cavalry-archers 1
+        #if research-completed ri-heavy-cavalry-archer
+          goal creation-time = 27
+        #else
+          goal creation-time = 34
+        #end if
+        goal current-score = 40 // wood
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal wood-score-subtotal g:+ current-score
+        goal current-score = 60 // gold
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal gold-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      #if goal produce-hand-cannoneers 1
+        goal creation-time = 34
+        goal current-score = 45 // food
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal food-score-subtotal g:+ current-score
+        goal current-score = 50 // gold
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal gold-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      @up-modify-goal wood-score-subtotal g:/ score-additions-count
+      @up-modify-goal food-score-subtotal g:/ score-additions-count
+      @up-modify-goal gold-score-subtotal g:/ score-additions-count
+      @up-modify-goal wood-score g:+ wood-score-subtotal
+      @up-modify-goal food-score g:+ food-score-subtotal
+      @up-modify-goal gold-score g:+ gold-score-subtotal
+      
+      @up-get-fact building-type-count-total stable multiplier
+      goal wood-score-subtotal = 0
+      goal food-score-subtotal = 0
+      goal gold-score-subtotal = 0
+      goal score-additions-count = 0
+      
+      #if goal produce-scouts 1
+        goal creation-time = 30
+        goal current-score = 80 // food
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal food-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      #if goal produce-knights 1
+        goal creation-time = 30
+        goal current-score = 60 // food
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal food-score-subtotal g:+ current-score
+        goal current-score = 75 // gold
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal gold-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      #if goal produce-camels 1
+        #if research-completed ri-imperial-camel
+          goal creation-time = 20
+        #else
+          goal creation-time = 22
+        #end if
+        goal current-score = 60 // food
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal food-score-subtotal g:+ current-score
+        goal current-score = 75 // gold
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal gold-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      #if goal produce-battle-elephants 1
+        goal creation-time = 28
+        goal current-score = 120 // food
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal food-score-subtotal g:+ current-score
+        goal current-score = 70 // gold
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal gold-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      @up-modify-goal wood-score-subtotal g:/ score-additions-count
+      @up-modify-goal food-score-subtotal g:/ score-additions-count
+      @up-modify-goal gold-score-subtotal g:/ score-additions-count
+      @up-modify-goal wood-score g:+ wood-score-subtotal
+      @up-modify-goal food-score g:+ food-score-subtotal
+      @up-modify-goal gold-score g:+ gold-score-subtotal
+      
+      @up-get-fact building-type-count-total siege-workshop multiplier
+      goal wood-score-subtotal = 0
+      goal food-score-subtotal = 0
+      goal gold-score-subtotal = 0
+      goal score-additions-count = 0
+      
+      #if goal produce-rams 1
+        goal creation-time = 36
+        goal current-score = 160 // wood
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal wood-score-subtotal g:+ current-score
+        goal current-score = 75 // gold
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal gold-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      #if goal produce-mangonels 1
+        goal creation-time = 46
+        goal current-score = 160 // wood
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal wood-score-subtotal g:+ current-score
+        goal current-score = 135 // gold
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal gold-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      #if goal produce-scorpions 1
+        goal creation-time = 30
+        goal current-score = 75 // wood
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal wood-score-subtotal g:+ current-score
+        goal current-score = 75 // gold
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal gold-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      #if goal produce-bombard-cannons 1
+        goal creation-time = 56
+        goal current-score = 225 // wood
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal wood-score-subtotal g:+ current-score
+        goal current-score = 225 // gold
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal gold-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      @up-modify-goal wood-score-subtotal g:/ score-additions-count
+      @up-modify-goal food-score-subtotal g:/ score-additions-count
+      @up-modify-goal gold-score-subtotal g:/ score-additions-count
+      @up-modify-goal wood-score g:+ wood-score-subtotal
+      @up-modify-goal food-score g:+ food-score-subtotal
+      @up-modify-goal gold-score g:+ gold-score-subtotal
+      
+      @up-get-fact building-type-count-total castle multiplier
+      goal wood-score-subtotal = 0
+      goal food-score-subtotal = 0
+      goal gold-score-subtotal = 0
+      goal score-additions-count = 0
+      
+      #if goal produce-unique-unit 1
+        // NOOOOOOO!!!
+      #end if
+      
+      #if goal produce-trebuchets 1
+        goal creation-time = 50
+        goal current-score = 200 // wood
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal wood-score-subtotal g:+ current-score
+        goal current-score = 200 // gold
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal gold-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      @up-modify-goal wood-score-subtotal g:/ score-additions-count
+      @up-modify-goal food-score-subtotal g:/ score-additions-count
+      @up-modify-goal gold-score-subtotal g:/ score-additions-count
+      @up-modify-goal wood-score g:+ wood-score-subtotal
+      @up-modify-goal food-score g:+ food-score-subtotal
+      @up-modify-goal gold-score g:+ gold-score-subtotal
+      
+      @up-get-fact building-type-count-total monastery multiplier
+      goal wood-score-subtotal = 0
+      goal food-score-subtotal = 0
+      goal gold-score-subtotal = 0
+      goal score-additions-count = 0
+      
+      #if goal produce-monks 1
+        goal creation-time = 51
+        goal current-score = 100
+        @up-modify-goal current-score g:* resource-multiplier
+        @up-modify-goal current-score g:/ creation-time
+        @up-modify-goal current-score g:* multiplier
+        @up-modify-goal gold-score-subtotal g:+ current-score
+        goal score-additions-count += 1
+      #end if
+      
+      @up-modify-goal wood-score-subtotal g:/ score-additions-count
+      @up-modify-goal food-score-subtotal g:/ score-additions-count
+      @up-modify-goal gold-score-subtotal g:/ score-additions-count
+      @up-modify-goal wood-score g:+ wood-score-subtotal
+      @up-modify-goal food-score g:+ food-score-subtotal
+      @up-modify-goal gold-score g:+ gold-score-subtotal
+      
+      @up-modify-goal total-score g:+ wood-score
+      @up-modify-goal total-score g:+ food-score
+      @up-modify-goal total-score g:+ gold-score
+      
+      @up-modify-goal temp g:= wood-score
+      @up-modify-goal temp c:* 100
+      @up-modify-goal temp g:/ total-score
+      @up-modify-sn sn-wood-gatherer-percentage g:= temp
+      
+      @up-modify-goal temp g:= food-score
+      @up-modify-goal temp c:* 100
+      @up-modify-goal temp g:/ total-score
+      @up-modify-sn sn-food-gatherer-percentage g:= temp
+      
+      @up-modify-goal temp g:= gold-score
+      @up-modify-goal temp c:* 100
+      @up-modify-goal temp g:/ total-score
+      @up-modify-sn sn-gold-gatherer-percentage g:= temp
+      
+      sn-stone-gatherer-percentage = 0
+      
+      // END!!!!
+      #if up-research-status c: castle-age >= research-pending
+        //#do once
+          distribute 6 villagers from wood and food and gold to stone
+        //#end do
+      #end if
+    #end repeat
+  #end if
+
+  #if false // DISABLED
+    #if (goal produce-eagles 1 or goal produce-knights 1 or goal produce-camels 1 or goal produce-battle-elephants 1) and strategic-number sn-gold-gatherer-percentage < 20
+      distribute 2 villagers from wood and food to gold
+    #end if
+
+    #if (goal produce-knights 1 or goal produce-scouts 1 or goal produce-camels 1) and strategic-number sn-food-gatherer-percentage < 40
+      distribute 2 villagers from wood and gold to food
+    #end if
+  #end if
+
+  #if true // DISABLED
+    #if strategic-number sn-wood-gatherer-percentage < min-wood-percentage
+      distribute 2 villagers from food and gold to wood
+    #end if
+
+    #if strategic-number sn-food-gatherer-percentage < min-food-percentage
+      distribute 2 villagers from wood and gold to food
+    #end if
+
+    #if strategic-number sn-gold-gatherer-percentage < min-gold-percentage
+      distribute 2 villagers from wood and food to gold
+    #end if
+
+    #repeat every 15 seconds
+      #if up-compare-goal non-escrowed-wood <= low-wood
+        #if up-compare-goal non-escrowed-food <= low-food
+          #if up-compare-goal non-escrowed-gold >= high-gold
+            #if strategic-number sn-gold-gatherer-percentage > min-gold-percentage
+              distribute 4 villagers from gold to wood and food
+            #end if
+          #end if
+        #else if up-compare-goal non-escrowed-food >= high-food
+          #if up-compare-goal non-escrowed-gold <= low-gold and goal producing-trash 0
+            #if strategic-number sn-food-gatherer-percentage > min-food-percentage
+              distribute 4 villagers from food to wood and gold
+            #end if
+          #else if up-compare-goal non-escrowed-gold >= high-gold
+            #if strategic-number sn-food-gatherer-percentage > min-food-percentage and strategic-number sn-gold-gatherer-percentage > min-gold-percentage
+              distribute 4 villagers from food and gold to wood
+            #end if
+          #else
+            #if strategic-number sn-food-gatherer-percentage > min-food-percentage
+              distribute 4 villagers from food to wood
+            #end if
+          #end if
+        #else
+          #if up-compare-goal non-escrowed-gold >= high-gold
+            #if strategic-number sn-gold-gatherer-percentage > min-gold-percentage
+              distribute 4 villagers from gold to wood
+            #end if
+          #end if
+        #end if
+      #else if up-compare-goal non-escrowed-wood >= high-wood
+        #if up-compare-goal non-escrowed-food <= low-food
+          #if up-compare-goal non-escrowed-gold <= low-gold and goal producing-trash 0
+            #if strategic-number sn-wood-gatherer-percentage > min-wood-percentage
+              distribute 4 villagers from wood to food and gold
+            #end if
+          #else if up-compare-goal non-escrowed-gold >= high-gold
+            #if strategic-number sn-wood-gatherer-percentage > min-wood-percentage and strategic-number sn-gold-gatherer-percentage > min-gold-percentage
+              distribute 4 villagers from wood and gold to food
+            #end if
+          #else
+            #if strategic-number sn-wood-gatherer-percentage > min-wood-percentage
+              distribute 4 villagers from wood to food
+            #end if
+          #end if
+        #else if up-compare-goal non-escrowed-food >= high-food
+          #if up-compare-goal non-escrowed-gold <= low-gold and goal producing-trash 0
+            #if strategic-number sn-wood-gatherer-percentage > min-wood-percentage and strategic-number sn-food-gatherer-percentage > min-food-percentage
+              distribute 4 villagers from wood and food to gold
+            #end if
+          #end if
+        #else
+          #if up-compare-goal non-escrowed-gold <= low-gold and goal producing-trash 0
+            #if strategic-number sn-wood-gatherer-percentage > min-wood-percentage
+              distribute 4 villagers from wood to gold
+            #end if
+          #end if
+        #end if
+      #else
+        #if up-compare-goal non-escrowed-food <= low-food
+          #if up-compare-goal non-escrowed-gold >= high-gold
+            #if strategic-number sn-gold-gatherer-percentage > min-gold-percentage
+              distribute 4 villagers from gold to food
+            #end if
+          #end if
+        #else if up-compare-goal non-escrowed-food >= high-food
+          #if up-compare-goal non-escrowed-gold <= low-gold and goal producing-trash 0
+            #if strategic-number sn-food-gatherer-percentage > min-food-percentage
+              distribute 4 villagers from food to gold
+            #end if
+          #end if
+        #end if
+      #end if
+    #end repeat
+  #end if
+#then
+  #if true // DEBUG
+    @up-chat-data-to-all "wood: %d" s: sn-wood-gatherer-percentage
+    @up-chat-data-to-all "food: %d" s: sn-food-gatherer-percentage
+    @up-chat-data-to-all "gold: %d" s: sn-gold-gatherer-percentage
+    @up-chat-data-to-all "stone: %d" s: sn-stone-gatherer-percentage
+  #end if
+#end when

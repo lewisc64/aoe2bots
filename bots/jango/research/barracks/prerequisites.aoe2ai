@@ -1,0 +1,3 @@
+#if building-type-count-total barracks == 0
+  build 1 barracks
+#end if

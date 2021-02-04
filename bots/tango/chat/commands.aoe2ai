@@ -1,0 +1,61 @@
+#if false
+
+#reply to ally taunt 31
+  sn-target-player-number = 0
+  #if goal attacking 1
+    chat to allies "Already attacking!"
+  #else if goal militant 1 and military-population > 5 and goal use-town-size-attack 0
+    goal taunt-allies = 1
+    attack
+  #else
+    goal taunt-allies = 2
+  #end if
+#end reply
+
+#reply to ally taunt 12
+  sn-target-player-number = -1
+  attack
+  chat to allies "1Help is on the way!"
+#end reply
+
+#end if
+
+#if strategic-number sn-target-player-number == -1
+  sn-target-player-number = 0
+#end if
+
+#reply to ally taunt 3
+  #if building-type-count market > 0 and food-amount > 100
+    tribute 100 food to this-any-ally
+    goal taunt-allies = 1
+  #else
+    goal taunt-allies = 2
+  #end if
+#end reply
+
+#reply to ally taunt 4
+  #if building-type-count market > 0 and wood-amount > 100
+    tribute 100 wood to this-any-ally
+    goal taunt-allies = 1
+  #else
+    goal taunt-allies = 2
+  #end if
+#end reply
+
+#reply to ally taunt 5
+  #if building-type-count market > 0 and gold-amount > 100
+    tribute 100 gold to this-any-ally
+    goal taunt-allies = 1
+  #else
+    goal taunt-allies = 2
+  #end if
+#end reply
+
+#reply to ally taunt 6
+  #if building-type-count market > 0 and stone-amount > 100
+    tribute 100 stone to this-any-ally
+    goal taunt-allies = 1
+  #else
+    goal taunt-allies = 2
+  #end if
+#end reply

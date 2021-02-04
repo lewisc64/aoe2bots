@@ -1,0 +1,18 @@
+//load "research/town_center/castle_age.aoe2ai"
+load "research/stable/prerequisites.aoe2ai"
+
+#if unit-available knight-line
+  #if current-age == imperial-age
+    load "research/stable/paladin.aoe2ai"
+  #end if
+  
+  load "units/types/cavalry.aoe2ai"
+  
+  #if goal produce-units 1
+    #when
+      train knight-line
+    #then
+      goal trained-unit = 1
+    #end when
+  #end if
+#end if

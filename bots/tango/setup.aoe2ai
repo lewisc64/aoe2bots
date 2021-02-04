@@ -1,0 +1,119 @@
+distribute villagers 20 80 0 0
+
+#if game-time < 10
+  #if current-age == dark-age
+    goal initial-age = dark-age
+  #else if current-age == feudal-age
+    goal initial-age = feudal-age
+  #else if current-age == castle-age
+    goal initial-age = castle-age
+  #else
+    goal initial-age = imperial-age
+  #end if
+#end if
+goal desired-villagers = 0
+goal desired-villagers-with-trade = 0
+goal desired-trade = 0
+@up-get-fact population-cap 0 desired-villagers
+@up-modify-goal desired-villagers c:* civilian-percentage
+@up-modify-goal desired-villagers c:/ 100
+@up-modify-goal desired-trade g:= desired-villagers
+@up-modify-goal desired-trade c:* civilian-trade-percentage
+@up-modify-goal desired-trade c:/ 100
+@up-modify-goal desired-villagers-with-trade g:= desired-villagers
+@up-modify-goal desired-villagers-with-trade g:- desired-trade
+
+#if false // DEBUG
+  @up-chat-data-to-all "vills: %d" g: desired-villagers
+  @up-chat-data-to-all "trade: %d" g: desired-trade
+  @up-chat-data-to-all "vills with trade: %d" g: desired-villagers-with-trade
+#end if
+
+assign 32 builders to wonder
+assign 8 builders to castle
+assign 4 builders to town-center-foundation
+assign 2 builders to market
+assign 2 builders to barracks
+assign 2 builders to archery-range
+assign 2 builders to stable
+
+goal research-economy-upgrades = 1
+goal age-up = 1
+goal age-up-now = 0
+goal turtle = 0
+goal militant = 0
+goal use-town-size-attack = 1
+goal boom = 1
+
+goal threat-time = 0
+goal threat-player = 0
+goal threat-source = 0
+goal threat-target = 0
+
+goal resign = 0
+goal build-walls = 0
+goal help-allies = 1
+
+set up basics
+take boar
+target walls
+
+sn-maximum-gold-drop-distance = 8
+sn-maximum-stone-drop-distance = 8
+sn-maximum-food-drop-distance = dark-age-town-size
+sn-maximum-hunt-drop-distance = 48
+
+sn-max-retask-gather-amount = 0
+sn-retask-gather-amount = 0
+
+sn-camp-max-distance = 15
+sn-mill-max-distance = 32
+
+sn-town-center-placement = lumber-camp
+sn-random-placement-factor = 0
+sn-ignore-tower-elevation = 1
+
+sn-zero-priority-distance = 450
+sn-special-attack-type2 = trebuchet-set
+
+sn-target-evaluation-attack-attempts = 0
+sn-target-evaluation-ally-proximity = 0
+sn-target-evaluation-boat = 0
+sn-target-evaluation-continent = 0
+sn-target-evaluation-damage-capability = 0
+sn-target-evaluation-distance = -100
+sn-target-evaluation-hitpoints = 0
+sn-target-evaluation-in-progress = 0
+sn-target-evaluation-kills = 0
+sn-target-evaluation-randomness = 0
+sn-target-evaluation-range = 0
+sn-target-evaluation-rof = 0
+sn-target-evaluation-siege-weapon = 500
+sn-target-evaluation-time-kill-ratio = 0
+sn-ttkfactor-scalar = 500
+
+//sn-attack-group-size-randomness = 0
+//sn-number-attack-groups = 0
+//sn-maximum-attack-group-size = 1
+//sn-minimum-attack-group-size = 0
+
+#if cc-players-unit-type-count any-ally villager > 0
+  goal team-game = 1
+#else
+  goal team-game = 0
+#end if
+
+#if goal team-game 0 and player-valid 1 and player-valid 2 and player-valid 3
+  chat to all "So, something of a free for all game here, eh?"
+  goal free-for-all = 1
+  goal turtle = 1
+#else
+  goal free-for-all = 0
+#end if
+
+#if goal free-for-all 1 or goal team-game 1
+  //goal use-town-size-attack = 0
+  goal boom = 1
+#else
+  goal boom = 0
+#end if

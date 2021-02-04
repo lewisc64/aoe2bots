@@ -1,0 +1,94 @@
+goal attacking = 0
+goal retarget = 0
+#do once
+  goal retarget = 1
+#end do
+#repeat every 10 minutes
+  goal retarget = 1
+#end repeat
+
+#if goal retarget 1 or not player-valid target-player
+  target closest enemy
+#end if
+
+#if goal turtle 1 and building-type-count castle < 3
+
+  #if military-population >= max-army or population-headroom == 0 and housing-headroom == 0
+    chat to self "attacking turtle"
+    goal attacking = 1
+  #end if
+
+#else if population >= 195
+  chat to self "attacking pop blocked"
+  goal attacking = 1
+  
+#else
+
+  #if up-research-status c: feudal-age < research-pending and current-age == dark-age
+    #if military-population >= 5
+      chat to self "attacking dark"
+      goal attacking = 1
+    #end if
+  #else if up-research-status c: feudal-age >= research-pending and up-research-status c: castle-age < research-pending and current-age == feudal-age
+    #if military-population >= 12 and goal military-superiority 1
+      #if goal producing-ranged 0 or goal producing-ranged 1 and up-research-status c: ri-fletching >= research-pending
+        chat to self "attacking feudal"
+        goal attacking = 1
+      #end if
+    #end if
+  #else
+    #if military-population >= 30 and (goal military-superiority 1 or players-current-age every-enemy < current-age)
+      chat to self "attacking castle/imp"
+      goal attacking = 1
+    #end if
+  #end if
+
+#end if
+
+#if goal attacking 1 and goal use-town-size-attack 1
+
+  #if cc-players-unit-type-count any-enemy tc-arrow > 0 or cc-players-unit-type-count any-enemy castle-arrow > 0 or cc-players-unit-type-count any-enemy castle-arrow-chemistry > 0 or cc-players-unit-type-count any-enemy watch-tower-arrow > 0
+    #if unit-type-count battering-ram-line == 0 and unit-type-count trebuchet-set == 0 and unit-type-count bombard-cannon == 0
+      #if goal threat-source town-center or goal threat-source castle
+        retreat
+        goal attacking = 0
+      #end if
+    #end if
+  #end if
+
+#end if
+
+#if goal attacking 1 and strategic-number sn-gather-defense-units == 1
+  sn-gather-defense-units = 0
+#else if goal attacking 0 and strategic-number sn-gather-defense-units == 0
+  sn-gather-defense-units = 1
+#end if
+
+#if goal use-town-size-attack 1
+  #if goal attacking 1
+    chat to self "attacking with TSA"
+    sn-maximum-town-size = 255
+  #else if strategic-number sn-maximum-town-size == 255
+    #if up-research-status c: imperial-age >= research-pending
+      sn-maximum-town-size = imperial-age-town-size
+    #else if up-research-status c: castle-age >= research-pending
+      sn-maximum-town-size = castle-age-town-size
+    #else if up-research-status c: feudal-age >= research-pending
+      sn-maximum-town-size = feudal-age-town-size
+    #else
+      sn-maximum-town-size = dark-age-town-size
+    #end if
+  #end if
+#else
+  #if town-under-attack
+    goal attacking = 0
+  #end if
+
+  #if goal attacking 1
+    #repeat every 60 seconds
+      goal taunt-allies = 31
+      attack
+      chat to self "attacking with groups"
+    #end repeat
+  #end if
+#end if

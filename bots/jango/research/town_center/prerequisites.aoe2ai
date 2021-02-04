@@ -1,0 +1,3 @@
+#if building-type-count-total town-center == 0 and building-type-count-total town-center-foundation == 0
+  build 1 town-center
+#end if

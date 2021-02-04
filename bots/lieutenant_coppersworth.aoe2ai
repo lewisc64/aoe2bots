@@ -1,0 +1,121 @@
+load "templates/fast_castle.aoe2ai"
+
+#do once
+  chat to all "[removes pipe]"
+  #delay by 5 seconds
+    chat to all "You must be off your rocker to attack my nation, I dare say."
+    #delay by 5 seconds
+      chat to all "I hope we don't know each other for long."
+    #end delay
+  #end delay
+#end do
+
+#if town-under-attack and current-age <= feudal-age and enemy-buildings-in-town
+  sell stone when stone > 0
+  #do once
+    chat to all "Well I see that you are of the aggressive sort."
+    #delay by 5 seconds
+      chat to all "We will need to spring back at you with vigor!"
+    #end delay
+  #end do
+#end if
+
+#if up-research-status c: castle-age >= research-pending
+
+  set town size to 28
+
+  #do once
+    distribute villagers 40 40 20 0
+  #end do
+
+  escrow 10 wood
+  escrow 10 food
+  escrow 10 gold
+  
+  #when
+    research ri-bloodlines with food and gold escrow
+  #then
+    chat to all "I wish health upon both our houses."
+    chat to all "I am not sure you feel the same way. Therefore there is blood."
+    chat to all "War is a problematic but necessary endeavor."
+  #end when
+  research ri-husbandry with food escrow
+  research ri-heavy-camel with food and gold escrow
+  research blacksmith cavalry upgrades with food and gold escrow
+
+  #when
+    research imperial-age with food and gold escrow
+  #then
+    chat to all "[puffs pipe]"
+    chat to all "I must say you aren't putting up much of a fight."
+  #end when
+  
+  #when
+    research ri-theocracy with gold escrow
+  #then
+    chat to all "When I was hired for this role, I was quite excited."
+    chat to all "That ceased as soon as I was awoken to reality."
+    chat to all "It's never quite as you expect, is it?"
+  #end when
+  research ri-sanctity with gold escrow
+  
+  research lumber camp upgrades with food and gold escrow
+  research mill upgrades with food and gold escrow
+  research gold mining camp upgrades with food and gold escrow
+  
+  #if civilian-population > 120
+    delete unit villager
+  #else
+    train 120 villager
+  #end if
+
+  train 10 monk
+  train 60 camel-line
+  train 1 battering-ram-line with wood and gold escrow
+  train 10 battering-ram-line
+  
+  #if military-population > 30
+    #do once
+      chat to all "To battle! Let's show these scoundrels what we're made of!"
+    #end do
+    set town size to 255
+  #else
+    set town size to 28
+  #end if
+  
+  sell wood when wood > 400
+  sell food when food > 1200
+  #if food-amount < 1200
+    buy food when gold > 1000
+  #end if
+  
+  build 1 barracks with wood escrow
+  build 3 stable with wood escrow
+  #if current-age == imperial-age
+    build 4 stable with wood escrow
+  #end if
+  build 1 monastery with wood escrow
+  build 1 siege-workshop with wood escrow
+
+  build lumber camps
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 15
+  #end when
+  #if wood-amount > 100
+    build farms
+  #end if
+  build 1 blacksmith
+  #if building-type-count-total town-center < 3
+    escrow 100 wood
+    build 3 town-center with wood and stone escrow
+  #end if
+  build houses with 15 headroom
+
+  #if building-type-count-total market == 0
+    escrow 100 wood
+    build 1 market with wood escrow
+  #end if
+  
+#end if

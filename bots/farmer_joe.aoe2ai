@@ -1,0 +1,106 @@
+#do once
+  set up basics
+  #delay by 4 minutes
+    take boar
+  #end delay
+  target walls
+  
+  sn-maximum-food-drop-distance = 8
+  #if current-age == imperial-age
+    sn-maximum-food-drop-distance = -1
+  #end if
+  sn-maximum-hunt-drop-distance = 0
+#end do
+
+research feudal-age
+research castle-age
+research imperial-age
+
+research town center upgrades
+research mill upgrades
+research lumber camp upgrades
+
+research blacksmith infantry upgrades
+research ri-pikeman
+research ri-halberdier
+research ri-tracking
+research ri-squires
+research ri-arson
+
+train 1 monk
+train 130 villager
+#if town-under-attack or enemy-buildings-in-town
+  train spearman-line
+  #if unit-type-count spearman-line > 0
+    #do once
+      chat to all "GET OFF MY LAND!"
+    #end do
+  #end if
+#end if
+
+build 1 blacksmith
+build 1 market
+build 1 monastery
+build 1 university
+
+sell food when food > 2000
+sell wood when wood > 2000
+buy stone when gold > 2000
+
+build mills
+
+#if building-type-count-total mill <= 1 and building-type-count-total farm >= 17
+  build mill
+#else if building-type-count-total mill <= 2 and building-type-count-total farm >= 24
+  build mill
+#else if building-type-count-total mill <= 3 and building-type-count-total farm >= 31
+  build mill
+#else if building-type-count-total mill <= 4 and building-type-count-total farm >= 38
+  build mill
+#else if building-type-count-total mill <= 5 and building-type-count-total farm >= 45
+  build mill
+#else if building-type-count-total mill <= 6 and building-type-count-total farm >= 52
+  build mill
+#else if building-type-count-total mill <= 7 and building-type-count-total farm >= 59
+  build mill
+#end if
+
+#if wood-amount > 300 or town-under-attack or enemy-buildings-in-town
+  build farms
+#end if
+
+#when
+  build town-center
+#then
+  sn-maximum-town-size += 4
+#end when
+
+#when
+  build lumber camps
+#then
+  sn-camp-max-distance += 5
+#end when
+
+#if current-age == dark-age
+  #do once
+    distribute villagers 20 80 0 0
+  #end do
+
+  build houses with 5 headroom
+
+#else if current-age == feudal-age
+  #do once
+    distribute villagers 20 80 0 0
+  #end do
+
+  build houses with 10 headroom
+
+#else if current-age >= castle-age
+
+  build houses with 15 headroom
+
+#end if
+
+#if current-age >= feudal-age
+  build 5 barracks
+#end if

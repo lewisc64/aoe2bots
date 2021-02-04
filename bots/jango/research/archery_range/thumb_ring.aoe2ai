@@ -1,0 +1,12 @@
+#if not research-completed ri-thumb-ring
+  load "research/archery_range/prerequisites.aoe2ai"
+
+  #if research-available ri-thumb-ring
+    #if up-research-status c: ri-thumb-ring < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-thumb-ring
+    #end if
+  #end if
+#end if

@@ -1,0 +1,26 @@
+#if current-age == feudal-age
+  load "research/blacksmith/scale_mail.aoe2ai"
+#else if current-age == castle-age
+  load "research/blacksmith/chain_mail.aoe2ai"
+#else if current-age == imperial-age
+  load "research/blacksmith/plate_mail.aoe2ai"
+#end if
+
+#if current-age >= feudal-age
+  load "research/barracks/tracking.aoe2ai"
+#end if
+
+#if current-age >= castle-age
+  load "research/barracks/squires.aoe2ai"
+  load "research/barracks/arson.aoe2ai"
+#end if
+
+load "units/types/infantry_cavalry.aoe2ai"
+
+#do once
+  goal barracks-count = 0
+#end do
+@up-get-fact building-type-count-total barracks barracks-count
+#if up-compare-goal barracks-count g:< desired-military-buildings-per-type
+  build barracks
+#end if

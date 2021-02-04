@@ -1,0 +1,97 @@
+const ri-supremacy = 440
+
+const town-size = 30
+
+load "templates/fast_castle.aoe2ai"
+
+#if current-age >= castle-age
+
+  #do once
+    distribute villagers 40 50 10 0
+    sn-maximum-town-size = town-size
+    sn-allow-civilian-offense = 2
+    sn-allow-civilian-defense = 3
+    assign 8 builders to castle
+    assign 4 builders to town-center-foundation
+    escrow 10 stone
+    delete unit scout-cavalry-line
+    delete unit eagle-warrior-line
+    sn-cap-civilian-explorers = 1
+    sn-percent-civilian-explorers = 100
+  #end do
+  
+  research imperial-age with food and gold escrow
+  research mill upgrades
+  research lumber camp upgrades
+  research town center upgrades with wood and stone escrow
+  
+  #when
+    research ri-murder-holes
+  #then always
+    research ri-architecture
+    research ri-masonry
+  #end when
+  research ri-fletching
+  research ri-bodkin-arrow
+  research ri-bracer
+  
+  train villager
+  
+  #do once
+    #if building-type-count-total castle == 0
+      distribute 30 villagers from wood and food and gold to stone
+    #else
+      distribute 18 villagers from stone to wood and food and gold
+    #end if
+  #end do
+  
+  #if building-type-count-total castle == 0
+    buy stone when gold > 300
+  #end if
+  
+  build 5 castle with stone escrow
+  
+  build 10 town-center with wood and stone escrow
+  build 1 market
+  build 1 blacksmith
+  build 1 university
+  
+  build lumber camps
+  build gold mining camps
+  build stone mining camps
+  build houses with 20 headroom
+  
+  #if idle-farm-count < 3 and wood-amount > 100
+    build farm
+  #end if
+  
+  sell stone when stone > 1000
+  #if gold-amount < 800
+    sell food when food > 1500
+  #else
+    buy food when food < 1000
+  #end if
+
+#end if
+
+#if current-age >= imperial-age
+  research ri-supremacy with food and gold escrow
+  research ri-sappers with food and gold escrow
+  
+  #if research-completed ri-supremacy and research-completed ri-sappers
+    #if civilian-population >= 150
+      chat to self "attacking"
+      sn-number-civilian-militia = 200
+      sn-cap-civilian-gatherers = 100
+      #if not(enemy-buildings-in-town)
+        sn-maximum-town-size += 5
+      #else if strategic-number sn-maximum-town-size > town-size
+        sn-maximum-town-size -= 1
+      #end if
+    #else
+      sn-number-civilian-militia = 30
+      sn-cap-civilian-gatherers = -1      
+      sn-maximum-town-size = town-size
+    #end if
+  #end if
+#end if

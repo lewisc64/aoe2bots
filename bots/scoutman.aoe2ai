@@ -1,0 +1,134 @@
+
+#do once
+  set up basics
+  #delay by 240 seconds
+    take boar
+  #end delay
+  chat to all "Quantity is quality."
+  goal explore-like-mad = 0
+  assign 8 builders to castle
+#end do once
+
+research ri-loom
+research feudal-age
+research castle-age
+research imperial-age
+
+research ri-forging
+research ri-iron-casting
+research ri-blast-furnace
+research ri-scale-barding
+research ri-chain-barding
+research ri-plate-barding
+
+research ri-bloodlines
+research ri-husbandry
+research ri-light-cavalry
+research ri-hussar
+
+train 130 villager
+train scout-cavalry-line
+
+build houses
+build lumber camps
+build mills
+build forward castle
+build castle
+build 3 town-center
+
+#if building-type-count-total mill == 0 and game-time >= 360
+  build 1 mill
+#end if
+
+attack with 50 units
+
+#do once
+  #respond to 1 spearman-line
+    chat to all "Mere sticks will not penetrate the skin of my stallions."
+    chat to all "You are as foolish as you are weak."
+  #end respond
+  #respond to 1 camel-line
+    chat to all "Ah! The inferior desert horse!"
+    chat to all "They shall be smothered by the numbers."
+  #end respond
+  #respond to 1 knight-line
+    chat to all "Look at those things, they require a gold investment."
+    chat to all "Poor sods."
+  #end respond
+#end do once
+
+#if goal explore-like-mad 1
+  #if town-under-attack
+    sn-total-number-explorers = 0
+    sn-number-explore-groups = 0
+    sn-percentage-explore-exterminators = 0
+    sn-minimum-explore-group-size = 0
+    sn-maximum-explore-group-size = 0
+  #else
+    sn-total-number-explorers = 200
+    sn-number-explore-groups = 200
+    sn-percentage-explore-exterminators = 100
+    sn-minimum-explore-group-size = 10
+    sn-maximum-explore-group-size = 20
+  #end if
+#end if
+
+#if current-age == dark-age
+  
+  #do once
+    distribute villagers 20 80 0 0
+  #end do once
+  
+  build 3 farm
+  
+#else if current-age == feudal-age
+
+  #do once
+    distribute villagers 30 60 10 0
+  #end do once
+  
+  build 2 stable
+
+#else if current-age == castle-age
+  
+  #do once
+    distribute villagers 25 60 10 5
+  #end do once
+  
+  build 3 stable
+  
+#else
+  
+  build 5 stable
+  
+#end if
+
+#if current-age >= feudal-age
+  
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 3
+  #end when
+  
+  #if building-type-count-total barracks >= 1 and building-type-count-total stable >= 1
+    #if building-type-count-total blacksmith == 0
+      escrow 20 wood
+    #end if
+    #when
+      build 1 blacksmith with wood escrow
+    #then
+      escrow 0 wood
+    #end when
+    build farms
+  #end if
+  
+  build 1 barracks
+  
+#end if
+
+#if current-age >= castle-age
+
+  build stone mining camps
+  
+#end if

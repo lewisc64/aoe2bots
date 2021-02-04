@@ -1,0 +1,14 @@
+#if not research-completed ri-heavy-plow
+  load "research/mill/prerequisites.aoe2ai"
+  //load "research/town_center/castle_age.aoe2ai"
+  load "research/mill/horse_collar.aoe2ai"
+
+  #if research-available ri-heavy-plow
+    #if up-research-status c: ri-heavy-plow < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-heavy-plow
+    #end if
+  #end if
+#end if

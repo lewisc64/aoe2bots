@@ -1,0 +1,20 @@
+//load "research/town_center/feudal_age.aoe2ai"
+load "research/barracks/prerequisites.aoe2ai"
+
+#if unit-available eagle-warrior-line
+  #if current-age == castle-age
+    load "research/barracks/eagle_warrior.aoe2ai"
+  #else if current-age == imperial-age
+    load "research/barracks/elite_eagle_warrior.aoe2ai"
+  #end if
+  
+  load "units/types/infantry.aoe2ai"
+  
+  #if goal produce-units 1
+    #when
+      train eagle-warrior-line
+    #then
+      goal trained-unit = 1
+    #end when
+  #end if
+#end if

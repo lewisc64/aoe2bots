@@ -1,0 +1,13 @@
+#if not research-completed ri-scale-barding
+  load "research/blacksmith/prerequisites.aoe2ai"
+  //load "research/town_center/feudal_age.aoe2ai"
+
+  #if research-available ri-scale-barding
+    #if up-research-status c: ri-scale-barding < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-scale-barding
+    #end if
+  #end if
+#end if

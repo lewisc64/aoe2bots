@@ -1,0 +1,14 @@
+#if not research-completed ri-bodkin-arrow
+  load "research/blacksmith/prerequisites.aoe2ai"
+  //load "research/town_center/castle_age.aoe2ai"
+  load "research/blacksmith/fletching.aoe2ai"
+
+  #if research-available ri-bodkin-arrow
+    #if up-research-status c: ri-bodkin-arrow < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-bodkin-arrow
+    #end if
+  #end if
+#end if

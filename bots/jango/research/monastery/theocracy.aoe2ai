@@ -1,0 +1,13 @@
+#if not research-completed ri-theocracy
+  load "research/monastery/prerequisites.aoe2ai"
+  //load "research/town_center/imperial_age.aoe2ai"
+
+  #if research-available ri-theocracy
+    #if up-research-status c: ri-theocracy < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-theocracy
+    #end if
+  #end if
+#end if

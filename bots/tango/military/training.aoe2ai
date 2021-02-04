@@ -1,0 +1,133 @@
+#if up-compare-goal non-escrowed-wood > 100 or military-population < min-army or town-under-attack or goal attacking 1
+  goal make-wood-unit = 1
+#else
+  goal make-wood-unit = 0
+#end if
+
+#if up-compare-goal non-escrowed-food > 100 or military-population < min-army or town-under-attack or goal attacking 1
+  goal make-food-unit = 1
+#else
+  goal make-food-unit = 0
+#end if
+
+#if military-population >= min-army
+  #if goal produce-trebuchets 1
+    #if unit-type-count-total trebuchet-set < 1
+      #if goal producing-trash 0 and building-type-count castle >= 1
+        chat to self "escrow for treb"
+        #if up-compare-goal escrowed-wood < 200
+          escrow 100 wood
+        #end if
+        #if up-compare-goal escrowed-gold < 200
+          escrow 100 gold
+        #end if
+      #end if
+      train trebuchet with wood and gold escrow
+    #end if
+    #if unit-type-count-total trebuchet-set < max-trebuchets and goal make-wood-unit 1
+      train trebuchet
+    #end if
+  #end if
+  
+  #if goal produce-rams 1
+    #if unit-type-count-total battering-ram-line < 2
+      #if goal producing-trash 0 and building-type-count siege-workshop >= 1 and (goal military-superiority 1 or town-under-attack and enemy-buildings-in-town)
+        chat to self "escrow for ram"
+        #if up-compare-goal escrowed-wood < 200
+          escrow 100 wood
+        #end if
+        #if up-compare-goal escrowed-gold < 200
+          escrow 100 gold
+        #end if
+      #end if
+      train battering-ram-line with wood and gold escrow
+    #end if
+    #if goal make-wood-unit 1
+      train max-rams battering-ram-line
+    #end if
+  #end if
+#end if
+
+#if goal produce-monks 1
+  train monk
+#end if
+
+#if goal make-food-unit 1
+
+  #if goal produce-militia 1
+    #if current-age == feudal-age and not(research-completed ri-man-at-arms)
+      train max-basic-units militiaman-line
+    #else
+      train militiaman-line
+    #end if
+  #end if
+
+  #if goal make-wood-unit 1
+    #if goal produce-spearmen 1
+      #if current-age == castle-age and not(research-completed ri-pikeman)
+        train max-basic-units spearman-line
+      #else
+        train spearman-line
+      #end if
+    #end if
+
+    #if goal produce-skirmishers 1
+      train skirmisher-line
+    #end if
+  #end if
+
+  #if goal produce-knights 1
+    train knight-line
+  #end if
+  
+  #if goal produce-scouts 1
+    train scout-cavalry-line
+  #end if
+
+  #if goal produce-unique-unit 1
+    train my-unique-unit
+  #end if
+
+  #if goal produce-battle-elephants 1
+    train battle-elephant-line
+  #end if
+
+  #if goal produce-camels 1
+    train camel-line
+  #end if
+
+  #if goal produce-eagles 1
+    train eagle-warrior-line
+  #end if
+
+  #if goal produce-hand-cannoneers 1
+    train hand-cannoneer
+  #end if
+  
+  #if goal produce-condottiero 1
+    train condottiero
+  #end if
+
+#end if
+
+#if goal make-wood-unit 1
+  #if goal produce-archers 1 
+    train archer-line
+  #end if
+
+  #if goal produce-mangonels 1
+    train mangonel-line
+  #end if
+
+  #if goal produce-scorpions 1
+    train scorpion-line
+  #end if
+
+  #if goal produce-cavalry-archers 1
+    train cavalry-archer-line
+  #end if
+
+  #if goal produce-bombard-cannons 1
+    train bombard-cannon
+  #end if
+#end if

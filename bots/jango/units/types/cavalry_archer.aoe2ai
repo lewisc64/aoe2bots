@@ -1,0 +1,9 @@
+load "units/types/ranged.aoe2ai"
+
+#if current-age >= feudal-age
+  load "research/stable/bloodlines.aoe2ai"
+#end if
+
+#if current-age >= castle-age
+  load "research/stable/husbandry.aoe2ai"
+#end if

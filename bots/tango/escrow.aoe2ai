@@ -1,0 +1,52 @@
+escrow 0 wood
+escrow 0 food
+escrow 0 gold
+escrow 0 stone
+
+#if goal militant 1 and strategic-number sn-enable-training-queue == 0
+  #if current-age == feudal-age and escrow-amount wood < 200 or current-age == castle-age and escrow-amount wood < 300 or current-age == imperial-age and escrow-amount wood < 1100
+    escrow 10 wood
+  #end if
+  #if up-compare-goal non-escrowed-food >= 100 or true
+    #if current-age == feudal-age and escrow-amount food < 800 or current-age == castle-age and escrow-amount food < 1000 or current-age == imperial-age and escrow-amount food < 1300
+      escrow 10 food
+    #end if
+  #end if
+  #if current-age == feudal-age and escrow-amount gold < 200 or current-age >= castle-age and escrow-amount gold < 800
+    escrow 10 gold
+  #end if
+#end if
+
+#if civilian-population < 20 and current-age >= feudal-age
+  @release-escrow wood
+  @release-escrow gold
+  @release-escrow food
+#end if
+
+#do once
+  goal escrowed-wood = 0
+  goal escrowed-food = 0
+  goal escrowed-gold = 0
+  goal non-escrowed-wood = 0
+  goal non-escrowed-food = 0
+  goal non-escrowed-gold = 0
+#end do
+
+@up-get-fact escrow-amount wood escrowed-wood
+@up-get-fact escrow-amount food escrowed-food
+@up-get-fact escrow-amount gold escrowed-gold
+
+@up-get-fact resource-amount wood non-escrowed-wood
+@up-get-fact resource-amount food non-escrowed-food
+@up-get-fact resource-amount gold non-escrowed-gold
+
+@up-modify-goal non-escrowed-wood g:- escrowed-wood
+@up-modify-goal non-escrowed-food g:- escrowed-food
+@up-modify-goal non-escrowed-gold g:- escrowed-gold
+
+#if false // DEBUG
+  chat to self "-----------------"
+  @up-chat-data-to-all "wood: %d" g: non-escrowed-wood
+  @up-chat-data-to-all "food: %d" g: non-escrowed-food
+  @up-chat-data-to-all "gold: %d" g: non-escrowed-gold
+#end if

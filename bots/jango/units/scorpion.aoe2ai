@@ -1,0 +1,18 @@
+//load "research/town_center/castle_age.aoe2ai"
+load "research/siege_workshop/prerequisites.aoe2ai"
+
+#if unit-available scorpion-line
+  #if current-age == imperial-age and unit-type-count-total scorpion-line >= 5
+    load "research/siege_workshop/heavy_scorpion.aoe2ai"
+  #end if
+  
+  load "units/types/siege.aoe2ai"
+  
+  #if goal produce-units 1
+    #when
+      train scorpion-line
+    #then
+      goal trained-unit = 1
+    #end when
+  #end if
+#end if

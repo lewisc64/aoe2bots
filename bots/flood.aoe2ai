@@ -1,0 +1,97 @@
+#do once
+  set up basics
+  take boar
+  
+  sn-maximum-attack-group-size = 1
+  sn-minimum-attack-group-size = 1
+  sn-number-attack-groups = 500
+  
+  sn-special-attack-type2 = villager
+#end do
+
+#when
+  research feudal-age with food escrow
+#then
+  escrow 10 food
+  escrow 10 gold
+#end when
+
+research castle-age with food and gold escrow
+
+research mill upgrades with food escrow
+research lumber camp upgrades with food escrow
+
+research ri-man-at-arms with food and gold escrow
+
+research blacksmith infantry upgrades with food and gold escrow
+
+#when
+
+  research ri-arson with food and gold escrow
+  
+#then always
+
+  research ri-pikeman with food and gold escrow
+  research ri-halberdier with food and gold escrow
+  
+  research ri-long-swordsman with food and gold escrow
+  research ri-two-handed-swordsman with food and gold escrow
+  research ri-champion with food and gold escrow
+  
+  research ri-tracking with food and gold escrow
+  
+  research imperial-age with food and gold escrow
+  
+#end when
+
+research ri-masonry
+research ri-architecture
+
+build lumber camps
+build mills
+build 1 blacksmith
+build 1 market
+build 1 university
+build 1 monastery
+
+train 120 villager
+research ri-loom with gold escrow
+
+train militiaman-line => train spearman-line
+train 1 monk
+
+#if up-research-status c: feudal-age < research-pending
+
+  #do once
+    distribute villagers 20 80 0 0
+  #end do
+  
+  build houses
+  build 8 farm
+  
+#else
+
+  #do once
+    distribute villagers 30 60 10 0
+  #end do
+  
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 15
+  #end when
+  build houses with 15 headroom
+  
+  #if wood-amount > 100
+    build farms
+  #end if
+  
+  build forward 4 barracks
+  
+#end if
+
+#if current-age == castle-age
+  build forward 5 barracks
+#else if current-age == imperial-age
+  build forward 6 barracks
+#end if

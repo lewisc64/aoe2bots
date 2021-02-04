@@ -1,0 +1,183 @@
+#do once
+  set up basics
+  take boar
+  
+  assign 2 builders to barracks
+  assign 2 builders to archery-range
+  assign 16 builders to castle
+  assign 4 builders to watch-tower-line
+  
+  sn-maximum-gold-drop-distance = 8
+  sn-maximum-stone-drop-distance = 8
+  sn-maximum-food-drop-distance = 16
+  sn-maximum-hunt-drop-distance = 48
+  
+  sn-percent-building-cancellation = 0
+#end do
+
+escrow 0 wood
+escrow 0 food
+escrow 0 gold
+
+#if current-age >= feudal-age
+  #if wood-amount < 500
+    escrow 20 wood
+  #end if
+
+  #if food-amount < 1000
+    escrow 20 food
+  #end if
+#end if
+
+#if gold-amount < 800
+  escrow 20 gold
+#end if
+
+#if current-age >= feudal-age
+  research ri-loom with gold escrow
+#end if
+
+#when
+  research feudal-age with food escrow
+  research castle-age with food and gold escrow
+  research imperial-age with food and gold escrow
+#then
+  sn-maximum-town-size += 4
+#end when
+
+research mill upgrades with food and wood escrow
+research lumber camp upgrades with food and wood escrow
+research gold mining camp upgrades with food and wood escrow
+
+#if civilian-population >= 35
+  research ri-wheel-barrow with food and wood escrow
+  research ri-hand-cart with food and wood escrow
+#end if
+
+research ri-conscription with food and gold escrow
+research ri-hoardings with wood and food escrow
+
+research ri-elite-skirmisher with wood and gold escrow => research ri-thumb-ring with food and wood escrow
+research ri-imperial-skirmisher with wood and gold escrow
+
+research ri-fletching with food escrow => research ri-padded-archer-armor with food and gold escrow
+research ri-bodkin-arrow with food and gold escrow => research ri-leather-archer-armor with food and gold escrow
+research ri-bracer with food and gold escrow => research ri-ring-archer-armor with food and gold escrow
+
+research ri-ballistics with wood and gold escrow => research ri-chemistry with food and gold escrow
+research ri-masonry with food and wood escrow
+research ri-architecture with food and wood escrow
+
+build mills
+build lumber camps
+
+#if up-research-status c: feudal-age < research-pending
+  #do once
+    distribute villagers 20 80 0 0
+    #if civilian-population >= 15
+      distribute villagers 30 70 0 0
+    #end if
+    #if civilian-population >= 20
+      distribute villagers 40 60 0 0
+    #end if
+    #if civilian-population < 21
+      sn-enable-training-queue = 1
+    #else
+      sn-enable-training-queue = 0
+    #end if
+  #end do
+  build houses with 5 headroom
+  build 3 farm
+  #delay by 15 minutes
+    build 15 farm
+  #end delay
+  build safety mill
+#else
+  build houses with 15 headroom
+  #do once
+    distribute villagers 50 40 10 0
+  #end do
+  #if building-type-count-total archery-range >= 2 or current-age == dark-age // build farms in transit
+    build farms
+  #end if
+#end if
+
+#if current-age >= feudal-age
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 5
+  #end when
+  build 1 barracks with wood escrow
+  #if current-age == feudal-age
+    build 2 archery-range with wood escrow
+  #else if current-age == castle-age
+    build 3 archery-range with wood escrow
+  #else
+    build 4 archery-range with wood escrow
+  #end if
+  #if building-type-count-total archery-range >= 2
+    build 1 blacksmith with wood escrow
+    build 1 market with wood escrow
+    build 1 siege-workshop with wood escrow
+    build 1 university with wood escrow
+  #end if
+#end if
+
+//#if current-age >= castle-age
+//  #do once
+//    distribute 8 villagers from wood and food to stone
+//  #end do
+//  build stone mining camps
+//#end if
+
+#if building-type-count-total castle == 0 //and current-age == castle-age
+  buy stone when stone < 650
+#end if
+
+#if current-age == feudal-age
+  buy food when gold >= 400
+  sell food when food >= 1000
+  sell wood when wood >= 500
+#end if
+
+#if gold-amount < 1500
+  sell wood when wood > 1500
+  sell food when food > 1500
+#else
+  buy food when food < 1500
+  buy wood when wood < 1500
+#end if
+
+#if current-age == feudal-age
+  build forward 1 watch-tower-line near mining-camp
+#end if
+build forward wonder
+build forward 5 castle near town-center
+build castle
+
+train 100 villager
+research ri-loom
+
+#if strategic-number sn-enable-training-queue == 1 and up-pending-objects c: villager < 2
+  drop off food
+#end if
+
+train trebuchet
+train 1 trebuchet with wood and gold escrow
+#if current-age == castle-age or building-type-count castle == 0
+  research ri-capped-ram with food escrow
+  research ri-siege-ram with food escrow
+  train 3 battering-ram-line
+  train 1 battering-ram-line with wood and gold escrow
+#end if
+
+train skirmisher-line
+
+#repeat every 60 seconds
+  #if current-age <= feudal-age
+    attack with 10 units
+  #else
+    attack with 30 units
+  #end if
+#end repeat

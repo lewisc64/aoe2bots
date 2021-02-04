@@ -1,0 +1,13 @@
+#if not research-completed ri-heavy-cavalry-archer
+  load "research/archery_range/prerequisites.aoe2ai"
+  //load "research/town_center/imperial_age.aoe2ai"
+
+  #if research-available ri-heavy-cavalry-archer
+    #if up-research-status c: ri-heavy-cavalry-archer < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-heavy-cavalry-archer
+    #end if
+  #end if
+#end if

@@ -1,0 +1,14 @@
+#if not research-completed ri-hand-cart
+  load "research/town_center/prerequisites.aoe2ai"
+  //load "research/town_center/castle_age.aoe2ai"
+  load "research/town_center/wheelbarrow.aoe2ai"
+
+  #if research-available ri-hand-cart
+    #if up-research-status c: ri-hand-cart < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-hand-cart
+    #end if
+  #end if
+#end if

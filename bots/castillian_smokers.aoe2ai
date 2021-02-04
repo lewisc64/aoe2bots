@@ -1,0 +1,107 @@
+#do once
+  goal early-aggressive = 0
+  assign 8 builders to castle
+  chat to all "We're too cool for school, back off, fool!"
+#end do
+
+load "templates/fast_castle.aoe2ai"
+
+#if up-research-status c: castle-age >= research-pending
+  
+  train 1 monk
+  
+  research imperial-age with food and gold escrow
+  
+  #do once
+    distribute villagers 35 40 10 15
+  #end do
+  
+  research ri-fervor with gold escrow
+  
+  research ri-padded-archer-armor with food and gold escrow
+  research ri-leather-archer-armor with food and gold escrow
+  research ri-ring-archer-armor with food and gold escrow
+  
+  research lumber camp upgrades with food and gold escrow
+  research mining camp upgrades with food and gold escrow
+  research mill upgrades with food and gold escrow
+  
+  build lumber camps
+  build gold mining camps
+  build stone mining camps
+  build houses with 10 headroom
+  
+  build 1 monastery
+  build 1 barracks
+  build 1 stable
+  
+  research ri-bloodlines with food and gold escrow
+  research ri-husbandry with food escrow
+  
+  #if building-type-count-total town-center < 3
+    escrow 100 wood
+    escrow 100 stone
+    build 3 town-center with wood and stone escrow
+  #else
+    escrow 0 wood
+    escrow 0 stone
+  #end if
+  
+  #if town-under-attack and up-research-status c: imperial-age < research-pending
+    #do once
+      chat to all "We need to wait to be great!"
+      chat to all "But you are impatient."
+      chat to all "Give us a moment?"
+      chat to all "Can we reach an arrangement?"
+    #end do
+    goal early-aggressive = 1
+  #end if
+  
+  #if goal early-aggressive 1
+    train 10 my-unique-unit-line
+  #end if
+  
+  #if military-population < 30
+    build castle
+    set town size to 24
+  #else
+    build forward castle
+    set town size to 255
+  #end if
+  
+  build 1 blacksmith
+  build 1 market
+  
+  #if gold-amount < 1500
+    sell wood when wood > 1500
+    sell food when food > 1500
+  #else
+    buy food when food < 1500
+  #end if
+  
+  #if wood-amount >= 100
+    build farms
+  #end if
+  
+  train 120 villager
+
+#end if
+
+#if up-research-status c: imperial-age >= research-pending
+
+  escrow 10 food
+  escrow 10 gold
+  
+  research monastery upgrades
+  research ri-chemistry
+  research ri-conscription
+  
+  research my-unique-unit-upgrade
+  research my-unique-research
+  
+  build 1 siege-workshop
+  
+  train 10 missionary
+  train bombard-cannon
+  train my-unique-unit-line
+#end if

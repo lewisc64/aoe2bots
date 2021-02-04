@@ -1,0 +1,39 @@
+#do once
+  goal total-villagers = 0
+  goal total-trade = 0
+  goal total-wood-gatherer-percentage = 0
+  goal total-food-gatherer-percentage = 0
+  goal total-gold-gatherer-percentage = 0
+  goal total-stone-gatherer-percentage = 0
+  goal expected-wood-gatherers = 0
+  goal expected-food-gatherers = 0
+  goal expected-gold-gatherers = 0
+  goal expected-stone-gatherers = 0
+#end do
+
+@up-get-fact unit-type-count villager total-villagers
+@up-get-fact unit-type-count trade-cart total-trade
+
+@up-get-fact unit-type-count villager expected-wood-gatherers
+@up-modify-goal total-wood-gatherer-percentage s:= sn-wood-gatherer-percentage
+@up-modify-goal total-wood-gatherer-percentage g:+ wood-modifier-percentage
+@up-modify-goal expected-wood-gatherers g:* total-wood-gatherer-percentage
+@up-modify-goal expected-wood-gatherers c:/ 100
+
+@up-get-fact unit-type-count villager expected-food-gatherers
+@up-modify-goal total-food-gatherer-percentage s:= sn-food-gatherer-percentage
+@up-modify-goal total-food-gatherer-percentage g:+ food-modifier-percentage
+@up-modify-goal expected-food-gatherers g:* total-food-gatherer-percentage
+@up-modify-goal expected-food-gatherers c:/ 100
+
+@up-get-fact unit-type-count villager expected-gold-gatherers
+@up-modify-goal total-gold-gatherer-percentage s:= sn-gold-gatherer-percentage
+@up-modify-goal total-gold-gatherer-percentage g:+ gold-modifier-percentage
+@up-modify-goal expected-gold-gatherers g:* total-gold-gatherer-percentage
+@up-modify-goal expected-gold-gatherers c:/ 100
+
+@up-get-fact unit-type-count villager expected-stone-gatherers
+@up-modify-goal total-stone-gatherer-percentage s:= sn-stone-gatherer-percentage
+@up-modify-goal total-stone-gatherer-percentage g:+ stone-modifier-percentage
+@up-modify-goal expected-stone-gatherers g:* total-stone-gatherer-percentage
+@up-modify-goal expected-stone-gatherers c:/ 100

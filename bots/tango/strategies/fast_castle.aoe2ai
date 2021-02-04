@@ -1,0 +1,50 @@
+#do once
+  
+  chat to allies "I'm fast castling. Well, I *say* fast..."
+  
+  distribute villagers 20 80 0 0
+  goal age-up = 0
+  sn-enable-training-queue = 1
+
+  #if current-age == dark-age
+    
+    #if civilian-population >= 24
+      sn-enable-training-queue = 0
+    #end if
+    #if civilian-population >= 25
+      goal age-up = 1
+    #end if
+  
+  #end if
+  
+  #if up-research-status c: castle-age >= research-pending
+    goal militant = 1
+    goal research-economy-upgrades = 1
+  #end if
+  
+  #if current-age >= feudal-age
+    distribute villagers 50 40 10 0
+  #end if
+  
+#end do
+
+#if up-research-status c: feudal-age >= research-pending
+
+  build 1 mining-camp with wood escrow
+  
+#end if
+
+
+#if current-age == feudal-age
+
+  #do once
+    #if building-type-count-total market == 0 or building-type-count-total blacksmith == 0
+      escrow 90 wood
+    #end if
+    goal research-economy-upgrades = 0
+  #end do
+  
+  build 1 market with wood escrow
+  build 1 blacksmith with wood escrow
+  
+#end if

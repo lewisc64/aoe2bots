@@ -1,0 +1,4 @@
+#if building-type-count-total castle == 0
+  //load "research/town_center/castle_age.aoe2ai"
+  build 1 castle
+#end if

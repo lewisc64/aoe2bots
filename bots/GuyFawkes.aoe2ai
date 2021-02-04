@@ -1,0 +1,73 @@
+const town-size = 18
+
+#do once
+  target walls
+#end do
+
+load "templates/fast_castle.aoe2ai"
+
+research ri-loom
+
+#if building-type-count-total castle > 0
+  build 5 town-center
+#end if
+
+#if current-age >= castle-age
+  
+  #do once
+    distribute villagers 30 45 5 20
+    set town size to 28
+  #end do
+  
+  build farms
+  
+  #add action up-modify-sn sn-camp-max-distance c:+ 3
+    build gold mining camps
+  #remove action
+  build stone mining camps
+  build lumber camps
+  build castle
+  build 1 university
+  build houses with 15 headroom
+  
+  research town center upgrades
+  research lumber camp upgrades
+  research mill upgrades
+  research mining camp upgrades
+  research ri-murder-holes
+  research ri-conscription
+  research ri-hoardings
+  research ri-ballistics
+  research ri-architecture
+  research ri-masonry
+  research ri-fletching
+  research ri-bodkin-arrow
+  research ri-bracer
+  research ri-chemistry
+  research ri-siege-engineers
+  
+  train 130 villager
+  train petard
+  
+  buy stone when gold > 1000
+  sell wood when wood > 1000
+  sell food when food > 1500
+  
+  #if unit-type-count-total petard >= 50
+    #if not(enemy-buildings-in-town)
+      increase town size by 5
+    #end if
+    #do once
+      chat to all "DOWN WITH THE GOVERNMENT!"
+    #end do
+  #else
+    set town size to town-size
+  #end if
+
+#end if
+
+#do once
+  #if building-type-count castle > 0
+    chat to all "How do explosives work again?"
+  #end if
+#end do

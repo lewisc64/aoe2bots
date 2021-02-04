@@ -1,0 +1,120 @@
+#do once
+  #if up-research-status c: imperial-age >= research-pending
+    sn-maximum-town-size = imperial-age-town-size
+    sn-minimum-town-size = imperial-age-town-size
+    sn-safe-town-size = imperial-age-town-size
+    sn-maximum-food-drop-distance = imperial-age-town-size
+  #else if up-research-status c: castle-age >= research-pending
+    sn-maximum-town-size = castle-age-town-size
+    sn-minimum-town-size = castle-age-town-size
+    sn-safe-town-size = castle-age-town-size
+    sn-maximum-food-drop-distance = castle-age-town-size
+  #else if up-research-status c: feudal-age >= research-pending
+    sn-maximum-town-size = feudal-age-town-size
+    sn-minimum-town-size = feudal-age-town-size
+    sn-safe-town-size = feudal-age-town-size
+    sn-maximum-food-drop-distance = feudal-age-town-size
+  #end if
+#end do
+
+// do we trade?
+#if goal team-game 1 and current-age >= castle-age
+  build 1 market
+  #if players-building-type-count any-ally market >= 1
+    #select random persistant
+      goal produce-trade-carts = 1
+    #randor
+      goal produce-trade-carts = 0
+    #end select
+  #end if
+#end if
+
+// do we gather relics?
+#select random persistant
+  build 1 monastery
+  #if unit-type-count-total monk-set == 0
+    train monk
+  #end if
+#randor
+  // do not gather relics
+#end select
+
+// build houses with two vills at the start of the game
+#if building-type-count house == 0
+  #do once
+    assign 2 builders to house
+  #end do
+#else
+  #do once
+    assign 1 builder to house
+  #end do
+#end if
+
+build houses with 5 headroom
+build lumber camps
+
+#if up-compare-goal town-center-count g:< desired-town-centers
+  build town-center
+#end if
+
+// castle forwards?
+#select random
+  build castle
+#randor
+  build forward castle
+#end select
+
+#when
+  #if strategic-number sn-gold-gatherer-percentage > 0
+    build gold mining camps
+  #end if
+  #if strategic-number sn-stone-gatherer-percentage > 0
+    build stone mining camps
+  #end if
+#then
+  sn-camp-max-distance += 8
+#end when
+
+#if current-age == dark-age
+
+  #do once
+    distribute villagers 25 75 0 0
+  #end do
+
+  build mills
+  build safety mill
+  
+  #if wood-amount >= 100 and up-pending-objects c: farm == 0
+    build farms
+  #end if
+  
+  #if food-amount < 50
+    drop off food
+  #end if
+
+#else if current-age == feudal-age
+  
+#end if
+
+#if up-research-status c: feudal-age >= research-pending
+
+  #do once
+    goal total-farms = 0
+    goal expected-food-gatherers = 0
+    
+    #select random persistant
+      distribute villagers 37 37 18 8
+    #randor
+      distribute villagers 38 38 19 5
+    #randor
+      distribute villagers 40 40 20 0
+    #end select
+  #end do
+  
+  build houses with 20 headroom
+  
+  #if wood-amount >= 200
+    build farms
+  #end if
+  
+#end if

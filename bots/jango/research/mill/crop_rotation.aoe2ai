@@ -1,0 +1,14 @@
+#if not research-completed ri-crop-rotation
+  load "research/mill/prerequisites.aoe2ai"
+  //load "research/town_center/imperial_age.aoe2ai"
+  load "research/mill/heavy_plow.aoe2ai"
+
+  #if research-available ri-crop-rotation
+    #if up-research-status c: ri-crop-rotation < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-crop-rotation
+    #end if
+  #end if
+#end if

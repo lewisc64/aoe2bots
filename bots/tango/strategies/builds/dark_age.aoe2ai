@@ -1,0 +1,16 @@
+#if civilian-population <= 8
+  distribute villagers 0 100 0 0
+  take boar
+  sn-preferred-mill-placement = 0
+#else if civilian-population <= 12
+  distribute villagers 30 70 0 0
+#else if civilian-population <= 16
+  //#if dropsite-min-distance live-boar == -1 or dropsite-min-distance live-boar s:> sn-maximum-hunt-drop-distance
+  //  sn-preferred-mill-placement = 1
+  //  take boar and deer
+  //  #do once
+  //    build mill
+  //  #end do
+  //  sn-maximum-hunt-drop-distance = 16
+  //#end if
+#end if

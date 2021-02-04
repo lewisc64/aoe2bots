@@ -1,0 +1,136 @@
+const min-wood-percentage = 20
+const min-food-percentage = 30
+const min-gold-percentage = 10
+
+const low-wood = 200
+const high-wood = 600
+const max-wood = 1500
+const low-food = 200
+const high-food = 600
+const max-food = 1500
+const low-gold = 200
+const high-gold = 600
+const max-gold = 1500
+const low-stone = 200
+const high-stone = 600
+const max-stone = 1500
+
+const civilian-percentage = 65
+const civilian-trade-percentage = 23
+
+const max-feudal-military-buildings = 2
+const max-castle-military-buildings = 3
+const max-imperial-military-buildings = 5
+
+const max-rams = 10
+const max-trebuchets = 10
+const max-town-centers = 5
+const max-army = 100
+const min-army = 20
+const max-basic-units = 10
+const min-detection-units = 2
+
+const dark-age-town-size = 12
+const feudal-age-town-size = 14
+const castle-age-town-size = 20
+const imperial-age-town-size = 30
+
+const tc-arrow = 54
+const watch-tower-arrow = 786
+const castle-arrow = 746
+const castle-arrow-chemistry = 747
+const live-sheep = 958
+
+const ranged-unit-class = 900
+const infantry-unit-class = 906
+const cavalry-unit-class = 912
+const condottiero = 184
+
+goal attacking = 0
+
+#do once
+  goal wood-modifier-percentage = 0
+  goal food-modifier-percentage = 0
+  goal gold-modifier-percentage = 0
+  goal stone-modifier-percentage = 0
+#end do
+
+@up-modify-sn sn-wood-gatherer-percentage g:- wood-modifier-percentage
+@up-modify-sn sn-food-gatherer-percentage g:- food-modifier-percentage
+@up-modify-sn sn-gold-gatherer-percentage g:- gold-modifier-percentage
+
+#do once
+  load "setup.aoe2ai"
+#end do
+
+#add action up-get-threat-data threat-time threat-player threat-source threat-target
+  rule
+#remove action
+
+load "escrow.aoe2ai"
+load "number_predictions.aoe2ai"
+
+#if town-under-attack and goal militant 0 and current-age >= feudal-age and civilian-population >= 24 or death-match-game
+  goal militant = 1
+#end if
+
+#if goal resign 1
+  resign
+#end if
+
+#if building-type-count-total town-center == 0 and civilian-population < 30 and game-time >= 600 and goal team-game 0 or civilian-population == 0 and food-amount < 50 and goal team-game 0
+  goal resign = 1
+  #if goal team-game 1
+    @release-escrow wood
+    @release-escrow food
+    @release-escrow gold
+    @release-escrow stone
+    tribute 10000 wood to any-ally
+    tribute 10000 food to any-ally
+    tribute 10000 gold to any-ally
+    tribute 10000 stone to any-ally
+  #end if
+#end if
+
+load "age_research.aoe2ai"
+load "economy/economy.aoe2ai"
+
+#if goal militant 1
+  load "military/military.aoe2ai"
+  load "economy/auto_balance.aoe2ai"
+#end if
+
+#if current-age == dark-age
+  load "strategies/builds/dark_age.aoe2ai"
+#end if
+
+#if goal initial-age dark-age and current-age <= feudal-age and population-cap == 200 and not death-match-game
+  #if building-type-count stone-wall-line == 0// and goal free-for-all 0
+    load "strategies/feudal_rush.aoe2ai"
+  #else
+    load "strategies/fast_castle.aoe2ai"
+  #end if
+#end if
+
+#if goal team-game 1 and goal help-allies 1
+  load "help_allies.aoe2ai"
+#end if
+load "chat/chat.aoe2ai"
+
+#if false // DEBUG
+  #do once
+    goal out-count = 0
+  #end do
+  #if up-pending-objects c: villager == 0 and civilian-population < 100
+    goal out-count += 1
+  #else
+    goal out-count = 0
+  #end if
+  #if up-compare-goal out-count >= 2
+    chat to all "I'm not making any villagers!"
+  #end if
+#end if
+
+@up-modify-sn sn-wood-gatherer-percentage g:+ wood-modifier-percentage
+@up-modify-sn sn-food-gatherer-percentage g:+ food-modifier-percentage
+@up-modify-sn sn-gold-gatherer-percentage g:+ gold-modifier-percentage

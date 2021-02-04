@@ -1,0 +1,13 @@
+#if civilian-population >= 27
+  load "research/town_center/feudal_age.aoe2ai"
+#end if
+
+#if current-age >= feudal-age
+  #if current-age-time >= 360 or true // 600
+    load "research/town_center/imperial_age.aoe2ai"
+  #end if
+#end if
+
+#if up-research-status c: feudal-age >= research-pending
+  goal attack-ready = 1
+#end if

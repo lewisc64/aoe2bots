@@ -1,0 +1,45 @@
+#if goal produce-knights 1
+  goal produce-knights = 0
+  goal produce-scouts = 1
+#end if
+
+#if goal produce-camels 1
+  goal produce-camels = 0
+  goal produce-spearmen = 1
+  goal produce-scouts = 1
+#end if
+
+#if goal produce-eagles 1
+  goal produce-eagles = 0
+  goal produce-spearmen = 1
+#end if
+
+#if goal produce-archers 1
+  goal produce-archers = 0
+  goal produce-skirmishers = 1
+#end if
+
+#if goal produce-cavalry-archers 1
+  goal produce-cavalry-archers = 0
+  goal produce-skirmishers = 1
+#end if
+
+#if goal produce-hand-cannoneers 1
+  goal produce-hand-cannoneers = 0
+  goal produce-skirmishers = 1
+#end if
+
+#if goal produce-mangonels 1
+  goal produce-mangonels = 0
+  goal produce-skirmishers = 1
+#end if
+
+#if goal produce-scorpions 1
+  goal produce-scorpions = 0
+  goal produce-skirmishers = 1
+#end if
+
+#if goal produce-militia 1
+  goal produce-militia = 0
+  goal produce-spearmen = 1
+#end if

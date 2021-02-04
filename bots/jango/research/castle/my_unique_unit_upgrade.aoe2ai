@@ -1,0 +1,13 @@
+#if not research-completed my-unique-unit-upgrade
+  load "research/castle/prerequisites.aoe2ai"
+  //load "research/town_center/imperial_age.aoe2ai"
+
+  #if research-available my-unique-unit-upgrade
+    #if up-research-status c: my-unique-unit-upgrade < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research my-unique-unit-upgrade
+    #end if
+  #end if
+#end if

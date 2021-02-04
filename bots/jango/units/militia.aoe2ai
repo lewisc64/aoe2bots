@@ -1,0 +1,22 @@
+//load "research/town_center/feudal_age.aoe2ai"
+load "research/barracks/prerequisites.aoe2ai"
+
+#if unit-available militiaman-line
+  #if current-age == feudal-age
+    load "research/barracks/man_at_arms.aoe2ai"
+  #else if current-age == castle-age
+    load "research/barracks/longswordsman.aoe2ai"
+  #else if current-age == imperial-age
+    load "research/barracks/champion.aoe2ai"
+  #end if
+  
+  load "units/types/infantry.aoe2ai"
+  
+  #if goal produce-units 1
+    #when
+      train militiaman-line
+    #then
+      goal trained-unit = 1
+    #end when
+  #end if
+#end if

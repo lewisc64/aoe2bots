@@ -1,0 +1,108 @@
+#do once
+  set up scouting
+  set up new building system
+  set up micro
+  target walls
+  chat to all "MILITARY IS THE ONLY SOLUTION!"
+  distribute villagers 28 64 8 0
+  #delay by 10 seconds
+    chat to all "YOU WILL BE CRUSHED BY PURE STRENGTH!"
+  #end delay
+#end do once
+
+#delay by 300 seconds
+  take boar
+#end delay
+
+#if food-amount < 1000
+  escrow 10 food
+#else
+  escrow 0 food
+#end if
+
+#if gold-amount < 800
+  escrow 10 gold
+#else
+  escrow 0 gold
+#end if
+
+research feudal-age with food escrow
+research castle-age with food and gold escrow
+research imperial-age with food and gold escrow
+research ri-loom
+research ri-double-bit-axe
+research ri-two-man-saw
+research ri-horse-collar
+research ri-heavy-plow
+research ri-wheel-barrow
+research ri-man-at-arms with food and gold escrow
+research ri-long-swordsman with food and gold escrow
+research ri-two-handed-swordsman with food and gold escrow
+#when
+  research ri-champion with food and gold escrow
+#then
+  chat to all "SOON YOU WILL TREMBLE IN FEAR OF THE MIGHTY CHAMPION!"
+#end when
+research blacksmith infantry upgrades with food and gold escrow
+research ri-squires
+research ri-arson
+
+train 130 villager
+train militiaman-line
+
+build 1 town-center
+#if current-age == dark-age
+  build houses
+#else
+  build houses with 15 headroom
+#end if
+build lumber camps
+build mills
+#when
+  build gold mining camps
+#then
+  sn-camp-max-distance += 5
+#end when
+#if current-age == dark-age
+  build 8 farm
+#else
+  build farms
+#end if
+build 1 blacksmith
+build 1 market
+#if current-age <= feudal-age
+  build 2 barracks
+#else
+  build 3 barracks
+#end if
+build 1 university
+build 1 monastery
+
+sell stone when stone > 0
+sell wood when wood > 800
+#if gold-amount > 2000
+  buy food when food < 2000
+#else
+  sell food when food > 2000
+#end if
+
+#if current-age == imperial-age
+  build 5 barracks
+#end if
+
+#if building-type-count-total mill == 0 and game-time >= 360
+  build 1 mill
+#end if
+
+#if military-population >= 6 and current-age == feudal-age or military-population >= 50 and current-age >= castle-age
+  #if current-age == castle-age
+    #do once
+      chat to all "CONQUEST OR DEATH!"
+    #end do
+  #end if
+  #if not(enemy-buildings-in-town)
+    increase town size by 5
+  #end if
+#else
+  set town size to 20
+#end if

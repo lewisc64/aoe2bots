@@ -1,0 +1,50 @@
+#if current-age >= feudal-age or up-pending-objects c: villager == 0 and food-amount < 50 and game-time >= 2
+  research ri-loom with gold escrow
+#end if
+#if building-type-count-total town-center >= 2
+  research ri-wheel-barrow
+#end if
+#if current-age == imperial-age
+  research ri-hand-cart
+#end if
+
+#if goal team-game 1 and unit-type-count-total trade-cart >= 1
+  research ri-caravan with food and gold escrow
+  research ri-coinage with food and gold escrow
+  research ri-banking with food and gold escrow
+#end if
+
+research ri-cartography
+
+#if goal militant 0 or military-population > 10
+  research lumber camp upgrades
+  research mill upgrades
+  research mining camp gold upgrades
+  #if strategic-number sn-stone-gatherer-percentage != 0
+    // research mining camp stone upgrades
+  #end if
+  // research ri-town-watch
+#end if
+
+#if building-type-count-total castle >= 1
+  research ri-murder-holes
+#end if
+research ri-chemistry with food and gold escrow
+#if building-type-count-total stone-wall-line > 0
+  research ri-fortified-wall
+#end if
+research ri-masonry
+research ri-architecture
+research ri-bombard-tower
+
+research ri-hoardings
+research ri-conscription with food and gold escrow
+
+#if building-type-count-total watch-tower-line >= 2
+  research ri-guard-tower
+  research ri-keep
+  research ri-arrowslits
+  research ri-fletching
+  research ri-bodkin-arrow
+  research ri-bracer
+#end if

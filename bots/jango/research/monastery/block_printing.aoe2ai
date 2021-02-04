@@ -1,0 +1,13 @@
+#if not research-completed ri-block-printing
+  load "research/monastery/prerequisites.aoe2ai"
+  //load "research/town_center/imperial_age.aoe2ai"
+
+  #if research-available ri-block-printing
+    #if up-research-status c: ri-block-printing < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-block-printing
+    #end if
+  #end if
+#end if

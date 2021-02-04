@@ -1,0 +1,14 @@
+#do once
+  goal total-villagers = 0
+#end do
+@up-get-fact unit-type-count villager total-villagers
+
+#do once
+  goal total-trade-carts = 0
+#end do
+@up-get-fact unit-type-count trade-cart total-trade-carts
+
+#do once
+  goal town-center-count = 0
+#end do
+@up-get-fact building-type-count-total town-center town-center-count

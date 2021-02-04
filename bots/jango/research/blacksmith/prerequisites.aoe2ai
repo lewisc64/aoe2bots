@@ -1,0 +1,6 @@
+#if building-type-count-total blacksmith == 0
+  //load "research/town_center/feudal_age.aoe2ai"
+  #if wood-amount >= 200
+    build 1 blacksmith
+  #end if
+#end if

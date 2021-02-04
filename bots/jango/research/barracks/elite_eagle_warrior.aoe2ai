@@ -1,0 +1,14 @@
+#if not research-completed ri-elite-eagle-warrior
+  load "research/barracks/prerequisites.aoe2ai"
+  //load "research/town_center/imperial_age.aoe2ai"
+  load "research/barracks/eagle_warrior.aoe2ai"
+
+  #if research-available ri-elite-eagle-warrior
+    #if up-research-status c: ri-elite-eagle-warrior < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-elite-eagle-warrior
+    #end if
+  #end if
+#end if

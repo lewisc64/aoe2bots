@@ -1,0 +1,14 @@
+#if not research-completed ri-plate-mail
+  load "research/blacksmith/prerequisites.aoe2ai"
+  //load "research/town_center/imperial_age.aoe2ai"
+  load "research/blacksmith/chain_mail.aoe2ai"
+
+  #if research-available ri-plate-mail
+    #if up-research-status c: ri-plate-mail < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-plate-mail
+    #end if
+  #end if
+#end if

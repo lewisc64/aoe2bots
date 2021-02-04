@@ -1,0 +1,12 @@
+#if not research-completed ri-loom
+  load "research/town_center/prerequisites.aoe2ai"
+
+  #if research-available ri-loom
+    #if up-research-status c: ri-loom < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-loom
+    #end if
+  #end if
+#end if

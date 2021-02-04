@@ -1,0 +1,15 @@
+#if not research-completed ri-architecture
+  load "research/university/prerequisites.aoe2ai"
+  //load "research/town_center/imperial_age.aoe2ai"
+  
+  load "research/university/masonry.aoe2ai"
+
+  #if research-available ri-architecture
+    #if up-research-status c: ri-architecture < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-architecture
+    #end if
+  #end if
+#end if

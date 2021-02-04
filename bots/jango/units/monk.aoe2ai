@@ -1,0 +1,29 @@
+load "research/monastery/prerequisites.aoe2ai"
+
+#if unit-available monk
+  
+  load "research/monastery/theocracy.aoe2ai"
+  load "research/monastery/illumination.aoe2ai"
+  load "research/monastery/block_printing.aoe2ai"
+  
+  load "research/monastery/redemption.aoe2ai"
+  load "research/monastery/atonement.aoe2ai"
+  load "research/monastery/sanctity.aoe2ai"
+  load "research/monastery/fervor.aoe2ai"
+  
+  #do once
+    goal monastery-count = 0
+  #end do
+  @up-get-fact building-type-count-total monastery monastery-count
+  #if up-compare-goal monastery-count g:< desired-military-buildings-per-type
+    build monastery
+  #end if
+  
+  #if goal produce-units 1
+    #when
+      train monk
+    #then
+      goal trained-unit = 1
+    #end when
+  #end if
+#end if

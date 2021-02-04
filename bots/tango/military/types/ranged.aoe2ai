@@ -1,0 +1,43 @@
+#if goal produce-archers 1 or unit-type-count archer-line >= max-basic-units
+  research ri-crossbow with food and gold escrow
+  research ri-arbalest with food and gold escrow
+#end if
+
+#if goal produce-skirmishers 1 or unit-type-count skirmisher-line >= max-basic-units
+  research ri-elite-skirmisher with wood and gold escrow
+  research ri-imperial-skirmisher with wood and gold escrow
+#end if
+
+#if goal produce-cavalry-archers 1 or unit-type-count cavalry-archer-line >= max-basic-units
+  research ri-heavy-cavalry-archer with food and gold escrow
+  research ri-parthian-tactics with food and gold escrow
+  
+  build 1 stable with wood escrow
+  research ri-bloodlines with food and gold escrow
+  research ri-husbandry with food escrow
+#end if
+
+research ri-fletching with food and gold escrow => research ri-padded-archer-armor with food escrow
+research ri-bodkin-arrow with food and gold escrow => research ri-leather-archer-armor with food and gold escrow
+research ri-bracer with food and gold escrow => research ri-ring-archer-armor with food and gold escrow
+
+#if unit-type-count-total ranged-unit-class > max-basic-units
+  research ri-ballistics with wood and gold escrow
+  research ri-thumb-ring with food and wood escrow
+#end if
+
+#if goal producing-ranged 1
+  #if current-age == imperial-age or death-match-game
+    build max-imperial-military-buildings archery-range with wood escrow
+  #else if current-age == castle-age
+    build max-castle-military-buildings archery-range with wood escrow
+  #else
+    #if goal producing-cavalry 1 and building-type-count-total stable >= 2
+      build 1 archery-range with wood escrow
+    #else if goal producing-infantry 1 and building-type-count-total barracks >= 2
+      build 1 archery-range with wood escrow
+    #else
+      build max-feudal-military-buildings archery-range with wood escrow
+    #end if
+  #end if
+#end if

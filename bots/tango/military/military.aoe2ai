@@ -1,0 +1,142 @@
+#do once
+  goal focus-player-military-population = 0
+  goal own-military-population = 0
+  goal temp = 0
+#end do
+@up-get-player-fact focus-player military-population 0 focus-player-military-population
+@up-get-fact military-population 0 own-military-population
+
+@up-modify-goal temp g:= own-military-population
+@up-modify-goal temp c:* 100
+@up-modify-goal temp c:/ 80
+
+//@up-chat-data-to-all "pwn: %d" g: own-military-population
+//@up-chat-data-to-all "not: %d" g: focus-player-military-population
+
+#if up-compare-goal temp g:> focus-player-military-population
+  goal military-superiority = 1
+#else
+  goal military-superiority = 0
+#end if
+
+load "military/unit_decisions.aoe2ai"
+
+#if goal team-game 0 and goal free-for-all 0
+  #repeat every 5 minutes
+    scout opposite
+  #end repeat
+#end if
+#do once
+  scout opposite
+#end do
+
+#repeat every 5 minutes
+  #if town-under-attack and military-population < min-army
+    goal taunt-allies = 12
+  #end if
+#end repeat
+
+#do once
+  sn-home-exploration-time = 0
+  #if town-under-attack and current-age == castle-age and building-type-count-total castle == 0
+    goal taunt-allies = 6
+  #end if
+#end do
+
+//#if building-type-count-total castle == 0 and goal military-superiority 0
+//  buy stone when stone < 650
+//#end if
+
+#respond to 10 monk
+  //#if military-population >= min-army and building-type-count market >= 1 and current-age >= castle-age and research-available ri-heresy and up-research-status ri-heresy c:< research-pending
+  //  sell wood when wood > 200
+  //  sell food when food > 200
+  //  escrow 100 gold
+  //#end if
+  research ri-heresy with gold escrow
+  research ri-faith with food and gold escrow
+#end respond
+
+research my-unique-research with wood and food and gold escrow
+
+#if goal producing-infantry 1 or unit-type-count infantry-unit-class >= max-basic-units
+  load "military/types/infantry.aoe2ai"
+#end if
+
+#if goal producing-ranged 1 or unit-type-count ranged-unit-class >= max-basic-units
+  load "military/types/ranged.aoe2ai"
+#end if
+
+#if goal producing-cavalry 1 or unit-type-count cavalry-unit-class >= max-basic-units
+  load "military/types/cavalry.aoe2ai"
+#end if
+
+#if goal producing-siege 1
+  load "military/types/siege.aoe2ai"
+#end if
+
+#if goal produce-monks 1
+
+  research ri-redemption with gold escrow
+  research ri-sanctity with gold escrow
+  research ri-fervor with gold escrow
+  research ri-illumination with gold escrow
+  research ri-block-printing with gold escrow
+  research ri-theocracy with gold escrow
+  #respond to monk
+    research ri-atonement with gold escrow
+  #end respond
+
+  build max-castle-military-buildings monastery
+  
+#end if
+
+#if goal produce-unique-unit 1
+  research my-unique-unit-upgrade with wood and food and gold escrow
+#end if
+
+#if military-population < max-army
+  load "military/training.aoe2ai"
+#end if
+
+#if building-type-count-total barracks == 0
+  escrow 100 wood
+#end if
+build 1 barracks with wood escrow
+#if building-type-count-total barracks >= 2 or building-type-count-total stable >= 2 or building-type-count-total archery-range >= 2
+  build 1 blacksmith with wood escrow
+  #do once
+    goal research-economy-upgrades = 1
+  #end do
+#else if up-research-status c: feudal-age >= research-pending and civilian-population >= 20
+  #if goal producing-infantry 1 or goal producing-ranged 1 or goal producing-cavalry 1
+    escrow 100 wood
+    #do once
+      goal research-economy-upgrades = 0
+    #end do
+  #end if
+#end if
+#if not(town-under-attack) and civilian-population >= 20
+  #if goal producing-infantry 1 and building-type-count-total barracks < 1
+    escrow 100 wood
+    //buy wood when wood < 175
+  #end if
+
+  #if goal producing-cavalry 1 and building-type-count-total stable < 1
+    escrow 100 wood
+    //buy wood when wood < 175
+  #end if
+
+  #if goal producing-ranged 1 and building-type-count-total archery-range < 1
+    escrow 100 wood
+    //buy wood when wood < 175
+  #end if
+#end if
+build 1 siege-workshop with wood escrow
+
+#repeat every 5 minutes
+  load "military/training_queue.aoe2ai"
+#end repeat
+#if true
+  load "military/attacking.aoe2ai"
+#end if

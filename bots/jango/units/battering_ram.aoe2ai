@@ -1,0 +1,19 @@
+//load "research/town_center/castle_age.aoe2ai"
+load "research/siege_workshop/prerequisites.aoe2ai"
+
+#if unit-available battering-ram-line
+  #if current-age == imperial-age and unit-type-count-total battering-ram-line >= 5
+    load "research/siege_workshop/capped_ram.aoe2ai"
+    load "research/siege_workshop/siege_ram.aoe2ai"
+  #end if
+  
+  load "units/types/siege.aoe2ai"
+  
+  #if goal produce-units 1
+    #when
+      train battering-ram-line
+    #then
+      goal trained-unit = 1
+    #end when
+  #end if
+#end if

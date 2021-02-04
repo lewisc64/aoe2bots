@@ -1,0 +1,382 @@
+goal good-archers = 0
+goal good-hand-cannoneers = 0
+goal good-skirmishers = 0
+goal good-cavalry-archers = 0
+goal good-militia = 0
+goal good-spearmen = 0
+goal good-eagles = 0
+goal good-scouts = 0
+goal good-knights = 0
+goal good-camels = 0
+goal good-battle-elephants = 0
+goal good-battering-rams = 0
+goal good-mangonels = 0
+goal good-scorpions = 0
+goal good-monks = 0
+goal good-unique-units = 1
+
+#if civ-selected aztec
+  goal good-eagles = 1
+  goal good-monks = 1
+  goal good-militia = 1
+#end if
+#if civ-selected berbers
+  goal good-hand-cannoneers = 1
+  goal good-militia = 1
+  goal good-scouts = 1
+  goal good-camels = 1
+  goal good-scorpions = 1
+#end if
+#if civ-selected briton
+  goal good-archers = 1
+  goal good-skirmishers = 1
+  goal good-militia = 1
+  goal good-spearmen = 1
+  goal good-scorpions = 1
+#end if
+#if civ-selected burmese
+  goal good-scouts = 1
+  goal good-militia = 1
+  goal good-spearmen = 1
+  goal good-scorpions = 1
+  goal good-battle-elephants = 1
+  goal good-monks = 1
+#end if
+#if civ-selected byzantine
+  goal good-speamen = 1
+  goal good-archers = 1
+  goal good-skirmishers = 1
+  goal good-militia = 1
+  goal good-camels = 1
+  goal good-battering-rams = 1
+  goal good-hand-cannoneers = 1
+  goal good-monks = 1
+#end if
+#if civ-selected celtic
+  goal good-battering-rams = 1
+  goal good-scorpions = 1
+  goal good-mangonels = 1
+  goal good-militia = 1
+  goal good-spearmen = 1
+#end if
+#if civ-selected chinese
+  goal good-archers = 1
+  goal good-skirmishers = 1
+  goal good-miltia = 1
+  goal good-spearmen = 1
+  goal good-camels = 1
+  goal good-battering-rams = 1
+  goal good-scorpions = 1
+#end if
+#if civ-selected ethiopian
+  goal good-archers = 1
+  goal good-skirmishers = 1
+  goal good-spearmen = 1
+#end if
+#if civ-selected frankish
+  goal good-militia = 1
+  goal good-spearmen = 1
+  goal good-knights = 1
+  goal good-scorpions = 1
+#end if
+#if civ-selected gothic
+  goal good-militia = 1
+  goal good-spearmen = 1
+  goal good-scouts = 1
+  goal good-scorpions = 1
+  goal good-hand-cannoneers = 1
+#end if
+#if civ-selected hun
+  goal good-cavalry-archers = 1
+  goal good-battering-rams = 1
+  goal good-scouts = 1
+  goal good-knights = 1
+#end if
+#if civ-selected incan
+  goal good-eagles = 1
+  goal good-militia = 1
+  goal good-battering-rams = 1
+  goal good-scorpions = 1
+  goal good-archers = 1
+  goal good-spearmen = 1
+  goal good-skirmishers = 1
+#end if
+#if civ-selected indian
+  goal good-skirmishers = 1
+  goal good-hand-cannoneers = 1
+  goal good-cavalry-archers = 1
+  goal good-camels = 1
+  goal good-scouts = 1
+#end if
+#if civ-selected italian
+  goal good-archers = 1
+  goal good-skirmishers = 1
+  goal good-militia = 1
+  goal good-scouts = 1
+  goal good-monks = 1
+#end if
+#if civ-selected japanese
+  goal good-archers = 1
+  goal good-skirmishers = 1
+  goal good-cavalry-archers = 1
+  goal good-militia = 1
+  goal good-spearmen = 1
+  goal good-scorpions = 1
+  goal good-monks = 1
+#end if
+#if civ-selected khmer
+  goal good-spearmen = 1
+  goal good-battle-elephants = 1
+  goal good-battering-rams = 1
+  goal good-scorpions = 1
+#end if
+#if civ-selected korean
+  goal good-archers = 1
+  goal good-skirmishers = 1
+  goal good-mangonels = 1
+#end if
+#if civ-selected magyar
+  goal good-archers = 1
+  goal good-skirmishers = 1
+  goal good-cavalry-archers = 1
+  goal good-scouts = 1
+  goal good-knights = 1
+#end if
+#if civ-selected malay
+  goal good-archers = 1
+  goal good-skirmishers = 1
+  goal good-spearmen = 1
+  goal good-scorpions = 1
+  goal good-battle-elephants = 1
+#end if
+#if civ-selected malian
+  goal good-mangonels = 1
+  goal good-militia = 1
+  goal good-hand-cannoneer = 1
+#end if
+#if civ-selected mayan
+  goal good-archers = 1
+  goal good-skirmishers = 1
+  goal good-eagles = 1
+  goal good-spearmen = 1
+  goal good-battering-rams = 1
+#end if
+#if civ-selected mongol
+  goal good-cavalry-archers = 1
+  goal good-scouts = 1
+  goal good-militia = 1
+  goal good-battering-rams = 1
+  goal good-mangonels = 1
+  goal good-scorpions = 1
+#end if
+#if civ-selected persian
+  goal good-scouts = 1
+  goal good-knights = 1
+  goal good-camels = 1
+  goal good-hand-cannoneers = 1
+  goal good-spearmen = 1
+  goal good-battering-rams = 1
+#end if
+#if civ-selected portuguese
+  goal good-archers = 1
+  goal good-skirmishers = 1
+  goal good-hand-cannoneers = 1
+  goal good-militia = 1
+  goal good-spearmen = 1
+  goal good-knights = 1
+#end if
+#if civ-selected saracen
+  goal good-archers = 1
+  goal good-skirmishers = 1
+  goal good-cavalry-archers = 1
+  goal good-hand-cannoneers = 1
+  goal good-militia = 1
+  goal good-scouts = 1
+  goal good-camels = 1
+  goal good-monks = 1
+  goal good-battering-rams = 1
+  goal good-mangonels = 1
+#end if
+#if civ-selected slavic
+  goal good-militia = 1
+  goal good-spearmen = 1
+  goal good-scouts = 1
+  goal good-monks = 1
+  goal good-battering-rams = 1
+  goal good-mangonels = 1
+  goal good-scorpions = 1
+#end if
+#if civ-selected spanish
+  goal good-skirmishers = 1
+  goal good-hand-cannoneers = 1
+  goal good-militia = 1
+  goal good-spearmen = 1
+  goal good-scouts = 1
+  goal good-knights = 1
+  goal good-monks = 1
+  goal good-battering-rams = 1
+#end if
+#if civ-selected teutonic
+  goal good-hand-cannoneers = 1
+  goal good-militia = 1
+  goal good-spearmen = 1
+  goal good-monks = 1
+  goal good-mangonels = 1
+  goal good-scorpions = 1
+#end if
+#if civ-selected turkish
+  goal good-hand-cannoneers = 1
+  goal good-cavalry-archers = 1
+  goal good-militia = 1
+  goal good-scouts = 1
+  goal good-camels = 1
+  goal good-battering-rams = 1
+#end if
+#if civ-selected vietnamese
+  goal good-archers = 1
+  goal good-skirmishers = 1
+  //elephants?
+#end if
+#if civ-selected viking
+  goal good-archers = 1
+  goal good-skirmishers = 1
+  goal good-militia = 1
+  goal good-battering-rams = 1
+  goal good-scorpions = 1
+#end if
+
+#select random persistant
+  goal desired-units = 1
+#randor
+  goal desired-units = 2
+#randor
+  goal desired-units = 3
+#end select
+
+goal total-units-selected = 0
+@up-modify-goal total-units-selected g:+ produce-archers
+@up-modify-goal total-units-selected g:+ produce-hand-cannoneers
+@up-modify-goal total-units-selected g:+ produce-skirmishers
+@up-modify-goal total-units-selected g:+ produce-cavalry-archers
+@up-modify-goal total-units-selected g:+ produce-militia
+@up-modify-goal total-units-selected g:+ produce-spearmen
+@up-modify-goal total-units-selected g:+ produce-eagles
+@up-modify-goal total-units-selected g:+ produce-scouts
+@up-modify-goal total-units-selected g:+ produce-knights
+@up-modify-goal total-units-selected g:+ produce-camels
+@up-modify-goal total-units-selected g:+ produce-battle-elephants
+@up-modify-goal total-units-selected g:+ produce-mangonels
+@up-modify-goal total-units-selected g:+ produce-scorpions
+@up-modify-goal total-units-selected g:+ produce-monks
+@up-modify-goal total-units-selected g:+ produce-unique-units
+
+#if up-compare-goal total-units-selected g:< desired-units
+  #select random
+    #if goal produce-cavalry-archers 0
+      @up-modify-goal produce-archers g:= good-archers
+    #end if
+    
+  #randor
+    @up-modify-goal produce-hand-cannoneers g:= good-hand-cannoneers
+    
+  #randor
+    @up-modify-goal produce-skirmishers g:= good-skirmishers
+    
+  #randor
+    #if goal produce-archers 0
+      @up-modify-goal produce-cavalry-archers g:= good-cavalry-archers
+    #end if
+    
+  #randor
+    #if goal produce-eagles 0
+      @up-modify-goal produce-militia g:= good-militia
+    #end if
+    
+  #randor
+    #if goal produce-eagles 0
+      @up-modify-goal produce-spearmen g:= good-spearmen
+    #end if
+    
+  #randor
+    #if goal produce-spearmen 0 and goal produce-militia 0
+      @up-modify-goal produce-eagles g:= good-eagles
+    #end if
+    
+  #randor
+    #if goal produce-knights 0 and goal produce-battle-elephants 0
+      @up-modify-goal produce-scouts g:= good-scouts
+    #end if
+    
+  #randor
+    #if goal produce-scouts 0 and goal produce-battle-elephants 0
+      @up-modify-goal produce-knights g:= good-knights
+    #end if
+    
+  #randor
+    @up-modify-goal produce-camels g:= good-camels
+    
+  #randor
+    #if goal produce-scouts 0 and goal produce-knights 0
+      @up-modify-goal produce-battle-elephants g:= good-battle-elephants
+    #end if
+    
+  #randor
+    @up-modify-goal produce-mangonels g:= good-mangonels
+    
+  #randor
+    @up-modify-goal produce-scorpions g:= good-scorpions
+    
+  #randor
+    @up-modify-goal produce-monks g:= good-monks
+  
+  #randor
+    @up-modify-goal produce-unique-units g:= good-unique-units
+    
+  #end select
+#end if
+
+#if goal produce-archers 1
+  chat to self "produce-archers"
+#end if
+#if goal produce-hand-cannoneers 1
+  chat to self "produce-hand-cannoneers"
+#end if
+#if goal produce-skirmishers 1
+  chat to self "produce-skirmishers"
+#end if
+#if goal produce-cavalry-archers 1
+  chat to self "produce-cavalry-archers"
+#end if
+#if goal produce-militia 1
+  chat to self "produce-militia"
+#end if
+#if goal produce-spearmen 1
+  chat to self "produce-spearmen"
+#end if
+#if goal produce-eagles 1
+  chat to self "produce-eagles"
+#end if
+#if goal produce-scouts 1
+  chat to self "produce-scouts"
+#end if
+#if goal produce-knights 1
+  chat to self "produce-knights"
+#end if
+#if goal produce-camels 1
+  chat to self "produce-camels"
+#end if
+#if goal produce-battle-elephants 1
+  chat to self "produce-battle-elephants"
+#end if
+#if goal produce-mangonels 1
+  chat to self "produce-mangonels"
+#end if
+#if goal produce-scorpions 1
+  chat to self "produce-scorpions"
+#end if
+#if goal produce-monks 1
+  chat to self "produce-monks"
+#end if
+#if goal produce-unique-units 1
+  chat to self "produce-unique-units"
+#end if

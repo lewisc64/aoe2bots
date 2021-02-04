@@ -1,0 +1,119 @@
+#if civ-selected aztec
+  goal produce-eagles = 1
+  goal produce-monks = 1
+#end if
+
+#if civ-selected berbers
+  #if current-age <= feudal-age
+    goal produce-archers = 1
+  #else
+    goal produce-knights = 1
+  #end if
+#end if
+
+#if civ-selected briton or civ-selected ethiopian or civ-selected chinese or civ-selected vietnamese or civ-selected magyar or civ-selected viking
+  goal produce-archers = 1
+#end if
+
+#if civ-selected burmese
+  #if current-age <= feudal-age
+    goal produce-archers = 1
+  #end if
+  goal produce-battle-elephants = 1
+  goal produce-monks = 1
+#end if
+
+#if civ-selected byzantine
+  goal produce-archers = 1
+  goal produce-monks = 1
+#end if
+
+#if civ-selected slavic
+  goal produce-mangonels = 1
+  goal produce-militia = 1
+#end if
+
+#if civ-selected frankish or civ-selected persian
+  #if current-age <= feudal-age
+    goal produce-scouts = 1
+  #else
+    goal produce-knights = 1
+  #end if
+#end if
+
+#if civ-selected gothic or civ-selected malian or civ-selected celtic
+  #if current-age <= feudal-age
+    goal produce-archers = 1
+  #else
+    goal produce-militia = 1
+  #end if
+#end if
+
+#if civ-selected hun
+  goal produce-cavalry-archers = 1
+#end if
+
+#if civ-selected incan
+  goal produce-eagles = 1
+#end if
+
+#if civ-selected indian
+  #if current-age <= feudal-age
+    goal produce-archers = 1
+  #else
+    goal produce-camels = 1
+  #end if
+  goal produce-hand-cannoneer = 1
+#end if
+
+#if civ-selected italian
+  goal produce-archers = 1
+  goal produce-hand-cannoneers = 1
+  goal produce-condottiero = 1
+#end if
+
+#if civ-selected japanese
+  goal produce-cavalry-archers = 1
+#end if
+
+#if civ-selected khmer or civ-selected malay
+  goal produce-battle-elephants = 1
+  goal produce-archers = 1
+#end if
+
+#if civ-selected korean
+  goal produce-archers = 1
+  goal produce-mangonels = 1
+#end if
+
+#if civ-selected mayan
+  goal produce-archers = 1
+#end if
+
+#if civ-selected mongol
+  goal produce-cavalry-archers = 1
+  #if current-age >= imperial-age
+    goal produce-scouts = 1
+  #end if
+#end if
+
+#if civ-selected portuguese
+  goal produce-archers = 1
+  goal produce-hand-cannoneers = 1
+#end if
+
+#if civ-selected saracen
+  goal produce-cavalry-archers = 1
+#end if
+
+#if civ-selected spanish or civ-selected turkish
+  goal produce-cavalry-archers = 1
+  goal produce-hand-cannoneers = 1
+#end if
+
+#if civ-selected teutonic
+  goal produce-militia = 1
+  #if current-age >= castle
+    goal produce-knights = 1
+  #end if
+#end if

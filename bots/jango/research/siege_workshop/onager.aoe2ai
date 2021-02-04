@@ -1,0 +1,13 @@
+#if not research-completed ri-onager
+  load "research/siege_workshop/prerequisites.aoe2ai"
+  //load "research/town_center/imperial_age.aoe2ai"
+
+  #if research-available ri-onager
+    #if up-research-status c: ri-onager < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-onager
+    #end if
+  #end if
+#end if

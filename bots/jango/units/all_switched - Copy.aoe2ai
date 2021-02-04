@@ -1,0 +1,281 @@
+#if goal produce-villagers 1
+  load "units/villager.aoe2ai"
+#end if
+
+#if goal produce-trebuchets 1
+  load "units/trebuchet.aoe2ai"
+#end if
+
+#if goal produce-monks 1
+  load "units/monk.aoe2ai"
+#end if
+
+#do once
+  goal next-archery-range-unit = archer-line
+  goal next-barracks-unit = militiaman-line
+  goal next-siege-workshop-unit = battering-ram-line
+  goal old-produce-units = 0
+#end do
+
+// ARCHERY RANGE
+
+#if goal produce-archers 1 and unit-available archer-line
+  goal trained-unit = 0
+  #if not goal next-archery-range-unit archer-line
+    @up-modify-goal old-produce-units g:= produce-units
+    goal produce-units = 0
+  #end if
+  load "units/archer.aoe2ai"
+  #if not goal next-archery-range-unit archer-line
+    @up-modify-goal produce-units g:= old-produce-units
+  #end if
+  #if goal trained-unit 1
+    goal next-archery-range-unit = hand-cannoneer
+  #end if
+#else if goal next-archery-range-unit archer-line
+  goal next-archery-range-unit = hand-cannoneer
+#end if
+
+#if goal produce-hand-cannoneers 1 and unit-available hand-cannoneer
+  goal trained-unit = 0
+  #if not goal next-archery-range-unit hand-cannoneer
+    @up-modify-goal old-produce-units g:= produce-units
+    goal produce-units = 0
+  #end if
+  load "units/hand_cannoneer.aoe2ai"
+  #if not goal next-archery-range-unit hand-cannoneer
+    @up-modify-goal produce-units g:= old-produce-units
+  #end if
+  #if goal trained-unit 1
+    goal next-archery-range-unit = skirmisher-line
+  #end if
+#else if goal next-archery-range-unit hand-cannoneer
+  goal next-archery-range-unit = skirmisher-line
+#end if
+
+#if goal produce-skirmishers 1 and unit-available skirmisher-line
+  goal trained-unit = 0
+  #if not goal next-archery-range-unit skirmisher-line
+    @up-modify-goal old-produce-units g:= produce-units
+    goal produce-units = 0
+  #end if
+  load "units/skirmisher.aoe2ai"
+  #if not goal next-archery-range-unit skirmisher-line
+    @up-modify-goal produce-units g:= old-produce-units
+  #end if
+  #if goal trained-unit 1
+    goal next-archery-range-unit = cavalry-archer-line
+  #end if
+#else if goal next-archery-range-unit skirmisher-line
+  goal next-archery-range-unit = cavalry-archer-line
+#end if
+
+#if goal produce-cavalry-archers 1 and unit-available cavalry-archer-line
+  goal trained-unit = 0
+  #if not goal next-archery-range-unit cavalry-archer-line
+    @up-modify-goal old-produce-units g:= produce-units
+    goal produce-units = 0
+  #end if
+  load "units/cavalry_archer.aoe2ai"
+  #if not goal next-archery-range-unit cavalry-archer-line
+    @up-modify-goal produce-units g:= old-produce-units
+  #end if
+  #if goal trained-unit 1
+    goal next-archery-range-unit = archer-line
+  #end if
+#else if goal next-archery-range-unit cavalry-archer-line
+  goal next-archery-range-unit = archer-line
+#end if
+
+// BARRACKS
+
+#if goal produce-militia 1 and unit-available militiaman-line
+  goal trained-unit = 0
+  #if not goal next-barracks-unit militiaman-line
+    @up-modify-goal old-produce-units g:= produce-units
+    goal produce-units = 0
+  #end if
+  load "units/militia.aoe2ai"
+  #if not goal next-barracks-unit militiaman-line
+    @up-modify-goal produce-units g:= old-produce-units
+  #end if
+  #if goal trained-unit 1
+    goal next-barracks-unit = spearman-line
+  #end if
+#else if goal next-barracks-unit militiaman-line
+  goal next-barracks-unit = spearman-line
+#end if
+
+#if goal produce-spearmen 1 and unit-available spearman-line
+  goal trained-unit = 0
+  #if not goal next-barracks-unit spearman-line
+    @up-modify-goal old-produce-units g:= produce-units
+    goal produce-units = 0
+  #end if
+  load "units/spearman.aoe2ai"
+  #if not goal next-barracks-unit spearman-line
+    @up-modify-goal produce-units g:= old-produce-units
+  #end if
+  #if goal trained-unit 1
+    goal next-barracks-unit = eagle-warrior-line
+  #end if
+#else if goal next-barracks-unit spearman-line
+  goal next-barracks-unit = eagle-warrior-line
+#end if
+
+#if goal produce-eagles 1 and unit-available eagle-warrior-line
+  goal trained-unit = 0
+  #if not goal next-barracks-unit eagle-warrior-line
+    @up-modify-goal old-produce-units g:= produce-units
+    goal produce-units = 0
+  #end if
+  load "units/eagle_warrior.aoe2ai"
+  #if not goal next-barracks-unit eagle-warrior-line
+    @up-modify-goal produce-units g:= old-produce-units
+  #end if
+  #if goal trained-unit 1
+    goal next-barracks-unit = militiaman-line
+  #end if
+#else if goal next-barracks-unit eagle-warrior-line
+  goal next-barracks-unit = militiaman-line
+#end if
+
+// STABLE
+
+#if goal produce-scouts 1 and unit-available scout-cavalry-line
+  goal trained-unit = 0
+  #if not goal next-stables-unit scout-cavalry-line
+    @up-modify-goal old-produce-units g:= produce-units
+    goal produce-units = 0
+  #end if
+  load "units/scout_cavalry.aoe2ai"
+  #if not goal next-stables-unit scout-cavalry-line
+    @up-modify-goal produce-units g:= old-produce-units
+  #end if
+  #if goal trained-unit 1
+    goal next-stables-unit = knight-line
+  #end if
+#else if goal next-stables-unit scout-cavalry-line
+  goal next-stables-unit = knight-line
+#end if
+
+#if goal produce-knights 1 and unit-available knight-line
+  goal trained-unit = 0
+  #if not goal next-stables-unit knight-line
+    @up-modify-goal old-produce-units g:= produce-units
+    goal produce-units = 0
+  #end if
+  load "units/knight.aoe2ai"
+  #if not goal next-stables-unit knight-line
+    @up-modify-goal produce-units g:= old-produce-units
+  #end if
+  #if goal trained-unit 1
+    goal next-stables-unit = camel-line
+  #end if
+#else if goal next-stables-unit knight-line
+  goal next-stables-unit = camel-line
+#end if
+
+#if goal produce-camels 1 and unit-available camel-line
+  goal trained-unit = 0
+  #if not goal next-stables-unit camel-line
+    @up-modify-goal old-produce-units g:= produce-units
+    goal produce-units = 0
+  #end if
+  load "units/camel.aoe2ai"
+  #if not goal next-stables-unit camel-line
+    @up-modify-goal produce-units g:= old-produce-units
+  #end if
+  #if goal trained-unit 1
+    goal next-stables-unit = battle-elephant-line
+  #end if
+#else if goal next-stables-unit camel-line
+  goal next-stables-unit = battle-elephant-line
+#end if
+
+#if goal produce-battle-elephants 1 and unit-available battle-elephant-line
+  goal trained-unit = 0
+  #if not goal next-stables-unit battle-elephant-line
+    @up-modify-goal old-produce-units g:= produce-units
+    goal produce-units = 0
+  #end if
+  load "units/battle_elephant.aoe2ai"
+  #if not goal next-stables-unit battle-elephant-line
+    @up-modify-goal produce-units g:= old-produce-units
+  #end if
+  #if goal trained-unit 1
+    goal next-stables-unit = scout-cavalry-line
+  #end if
+#else if goal next-stables-unit battle-elephant-line
+  goal next-stables-unit = scout-cavalry-line
+#end if
+
+// SIEGE WORKSHOP
+
+#if goal produce-battering-rams 1 and unit-available battering-ram-line
+  goal trained-unit = 0
+  #if not goal next-siege-workshop-unit battering-ram-line
+    @up-modify-goal old-produce-units g:= produce-units
+    goal produce-units = 0
+  #end if
+  load "units/battering_ram.aoe2ai"
+  #if not goal next-siege-workshop-unit battering-ram-line
+    @up-modify-goal produce-units g:= old-produce-units
+  #end if
+  #if goal trained-unit 1
+    goal next-siege-workshop-unit = mangonel-line
+  #end if
+#else if goal next-siege-workshop-unit battering-ram-line
+  goal next-siege-workshop-unit = mangonel-line
+#end if
+
+#if goal produce-mangonels 1 and unit-available mangonel-line
+  goal trained-unit = 0
+  #if not goal next-siege-workshop-unit mangonel-line
+    @up-modify-goal old-produce-units g:= produce-units
+    goal produce-units = 0
+  #end if
+  load "units/mangonel.aoe2ai"
+  #if not goal next-siege-workshop-unit mangonel-line
+    @up-modify-goal produce-units g:= old-produce-units
+  #end if
+  #if goal trained-unit 1
+    goal next-siege-workshop-unit = scorpion-line
+  #end if
+#else if goal next-siege-workshop-unit mangonel-line
+  goal next-siege-workshop-unit = scorpion-line
+#end if
+
+#if goal produce-scorpions 1 and unit-available scorpion-line
+  goal trained-unit = 0
+  #if not goal next-siege-workshop-unit scorpion-line
+    @up-modify-goal old-produce-units g:= produce-units
+    goal produce-units = 0
+  #end if
+  load "units/scorpion.aoe2ai"
+  #if not goal next-siege-workshop-unit scorpion-line
+    @up-modify-goal produce-units g:= old-produce-units
+  #end if
+  #if goal trained-unit 1
+    goal next-siege-workshop-unit = bombard-cannon
+  #end if
+#else if goal next-siege-workshop-unit scorpion-line
+  goal next-siege-workshop-unit = bombard-cannon
+#end if
+
+#if goal produce-bombard-cannons 1 and unit-available bombard-cannon
+  goal trained-unit = 0
+  #if not goal next-siege-workshop-unit bombard-cannon
+    @up-modify-goal old-produce-units g:= produce-units
+    goal produce-units = 0
+  #end if
+  load "units/bombard_cannon.aoe2ai"
+  #if not goal next-siege-workshop-unit bombard-cannon
+    @up-modify-goal produce-units g:= old-produce-units
+  #end if
+  #if goal trained-unit 1
+    goal next-siege-workshop-unit = battering-ram-line
+  #end if
+#else if goal next-siege-workshop-unit bombard-cannon
+  goal next-siege-workshop-unit = battering-ram-line
+#end if

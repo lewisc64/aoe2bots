@@ -1,0 +1,42 @@
+load "research/town_center/prerequisites.aoe2ai"
+
+#if unit-available villager
+  #if current-age >= feudal-age
+    load "research/town_center/loom.aoe2ai"
+  #end if
+  
+  #if current-age == feudal-age
+    load "research/town_center/wheelbarrow.aoe2ai"
+    load "research/lumber_camp/double_bit_axe.aoe2ai"
+    load "research/mill/horse_collar.aoe2ai"
+  #else if current-age == castle-age
+    load "research/town_center/hand_cart.aoe2ai"
+    load "research/lumber_camp/bow_saw.aoe2ai"
+    load "research/mill/heavy_plow.aoe2ai"
+  #else if current-age == imperial-age
+    load "research/lumber_camp/two_man_saw.aoe2ai"
+    load "research/mill/crop_rotation.aoe2ai"
+  #end if
+  
+  #do once
+    goal desired-villagers-with-cart-potential = 0
+  #end do
+  @up-modify-goal desired-villagers-with-cart-potential g:= desired-villagers
+  #if goal produce-trade-carts 1
+    @up-modify-goal desired-villagers-with-cart-potential g:- desired-trade-carts
+  #end if
+
+  #if up-compare-goal total-villagers g:< desired-villagers-with-cart-potential
+    #when
+        train villager
+    #then
+      goal trained-unit = 1
+    #end when
+  #else if up-compare-goal total-villagers g:> desired-villagers-with-cart-potential
+    delete unit villager
+  #end if
+  
+  #if game-time >= 60
+    load "research/town_center/loom.aoe2ai"
+  #end if
+#end if

@@ -1,0 +1,13 @@
+#if not research-completed ri-scale-mail
+  load "research/blacksmith/prerequisites.aoe2ai"
+  //load "research/town_center/feudal_age.aoe2ai"
+
+  #if research-available ri-scale-mail
+    #if up-research-status c: ri-scale-mail < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-scale-mail
+    #end if
+  #end if
+#end if
