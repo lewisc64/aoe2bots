@@ -1,4 +1,6 @@
-chat to self "cautious"
+#do once
+  chat to self "attacking cautiously"
+#end do
 
 #if (up-compare-goal target-military-percentage c:>= 200 or population-headroom <= 5) and goal attacking 0
   goal attacking = 1

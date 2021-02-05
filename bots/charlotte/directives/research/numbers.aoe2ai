@@ -1,9 +1,17 @@
+#do once
+  chat to self "researching if I have good military"
+#end do
+
 #if goal attempted-researches 0 and up-compare-goal largest-enemy-military-percentage c:>= 100 or town-under-attack and goal attacking 0
-  chat to self "go! (numbers)"
+  #if goal produce-units 0
+    chat to self "go! (numbers)"
+  #end if
   goal produce-units = 1
   goal do-research = 0
 #else
-  chat to self "hold! (numbers)"
+  #if goal produce-units 1
+    chat to self "hold! (numbers)"
+  #end if
   goal produce-units = 0
   goal do-research = 1
 #end if

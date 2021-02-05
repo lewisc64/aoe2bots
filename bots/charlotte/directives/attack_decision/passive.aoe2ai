@@ -1,4 +1,6 @@
-chat to self "passive"
+#do once
+  chat to self "attacking passively"
+#end do
 
 #if population-headroom <= 5 and goal attacking 0
   goal attacking = 1

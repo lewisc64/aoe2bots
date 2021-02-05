@@ -1,9 +1,17 @@
+#do once
+  chat to self "researching thoughtfully"
+#end do
+
 #if goal attempted-researches 0 or town-under-attack and goal attacking 0
-  chat to self "go! (thoughtful)"
+  #if goal produce-units 0
+    chat to self "go! (thoughtful)"
+  #end if
   goal produce-units = 1
   goal do-research = 0
 #else
-  chat to self "hold! (thoughtful)"
+  #if goal produce-units 1
+    chat to self "hold! (thoughtful)"
+  #end if
   goal produce-units = 0
   goal do-research = 1
 #end if

@@ -1,7 +1,0 @@
-#repeat every 60 seconds
-  #if population-headroom < 5
-    goal attacking = 1
-  #else
-    goal attacking = 0
-  #end if
-#end repeat
