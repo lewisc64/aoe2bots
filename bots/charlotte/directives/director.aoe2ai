@@ -9,6 +9,8 @@
   load "directives/age/fast_castle.aoe2ai"
 #end select
 
+load "units/all_switched.aoe2ai"
+
 load "directives/do_misc_research.aoe2ai"
 
 #select random persistant
@@ -39,7 +41,11 @@ load "directives/do_misc_research.aoe2ai"
   #end select
   
   #select random persistant
-    load "directives/research/thoughtful.aoe2ai"
+    #select random persistant
+      load "directives/research/thoughtful.aoe2ai"
+    #randor
+      load "directives/research/numbers.aoe2ai"
+    #end select
   #randor
     load "directives/research/balanced.aoe2ai"
   #randor
@@ -70,3 +76,5 @@ load "directives/do_misc_research.aoe2ai"
 #else
   sn-enable-training-queue = 0
 #end if
+
+load "directives/resigning.aoe2ai"

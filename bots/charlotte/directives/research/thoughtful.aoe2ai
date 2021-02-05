@@ -1,4 +1,4 @@
-#if goal attempted-researches 0// or town-under-attack and goal attacking 0
+#if goal attempted-researches 0 or town-under-attack and goal attacking 0
   chat to self "go! (thoughtful)"
   goal produce-units = 1
   goal do-research = 0

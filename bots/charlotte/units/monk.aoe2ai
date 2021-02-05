@@ -19,7 +19,7 @@ load "research/monastery/prerequisites.aoe2ai"
     build monastery
   #end if
   
-  #if goal produce-units 1
+  #if goal produce-units 1 and goal enough-gold 1
     #when
       train monk
     #then

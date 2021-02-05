@@ -1,0 +1,7 @@
+#if goal resign 1
+  resign
+#end if
+
+#if up-compare-goal largest-enemy-military-percentage c:<= 50 and up-compare-goal score-percentage c:<= 50 and game-time >= 1200
+  goal resign = 1
+#end if

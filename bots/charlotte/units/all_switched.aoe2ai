@@ -11,6 +11,30 @@
   goal old-produce-units = 0
 #end do
 
+#if wood-amount >= wood-unit-threshold
+  goal enough-wood = 1
+#else
+  goal enough-wood = 0
+#end if
+
+#if food-amount >= food-unit-threshold
+  goal enough-food = 1
+#else
+  goal enough-food = 0
+#end if
+
+#if gold-amount >= gold-unit-threshold
+  goal enough-gold = 1
+#else
+  goal enough-gold = 0
+#end if
+
+#if goal attacking 0 and town-under-attack
+  goal enough-wood = 1
+  goal enough-food = 1
+  goal enough-gold = 1
+#end if
+
 load "units/prerequisites.aoe2ai"
 
 // ARCHERY RANGE

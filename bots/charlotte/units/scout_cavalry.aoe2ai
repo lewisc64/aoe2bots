@@ -10,7 +10,7 @@ load "research/stable/prerequisites.aoe2ai"
   
   load "units/types/cavalry.aoe2ai"
   
-  #if goal produce-units 1
+  #if goal produce-units 1 and goal enough-food 1
     #when
       train scout-cavalry-line
     #then

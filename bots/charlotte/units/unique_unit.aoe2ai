@@ -59,7 +59,7 @@
     load "research/blacksmith/ring_archer_armor.aoe2ai"
   #end if
   
-  #if goal produce-units 1
+  #if goal produce-units 1 and goal enough-wood 1 and goal enough-food 1 and goal enough-gold 1
     #when
       train my-unique-unit
     #then

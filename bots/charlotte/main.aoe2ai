@@ -2,8 +2,12 @@ const dark-age-town-size = 12
 const feudal-age-town-size = 14
 const castle-age-town-size = 24
 const imperial-age-town-size = 30
-const max-rams = 5
+const max-rams = 10
 const max-trebs = 5
+
+const wood-unit-threshold = 300
+const food-unit-threshold = 100
+const gold-unit-threshold = 0
 
 #do once
   set up basics
@@ -12,6 +16,8 @@ const max-trebs = 5
   
   goal resign = 0
   
+  sn-maximum-gold-drop-distance = 8
+  sn-maximum-stone-drop-distance = 8
   sn-maximum-hunt-drop-distance = 48
   
   sn-maximum-attack-group-size = 1
@@ -32,6 +38,12 @@ const max-trebs = 5
   
   goal desired-military-buildings-per-type = 2
   #select random persistant
+    goal desired-town-centers = 1
+  #randor
+    goal desired-town-centers = 2
+  #randor
+    goal desired-town-centers = 3
+  #randor
     goal desired-town-centers = 3
   #randor
     goal desired-town-centers = 3
@@ -40,10 +52,10 @@ const max-trebs = 5
   #end select
   
   goal desired-villagers = 120
-  goal desired-trade-carts = 0
-  
   #if goal team-game 1
     goal desired-trade-carts = 20
+  #else
+    goal desired-trade-carts = 0
   #end if
   
   // previous numbers assume pop cap of 200, normalise to actual pop cap.
@@ -97,7 +109,5 @@ load "economy/all_ages.aoe2ai"
 #if game-time >= 8
   load "directives/director.aoe2ai"
 #end if
-
-load "units/all_switched.aoe2ai"
 
 load "chat.aoe2ai"

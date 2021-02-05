@@ -4,7 +4,7 @@ load "research/castle/prerequisites.aoe2ai"
 #if unit-available trebuchet
   load "units/types/siege.aoe2ai"
 
-  #if goal produce-units 1
+  #if goal produce-units 1 and goal enough-wood 1 and goal enough-gold 1
     #when
       train trebuchet
     #then

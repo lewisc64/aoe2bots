@@ -5,13 +5,117 @@
     chat to all "Good luck, have fun!"
   #end if
   
-  #delay by 0 minutes
-    #if up-compare-goal score-percentage c:<= 50
-      chat to all "I'm not doing very well..."
+  // score trackers
+  #delay by 20 minutes
+    #if up-compare-goal score-percentage c:<= 60
+      #if goal free-for-all 1
+        #select random persistant
+          chat to all "I'm having some trouble with this one."
+        #randor
+          chat to all "This is a tough game."
+        #end select
+      #else if goal team-game 1
+        #select random persistant
+          chat to all "We may need a different strategy..."
+        #randor
+          chat to all "I'm crumbling... Hopefully we still have a shot?"
+        #end select
+      #else
+        #select random persistant
+          chat to all "I feel vastly outpaced, you're playing a good game."
+        #randor
+          chat to all "I'm not doing very well..."
+        #randor
+          chat to all "This could have gone better, oh well."
+        #end select
+      #end if
+    #else if up-compare-goal score-percentage c:>= 130
+        #if goal free-for-all 1
+          #select random persistant
+            chat to all "I think I'm close to closing this one out."
+          #randor
+            chat to all "It was tough, but I got there in the end."
+          #end select
+        #else if goal team-game 1
+          chat to all "Looks like we're close to getting this squared off."
+        #else
+          chat to all "I'm winning this one. You played well though!"
+        #end if
+    #end if
+    
+    //military trackers
+    #if military-population >= 20
+      #if up-compare-goal largest-enemy-military-percentage c:<= 50 and goal attacking 0
+        #select random persistant
+          chat to all "I don't like this..."
+        #randor
+          chat to all "Dicey..."
+        #randor
+          #if goal team-game 1 or goal free-for-all 1
+            chat to all "It's looking scary out there..."
+          #else
+            chat to all "You're looking scary..."
+          #end if
+        #end select
+      #else if up-compare-goal largest-enemy-military-percentage c:>= 170
+        #if goal attacking 1
+          #select random persistant
+            #if goal team-game 1 or goal free-for-all 1
+              chat to all "Let's crush 'em!"
+            #else
+              chat to all "It's time for some violence!"
+            #end if
+          #randor
+            chat to all "Oh yeah, this is good."
+          #randor
+            #if goal team-game 1 or goal free-for-all 1
+              chat to all "You lot aren't prepared for this."
+            #else
+              chat to all "You aren't prepared for this."
+            #end if
+          #randor
+            chat to all "[cracks knuckles]"
+          #randor
+            chat to all "I'm pumped! Let's go!!!"
+          #randor
+            chat to all "Allow me to show you some numbers."
+          #randor
+            #if goal team-game 1
+              chat to all "We're bringing the pain."
+            #else
+              chat to all "I'm bringing the pain."
+            #end if
+          #randor
+            chat to all "If I win this battle, it's all over."
+          #end select
+        #else
+          #select random persistant
+            #if goal team-game 1 or goal free-for-all 1
+              chat to all "Why doesn't someone attack me right now? It'll go well. Promise."
+            #else
+              chat to all "Why don't you attack me right now? Go on."
+            #end if
+          #randor
+            chat to all "Feeling confident."
+          #randor
+            chat to all "Feeling good."
+          #randor
+            chat to all "I am prepared."
+          #randor
+            chat to all "I just don't have enough military right now."
+          #end select
+        #end if
+      #end if
     #end if
   #end delay
   
   #if goal resign 1
-    chat to all "My heart's not really in this anymore, sorry."
+    #select random persistant
+      chat to all "My heart's not really in this anymore, sorry."
+    #randor
+      chat to all "It was a good game, I think I'm out though."
+    #randor
+      chat to all "Good game, well played."
+    #end select
   #end if
 #end do
