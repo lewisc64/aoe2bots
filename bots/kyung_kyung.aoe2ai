@@ -81,6 +81,9 @@ load "templates/fast_castle.aoe2ai"
   #end if
   
   #if military-population >= 35
+    #repeat every 10 minutes
+      target closest enemy
+    #end repeat
     sn-maximum-town-size = 255
     #do once
       chat to all "Enemy must be fear."

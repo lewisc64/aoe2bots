@@ -1,0 +1,11 @@
+#if current-age == castle-age or building-type-count-total castle == 0
+  #if unit-type-count-total battering-ram-line < 5 and (military-population >= 20 or enemy-buildings-in-town)
+    goal produce-battering-rams = 1
+  #else
+    goal produce-battering-rams = 0
+  #end if
+  goal produce-trebuchets = 0
+#else if current-age == imperial-age
+  goal produce-battering-rams = 0
+  goal produce-trebuchets = 1
+#end if

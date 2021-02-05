@@ -1,0 +1,14 @@
+#if dropsite-min-distance gold == -1 and resource-found gold and goal produce-trade-carts 0
+  goal produce-archers = 0
+  goal produce-hand-cannoneers = 0
+  goal produce-cavalry-archers = 0
+  // goal produce-militia = 0
+  goal produce-eagles = 0
+  goal produce-knights = 0
+  goal produce-camels = 0
+  goal produce-battle-elephants = 0
+  goal produce-mangonels = 0
+  goal produce-scorpions = 0
+  goal produce-monks = 0
+  goal produce-unique-units = 0
+#end if

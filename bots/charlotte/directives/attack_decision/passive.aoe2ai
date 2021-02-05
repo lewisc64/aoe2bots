@@ -1,0 +1,7 @@
+chat to self "passive"
+
+#if population-headroom <= 5 and goal attacking 0
+  goal attacking = 1
+#else if up-compare-goal target-military-percentage c:<= 50
+  goal attacking = 0
+#end if

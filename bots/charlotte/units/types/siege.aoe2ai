@@ -1,0 +1,13 @@
+#if current-age == imperial-age
+  load "research/university/siege_engineers.aoe2ai"
+  load "research/university/chemistry.aoe2ai"
+#end if
+
+build 1 blacksmith
+#do once
+  goal siege-workshop-count = 0
+#end do
+@up-get-fact building-type-count-total siege-workshop siege-workshop-count
+#if up-compare-goal siege-workshop-count g:< desired-military-buildings-per-type
+  build siege-workshop
+#end if

@@ -1,0 +1,7 @@
+chat to self "reckless"
+
+#if up-compare-goal target-military-percentage c:>= 80 and goal attacking 0
+  goal attacking = 1
+#else if up-compare-goal target-military-percentage c:<= 20 and goal attacking 1
+  goal attacking = 0
+#end if

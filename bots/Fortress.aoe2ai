@@ -56,7 +56,7 @@ load "templates/fast_castle.aoe2ai"
   research ri-keep
   research ri-arrowslits
   
-  #if military-population >= 50
+  #if military-population >= 30
     build forward bombard-tower
     #if enemy-buildings-in-town
       sn-maximum-town-size -= 1

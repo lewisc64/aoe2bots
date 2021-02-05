@@ -1,0 +1,103 @@
+const dark-age-town-size = 12
+const feudal-age-town-size = 14
+const castle-age-town-size = 24
+const imperial-age-town-size = 30
+const max-rams = 5
+const max-trebs = 5
+
+#do once
+  set up basics
+  take boar and deer
+  target walls
+  
+  goal resign = 0
+  
+  sn-maximum-hunt-drop-distance = 48
+  
+  sn-maximum-attack-group-size = 1
+  sn-minimum-attack-group-size = 1
+  sn-special-attack-type2 = villager
+  
+  #if cc-players-unit-type-count any-ally villager > 0
+    goal team-game = 1
+  #else
+    goal team-game = 0
+  #end if
+  
+  #if goal team-game 0 and player-valid 1 and player-valid 2 and player-valid 3
+    goal free-for-all = 1
+  #else
+    goal free-for-all = 0
+  #end if
+  
+  goal desired-military-buildings-per-type = 2
+  #select random persistant
+    goal desired-town-centers = 3
+  #randor
+    goal desired-town-centers = 3
+  #randor
+    goal desired-town-centers = 4
+  #end select
+  
+  goal desired-villagers = 120
+  goal desired-trade-carts = 0
+  
+  #if goal team-game 1
+    goal desired-trade-carts = 20
+  #end if
+  
+  // previous numbers assume pop cap of 200, normalise to actual pop cap.
+  goal pop-cap-goal = 0
+  @up-get-fact population-cap 0 pop-cap-goal
+  @up-modify-goal desired-villagers g:* pop-cap-goal
+  @up-modify-goal desired-villagers c:/ 200
+  @up-modify-goal desired-trade-carts g:* pop-cap-goal
+  @up-modify-goal desired-trade-carts c:/ 200
+  
+  goal produce-units = 1
+  goal do-research = 1
+  
+  assign 8 builders to castle
+  assign 4 builders to town-center-foundation
+#end do
+
+#do once
+  goal produce-villagers = 1
+  goal produce-trade-carts = 0
+  goal produce-archers = 0
+  goal produce-hand-cannoneers = 0
+  goal produce-skirmishers = 0
+  goal produce-cavalry-archers = 0
+  goal produce-militia = 0
+  goal produce-spearmen = 0
+  goal produce-eagles = 0
+  goal produce-scouts = 0
+  goal produce-knights = 0
+  goal produce-camels = 0
+  goal produce-battle-elephants = 0
+  goal produce-battering-rams = 0
+  goal produce-mangonels = 0
+  goal produce-scorpions = 0
+  goal produce-bombard-cannons = 0
+  goal produce-trebuchets = 0
+  goal produce-monks = 0
+  goal produce-unique-units = 0
+#end do
+
+load "stats.aoe2ai"
+
+goal attempted-researches = 0
+
+load "economy/all_ages.aoe2ai"
+
+#if current-age >= feudal-age
+  load "economy/adaptive_balance.aoe2ai"
+#end if
+
+#if game-time >= 8
+  load "directives/director.aoe2ai"
+#end if
+
+load "units/all_switched.aoe2ai"
+
+load "chat.aoe2ai"

@@ -1,0 +1,54 @@
+#do once
+  goal total-villagers = 0
+#end do
+@up-get-fact unit-type-count villager total-villagers
+
+#do once
+  goal total-trade-carts = 0
+#end do
+@up-get-fact unit-type-count trade-cart total-trade-carts
+
+#do once
+  goal town-center-count = 0
+#end do
+@up-get-fact building-type-count-total town-center town-center-count
+
+// scores
+
+#do once
+  goal my-score = 0
+  goal old-target-player = 0
+  goal highest-enemy-score = 0
+  goal lowest-enemy-score = 0
+#end do
+
+@up-get-fact current-score 0 my-score
+@up-get-fact-max any-enemy current-score 0 highest-enemy-score
+@up-get-fact-min any-enemy current-score 0 lowest-enemy-score
+
+#do once
+  goal score-percentage = 0
+#end do
+@up-modify-goal score-percentage g:= my-score
+@up-modify-goal score-percentage c:* 100
+@up-modify-goal score-percentage g:/ highest-enemy-score
+
+// military
+
+#do once
+  goal my-military-population = 0
+  goal target-military-population = 0
+  goal target-military-percentage = 0
+  goal largest-enemy-military-population = 0
+  goal largest-enemy-military-percentage = 0
+#end do
+
+@up-get-fact military-population 0 my-military-population
+
+@up-get-target-fact military-population 0 target-military-population
+@up-get-fact-max any-enemy military-population 0 largest-enemy-military-population
+@up-modify-goal target-military-percentage g:= my-military-population
+@up-modify-goal target-military-percentage c:* 100
+@up-modify-goal largest-enemy-military-percentage g:= target-military-percentage
+@up-modify-goal target-military-percentage g:/ target-military-population
+@up-modify-goal largest-enemy-military-percentage g:/ largest-enemy-military-population

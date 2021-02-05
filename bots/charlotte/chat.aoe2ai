@@ -1,0 +1,17 @@
+#do once
+  #if goal free-for-all 1 or goal team-game 1
+    chat to all "Good luck and have fun everyone!"
+  #else
+    chat to all "Good luck, have fun!"
+  #end if
+  
+  #delay by 0 minutes
+    #if up-compare-goal score-percentage c:<= 50
+      chat to all "I'm not doing very well..."
+    #end if
+  #end delay
+  
+  #if goal resign 1
+    chat to all "My heart's not really in this anymore, sorry."
+  #end if
+#end do

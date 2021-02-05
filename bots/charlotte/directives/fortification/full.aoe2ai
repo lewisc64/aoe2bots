@@ -1,0 +1,30 @@
+#if current-age >= imperial-age and building-type-count castle >= 1
+  load "research/castle/hoardings.aoe2ai"
+#end if
+
+#if current-age >= castle-age
+  #if current-age == imperial-age
+    load "research/university/architecture.aoe2ai"
+  #else
+    load "research/university/masonry.aoe2ai"
+  #end if
+  #if building-type-count castle >= 1
+    load "research/university/murder_holes.aoe2ai"
+    #if current-age == imperial-age
+      load "research/blacksmith/bracer.aoe2ai"
+    #else
+      load "research/blacksmith/bodkin_arrow.aoe2ai"
+    #end if
+  #end if
+#end if
+
+#if strategic-number sn-stone-gatherer-percentage > 0 and false
+  #select random persistant
+    enable walls on perimeter 2
+    build stone walls on perimeter 2
+    build stone gates on perimeter 2
+    load "research/university/fortified_wall.aoe2ai" 
+  #randor
+    // don't build walls
+  #end select
+#end if
