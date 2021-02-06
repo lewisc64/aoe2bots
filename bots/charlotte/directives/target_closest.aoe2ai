@@ -1,6 +1,6 @@
 #do once
   target closest enemy
 #end do
-#repeat every 10 minutes
+#if not player-in-game target-player
   target closest enemy
-#end repeat
+#end if
