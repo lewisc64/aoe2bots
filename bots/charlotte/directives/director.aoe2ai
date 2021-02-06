@@ -40,19 +40,24 @@ load "units/all_switched.aoe2ai"
     load "directives/attack_decision/reckless.aoe2ai"
   #end select
   
-  #select random persistant
+  #if false
     #select random persistant
-      load "directives/research/thoughtful.aoe2ai"
+      #select random persistant
+        load "directives/research/thoughtful.aoe2ai"
+      #randor
+        load "directives/research/numbers.aoe2ai"
+      #end select
     #randor
-      load "directives/research/numbers.aoe2ai"
+      load "directives/research/balanced.aoe2ai"
+    #randor
+      load "directives/research/reckless.aoe2ai"
     #end select
-  #randor
-    load "directives/research/balanced.aoe2ai"
-  #randor
-    load "directives/research/reckless.aoe2ai"
-  #end select
+  #end if
+  
+  load "directives/research/numbers.aoe2ai"
   
   load "directives/emergency_trash.aoe2ai"
+  load "directives/being_countered_system.aoe2ai"
   load "directives/sneaky_tactics.aoe2ai"
   load "directives/mandatory_siege.aoe2ai"
   

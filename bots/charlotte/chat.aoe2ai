@@ -23,9 +23,9 @@
         chat to all "HF!"
       #randor
         chat to all "Hi!"
-        #delay by 5 seconds
+        #if game-time >= 5
           chat to all "I can't cope with rushes too well, so can we just chill?"
-        #end delay
+        #end if
       #end select
     #end if
   #end if
@@ -62,7 +62,7 @@
           chat to all "I'm not sure I can best you."
         #end select
       #end if
-    #else if up-compare-goal score-percentage c:>= 130
+    #else if up-compare-goal score-percentage c:>= 140
         #if goal free-for-all 1
           #select random persistant
             chat to all "I'm pretty sure I've got this game."

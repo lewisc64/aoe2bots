@@ -1,0 +1,36 @@
+// should be extreme values, prevents losing.
+// load before all_switched, or after civ_decisions
+
+#respond to 5 monk-set
+  goal produce-battle-elephants = 0
+  goal produce-knights = 0
+  goal produce-camels = 0
+#end respond
+
+#respond to 5 archer
+  goal produce-monks = 0
+#end respond
+
+#respond to 5 mangonel-line
+  goal produce-scorpions = 0
+  goal produce-skirmishers = 0
+#end respond
+
+#if goal desired-units 1
+  
+  #respond to 5 spearman-line
+    goal produce-knights = 0
+    goal produce-scouts = 0
+    goal produce-battle-elephants = 0
+    goal produce-camels = 0
+  #end respond
+  
+  #respond to 5 archer-line
+    goal produce-spearmen = 0
+  #end respond
+  
+  #respond to 5 cavalry-archer-line
+    goal produce-spearmen = 0
+  #end respond
+  
+#end if

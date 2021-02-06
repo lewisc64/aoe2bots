@@ -17,7 +17,6 @@
 
 #do once
   goal my-score = 0
-  goal old-target-player = 0
   goal highest-enemy-score = 0
   goal lowest-enemy-score = 0
 #end do
@@ -32,6 +31,17 @@
 @up-modify-goal score-percentage g:= my-score
 @up-modify-goal score-percentage c:* 100
 @up-modify-goal score-percentage g:/ highest-enemy-score
+
+#do once
+  goal previous-target-player-score = 0
+  goal target-player-score = 0
+#end do
+target closest enemy
+@up-get-target-fact current-score 0 target-player-score
+goal target-player-score-delta = 0
+@up-modify-goal target-player-score-delta g:= target-player-score
+@up-modify-goal target-player-score-delta g:- previous-target-player-score
+@up-modify-goal previous-target-player-score g:= target-player-score
 
 // military
 
