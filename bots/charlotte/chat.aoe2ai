@@ -5,7 +5,7 @@
         chat to all "Good luck and have fun everyone!"
       #randor
         #if goal free-for-all 1
-          chat to all "May the best commander win!"
+          chat to all "May the best ruler win!"
         #else
           chat to all "May the best team win!"
         #end if
@@ -16,16 +16,17 @@
       #select random persistant
         chat to all "Hi! Go easy on me, okay?"
       #randor
+        chat to all "Looking forward to this. Let's go."
+      #randor
         chat to all "Good luck, have fun!"
       #randor
         chat to all "GL!"
       #randor
         chat to all "HF!"
       #randor
-        chat to all "Hi!"
-        #if game-time >= 5
-          chat to all "I can't cope with rushes too well, so can we just chill?"
-        #end if
+        chat to all "Good luck!"
+      #randor
+        chat to all "Have fun!"
       #end select
     #end if
   #end if

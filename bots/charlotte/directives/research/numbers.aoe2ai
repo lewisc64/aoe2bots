@@ -7,7 +7,7 @@
     chat to self "go! (numbers)"
   #end if
   goal produce-units = 1
-  goal do-research = 1
+  goal do-research = 0
 #else
   #if goal produce-units 1
     chat to self "hold! (numbers)"
