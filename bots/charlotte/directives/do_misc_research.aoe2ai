@@ -1,3 +1,7 @@
 #if current-age >= imperial-age and building-type-count castle >= 1
   load "research/castle/conscription.aoe2ai"
 #end if
+
+#respond to 10 monk-set
+  load "research/monastery/heresy.aoe2ai"
+#end respond

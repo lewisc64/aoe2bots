@@ -2,7 +2,7 @@
   goal produce-archers = 0
   goal produce-hand-cannoneers = 0
   goal produce-cavalry-archers = 0
-  // goal produce-militia = 0
+  goal produce-militia = 0
   goal produce-eagles = 0
   goal produce-knights = 0
   goal produce-camels = 0
@@ -11,4 +11,14 @@
   goal produce-scorpions = 0
   goal produce-monks = 0
   goal produce-unique-units = 0
+  
+  #if goal good-skirmishers 0 and goal good-scouts 0 and good-spearmen 0
+    #select random
+      goal good-skirmishers = 1
+    #randor
+      goal good-scouts = 1
+    #randor
+      goal good-spearmen = 1
+    #end select
+  #end if
 #end if
