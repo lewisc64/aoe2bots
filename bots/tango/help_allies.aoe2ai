@@ -17,7 +17,7 @@
   #if food-amount > 200 and up-allied-resource-amount this-any-ally food < 800
     tribute 100 food to this-any-ally
   #end if
-  #if gold-amount > 200 and up-allied-resource-amount this-any-ally food < 200
+  #if gold-amount > 200 and up-allied-resource-amount this-any-ally gold < 200
     tribute 100 gold to this-any-ally
   #end if
 #end if

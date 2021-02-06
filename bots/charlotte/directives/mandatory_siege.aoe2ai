@@ -1,15 +1,20 @@
-#if current-age == castle-age or building-type-count-total castle == 0
-  #if military-population >= 20 or enemy-buildings-in-town
-    #if unit-type-count-total battering-ram-line < 5 and current-age == castle-age or unit-type-count-total battering-ram-line < 10 and current-age == imperial-age
-      goal produce-battering-rams = 1
+#if goal attacking 0 and town-under-attack and not enemy-buildings-in-town
+  goal produce-battering-rams = 0
+  goal produce-trebuchets = 0
+#else
+  #if current-age == castle-age or building-type-count-total castle == 0
+    #if military-population >= 20 or enemy-buildings-in-town
+      #if unit-type-count-total battering-ram-line < 5 and current-age == castle-age or unit-type-count-total battering-ram-line < 10 and current-age == imperial-age
+        goal produce-battering-rams = 1
+      #else
+        goal produce-battering-rams = 0
+      #end if
     #else
       goal produce-battering-rams = 0
     #end if
-  #else
+    goal produce-trebuchets = 0
+  #else if current-age == imperial-age
     goal produce-battering-rams = 0
+    goal produce-trebuchets = 1
   #end if
-  goal produce-trebuchets = 0
-#else if current-age == imperial-age
-  goal produce-battering-rams = 0
-  goal produce-trebuchets = 1
 #end if

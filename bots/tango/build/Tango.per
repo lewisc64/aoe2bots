@@ -1,16 +1,16 @@
 ;Translated by https://github.com/lewisc64/aoe2ai
 (defconst out-count 112)
-(defconst select-random-1bff344e-24ad-4d0a-a976-62edf4282402 8)
+(defconst select-random-904f7fca-53e6-40b0-8ec9-bf7adddf93f4 8)
 (defconst taunt-enemies 102)
-(defconst select-random-7316ba16-1e59-43a3-b461-aa4e74784640 4)
-(defconst select-random-8f0dd493-8212-4efb-9527-5618d28409a4 3)
-(defconst select-random-8983e01e-baee-4899-9904-f282b1c0e9d9 3)
-(defconst select-random-4bf4f365-7eeb-437e-8152-e0d1e1ed9b03 3)
-(defconst select-random-71a2d721-952a-4bad-aade-f3fc91a9c816 2)
-(defconst select-random-266824e8-80f4-4525-8446-4ee8c12fc667 2)
-(defconst select-random-5a524bd4-3bf6-4d3d-8caa-76e7f6f6b53d 2)
-(defconst select-random-9f533890-cfa4-4974-8024-689bdf578b4d 3)
-(defconst select-random-e64a8f8e-b979-4df8-a2b9-0fc3851cb5d5 3)
+(defconst select-random-27a753ec-665e-439b-b4e0-d7c068b7221c 4)
+(defconst select-random-a823fc25-1cc8-46b3-bcb3-6df3e758608b 3)
+(defconst select-random-e80e24ca-21f2-4711-9732-43ad38c92e31 3)
+(defconst select-random-81d90cc3-3ea3-4ded-948d-7c537317ad93 3)
+(defconst select-random-1dd8a47d-2ccb-4b6a-a37c-c34988ca72f8 2)
+(defconst select-random-283c236c-d6d1-4468-ae9f-1d56f454a8b2 2)
+(defconst select-random-6182ac96-7ecd-41af-bcb9-035779cd690e 2)
+(defconst select-random-b50606ff-3441-4f39-81c0-a620a1224881 3)
+(defconst select-random-b813c85b-696d-477d-82cc-b3e8ab1bd0d7 3)
 (defconst choose-initial-balance 100)
 (defconst score-additions-count 99)
 (defconst gold-score-subtotal 98)
@@ -4837,7 +4837,7 @@
 )
 (defrule
     (and (players-current-age any-ally == feudal-age) (and (game-time >= 1800) (current-age >= castle-age)))
-    (and (gold-amount > 200) (up-allied-resource-amount this-any-ally food < 200))
+    (and (gold-amount > 200) (up-allied-resource-amount this-any-ally gold < 200))
 =>
     (tribute-to-player this-any-ally gold 100)
 )
@@ -4932,7 +4932,7 @@
 (defrule
     (game-time < 5)
 =>
-    (generate-random-number select-random-1bff344e-24ad-4d0a-a976-62edf4282402)
+    (generate-random-number select-random-904f7fca-53e6-40b0-8ec9-bf7adddf93f4)
     (set-goal 101 0)
     (disable-self)
 )
@@ -5067,7 +5067,7 @@
 (defrule
     (timer-triggered 9)
 =>
-    (generate-random-number select-random-7316ba16-1e59-43a3-b461-aa4e74784640)
+    (generate-random-number select-random-27a753ec-665e-439b-b4e0-d7c068b7221c)
     (set-goal 103 0)
     (disable-self)
 )
@@ -5134,7 +5134,7 @@
 (defrule
     (goal taunt-allies 1)
 =>
-    (generate-random-number select-random-8f0dd493-8212-4efb-9527-5618d28409a4)
+    (generate-random-number select-random-a823fc25-1cc8-46b3-bcb3-6df3e758608b)
     (set-goal 104 0)
 )
 (defrule
@@ -5184,7 +5184,7 @@
 (defrule
     (goal taunt-allies 2)
 =>
-    (generate-random-number select-random-8983e01e-baee-4899-9904-f282b1c0e9d9)
+    (generate-random-number select-random-e80e24ca-21f2-4711-9732-43ad38c92e31)
     (set-goal 105 0)
 )
 (defrule
@@ -5234,7 +5234,7 @@
 (defrule
     (goal taunt-allies 3)
 =>
-    (generate-random-number select-random-4bf4f365-7eeb-437e-8152-e0d1e1ed9b03)
+    (generate-random-number select-random-81d90cc3-3ea3-4ded-948d-7c537317ad93)
     (set-goal 106 0)
 )
 (defrule
@@ -5284,7 +5284,7 @@
 (defrule
     (goal taunt-allies 4)
 =>
-    (generate-random-number select-random-71a2d721-952a-4bad-aade-f3fc91a9c816)
+    (generate-random-number select-random-1dd8a47d-2ccb-4b6a-a37c-c34988ca72f8)
     (set-goal 107 0)
 )
 (defrule
@@ -5321,7 +5321,7 @@
 (defrule
     (goal taunt-allies 5)
 =>
-    (generate-random-number select-random-266824e8-80f4-4525-8446-4ee8c12fc667)
+    (generate-random-number select-random-283c236c-d6d1-4468-ae9f-1d56f454a8b2)
     (set-goal 108 0)
 )
 (defrule
@@ -5358,7 +5358,7 @@
 (defrule
     (goal taunt-allies 6)
 =>
-    (generate-random-number select-random-5a524bd4-3bf6-4d3d-8caa-76e7f6f6b53d)
+    (generate-random-number select-random-6182ac96-7ecd-41af-bcb9-035779cd690e)
     (set-goal 109 0)
 )
 (defrule
@@ -5395,7 +5395,7 @@
 (defrule
     (goal taunt-allies 12)
 =>
-    (generate-random-number select-random-9f533890-cfa4-4974-8024-689bdf578b4d)
+    (generate-random-number select-random-b50606ff-3441-4f39-81c0-a620a1224881)
     (set-goal 110 0)
 )
 (defrule
@@ -5445,7 +5445,7 @@
 (defrule
     (goal taunt-allies 31)
 =>
-    (generate-random-number select-random-e64a8f8e-b979-4df8-a2b9-0fc3851cb5d5)
+    (generate-random-number select-random-b813c85b-696d-477d-82cc-b3e8ab1bd0d7)
     (set-goal 111 0)
 )
 (defrule

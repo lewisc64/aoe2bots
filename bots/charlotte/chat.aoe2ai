@@ -1,24 +1,53 @@
 #do once
-  #if goal free-for-all 1 or goal team-game 1
-    chat to all "Good luck and have fun everyone!"
-  #else
-    chat to all "Good luck, have fun!"
+  #if game-time < 5
+    #if goal free-for-all 1 or goal team-game 1
+      #select random persistant
+        chat to all "Good luck and have fun everyone!"
+      #randor
+        #if goal free-for-all 1
+          chat to all "May the best commander win!"
+        #else
+          chat to all "May the best team win!"
+        #end if
+      #randor
+        chat to all "GL everyone!!!"
+      #end select
+    #else
+      #select random persistant
+        chat to all "Hi! Go easy on me, okay?"
+      #randor
+        chat to all "Good luck, have fun!"
+      #randor
+        chat to all "GL!"
+      #randor
+        chat to all "HF!"
+      #randor
+        chat to all "Hi!"
+        #delay by 5 seconds
+          chat to all "I can't cope with rushes too well, so can we just chill?"
+        #end delay
+      #end select
+    #end if
   #end if
   
   // score trackers
-  #delay by 20 minutes
-    #if up-compare-goal score-percentage c:<= 60
+  #delay by 30 minutes
+    #if up-compare-goal score-percentage c:<= 70
       #if goal free-for-all 1
         #select random persistant
           chat to all "I'm having some trouble with this one."
         #randor
           chat to all "This is a tough game."
+        #randor
+          chat to all "I don't like my chances here."
         #end select
       #else if goal team-game 1
         #select random persistant
           chat to all "We may need a different strategy..."
         #randor
           chat to all "I'm crumbling... Hopefully we still have a shot?"
+        #randor
+          chat to all "This is hard."
         #end select
       #else
         #select random persistant
@@ -27,12 +56,16 @@
           chat to all "I'm not doing very well..."
         #randor
           chat to all "This could have gone better, oh well."
+        #randor
+          chat to all "You're playing quite well."
+        #randor
+          chat to all "I'm not sure I can best you."
         #end select
       #end if
     #else if up-compare-goal score-percentage c:>= 130
         #if goal free-for-all 1
           #select random persistant
-            chat to all "I think I'm close to closing this one out."
+            chat to all "I'm pretty sure I've got this game."
           #randor
             chat to all "It was tough, but I got there in the end."
           #end select
@@ -49,13 +82,19 @@
         #select random persistant
           chat to all "I don't like this..."
         #randor
-          chat to all "Dicey..."
+          chat to all "Dicey."
+        #randor
+          chat to all "I'd better step on the pedal a bit, sheesh."
+        #randor
+          chat to all "...please don't hurt me!"
         #randor
           #if goal team-game 1 or goal free-for-all 1
             chat to all "It's looking scary out there..."
           #else
             chat to all "You're looking scary..."
           #end if
+        #randor
+          chat to all "That's a lot of stuff."
         #end select
       #else if up-compare-goal largest-enemy-military-percentage c:>= 170
         #if goal attacking 1
