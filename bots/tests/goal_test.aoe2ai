@@ -1,0 +1,5126 @@
+// pyperclip.copy("\n".join([f"goal gl-{x} = 1\n#if not up-compare-goal gl-{x} c:== 1\n  chat to all \"There are {x-1} goals.\"\n  @up-jump-rule 10000\n#end if" for x in range(1,1024+2)]))
+goal gl-1 = 1
+#if not up-compare-goal gl-1 c:== 1
+  chat to all "There are 0 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-2 = 1
+#if not up-compare-goal gl-2 c:== 1
+  chat to all "There are 1 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-3 = 1
+#if not up-compare-goal gl-3 c:== 1
+  chat to all "There are 2 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-4 = 1
+#if not up-compare-goal gl-4 c:== 1
+  chat to all "There are 3 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-5 = 1
+#if not up-compare-goal gl-5 c:== 1
+  chat to all "There are 4 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-6 = 1
+#if not up-compare-goal gl-6 c:== 1
+  chat to all "There are 5 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-7 = 1
+#if not up-compare-goal gl-7 c:== 1
+  chat to all "There are 6 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-8 = 1
+#if not up-compare-goal gl-8 c:== 1
+  chat to all "There are 7 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-9 = 1
+#if not up-compare-goal gl-9 c:== 1
+  chat to all "There are 8 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-10 = 1
+#if not up-compare-goal gl-10 c:== 1
+  chat to all "There are 9 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-11 = 1
+#if not up-compare-goal gl-11 c:== 1
+  chat to all "There are 10 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-12 = 1
+#if not up-compare-goal gl-12 c:== 1
+  chat to all "There are 11 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-13 = 1
+#if not up-compare-goal gl-13 c:== 1
+  chat to all "There are 12 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-14 = 1
+#if not up-compare-goal gl-14 c:== 1
+  chat to all "There are 13 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-15 = 1
+#if not up-compare-goal gl-15 c:== 1
+  chat to all "There are 14 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-16 = 1
+#if not up-compare-goal gl-16 c:== 1
+  chat to all "There are 15 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-17 = 1
+#if not up-compare-goal gl-17 c:== 1
+  chat to all "There are 16 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-18 = 1
+#if not up-compare-goal gl-18 c:== 1
+  chat to all "There are 17 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-19 = 1
+#if not up-compare-goal gl-19 c:== 1
+  chat to all "There are 18 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-20 = 1
+#if not up-compare-goal gl-20 c:== 1
+  chat to all "There are 19 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-21 = 1
+#if not up-compare-goal gl-21 c:== 1
+  chat to all "There are 20 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-22 = 1
+#if not up-compare-goal gl-22 c:== 1
+  chat to all "There are 21 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-23 = 1
+#if not up-compare-goal gl-23 c:== 1
+  chat to all "There are 22 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-24 = 1
+#if not up-compare-goal gl-24 c:== 1
+  chat to all "There are 23 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-25 = 1
+#if not up-compare-goal gl-25 c:== 1
+  chat to all "There are 24 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-26 = 1
+#if not up-compare-goal gl-26 c:== 1
+  chat to all "There are 25 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-27 = 1
+#if not up-compare-goal gl-27 c:== 1
+  chat to all "There are 26 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-28 = 1
+#if not up-compare-goal gl-28 c:== 1
+  chat to all "There are 27 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-29 = 1
+#if not up-compare-goal gl-29 c:== 1
+  chat to all "There are 28 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-30 = 1
+#if not up-compare-goal gl-30 c:== 1
+  chat to all "There are 29 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-31 = 1
+#if not up-compare-goal gl-31 c:== 1
+  chat to all "There are 30 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-32 = 1
+#if not up-compare-goal gl-32 c:== 1
+  chat to all "There are 31 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-33 = 1
+#if not up-compare-goal gl-33 c:== 1
+  chat to all "There are 32 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-34 = 1
+#if not up-compare-goal gl-34 c:== 1
+  chat to all "There are 33 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-35 = 1
+#if not up-compare-goal gl-35 c:== 1
+  chat to all "There are 34 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-36 = 1
+#if not up-compare-goal gl-36 c:== 1
+  chat to all "There are 35 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-37 = 1
+#if not up-compare-goal gl-37 c:== 1
+  chat to all "There are 36 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-38 = 1
+#if not up-compare-goal gl-38 c:== 1
+  chat to all "There are 37 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-39 = 1
+#if not up-compare-goal gl-39 c:== 1
+  chat to all "There are 38 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-40 = 1
+#if not up-compare-goal gl-40 c:== 1
+  chat to all "There are 39 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-41 = 1
+#if not up-compare-goal gl-41 c:== 1
+  chat to all "There are 40 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-42 = 1
+#if not up-compare-goal gl-42 c:== 1
+  chat to all "There are 41 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-43 = 1
+#if not up-compare-goal gl-43 c:== 1
+  chat to all "There are 42 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-44 = 1
+#if not up-compare-goal gl-44 c:== 1
+  chat to all "There are 43 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-45 = 1
+#if not up-compare-goal gl-45 c:== 1
+  chat to all "There are 44 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-46 = 1
+#if not up-compare-goal gl-46 c:== 1
+  chat to all "There are 45 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-47 = 1
+#if not up-compare-goal gl-47 c:== 1
+  chat to all "There are 46 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-48 = 1
+#if not up-compare-goal gl-48 c:== 1
+  chat to all "There are 47 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-49 = 1
+#if not up-compare-goal gl-49 c:== 1
+  chat to all "There are 48 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-50 = 1
+#if not up-compare-goal gl-50 c:== 1
+  chat to all "There are 49 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-51 = 1
+#if not up-compare-goal gl-51 c:== 1
+  chat to all "There are 50 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-52 = 1
+#if not up-compare-goal gl-52 c:== 1
+  chat to all "There are 51 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-53 = 1
+#if not up-compare-goal gl-53 c:== 1
+  chat to all "There are 52 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-54 = 1
+#if not up-compare-goal gl-54 c:== 1
+  chat to all "There are 53 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-55 = 1
+#if not up-compare-goal gl-55 c:== 1
+  chat to all "There are 54 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-56 = 1
+#if not up-compare-goal gl-56 c:== 1
+  chat to all "There are 55 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-57 = 1
+#if not up-compare-goal gl-57 c:== 1
+  chat to all "There are 56 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-58 = 1
+#if not up-compare-goal gl-58 c:== 1
+  chat to all "There are 57 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-59 = 1
+#if not up-compare-goal gl-59 c:== 1
+  chat to all "There are 58 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-60 = 1
+#if not up-compare-goal gl-60 c:== 1
+  chat to all "There are 59 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-61 = 1
+#if not up-compare-goal gl-61 c:== 1
+  chat to all "There are 60 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-62 = 1
+#if not up-compare-goal gl-62 c:== 1
+  chat to all "There are 61 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-63 = 1
+#if not up-compare-goal gl-63 c:== 1
+  chat to all "There are 62 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-64 = 1
+#if not up-compare-goal gl-64 c:== 1
+  chat to all "There are 63 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-65 = 1
+#if not up-compare-goal gl-65 c:== 1
+  chat to all "There are 64 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-66 = 1
+#if not up-compare-goal gl-66 c:== 1
+  chat to all "There are 65 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-67 = 1
+#if not up-compare-goal gl-67 c:== 1
+  chat to all "There are 66 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-68 = 1
+#if not up-compare-goal gl-68 c:== 1
+  chat to all "There are 67 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-69 = 1
+#if not up-compare-goal gl-69 c:== 1
+  chat to all "There are 68 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-70 = 1
+#if not up-compare-goal gl-70 c:== 1
+  chat to all "There are 69 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-71 = 1
+#if not up-compare-goal gl-71 c:== 1
+  chat to all "There are 70 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-72 = 1
+#if not up-compare-goal gl-72 c:== 1
+  chat to all "There are 71 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-73 = 1
+#if not up-compare-goal gl-73 c:== 1
+  chat to all "There are 72 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-74 = 1
+#if not up-compare-goal gl-74 c:== 1
+  chat to all "There are 73 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-75 = 1
+#if not up-compare-goal gl-75 c:== 1
+  chat to all "There are 74 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-76 = 1
+#if not up-compare-goal gl-76 c:== 1
+  chat to all "There are 75 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-77 = 1
+#if not up-compare-goal gl-77 c:== 1
+  chat to all "There are 76 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-78 = 1
+#if not up-compare-goal gl-78 c:== 1
+  chat to all "There are 77 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-79 = 1
+#if not up-compare-goal gl-79 c:== 1
+  chat to all "There are 78 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-80 = 1
+#if not up-compare-goal gl-80 c:== 1
+  chat to all "There are 79 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-81 = 1
+#if not up-compare-goal gl-81 c:== 1
+  chat to all "There are 80 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-82 = 1
+#if not up-compare-goal gl-82 c:== 1
+  chat to all "There are 81 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-83 = 1
+#if not up-compare-goal gl-83 c:== 1
+  chat to all "There are 82 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-84 = 1
+#if not up-compare-goal gl-84 c:== 1
+  chat to all "There are 83 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-85 = 1
+#if not up-compare-goal gl-85 c:== 1
+  chat to all "There are 84 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-86 = 1
+#if not up-compare-goal gl-86 c:== 1
+  chat to all "There are 85 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-87 = 1
+#if not up-compare-goal gl-87 c:== 1
+  chat to all "There are 86 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-88 = 1
+#if not up-compare-goal gl-88 c:== 1
+  chat to all "There are 87 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-89 = 1
+#if not up-compare-goal gl-89 c:== 1
+  chat to all "There are 88 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-90 = 1
+#if not up-compare-goal gl-90 c:== 1
+  chat to all "There are 89 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-91 = 1
+#if not up-compare-goal gl-91 c:== 1
+  chat to all "There are 90 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-92 = 1
+#if not up-compare-goal gl-92 c:== 1
+  chat to all "There are 91 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-93 = 1
+#if not up-compare-goal gl-93 c:== 1
+  chat to all "There are 92 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-94 = 1
+#if not up-compare-goal gl-94 c:== 1
+  chat to all "There are 93 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-95 = 1
+#if not up-compare-goal gl-95 c:== 1
+  chat to all "There are 94 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-96 = 1
+#if not up-compare-goal gl-96 c:== 1
+  chat to all "There are 95 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-97 = 1
+#if not up-compare-goal gl-97 c:== 1
+  chat to all "There are 96 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-98 = 1
+#if not up-compare-goal gl-98 c:== 1
+  chat to all "There are 97 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-99 = 1
+#if not up-compare-goal gl-99 c:== 1
+  chat to all "There are 98 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-100 = 1
+#if not up-compare-goal gl-100 c:== 1
+  chat to all "There are 99 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-101 = 1
+#if not up-compare-goal gl-101 c:== 1
+  chat to all "There are 100 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-102 = 1
+#if not up-compare-goal gl-102 c:== 1
+  chat to all "There are 101 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-103 = 1
+#if not up-compare-goal gl-103 c:== 1
+  chat to all "There are 102 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-104 = 1
+#if not up-compare-goal gl-104 c:== 1
+  chat to all "There are 103 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-105 = 1
+#if not up-compare-goal gl-105 c:== 1
+  chat to all "There are 104 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-106 = 1
+#if not up-compare-goal gl-106 c:== 1
+  chat to all "There are 105 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-107 = 1
+#if not up-compare-goal gl-107 c:== 1
+  chat to all "There are 106 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-108 = 1
+#if not up-compare-goal gl-108 c:== 1
+  chat to all "There are 107 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-109 = 1
+#if not up-compare-goal gl-109 c:== 1
+  chat to all "There are 108 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-110 = 1
+#if not up-compare-goal gl-110 c:== 1
+  chat to all "There are 109 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-111 = 1
+#if not up-compare-goal gl-111 c:== 1
+  chat to all "There are 110 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-112 = 1
+#if not up-compare-goal gl-112 c:== 1
+  chat to all "There are 111 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-113 = 1
+#if not up-compare-goal gl-113 c:== 1
+  chat to all "There are 112 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-114 = 1
+#if not up-compare-goal gl-114 c:== 1
+  chat to all "There are 113 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-115 = 1
+#if not up-compare-goal gl-115 c:== 1
+  chat to all "There are 114 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-116 = 1
+#if not up-compare-goal gl-116 c:== 1
+  chat to all "There are 115 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-117 = 1
+#if not up-compare-goal gl-117 c:== 1
+  chat to all "There are 116 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-118 = 1
+#if not up-compare-goal gl-118 c:== 1
+  chat to all "There are 117 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-119 = 1
+#if not up-compare-goal gl-119 c:== 1
+  chat to all "There are 118 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-120 = 1
+#if not up-compare-goal gl-120 c:== 1
+  chat to all "There are 119 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-121 = 1
+#if not up-compare-goal gl-121 c:== 1
+  chat to all "There are 120 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-122 = 1
+#if not up-compare-goal gl-122 c:== 1
+  chat to all "There are 121 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-123 = 1
+#if not up-compare-goal gl-123 c:== 1
+  chat to all "There are 122 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-124 = 1
+#if not up-compare-goal gl-124 c:== 1
+  chat to all "There are 123 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-125 = 1
+#if not up-compare-goal gl-125 c:== 1
+  chat to all "There are 124 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-126 = 1
+#if not up-compare-goal gl-126 c:== 1
+  chat to all "There are 125 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-127 = 1
+#if not up-compare-goal gl-127 c:== 1
+  chat to all "There are 126 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-128 = 1
+#if not up-compare-goal gl-128 c:== 1
+  chat to all "There are 127 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-129 = 1
+#if not up-compare-goal gl-129 c:== 1
+  chat to all "There are 128 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-130 = 1
+#if not up-compare-goal gl-130 c:== 1
+  chat to all "There are 129 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-131 = 1
+#if not up-compare-goal gl-131 c:== 1
+  chat to all "There are 130 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-132 = 1
+#if not up-compare-goal gl-132 c:== 1
+  chat to all "There are 131 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-133 = 1
+#if not up-compare-goal gl-133 c:== 1
+  chat to all "There are 132 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-134 = 1
+#if not up-compare-goal gl-134 c:== 1
+  chat to all "There are 133 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-135 = 1
+#if not up-compare-goal gl-135 c:== 1
+  chat to all "There are 134 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-136 = 1
+#if not up-compare-goal gl-136 c:== 1
+  chat to all "There are 135 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-137 = 1
+#if not up-compare-goal gl-137 c:== 1
+  chat to all "There are 136 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-138 = 1
+#if not up-compare-goal gl-138 c:== 1
+  chat to all "There are 137 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-139 = 1
+#if not up-compare-goal gl-139 c:== 1
+  chat to all "There are 138 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-140 = 1
+#if not up-compare-goal gl-140 c:== 1
+  chat to all "There are 139 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-141 = 1
+#if not up-compare-goal gl-141 c:== 1
+  chat to all "There are 140 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-142 = 1
+#if not up-compare-goal gl-142 c:== 1
+  chat to all "There are 141 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-143 = 1
+#if not up-compare-goal gl-143 c:== 1
+  chat to all "There are 142 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-144 = 1
+#if not up-compare-goal gl-144 c:== 1
+  chat to all "There are 143 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-145 = 1
+#if not up-compare-goal gl-145 c:== 1
+  chat to all "There are 144 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-146 = 1
+#if not up-compare-goal gl-146 c:== 1
+  chat to all "There are 145 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-147 = 1
+#if not up-compare-goal gl-147 c:== 1
+  chat to all "There are 146 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-148 = 1
+#if not up-compare-goal gl-148 c:== 1
+  chat to all "There are 147 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-149 = 1
+#if not up-compare-goal gl-149 c:== 1
+  chat to all "There are 148 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-150 = 1
+#if not up-compare-goal gl-150 c:== 1
+  chat to all "There are 149 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-151 = 1
+#if not up-compare-goal gl-151 c:== 1
+  chat to all "There are 150 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-152 = 1
+#if not up-compare-goal gl-152 c:== 1
+  chat to all "There are 151 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-153 = 1
+#if not up-compare-goal gl-153 c:== 1
+  chat to all "There are 152 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-154 = 1
+#if not up-compare-goal gl-154 c:== 1
+  chat to all "There are 153 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-155 = 1
+#if not up-compare-goal gl-155 c:== 1
+  chat to all "There are 154 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-156 = 1
+#if not up-compare-goal gl-156 c:== 1
+  chat to all "There are 155 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-157 = 1
+#if not up-compare-goal gl-157 c:== 1
+  chat to all "There are 156 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-158 = 1
+#if not up-compare-goal gl-158 c:== 1
+  chat to all "There are 157 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-159 = 1
+#if not up-compare-goal gl-159 c:== 1
+  chat to all "There are 158 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-160 = 1
+#if not up-compare-goal gl-160 c:== 1
+  chat to all "There are 159 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-161 = 1
+#if not up-compare-goal gl-161 c:== 1
+  chat to all "There are 160 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-162 = 1
+#if not up-compare-goal gl-162 c:== 1
+  chat to all "There are 161 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-163 = 1
+#if not up-compare-goal gl-163 c:== 1
+  chat to all "There are 162 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-164 = 1
+#if not up-compare-goal gl-164 c:== 1
+  chat to all "There are 163 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-165 = 1
+#if not up-compare-goal gl-165 c:== 1
+  chat to all "There are 164 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-166 = 1
+#if not up-compare-goal gl-166 c:== 1
+  chat to all "There are 165 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-167 = 1
+#if not up-compare-goal gl-167 c:== 1
+  chat to all "There are 166 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-168 = 1
+#if not up-compare-goal gl-168 c:== 1
+  chat to all "There are 167 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-169 = 1
+#if not up-compare-goal gl-169 c:== 1
+  chat to all "There are 168 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-170 = 1
+#if not up-compare-goal gl-170 c:== 1
+  chat to all "There are 169 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-171 = 1
+#if not up-compare-goal gl-171 c:== 1
+  chat to all "There are 170 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-172 = 1
+#if not up-compare-goal gl-172 c:== 1
+  chat to all "There are 171 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-173 = 1
+#if not up-compare-goal gl-173 c:== 1
+  chat to all "There are 172 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-174 = 1
+#if not up-compare-goal gl-174 c:== 1
+  chat to all "There are 173 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-175 = 1
+#if not up-compare-goal gl-175 c:== 1
+  chat to all "There are 174 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-176 = 1
+#if not up-compare-goal gl-176 c:== 1
+  chat to all "There are 175 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-177 = 1
+#if not up-compare-goal gl-177 c:== 1
+  chat to all "There are 176 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-178 = 1
+#if not up-compare-goal gl-178 c:== 1
+  chat to all "There are 177 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-179 = 1
+#if not up-compare-goal gl-179 c:== 1
+  chat to all "There are 178 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-180 = 1
+#if not up-compare-goal gl-180 c:== 1
+  chat to all "There are 179 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-181 = 1
+#if not up-compare-goal gl-181 c:== 1
+  chat to all "There are 180 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-182 = 1
+#if not up-compare-goal gl-182 c:== 1
+  chat to all "There are 181 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-183 = 1
+#if not up-compare-goal gl-183 c:== 1
+  chat to all "There are 182 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-184 = 1
+#if not up-compare-goal gl-184 c:== 1
+  chat to all "There are 183 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-185 = 1
+#if not up-compare-goal gl-185 c:== 1
+  chat to all "There are 184 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-186 = 1
+#if not up-compare-goal gl-186 c:== 1
+  chat to all "There are 185 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-187 = 1
+#if not up-compare-goal gl-187 c:== 1
+  chat to all "There are 186 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-188 = 1
+#if not up-compare-goal gl-188 c:== 1
+  chat to all "There are 187 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-189 = 1
+#if not up-compare-goal gl-189 c:== 1
+  chat to all "There are 188 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-190 = 1
+#if not up-compare-goal gl-190 c:== 1
+  chat to all "There are 189 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-191 = 1
+#if not up-compare-goal gl-191 c:== 1
+  chat to all "There are 190 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-192 = 1
+#if not up-compare-goal gl-192 c:== 1
+  chat to all "There are 191 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-193 = 1
+#if not up-compare-goal gl-193 c:== 1
+  chat to all "There are 192 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-194 = 1
+#if not up-compare-goal gl-194 c:== 1
+  chat to all "There are 193 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-195 = 1
+#if not up-compare-goal gl-195 c:== 1
+  chat to all "There are 194 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-196 = 1
+#if not up-compare-goal gl-196 c:== 1
+  chat to all "There are 195 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-197 = 1
+#if not up-compare-goal gl-197 c:== 1
+  chat to all "There are 196 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-198 = 1
+#if not up-compare-goal gl-198 c:== 1
+  chat to all "There are 197 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-199 = 1
+#if not up-compare-goal gl-199 c:== 1
+  chat to all "There are 198 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-200 = 1
+#if not up-compare-goal gl-200 c:== 1
+  chat to all "There are 199 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-201 = 1
+#if not up-compare-goal gl-201 c:== 1
+  chat to all "There are 200 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-202 = 1
+#if not up-compare-goal gl-202 c:== 1
+  chat to all "There are 201 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-203 = 1
+#if not up-compare-goal gl-203 c:== 1
+  chat to all "There are 202 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-204 = 1
+#if not up-compare-goal gl-204 c:== 1
+  chat to all "There are 203 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-205 = 1
+#if not up-compare-goal gl-205 c:== 1
+  chat to all "There are 204 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-206 = 1
+#if not up-compare-goal gl-206 c:== 1
+  chat to all "There are 205 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-207 = 1
+#if not up-compare-goal gl-207 c:== 1
+  chat to all "There are 206 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-208 = 1
+#if not up-compare-goal gl-208 c:== 1
+  chat to all "There are 207 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-209 = 1
+#if not up-compare-goal gl-209 c:== 1
+  chat to all "There are 208 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-210 = 1
+#if not up-compare-goal gl-210 c:== 1
+  chat to all "There are 209 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-211 = 1
+#if not up-compare-goal gl-211 c:== 1
+  chat to all "There are 210 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-212 = 1
+#if not up-compare-goal gl-212 c:== 1
+  chat to all "There are 211 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-213 = 1
+#if not up-compare-goal gl-213 c:== 1
+  chat to all "There are 212 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-214 = 1
+#if not up-compare-goal gl-214 c:== 1
+  chat to all "There are 213 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-215 = 1
+#if not up-compare-goal gl-215 c:== 1
+  chat to all "There are 214 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-216 = 1
+#if not up-compare-goal gl-216 c:== 1
+  chat to all "There are 215 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-217 = 1
+#if not up-compare-goal gl-217 c:== 1
+  chat to all "There are 216 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-218 = 1
+#if not up-compare-goal gl-218 c:== 1
+  chat to all "There are 217 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-219 = 1
+#if not up-compare-goal gl-219 c:== 1
+  chat to all "There are 218 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-220 = 1
+#if not up-compare-goal gl-220 c:== 1
+  chat to all "There are 219 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-221 = 1
+#if not up-compare-goal gl-221 c:== 1
+  chat to all "There are 220 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-222 = 1
+#if not up-compare-goal gl-222 c:== 1
+  chat to all "There are 221 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-223 = 1
+#if not up-compare-goal gl-223 c:== 1
+  chat to all "There are 222 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-224 = 1
+#if not up-compare-goal gl-224 c:== 1
+  chat to all "There are 223 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-225 = 1
+#if not up-compare-goal gl-225 c:== 1
+  chat to all "There are 224 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-226 = 1
+#if not up-compare-goal gl-226 c:== 1
+  chat to all "There are 225 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-227 = 1
+#if not up-compare-goal gl-227 c:== 1
+  chat to all "There are 226 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-228 = 1
+#if not up-compare-goal gl-228 c:== 1
+  chat to all "There are 227 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-229 = 1
+#if not up-compare-goal gl-229 c:== 1
+  chat to all "There are 228 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-230 = 1
+#if not up-compare-goal gl-230 c:== 1
+  chat to all "There are 229 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-231 = 1
+#if not up-compare-goal gl-231 c:== 1
+  chat to all "There are 230 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-232 = 1
+#if not up-compare-goal gl-232 c:== 1
+  chat to all "There are 231 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-233 = 1
+#if not up-compare-goal gl-233 c:== 1
+  chat to all "There are 232 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-234 = 1
+#if not up-compare-goal gl-234 c:== 1
+  chat to all "There are 233 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-235 = 1
+#if not up-compare-goal gl-235 c:== 1
+  chat to all "There are 234 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-236 = 1
+#if not up-compare-goal gl-236 c:== 1
+  chat to all "There are 235 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-237 = 1
+#if not up-compare-goal gl-237 c:== 1
+  chat to all "There are 236 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-238 = 1
+#if not up-compare-goal gl-238 c:== 1
+  chat to all "There are 237 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-239 = 1
+#if not up-compare-goal gl-239 c:== 1
+  chat to all "There are 238 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-240 = 1
+#if not up-compare-goal gl-240 c:== 1
+  chat to all "There are 239 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-241 = 1
+#if not up-compare-goal gl-241 c:== 1
+  chat to all "There are 240 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-242 = 1
+#if not up-compare-goal gl-242 c:== 1
+  chat to all "There are 241 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-243 = 1
+#if not up-compare-goal gl-243 c:== 1
+  chat to all "There are 242 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-244 = 1
+#if not up-compare-goal gl-244 c:== 1
+  chat to all "There are 243 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-245 = 1
+#if not up-compare-goal gl-245 c:== 1
+  chat to all "There are 244 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-246 = 1
+#if not up-compare-goal gl-246 c:== 1
+  chat to all "There are 245 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-247 = 1
+#if not up-compare-goal gl-247 c:== 1
+  chat to all "There are 246 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-248 = 1
+#if not up-compare-goal gl-248 c:== 1
+  chat to all "There are 247 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-249 = 1
+#if not up-compare-goal gl-249 c:== 1
+  chat to all "There are 248 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-250 = 1
+#if not up-compare-goal gl-250 c:== 1
+  chat to all "There are 249 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-251 = 1
+#if not up-compare-goal gl-251 c:== 1
+  chat to all "There are 250 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-252 = 1
+#if not up-compare-goal gl-252 c:== 1
+  chat to all "There are 251 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-253 = 1
+#if not up-compare-goal gl-253 c:== 1
+  chat to all "There are 252 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-254 = 1
+#if not up-compare-goal gl-254 c:== 1
+  chat to all "There are 253 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-255 = 1
+#if not up-compare-goal gl-255 c:== 1
+  chat to all "There are 254 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-256 = 1
+#if not up-compare-goal gl-256 c:== 1
+  chat to all "There are 255 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-257 = 1
+#if not up-compare-goal gl-257 c:== 1
+  chat to all "There are 256 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-258 = 1
+#if not up-compare-goal gl-258 c:== 1
+  chat to all "There are 257 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-259 = 1
+#if not up-compare-goal gl-259 c:== 1
+  chat to all "There are 258 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-260 = 1
+#if not up-compare-goal gl-260 c:== 1
+  chat to all "There are 259 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-261 = 1
+#if not up-compare-goal gl-261 c:== 1
+  chat to all "There are 260 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-262 = 1
+#if not up-compare-goal gl-262 c:== 1
+  chat to all "There are 261 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-263 = 1
+#if not up-compare-goal gl-263 c:== 1
+  chat to all "There are 262 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-264 = 1
+#if not up-compare-goal gl-264 c:== 1
+  chat to all "There are 263 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-265 = 1
+#if not up-compare-goal gl-265 c:== 1
+  chat to all "There are 264 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-266 = 1
+#if not up-compare-goal gl-266 c:== 1
+  chat to all "There are 265 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-267 = 1
+#if not up-compare-goal gl-267 c:== 1
+  chat to all "There are 266 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-268 = 1
+#if not up-compare-goal gl-268 c:== 1
+  chat to all "There are 267 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-269 = 1
+#if not up-compare-goal gl-269 c:== 1
+  chat to all "There are 268 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-270 = 1
+#if not up-compare-goal gl-270 c:== 1
+  chat to all "There are 269 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-271 = 1
+#if not up-compare-goal gl-271 c:== 1
+  chat to all "There are 270 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-272 = 1
+#if not up-compare-goal gl-272 c:== 1
+  chat to all "There are 271 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-273 = 1
+#if not up-compare-goal gl-273 c:== 1
+  chat to all "There are 272 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-274 = 1
+#if not up-compare-goal gl-274 c:== 1
+  chat to all "There are 273 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-275 = 1
+#if not up-compare-goal gl-275 c:== 1
+  chat to all "There are 274 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-276 = 1
+#if not up-compare-goal gl-276 c:== 1
+  chat to all "There are 275 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-277 = 1
+#if not up-compare-goal gl-277 c:== 1
+  chat to all "There are 276 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-278 = 1
+#if not up-compare-goal gl-278 c:== 1
+  chat to all "There are 277 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-279 = 1
+#if not up-compare-goal gl-279 c:== 1
+  chat to all "There are 278 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-280 = 1
+#if not up-compare-goal gl-280 c:== 1
+  chat to all "There are 279 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-281 = 1
+#if not up-compare-goal gl-281 c:== 1
+  chat to all "There are 280 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-282 = 1
+#if not up-compare-goal gl-282 c:== 1
+  chat to all "There are 281 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-283 = 1
+#if not up-compare-goal gl-283 c:== 1
+  chat to all "There are 282 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-284 = 1
+#if not up-compare-goal gl-284 c:== 1
+  chat to all "There are 283 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-285 = 1
+#if not up-compare-goal gl-285 c:== 1
+  chat to all "There are 284 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-286 = 1
+#if not up-compare-goal gl-286 c:== 1
+  chat to all "There are 285 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-287 = 1
+#if not up-compare-goal gl-287 c:== 1
+  chat to all "There are 286 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-288 = 1
+#if not up-compare-goal gl-288 c:== 1
+  chat to all "There are 287 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-289 = 1
+#if not up-compare-goal gl-289 c:== 1
+  chat to all "There are 288 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-290 = 1
+#if not up-compare-goal gl-290 c:== 1
+  chat to all "There are 289 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-291 = 1
+#if not up-compare-goal gl-291 c:== 1
+  chat to all "There are 290 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-292 = 1
+#if not up-compare-goal gl-292 c:== 1
+  chat to all "There are 291 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-293 = 1
+#if not up-compare-goal gl-293 c:== 1
+  chat to all "There are 292 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-294 = 1
+#if not up-compare-goal gl-294 c:== 1
+  chat to all "There are 293 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-295 = 1
+#if not up-compare-goal gl-295 c:== 1
+  chat to all "There are 294 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-296 = 1
+#if not up-compare-goal gl-296 c:== 1
+  chat to all "There are 295 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-297 = 1
+#if not up-compare-goal gl-297 c:== 1
+  chat to all "There are 296 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-298 = 1
+#if not up-compare-goal gl-298 c:== 1
+  chat to all "There are 297 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-299 = 1
+#if not up-compare-goal gl-299 c:== 1
+  chat to all "There are 298 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-300 = 1
+#if not up-compare-goal gl-300 c:== 1
+  chat to all "There are 299 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-301 = 1
+#if not up-compare-goal gl-301 c:== 1
+  chat to all "There are 300 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-302 = 1
+#if not up-compare-goal gl-302 c:== 1
+  chat to all "There are 301 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-303 = 1
+#if not up-compare-goal gl-303 c:== 1
+  chat to all "There are 302 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-304 = 1
+#if not up-compare-goal gl-304 c:== 1
+  chat to all "There are 303 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-305 = 1
+#if not up-compare-goal gl-305 c:== 1
+  chat to all "There are 304 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-306 = 1
+#if not up-compare-goal gl-306 c:== 1
+  chat to all "There are 305 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-307 = 1
+#if not up-compare-goal gl-307 c:== 1
+  chat to all "There are 306 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-308 = 1
+#if not up-compare-goal gl-308 c:== 1
+  chat to all "There are 307 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-309 = 1
+#if not up-compare-goal gl-309 c:== 1
+  chat to all "There are 308 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-310 = 1
+#if not up-compare-goal gl-310 c:== 1
+  chat to all "There are 309 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-311 = 1
+#if not up-compare-goal gl-311 c:== 1
+  chat to all "There are 310 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-312 = 1
+#if not up-compare-goal gl-312 c:== 1
+  chat to all "There are 311 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-313 = 1
+#if not up-compare-goal gl-313 c:== 1
+  chat to all "There are 312 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-314 = 1
+#if not up-compare-goal gl-314 c:== 1
+  chat to all "There are 313 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-315 = 1
+#if not up-compare-goal gl-315 c:== 1
+  chat to all "There are 314 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-316 = 1
+#if not up-compare-goal gl-316 c:== 1
+  chat to all "There are 315 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-317 = 1
+#if not up-compare-goal gl-317 c:== 1
+  chat to all "There are 316 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-318 = 1
+#if not up-compare-goal gl-318 c:== 1
+  chat to all "There are 317 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-319 = 1
+#if not up-compare-goal gl-319 c:== 1
+  chat to all "There are 318 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-320 = 1
+#if not up-compare-goal gl-320 c:== 1
+  chat to all "There are 319 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-321 = 1
+#if not up-compare-goal gl-321 c:== 1
+  chat to all "There are 320 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-322 = 1
+#if not up-compare-goal gl-322 c:== 1
+  chat to all "There are 321 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-323 = 1
+#if not up-compare-goal gl-323 c:== 1
+  chat to all "There are 322 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-324 = 1
+#if not up-compare-goal gl-324 c:== 1
+  chat to all "There are 323 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-325 = 1
+#if not up-compare-goal gl-325 c:== 1
+  chat to all "There are 324 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-326 = 1
+#if not up-compare-goal gl-326 c:== 1
+  chat to all "There are 325 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-327 = 1
+#if not up-compare-goal gl-327 c:== 1
+  chat to all "There are 326 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-328 = 1
+#if not up-compare-goal gl-328 c:== 1
+  chat to all "There are 327 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-329 = 1
+#if not up-compare-goal gl-329 c:== 1
+  chat to all "There are 328 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-330 = 1
+#if not up-compare-goal gl-330 c:== 1
+  chat to all "There are 329 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-331 = 1
+#if not up-compare-goal gl-331 c:== 1
+  chat to all "There are 330 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-332 = 1
+#if not up-compare-goal gl-332 c:== 1
+  chat to all "There are 331 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-333 = 1
+#if not up-compare-goal gl-333 c:== 1
+  chat to all "There are 332 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-334 = 1
+#if not up-compare-goal gl-334 c:== 1
+  chat to all "There are 333 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-335 = 1
+#if not up-compare-goal gl-335 c:== 1
+  chat to all "There are 334 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-336 = 1
+#if not up-compare-goal gl-336 c:== 1
+  chat to all "There are 335 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-337 = 1
+#if not up-compare-goal gl-337 c:== 1
+  chat to all "There are 336 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-338 = 1
+#if not up-compare-goal gl-338 c:== 1
+  chat to all "There are 337 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-339 = 1
+#if not up-compare-goal gl-339 c:== 1
+  chat to all "There are 338 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-340 = 1
+#if not up-compare-goal gl-340 c:== 1
+  chat to all "There are 339 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-341 = 1
+#if not up-compare-goal gl-341 c:== 1
+  chat to all "There are 340 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-342 = 1
+#if not up-compare-goal gl-342 c:== 1
+  chat to all "There are 341 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-343 = 1
+#if not up-compare-goal gl-343 c:== 1
+  chat to all "There are 342 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-344 = 1
+#if not up-compare-goal gl-344 c:== 1
+  chat to all "There are 343 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-345 = 1
+#if not up-compare-goal gl-345 c:== 1
+  chat to all "There are 344 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-346 = 1
+#if not up-compare-goal gl-346 c:== 1
+  chat to all "There are 345 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-347 = 1
+#if not up-compare-goal gl-347 c:== 1
+  chat to all "There are 346 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-348 = 1
+#if not up-compare-goal gl-348 c:== 1
+  chat to all "There are 347 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-349 = 1
+#if not up-compare-goal gl-349 c:== 1
+  chat to all "There are 348 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-350 = 1
+#if not up-compare-goal gl-350 c:== 1
+  chat to all "There are 349 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-351 = 1
+#if not up-compare-goal gl-351 c:== 1
+  chat to all "There are 350 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-352 = 1
+#if not up-compare-goal gl-352 c:== 1
+  chat to all "There are 351 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-353 = 1
+#if not up-compare-goal gl-353 c:== 1
+  chat to all "There are 352 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-354 = 1
+#if not up-compare-goal gl-354 c:== 1
+  chat to all "There are 353 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-355 = 1
+#if not up-compare-goal gl-355 c:== 1
+  chat to all "There are 354 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-356 = 1
+#if not up-compare-goal gl-356 c:== 1
+  chat to all "There are 355 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-357 = 1
+#if not up-compare-goal gl-357 c:== 1
+  chat to all "There are 356 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-358 = 1
+#if not up-compare-goal gl-358 c:== 1
+  chat to all "There are 357 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-359 = 1
+#if not up-compare-goal gl-359 c:== 1
+  chat to all "There are 358 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-360 = 1
+#if not up-compare-goal gl-360 c:== 1
+  chat to all "There are 359 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-361 = 1
+#if not up-compare-goal gl-361 c:== 1
+  chat to all "There are 360 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-362 = 1
+#if not up-compare-goal gl-362 c:== 1
+  chat to all "There are 361 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-363 = 1
+#if not up-compare-goal gl-363 c:== 1
+  chat to all "There are 362 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-364 = 1
+#if not up-compare-goal gl-364 c:== 1
+  chat to all "There are 363 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-365 = 1
+#if not up-compare-goal gl-365 c:== 1
+  chat to all "There are 364 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-366 = 1
+#if not up-compare-goal gl-366 c:== 1
+  chat to all "There are 365 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-367 = 1
+#if not up-compare-goal gl-367 c:== 1
+  chat to all "There are 366 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-368 = 1
+#if not up-compare-goal gl-368 c:== 1
+  chat to all "There are 367 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-369 = 1
+#if not up-compare-goal gl-369 c:== 1
+  chat to all "There are 368 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-370 = 1
+#if not up-compare-goal gl-370 c:== 1
+  chat to all "There are 369 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-371 = 1
+#if not up-compare-goal gl-371 c:== 1
+  chat to all "There are 370 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-372 = 1
+#if not up-compare-goal gl-372 c:== 1
+  chat to all "There are 371 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-373 = 1
+#if not up-compare-goal gl-373 c:== 1
+  chat to all "There are 372 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-374 = 1
+#if not up-compare-goal gl-374 c:== 1
+  chat to all "There are 373 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-375 = 1
+#if not up-compare-goal gl-375 c:== 1
+  chat to all "There are 374 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-376 = 1
+#if not up-compare-goal gl-376 c:== 1
+  chat to all "There are 375 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-377 = 1
+#if not up-compare-goal gl-377 c:== 1
+  chat to all "There are 376 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-378 = 1
+#if not up-compare-goal gl-378 c:== 1
+  chat to all "There are 377 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-379 = 1
+#if not up-compare-goal gl-379 c:== 1
+  chat to all "There are 378 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-380 = 1
+#if not up-compare-goal gl-380 c:== 1
+  chat to all "There are 379 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-381 = 1
+#if not up-compare-goal gl-381 c:== 1
+  chat to all "There are 380 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-382 = 1
+#if not up-compare-goal gl-382 c:== 1
+  chat to all "There are 381 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-383 = 1
+#if not up-compare-goal gl-383 c:== 1
+  chat to all "There are 382 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-384 = 1
+#if not up-compare-goal gl-384 c:== 1
+  chat to all "There are 383 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-385 = 1
+#if not up-compare-goal gl-385 c:== 1
+  chat to all "There are 384 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-386 = 1
+#if not up-compare-goal gl-386 c:== 1
+  chat to all "There are 385 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-387 = 1
+#if not up-compare-goal gl-387 c:== 1
+  chat to all "There are 386 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-388 = 1
+#if not up-compare-goal gl-388 c:== 1
+  chat to all "There are 387 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-389 = 1
+#if not up-compare-goal gl-389 c:== 1
+  chat to all "There are 388 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-390 = 1
+#if not up-compare-goal gl-390 c:== 1
+  chat to all "There are 389 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-391 = 1
+#if not up-compare-goal gl-391 c:== 1
+  chat to all "There are 390 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-392 = 1
+#if not up-compare-goal gl-392 c:== 1
+  chat to all "There are 391 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-393 = 1
+#if not up-compare-goal gl-393 c:== 1
+  chat to all "There are 392 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-394 = 1
+#if not up-compare-goal gl-394 c:== 1
+  chat to all "There are 393 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-395 = 1
+#if not up-compare-goal gl-395 c:== 1
+  chat to all "There are 394 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-396 = 1
+#if not up-compare-goal gl-396 c:== 1
+  chat to all "There are 395 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-397 = 1
+#if not up-compare-goal gl-397 c:== 1
+  chat to all "There are 396 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-398 = 1
+#if not up-compare-goal gl-398 c:== 1
+  chat to all "There are 397 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-399 = 1
+#if not up-compare-goal gl-399 c:== 1
+  chat to all "There are 398 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-400 = 1
+#if not up-compare-goal gl-400 c:== 1
+  chat to all "There are 399 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-401 = 1
+#if not up-compare-goal gl-401 c:== 1
+  chat to all "There are 400 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-402 = 1
+#if not up-compare-goal gl-402 c:== 1
+  chat to all "There are 401 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-403 = 1
+#if not up-compare-goal gl-403 c:== 1
+  chat to all "There are 402 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-404 = 1
+#if not up-compare-goal gl-404 c:== 1
+  chat to all "There are 403 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-405 = 1
+#if not up-compare-goal gl-405 c:== 1
+  chat to all "There are 404 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-406 = 1
+#if not up-compare-goal gl-406 c:== 1
+  chat to all "There are 405 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-407 = 1
+#if not up-compare-goal gl-407 c:== 1
+  chat to all "There are 406 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-408 = 1
+#if not up-compare-goal gl-408 c:== 1
+  chat to all "There are 407 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-409 = 1
+#if not up-compare-goal gl-409 c:== 1
+  chat to all "There are 408 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-410 = 1
+#if not up-compare-goal gl-410 c:== 1
+  chat to all "There are 409 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-411 = 1
+#if not up-compare-goal gl-411 c:== 1
+  chat to all "There are 410 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-412 = 1
+#if not up-compare-goal gl-412 c:== 1
+  chat to all "There are 411 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-413 = 1
+#if not up-compare-goal gl-413 c:== 1
+  chat to all "There are 412 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-414 = 1
+#if not up-compare-goal gl-414 c:== 1
+  chat to all "There are 413 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-415 = 1
+#if not up-compare-goal gl-415 c:== 1
+  chat to all "There are 414 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-416 = 1
+#if not up-compare-goal gl-416 c:== 1
+  chat to all "There are 415 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-417 = 1
+#if not up-compare-goal gl-417 c:== 1
+  chat to all "There are 416 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-418 = 1
+#if not up-compare-goal gl-418 c:== 1
+  chat to all "There are 417 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-419 = 1
+#if not up-compare-goal gl-419 c:== 1
+  chat to all "There are 418 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-420 = 1
+#if not up-compare-goal gl-420 c:== 1
+  chat to all "There are 419 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-421 = 1
+#if not up-compare-goal gl-421 c:== 1
+  chat to all "There are 420 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-422 = 1
+#if not up-compare-goal gl-422 c:== 1
+  chat to all "There are 421 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-423 = 1
+#if not up-compare-goal gl-423 c:== 1
+  chat to all "There are 422 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-424 = 1
+#if not up-compare-goal gl-424 c:== 1
+  chat to all "There are 423 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-425 = 1
+#if not up-compare-goal gl-425 c:== 1
+  chat to all "There are 424 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-426 = 1
+#if not up-compare-goal gl-426 c:== 1
+  chat to all "There are 425 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-427 = 1
+#if not up-compare-goal gl-427 c:== 1
+  chat to all "There are 426 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-428 = 1
+#if not up-compare-goal gl-428 c:== 1
+  chat to all "There are 427 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-429 = 1
+#if not up-compare-goal gl-429 c:== 1
+  chat to all "There are 428 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-430 = 1
+#if not up-compare-goal gl-430 c:== 1
+  chat to all "There are 429 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-431 = 1
+#if not up-compare-goal gl-431 c:== 1
+  chat to all "There are 430 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-432 = 1
+#if not up-compare-goal gl-432 c:== 1
+  chat to all "There are 431 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-433 = 1
+#if not up-compare-goal gl-433 c:== 1
+  chat to all "There are 432 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-434 = 1
+#if not up-compare-goal gl-434 c:== 1
+  chat to all "There are 433 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-435 = 1
+#if not up-compare-goal gl-435 c:== 1
+  chat to all "There are 434 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-436 = 1
+#if not up-compare-goal gl-436 c:== 1
+  chat to all "There are 435 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-437 = 1
+#if not up-compare-goal gl-437 c:== 1
+  chat to all "There are 436 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-438 = 1
+#if not up-compare-goal gl-438 c:== 1
+  chat to all "There are 437 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-439 = 1
+#if not up-compare-goal gl-439 c:== 1
+  chat to all "There are 438 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-440 = 1
+#if not up-compare-goal gl-440 c:== 1
+  chat to all "There are 439 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-441 = 1
+#if not up-compare-goal gl-441 c:== 1
+  chat to all "There are 440 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-442 = 1
+#if not up-compare-goal gl-442 c:== 1
+  chat to all "There are 441 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-443 = 1
+#if not up-compare-goal gl-443 c:== 1
+  chat to all "There are 442 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-444 = 1
+#if not up-compare-goal gl-444 c:== 1
+  chat to all "There are 443 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-445 = 1
+#if not up-compare-goal gl-445 c:== 1
+  chat to all "There are 444 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-446 = 1
+#if not up-compare-goal gl-446 c:== 1
+  chat to all "There are 445 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-447 = 1
+#if not up-compare-goal gl-447 c:== 1
+  chat to all "There are 446 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-448 = 1
+#if not up-compare-goal gl-448 c:== 1
+  chat to all "There are 447 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-449 = 1
+#if not up-compare-goal gl-449 c:== 1
+  chat to all "There are 448 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-450 = 1
+#if not up-compare-goal gl-450 c:== 1
+  chat to all "There are 449 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-451 = 1
+#if not up-compare-goal gl-451 c:== 1
+  chat to all "There are 450 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-452 = 1
+#if not up-compare-goal gl-452 c:== 1
+  chat to all "There are 451 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-453 = 1
+#if not up-compare-goal gl-453 c:== 1
+  chat to all "There are 452 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-454 = 1
+#if not up-compare-goal gl-454 c:== 1
+  chat to all "There are 453 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-455 = 1
+#if not up-compare-goal gl-455 c:== 1
+  chat to all "There are 454 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-456 = 1
+#if not up-compare-goal gl-456 c:== 1
+  chat to all "There are 455 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-457 = 1
+#if not up-compare-goal gl-457 c:== 1
+  chat to all "There are 456 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-458 = 1
+#if not up-compare-goal gl-458 c:== 1
+  chat to all "There are 457 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-459 = 1
+#if not up-compare-goal gl-459 c:== 1
+  chat to all "There are 458 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-460 = 1
+#if not up-compare-goal gl-460 c:== 1
+  chat to all "There are 459 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-461 = 1
+#if not up-compare-goal gl-461 c:== 1
+  chat to all "There are 460 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-462 = 1
+#if not up-compare-goal gl-462 c:== 1
+  chat to all "There are 461 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-463 = 1
+#if not up-compare-goal gl-463 c:== 1
+  chat to all "There are 462 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-464 = 1
+#if not up-compare-goal gl-464 c:== 1
+  chat to all "There are 463 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-465 = 1
+#if not up-compare-goal gl-465 c:== 1
+  chat to all "There are 464 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-466 = 1
+#if not up-compare-goal gl-466 c:== 1
+  chat to all "There are 465 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-467 = 1
+#if not up-compare-goal gl-467 c:== 1
+  chat to all "There are 466 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-468 = 1
+#if not up-compare-goal gl-468 c:== 1
+  chat to all "There are 467 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-469 = 1
+#if not up-compare-goal gl-469 c:== 1
+  chat to all "There are 468 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-470 = 1
+#if not up-compare-goal gl-470 c:== 1
+  chat to all "There are 469 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-471 = 1
+#if not up-compare-goal gl-471 c:== 1
+  chat to all "There are 470 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-472 = 1
+#if not up-compare-goal gl-472 c:== 1
+  chat to all "There are 471 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-473 = 1
+#if not up-compare-goal gl-473 c:== 1
+  chat to all "There are 472 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-474 = 1
+#if not up-compare-goal gl-474 c:== 1
+  chat to all "There are 473 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-475 = 1
+#if not up-compare-goal gl-475 c:== 1
+  chat to all "There are 474 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-476 = 1
+#if not up-compare-goal gl-476 c:== 1
+  chat to all "There are 475 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-477 = 1
+#if not up-compare-goal gl-477 c:== 1
+  chat to all "There are 476 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-478 = 1
+#if not up-compare-goal gl-478 c:== 1
+  chat to all "There are 477 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-479 = 1
+#if not up-compare-goal gl-479 c:== 1
+  chat to all "There are 478 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-480 = 1
+#if not up-compare-goal gl-480 c:== 1
+  chat to all "There are 479 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-481 = 1
+#if not up-compare-goal gl-481 c:== 1
+  chat to all "There are 480 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-482 = 1
+#if not up-compare-goal gl-482 c:== 1
+  chat to all "There are 481 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-483 = 1
+#if not up-compare-goal gl-483 c:== 1
+  chat to all "There are 482 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-484 = 1
+#if not up-compare-goal gl-484 c:== 1
+  chat to all "There are 483 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-485 = 1
+#if not up-compare-goal gl-485 c:== 1
+  chat to all "There are 484 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-486 = 1
+#if not up-compare-goal gl-486 c:== 1
+  chat to all "There are 485 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-487 = 1
+#if not up-compare-goal gl-487 c:== 1
+  chat to all "There are 486 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-488 = 1
+#if not up-compare-goal gl-488 c:== 1
+  chat to all "There are 487 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-489 = 1
+#if not up-compare-goal gl-489 c:== 1
+  chat to all "There are 488 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-490 = 1
+#if not up-compare-goal gl-490 c:== 1
+  chat to all "There are 489 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-491 = 1
+#if not up-compare-goal gl-491 c:== 1
+  chat to all "There are 490 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-492 = 1
+#if not up-compare-goal gl-492 c:== 1
+  chat to all "There are 491 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-493 = 1
+#if not up-compare-goal gl-493 c:== 1
+  chat to all "There are 492 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-494 = 1
+#if not up-compare-goal gl-494 c:== 1
+  chat to all "There are 493 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-495 = 1
+#if not up-compare-goal gl-495 c:== 1
+  chat to all "There are 494 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-496 = 1
+#if not up-compare-goal gl-496 c:== 1
+  chat to all "There are 495 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-497 = 1
+#if not up-compare-goal gl-497 c:== 1
+  chat to all "There are 496 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-498 = 1
+#if not up-compare-goal gl-498 c:== 1
+  chat to all "There are 497 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-499 = 1
+#if not up-compare-goal gl-499 c:== 1
+  chat to all "There are 498 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-500 = 1
+#if not up-compare-goal gl-500 c:== 1
+  chat to all "There are 499 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-501 = 1
+#if not up-compare-goal gl-501 c:== 1
+  chat to all "There are 500 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-502 = 1
+#if not up-compare-goal gl-502 c:== 1
+  chat to all "There are 501 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-503 = 1
+#if not up-compare-goal gl-503 c:== 1
+  chat to all "There are 502 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-504 = 1
+#if not up-compare-goal gl-504 c:== 1
+  chat to all "There are 503 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-505 = 1
+#if not up-compare-goal gl-505 c:== 1
+  chat to all "There are 504 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-506 = 1
+#if not up-compare-goal gl-506 c:== 1
+  chat to all "There are 505 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-507 = 1
+#if not up-compare-goal gl-507 c:== 1
+  chat to all "There are 506 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-508 = 1
+#if not up-compare-goal gl-508 c:== 1
+  chat to all "There are 507 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-509 = 1
+#if not up-compare-goal gl-509 c:== 1
+  chat to all "There are 508 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-510 = 1
+#if not up-compare-goal gl-510 c:== 1
+  chat to all "There are 509 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-511 = 1
+#if not up-compare-goal gl-511 c:== 1
+  chat to all "There are 510 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-512 = 1
+#if not up-compare-goal gl-512 c:== 1
+  chat to all "There are 511 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-513 = 1
+#if not up-compare-goal gl-513 c:== 1
+  chat to all "There are 512 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-514 = 1
+#if not up-compare-goal gl-514 c:== 1
+  chat to all "There are 513 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-515 = 1
+#if not up-compare-goal gl-515 c:== 1
+  chat to all "There are 514 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-516 = 1
+#if not up-compare-goal gl-516 c:== 1
+  chat to all "There are 515 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-517 = 1
+#if not up-compare-goal gl-517 c:== 1
+  chat to all "There are 516 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-518 = 1
+#if not up-compare-goal gl-518 c:== 1
+  chat to all "There are 517 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-519 = 1
+#if not up-compare-goal gl-519 c:== 1
+  chat to all "There are 518 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-520 = 1
+#if not up-compare-goal gl-520 c:== 1
+  chat to all "There are 519 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-521 = 1
+#if not up-compare-goal gl-521 c:== 1
+  chat to all "There are 520 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-522 = 1
+#if not up-compare-goal gl-522 c:== 1
+  chat to all "There are 521 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-523 = 1
+#if not up-compare-goal gl-523 c:== 1
+  chat to all "There are 522 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-524 = 1
+#if not up-compare-goal gl-524 c:== 1
+  chat to all "There are 523 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-525 = 1
+#if not up-compare-goal gl-525 c:== 1
+  chat to all "There are 524 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-526 = 1
+#if not up-compare-goal gl-526 c:== 1
+  chat to all "There are 525 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-527 = 1
+#if not up-compare-goal gl-527 c:== 1
+  chat to all "There are 526 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-528 = 1
+#if not up-compare-goal gl-528 c:== 1
+  chat to all "There are 527 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-529 = 1
+#if not up-compare-goal gl-529 c:== 1
+  chat to all "There are 528 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-530 = 1
+#if not up-compare-goal gl-530 c:== 1
+  chat to all "There are 529 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-531 = 1
+#if not up-compare-goal gl-531 c:== 1
+  chat to all "There are 530 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-532 = 1
+#if not up-compare-goal gl-532 c:== 1
+  chat to all "There are 531 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-533 = 1
+#if not up-compare-goal gl-533 c:== 1
+  chat to all "There are 532 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-534 = 1
+#if not up-compare-goal gl-534 c:== 1
+  chat to all "There are 533 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-535 = 1
+#if not up-compare-goal gl-535 c:== 1
+  chat to all "There are 534 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-536 = 1
+#if not up-compare-goal gl-536 c:== 1
+  chat to all "There are 535 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-537 = 1
+#if not up-compare-goal gl-537 c:== 1
+  chat to all "There are 536 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-538 = 1
+#if not up-compare-goal gl-538 c:== 1
+  chat to all "There are 537 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-539 = 1
+#if not up-compare-goal gl-539 c:== 1
+  chat to all "There are 538 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-540 = 1
+#if not up-compare-goal gl-540 c:== 1
+  chat to all "There are 539 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-541 = 1
+#if not up-compare-goal gl-541 c:== 1
+  chat to all "There are 540 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-542 = 1
+#if not up-compare-goal gl-542 c:== 1
+  chat to all "There are 541 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-543 = 1
+#if not up-compare-goal gl-543 c:== 1
+  chat to all "There are 542 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-544 = 1
+#if not up-compare-goal gl-544 c:== 1
+  chat to all "There are 543 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-545 = 1
+#if not up-compare-goal gl-545 c:== 1
+  chat to all "There are 544 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-546 = 1
+#if not up-compare-goal gl-546 c:== 1
+  chat to all "There are 545 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-547 = 1
+#if not up-compare-goal gl-547 c:== 1
+  chat to all "There are 546 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-548 = 1
+#if not up-compare-goal gl-548 c:== 1
+  chat to all "There are 547 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-549 = 1
+#if not up-compare-goal gl-549 c:== 1
+  chat to all "There are 548 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-550 = 1
+#if not up-compare-goal gl-550 c:== 1
+  chat to all "There are 549 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-551 = 1
+#if not up-compare-goal gl-551 c:== 1
+  chat to all "There are 550 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-552 = 1
+#if not up-compare-goal gl-552 c:== 1
+  chat to all "There are 551 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-553 = 1
+#if not up-compare-goal gl-553 c:== 1
+  chat to all "There are 552 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-554 = 1
+#if not up-compare-goal gl-554 c:== 1
+  chat to all "There are 553 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-555 = 1
+#if not up-compare-goal gl-555 c:== 1
+  chat to all "There are 554 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-556 = 1
+#if not up-compare-goal gl-556 c:== 1
+  chat to all "There are 555 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-557 = 1
+#if not up-compare-goal gl-557 c:== 1
+  chat to all "There are 556 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-558 = 1
+#if not up-compare-goal gl-558 c:== 1
+  chat to all "There are 557 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-559 = 1
+#if not up-compare-goal gl-559 c:== 1
+  chat to all "There are 558 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-560 = 1
+#if not up-compare-goal gl-560 c:== 1
+  chat to all "There are 559 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-561 = 1
+#if not up-compare-goal gl-561 c:== 1
+  chat to all "There are 560 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-562 = 1
+#if not up-compare-goal gl-562 c:== 1
+  chat to all "There are 561 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-563 = 1
+#if not up-compare-goal gl-563 c:== 1
+  chat to all "There are 562 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-564 = 1
+#if not up-compare-goal gl-564 c:== 1
+  chat to all "There are 563 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-565 = 1
+#if not up-compare-goal gl-565 c:== 1
+  chat to all "There are 564 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-566 = 1
+#if not up-compare-goal gl-566 c:== 1
+  chat to all "There are 565 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-567 = 1
+#if not up-compare-goal gl-567 c:== 1
+  chat to all "There are 566 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-568 = 1
+#if not up-compare-goal gl-568 c:== 1
+  chat to all "There are 567 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-569 = 1
+#if not up-compare-goal gl-569 c:== 1
+  chat to all "There are 568 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-570 = 1
+#if not up-compare-goal gl-570 c:== 1
+  chat to all "There are 569 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-571 = 1
+#if not up-compare-goal gl-571 c:== 1
+  chat to all "There are 570 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-572 = 1
+#if not up-compare-goal gl-572 c:== 1
+  chat to all "There are 571 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-573 = 1
+#if not up-compare-goal gl-573 c:== 1
+  chat to all "There are 572 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-574 = 1
+#if not up-compare-goal gl-574 c:== 1
+  chat to all "There are 573 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-575 = 1
+#if not up-compare-goal gl-575 c:== 1
+  chat to all "There are 574 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-576 = 1
+#if not up-compare-goal gl-576 c:== 1
+  chat to all "There are 575 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-577 = 1
+#if not up-compare-goal gl-577 c:== 1
+  chat to all "There are 576 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-578 = 1
+#if not up-compare-goal gl-578 c:== 1
+  chat to all "There are 577 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-579 = 1
+#if not up-compare-goal gl-579 c:== 1
+  chat to all "There are 578 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-580 = 1
+#if not up-compare-goal gl-580 c:== 1
+  chat to all "There are 579 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-581 = 1
+#if not up-compare-goal gl-581 c:== 1
+  chat to all "There are 580 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-582 = 1
+#if not up-compare-goal gl-582 c:== 1
+  chat to all "There are 581 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-583 = 1
+#if not up-compare-goal gl-583 c:== 1
+  chat to all "There are 582 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-584 = 1
+#if not up-compare-goal gl-584 c:== 1
+  chat to all "There are 583 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-585 = 1
+#if not up-compare-goal gl-585 c:== 1
+  chat to all "There are 584 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-586 = 1
+#if not up-compare-goal gl-586 c:== 1
+  chat to all "There are 585 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-587 = 1
+#if not up-compare-goal gl-587 c:== 1
+  chat to all "There are 586 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-588 = 1
+#if not up-compare-goal gl-588 c:== 1
+  chat to all "There are 587 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-589 = 1
+#if not up-compare-goal gl-589 c:== 1
+  chat to all "There are 588 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-590 = 1
+#if not up-compare-goal gl-590 c:== 1
+  chat to all "There are 589 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-591 = 1
+#if not up-compare-goal gl-591 c:== 1
+  chat to all "There are 590 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-592 = 1
+#if not up-compare-goal gl-592 c:== 1
+  chat to all "There are 591 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-593 = 1
+#if not up-compare-goal gl-593 c:== 1
+  chat to all "There are 592 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-594 = 1
+#if not up-compare-goal gl-594 c:== 1
+  chat to all "There are 593 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-595 = 1
+#if not up-compare-goal gl-595 c:== 1
+  chat to all "There are 594 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-596 = 1
+#if not up-compare-goal gl-596 c:== 1
+  chat to all "There are 595 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-597 = 1
+#if not up-compare-goal gl-597 c:== 1
+  chat to all "There are 596 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-598 = 1
+#if not up-compare-goal gl-598 c:== 1
+  chat to all "There are 597 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-599 = 1
+#if not up-compare-goal gl-599 c:== 1
+  chat to all "There are 598 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-600 = 1
+#if not up-compare-goal gl-600 c:== 1
+  chat to all "There are 599 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-601 = 1
+#if not up-compare-goal gl-601 c:== 1
+  chat to all "There are 600 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-602 = 1
+#if not up-compare-goal gl-602 c:== 1
+  chat to all "There are 601 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-603 = 1
+#if not up-compare-goal gl-603 c:== 1
+  chat to all "There are 602 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-604 = 1
+#if not up-compare-goal gl-604 c:== 1
+  chat to all "There are 603 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-605 = 1
+#if not up-compare-goal gl-605 c:== 1
+  chat to all "There are 604 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-606 = 1
+#if not up-compare-goal gl-606 c:== 1
+  chat to all "There are 605 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-607 = 1
+#if not up-compare-goal gl-607 c:== 1
+  chat to all "There are 606 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-608 = 1
+#if not up-compare-goal gl-608 c:== 1
+  chat to all "There are 607 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-609 = 1
+#if not up-compare-goal gl-609 c:== 1
+  chat to all "There are 608 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-610 = 1
+#if not up-compare-goal gl-610 c:== 1
+  chat to all "There are 609 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-611 = 1
+#if not up-compare-goal gl-611 c:== 1
+  chat to all "There are 610 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-612 = 1
+#if not up-compare-goal gl-612 c:== 1
+  chat to all "There are 611 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-613 = 1
+#if not up-compare-goal gl-613 c:== 1
+  chat to all "There are 612 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-614 = 1
+#if not up-compare-goal gl-614 c:== 1
+  chat to all "There are 613 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-615 = 1
+#if not up-compare-goal gl-615 c:== 1
+  chat to all "There are 614 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-616 = 1
+#if not up-compare-goal gl-616 c:== 1
+  chat to all "There are 615 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-617 = 1
+#if not up-compare-goal gl-617 c:== 1
+  chat to all "There are 616 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-618 = 1
+#if not up-compare-goal gl-618 c:== 1
+  chat to all "There are 617 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-619 = 1
+#if not up-compare-goal gl-619 c:== 1
+  chat to all "There are 618 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-620 = 1
+#if not up-compare-goal gl-620 c:== 1
+  chat to all "There are 619 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-621 = 1
+#if not up-compare-goal gl-621 c:== 1
+  chat to all "There are 620 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-622 = 1
+#if not up-compare-goal gl-622 c:== 1
+  chat to all "There are 621 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-623 = 1
+#if not up-compare-goal gl-623 c:== 1
+  chat to all "There are 622 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-624 = 1
+#if not up-compare-goal gl-624 c:== 1
+  chat to all "There are 623 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-625 = 1
+#if not up-compare-goal gl-625 c:== 1
+  chat to all "There are 624 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-626 = 1
+#if not up-compare-goal gl-626 c:== 1
+  chat to all "There are 625 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-627 = 1
+#if not up-compare-goal gl-627 c:== 1
+  chat to all "There are 626 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-628 = 1
+#if not up-compare-goal gl-628 c:== 1
+  chat to all "There are 627 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-629 = 1
+#if not up-compare-goal gl-629 c:== 1
+  chat to all "There are 628 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-630 = 1
+#if not up-compare-goal gl-630 c:== 1
+  chat to all "There are 629 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-631 = 1
+#if not up-compare-goal gl-631 c:== 1
+  chat to all "There are 630 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-632 = 1
+#if not up-compare-goal gl-632 c:== 1
+  chat to all "There are 631 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-633 = 1
+#if not up-compare-goal gl-633 c:== 1
+  chat to all "There are 632 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-634 = 1
+#if not up-compare-goal gl-634 c:== 1
+  chat to all "There are 633 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-635 = 1
+#if not up-compare-goal gl-635 c:== 1
+  chat to all "There are 634 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-636 = 1
+#if not up-compare-goal gl-636 c:== 1
+  chat to all "There are 635 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-637 = 1
+#if not up-compare-goal gl-637 c:== 1
+  chat to all "There are 636 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-638 = 1
+#if not up-compare-goal gl-638 c:== 1
+  chat to all "There are 637 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-639 = 1
+#if not up-compare-goal gl-639 c:== 1
+  chat to all "There are 638 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-640 = 1
+#if not up-compare-goal gl-640 c:== 1
+  chat to all "There are 639 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-641 = 1
+#if not up-compare-goal gl-641 c:== 1
+  chat to all "There are 640 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-642 = 1
+#if not up-compare-goal gl-642 c:== 1
+  chat to all "There are 641 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-643 = 1
+#if not up-compare-goal gl-643 c:== 1
+  chat to all "There are 642 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-644 = 1
+#if not up-compare-goal gl-644 c:== 1
+  chat to all "There are 643 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-645 = 1
+#if not up-compare-goal gl-645 c:== 1
+  chat to all "There are 644 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-646 = 1
+#if not up-compare-goal gl-646 c:== 1
+  chat to all "There are 645 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-647 = 1
+#if not up-compare-goal gl-647 c:== 1
+  chat to all "There are 646 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-648 = 1
+#if not up-compare-goal gl-648 c:== 1
+  chat to all "There are 647 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-649 = 1
+#if not up-compare-goal gl-649 c:== 1
+  chat to all "There are 648 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-650 = 1
+#if not up-compare-goal gl-650 c:== 1
+  chat to all "There are 649 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-651 = 1
+#if not up-compare-goal gl-651 c:== 1
+  chat to all "There are 650 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-652 = 1
+#if not up-compare-goal gl-652 c:== 1
+  chat to all "There are 651 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-653 = 1
+#if not up-compare-goal gl-653 c:== 1
+  chat to all "There are 652 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-654 = 1
+#if not up-compare-goal gl-654 c:== 1
+  chat to all "There are 653 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-655 = 1
+#if not up-compare-goal gl-655 c:== 1
+  chat to all "There are 654 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-656 = 1
+#if not up-compare-goal gl-656 c:== 1
+  chat to all "There are 655 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-657 = 1
+#if not up-compare-goal gl-657 c:== 1
+  chat to all "There are 656 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-658 = 1
+#if not up-compare-goal gl-658 c:== 1
+  chat to all "There are 657 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-659 = 1
+#if not up-compare-goal gl-659 c:== 1
+  chat to all "There are 658 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-660 = 1
+#if not up-compare-goal gl-660 c:== 1
+  chat to all "There are 659 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-661 = 1
+#if not up-compare-goal gl-661 c:== 1
+  chat to all "There are 660 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-662 = 1
+#if not up-compare-goal gl-662 c:== 1
+  chat to all "There are 661 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-663 = 1
+#if not up-compare-goal gl-663 c:== 1
+  chat to all "There are 662 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-664 = 1
+#if not up-compare-goal gl-664 c:== 1
+  chat to all "There are 663 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-665 = 1
+#if not up-compare-goal gl-665 c:== 1
+  chat to all "There are 664 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-666 = 1
+#if not up-compare-goal gl-666 c:== 1
+  chat to all "There are 665 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-667 = 1
+#if not up-compare-goal gl-667 c:== 1
+  chat to all "There are 666 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-668 = 1
+#if not up-compare-goal gl-668 c:== 1
+  chat to all "There are 667 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-669 = 1
+#if not up-compare-goal gl-669 c:== 1
+  chat to all "There are 668 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-670 = 1
+#if not up-compare-goal gl-670 c:== 1
+  chat to all "There are 669 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-671 = 1
+#if not up-compare-goal gl-671 c:== 1
+  chat to all "There are 670 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-672 = 1
+#if not up-compare-goal gl-672 c:== 1
+  chat to all "There are 671 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-673 = 1
+#if not up-compare-goal gl-673 c:== 1
+  chat to all "There are 672 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-674 = 1
+#if not up-compare-goal gl-674 c:== 1
+  chat to all "There are 673 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-675 = 1
+#if not up-compare-goal gl-675 c:== 1
+  chat to all "There are 674 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-676 = 1
+#if not up-compare-goal gl-676 c:== 1
+  chat to all "There are 675 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-677 = 1
+#if not up-compare-goal gl-677 c:== 1
+  chat to all "There are 676 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-678 = 1
+#if not up-compare-goal gl-678 c:== 1
+  chat to all "There are 677 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-679 = 1
+#if not up-compare-goal gl-679 c:== 1
+  chat to all "There are 678 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-680 = 1
+#if not up-compare-goal gl-680 c:== 1
+  chat to all "There are 679 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-681 = 1
+#if not up-compare-goal gl-681 c:== 1
+  chat to all "There are 680 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-682 = 1
+#if not up-compare-goal gl-682 c:== 1
+  chat to all "There are 681 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-683 = 1
+#if not up-compare-goal gl-683 c:== 1
+  chat to all "There are 682 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-684 = 1
+#if not up-compare-goal gl-684 c:== 1
+  chat to all "There are 683 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-685 = 1
+#if not up-compare-goal gl-685 c:== 1
+  chat to all "There are 684 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-686 = 1
+#if not up-compare-goal gl-686 c:== 1
+  chat to all "There are 685 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-687 = 1
+#if not up-compare-goal gl-687 c:== 1
+  chat to all "There are 686 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-688 = 1
+#if not up-compare-goal gl-688 c:== 1
+  chat to all "There are 687 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-689 = 1
+#if not up-compare-goal gl-689 c:== 1
+  chat to all "There are 688 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-690 = 1
+#if not up-compare-goal gl-690 c:== 1
+  chat to all "There are 689 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-691 = 1
+#if not up-compare-goal gl-691 c:== 1
+  chat to all "There are 690 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-692 = 1
+#if not up-compare-goal gl-692 c:== 1
+  chat to all "There are 691 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-693 = 1
+#if not up-compare-goal gl-693 c:== 1
+  chat to all "There are 692 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-694 = 1
+#if not up-compare-goal gl-694 c:== 1
+  chat to all "There are 693 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-695 = 1
+#if not up-compare-goal gl-695 c:== 1
+  chat to all "There are 694 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-696 = 1
+#if not up-compare-goal gl-696 c:== 1
+  chat to all "There are 695 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-697 = 1
+#if not up-compare-goal gl-697 c:== 1
+  chat to all "There are 696 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-698 = 1
+#if not up-compare-goal gl-698 c:== 1
+  chat to all "There are 697 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-699 = 1
+#if not up-compare-goal gl-699 c:== 1
+  chat to all "There are 698 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-700 = 1
+#if not up-compare-goal gl-700 c:== 1
+  chat to all "There are 699 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-701 = 1
+#if not up-compare-goal gl-701 c:== 1
+  chat to all "There are 700 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-702 = 1
+#if not up-compare-goal gl-702 c:== 1
+  chat to all "There are 701 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-703 = 1
+#if not up-compare-goal gl-703 c:== 1
+  chat to all "There are 702 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-704 = 1
+#if not up-compare-goal gl-704 c:== 1
+  chat to all "There are 703 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-705 = 1
+#if not up-compare-goal gl-705 c:== 1
+  chat to all "There are 704 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-706 = 1
+#if not up-compare-goal gl-706 c:== 1
+  chat to all "There are 705 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-707 = 1
+#if not up-compare-goal gl-707 c:== 1
+  chat to all "There are 706 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-708 = 1
+#if not up-compare-goal gl-708 c:== 1
+  chat to all "There are 707 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-709 = 1
+#if not up-compare-goal gl-709 c:== 1
+  chat to all "There are 708 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-710 = 1
+#if not up-compare-goal gl-710 c:== 1
+  chat to all "There are 709 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-711 = 1
+#if not up-compare-goal gl-711 c:== 1
+  chat to all "There are 710 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-712 = 1
+#if not up-compare-goal gl-712 c:== 1
+  chat to all "There are 711 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-713 = 1
+#if not up-compare-goal gl-713 c:== 1
+  chat to all "There are 712 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-714 = 1
+#if not up-compare-goal gl-714 c:== 1
+  chat to all "There are 713 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-715 = 1
+#if not up-compare-goal gl-715 c:== 1
+  chat to all "There are 714 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-716 = 1
+#if not up-compare-goal gl-716 c:== 1
+  chat to all "There are 715 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-717 = 1
+#if not up-compare-goal gl-717 c:== 1
+  chat to all "There are 716 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-718 = 1
+#if not up-compare-goal gl-718 c:== 1
+  chat to all "There are 717 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-719 = 1
+#if not up-compare-goal gl-719 c:== 1
+  chat to all "There are 718 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-720 = 1
+#if not up-compare-goal gl-720 c:== 1
+  chat to all "There are 719 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-721 = 1
+#if not up-compare-goal gl-721 c:== 1
+  chat to all "There are 720 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-722 = 1
+#if not up-compare-goal gl-722 c:== 1
+  chat to all "There are 721 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-723 = 1
+#if not up-compare-goal gl-723 c:== 1
+  chat to all "There are 722 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-724 = 1
+#if not up-compare-goal gl-724 c:== 1
+  chat to all "There are 723 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-725 = 1
+#if not up-compare-goal gl-725 c:== 1
+  chat to all "There are 724 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-726 = 1
+#if not up-compare-goal gl-726 c:== 1
+  chat to all "There are 725 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-727 = 1
+#if not up-compare-goal gl-727 c:== 1
+  chat to all "There are 726 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-728 = 1
+#if not up-compare-goal gl-728 c:== 1
+  chat to all "There are 727 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-729 = 1
+#if not up-compare-goal gl-729 c:== 1
+  chat to all "There are 728 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-730 = 1
+#if not up-compare-goal gl-730 c:== 1
+  chat to all "There are 729 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-731 = 1
+#if not up-compare-goal gl-731 c:== 1
+  chat to all "There are 730 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-732 = 1
+#if not up-compare-goal gl-732 c:== 1
+  chat to all "There are 731 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-733 = 1
+#if not up-compare-goal gl-733 c:== 1
+  chat to all "There are 732 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-734 = 1
+#if not up-compare-goal gl-734 c:== 1
+  chat to all "There are 733 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-735 = 1
+#if not up-compare-goal gl-735 c:== 1
+  chat to all "There are 734 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-736 = 1
+#if not up-compare-goal gl-736 c:== 1
+  chat to all "There are 735 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-737 = 1
+#if not up-compare-goal gl-737 c:== 1
+  chat to all "There are 736 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-738 = 1
+#if not up-compare-goal gl-738 c:== 1
+  chat to all "There are 737 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-739 = 1
+#if not up-compare-goal gl-739 c:== 1
+  chat to all "There are 738 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-740 = 1
+#if not up-compare-goal gl-740 c:== 1
+  chat to all "There are 739 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-741 = 1
+#if not up-compare-goal gl-741 c:== 1
+  chat to all "There are 740 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-742 = 1
+#if not up-compare-goal gl-742 c:== 1
+  chat to all "There are 741 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-743 = 1
+#if not up-compare-goal gl-743 c:== 1
+  chat to all "There are 742 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-744 = 1
+#if not up-compare-goal gl-744 c:== 1
+  chat to all "There are 743 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-745 = 1
+#if not up-compare-goal gl-745 c:== 1
+  chat to all "There are 744 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-746 = 1
+#if not up-compare-goal gl-746 c:== 1
+  chat to all "There are 745 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-747 = 1
+#if not up-compare-goal gl-747 c:== 1
+  chat to all "There are 746 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-748 = 1
+#if not up-compare-goal gl-748 c:== 1
+  chat to all "There are 747 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-749 = 1
+#if not up-compare-goal gl-749 c:== 1
+  chat to all "There are 748 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-750 = 1
+#if not up-compare-goal gl-750 c:== 1
+  chat to all "There are 749 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-751 = 1
+#if not up-compare-goal gl-751 c:== 1
+  chat to all "There are 750 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-752 = 1
+#if not up-compare-goal gl-752 c:== 1
+  chat to all "There are 751 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-753 = 1
+#if not up-compare-goal gl-753 c:== 1
+  chat to all "There are 752 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-754 = 1
+#if not up-compare-goal gl-754 c:== 1
+  chat to all "There are 753 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-755 = 1
+#if not up-compare-goal gl-755 c:== 1
+  chat to all "There are 754 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-756 = 1
+#if not up-compare-goal gl-756 c:== 1
+  chat to all "There are 755 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-757 = 1
+#if not up-compare-goal gl-757 c:== 1
+  chat to all "There are 756 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-758 = 1
+#if not up-compare-goal gl-758 c:== 1
+  chat to all "There are 757 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-759 = 1
+#if not up-compare-goal gl-759 c:== 1
+  chat to all "There are 758 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-760 = 1
+#if not up-compare-goal gl-760 c:== 1
+  chat to all "There are 759 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-761 = 1
+#if not up-compare-goal gl-761 c:== 1
+  chat to all "There are 760 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-762 = 1
+#if not up-compare-goal gl-762 c:== 1
+  chat to all "There are 761 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-763 = 1
+#if not up-compare-goal gl-763 c:== 1
+  chat to all "There are 762 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-764 = 1
+#if not up-compare-goal gl-764 c:== 1
+  chat to all "There are 763 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-765 = 1
+#if not up-compare-goal gl-765 c:== 1
+  chat to all "There are 764 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-766 = 1
+#if not up-compare-goal gl-766 c:== 1
+  chat to all "There are 765 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-767 = 1
+#if not up-compare-goal gl-767 c:== 1
+  chat to all "There are 766 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-768 = 1
+#if not up-compare-goal gl-768 c:== 1
+  chat to all "There are 767 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-769 = 1
+#if not up-compare-goal gl-769 c:== 1
+  chat to all "There are 768 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-770 = 1
+#if not up-compare-goal gl-770 c:== 1
+  chat to all "There are 769 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-771 = 1
+#if not up-compare-goal gl-771 c:== 1
+  chat to all "There are 770 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-772 = 1
+#if not up-compare-goal gl-772 c:== 1
+  chat to all "There are 771 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-773 = 1
+#if not up-compare-goal gl-773 c:== 1
+  chat to all "There are 772 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-774 = 1
+#if not up-compare-goal gl-774 c:== 1
+  chat to all "There are 773 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-775 = 1
+#if not up-compare-goal gl-775 c:== 1
+  chat to all "There are 774 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-776 = 1
+#if not up-compare-goal gl-776 c:== 1
+  chat to all "There are 775 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-777 = 1
+#if not up-compare-goal gl-777 c:== 1
+  chat to all "There are 776 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-778 = 1
+#if not up-compare-goal gl-778 c:== 1
+  chat to all "There are 777 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-779 = 1
+#if not up-compare-goal gl-779 c:== 1
+  chat to all "There are 778 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-780 = 1
+#if not up-compare-goal gl-780 c:== 1
+  chat to all "There are 779 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-781 = 1
+#if not up-compare-goal gl-781 c:== 1
+  chat to all "There are 780 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-782 = 1
+#if not up-compare-goal gl-782 c:== 1
+  chat to all "There are 781 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-783 = 1
+#if not up-compare-goal gl-783 c:== 1
+  chat to all "There are 782 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-784 = 1
+#if not up-compare-goal gl-784 c:== 1
+  chat to all "There are 783 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-785 = 1
+#if not up-compare-goal gl-785 c:== 1
+  chat to all "There are 784 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-786 = 1
+#if not up-compare-goal gl-786 c:== 1
+  chat to all "There are 785 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-787 = 1
+#if not up-compare-goal gl-787 c:== 1
+  chat to all "There are 786 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-788 = 1
+#if not up-compare-goal gl-788 c:== 1
+  chat to all "There are 787 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-789 = 1
+#if not up-compare-goal gl-789 c:== 1
+  chat to all "There are 788 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-790 = 1
+#if not up-compare-goal gl-790 c:== 1
+  chat to all "There are 789 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-791 = 1
+#if not up-compare-goal gl-791 c:== 1
+  chat to all "There are 790 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-792 = 1
+#if not up-compare-goal gl-792 c:== 1
+  chat to all "There are 791 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-793 = 1
+#if not up-compare-goal gl-793 c:== 1
+  chat to all "There are 792 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-794 = 1
+#if not up-compare-goal gl-794 c:== 1
+  chat to all "There are 793 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-795 = 1
+#if not up-compare-goal gl-795 c:== 1
+  chat to all "There are 794 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-796 = 1
+#if not up-compare-goal gl-796 c:== 1
+  chat to all "There are 795 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-797 = 1
+#if not up-compare-goal gl-797 c:== 1
+  chat to all "There are 796 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-798 = 1
+#if not up-compare-goal gl-798 c:== 1
+  chat to all "There are 797 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-799 = 1
+#if not up-compare-goal gl-799 c:== 1
+  chat to all "There are 798 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-800 = 1
+#if not up-compare-goal gl-800 c:== 1
+  chat to all "There are 799 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-801 = 1
+#if not up-compare-goal gl-801 c:== 1
+  chat to all "There are 800 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-802 = 1
+#if not up-compare-goal gl-802 c:== 1
+  chat to all "There are 801 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-803 = 1
+#if not up-compare-goal gl-803 c:== 1
+  chat to all "There are 802 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-804 = 1
+#if not up-compare-goal gl-804 c:== 1
+  chat to all "There are 803 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-805 = 1
+#if not up-compare-goal gl-805 c:== 1
+  chat to all "There are 804 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-806 = 1
+#if not up-compare-goal gl-806 c:== 1
+  chat to all "There are 805 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-807 = 1
+#if not up-compare-goal gl-807 c:== 1
+  chat to all "There are 806 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-808 = 1
+#if not up-compare-goal gl-808 c:== 1
+  chat to all "There are 807 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-809 = 1
+#if not up-compare-goal gl-809 c:== 1
+  chat to all "There are 808 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-810 = 1
+#if not up-compare-goal gl-810 c:== 1
+  chat to all "There are 809 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-811 = 1
+#if not up-compare-goal gl-811 c:== 1
+  chat to all "There are 810 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-812 = 1
+#if not up-compare-goal gl-812 c:== 1
+  chat to all "There are 811 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-813 = 1
+#if not up-compare-goal gl-813 c:== 1
+  chat to all "There are 812 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-814 = 1
+#if not up-compare-goal gl-814 c:== 1
+  chat to all "There are 813 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-815 = 1
+#if not up-compare-goal gl-815 c:== 1
+  chat to all "There are 814 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-816 = 1
+#if not up-compare-goal gl-816 c:== 1
+  chat to all "There are 815 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-817 = 1
+#if not up-compare-goal gl-817 c:== 1
+  chat to all "There are 816 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-818 = 1
+#if not up-compare-goal gl-818 c:== 1
+  chat to all "There are 817 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-819 = 1
+#if not up-compare-goal gl-819 c:== 1
+  chat to all "There are 818 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-820 = 1
+#if not up-compare-goal gl-820 c:== 1
+  chat to all "There are 819 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-821 = 1
+#if not up-compare-goal gl-821 c:== 1
+  chat to all "There are 820 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-822 = 1
+#if not up-compare-goal gl-822 c:== 1
+  chat to all "There are 821 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-823 = 1
+#if not up-compare-goal gl-823 c:== 1
+  chat to all "There are 822 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-824 = 1
+#if not up-compare-goal gl-824 c:== 1
+  chat to all "There are 823 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-825 = 1
+#if not up-compare-goal gl-825 c:== 1
+  chat to all "There are 824 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-826 = 1
+#if not up-compare-goal gl-826 c:== 1
+  chat to all "There are 825 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-827 = 1
+#if not up-compare-goal gl-827 c:== 1
+  chat to all "There are 826 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-828 = 1
+#if not up-compare-goal gl-828 c:== 1
+  chat to all "There are 827 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-829 = 1
+#if not up-compare-goal gl-829 c:== 1
+  chat to all "There are 828 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-830 = 1
+#if not up-compare-goal gl-830 c:== 1
+  chat to all "There are 829 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-831 = 1
+#if not up-compare-goal gl-831 c:== 1
+  chat to all "There are 830 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-832 = 1
+#if not up-compare-goal gl-832 c:== 1
+  chat to all "There are 831 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-833 = 1
+#if not up-compare-goal gl-833 c:== 1
+  chat to all "There are 832 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-834 = 1
+#if not up-compare-goal gl-834 c:== 1
+  chat to all "There are 833 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-835 = 1
+#if not up-compare-goal gl-835 c:== 1
+  chat to all "There are 834 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-836 = 1
+#if not up-compare-goal gl-836 c:== 1
+  chat to all "There are 835 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-837 = 1
+#if not up-compare-goal gl-837 c:== 1
+  chat to all "There are 836 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-838 = 1
+#if not up-compare-goal gl-838 c:== 1
+  chat to all "There are 837 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-839 = 1
+#if not up-compare-goal gl-839 c:== 1
+  chat to all "There are 838 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-840 = 1
+#if not up-compare-goal gl-840 c:== 1
+  chat to all "There are 839 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-841 = 1
+#if not up-compare-goal gl-841 c:== 1
+  chat to all "There are 840 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-842 = 1
+#if not up-compare-goal gl-842 c:== 1
+  chat to all "There are 841 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-843 = 1
+#if not up-compare-goal gl-843 c:== 1
+  chat to all "There are 842 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-844 = 1
+#if not up-compare-goal gl-844 c:== 1
+  chat to all "There are 843 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-845 = 1
+#if not up-compare-goal gl-845 c:== 1
+  chat to all "There are 844 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-846 = 1
+#if not up-compare-goal gl-846 c:== 1
+  chat to all "There are 845 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-847 = 1
+#if not up-compare-goal gl-847 c:== 1
+  chat to all "There are 846 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-848 = 1
+#if not up-compare-goal gl-848 c:== 1
+  chat to all "There are 847 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-849 = 1
+#if not up-compare-goal gl-849 c:== 1
+  chat to all "There are 848 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-850 = 1
+#if not up-compare-goal gl-850 c:== 1
+  chat to all "There are 849 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-851 = 1
+#if not up-compare-goal gl-851 c:== 1
+  chat to all "There are 850 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-852 = 1
+#if not up-compare-goal gl-852 c:== 1
+  chat to all "There are 851 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-853 = 1
+#if not up-compare-goal gl-853 c:== 1
+  chat to all "There are 852 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-854 = 1
+#if not up-compare-goal gl-854 c:== 1
+  chat to all "There are 853 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-855 = 1
+#if not up-compare-goal gl-855 c:== 1
+  chat to all "There are 854 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-856 = 1
+#if not up-compare-goal gl-856 c:== 1
+  chat to all "There are 855 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-857 = 1
+#if not up-compare-goal gl-857 c:== 1
+  chat to all "There are 856 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-858 = 1
+#if not up-compare-goal gl-858 c:== 1
+  chat to all "There are 857 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-859 = 1
+#if not up-compare-goal gl-859 c:== 1
+  chat to all "There are 858 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-860 = 1
+#if not up-compare-goal gl-860 c:== 1
+  chat to all "There are 859 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-861 = 1
+#if not up-compare-goal gl-861 c:== 1
+  chat to all "There are 860 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-862 = 1
+#if not up-compare-goal gl-862 c:== 1
+  chat to all "There are 861 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-863 = 1
+#if not up-compare-goal gl-863 c:== 1
+  chat to all "There are 862 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-864 = 1
+#if not up-compare-goal gl-864 c:== 1
+  chat to all "There are 863 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-865 = 1
+#if not up-compare-goal gl-865 c:== 1
+  chat to all "There are 864 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-866 = 1
+#if not up-compare-goal gl-866 c:== 1
+  chat to all "There are 865 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-867 = 1
+#if not up-compare-goal gl-867 c:== 1
+  chat to all "There are 866 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-868 = 1
+#if not up-compare-goal gl-868 c:== 1
+  chat to all "There are 867 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-869 = 1
+#if not up-compare-goal gl-869 c:== 1
+  chat to all "There are 868 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-870 = 1
+#if not up-compare-goal gl-870 c:== 1
+  chat to all "There are 869 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-871 = 1
+#if not up-compare-goal gl-871 c:== 1
+  chat to all "There are 870 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-872 = 1
+#if not up-compare-goal gl-872 c:== 1
+  chat to all "There are 871 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-873 = 1
+#if not up-compare-goal gl-873 c:== 1
+  chat to all "There are 872 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-874 = 1
+#if not up-compare-goal gl-874 c:== 1
+  chat to all "There are 873 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-875 = 1
+#if not up-compare-goal gl-875 c:== 1
+  chat to all "There are 874 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-876 = 1
+#if not up-compare-goal gl-876 c:== 1
+  chat to all "There are 875 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-877 = 1
+#if not up-compare-goal gl-877 c:== 1
+  chat to all "There are 876 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-878 = 1
+#if not up-compare-goal gl-878 c:== 1
+  chat to all "There are 877 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-879 = 1
+#if not up-compare-goal gl-879 c:== 1
+  chat to all "There are 878 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-880 = 1
+#if not up-compare-goal gl-880 c:== 1
+  chat to all "There are 879 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-881 = 1
+#if not up-compare-goal gl-881 c:== 1
+  chat to all "There are 880 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-882 = 1
+#if not up-compare-goal gl-882 c:== 1
+  chat to all "There are 881 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-883 = 1
+#if not up-compare-goal gl-883 c:== 1
+  chat to all "There are 882 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-884 = 1
+#if not up-compare-goal gl-884 c:== 1
+  chat to all "There are 883 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-885 = 1
+#if not up-compare-goal gl-885 c:== 1
+  chat to all "There are 884 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-886 = 1
+#if not up-compare-goal gl-886 c:== 1
+  chat to all "There are 885 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-887 = 1
+#if not up-compare-goal gl-887 c:== 1
+  chat to all "There are 886 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-888 = 1
+#if not up-compare-goal gl-888 c:== 1
+  chat to all "There are 887 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-889 = 1
+#if not up-compare-goal gl-889 c:== 1
+  chat to all "There are 888 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-890 = 1
+#if not up-compare-goal gl-890 c:== 1
+  chat to all "There are 889 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-891 = 1
+#if not up-compare-goal gl-891 c:== 1
+  chat to all "There are 890 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-892 = 1
+#if not up-compare-goal gl-892 c:== 1
+  chat to all "There are 891 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-893 = 1
+#if not up-compare-goal gl-893 c:== 1
+  chat to all "There are 892 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-894 = 1
+#if not up-compare-goal gl-894 c:== 1
+  chat to all "There are 893 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-895 = 1
+#if not up-compare-goal gl-895 c:== 1
+  chat to all "There are 894 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-896 = 1
+#if not up-compare-goal gl-896 c:== 1
+  chat to all "There are 895 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-897 = 1
+#if not up-compare-goal gl-897 c:== 1
+  chat to all "There are 896 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-898 = 1
+#if not up-compare-goal gl-898 c:== 1
+  chat to all "There are 897 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-899 = 1
+#if not up-compare-goal gl-899 c:== 1
+  chat to all "There are 898 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-900 = 1
+#if not up-compare-goal gl-900 c:== 1
+  chat to all "There are 899 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-901 = 1
+#if not up-compare-goal gl-901 c:== 1
+  chat to all "There are 900 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-902 = 1
+#if not up-compare-goal gl-902 c:== 1
+  chat to all "There are 901 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-903 = 1
+#if not up-compare-goal gl-903 c:== 1
+  chat to all "There are 902 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-904 = 1
+#if not up-compare-goal gl-904 c:== 1
+  chat to all "There are 903 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-905 = 1
+#if not up-compare-goal gl-905 c:== 1
+  chat to all "There are 904 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-906 = 1
+#if not up-compare-goal gl-906 c:== 1
+  chat to all "There are 905 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-907 = 1
+#if not up-compare-goal gl-907 c:== 1
+  chat to all "There are 906 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-908 = 1
+#if not up-compare-goal gl-908 c:== 1
+  chat to all "There are 907 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-909 = 1
+#if not up-compare-goal gl-909 c:== 1
+  chat to all "There are 908 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-910 = 1
+#if not up-compare-goal gl-910 c:== 1
+  chat to all "There are 909 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-911 = 1
+#if not up-compare-goal gl-911 c:== 1
+  chat to all "There are 910 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-912 = 1
+#if not up-compare-goal gl-912 c:== 1
+  chat to all "There are 911 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-913 = 1
+#if not up-compare-goal gl-913 c:== 1
+  chat to all "There are 912 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-914 = 1
+#if not up-compare-goal gl-914 c:== 1
+  chat to all "There are 913 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-915 = 1
+#if not up-compare-goal gl-915 c:== 1
+  chat to all "There are 914 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-916 = 1
+#if not up-compare-goal gl-916 c:== 1
+  chat to all "There are 915 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-917 = 1
+#if not up-compare-goal gl-917 c:== 1
+  chat to all "There are 916 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-918 = 1
+#if not up-compare-goal gl-918 c:== 1
+  chat to all "There are 917 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-919 = 1
+#if not up-compare-goal gl-919 c:== 1
+  chat to all "There are 918 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-920 = 1
+#if not up-compare-goal gl-920 c:== 1
+  chat to all "There are 919 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-921 = 1
+#if not up-compare-goal gl-921 c:== 1
+  chat to all "There are 920 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-922 = 1
+#if not up-compare-goal gl-922 c:== 1
+  chat to all "There are 921 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-923 = 1
+#if not up-compare-goal gl-923 c:== 1
+  chat to all "There are 922 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-924 = 1
+#if not up-compare-goal gl-924 c:== 1
+  chat to all "There are 923 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-925 = 1
+#if not up-compare-goal gl-925 c:== 1
+  chat to all "There are 924 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-926 = 1
+#if not up-compare-goal gl-926 c:== 1
+  chat to all "There are 925 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-927 = 1
+#if not up-compare-goal gl-927 c:== 1
+  chat to all "There are 926 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-928 = 1
+#if not up-compare-goal gl-928 c:== 1
+  chat to all "There are 927 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-929 = 1
+#if not up-compare-goal gl-929 c:== 1
+  chat to all "There are 928 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-930 = 1
+#if not up-compare-goal gl-930 c:== 1
+  chat to all "There are 929 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-931 = 1
+#if not up-compare-goal gl-931 c:== 1
+  chat to all "There are 930 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-932 = 1
+#if not up-compare-goal gl-932 c:== 1
+  chat to all "There are 931 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-933 = 1
+#if not up-compare-goal gl-933 c:== 1
+  chat to all "There are 932 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-934 = 1
+#if not up-compare-goal gl-934 c:== 1
+  chat to all "There are 933 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-935 = 1
+#if not up-compare-goal gl-935 c:== 1
+  chat to all "There are 934 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-936 = 1
+#if not up-compare-goal gl-936 c:== 1
+  chat to all "There are 935 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-937 = 1
+#if not up-compare-goal gl-937 c:== 1
+  chat to all "There are 936 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-938 = 1
+#if not up-compare-goal gl-938 c:== 1
+  chat to all "There are 937 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-939 = 1
+#if not up-compare-goal gl-939 c:== 1
+  chat to all "There are 938 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-940 = 1
+#if not up-compare-goal gl-940 c:== 1
+  chat to all "There are 939 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-941 = 1
+#if not up-compare-goal gl-941 c:== 1
+  chat to all "There are 940 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-942 = 1
+#if not up-compare-goal gl-942 c:== 1
+  chat to all "There are 941 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-943 = 1
+#if not up-compare-goal gl-943 c:== 1
+  chat to all "There are 942 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-944 = 1
+#if not up-compare-goal gl-944 c:== 1
+  chat to all "There are 943 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-945 = 1
+#if not up-compare-goal gl-945 c:== 1
+  chat to all "There are 944 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-946 = 1
+#if not up-compare-goal gl-946 c:== 1
+  chat to all "There are 945 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-947 = 1
+#if not up-compare-goal gl-947 c:== 1
+  chat to all "There are 946 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-948 = 1
+#if not up-compare-goal gl-948 c:== 1
+  chat to all "There are 947 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-949 = 1
+#if not up-compare-goal gl-949 c:== 1
+  chat to all "There are 948 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-950 = 1
+#if not up-compare-goal gl-950 c:== 1
+  chat to all "There are 949 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-951 = 1
+#if not up-compare-goal gl-951 c:== 1
+  chat to all "There are 950 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-952 = 1
+#if not up-compare-goal gl-952 c:== 1
+  chat to all "There are 951 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-953 = 1
+#if not up-compare-goal gl-953 c:== 1
+  chat to all "There are 952 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-954 = 1
+#if not up-compare-goal gl-954 c:== 1
+  chat to all "There are 953 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-955 = 1
+#if not up-compare-goal gl-955 c:== 1
+  chat to all "There are 954 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-956 = 1
+#if not up-compare-goal gl-956 c:== 1
+  chat to all "There are 955 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-957 = 1
+#if not up-compare-goal gl-957 c:== 1
+  chat to all "There are 956 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-958 = 1
+#if not up-compare-goal gl-958 c:== 1
+  chat to all "There are 957 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-959 = 1
+#if not up-compare-goal gl-959 c:== 1
+  chat to all "There are 958 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-960 = 1
+#if not up-compare-goal gl-960 c:== 1
+  chat to all "There are 959 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-961 = 1
+#if not up-compare-goal gl-961 c:== 1
+  chat to all "There are 960 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-962 = 1
+#if not up-compare-goal gl-962 c:== 1
+  chat to all "There are 961 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-963 = 1
+#if not up-compare-goal gl-963 c:== 1
+  chat to all "There are 962 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-964 = 1
+#if not up-compare-goal gl-964 c:== 1
+  chat to all "There are 963 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-965 = 1
+#if not up-compare-goal gl-965 c:== 1
+  chat to all "There are 964 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-966 = 1
+#if not up-compare-goal gl-966 c:== 1
+  chat to all "There are 965 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-967 = 1
+#if not up-compare-goal gl-967 c:== 1
+  chat to all "There are 966 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-968 = 1
+#if not up-compare-goal gl-968 c:== 1
+  chat to all "There are 967 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-969 = 1
+#if not up-compare-goal gl-969 c:== 1
+  chat to all "There are 968 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-970 = 1
+#if not up-compare-goal gl-970 c:== 1
+  chat to all "There are 969 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-971 = 1
+#if not up-compare-goal gl-971 c:== 1
+  chat to all "There are 970 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-972 = 1
+#if not up-compare-goal gl-972 c:== 1
+  chat to all "There are 971 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-973 = 1
+#if not up-compare-goal gl-973 c:== 1
+  chat to all "There are 972 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-974 = 1
+#if not up-compare-goal gl-974 c:== 1
+  chat to all "There are 973 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-975 = 1
+#if not up-compare-goal gl-975 c:== 1
+  chat to all "There are 974 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-976 = 1
+#if not up-compare-goal gl-976 c:== 1
+  chat to all "There are 975 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-977 = 1
+#if not up-compare-goal gl-977 c:== 1
+  chat to all "There are 976 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-978 = 1
+#if not up-compare-goal gl-978 c:== 1
+  chat to all "There are 977 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-979 = 1
+#if not up-compare-goal gl-979 c:== 1
+  chat to all "There are 978 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-980 = 1
+#if not up-compare-goal gl-980 c:== 1
+  chat to all "There are 979 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-981 = 1
+#if not up-compare-goal gl-981 c:== 1
+  chat to all "There are 980 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-982 = 1
+#if not up-compare-goal gl-982 c:== 1
+  chat to all "There are 981 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-983 = 1
+#if not up-compare-goal gl-983 c:== 1
+  chat to all "There are 982 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-984 = 1
+#if not up-compare-goal gl-984 c:== 1
+  chat to all "There are 983 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-985 = 1
+#if not up-compare-goal gl-985 c:== 1
+  chat to all "There are 984 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-986 = 1
+#if not up-compare-goal gl-986 c:== 1
+  chat to all "There are 985 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-987 = 1
+#if not up-compare-goal gl-987 c:== 1
+  chat to all "There are 986 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-988 = 1
+#if not up-compare-goal gl-988 c:== 1
+  chat to all "There are 987 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-989 = 1
+#if not up-compare-goal gl-989 c:== 1
+  chat to all "There are 988 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-990 = 1
+#if not up-compare-goal gl-990 c:== 1
+  chat to all "There are 989 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-991 = 1
+#if not up-compare-goal gl-991 c:== 1
+  chat to all "There are 990 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-992 = 1
+#if not up-compare-goal gl-992 c:== 1
+  chat to all "There are 991 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-993 = 1
+#if not up-compare-goal gl-993 c:== 1
+  chat to all "There are 992 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-994 = 1
+#if not up-compare-goal gl-994 c:== 1
+  chat to all "There are 993 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-995 = 1
+#if not up-compare-goal gl-995 c:== 1
+  chat to all "There are 994 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-996 = 1
+#if not up-compare-goal gl-996 c:== 1
+  chat to all "There are 995 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-997 = 1
+#if not up-compare-goal gl-997 c:== 1
+  chat to all "There are 996 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-998 = 1
+#if not up-compare-goal gl-998 c:== 1
+  chat to all "There are 997 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-999 = 1
+#if not up-compare-goal gl-999 c:== 1
+  chat to all "There are 998 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1000 = 1
+#if not up-compare-goal gl-1000 c:== 1
+  chat to all "There are 999 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1001 = 1
+#if not up-compare-goal gl-1001 c:== 1
+  chat to all "There are 1000 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1002 = 1
+#if not up-compare-goal gl-1002 c:== 1
+  chat to all "There are 1001 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1003 = 1
+#if not up-compare-goal gl-1003 c:== 1
+  chat to all "There are 1002 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1004 = 1
+#if not up-compare-goal gl-1004 c:== 1
+  chat to all "There are 1003 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1005 = 1
+#if not up-compare-goal gl-1005 c:== 1
+  chat to all "There are 1004 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1006 = 1
+#if not up-compare-goal gl-1006 c:== 1
+  chat to all "There are 1005 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1007 = 1
+#if not up-compare-goal gl-1007 c:== 1
+  chat to all "There are 1006 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1008 = 1
+#if not up-compare-goal gl-1008 c:== 1
+  chat to all "There are 1007 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1009 = 1
+#if not up-compare-goal gl-1009 c:== 1
+  chat to all "There are 1008 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1010 = 1
+#if not up-compare-goal gl-1010 c:== 1
+  chat to all "There are 1009 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1011 = 1
+#if not up-compare-goal gl-1011 c:== 1
+  chat to all "There are 1010 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1012 = 1
+#if not up-compare-goal gl-1012 c:== 1
+  chat to all "There are 1011 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1013 = 1
+#if not up-compare-goal gl-1013 c:== 1
+  chat to all "There are 1012 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1014 = 1
+#if not up-compare-goal gl-1014 c:== 1
+  chat to all "There are 1013 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1015 = 1
+#if not up-compare-goal gl-1015 c:== 1
+  chat to all "There are 1014 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1016 = 1
+#if not up-compare-goal gl-1016 c:== 1
+  chat to all "There are 1015 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1017 = 1
+#if not up-compare-goal gl-1017 c:== 1
+  chat to all "There are 1016 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1018 = 1
+#if not up-compare-goal gl-1018 c:== 1
+  chat to all "There are 1017 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1019 = 1
+#if not up-compare-goal gl-1019 c:== 1
+  chat to all "There are 1018 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1020 = 1
+#if not up-compare-goal gl-1020 c:== 1
+  chat to all "There are 1019 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1021 = 1
+#if not up-compare-goal gl-1021 c:== 1
+  chat to all "There are 1020 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1022 = 1
+#if not up-compare-goal gl-1022 c:== 1
+  chat to all "There are 1021 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1023 = 1
+#if not up-compare-goal gl-1023 c:== 1
+  chat to all "There are 1022 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1024 = 1
+#if not up-compare-goal gl-1024 c:== 1
+  chat to all "There are 1023 goals."
+  @up-jump-rule 10000
+#end if
+goal gl-1025 = 1
+#if not up-compare-goal gl-1025 c:== 1
+  chat to all "There are 1024 goals."
+  @up-jump-rule 10000
+#end if

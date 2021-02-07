@@ -1,6 +1,0 @@
-target closest enemy
-#do once
-  goal loom-status = 0
-#end do
-@up-get-target-fact military-population 0 loom-status
-@up-chat-data-to-all "loom status: %d" g: loom-status
