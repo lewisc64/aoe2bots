@@ -1,0 +1,137 @@
+#do once
+  set up basics
+  sn-livestock-to-town-center = 0
+  take boar
+  
+  goal do-douche = 0
+  goal douche-done = 0
+#end do
+
+build 2 mill
+build mills
+build lumber camps
+build 1 university
+build 1 blacksmith
+build 2 archery-range
+build 3 town-center
+build 3 castle
+build 1 siege-workshop
+
+#if goal douche-done 1 and building-type-count town-center >= 1 and (current-age == dark-age and wood-amount >= 100 or current-age >= feudal-age and wood-amount >= 200)
+  build farms
+#end if
+
+research feudal-age
+research castle-age
+research imperial-age
+
+research ri-loom
+research ri-masonry
+research ri-architecture
+research blacksmith ranged upgrades
+research ri-elite-skirmisher
+research ri-imperial-skirmisher
+research ri-crossbow
+research ri-arbalest
+research ri-thumb-ring
+research ri-capped-ram
+research ri-siege-ram
+
+#if current-age == dark-age
+  
+  #do once
+    distribute villagers 25 75 0 0
+  #end do
+  
+  build houses with 5 headroom
+
+#else
+  
+  #do once
+    distribute villagers 30 50 12 8
+  #end do
+  
+  build gold mining camps
+  build stone mining camps
+  build 1 barracks
+  build houses with 15 headroom
+  
+  #if wood-amount >= 200
+    #respond to knight-line
+      research ri-pikeman
+      research ri-scale-mail
+      research ri-chain-mail
+      train spearman-line
+    #end respond
+    
+    #respond to 2 scout-cavalry-line
+      research ri-pikeman
+      research ri-scale-mail
+      research ri-chain-mail
+      train spearman-line
+    #end respond
+    
+    #respond to camel-line
+      research ri-pikeman
+      research ri-scale-mail
+      research ri-chain-mail
+      train spearman-line
+    #end respond
+    
+    #respond to mangonel-line
+      research ri-pikeman
+      research ri-scale-mail
+      research ri-chain-mail
+      train spearman-line
+    #end respond
+    
+    train 5 battering-ram-line
+    
+    #if gold-amount >= 75
+      train skirmisher-line => train archer-line
+    #else
+      train skirmisher-line
+    #end if
+    train 2 trebuchet
+  #end if
+
+#end if
+
+train 120 villager
+
+// douching
+#if current-age == dark-age
+  #if civilian-population >= 16
+    distribute villagers 100 0 0 0
+    #do once
+      escrow 100 wood
+    #end do
+    #if wood-amount >= 275
+      sn-maximum-town-size = 255
+      sn-minimum-town-size = 255
+      sn-safe-town-size = 255
+      sn-camp-max-distance = 255
+      #if enemy-buildings-in-town
+        goal do-douche = 1
+      #end if
+      #if goal do-douche 1
+        #do once
+          assign 20 builders to town-center-foundation
+          delete building town-center
+          #add action set-goal douche-done 1
+            build forward town-center with wood and stone escrow
+          #remove action
+        #end do
+      #end if
+    #end if
+  #else if civilian-population >= 13
+    #do once
+      scout opposite
+    #end do
+  #end if
+  #if goal douche-done 1
+    escrow 0 wood
+    distribute villagers 25 75 0 0
+    take boar and deer
+  #end if
+#end if
