@@ -3,7 +3,11 @@ load "research/siege_workshop/prerequisites.aoe2ai"
 
 #if unit-available battering-ram-line
   #if current-age == imperial-age
-    load "research/siege_workshop/siege_ram.aoe2ai"
+    #if civilian-population >= expensive-tech-villagers
+      load "research/siege_workshop/siege_ram.aoe2ai"
+    #else
+      load "research/siege_workshop/capped_ram.aoe2ai"
+    #end if
   #end if
   
   load "units/types/siege.aoe2ai"

@@ -55,11 +55,17 @@
 #end if
 
 build houses with 5 headroom
-build lumber camps
+#when
+  build lumber camps
+#then
+  sn-camp-max-distance += 1
+#end when
 
 #if up-compare-goal town-center-count g:< desired-town-centers
   build 1 market
-  buy stone when stone < 100
+  #if strategic-number sn-stone-gatherer-percentage == 0
+    buy stone when stone < 100
+  #end if
   build town-center
 #end if
 
@@ -78,7 +84,7 @@ build lumber camps
     build stone mining camps
   #end if
 #then
-  sn-camp-max-distance += 8
+  sn-camp-max-distance += 4
 #end when
 
 #if current-age == dark-age
@@ -105,16 +111,7 @@ build lumber camps
 #if up-research-status c: feudal-age >= research-pending
 
   #do once
-    goal total-farms = 0
-    goal expected-food-gatherers = 0
-    
-    #select random persistant
-      distribute villagers 37 37 18 8
-    #randor
-      distribute villagers 38 38 19 5
-    #randor
-      distribute villagers 40 40 20 0
-    #end select
+    distribute villagers 37 37 18 8
   #end do
   
   build houses with 20 headroom

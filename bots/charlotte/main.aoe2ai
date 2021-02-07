@@ -3,15 +3,18 @@ const feudal-age-town-size = 14
 const castle-age-town-size = 24
 const imperial-age-town-size = 30
 const max-rams = 10
-const max-trebs = 5
+const max-trebs = 3
 
-const wood-unit-threshold = 300
-const food-unit-threshold = 100
+const extortionate-tech-villagers = 100
+const expensive-tech-villagers = 70
+
+const wood-unit-threshold = 0 // 300
+const food-unit-threshold = 0 // 100
 const gold-unit-threshold = 0
 
 #do once
   set up basics
-  take boar and deer
+  take boar
   target walls
   
   goal resign = 0

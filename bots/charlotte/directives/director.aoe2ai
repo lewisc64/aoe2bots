@@ -3,15 +3,7 @@
   goal attacking = 0
 #end do
 
-#if false // disabled
-  #select random persistant
-    load "directives/age/feudal_rush.aoe2ai"
-  #randor
-    load "directives/age/fast_castle.aoe2ai"
-  #end select
-#end if
 load "directives/age/feudal_rush.aoe2ai"
-
 load "directives/do_misc_research.aoe2ai"
 
 load "units/all_switched.aoe2ai"
@@ -29,26 +21,28 @@ load "units/all_switched.aoe2ai"
   
   load "directives/civ_decisions.aoe2ai"
   
-  #select random persistant
-    load "directives/attack_decision/passive.aoe2ai"
-  #randor
-    load "directives/attack_decision/cautious.aoe2ai"
-  #randor
-    load "directives/attack_decision/aggressive.aoe2ai"
-  #randor
-    load "directives/attack_decision/reckless.aoe2ai"
-  #end select
+  #if military-population >= 8
+    #select random persistant
+      load "directives/attack_decision/passive.aoe2ai"
+    #randor
+      load "directives/attack_decision/cautious.aoe2ai"
+    #randor
+      load "directives/attack_decision/aggressive.aoe2ai"
+    #randor
+      load "directives/attack_decision/reckless.aoe2ai"
+    #end select
+  #end if
   
   #select random persistant
     #select random persistant
-      load "directives/research/thoughtful.aoe2ai"
+      load "directives/pacing/thoughtful.aoe2ai"
     #randor
-      load "directives/research/numbers.aoe2ai"
+      load "directives/pacing/numbers.aoe2ai"
     #end select
   #randor
-    load "directives/research/balanced.aoe2ai"
+    load "directives/pacing/balanced.aoe2ai"
   #randor
-    load "directives/research/reckless.aoe2ai"
+    load "directives/pacing/reckless.aoe2ai"
   #end select
   
   load "directives/emergency_trash.aoe2ai"

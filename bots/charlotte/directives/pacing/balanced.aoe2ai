@@ -1,5 +1,5 @@
 #do once
-  chat to self "researching in a balanced fashion"
+  chat to self "being reckless, and then thoughtful"
   goal balanced-aggressive = 1
 #end do
 
@@ -9,7 +9,7 @@
 #end repeat
 
 #if goal balanced-aggressive 1
-  load "directives/research/reckless.aoe2ai"
+  load "directives/pacing/reckless.aoe2ai"
 #else
-  load "directives/research/thoughtful.aoe2ai"
+  load "directives/pacing/thoughtful.aoe2ai"
 #end if

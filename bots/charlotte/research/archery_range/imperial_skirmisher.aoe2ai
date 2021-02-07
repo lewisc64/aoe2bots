@@ -4,7 +4,6 @@
   //load "research/town_center/imperial_age.aoe2ai"
 
   #if research-available ri-imperial-skirmisher
-    chat to all "I can do imperial skirmisher"
     #if up-research-status c: ri-imperial-skirmisher < research-pending
       goal attempted-researches += 1
     #end if
