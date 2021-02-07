@@ -73,7 +73,9 @@ build houses with 5 headroom
 #select random
   build castle
 #randor
-  build forward castle
+  #if goal attacking 1
+    build forward castle
+  #end if
 #end select
 
 #when
