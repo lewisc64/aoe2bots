@@ -1,3 +1,5 @@
+// counts as goals
+
 #do once
   goal total-villagers = 0
 #end do
@@ -62,3 +64,13 @@ goal target-player-score-delta = 0
 @up-modify-goal largest-enemy-military-percentage g:= target-military-percentage
 @up-modify-goal target-military-percentage g:/ target-military-population
 @up-modify-goal largest-enemy-military-percentage g:/ largest-enemy-military-population
+
+// threat data
+
+#do once
+  goal threat-time = 0
+  goal threat-player = 0
+  goal threat-source = 0
+  goal threat-target = 0
+#end do
+@up-get-threat-data threat-time threat-player threat-source threat-target

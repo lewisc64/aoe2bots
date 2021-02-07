@@ -234,16 +234,13 @@ load "units/prerequisites.aoe2ai"
 
 #if goal produce-battering-rams 1 and unit-available battering-ram-line
   goal trained-unit = 0
-  #if not goal next-unit battering-ram-line or unit-type-count-total battering-ram-line >= max-rams
+  #if not goal next-unit battering-ram-line
     @up-modify-goal old-produce-units g:= produce-units
     goal produce-units = 0
   #end if
   load "units/battering_ram.aoe2ai"
-  #if not goal next-unit battering-ram-line or unit-type-count-total battering-ram-line >= max-rams
+  #if not goal next-unit battering-ram-line
     @up-modify-goal produce-units g:= old-produce-units
-    #if goal next-unit battering-ram-line
-      goal trained-unit = 1
-    #end if
   #end if
   #if goal trained-unit 1
     goal next-unit = mangonel-line
@@ -307,16 +304,13 @@ load "units/prerequisites.aoe2ai"
 
 #if goal produce-trebuchets 1 and unit-available trebuchet
   goal trained-unit = 0
-  #if not goal next-unit trebuchet or unit-type-count-total trebuchet-set >= max-trebs
+  #if not goal next-unit trebuchet
     @up-modify-goal old-produce-units g:= produce-units
     goal produce-units = 0
   #end if
   load "units/trebuchet.aoe2ai"
-  #if not goal next-unit trebuchet or unit-type-count-total trebuchet-set >= max-trebs
+  #if not goal next-unit trebuchet
     @up-modify-goal produce-units g:= old-produce-units
-    #if goal next-unit trebuchet
-      goal trained-unit = 1
-    #end if
   #end if
   #if goal trained-unit 1
     goal next-unit = my-unique-unit

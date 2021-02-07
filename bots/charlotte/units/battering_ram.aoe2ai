@@ -13,10 +13,14 @@ load "research/siege_workshop/prerequisites.aoe2ai"
   load "units/types/siege.aoe2ai"
   
   #if goal produce-units 1 and goal enough-wood 1 and goal enough-gold 1
-    #when
-      train battering-ram-line
-    #then
+    #if unit-type-count-total battering-ram-line < max-rams
+      #when
+        train battering-ram-line
+      #then
+        goal trained-unit = 1
+      #end when
+    #else
       goal trained-unit = 1
-    #end when
+    #end if
   #end if
 #end if

@@ -1,4 +1,4 @@
-#if civilian-population >= 27 or death-match-game or population-cap < 100
+#if civilian-population >= 25 or death-match-game or population-cap < 100
   load "research/town_center/feudal_age.aoe2ai"
 #end if
 

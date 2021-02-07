@@ -245,15 +245,19 @@
     goal good-battering-rams = 1
     goal good-scorpions = 1
   #end if
+  
+  #select random persistant
+    goal desired-units = 1
+  #randor
+    goal desired-units = 1
+  #randor
+    goal desired-units = 2
+  #randor
+    goal desired-units = 2
+  #randor
+    goal desired-units = 3
+  #end select
 #end do
-
-#select random persistant
-  goal desired-units = 1
-#randor
-  goal desired-units = 2
-#randor
-  goal desired-units = 3
-#end select
 
 goal total-units-selected = 0
 @up-modify-goal total-units-selected g:+ produce-archers

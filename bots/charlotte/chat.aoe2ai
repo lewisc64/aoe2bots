@@ -142,7 +142,7 @@
           #randor
             chat to all "I am prepared."
           #randor
-            chat to all "I just don't have enough military right now."
+            chat to all "Are you ready?"
           #end select
         #end if
       #end if
@@ -156,6 +156,8 @@
       chat to all "It was a good game, I think I'm out though."
     #randor
       chat to all "Good game, well played."
+    #randor
+      chat to all "I'm done."
     #end select
   #end if
 #end do
