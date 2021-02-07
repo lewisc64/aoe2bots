@@ -108,8 +108,6 @@ load "stats.aoe2ai"
 
 goal attempted-researches = 0
 
-load "economy/all_ages.aoe2ai"
-
 #if current-age >= feudal-age
   load "economy/adaptive_balance.aoe2ai"
 #end if
@@ -117,5 +115,7 @@ load "economy/all_ages.aoe2ai"
 #if game-time >= 8
   load "directives/director.aoe2ai"
 #end if
+
+load "economy/all_ages.aoe2ai"
 
 load "chat.aoe2ai"

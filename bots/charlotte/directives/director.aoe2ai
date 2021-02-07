@@ -33,7 +33,7 @@ load "units/all_switched.aoe2ai"
       load "directives/attack_decision/reckless.aoe2ai"
     #end select
   #end if
-  
+
   #select random persistant
     #select random persistant
       load "directives/pacing/thoughtful.aoe2ai"

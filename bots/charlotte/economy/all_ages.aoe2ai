@@ -62,9 +62,11 @@ build houses with 5 headroom
 #end when
 
 #if up-compare-goal town-center-count g:< desired-town-centers
-  build 1 market
-  #if strategic-number sn-stone-gatherer-percentage == 0
-    buy stone when stone < 100
+  #if current-age >= castle-age
+    build 1 market
+    #if strategic-number sn-stone-gatherer-percentage == 0
+      buy stone when stone < 100
+    #end if
   #end if
   build town-center
 #end if
@@ -112,9 +114,25 @@ build houses with 5 headroom
 
 #if up-research-status c: feudal-age >= research-pending
 
-  #do once
-    distribute villagers 37 37 18 8
-  #end do
+  #if goal produce-unique-units 1
+    #do once
+      distribute villagers 37 37 18 8
+    #end do
+  #else
+    #select random persistant
+      #do once
+        distribute villagers 37 37 18 8
+      #end do
+    #randor
+      #do once
+        distribute villagers 38 38 20 4
+      #end do
+    #randor
+      #do once
+        distribute villagers 40 40 20 0
+      #end do
+    #end select
+  #end if
   
   build houses with 20 headroom
   

@@ -3,7 +3,6 @@
   load "research/university/chemistry.aoe2ai"
 #end if
 
-build 1 blacksmith
 #do once
   goal siege-workshop-count = 0
 #end do

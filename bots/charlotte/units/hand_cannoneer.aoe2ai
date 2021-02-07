@@ -3,7 +3,13 @@ load "research/siege_workshop/prerequisites.aoe2ai"
 
 #if unit-available hand-cannoneer
   
-  load "research/archery_range/prerequisites.aoe2ai"
+  #do once
+    goal archery-range-count = 0
+  #end do
+  @up-get-fact building-type-count-total archery-range archery-range-count
+  #if up-compare-goal archery-range-count g:< desired-military-buildings-per-type
+    build archery-range
+  #end if
   
   load "research/blacksmith/ring_archer_armor.aoe2ai"
 

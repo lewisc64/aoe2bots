@@ -9,6 +9,11 @@
 
 #respond to 5 archer
   goal produce-monks = 0
+  goal produce-spearmen = 0
+#end respond
+
+#respond to 5 cavalry-archer-line
+  goal produce-spearmen = 0
 #end respond
 
 #respond to 5 mangonel-line
@@ -23,14 +28,6 @@
     goal produce-scouts = 0
     goal produce-battle-elephants = 0
     goal produce-camels = 0
-  #end respond
-  
-  #respond to 5 archer-line
-    goal produce-spearmen = 0
-  #end respond
-  
-  #respond to 5 cavalry-archer-line
-    goal produce-spearmen = 0
   #end respond
   
 #end if
