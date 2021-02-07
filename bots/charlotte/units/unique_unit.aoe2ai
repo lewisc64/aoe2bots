@@ -27,7 +27,7 @@
   #end nomerge
 #end if
 
-#if unit-available my-unique-unit and up-compare-goal castle-count g:< desired-military-buildings-per-type
+#if unit-available my-unique-unit
 
   #if current-age == imperial-age and (not civ-selected byzantine or civilian-population >= extortionate-tech-villagers) and civilian-population >= expensive-tech-villagers
     load "research/castle/my_unique_unit_upgrade.aoe2ai"
@@ -74,10 +74,14 @@
   #end if
   
   #if goal produce-units 1 and goal enough-wood 1 and goal enough-food 1 and goal enough-gold 1
-    #when
-      train my-unique-unit
-    #then
+    #if building-type-count castle >= 2 or goal desired-units 1
+      #when
+        train my-unique-unit
+      #then
+        goal trained-unit = 1
+      #end when
+    #else
       goal trained-unit = 1
-    #end when
+    #end if
   #end if
 #end if

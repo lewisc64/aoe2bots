@@ -51,6 +51,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = hand-cannoneer
+    //chat to all "Queued archer-line"
   #end if
 #else if goal next-unit archer-line
   goal next-unit = hand-cannoneer
@@ -68,6 +69,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = skirmisher-line
+    //chat to all "Queued hand-cannoneer"
   #end if
 #else if goal next-unit hand-cannoneer
   goal next-unit = skirmisher-line
@@ -85,6 +87,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = cavalry-archer-line
+    //chat to all "Queued skirmisher-line"
   #end if
 #else if goal next-unit skirmisher-line
   goal next-unit = cavalry-archer-line
@@ -102,6 +105,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = militiaman-line
+    //chat to all "Queued cavalry-archer-line"
   #end if
 #else if goal next-unit cavalry-archer-line
   goal next-unit = militiaman-line
@@ -121,6 +125,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = spearman-line
+    //chat to all "Queued militiaman-line"
   #end if
 #else if goal next-unit militiaman-line
   goal next-unit = spearman-line
@@ -138,6 +143,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = eagle-warrior-line
+    //chat to all "Queued spearman-line"
   #end if
 #else if goal next-unit spearman-line
   goal next-unit = eagle-warrior-line
@@ -155,6 +161,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = scout-cavalry-line
+    //chat to all "Queued eagle-warrior-line"
   #end if
 #else if goal next-unit eagle-warrior-line
   goal next-unit = scout-cavalry-line
@@ -174,6 +181,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = knight-line
+    //chat to all "Queued scout-cavalry-line"
   #end if
 #else if goal next-unit scout-cavalry-line
   goal next-unit = knight-line
@@ -191,6 +199,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = camel-line
+    //chat to all "Queued knight-line"
   #end if
 #else if goal next-unit knight-line
   goal next-unit = camel-line
@@ -208,6 +217,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = battle-elephant-line
+    //chat to all "Queued camel-line"
   #end if
 #else if goal next-unit camel-line
   goal next-unit = battle-elephant-line
@@ -225,6 +235,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = battering-ram-line
+    //chat to all "Queued battle-elephant-line"
   #end if
 #else if goal next-unit battle-elephant-line
   goal next-unit = battering-ram-line
@@ -244,6 +255,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = mangonel-line
+    //chat to all "Queued battering-ram-line"
   #end if
 #else if goal next-unit battering-ram-line
   goal next-unit = mangonel-line
@@ -261,6 +273,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = scorpion-line
+    //chat to all "Queued mangonel-line"
   #end if
 #else if goal next-unit mangonel-line
   goal next-unit = scorpion-line
@@ -278,6 +291,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = bombard-cannon
+    //chat to all "Queued scorpion-line"
   #end if
 #else if goal next-unit scorpion-line
   goal next-unit = bombard-cannon
@@ -295,6 +309,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = trebuchet
+    //chat to all "Queued bombard-cannon"
   #end if
 #else if goal next-unit bombard-cannon
   goal next-unit = trebuchet
@@ -314,6 +329,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = my-unique-unit
+    //chat to all "Queued trebuchet"
   #end if
 #else if goal next-unit trebuchet
   goal next-unit = my-unique-unit
@@ -331,6 +347,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = monk
+    //chat to all "Queued my-unique-unit"
   #end if
 #else if goal next-unit my-unique-unit
   goal next-unit = monk
@@ -350,6 +367,7 @@ load "units/prerequisites.aoe2ai"
   #end if
   #if goal trained-unit 1
     goal next-unit = archer-line
+    //chat to all "Queued monk"
   #end if
 #else if goal next-unit monk
   goal next-unit = archer-line

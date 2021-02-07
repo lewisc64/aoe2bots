@@ -2,14 +2,10 @@ const wood-threshold = 300
 const food-threshold = 300
 const gold-threshold = 300
 
-#do once
-  goal escrowed-wood = 0
-  goal escrowed-food = 0
-  goal escrowed-gold = 0
-  goal non-escrowed-wood = 0
-  goal non-escrowed-food = 0
-  goal non-escrowed-gold = 0
-#end do
+const good-wood-price = 50
+const good-food-price = 50
+const good-wood-sell-price = 200
+const good-food-sell-price = 200
 
 #if wood-amount > 200
   build 1 market
@@ -23,18 +19,82 @@ const gold-threshold = 300
   buy wood when wood < 1500
 #end if
 
+#if commodity-buying-price wood <= good-wood-price
+  goal can-buy-wood = 1
+#else
+  goal can-buy-wood = 0
+#end if
+
+#if commodity-buying-price food <= good-food-price
+  goal can-buy-food = 1
+#else
+  goal can-buy-food = 0
+#end if
+
+#if commodity-selling-price wood >= good-wood-sell-price
+  goal can-sell-wood = 1
+#else
+  goal can-sell-wood = 0
+#end if
+
+#if commodity-selling-price food >= good-food-sell-price
+  goal can-sell-food = 1
+#else
+  goal can-sell-food = 0
+#end if
+
+#if up-compare-goal non-escrowed-gold c:> gold-threshold
+  #if up-compare-goal non-escrowed-wood c:< wood-threshold and goal can-buy-wood 1
+    chat to self "buy wood, good price."
+    buy wood
+  #end if
+  #if up-compare-goal non-escrowed-food c:< food-threshold and goal can-buy-food 1
+    chat to self "buy food, good price."
+    buy food
+  #end if
+#else
+  #if up-compare-goal non-escrowed-wood c:> wood-threshold and goal can-sell-wood 1
+    chat to self "sell wood, good price."
+    sell wood
+  #end if
+  #if up-compare-goal non-escrowed-food c:> food-threshold and goal can-sell-food 1
+    chat to self "sell food, good price."
+    sell food
+  #end if
+#end if
+
+#if up-compare-goal non-escrowed-wood c:> wood-threshold
+  #if up-compare-goal non-escrowed-food c:> food-threshold
+    #if up-compare-goal non-escrowed-gold c:> gold-threshold
+      // do nothing, all above thresholds.
+    #else
+      distribute 4 villagers from wood and food to gold
+    #end if
+  #else
+    #if up-compare-goal non-escrowed-gold c:> gold-threshold
+      distribute 4 villagers from wood and gold to food
+    #else
+      distribute 4 villagers from wood to food and gold
+    #end if
+  #end if
+#else
+  #if up-compare-goal non-escrowed-food c:> food-threshold
+    #if up-compare-goal non-escrowed-gold c:> gold-threshold
+      distribute 4 villagers from food and gold to wood
+    #else
+      distribute 4 villagers from food to wood and gold
+    #end if
+  #else
+    #if up-compare-goal non-escrowed-gold c:> gold-threshold
+      distribute 4 villagers from gold to wood and food
+    #else
+      // do nothing, all below thresholds.
+    #end if
+  #end if
+#end if
+
 #repeat every 60 seconds
-  @up-get-fact escrow-amount wood escrowed-wood
-  @up-get-fact escrow-amount food escrowed-food
-  @up-get-fact escrow-amount gold escrowed-gold
 
-  @up-get-fact resource-amount wood non-escrowed-wood
-  @up-get-fact resource-amount food non-escrowed-food
-  @up-get-fact resource-amount gold non-escrowed-gold
-
-  @up-modify-goal non-escrowed-wood g:- escrowed-wood
-  @up-modify-goal non-escrowed-food g:- escrowed-food
-  @up-modify-goal non-escrowed-gold g:- escrowed-gold
 
   #if up-compare-goal non-escrowed-wood c:> wood-threshold
     #if up-compare-goal non-escrowed-food c:> food-threshold
