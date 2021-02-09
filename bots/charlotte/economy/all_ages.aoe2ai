@@ -23,6 +23,16 @@
   #end if
 #end do
 
+// stop clogging everything!
+#if strategic-number sn-task-ungrouped-soldiers == 1
+  sn-task-ungrouped-soldiers = 0
+#end if
+#repeat every 30 seconds
+  #if goal attacking 0
+    sn-task-ungrouped-soldiers = 1
+  #end if
+#end repeat
+
 // do we trade?
 #if goal team-game 1 and current-age >= castle-age
   build 1 market
@@ -96,6 +106,8 @@ build houses with 5 headroom
   #do once
     distribute villagers 25 75 0 0
   #end do
+  
+  lure boars
 
   build mills
   build safety mill

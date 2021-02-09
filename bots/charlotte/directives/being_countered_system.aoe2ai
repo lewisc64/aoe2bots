@@ -30,4 +30,10 @@
     goal produce-camels = 0
   #end respond
   
+  #respond to 5 hand-cannoneer
+    goal produce-militia = 0
+    goal produce-spearmen = 0
+    goal produce-eagles = 0
+  #end respond
+  
 #end if

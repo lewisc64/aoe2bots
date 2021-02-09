@@ -3,6 +3,8 @@
   load "research/university/chemistry.aoe2ai"
 #end if
 
+load "research/siege_workshop/prerequisites.aoe2ai"
+
 #do once
   goal siege-workshop-count = 0
 #end do

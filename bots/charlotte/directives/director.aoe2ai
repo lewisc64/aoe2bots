@@ -5,7 +5,6 @@
 
 load "directives/age/feudal_rush.aoe2ai"
 load "directives/do_misc_research.aoe2ai"
-load "directives/sneaky_tactics.aoe2ai"
 
 load "units/all_switched.aoe2ai"
 
@@ -32,6 +31,8 @@ load "units/all_switched.aoe2ai"
     #randor
       load "directives/attack_decision/reckless.aoe2ai"
     #end select
+  #else
+    goal attacking = 0
   #end if
 
   #select random persistant

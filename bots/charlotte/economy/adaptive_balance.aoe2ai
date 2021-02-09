@@ -1,3 +1,11 @@
+const max-wood = 1500
+const max-food = 1500
+const max-gold = 1500
+
+const minimum-wood-gatherer-percentage = 30
+const minimum-food-gatherer-percentage = 30
+const minimum-gold-gatherer-percentage = 30
+
 const wood-threshold = 300
 const food-threshold = 300
 const gold-threshold = 300
@@ -11,12 +19,12 @@ const good-food-sell-price = 200
   build 1 market
 #end if
 
-#if gold-amount < 1500
-  sell wood when wood > 1500
-  sell food when food > 1500
+#if gold-amount > max-gold
+  buy food when food < max-food
+  buy wood when wood < max-wood
 #else
-  buy food when food < 1500
-  buy wood when wood < 1500
+  sell wood when wood > max-wood
+  sell food when food > max-food
 #end if
 
 #if commodity-buying-price wood <= good-wood-price
@@ -63,36 +71,6 @@ const good-food-sell-price = 200
   #end if
 #end if
 
-#if up-compare-goal non-escrowed-wood c:> wood-threshold
-  #if up-compare-goal non-escrowed-food c:> food-threshold
-    #if up-compare-goal non-escrowed-gold c:> gold-threshold
-      // do nothing, all above thresholds.
-    #else
-      distribute 4 villagers from wood and food to gold
-    #end if
-  #else
-    #if up-compare-goal non-escrowed-gold c:> gold-threshold
-      distribute 4 villagers from wood and gold to food
-    #else
-      distribute 4 villagers from wood to food and gold
-    #end if
-  #end if
-#else
-  #if up-compare-goal non-escrowed-food c:> food-threshold
-    #if up-compare-goal non-escrowed-gold c:> gold-threshold
-      distribute 4 villagers from food and gold to wood
-    #else
-      distribute 4 villagers from food to wood and gold
-    #end if
-  #else
-    #if up-compare-goal non-escrowed-gold c:> gold-threshold
-      distribute 4 villagers from gold to wood and food
-    #else
-      // do nothing, all below thresholds.
-    #end if
-  #end if
-#end if
-
 #repeat every 60 seconds
 
 
@@ -127,7 +105,7 @@ const good-food-sell-price = 200
   #end if
 #end repeat
 
-#if strategic-number sn-wood-gatherer-percentage < 30
+#if strategic-number sn-wood-gatherer-percentage < minimum-wood-gatherer-percentage
   distribute 2 villagers from food and gold to wood
 #end if
 

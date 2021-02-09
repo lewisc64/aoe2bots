@@ -1,7 +1,11 @@
-#if goal resign 1
+#if goal resign 1 and building-type-count-total castle == 0 or goal team-game 1
   resign
 #end if
 
 #if up-compare-goal largest-enemy-military-percentage c:<= 50 and up-compare-goal score-percentage c:<= 50 and game-time >= 1200
   goal resign = 1
+#end if
+
+#if goal resign 1 and goal team-game 0
+  delete building castle
 #end if
