@@ -1,4 +1,4 @@
-#if goal resign 1 and building-type-count castle == 0 or goal team-game 1
+#if goal resign 1 and (building-type-count castle == 0 or goal team-game 1)
   resign
 #end if
 
