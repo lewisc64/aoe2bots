@@ -1,3 +1,10 @@
+const ri-yeomen = 3
+const ri-el-dorado = 4
+const ri-garland-wars = 24
+const ri-beserkergang = 49
+const ri-perfusion = 457
+const ri-logistica = 61
+
 const tc-arrow = 54
 const watch-tower-arrow = 786
 const castle-arrow = 746
@@ -110,12 +117,12 @@ goal attempted-researches = 0
 
 load "economy/all_ages.aoe2ai"
 
-#if current-age >= feudal-age
-  load "economy/adaptive_balance.aoe2ai"
-#end if
-
 #if game-time >= 8
   load "directives/director.aoe2ai"
+#end if
+
+#if current-age >= feudal-age
+  load "economy/adaptive_balance.aoe2ai"
 #end if
 
 load "chat.aoe2ai"

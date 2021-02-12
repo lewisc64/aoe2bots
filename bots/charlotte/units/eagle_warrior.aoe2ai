@@ -6,6 +6,10 @@ load "research/barracks/prerequisites.aoe2ai"
     load "research/barracks/eagle_warrior.aoe2ai"
   #else if current-age == imperial-age
     load "research/barracks/elite_eagle_warrior.aoe2ai"
+    #if civilian-population >= expensive-tech-villagers
+      load "research/castle/couriers.aoe2ai"
+      load "research/castle/el_dorado.aoe2ai"
+    #end if
   #end if
   
   load "units/types/infantry.aoe2ai"

@@ -2,7 +2,7 @@
   chat to self "attacking recklessly"
 #end do
 
-#if (up-compare-goal target-military-percentage c:>= 80 or population-headroom <= 5) and goal attacking 0
+#if (up-compare-goal target-military-percentage c:>= 80 or up-compare-goal population-space-remaining c:<= 5) and goal attacking 0
   goal attacking = 1
 #else if up-compare-goal target-military-percentage c:<= 40 and goal attacking 1
   goal attacking = 0

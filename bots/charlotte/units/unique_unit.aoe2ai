@@ -52,6 +52,15 @@
     load "units/types/cavalry.aoe2ai"
   #end if
   
+  #if civ-selected briton and current-age >= castle-age and civilian-population >= expensive-tech-villagers
+    load "research/castle/yeomen.aoe2ai"
+  #end if
+  
+  #if (civ-selected viking or civ-selected byzantine) and current-age >= imperial-age and civilian-population >= expensive-tech-villagers
+    load "research/castle/beserkergang.aoe2ai"
+    load "research/castle/logistica.aoe2ai"
+  #end if
+  
   @up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type
   
   #if civ-selected portuguese

@@ -4,7 +4,7 @@
 #if goal attacking 1
   #if cc-players-unit-type-count target-player tc-arrow > 0 or cc-players-unit-type-count target-player castle-arrow > 0 or cc-players-unit-type-count target-player castle-arrow-chemistry > 0 or cc-players-unit-type-count target-player watch-tower-arrow > 0
     #if unit-type-count battering-ram-line == 0 and unit-type-count trebuchet-set == 0 and unit-type-count bombard-cannon == 0
-      #if (goal threat-source town-center or goal threat-source castle) and up-compare-goal threat-time g:< 60
+      #if (goal threat-source town-center or goal threat-source castle)// and up-compare-goal threat-time g:< 60
         retreat
         goal attacking = 0
       #end if

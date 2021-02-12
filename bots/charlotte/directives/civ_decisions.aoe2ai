@@ -341,7 +341,7 @@ goal total-units-selected = 0
   #end select
 #end if
 
-//#do once
+#do once
   #if goal produce-archers 1
     chat to self "produce-archers"
   #end if
@@ -387,4 +387,4 @@ goal total-units-selected = 0
   #if goal produce-unique-units 1
     chat to self "produce-unique-units"
   #end if
-//#end do
+#end do

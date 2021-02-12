@@ -21,6 +21,16 @@
 @up-modify-goal non-escrowed-food g:- escrowed-food
 @up-modify-goal non-escrowed-gold g:- escrowed-gold
 
+// population
+
+#do once
+  goal population-space-remaining = 0
+  goal current-population-goal = 0
+#end do
+
+@up-get-fact population-cap 0 population-space-remaining
+@up-modify-goal population-space-remaining g:- current-population-goal
+
 // gatherer numbers
 
 

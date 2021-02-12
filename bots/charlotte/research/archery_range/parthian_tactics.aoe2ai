@@ -1,0 +1,12 @@
+#if not research-completed ri-parthian-tactics
+  load "research/archery_range/prerequisites.aoe2ai"
+
+  #if research-available ri-parthian-tactics
+    #if up-research-status c: ri-parthian-tactics < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-parthian-tactics
+    #end if
+  #end if
+#end if
