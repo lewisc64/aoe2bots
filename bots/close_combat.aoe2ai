@@ -5,6 +5,8 @@
   
   goal do-douche = 0
   goal douche-done = 0
+  
+  assign 8 builders to castle
 #end do
 
 build 2 mill
@@ -34,6 +36,7 @@ research ri-imperial-skirmisher
 research ri-crossbow
 research ri-arbalest
 research ri-thumb-ring
+research ri-ballistics
 research ri-capped-ram
 research ri-siege-ram
 
@@ -117,6 +120,7 @@ train 120 villager
       #if goal do-douche 1
         #do once
           assign 20 builders to town-center-foundation
+          sn-percent-building-cancellation = 0
           delete building town-center
           #add action set-goal douche-done 1
             build forward town-center with wood and stone escrow
