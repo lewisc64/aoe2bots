@@ -1,97 +1,51 @@
-const ri-supremacy = 440
-
-const town-size = 30
-
 load "templates/fast_castle.aoe2ai"
 
-#if current-age >= castle-age
-
+#if up-research-status c: castle-age >= research-pending
+  
   #do once
-    distribute villagers 40 50 10 0
-    sn-maximum-town-size = town-size
-    sn-allow-civilian-offense = 2
-    sn-allow-civilian-defense = 3
+    distribute villagers 20 57 15 8
+    escrow 10 food
+    escrow 10 gold
+    sn-maximum-town-size = 255
     assign 8 builders to castle
-    assign 4 builders to town-center-foundation
-    escrow 10 stone
-    delete unit scout-cavalry-line
-    delete unit eagle-warrior-line
-    sn-cap-civilian-explorers = 1
-    sn-percent-civilian-explorers = 100
   #end do
   
-  research imperial-age with food and gold escrow
-  research mill upgrades
-  research lumber camp upgrades
-  research town center upgrades with wood and stone escrow
+  build forward outpost
   
-  #when
-    research ri-murder-holes
-  #then always
-    research ri-architecture
-    research ri-masonry
-  #end when
-  research ri-fletching
-  research ri-bodkin-arrow
-  research ri-bracer
+  sell wood when wood > 1500
+  sell food when food > 1500
+  buy stone when gold > 1500
   
-  train villager
-  
-  #do once
-    #if building-type-count-total castle == 0
-      distribute 30 villagers from wood and food and gold to stone
-    #else
-      distribute 18 villagers from stone to wood and food and gold
-    #end if
-  #end do
-  
-  #if building-type-count-total castle == 0
-    buy stone when gold > 300
-  #end if
-  
-  build 5 castle with stone escrow
-  
-  build 10 town-center with wood and stone escrow
+  build forward 10 castle
+  build houses
+  build farms
+  build lumber camps
+  build 3 town-center
   build 1 market
   build 1 blacksmith
-  build 1 university
+  build 1 barracks
   
-  build lumber camps
-  build gold mining camps
-  build stone mining camps
-  build houses with 20 headroom
+  #when
+    build stone mining camps
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 8
+  #end when
   
-  #if idle-farm-count < 3 and wood-amount > 100
-    build farm
-  #end if
+  research imperial-age with food and gold escrow
+  research blacksmith infantry upgrades with food and gold escrow
+  research ri-tracking with food and gold escrow
+  research ri-squires with food and gold escrow
+  research ri-arson with food and gold escrow
+  #when
+    research my-unique-unit-upgrade with food and gold escrow
+  #then
+    escrow 0 food
+    escrow 0 gold
+  #end when
   
-  sell stone when stone > 1000
-  #if gold-amount < 800
-    sell food when food > 1500
-  #else
-    buy food when food < 1000
-  #end if
+  train 120 villager
+  train 3 trebuchet
+  train my-unique-unit
 
-#end if
-
-#if current-age >= imperial-age
-  research ri-supremacy with food and gold escrow
-  research ri-sappers with food and gold escrow
-  
-  #if research-completed ri-supremacy and research-completed ri-sappers
-    #if civilian-population >= 150
-      chat to self "attacking"
-      sn-number-civilian-militia = 200
-      sn-cap-civilian-gatherers = 100
-      #if not(enemy-buildings-in-town)
-        sn-maximum-town-size += 5
-      #else if strategic-number sn-maximum-town-size > town-size
-        sn-maximum-town-size -= 1
-      #end if
-    #else
-      sn-number-civilian-militia = 30
-      sn-cap-civilian-gatherers = -1      
-      sn-maximum-town-size = town-size
-    #end if
-  #end if
 #end if
