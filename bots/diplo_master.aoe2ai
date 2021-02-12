@@ -65,10 +65,6 @@ research ri-guard-tower
 research ri-keep
 research ri-bombard-tower
 
-//build 1 barracks
-//build 1 archery-range
-//respond to archer-line with skirmisher-line
-
 train monk
 #when
   #if military-population >= 50 and not(enemy-buildings-in-town)
