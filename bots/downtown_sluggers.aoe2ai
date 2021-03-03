@@ -10,7 +10,9 @@ load "templates/fast_castle.aoe2ai"
     assign 8 builders to castle
   #end do
   
-  build forward outpost
+  #repeat every 3 minutes
+    build forward outpost
+  #end repeat
   
   sell wood when wood > 1500
   sell food when food > 1500
