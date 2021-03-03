@@ -101,6 +101,10 @@ build houses with 5 headroom
   sn-camp-max-distance += 4
 #end when
 
+#if strategic-number sn-gold-gatherer-percentage > 0 and dropsite-min-distance gold > 10 and up-pending-objects c: mining-camp >= 1
+  delete building mining-camp
+#end if
+
 #if current-age == dark-age
 
   #do once
@@ -116,7 +120,7 @@ build houses with 5 headroom
     build farms
   #end if
   
-  #if food-amount < 50
+  #if food-amount < 50 and up-pending-objects c: villager <= 1
     drop off food
   #end if
 
