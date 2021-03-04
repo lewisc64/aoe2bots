@@ -21,6 +21,28 @@
 @up-modify-goal non-escrowed-food g:- escrowed-food
 @up-modify-goal non-escrowed-gold g:- escrowed-gold
 
+// time spent not mining gold
+
+#do once
+  goal no-gold-mining-time = 0
+  goal no-gold-mining-start = -1
+#end do
+
+#if unit-type-count 579 == 0 and unit-type-count 581 == 0
+  #if goal no-gold-mining-start -1
+    @up-get-fact game-time 0 no-gold-mining-start
+  #end if
+#else
+  goal no-gold-mining-start = -1
+#end if
+
+#if goal no-gold-mining-start -1
+  goal no-gold-mining-time = 0
+#else
+  @up-get-fact game-time 0 no-gold-mining-time
+  @up-modify-goal no-gold-mining-time g:- no-gold-mining-start
+#end if
+
 // population
 
 #do once
