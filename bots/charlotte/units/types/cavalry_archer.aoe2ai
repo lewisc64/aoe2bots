@@ -10,4 +10,5 @@ load "units/types/ranged.aoe2ai"
 
 #if current-age >= imperial-age
   load "research/archery_range/parthian_tactics.aoe2ai"
+  load "research/castle/sipahi.aoe2ai"
 #end if
