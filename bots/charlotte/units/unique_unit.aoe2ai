@@ -61,6 +61,10 @@
     load "research/castle/logistica.aoe2ai"
   #end if
   
+  #if civ-selected persian
+    load "research/castle/mahouts.aoe2ai"
+  #end if
+  
   @up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type
   
   #if civ-selected portuguese
