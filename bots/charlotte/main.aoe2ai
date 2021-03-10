@@ -75,6 +75,18 @@ const gold-unit-threshold = 0
     goal desired-trade-carts = 0
   #end if
   
+  #select random persistant
+    goal desired-units = 1
+  #randor
+    goal desired-units = 1
+  #randor
+    goal desired-units = 2
+  #randor
+    goal desired-units = 2
+  #randor
+    goal desired-units = 3
+  #end select
+  
   // previous numbers assume pop cap of 200, normalise to actual pop cap.
   goal pop-cap-goal = 0
   @up-get-fact population-cap 0 pop-cap-goal
@@ -111,6 +123,23 @@ const gold-unit-threshold = 0
   goal produce-trebuchets = 0
   goal produce-monks = 0
   goal produce-unique-units = 0
+  
+  goal good-archers = 0
+  goal good-hand-cannoneers = 0
+  goal good-skirmishers = 0
+  goal good-cavalry-archers = 0
+  goal good-militia = 0
+  goal good-spearmen = 0
+  goal good-eagles = 0
+  goal good-scouts = 0
+  goal good-knights = 0
+  goal good-camels = 0
+  goal good-battle-elephants = 0
+  goal good-battering-rams = 0
+  goal good-mangonels = 0
+  goal good-scorpions = 0
+  goal good-monks = 0
+  goal good-unique-units = 0
 #end do
 
 load "stats.aoe2ai"

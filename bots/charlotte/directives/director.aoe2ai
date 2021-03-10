@@ -20,6 +20,7 @@ load "units/all_switched.aoe2ai"
   #end do
   
   load "directives/civ_decisions.aoe2ai"
+  load "directives/random_unit_selection.aoe2ai"
   
   #if military-population >= 8
     #select random persistant
