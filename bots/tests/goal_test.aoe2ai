@@ -5121,6 +5121,6 @@ goal gl-1024 = 1
 #end if
 goal gl-1025 = 1
 #if not up-compare-goal gl-1025 c:== 1
-  chat to all "There are 1024 goals."
+  chat to all "There are 1024 goals or more."
   @up-jump-rule 10000
 #end if
