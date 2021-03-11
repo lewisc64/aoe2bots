@@ -61,9 +61,13 @@ const max-gold = 1500
   #end do
 #end if
 
-research feudal-age with food escrow
-research castle-age with food and gold escrow
-research imperial-age with food and gold escrow
+#when
+  research feudal-age with food escrow
+  research castle-age with food and gold escrow
+  research imperial-age with food and gold escrow
+#then
+  sn-maximum-town-size += 4
+#end when
 
 #if up-compare-goal non-escrowed-wood >= 200
   research mill upgrades with wood and food escrow
