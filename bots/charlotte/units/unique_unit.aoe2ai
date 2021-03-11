@@ -69,6 +69,10 @@
     load "research/castle/rocketry.aoe2ai"
   #end if
   
+  #if civ-selected frankish and civilian-population >= expensive-tech-villagers
+    load "research/castle/bearded_axe.aoe2ai"
+  #end if
+  
   @up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type
   
   #if civ-selected portuguese
