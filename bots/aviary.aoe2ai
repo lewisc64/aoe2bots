@@ -11,8 +11,6 @@ const max-wood = 1500
 const max-food = 1500
 const max-gold = 1500
 
-const required-castles-for-slingers = 2
-
 #do once
   set up basics
   take boar
@@ -85,11 +83,13 @@ research ri-garland-wars with food and gold escrow
 research ri-el-dorado with food and gold escrow
 research ri-couriers with food and gold escrow
 
-research ri-eagle-warrior with food and gold escrow
+research ri-eagle-warrior with food and gold escrow => research ri-arson with food and gold escrow
 research ri-elite-eagle-warrior with food and gold escrow
 
+research ri-squires with food escrow
+
 research blacksmith infantry upgrades with food and gold escrow
-#if building-type-count castle >= required-castles-for-slingers
+#if current-age >= castle-age
   research blacksmith ranged upgrades with food and gold escrow
   research ri-thumb-ring with food and wood escrow
   build 1 university
@@ -112,8 +112,8 @@ research ri-loom with gold escrow
 #else if building-type-count castle >= 1 and unit-type-count-total trebuchet-set < 2 and current-age == imperial-age
   train trebuchet
 #else
-  #if building-type-count castle >= required-castles-for-slingers
-    train eagle-warrior-line => train slinger
+  #if building-type-count archery-range >= 2
+    train eagle-warrior-line => train eagle-warrior-line => train eagle-warrior-line => train slinger
   #else
     train eagle-warrior-line
   #end if
@@ -146,10 +146,19 @@ train 1 monk
 
 #if up-research-status c: feudal-age >= research-pending and not research-completed castle-age
   build 2 barracks with wood escrow
+  #if current-age >= castle-age
+    build 2 archery-range
+  #end if
 #else if current-age == castle-age
   build 3 barracks with wood escrow
+  #if current-age >= castle-age
+    build 3 archery-range
+  #end if
 #else if current-age == imperial-age
   build 5 barracks with wood escrow
+  #if current-age >= castle-age
+    build 5 archery-range
+  #end if
 #end if
 
 build mills
@@ -166,7 +175,7 @@ build castle
 #if up-research-status c: feudal-age < research-pending
 
   #do once
-    distribute villagers 20 80 0 0
+    distribute villagers 25 75 0 0
     sn-enable-training-queue = 1
   #end do
   
@@ -190,6 +199,9 @@ build castle
 
   #do once
     distribute villagers 30 45 20 5
+    #if building-type-count castle >= 1 and research-completed ri-couriers
+      distribute 5 villagers from stone to food
+    #end if
     scout opposite
   #end do
 
