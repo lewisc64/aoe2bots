@@ -4,7 +4,7 @@ load "research/barracks/prerequisites.aoe2ai"
 #if unit-available spearman-line
   #if current-age == castle-age
     load "research/barracks/pikeman.aoe2ai"
-  #else if current-age == imperial-age
+  #else if current-age == imperial-age and civilian-population >= expensive-tech-villagers
     load "research/barracks/halberdier.aoe2ai"
   #end if
   

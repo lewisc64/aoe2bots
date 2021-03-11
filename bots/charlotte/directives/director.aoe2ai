@@ -21,6 +21,8 @@ load "units/all_switched.aoe2ai"
   
   load "directives/civ_decisions.aoe2ai"
   load "directives/random_unit_selection.aoe2ai"
+  //goal produce-archers = 1
+  //goal produce-skirmishers = 1
   
   #if military-population >= 8
     #select random persistant

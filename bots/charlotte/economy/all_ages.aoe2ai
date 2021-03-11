@@ -86,7 +86,7 @@ build houses with 5 headroom
   build castle
 #randor
   #if goal attacking 1
-    build forward castle
+    build forward castle near town-center
   #end if
 #end select
 
@@ -100,10 +100,6 @@ build houses with 5 headroom
 #then
   sn-camp-max-distance += 4
 #end when
-
-#if strategic-number sn-gold-gatherer-percentage > 0 and dropsite-min-distance gold > 10 and up-pending-objects c: mining-camp >= 1
-  delete building mining-camp
-#end if
 
 #if current-age == dark-age
 

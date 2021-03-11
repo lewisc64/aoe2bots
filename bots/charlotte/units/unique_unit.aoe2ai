@@ -65,6 +65,10 @@
     load "research/castle/mahouts.aoe2ai"
   #end if
   
+  #if civ-selected chinese and civilian-population >= expensive-tech-villagers
+    load "research/castle/rocketry.aoe2ai"
+  #end if
+  
   @up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type
   
   #if civ-selected portuguese

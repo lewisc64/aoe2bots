@@ -5,14 +5,10 @@ load "research/castle/prerequisites.aoe2ai"
   load "units/types/siege.aoe2ai"
 
   #if goal produce-units 1 and goal enough-wood 1 and goal enough-gold 1
-    #if unit-type-count-total trebuchet-set < max-trebs
-      #when
-        train trebuchet
-      #then
-        goal trained-unit = 1
-      #end when
-    #else
+    #when
+      train trebuchet
+    #then
       goal trained-unit = 1
-    #end if
+    #end when
   #end if
 #end if

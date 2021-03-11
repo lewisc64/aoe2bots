@@ -3,6 +3,7 @@ load "research/siege_workshop/prerequisites.aoe2ai"
 
 #if unit-available hand-cannoneer
   
+  load "research/barracks/prerequisites.aoe2ai"
   #do once
     goal archery-range-count = 0
   #end do

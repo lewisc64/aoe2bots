@@ -8,7 +8,6 @@
 #end respond
 
 #respond to 5 archer
-  goal produce-monks = 0
   goal produce-spearmen = 0
 #end respond
 
@@ -34,6 +33,10 @@
     goal produce-militia = 0
     goal produce-spearmen = 0
     goal produce-eagles = 0
+  #end respond
+  
+  #respond to 5 archer
+    goal produce-monks = 0
   #end respond
   
 #end if
