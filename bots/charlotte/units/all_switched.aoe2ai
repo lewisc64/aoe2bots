@@ -284,10 +284,10 @@ load "units/prerequisites.aoe2ai"
   @up-modify-goal produce-units g:= old-produce-units
 #end if
 
-#if goal produce-unique-units 1 and unit-available my-unique-unit
+#if goal produce-unique-units 1 and unit-available my-unique-unit-line
   @up-modify-goal old-produce-units g:= produce-units
   
-  @up-get-fact unit-type-count my-unique-unit current-unit-amount
+  @up-get-fact unit-type-count my-unique-unit-line current-unit-amount
   #if up-compare-goal current-unit-amount g:> expected-units-per-type
     goal produce-units = 0
   #end if
