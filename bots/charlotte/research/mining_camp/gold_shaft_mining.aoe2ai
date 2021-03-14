@@ -1,0 +1,13 @@
+#if not research-completed ri-gold-shaft-mining
+  load "research/mining_camp/prerequisites.aoe2ai"
+  load "research/mining_camp/gold_mining.aoe2ai"
+
+  #if research-available ri-gold-shaft-mining
+    #if up-research-status c: ri-gold-shaft-mining < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-gold-shaft-mining
+    #end if
+  #end if
+#end if
