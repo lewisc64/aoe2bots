@@ -98,7 +98,7 @@ goal total-units-selected = 0
   #end if
 #end if
 
-//#do once
+#do once
   #if goal produce-archers 1
     chat to self "produce-archers"
   #end if
@@ -147,4 +147,7 @@ goal total-units-selected = 0
   #if goal produce-galleys 1
     chat to self "produce-galleys"
   #end if
-//#end do
+  #if goal produce-fire-ships 1
+    chat to self "produce-fire-ships"
+  #end if
+#end do
