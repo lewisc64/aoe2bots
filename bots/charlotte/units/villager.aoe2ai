@@ -32,7 +32,7 @@ load "research/town_center/prerequisites.aoe2ai"
     #then
       goal trained-unit = 1
     #end when
-  #else if up-compare-goal total-villagers g:> desired-villagers-with-cart-potential
+  #else if up-compare-goal total-villagers g:> desired-villagers-with-cart-potential and up-compare-goal population-space-remaining c:<= 10
     delete unit villager
   #end if
   
