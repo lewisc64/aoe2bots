@@ -1,0 +1,18 @@
+#if current-age == castle-age
+  load "research/dock/careening.aoe2ai"
+#else if current-age == imperial-age  
+  #if civilian-population >= expensive-tech-villagers
+    load "research/dock/dry_dock.aoe2ai"
+  #end if
+  #if civilian-population >= extortionate-tech-villagers
+    load "research/dock/shipwright.aoe2ai"
+  #end if
+#end if
+
+#do once
+  goal dock-count = 0
+#end do
+@up-get-fact building-type-count-total dock dock-count
+#if up-compare-goal dock-count g:< desired-military-buildings-per-type
+  build dock
+#end if

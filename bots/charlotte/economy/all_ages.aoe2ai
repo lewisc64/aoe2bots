@@ -112,7 +112,7 @@ build houses with 5 headroom
   build mills
   build safety mill
   
-  #if wood-amount >= 100 and up-pending-objects c: farm == 0
+  #if wood-amount >= 100 and up-pending-objects c: farm == 0 and (goal water-map 0 or up-compare-goal total-fishing-ships g:>= desired-fishing-ships)
     build farms
   #end if
   
@@ -148,7 +148,7 @@ build houses with 5 headroom
   
   build houses with 20 headroom
   
-  #if wood-amount >= 200
+  #if wood-amount >= 200 and (goal water-map 0 or up-compare-goal total-fishing-ships g:>= desired-fishing-ships)
     build farms
   #end if
   

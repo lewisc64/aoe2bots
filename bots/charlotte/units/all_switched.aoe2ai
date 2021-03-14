@@ -1,10 +1,8 @@
-#if goal produce-villagers 1
-  load "units/villager.aoe2ai"
-#end if
-
+load "units/villager.aoe2ai"
 #if goal produce-trade-carts 1
   load "units/trade_cart.aoe2ai"
 #end if
+load "units/fishing_ship.aoe2ai"
 
 #do once
   goal old-produce-units = 0

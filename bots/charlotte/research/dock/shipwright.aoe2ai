@@ -1,0 +1,13 @@
+#if not research-completed ri-shipwright
+  load "research/dock/prerequisites.aoe2ai"
+  //load "research/town_center/imperial-age.aoe2ai"
+
+  #if research-available ri-shipwright
+    #if up-research-status c: ri-shipwright < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-shipwright
+    #end if
+  #end if
+#end if

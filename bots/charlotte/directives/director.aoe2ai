@@ -61,7 +61,9 @@ load "units/all_switched.aoe2ai"
   goal produce-units = 0
 #end if
 
-#if current-age == feudal-age
+#if current-age == dark-age
+  goal desired-military-buildings-per-type = 1
+#else if current-age == feudal-age
   goal desired-military-buildings-per-type = 2
 #else if current-age == castle-age
   goal desired-military-buildings-per-type = 3

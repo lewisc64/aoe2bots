@@ -1,0 +1,13 @@
+#if not research-completed ri-gillnets
+  load "research/dock/prerequisites.aoe2ai"
+  //load "research/town_center/castle_age.aoe2ai"
+
+  #if research-available ri-gillnets
+    #if up-research-status c: ri-gillnets < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-gillnets
+    #end if
+  #end if
+#end if

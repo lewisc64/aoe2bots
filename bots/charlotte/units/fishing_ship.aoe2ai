@@ -1,0 +1,18 @@
+//load "research/town_center/feudal_age.aoe2ai"
+load "research/barracks/prerequisites.aoe2ai"
+
+#if unit-available fishing-ship
+  #if current-age >= castle-age
+    load "research/dock/gillnets.aoe2ai"
+  #end if
+  
+  load "units/types/ship.aoe2ai"
+  
+  #if up-compare-goal total-fishing-ships g:< desired-fishing-ships and wood-amount >= 100
+    #when
+      train fishing-ship
+    #then
+      goal trained-unit = 1
+    #end when
+  #end if
+#end if

@@ -71,6 +71,11 @@
 @up-get-fact unit-type-count trade-cart total-trade-carts
 
 #do once
+  goal total-fishing-ships = 0
+#end do
+@up-get-fact unit-type-count fishing-ship total-fishing-ships
+
+#do once
   goal town-center-count = 0
 #end do
 @up-get-fact building-type-count-total town-center town-center-count

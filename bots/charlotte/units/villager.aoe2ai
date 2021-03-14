@@ -19,20 +19,21 @@ load "research/town_center/prerequisites.aoe2ai"
   #end if
   
   #do once
-    goal desired-villagers-with-cart-potential = 0
+    goal desired-villagers-with-subtractions = 0
   #end do
-  @up-modify-goal desired-villagers-with-cart-potential g:= desired-villagers
+  @up-modify-goal desired-villagers-with-subtractions g:= desired-villagers
+  @up-modify-goal desired-villagers-with-subtractions g:- desired-fishing-ships
   #if goal produce-trade-carts 1
-    @up-modify-goal desired-villagers-with-cart-potential g:- desired-trade-carts
+    @up-modify-goal desired-villagers-with-subtractions g:- desired-trade-carts
   #end if
 
-  #if up-compare-goal total-villagers g:< desired-villagers-with-cart-potential
+  #if up-compare-goal total-villagers g:< desired-villagers-with-subtractions
     #when
         train villager
     #then
       goal trained-unit = 1
     #end when
-  #else if up-compare-goal total-villagers g:> desired-villagers-with-cart-potential and up-compare-goal population-space-remaining c:<= 10
+  #else if up-compare-goal total-villagers g:> desired-villagers-with-subtractions and up-compare-goal population-space-remaining c:<= 10
     delete unit villager
   #end if
   
