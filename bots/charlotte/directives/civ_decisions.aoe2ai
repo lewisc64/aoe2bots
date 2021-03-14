@@ -5,6 +5,7 @@
     goal good-eagles = 1
     goal good-monks = 1
     goal good-militia = 1
+    goal good-fire-ships = 1
   #end if
   #if civ-selected berbers
     goal good-hand-cannoneers = 1
@@ -12,6 +13,8 @@
     goal good-scouts = 1
     goal good-camels = 1
     goal good-scorpions = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected briton
     goal good-archers = 1
@@ -19,6 +22,8 @@
     goal good-militia = 1
     goal good-spearmen = 1
     goal good-scorpions = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected burmese
     goal good-scouts = 1
@@ -27,6 +32,7 @@
     goal good-scorpions = 1
     goal good-battle-elephants = 1
     goal good-monks = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected byzantine
     goal good-speamen = 1
@@ -37,6 +43,8 @@
     goal good-battering-rams = 1
     goal good-hand-cannoneers = 1
     goal good-monks = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected celtic
     goal good-battering-rams = 1
@@ -44,6 +52,7 @@
     goal good-mangonels = 1
     goal good-militia = 1
     goal good-spearmen = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected chinese
     goal good-archers = 1
@@ -53,17 +62,21 @@
     goal good-camels = 1
     goal good-battering-rams = 1
     goal good-scorpions = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected ethiopian
     goal good-archers = 1
     goal good-skirmishers = 1
     goal good-spearmen = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected frankish
     goal good-militia = 1
     goal good-spearmen = 1
     goal good-knights = 1
     goal good-scorpions = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected gothic
     goal good-militia = 1
@@ -71,12 +84,15 @@
     goal good-scouts = 1
     goal good-scorpions = 1
     goal good-hand-cannoneers = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected hun
     goal good-cavalry-archers = 1
     goal good-battering-rams = 1
     goal good-scouts = 1
     goal good-knights = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected incan
     goal good-eagles = 1
@@ -86,6 +102,8 @@
     goal good-archers = 1
     goal good-spearmen = 1
     goal good-skirmishers = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected indian
     goal good-skirmishers = 1
@@ -93,6 +111,7 @@
     goal good-cavalry-archers = 1
     goal good-camels = 1
     goal good-scouts = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected italian
     goal good-archers = 1
@@ -100,6 +119,8 @@
     goal good-militia = 1
     goal good-scouts = 1
     goal good-monks = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected japanese
     goal good-archers = 1
@@ -109,17 +130,23 @@
     goal good-spearmen = 1
     goal good-scorpions = 1
     goal good-monks = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected khmer
     goal good-spearmen = 1
     goal good-battle-elephants = 1
     goal good-battering-rams = 1
     goal good-scorpions = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected korean
     goal good-archers = 1
     goal good-skirmishers = 1
     goal good-mangonels = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected magyar
     goal good-archers = 1
@@ -127,6 +154,8 @@
     goal good-cavalry-archers = 1
     goal good-scouts = 1
     goal good-knights = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected malay
     goal good-archers = 1
@@ -134,11 +163,14 @@
     goal good-spearmen = 1
     goal good-scorpions = 1
     goal good-battle-elephants = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected malian
     goal good-mangonels = 1
     goal good-militia = 1
     goal good-hand-cannoneer = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected mayan
     goal good-archers = 1
@@ -146,6 +178,8 @@
     goal good-eagles = 1
     goal good-spearmen = 1
     goal good-battering-rams = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected mongol
     goal good-cavalry-archers = 1
@@ -154,6 +188,8 @@
     goal good-battering-rams = 1
     goal good-mangonels = 1
     goal good-scorpions = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected persian
     goal good-scouts = 1
@@ -162,6 +198,8 @@
     goal good-hand-cannoneers = 1
     goal good-spearmen = 1
     goal good-battering-rams = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected portuguese
     goal good-archers = 1
@@ -170,6 +208,7 @@
     goal good-militia = 1
     goal good-spearmen = 1
     goal good-knights = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected saracen
     goal good-archers = 1
@@ -182,6 +221,7 @@
     goal good-monks = 1
     goal good-battering-rams = 1
     goal good-mangonels = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected slavic
     goal good-militia = 1
@@ -191,6 +231,8 @@
     goal good-battering-rams = 1
     goal good-mangonels = 1
     goal good-scorpions = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected spanish
     goal good-skirmishers = 1
@@ -201,6 +243,8 @@
     goal good-knights = 1
     goal good-monks = 1
     goal good-battering-rams = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected teutonic
     goal good-hand-cannoneers = 1
@@ -209,6 +253,8 @@
     goal good-monks = 1
     goal good-mangonels = 1
     goal good-scorpions = 1
+    goal good-fire-ships = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected turkish
     goal good-hand-cannoneers = 1
@@ -217,11 +263,13 @@
     goal good-scouts = 1
     goal good-camels = 1
     goal good-battering-rams = 1
+    goal good-galleys = 1
   #end if
   #if civ-selected vietnamese
     goal good-archers = 1
     goal good-skirmishers = 1
     //elephants?
+    goal good-galleys = 1
   #end if
   #if civ-selected viking
     goal good-archers = 1
@@ -229,5 +277,6 @@
     goal good-militia = 1
     goal good-battering-rams = 1
     goal good-scorpions = 1
+    goal good-galleys = 1
   #end if
 #end do

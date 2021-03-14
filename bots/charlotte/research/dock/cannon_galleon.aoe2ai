@@ -1,0 +1,14 @@
+#if not research-completed ri-cannon-galleon
+  load "research/dock/prerequisites.aoe2ai"
+  //load "research/town_center/imperial_age.aoe2ai"
+  load "research/university/chemistry.aoe2ai"
+
+  #if research-available ri-cannon-galleon
+    #if up-research-status c: ri-cannon-galleon < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-cannon-galleon
+    #end if
+  #end if
+#end if

@@ -2,7 +2,13 @@
   goal produce-battering-rams = 0
   goal produce-trebuchets = 0
 #else
-  #if current-age == castle-age or building-type-count-total castle == 0 or goal good-battering-rams 1
+  #if goal full-water-map 1
+    #if current-age == imperial-age and unit-type-count-total cannon-galleon-line < max-trebs and (research-available ri-cannon-galleon or unit-available cannon-galleon-line)
+      goal produce-cannon-galleons = 1
+    #else
+      goal produce-cannon-galleons = 0
+    #end if
+  #else if current-age == castle-age or building-type-count-total castle == 0 or goal good-battering-rams 1
     #if military-population >= 20 or enemy-buildings-in-town
       #if unit-type-count-total battering-ram-line < 5 and current-age == castle-age or unit-type-count-total battering-ram-line < max-rams and current-age == imperial-age
         goal produce-battering-rams = 1

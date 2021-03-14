@@ -1,3 +1,6 @@
 #if goal produce-bombard-cannons 1 or goal produce-hand-cannoneers 1
   load "research/university/chemistry.aoe2ai"
 #end if
+#if goal produce-cannon-galleons 1
+  load "research/dock/cannon_galleon.aoe2ai"
+#end if

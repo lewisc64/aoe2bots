@@ -1,5 +1,5 @@
 //load "research/town_center/feudal_age.aoe2ai"
-load "research/barracks/prerequisites.aoe2ai"
+load "research/dock/prerequisites.aoe2ai"
 
 #if unit-available fishing-ship
   #if current-age >= castle-age

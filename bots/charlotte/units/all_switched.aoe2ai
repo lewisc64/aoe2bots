@@ -2,7 +2,9 @@ load "units/villager.aoe2ai"
 #if goal produce-trade-carts 1
   load "units/trade_cart.aoe2ai"
 #end if
-load "units/fishing_ship.aoe2ai"
+#if goal water-map 1
+  load "units/fishing_ship.aoe2ai"
+#end if
 
 #do once
   goal old-produce-units = 0
@@ -45,6 +47,9 @@ goal total-type-production = 0
   @up-modify-goal total-type-production g:+ produce-scorpions
   @up-modify-goal total-type-production g:+ produce-bombard-cannons
   @up-modify-goal total-type-production g:+ produce-trebuchets
+  @up-modify-goal total-type-production g:+ produce-galleys
+  @up-modify-goal total-type-production g:+ produce-fire-ships
+  @up-modify-goal total-type-production g:+ produce-cannon-galleons
 #end if
 
 #if goal enough-food 1 and goal enough-gold 1
@@ -305,5 +310,43 @@ load "units/prerequisites.aoe2ai"
   #end if
   
   load "units/monk.aoe2ai"
+  @up-modify-goal produce-units g:= old-produce-units
+#end if
+
+// DOCK
+
+#if goal produce-galleys 1 and unit-available galley-line
+  @up-modify-goal old-produce-units g:= produce-units
+  
+  @up-get-fact unit-type-count galley-line current-unit-amount
+  #if up-compare-goal current-unit-amount g:> expected-units-per-type
+    goal produce-units = 0
+  #end if
+  
+  load "units/galley.aoe2ai"
+  @up-modify-goal produce-units g:= old-produce-units
+#end if
+
+#if goal produce-fire-ships 1 and unit-available fire-ship-line
+  @up-modify-goal old-produce-units g:= produce-units
+  
+  @up-get-fact unit-type-count fire-ship-line current-unit-amount
+  #if up-compare-goal current-unit-amount g:> expected-units-per-type
+    goal produce-units = 0
+  #end if
+  
+  load "units/fire_ship.aoe2ai"
+  @up-modify-goal produce-units g:= old-produce-units
+#end if
+
+#if goal produce-cannon-galleons 1 and unit-available cannon-galleon-line
+  @up-modify-goal old-produce-units g:= produce-units
+  
+  @up-get-fact unit-type-count cannon-galleon-line current-unit-amount
+  #if up-compare-goal current-unit-amount g:> expected-units-per-type
+    goal produce-units = 0
+  #end if
+  
+  load "units/cannon_galleon.aoe2ai"
   @up-modify-goal produce-units g:= old-produce-units
 #end if

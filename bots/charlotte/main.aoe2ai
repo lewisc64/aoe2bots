@@ -9,6 +9,7 @@ const ri-sipahi = 491
 const ri-rocketry = 52
 const ri-bearded-axe = 83
 
+const sea-fish = 905
 const tc-arrow = 54
 const watch-tower-arrow = 786
 const castle-arrow = 746
@@ -58,9 +59,9 @@ const gold-unit-threshold = 0
   goal full-water-map = 0
   goal partial-water-map = 0
   
-  #if map-type islands or map-type team-islands or map-type migration
+  #if map-type islands or map-type team-islands or map-type migration or map-type archipelago
     goal full-water-map = 1
-  #else if map-type coastal or map-type rivers
+  #else if map-type coastal or map-type rivers or map-type baltic or cc-players-unit-type-count 0 sea-fish >= 5
     goal partial-water-map = 1
   #end if
   
@@ -146,6 +147,9 @@ const gold-unit-threshold = 0
   goal produce-trebuchets = 0
   goal produce-unique-units = 0
   goal produce-monks = 0
+  goal produce-galleys = 0
+  goal produce-fire-ships = 0
+  goal produce-cannon-galleons = 0
   
   goal good-archers = 0
   goal good-hand-cannoneers = 0
@@ -163,6 +167,8 @@ const gold-unit-threshold = 0
   goal good-scorpions = 0
   goal good-monks = 0
   goal good-unique-units = 0
+  goal good-galleys = 0
+  goal good-fire-ships = 0
 #end do
 
 load "stats.aoe2ai"

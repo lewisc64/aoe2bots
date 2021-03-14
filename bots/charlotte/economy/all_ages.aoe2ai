@@ -34,7 +34,7 @@
 #end repeat
 
 // do we trade?
-#if goal team-game 1 and current-age >= castle-age
+#if goal team-game 1 and current-age >= castle-age and (goal full-water-map 0 or map-type team-islands)
   build 1 market
   #if players-building-type-count any-ally market >= 1
     #select random persistant

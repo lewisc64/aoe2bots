@@ -1,20 +1,20 @@
 ;Translated by https://github.com/lewisc64/aoe2ai
-(defconst do-taunt-target 154)
-(defconst do-taunt 155)
-(defconst select-random-f009cfa9-bb60-4333-bbb2-49afd8a50c91 3)
-(defconst select-random-7bab0a6e-7924-4bea-a7a7-959793e4bfe0 3)
-(defconst select-random-259932a2-a226-4fb9-90cf-34007739d3a8 3)
-(defconst select-random-245af9dc-50fc-4d52-8ccc-ab7c43cd71fc 3)
-(defconst select-random-d4ffc283-950b-4e76-bbc7-757fe4d20d29 3)
-(defconst select-random-b3616f70-36b0-43b5-b5e4-da4ada1e7800 7)
-(defconst select-random-48b99b03-0b62-4c4c-bab3-684987b1c2e1 3)
-(defconst select-random-62b7209f-572e-4da5-b672-7200daeed2ab 3)
-(defconst select-random-c10ea98f-0753-4af8-bc58-ef0b83c56b90 5)
-(defconst select-random-2b122063-11af-4426-b629-4c770ba878e5 2)
-(defconst select-random-51672b1f-61ba-4a3c-8cf6-a4147656b39d 6)
-(defconst select-random-5a652e9f-7458-4b12-913b-7654ef4d3f78 8)
-(defconst select-random-fe65448c-47aa-41fa-a3b6-4c84542f1791 5)
-(defconst select-random-46de1f27-0361-4a12-9171-9f90f3a2e5e0 4)
+(defconst do-taunt-target 163)
+(defconst do-taunt 164)
+(defconst select-random-4c82d826-d263-49d7-ad84-8dd220502638 3)
+(defconst select-random-8d473dcf-c4e1-44a2-b7ac-8a1e07593112 3)
+(defconst select-random-73508740-51eb-4e7b-b076-eb9cca2fbf9e 3)
+(defconst select-random-5545cfb9-d097-4ad5-89b4-7370d75806e0 3)
+(defconst select-random-02542e08-8612-4318-b051-aa6bda18150e 3)
+(defconst select-random-bc3c2eec-7e59-481d-9a88-73c96b3d79a4 7)
+(defconst select-random-c0f88b27-9a87-4d51-ad4c-840efafb78cc 3)
+(defconst select-random-cb6df109-8f89-464e-b63f-208cd5b90396 3)
+(defconst select-random-6c14653d-54cf-4b9c-88f1-eb3add9d6092 5)
+(defconst select-random-c2b8a4b4-c690-4d49-9197-ef6dca73519d 2)
+(defconst select-random-45380e98-61d5-4923-99a3-803bc73e14f5 6)
+(defconst select-random-9c4dec3d-5530-4ffb-936e-28572328f428 8)
+(defconst select-random-15d894fb-e5d2-4c94-9e94-1aed76b94064 5)
+(defconst select-random-39403d72-c67f-4b1b-9feb-7919a934b403 4)
 (defconst max-wood 1600)
 (defconst max-food 1600)
 (defconst max-gold 1600)
@@ -28,93 +28,99 @@
 (defconst good-food-price 50)
 (defconst good-wood-sell-price 200)
 (defconst good-food-sell-price 200)
-(defconst can-buy-wood 150)
-(defconst can-buy-food 151)
-(defconst can-sell-wood 152)
-(defconst can-sell-food 153)
-(defconst attack-ready 95)
-(defconst attacking 96)
-(defconst monastery-count 133)
-(defconst castle-count 130)
-(defconst old-desired-military-buildings-per-type 131)
-(defconst siege-workshop-count 124)
-(defconst stable-count 119)
-(defconst barracks-count 115)
-(defconst archery-range-count 110)
-(defconst total-type-production 109)
-(defconst enough-gold 108)
-(defconst enough-food 107)
-(defconst enough-wood 106)
-(defconst expected-units-per-type 105)
-(defconst current-unit-amount 104)
-(defconst old-produce-units 103)
-(defconst dock-count 101)
-(defconst desired-villagers-with-subtractions 97)
-(defconst trained-unit 99)
-(defconst select-random-a611186c-1266-41c0-b2a2-a6687a5ce369 2)
-(defconst select-random-ddc4f771-793a-411d-854c-66366f7190a7 2)
-(defconst good-hand-cannoneer 139)
-(defconst good-miltia 138)
-(defconst good-speamen 137)
-(defconst select-random-9acce6ef-230b-41b2-bdeb-daceed821eee 15)
-(defconst total-units-selected 140)
-(defconst select-random-2887b6f7-5bd7-448d-9443-5f0ba72f6dd2 4)
-(defconst select-random-03ae9827-0517-4ebd-8369-1c32bdd42440 3)
-(defconst select-random-0171e4cd-8cc2-48a1-8d8d-9d6e9634f8b7 2)
-(defconst balanced-aggressive 145)
-(defconst select-random-5fe99621-2f0d-4ffa-b37b-be76a6e8d209 3)
-(defconst emergency-trash 146)
-(defconst select-random-c39f32a0-6c15-4804-9df7-4ed6c98c2c09 2)
-(defconst select-random-3cca56e6-52b3-4d32-a46f-6cd7140e8f61 2)
-(defconst select-random-318fb887-2b4c-440e-a507-b955cff1db6c 2)
-(defconst select-random-8dfb4853-8ad1-4f83-9b35-f6ea73ebe49c 3)
-(defconst attempted-researches 84)
-(defconst escrowed-wood 53)
-(defconst escrowed-food 54)
-(defconst escrowed-gold 55)
-(defconst non-escrowed-wood 56)
-(defconst non-escrowed-food 57)
-(defconst non-escrowed-gold 58)
-(defconst no-gold-mining-time 59)
-(defconst no-gold-mining-start 60)
-(defconst population-space-remaining 61)
-(defconst current-population-goal 62)
-(defconst total-villagers 63)
-(defconst total-trade-carts 64)
-(defconst total-fishing-ships 65)
-(defconst town-center-count 66)
-(defconst my-score 67)
-(defconst highest-enemy-score 68)
-(defconst lowest-enemy-score 69)
-(defconst score-percentage 70)
-(defconst previous-target-player-score 71)
-(defconst target-player-score 72)
-(defconst target-player-score-delta 74)
-(defconst my-military-population 75)
-(defconst target-military-population 76)
-(defconst target-military-percentage 77)
-(defconst largest-enemy-military-population 78)
-(defconst largest-enemy-military-percentage 79)
-(defconst threat-time 80)
-(defconst threat-player 81)
-(defconst threat-source 82)
-(defconst threat-target 83)
-(defconst good-unique-units 52)
-(defconst good-monks 51)
-(defconst good-scorpions 50)
-(defconst good-mangonels 49)
-(defconst good-battering-rams 48)
-(defconst good-battle-elephants 47)
-(defconst good-camels 46)
-(defconst good-knights 45)
-(defconst good-scouts 44)
-(defconst good-eagles 43)
-(defconst good-spearmen 42)
-(defconst good-militia 41)
-(defconst good-cavalry-archers 40)
-(defconst good-skirmishers 39)
-(defconst good-hand-cannoneers 38)
-(defconst good-archers 37)
+(defconst can-buy-wood 159)
+(defconst can-buy-food 160)
+(defconst can-sell-wood 161)
+(defconst can-sell-food 162)
+(defconst attack-ready 100)
+(defconst attacking 101)
+(defconst monastery-count 138)
+(defconst castle-count 135)
+(defconst old-desired-military-buildings-per-type 136)
+(defconst siege-workshop-count 129)
+(defconst stable-count 124)
+(defconst barracks-count 120)
+(defconst archery-range-count 115)
+(defconst total-type-production 114)
+(defconst enough-gold 113)
+(defconst enough-food 112)
+(defconst enough-wood 111)
+(defconst expected-units-per-type 110)
+(defconst current-unit-amount 109)
+(defconst old-produce-units 108)
+(defconst dock-count 106)
+(defconst desired-villagers-with-subtractions 102)
+(defconst trained-unit 104)
+(defconst select-random-a5654645-faf6-4107-93a8-7da82e2e4a3e 2)
+(defconst select-random-11cfa04e-07a2-4caa-b1a2-082ca40435a0 2)
+(defconst good-hand-cannoneer 147)
+(defconst good-miltia 146)
+(defconst good-speamen 145)
+(defconst select-random-4f54fc10-a463-42e6-b62a-3cc72e114892 2)
+(defconst select-random-c6eccdc9-7471-4813-8183-c895565b6349 17)
+(defconst total-units-selected 148)
+(defconst select-random-305f7eaf-2cff-4c39-87bf-481f971f17a4 4)
+(defconst select-random-de4585dd-abdc-4eba-8267-49730d2f30f8 3)
+(defconst select-random-3088e075-8dee-4951-9c0e-f3108da68915 2)
+(defconst balanced-aggressive 154)
+(defconst select-random-e81c8874-c549-4d16-b932-beb065fe9d46 3)
+(defconst emergency-trash 155)
+(defconst select-random-09777926-9de3-4ca5-93be-989c1c8056c9 2)
+(defconst select-random-cd721f15-6b69-4311-8f44-e66397a74fad 2)
+(defconst select-random-aad6a6ed-c1f8-4530-bb67-9b1eed419c91 2)
+(defconst select-random-7f88eae5-6b99-4b92-bdad-2aecfd467180 3)
+(defconst attempted-researches 89)
+(defconst escrowed-wood 58)
+(defconst escrowed-food 59)
+(defconst escrowed-gold 60)
+(defconst non-escrowed-wood 61)
+(defconst non-escrowed-food 62)
+(defconst non-escrowed-gold 63)
+(defconst no-gold-mining-time 64)
+(defconst no-gold-mining-start 65)
+(defconst population-space-remaining 66)
+(defconst current-population-goal 67)
+(defconst total-villagers 68)
+(defconst total-trade-carts 69)
+(defconst total-fishing-ships 70)
+(defconst town-center-count 71)
+(defconst my-score 72)
+(defconst highest-enemy-score 73)
+(defconst lowest-enemy-score 74)
+(defconst score-percentage 75)
+(defconst previous-target-player-score 76)
+(defconst target-player-score 77)
+(defconst target-player-score-delta 79)
+(defconst my-military-population 80)
+(defconst target-military-population 81)
+(defconst target-military-percentage 82)
+(defconst largest-enemy-military-population 83)
+(defconst largest-enemy-military-percentage 84)
+(defconst threat-time 85)
+(defconst threat-player 86)
+(defconst threat-source 87)
+(defconst threat-target 88)
+(defconst good-fire-ships 57)
+(defconst good-galleys 56)
+(defconst good-unique-units 55)
+(defconst good-monks 54)
+(defconst good-scorpions 53)
+(defconst good-mangonels 52)
+(defconst good-battering-rams 51)
+(defconst good-battle-elephants 50)
+(defconst good-camels 49)
+(defconst good-knights 48)
+(defconst good-scouts 47)
+(defconst good-eagles 46)
+(defconst good-spearmen 45)
+(defconst good-militia 44)
+(defconst good-cavalry-archers 43)
+(defconst good-skirmishers 42)
+(defconst good-hand-cannoneers 41)
+(defconst good-archers 40)
+(defconst produce-cannon-galleons 39)
+(defconst produce-fire-ships 38)
+(defconst produce-galleys 37)
 (defconst produce-monks 36)
 (defconst produce-unique-units 35)
 (defconst produce-trebuchets 34)
@@ -138,12 +144,12 @@
 (defconst produce-units 16)
 (defconst pop-cap-goal 15)
 (defconst desired-units 14)
-(defconst select-random-ca772a2d-4ecf-4bdd-aafc-aba6e3eef59e 5)
+(defconst select-random-eec6eae9-562d-46e0-869c-b8e492658e52 5)
 (defconst desired-fishing-ships 12)
 (defconst desired-trade-carts 11)
 (defconst desired-villagers 10)
 (defconst desired-town-centers 9)
-(defconst select-random-ef4a65e6-e39c-42dd-9e55-a738cb41a365 6)
+(defconst select-random-bdd24216-143e-42af-b592-f2aae73080d0 6)
 (defconst desired-military-buildings-per-type 7)
 (defconst water-map 6)
 (defconst partial-water-map 5)
@@ -166,6 +172,7 @@
 (defconst castle-arrow 746)
 (defconst watch-tower-arrow 786)
 (defconst tc-arrow 54)
+(defconst sea-fish 905)
 (defconst ri-bearded-axe 83)
 (defconst ri-rocketry 52)
 (defconst ri-sipahi 491)
@@ -258,14 +265,14 @@
     (set-goal partial-water-map 0)
 )
 (defrule
-    (or (map-type islands) (or (map-type team-islands) (map-type migration)))
+    (or (map-type islands) (or (map-type team-islands) (or (map-type migration) (map-type archipelago))))
 =>
     (set-goal full-water-map 1)
     (disable-self)
 )
 (defrule
-    (not (or (map-type islands) (or (map-type team-islands) (map-type migration))))
-    (or (map-type coastal) (map-type rivers))
+    (not (or (map-type islands) (or (map-type team-islands) (or (map-type migration) (map-type archipelago)))))
+    (or (map-type coastal) (or (map-type rivers) (or (map-type baltic) (cc-players-unit-type-count 0 sea-fish >= 5))))
 =>
     (set-goal partial-water-map 1)
     (disable-self)
@@ -287,7 +294,7 @@
 =>
     (set-goal desired-military-buildings-per-type 2)
     (disable-self)
-    (generate-random-number select-random-ef4a65e6-e39c-42dd-9e55-a738cb41a365)
+    (generate-random-number select-random-bdd24216-143e-42af-b592-f2aae73080d0)
     (set-goal 8 0)
 )
 (defrule
@@ -401,7 +408,7 @@
 (defrule
     (true)
 =>
-    (generate-random-number select-random-ca772a2d-4ecf-4bdd-aafc-aba6e3eef59e)
+    (generate-random-number select-random-eec6eae9-562d-46e0-869c-b8e492658e52)
     (set-goal 13 0)
     (disable-self)
 )
@@ -515,6 +522,9 @@
 =>
     (set-goal produce-monks 0)
     (disable-self)
+    (set-goal produce-galleys 0)
+    (set-goal produce-fire-ships 0)
+    (set-goal produce-cannon-galleons 0)
     (set-goal good-archers 0)
     (set-goal good-hand-cannoneers 0)
     (set-goal good-skirmishers 0)
@@ -526,16 +536,18 @@
     (set-goal good-knights 0)
     (set-goal good-camels 0)
     (set-goal good-battle-elephants 0)
-    (set-goal good-battering-rams 0)
-    (set-goal good-mangonels 0)
-    (set-goal good-scorpions 0)
 )
 (defrule
     (true)
 =>
-    (set-goal good-monks 0)
+    (set-goal good-battering-rams 0)
     (disable-self)
+    (set-goal good-mangonels 0)
+    (set-goal good-scorpions 0)
+    (set-goal good-monks 0)
     (set-goal good-unique-units 0)
+    (set-goal good-galleys 0)
+    (set-goal good-fire-ships 0)
     (set-goal escrowed-wood 0)
     (set-goal escrowed-food 0)
     (set-goal escrowed-gold 0)
@@ -681,9 +693,9 @@
 (defrule
     (true)
 =>
-    (up-find-player enemy find-closest 73)
-    (up-modify-sn sn-target-player-number g:= 73)
-    (up-modify-sn sn-focus-player-number g:= 73)
+    (up-find-player enemy find-closest 78)
+    (up-modify-sn sn-target-player-number g:= 78)
+    (up-modify-sn sn-focus-player-number g:= 78)
     (up-get-target-fact current-score 0 target-player-score)
     (set-goal target-player-score-delta 0)
     (up-modify-goal target-player-score-delta g:= target-player-score)
@@ -789,82 +801,82 @@
 (defrule
     (can-build market)
     (building-type-count-total market < 1)
-    (and (goal team-game 1) (current-age >= castle-age))
+    (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
 =>
     (build market)
 )
 (defrule
-    (and (goal team-game 1) (current-age >= castle-age))
+    (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
     (players-building-type-count any-ally market >= 1)
 =>
-    (generate-random-number select-random-c39f32a0-6c15-4804-9df7-4ed6c98c2c09)
-    (set-goal 85 0)
+    (generate-random-number select-random-09777926-9de3-4ca5-93be-989c1c8056c9)
+    (set-goal 90 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 85 0)
-    (and (goal team-game 1) (current-age >= castle-age))
+    (goal 90 0)
+    (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
     (players-building-type-count any-ally market >= 1)
 =>
-    (set-goal 85 1)
+    (set-goal 90 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 85 0)
-    (and (goal team-game 1) (current-age >= castle-age))
+    (goal 90 0)
+    (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
     (players-building-type-count any-ally market >= 1)
 =>
-    (set-goal 85 2)
+    (set-goal 90 2)
     (disable-self)
 )
 (defrule
-    (and (goal team-game 1) (current-age >= castle-age))
+    (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
     (players-building-type-count any-ally market >= 1)
-    (goal 85 1)
+    (goal 90 1)
 =>
     (set-goal produce-trade-carts 1)
 )
 (defrule
-    (and (goal team-game 1) (current-age >= castle-age))
+    (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
     (players-building-type-count any-ally market >= 1)
-    (goal 85 2)
+    (goal 90 2)
 =>
     (set-goal produce-trade-carts 0)
 )
 (defrule
     (true)
 =>
-    (generate-random-number select-random-3cca56e6-52b3-4d32-a46f-6cd7140e8f61)
-    (set-goal 86 0)
+    (generate-random-number select-random-cd721f15-6b69-4311-8f44-e66397a74fad)
+    (set-goal 91 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 86 0)
+    (goal 91 0)
 =>
-    (set-goal 86 1)
+    (set-goal 91 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 86 0)
+    (goal 91 0)
 =>
-    (set-goal 86 2)
+    (set-goal 91 2)
     (disable-self)
 )
 (defrule
     (can-build monastery)
     (building-type-count-total monastery < 1)
-    (goal 86 1)
+    (goal 91 1)
 =>
     (build monastery)
 )
 (defrule
     (can-train monk)
     (unit-type-count-total monk-set < 1)
-    (goal 86 1)
+    (goal 91 1)
 =>
     (train monk)
 )
@@ -891,7 +903,7 @@
 (defrule
     (true)
 =>
-    (set-goal 87 0)
+    (set-goal 92 0)
     (disable-self)
 )
 (defrule
@@ -902,17 +914,17 @@
     (can-build lumber-camp)
 =>
     (build lumber-camp)
-    (set-goal 87 1)
+    (set-goal 92 1)
 )
 (defrule
-    (goal 87 1)
+    (goal 92 1)
 =>
     (up-modify-sn sn-camp-max-distance c:+ 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 87 0)
+    (set-goal 92 0)
 )
 (defrule
     (can-build market)
@@ -941,32 +953,32 @@
 (defrule
     (true)
 =>
-    (generate-random-number select-random-318fb887-2b4c-440e-a507-b955cff1db6c)
-    (set-goal 88 0)
+    (generate-random-number select-random-aad6a6ed-c1f8-4530-bb67-9b1eed419c91)
+    (set-goal 93 0)
 )
 (defrule
     (random-number == 1)
-    (goal 88 0)
+    (goal 93 0)
 =>
-    (set-goal 88 1)
+    (set-goal 93 1)
 )
 (defrule
     (random-number == 2)
-    (goal 88 0)
+    (goal 93 0)
 =>
-    (set-goal 88 2)
+    (set-goal 93 2)
 )
 (defrule
     (can-build castle)
     (building-type-count-total castle < 100)
-    (goal 88 1)
+    (goal 93 1)
 =>
     (build castle)
 )
 (defrule
     (can-build castle)
     (building-type-count-total castle < 100)
-    (goal 88 2)
+    (goal 93 2)
     (goal attacking 1)
 =>
     (up-set-placement-data any-enemy town-center c: 0)
@@ -975,7 +987,7 @@
 (defrule
     (true)
 =>
-    (set-goal 89 0)
+    (set-goal 94 0)
     (disable-self)
 )
 (defrule
@@ -987,7 +999,7 @@
     (strategic-number sn-gold-gatherer-percentage > 0)
 =>
     (build mining-camp)
-    (set-goal 89 1)
+    (set-goal 94 1)
 )
 (defrule
     (dropsite-min-distance stone > 3)
@@ -998,17 +1010,17 @@
     (strategic-number sn-stone-gatherer-percentage > 0)
 =>
     (build mining-camp)
-    (set-goal 89 1)
+    (set-goal 94 1)
 )
 (defrule
-    (goal 89 1)
+    (goal 94 1)
 =>
     (up-modify-sn sn-camp-max-distance c:+ 4)
 )
 (defrule
     (true)
 =>
-    (set-goal 89 0)
+    (set-goal 94 0)
 )
 (defrule
     (current-age == dark-age)
@@ -1061,13 +1073,13 @@
     (current-age == dark-age)
     (and (wood-amount >= 100) (and (up-pending-objects c: farm == 0) (or (goal water-map 0) (up-compare-goal total-fishing-ships g:>= desired-fishing-ships))))
 =>
-    (up-get-fact unit-type-count villager 90)
-    (up-modify-goal 90 s:* sn-food-gatherer-percentage)
-    (up-modify-goal 90 c:/ 100)
-    (up-get-fact building-type-count-total farm 91)
+    (up-get-fact unit-type-count villager 95)
+    (up-modify-goal 95 s:* sn-food-gatherer-percentage)
+    (up-modify-goal 95 c:/ 100)
+    (up-get-fact building-type-count-total farm 96)
 )
 (defrule
-    (up-compare-goal 91 g:< 90)
+    (up-compare-goal 96 g:< 95)
     (can-build farm)
     (current-age == dark-age)
     (and (wood-amount >= 100) (and (up-pending-objects c: farm == 0) (or (goal water-map 0) (up-compare-goal total-fishing-ships g:>= desired-fishing-ships))))
@@ -1098,41 +1110,41 @@
     (up-research-status c: feudal-age >= research-pending)
     (not (goal produce-unique-units 1))
 =>
-    (generate-random-number select-random-8dfb4853-8ad1-4f83-9b35-f6ea73ebe49c)
-    (set-goal 92 0)
+    (generate-random-number select-random-7f88eae5-6b99-4b92-bdad-2aecfd467180)
+    (set-goal 97 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 92 0)
+    (goal 97 0)
     (up-research-status c: feudal-age >= research-pending)
     (not (goal produce-unique-units 1))
 =>
-    (set-goal 92 1)
+    (set-goal 97 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 92 0)
+    (goal 97 0)
     (up-research-status c: feudal-age >= research-pending)
     (not (goal produce-unique-units 1))
 =>
-    (set-goal 92 2)
+    (set-goal 97 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 92 0)
+    (goal 97 0)
     (up-research-status c: feudal-age >= research-pending)
     (not (goal produce-unique-units 1))
 =>
-    (set-goal 92 3)
+    (set-goal 97 3)
     (disable-self)
 )
 (defrule
     (up-research-status c: feudal-age >= research-pending)
     (not (goal produce-unique-units 1))
-    (goal 92 1)
+    (goal 97 1)
 =>
     (set-strategic-number sn-wood-gatherer-percentage 37)
     (set-strategic-number sn-food-gatherer-percentage 37)
@@ -1143,7 +1155,7 @@
 (defrule
     (up-research-status c: feudal-age >= research-pending)
     (not (goal produce-unique-units 1))
-    (goal 92 2)
+    (goal 97 2)
 =>
     (set-strategic-number sn-wood-gatherer-percentage 38)
     (set-strategic-number sn-food-gatherer-percentage 38)
@@ -1154,7 +1166,7 @@
 (defrule
     (up-research-status c: feudal-age >= research-pending)
     (not (goal produce-unique-units 1))
-    (goal 92 3)
+    (goal 97 3)
 =>
     (set-strategic-number sn-wood-gatherer-percentage 40)
     (set-strategic-number sn-food-gatherer-percentage 40)
@@ -1175,13 +1187,13 @@
     (up-research-status c: feudal-age >= research-pending)
     (and (wood-amount >= 200) (or (goal water-map 0) (up-compare-goal total-fishing-ships g:>= desired-fishing-ships)))
 =>
-    (up-get-fact unit-type-count villager 93)
-    (up-modify-goal 93 s:* sn-food-gatherer-percentage)
-    (up-modify-goal 93 c:/ 100)
-    (up-get-fact building-type-count-total farm 94)
+    (up-get-fact unit-type-count villager 98)
+    (up-modify-goal 98 s:* sn-food-gatherer-percentage)
+    (up-modify-goal 98 c:/ 100)
+    (up-get-fact building-type-count-total farm 99)
 )
 (defrule
-    (up-compare-goal 94 g:< 93)
+    (up-compare-goal 99 g:< 98)
     (can-build farm)
     (up-research-status c: feudal-age >= research-pending)
     (and (wood-amount >= 200) (or (goal water-map 0) (up-compare-goal total-fishing-ships g:>= desired-fishing-ships)))
@@ -1198,7 +1210,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 2414)
+    (up-jump-rule 2616)
 )
 (defrule
     (true)
@@ -2216,7 +2228,7 @@
 (defrule
     (true)
 =>
-    (set-goal 98 0)
+    (set-goal 103 0)
     (disable-self)
 )
 (defrule
@@ -2225,19 +2237,19 @@
     (up-compare-goal total-villagers g:< desired-villagers-with-subtractions)
 =>
     (train villager)
-    (set-goal 98 1)
+    (set-goal 103 1)
 )
 (defrule
     (unit-available villager)
     (up-compare-goal total-villagers g:< desired-villagers-with-subtractions)
-    (goal 98 1)
+    (goal 103 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 98 0)
+    (set-goal 103 0)
 )
 (defrule
     (unit-available villager)
@@ -2327,7 +2339,7 @@
 (defrule
     (true)
 =>
-    (set-goal 100 0)
+    (set-goal 105 0)
     (disable-self)
 )
 (defrule
@@ -2336,26 +2348,31 @@
     (up-compare-goal total-trade-carts g:< desired-trade-carts)
 =>
     (train trade-cart)
-    (set-goal 100 1)
+    (set-goal 105 1)
 )
 (defrule
     (unit-available trade-cart)
     (up-compare-goal total-trade-carts g:< desired-trade-carts)
-    (goal 100 1)
+    (goal 105 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 100 0)
+    (set-goal 105 0)
 )
 (defrule
-    (can-build barracks)
-    (building-type-count-total barracks < 1)
-    (building-type-count-total barracks == 0)
+    (not (goal water-map 1))
 =>
-    (build barracks)
+    (up-jump-rule 39)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
 )
 (defrule
     (not (and (unit-available fishing-ship) (current-age >= castle-age)))
@@ -2392,7 +2409,7 @@
 (defrule
     (not (unit-available fishing-ship))
 =>
-    (up-jump-rule 23)
+    (up-jump-rule 28)
 )
 (defrule
     (not (current-age == castle-age))
@@ -2425,6 +2442,38 @@
     (goal do-research 1)
 =>
     (research ri-careening)
+)
+(defrule
+    (not (and (not (current-age == castle-age)) (current-age == imperial-age)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-chemistry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build university)
+    (building-type-count-total university < 1)
+    (building-type-count-total university == 0)
+=>
+    (build university)
+)
+(defrule
+    (not (research-completed ri-chemistry))
+    (research-available ri-chemistry)
+    (up-research-status c: ri-chemistry < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-chemistry)
+    (not (research-completed ri-chemistry))
+    (research-available ri-chemistry)
+    (goal do-research 1)
+=>
+    (research ri-chemistry)
 )
 (defrule
     (not (and (not (current-age == castle-age)) (and (current-age == imperial-age) (civilian-population >= expensive-tech-villagers))))
@@ -2543,7 +2592,7 @@
 (defrule
     (true)
 =>
-    (set-goal 102 0)
+    (set-goal 107 0)
     (disable-self)
 )
 (defrule
@@ -2552,19 +2601,19 @@
     (and (up-compare-goal total-fishing-ships g:< desired-fishing-ships) (wood-amount >= 100))
 =>
     (train fishing-ship)
-    (set-goal 102 1)
+    (set-goal 107 1)
 )
 (defrule
     (unit-available fishing-ship)
     (and (up-compare-goal total-fishing-ships g:< desired-fishing-ships) (wood-amount >= 100))
-    (goal 102 1)
+    (goal 107 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 102 0)
+    (set-goal 107 0)
 )
 (defrule
     (true)
@@ -2627,6 +2676,9 @@
     (up-modify-goal total-type-production g:+ produce-scorpions)
     (up-modify-goal total-type-production g:+ produce-bombard-cannons)
     (up-modify-goal total-type-production g:+ produce-trebuchets)
+    (up-modify-goal total-type-production g:+ produce-galleys)
+    (up-modify-goal total-type-production g:+ produce-fire-ships)
+    (up-modify-goal total-type-production g:+ produce-cannon-galleons)
 )
 (defrule
     (and (goal enough-food 1) (goal enough-gold 1))
@@ -2701,6 +2753,70 @@
     (goal do-research 1)
 =>
     (research ri-chemistry)
+)
+(defrule
+    (not (goal produce-cannon-galleons 1))
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (not (not (research-completed ri-cannon-galleon)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (not (research-completed ri-cannon-galleon)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-chemistry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build university)
+    (building-type-count-total university < 1)
+    (building-type-count-total university == 0)
+=>
+    (build university)
+)
+(defrule
+    (not (research-completed ri-chemistry))
+    (research-available ri-chemistry)
+    (up-research-status c: ri-chemistry < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-chemistry)
+    (not (research-completed ri-chemistry))
+    (research-available ri-chemistry)
+    (goal do-research 1)
+=>
+    (research ri-chemistry)
+)
+(defrule
+    (not (research-completed ri-cannon-galleon))
+    (research-available ri-cannon-galleon)
+    (up-research-status c: ri-cannon-galleon < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-cannon-galleon)
+    (not (research-completed ri-cannon-galleon))
+    (research-available ri-cannon-galleon)
+    (goal do-research 1)
+=>
+    (research ri-cannon-galleon)
 )
 (defrule
     (and (goal produce-archers 1) (unit-available archer-line))
@@ -3443,7 +3559,7 @@
 (defrule
     (true)
 =>
-    (set-goal 111 0)
+    (set-goal 116 0)
     (disable-self)
 )
 (defrule
@@ -3452,19 +3568,19 @@
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
 =>
     (train archer-line)
-    (set-goal 111 1)
+    (set-goal 116 1)
 )
 (defrule
     (unit-available archer-line)
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
-    (goal 111 1)
+    (goal 116 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 111 0)
+    (set-goal 116 0)
 )
 (defrule
     (and (goal produce-archers 1) (unit-available archer-line))
@@ -3642,7 +3758,7 @@
 (defrule
     (true)
 =>
-    (set-goal 112 0)
+    (set-goal 117 0)
     (disable-self)
 )
 (defrule
@@ -3651,19 +3767,19 @@
     (and (goal produce-units 1) (and (goal enough-food 1) (goal enough-gold 1)))
 =>
     (train hand-cannoneer)
-    (set-goal 112 1)
+    (set-goal 117 1)
 )
 (defrule
     (unit-available hand-cannoneer)
     (and (goal produce-units 1) (and (goal enough-food 1) (goal enough-gold 1)))
-    (goal 112 1)
+    (goal 117 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 112 0)
+    (set-goal 117 0)
 )
 (defrule
     (and (goal produce-hand-cannoneers 1) (unit-available hand-cannoneer))
@@ -4379,7 +4495,7 @@
 (defrule
     (true)
 =>
-    (set-goal 113 0)
+    (set-goal 118 0)
     (disable-self)
 )
 (defrule
@@ -4388,19 +4504,19 @@
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-food 1)))
 =>
     (train skirmisher-line)
-    (set-goal 113 1)
+    (set-goal 118 1)
 )
 (defrule
     (unit-available skirmisher-line)
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-food 1)))
-    (goal 113 1)
+    (goal 118 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 113 0)
+    (set-goal 118 0)
 )
 (defrule
     (and (goal produce-skirmishers 1) (unit-available skirmisher-line))
@@ -5193,7 +5309,7 @@
 (defrule
     (true)
 =>
-    (set-goal 114 0)
+    (set-goal 119 0)
     (disable-self)
 )
 (defrule
@@ -5202,19 +5318,19 @@
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
 =>
     (train cavalry-archer-line)
-    (set-goal 114 1)
+    (set-goal 119 1)
 )
 (defrule
     (unit-available cavalry-archer-line)
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
-    (goal 114 1)
+    (goal 119 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 114 0)
+    (set-goal 119 0)
 )
 (defrule
     (and (goal produce-cavalry-archers 1) (unit-available cavalry-archer-line))
@@ -6051,7 +6167,7 @@
 (defrule
     (true)
 =>
-    (set-goal 116 0)
+    (set-goal 121 0)
     (disable-self)
 )
 (defrule
@@ -6060,19 +6176,19 @@
     (and (goal produce-units 1) (and (goal enough-food 1) (goal enough-gold 1)))
 =>
     (train militiaman-line)
-    (set-goal 116 1)
+    (set-goal 121 1)
 )
 (defrule
     (unit-available militiaman-line)
     (and (goal produce-units 1) (and (goal enough-food 1) (goal enough-gold 1)))
-    (goal 116 1)
+    (goal 121 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 116 0)
+    (set-goal 121 0)
 )
 (defrule
     (and (goal produce-militia 1) (unit-available militiaman-line))
@@ -6781,7 +6897,7 @@
 (defrule
     (true)
 =>
-    (set-goal 117 0)
+    (set-goal 122 0)
     (disable-self)
 )
 (defrule
@@ -6790,19 +6906,19 @@
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-food 1)))
 =>
     (train spearman-line)
-    (set-goal 117 1)
+    (set-goal 122 1)
 )
 (defrule
     (unit-available spearman-line)
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-food 1)))
-    (goal 117 1)
+    (goal 122 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 117 0)
+    (set-goal 122 0)
 )
 (defrule
     (and (goal produce-spearmen 1) (unit-available spearman-line))
@@ -7575,7 +7691,7 @@
 (defrule
     (true)
 =>
-    (set-goal 118 0)
+    (set-goal 123 0)
     (disable-self)
 )
 (defrule
@@ -7584,19 +7700,19 @@
     (and (goal produce-units 1) (and (goal enough-food 1) (goal enough-gold 1)))
 =>
     (train eagle-warrior-line)
-    (set-goal 118 1)
+    (set-goal 123 1)
 )
 (defrule
     (unit-available eagle-warrior-line)
     (and (goal produce-units 1) (and (goal enough-food 1) (goal enough-gold 1)))
-    (goal 118 1)
+    (goal 123 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 118 0)
+    (set-goal 123 0)
 )
 (defrule
     (and (goal produce-eagles 1) (unit-available eagle-warrior-line))
@@ -8248,7 +8364,7 @@
 (defrule
     (true)
 =>
-    (set-goal 120 0)
+    (set-goal 125 0)
     (disable-self)
 )
 (defrule
@@ -8257,19 +8373,19 @@
     (and (goal produce-units 1) (goal enough-food 1))
 =>
     (train scout-cavalry-line)
-    (set-goal 120 1)
+    (set-goal 125 1)
 )
 (defrule
     (unit-available scout-cavalry-line)
     (and (goal produce-units 1) (goal enough-food 1))
-    (goal 120 1)
+    (goal 125 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 120 0)
+    (set-goal 125 0)
 )
 (defrule
     (and (goal produce-scouts 1) (unit-available scout-cavalry-line))
@@ -8966,7 +9082,7 @@
 (defrule
     (true)
 =>
-    (set-goal 121 0)
+    (set-goal 126 0)
     (disable-self)
 )
 (defrule
@@ -8975,19 +9091,19 @@
     (and (goal produce-units 1) (and (goal enough-food 1) (goal enough-gold 1)))
 =>
     (train knight-line)
-    (set-goal 121 1)
+    (set-goal 126 1)
 )
 (defrule
     (unit-available knight-line)
     (and (goal produce-units 1) (and (goal enough-food 1) (goal enough-gold 1)))
-    (goal 121 1)
+    (goal 126 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 121 0)
+    (set-goal 126 0)
 )
 (defrule
     (and (goal produce-knights 1) (unit-available knight-line))
@@ -9684,7 +9800,7 @@
 (defrule
     (true)
 =>
-    (set-goal 122 0)
+    (set-goal 127 0)
     (disable-self)
 )
 (defrule
@@ -9693,19 +9809,19 @@
     (and (goal produce-units 1) (and (goal enough-food 1) (goal enough-gold 1)))
 =>
     (train camel-line)
-    (set-goal 122 1)
+    (set-goal 127 1)
 )
 (defrule
     (unit-available camel-line)
     (and (goal produce-units 1) (and (goal enough-food 1) (goal enough-gold 1)))
-    (goal 122 1)
+    (goal 127 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 122 0)
+    (set-goal 127 0)
 )
 (defrule
     (and (goal produce-camels 1) (unit-available camel-line))
@@ -10312,7 +10428,7 @@
 (defrule
     (true)
 =>
-    (set-goal 123 0)
+    (set-goal 128 0)
     (disable-self)
 )
 (defrule
@@ -10321,19 +10437,19 @@
     (and (goal produce-units 1) (and (goal enough-food 1) (goal enough-gold 1)))
 =>
     (train battle-elephant-line)
-    (set-goal 123 1)
+    (set-goal 128 1)
 )
 (defrule
     (unit-available battle-elephant-line)
     (and (goal produce-units 1) (and (goal enough-food 1) (goal enough-gold 1)))
-    (goal 123 1)
+    (goal 128 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 123 0)
+    (set-goal 128 0)
 )
 (defrule
     (and (goal produce-battle-elephants 1) (unit-available battle-elephant-line))
@@ -10627,7 +10743,7 @@
 (defrule
     (true)
 =>
-    (set-goal 125 0)
+    (set-goal 130 0)
     (disable-self)
 )
 (defrule
@@ -10636,19 +10752,19 @@
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
 =>
     (train battering-ram-line)
-    (set-goal 125 1)
+    (set-goal 130 1)
 )
 (defrule
     (unit-available battering-ram-line)
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
-    (goal 125 1)
+    (goal 130 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 125 0)
+    (set-goal 130 0)
 )
 (defrule
     (and (goal produce-battering-rams 1) (unit-available battering-ram-line))
@@ -10942,7 +11058,7 @@
 (defrule
     (true)
 =>
-    (set-goal 126 0)
+    (set-goal 131 0)
     (disable-self)
 )
 (defrule
@@ -10951,19 +11067,19 @@
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
 =>
     (train mangonel-line)
-    (set-goal 126 1)
+    (set-goal 131 1)
 )
 (defrule
     (unit-available mangonel-line)
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
-    (goal 126 1)
+    (goal 131 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 126 0)
+    (set-goal 131 0)
 )
 (defrule
     (and (goal produce-mangonels 1) (unit-available mangonel-line))
@@ -11197,7 +11313,7 @@
 (defrule
     (true)
 =>
-    (set-goal 127 0)
+    (set-goal 132 0)
     (disable-self)
 )
 (defrule
@@ -11206,19 +11322,19 @@
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
 =>
     (train scorpion-line)
-    (set-goal 127 1)
+    (set-goal 132 1)
 )
 (defrule
     (unit-available scorpion-line)
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
-    (goal 127 1)
+    (goal 132 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 127 0)
+    (set-goal 132 0)
 )
 (defrule
     (and (goal produce-scorpions 1) (unit-available scorpion-line))
@@ -11374,7 +11490,7 @@
 (defrule
     (true)
 =>
-    (set-goal 128 0)
+    (set-goal 133 0)
     (disable-self)
 )
 (defrule
@@ -11383,19 +11499,19 @@
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
 =>
     (train bombard-cannon)
-    (set-goal 128 1)
+    (set-goal 133 1)
 )
 (defrule
     (unit-available bombard-cannon)
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
-    (goal 128 1)
+    (goal 133 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 128 0)
+    (set-goal 133 0)
 )
 (defrule
     (and (goal produce-bombard-cannons 1) (unit-available bombard-cannon))
@@ -11537,7 +11653,7 @@
 (defrule
     (true)
 =>
-    (set-goal 129 0)
+    (set-goal 134 0)
     (disable-self)
 )
 (defrule
@@ -11546,19 +11662,19 @@
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
 =>
     (train trebuchet)
-    (set-goal 129 1)
+    (set-goal 134 1)
 )
 (defrule
     (unit-available trebuchet)
     (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
-    (goal 129 1)
+    (goal 134 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 129 0)
+    (set-goal 134 0)
 )
 (defrule
     (and (goal produce-trebuchets 1) (unit-available trebuchet))
@@ -14811,7 +14927,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (true)
 =>
-    (set-goal 132 0)
+    (set-goal 137 0)
     (disable-self)
 )
 (defrule
@@ -14821,20 +14937,20 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (or (building-type-count castle >= 2) (goal desired-units 1))
 =>
     (train my-unique-unit-line)
-    (set-goal 132 1)
+    (set-goal 137 1)
 )
 (defrule
     (unit-available my-unique-unit-line)
     (and (goal produce-units 1) (and (goal enough-wood 1) (and (goal enough-food 1) (goal enough-gold 1))))
     (or (building-type-count castle >= 2) (goal desired-units 1))
-    (goal 132 1)
+    (goal 137 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 132 0)
+    (set-goal 137 0)
 )
 (defrule
     (unit-available my-unique-unit-line)
@@ -15118,7 +15234,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (true)
 =>
-    (set-goal 134 0)
+    (set-goal 139 0)
     (disable-self)
 )
 (defrule
@@ -15127,19 +15243,19 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (and (goal produce-units 1) (goal enough-gold 1))
 =>
     (train monk)
-    (set-goal 134 1)
+    (set-goal 139 1)
 )
 (defrule
     (unit-available monk)
     (and (goal produce-units 1) (goal enough-gold 1))
-    (goal 134 1)
+    (goal 139 1)
 =>
     (set-goal trained-unit 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 134 0)
+    (set-goal 139 0)
 )
 (defrule
     (and (goal produce-monks 1) (unit-available monk))
@@ -15147,28 +15263,1132 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-modify-goal produce-units g:= old-produce-units)
 )
 (defrule
+    (and (goal produce-galleys 1) (unit-available galley-line))
+=>
+    (up-modify-goal old-produce-units g:= produce-units)
+    (up-get-fact unit-type-count galley-line current-unit-amount)
+)
+(defrule
+    (and (goal produce-galleys 1) (unit-available galley-line))
+    (up-compare-goal current-unit-amount g:> expected-units-per-type)
+=>
+    (set-goal produce-units 0)
+)
+(defrule
+    (not (and (goal produce-galleys 1) (unit-available galley-line)))
+=>
+    (up-jump-rule 79)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (and (unit-available galley-line) (current-age == feudal-age)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-fletching)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (building-type-count-total blacksmith < 1)
+    (building-type-count-total blacksmith == 0)
+    (wood-amount >= 200)
+=>
+    (build blacksmith)
+)
+(defrule
+    (not (research-completed ri-fletching))
+    (research-available ri-fletching)
+    (up-research-status c: ri-fletching < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-fletching)
+    (not (research-completed ri-fletching))
+    (research-available ri-fletching)
+    (goal do-research 1)
+=>
+    (research ri-fletching)
+)
+(defrule
+    (not (and (unit-available galley-line) (and (not (current-age == feudal-age)) (current-age == castle-age))))
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (not (not (research-completed ri-bodkin-arrow)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (building-type-count-total blacksmith < 1)
+    (building-type-count-total blacksmith == 0)
+    (wood-amount >= 200)
+=>
+    (build blacksmith)
+)
+(defrule
+    (not (not (research-completed ri-bodkin-arrow)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-fletching)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (building-type-count-total blacksmith < 1)
+    (building-type-count-total blacksmith == 0)
+    (wood-amount >= 200)
+=>
+    (build blacksmith)
+)
+(defrule
+    (not (research-completed ri-fletching))
+    (research-available ri-fletching)
+    (up-research-status c: ri-fletching < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-fletching)
+    (not (research-completed ri-fletching))
+    (research-available ri-fletching)
+    (goal do-research 1)
+=>
+    (research ri-fletching)
+)
+(defrule
+    (not (research-completed ri-bodkin-arrow))
+    (research-available ri-bodkin-arrow)
+    (up-research-status c: ri-bodkin-arrow < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-bodkin-arrow)
+    (not (research-completed ri-bodkin-arrow))
+    (research-available ri-bodkin-arrow)
+    (goal do-research 1)
+=>
+    (research ri-bodkin-arrow)
+)
+(defrule
+    (not (and (unit-available galley-line) (and (not (current-age == feudal-age)) (current-age == castle-age))))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-war-galley)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (research-completed ri-war-galley))
+    (research-available ri-war-galley)
+    (up-research-status c: ri-war-galley < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-war-galley)
+    (not (research-completed ri-war-galley))
+    (research-available ri-war-galley)
+    (goal do-research 1)
+=>
+    (research ri-war-galley)
+)
+(defrule
+    (not (and (unit-available galley-line) (and (not (current-age == feudal-age)) (and (not (current-age == castle-age)) (current-age == imperial-age)))))
+=>
+    (up-jump-rule 14)
+)
+(defrule
+    (not (not (research-completed ri-bracer)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (building-type-count-total blacksmith < 1)
+    (building-type-count-total blacksmith == 0)
+    (wood-amount >= 200)
+=>
+    (build blacksmith)
+)
+(defrule
+    (not (not (research-completed ri-bracer)))
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (not (not (research-completed ri-bodkin-arrow)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (building-type-count-total blacksmith < 1)
+    (building-type-count-total blacksmith == 0)
+    (wood-amount >= 200)
+=>
+    (build blacksmith)
+)
+(defrule
+    (not (not (research-completed ri-bodkin-arrow)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-fletching)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (building-type-count-total blacksmith < 1)
+    (building-type-count-total blacksmith == 0)
+    (wood-amount >= 200)
+=>
+    (build blacksmith)
+)
+(defrule
+    (not (research-completed ri-fletching))
+    (research-available ri-fletching)
+    (up-research-status c: ri-fletching < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-fletching)
+    (not (research-completed ri-fletching))
+    (research-available ri-fletching)
+    (goal do-research 1)
+=>
+    (research ri-fletching)
+)
+(defrule
+    (not (research-completed ri-bodkin-arrow))
+    (research-available ri-bodkin-arrow)
+    (up-research-status c: ri-bodkin-arrow < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-bodkin-arrow)
+    (not (research-completed ri-bodkin-arrow))
+    (research-available ri-bodkin-arrow)
+    (goal do-research 1)
+=>
+    (research ri-bodkin-arrow)
+)
+(defrule
+    (not (research-completed ri-bracer))
+    (research-available ri-bracer)
+    (up-research-status c: ri-bracer < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-bracer)
+    (not (research-completed ri-bracer))
+    (research-available ri-bracer)
+    (goal do-research 1)
+=>
+    (research ri-bracer)
+)
+(defrule
+    (not (and (unit-available galley-line) (and (not (current-age == feudal-age)) (and (not (current-age == castle-age)) (current-age == imperial-age)))))
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (not (not (research-completed ri-galleon)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (not (research-completed ri-galleon)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-war-galley)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (research-completed ri-war-galley))
+    (research-available ri-war-galley)
+    (up-research-status c: ri-war-galley < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-war-galley)
+    (not (research-completed ri-war-galley))
+    (research-available ri-war-galley)
+    (goal do-research 1)
+=>
+    (research ri-war-galley)
+)
+(defrule
+    (not (research-completed ri-galleon))
+    (research-available ri-galleon)
+    (up-research-status c: ri-galleon < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-galleon)
+    (not (research-completed ri-galleon))
+    (research-available ri-galleon)
+    (goal do-research 1)
+=>
+    (research ri-galleon)
+)
+(defrule
+    (not (unit-available galley-line))
+=>
+    (up-jump-rule 28)
+)
+(defrule
+    (not (current-age == castle-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-careening)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (research-completed ri-careening))
+    (research-available ri-careening)
+    (up-research-status c: ri-careening < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-careening)
+    (not (research-completed ri-careening))
+    (research-available ri-careening)
+    (goal do-research 1)
+=>
+    (research ri-careening)
+)
+(defrule
+    (not (and (not (current-age == castle-age)) (current-age == imperial-age)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-chemistry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build university)
+    (building-type-count-total university < 1)
+    (building-type-count-total university == 0)
+=>
+    (build university)
+)
+(defrule
+    (not (research-completed ri-chemistry))
+    (research-available ri-chemistry)
+    (up-research-status c: ri-chemistry < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-chemistry)
+    (not (research-completed ri-chemistry))
+    (research-available ri-chemistry)
+    (goal do-research 1)
+=>
+    (research ri-chemistry)
+)
+(defrule
+    (not (and (not (current-age == castle-age)) (and (current-age == imperial-age) (civilian-population >= expensive-tech-villagers))))
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (not (not (research-completed ri-dry-dock)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (not (research-completed ri-dry-dock)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-careening)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (research-completed ri-careening))
+    (research-available ri-careening)
+    (up-research-status c: ri-careening < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-careening)
+    (not (research-completed ri-careening))
+    (research-available ri-careening)
+    (goal do-research 1)
+=>
+    (research ri-careening)
+)
+(defrule
+    (not (research-completed ri-dry-dock))
+    (research-available ri-dry-dock)
+    (up-research-status c: ri-dry-dock < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-dry-dock)
+    (not (research-completed ri-dry-dock))
+    (research-available ri-dry-dock)
+    (goal do-research 1)
+=>
+    (research ri-dry-dock)
+)
+(defrule
+    (not (and (not (current-age == castle-age)) (and (current-age == imperial-age) (civilian-population >= extortionate-tech-villagers))))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-shipwright)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (research-completed ri-shipwright))
+    (research-available ri-shipwright)
+    (up-research-status c: ri-shipwright < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-shipwright)
+    (not (research-completed ri-shipwright))
+    (research-available ri-shipwright)
+    (goal do-research 1)
+=>
+    (research ri-shipwright)
+)
+(defrule
     (true)
 =>
-    (generate-random-number select-random-a611186c-1266-41c0-b2a2-a6687a5ce369)
-    (set-goal 135 0)
+    (set-goal dock-count 0)
+    (disable-self)
+)
+(defrule
+    (true)
+=>
+    (up-get-fact building-type-count-total dock dock-count)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 100)
+    (up-compare-goal dock-count g:< desired-military-buildings-per-type)
+=>
+    (build dock)
+)
+(defrule
+    (true)
+=>
+    (set-goal 140 0)
+    (disable-self)
+)
+(defrule
+    (can-train galley-line)
+    (unit-available galley-line)
+    (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
+=>
+    (train galley-line)
+    (set-goal 140 1)
+)
+(defrule
+    (unit-available galley-line)
+    (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
+    (goal 140 1)
+=>
+    (set-goal trained-unit 1)
+)
+(defrule
+    (true)
+=>
+    (set-goal 140 0)
+)
+(defrule
+    (and (goal produce-galleys 1) (unit-available galley-line))
+=>
+    (up-modify-goal produce-units g:= old-produce-units)
+)
+(defrule
+    (and (goal produce-fire-ships 1) (unit-available fire-ship-line))
+=>
+    (up-modify-goal old-produce-units g:= produce-units)
+    (up-get-fact unit-type-count fire-ship-line current-unit-amount)
+)
+(defrule
+    (and (goal produce-fire-ships 1) (unit-available fire-ship-line))
+    (up-compare-goal current-unit-amount g:> expected-units-per-type)
+=>
+    (set-goal produce-units 0)
+)
+(defrule
+    (not (and (goal produce-fire-ships 1) (unit-available fire-ship-line)))
+=>
+    (up-jump-rule 49)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (and (unit-available fire-ship-line) (current-age == castle-age)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-war-galley)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (research-completed ri-war-galley))
+    (research-available ri-war-galley)
+    (up-research-status c: ri-war-galley < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-war-galley)
+    (not (research-completed ri-war-galley))
+    (research-available ri-war-galley)
+    (goal do-research 1)
+=>
+    (research ri-war-galley)
+)
+(defrule
+    (not (and (unit-available fire-ship-line) (and (not (current-age == castle-age)) (current-age == imperial-age))))
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (not (not (research-completed ri-fast-fire-ship)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (not (research-completed ri-fast-fire-ship)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-war-galley)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (research-completed ri-war-galley))
+    (research-available ri-war-galley)
+    (up-research-status c: ri-war-galley < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-war-galley)
+    (not (research-completed ri-war-galley))
+    (research-available ri-war-galley)
+    (goal do-research 1)
+=>
+    (research ri-war-galley)
+)
+(defrule
+    (not (research-completed ri-fast-fire-ship))
+    (research-available ri-fast-fire-ship)
+    (up-research-status c: ri-fast-fire-ship < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-fast-fire-ship)
+    (not (research-completed ri-fast-fire-ship))
+    (research-available ri-fast-fire-ship)
+    (goal do-research 1)
+=>
+    (research ri-fast-fire-ship)
+)
+(defrule
+    (not (unit-available fire-ship-line))
+=>
+    (up-jump-rule 28)
+)
+(defrule
+    (not (current-age == castle-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-careening)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (research-completed ri-careening))
+    (research-available ri-careening)
+    (up-research-status c: ri-careening < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-careening)
+    (not (research-completed ri-careening))
+    (research-available ri-careening)
+    (goal do-research 1)
+=>
+    (research ri-careening)
+)
+(defrule
+    (not (and (not (current-age == castle-age)) (current-age == imperial-age)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-chemistry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build university)
+    (building-type-count-total university < 1)
+    (building-type-count-total university == 0)
+=>
+    (build university)
+)
+(defrule
+    (not (research-completed ri-chemistry))
+    (research-available ri-chemistry)
+    (up-research-status c: ri-chemistry < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-chemistry)
+    (not (research-completed ri-chemistry))
+    (research-available ri-chemistry)
+    (goal do-research 1)
+=>
+    (research ri-chemistry)
+)
+(defrule
+    (not (and (not (current-age == castle-age)) (and (current-age == imperial-age) (civilian-population >= expensive-tech-villagers))))
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (not (not (research-completed ri-dry-dock)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (not (research-completed ri-dry-dock)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-careening)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (research-completed ri-careening))
+    (research-available ri-careening)
+    (up-research-status c: ri-careening < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-careening)
+    (not (research-completed ri-careening))
+    (research-available ri-careening)
+    (goal do-research 1)
+=>
+    (research ri-careening)
+)
+(defrule
+    (not (research-completed ri-dry-dock))
+    (research-available ri-dry-dock)
+    (up-research-status c: ri-dry-dock < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-dry-dock)
+    (not (research-completed ri-dry-dock))
+    (research-available ri-dry-dock)
+    (goal do-research 1)
+=>
+    (research ri-dry-dock)
+)
+(defrule
+    (not (and (not (current-age == castle-age)) (and (current-age == imperial-age) (civilian-population >= extortionate-tech-villagers))))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-shipwright)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (research-completed ri-shipwright))
+    (research-available ri-shipwright)
+    (up-research-status c: ri-shipwright < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-shipwright)
+    (not (research-completed ri-shipwright))
+    (research-available ri-shipwright)
+    (goal do-research 1)
+=>
+    (research ri-shipwright)
+)
+(defrule
+    (true)
+=>
+    (set-goal dock-count 0)
+    (disable-self)
+)
+(defrule
+    (true)
+=>
+    (up-get-fact building-type-count-total dock dock-count)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 100)
+    (up-compare-goal dock-count g:< desired-military-buildings-per-type)
+=>
+    (build dock)
+)
+(defrule
+    (true)
+=>
+    (set-goal 141 0)
+    (disable-self)
+)
+(defrule
+    (can-train fire-ship-line)
+    (unit-available fire-ship-line)
+    (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
+=>
+    (train fire-ship-line)
+    (set-goal 141 1)
+)
+(defrule
+    (unit-available fire-ship-line)
+    (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
+    (goal 141 1)
+=>
+    (set-goal trained-unit 1)
+)
+(defrule
+    (true)
+=>
+    (set-goal 141 0)
+)
+(defrule
+    (and (goal produce-fire-ships 1) (unit-available fire-ship-line))
+=>
+    (up-modify-goal produce-units g:= old-produce-units)
+)
+(defrule
+    (and (goal produce-cannon-galleons 1) (unit-available cannon-galleon-line))
+=>
+    (up-modify-goal old-produce-units g:= produce-units)
+    (up-get-fact unit-type-count cannon-galleon-line current-unit-amount)
+)
+(defrule
+    (and (goal produce-cannon-galleons 1) (unit-available cannon-galleon-line))
+    (up-compare-goal current-unit-amount g:> expected-units-per-type)
+=>
+    (set-goal produce-units 0)
+)
+(defrule
+    (not (and (goal produce-cannon-galleons 1) (unit-available cannon-galleon-line)))
+=>
+    (up-jump-rule 34)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (unit-available cannon-galleon-line))
+=>
+    (up-jump-rule 28)
+)
+(defrule
+    (not (current-age == castle-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-careening)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (research-completed ri-careening))
+    (research-available ri-careening)
+    (up-research-status c: ri-careening < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-careening)
+    (not (research-completed ri-careening))
+    (research-available ri-careening)
+    (goal do-research 1)
+=>
+    (research ri-careening)
+)
+(defrule
+    (not (and (not (current-age == castle-age)) (current-age == imperial-age)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-chemistry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build university)
+    (building-type-count-total university < 1)
+    (building-type-count-total university == 0)
+=>
+    (build university)
+)
+(defrule
+    (not (research-completed ri-chemistry))
+    (research-available ri-chemistry)
+    (up-research-status c: ri-chemistry < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-chemistry)
+    (not (research-completed ri-chemistry))
+    (research-available ri-chemistry)
+    (goal do-research 1)
+=>
+    (research ri-chemistry)
+)
+(defrule
+    (not (and (not (current-age == castle-age)) (and (current-age == imperial-age) (civilian-population >= expensive-tech-villagers))))
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (not (not (research-completed ri-dry-dock)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (not (research-completed ri-dry-dock)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-careening)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (research-completed ri-careening))
+    (research-available ri-careening)
+    (up-research-status c: ri-careening < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-careening)
+    (not (research-completed ri-careening))
+    (research-available ri-careening)
+    (goal do-research 1)
+=>
+    (research ri-careening)
+)
+(defrule
+    (not (research-completed ri-dry-dock))
+    (research-available ri-dry-dock)
+    (up-research-status c: ri-dry-dock < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-dry-dock)
+    (not (research-completed ri-dry-dock))
+    (research-available ri-dry-dock)
+    (goal do-research 1)
+=>
+    (research ri-dry-dock)
+)
+(defrule
+    (not (and (not (current-age == castle-age)) (and (current-age == imperial-age) (civilian-population >= extortionate-tech-villagers))))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-shipwright)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (not (research-completed ri-shipwright))
+    (research-available ri-shipwright)
+    (up-research-status c: ri-shipwright < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-shipwright)
+    (not (research-completed ri-shipwright))
+    (research-available ri-shipwright)
+    (goal do-research 1)
+=>
+    (research ri-shipwright)
+)
+(defrule
+    (true)
+=>
+    (set-goal dock-count 0)
+    (disable-self)
+)
+(defrule
+    (true)
+=>
+    (up-get-fact building-type-count-total dock dock-count)
+)
+(defrule
+    (can-build dock)
+    (building-type-count-total dock < 100)
+    (up-compare-goal dock-count g:< desired-military-buildings-per-type)
+=>
+    (build dock)
+)
+(defrule
+    (true)
+=>
+    (set-goal 142 0)
+    (disable-self)
+)
+(defrule
+    (can-train cannon-galleon-line)
+    (unit-available cannon-galleon-line)
+    (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
+=>
+    (train cannon-galleon-line)
+    (set-goal 142 1)
+)
+(defrule
+    (unit-available cannon-galleon-line)
+    (and (goal produce-units 1) (and (goal enough-wood 1) (goal enough-gold 1)))
+    (goal 142 1)
+=>
+    (set-goal trained-unit 1)
+)
+(defrule
+    (true)
+=>
+    (set-goal 142 0)
+)
+(defrule
+    (and (goal produce-cannon-galleons 1) (unit-available cannon-galleon-line))
+=>
+    (up-modify-goal produce-units g:= old-produce-units)
+)
+(defrule
+    (true)
+=>
+    (generate-random-number select-random-a5654645-faf6-4107-93a8-7da82e2e4a3e)
+    (set-goal 143 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 135 0)
+    (goal 143 0)
 =>
-    (set-goal 135 1)
+    (set-goal 143 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 135 0)
+    (goal 143 0)
 =>
-    (set-goal 135 2)
+    (set-goal 143 2)
     (disable-self)
 )
 (defrule
-    (not (goal 135 1))
+    (not (goal 143 1))
 =>
     (up-jump-rule 61)
 )
@@ -15500,29 +16720,29 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (and (strategic-number sn-stone-gatherer-percentage > 0) (false))
 =>
-    (generate-random-number select-random-ddc4f771-793a-411d-854c-66366f7190a7)
-    (set-goal 136 0)
+    (generate-random-number select-random-11cfa04e-07a2-4caa-b1a2-082ca40435a0)
+    (set-goal 144 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 136 0)
+    (goal 144 0)
     (and (strategic-number sn-stone-gatherer-percentage > 0) (false))
 =>
-    (set-goal 136 1)
+    (set-goal 144 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 136 0)
+    (goal 144 0)
     (and (strategic-number sn-stone-gatherer-percentage > 0) (false))
 =>
-    (set-goal 136 2)
+    (set-goal 144 2)
     (disable-self)
 )
 (defrule
     (and (strategic-number sn-stone-gatherer-percentage > 0) (false))
-    (goal 136 1)
+    (goal 144 1)
 =>
     (enable-wall-placement 2)
     (disable-self)
@@ -15530,7 +16750,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (can-build-wall 2 stone-wall-line)
     (and (strategic-number sn-stone-gatherer-percentage > 0) (false))
-    (goal 136 1)
+    (goal 144 1)
 =>
     (build-wall 2 stone-wall-line)
 )
@@ -15539,12 +16759,12 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (can-build-gate 2)
     (building-type-count-total gate < 5)
     (and (strategic-number sn-stone-gatherer-percentage > 0) (false))
-    (goal 136 1)
+    (goal 144 1)
 =>
     (build-gate 2)
 )
 (defrule
-    (not (and (and (strategic-number sn-stone-gatherer-percentage > 0) (false)) (goal 136 1)))
+    (not (and (and (strategic-number sn-stone-gatherer-percentage > 0) (false)) (goal 144 1)))
 =>
     (up-jump-rule 4)
 )
@@ -15576,7 +16796,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (research ri-fortified-wall)
 )
 (defrule
-    (not (goal 135 2))
+    (not (goal 143 2))
 =>
     (up-jump-rule 5)
 )
@@ -15636,6 +16856,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (disable-self)
     (set-goal good-monks 1)
     (set-goal good-militia 1)
+    (set-goal good-fire-ships 1)
 )
 (defrule
     (civ-selected berbers)
@@ -15646,6 +16867,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-scouts 1)
     (set-goal good-camels 1)
     (set-goal good-scorpions 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected briton)
@@ -15656,6 +16879,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-militia 1)
     (set-goal good-spearmen 1)
     (set-goal good-scorpions 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected burmese)
@@ -15667,6 +16892,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-scorpions 1)
     (set-goal good-battle-elephants 1)
     (set-goal good-monks 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected byzantine)
@@ -15680,6 +16906,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-battering-rams 1)
     (set-goal good-hand-cannoneers 1)
     (set-goal good-monks 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected celtic)
@@ -15690,6 +16918,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-mangonels 1)
     (set-goal good-militia 1)
     (set-goal good-spearmen 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected chinese)
@@ -15702,6 +16931,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-camels 1)
     (set-goal good-battering-rams 1)
     (set-goal good-scorpions 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected ethiopian)
@@ -15710,6 +16940,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (disable-self)
     (set-goal good-skirmishers 1)
     (set-goal good-spearmen 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected frankish)
@@ -15719,6 +16950,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-spearmen 1)
     (set-goal good-knights 1)
     (set-goal good-scorpions 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected gothic)
@@ -15729,6 +16962,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-scouts 1)
     (set-goal good-scorpions 1)
     (set-goal good-hand-cannoneers 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected hun)
@@ -15738,6 +16973,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-battering-rams 1)
     (set-goal good-scouts 1)
     (set-goal good-knights 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected incan)
@@ -15750,6 +16986,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-archers 1)
     (set-goal good-spearmen 1)
     (set-goal good-skirmishers 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected indian)
@@ -15760,6 +16998,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-cavalry-archers 1)
     (set-goal good-camels 1)
     (set-goal good-scouts 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected italian)
@@ -15770,6 +17009,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-militia 1)
     (set-goal good-scouts 1)
     (set-goal good-monks 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected japanese)
@@ -15782,6 +17023,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-spearmen 1)
     (set-goal good-scorpions 1)
     (set-goal good-monks 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected khmer)
@@ -15791,6 +17034,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-battle-elephants 1)
     (set-goal good-battering-rams 1)
     (set-goal good-scorpions 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected korean)
@@ -15799,6 +17044,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (disable-self)
     (set-goal good-skirmishers 1)
     (set-goal good-mangonels 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected magyar)
@@ -15809,6 +17056,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-cavalry-archers 1)
     (set-goal good-scouts 1)
     (set-goal good-knights 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected malay)
@@ -15819,6 +17068,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-spearmen 1)
     (set-goal good-scorpions 1)
     (set-goal good-battle-elephants 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected malian)
@@ -15827,6 +17078,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (disable-self)
     (set-goal good-militia 1)
     (set-goal good-hand-cannoneer 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected mayan)
@@ -15837,6 +17089,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-eagles 1)
     (set-goal good-spearmen 1)
     (set-goal good-battering-rams 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected mongol)
@@ -15848,6 +17102,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-battering-rams 1)
     (set-goal good-mangonels 1)
     (set-goal good-scorpions 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected persian)
@@ -15859,6 +17115,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-hand-cannoneers 1)
     (set-goal good-spearmen 1)
     (set-goal good-battering-rams 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected portuguese)
@@ -15870,6 +17128,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-militia 1)
     (set-goal good-spearmen 1)
     (set-goal good-knights 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected saracen)
@@ -15885,6 +17144,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-monks 1)
     (set-goal good-battering-rams 1)
     (set-goal good-mangonels 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected slavic)
@@ -15897,6 +17157,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-battering-rams 1)
     (set-goal good-mangonels 1)
     (set-goal good-scorpions 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected spanish)
@@ -15910,6 +17172,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-knights 1)
     (set-goal good-monks 1)
     (set-goal good-battering-rams 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected teutonic)
@@ -15921,6 +17185,8 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-monks 1)
     (set-goal good-mangonels 1)
     (set-goal good-scorpions 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected turkish)
@@ -15932,6 +17198,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-scouts 1)
     (set-goal good-camels 1)
     (set-goal good-battering-rams 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected vietnamese)
@@ -15939,6 +17206,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-archers 1)
     (disable-self)
     (set-goal good-skirmishers 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (civ-selected viking)
@@ -15949,11 +17217,12 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal good-militia 1)
     (set-goal good-battering-rams 1)
     (set-goal good-scorpions 1)
+    (set-goal good-galleys 1)
 )
 (defrule
     (not (goal attack-ready 1))
 =>
-    (up-jump-rule 47)
+    (up-jump-rule 57)
 )
 (defrule
     (true)
@@ -15977,349 +17246,439 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (generate-random-number select-random-9acce6ef-230b-41b2-bdeb-daceed821eee)
-    (set-goal 141 0)
+    (generate-random-number select-random-c6eccdc9-7471-4813-8183-c895565b6349)
+    (set-goal 149 0)
 )
 (defrule
     (random-number == 1)
-    (goal 141 0)
+    (goal 149 0)
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (set-goal 141 1)
+    (set-goal 149 1)
 )
 (defrule
     (random-number == 2)
-    (goal 141 0)
+    (goal 149 0)
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (set-goal 141 2)
+    (set-goal 149 2)
 )
 (defrule
     (random-number == 3)
-    (goal 141 0)
+    (goal 149 0)
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (set-goal 141 3)
+    (set-goal 149 3)
 )
 (defrule
     (random-number == 4)
-    (goal 141 0)
+    (goal 149 0)
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (set-goal 141 4)
+    (set-goal 149 4)
 )
 (defrule
     (random-number == 5)
-    (goal 141 0)
+    (goal 149 0)
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (set-goal 141 5)
+    (set-goal 149 5)
 )
 (defrule
     (random-number == 6)
-    (goal 141 0)
+    (goal 149 0)
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (set-goal 141 6)
+    (set-goal 149 6)
 )
 (defrule
     (random-number == 7)
-    (goal 141 0)
+    (goal 149 0)
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (set-goal 141 7)
+    (set-goal 149 7)
 )
 (defrule
     (random-number == 8)
-    (goal 141 0)
+    (goal 149 0)
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (set-goal 141 8)
+    (set-goal 149 8)
 )
 (defrule
     (random-number == 9)
-    (goal 141 0)
+    (goal 149 0)
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (set-goal 141 9)
+    (set-goal 149 9)
 )
 (defrule
     (random-number == 10)
-    (goal 141 0)
+    (goal 149 0)
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (set-goal 141 10)
+    (set-goal 149 10)
 )
 (defrule
     (random-number == 11)
-    (goal 141 0)
+    (goal 149 0)
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (set-goal 141 11)
+    (set-goal 149 11)
 )
 (defrule
     (random-number == 12)
-    (goal 141 0)
+    (goal 149 0)
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (set-goal 141 12)
+    (set-goal 149 12)
 )
 (defrule
     (random-number == 13)
-    (goal 141 0)
+    (goal 149 0)
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (set-goal 141 13)
+    (set-goal 149 13)
 )
 (defrule
     (random-number == 14)
-    (goal 141 0)
+    (goal 149 0)
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (set-goal 141 14)
+    (set-goal 149 14)
 )
 (defrule
     (random-number == 15)
-    (goal 141 0)
+    (goal 149 0)
     (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
 =>
-    (set-goal 141 15)
+    (set-goal 149 15)
+)
+(defrule
+    (random-number == 16)
+    (goal 149 0)
+    (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
+=>
+    (set-goal 149 16)
+)
+(defrule
+    (random-number == 17)
+    (goal 149 0)
+    (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
+=>
+    (set-goal 149 17)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
-    (goal 141 1)
+    (goal full-water-map 0)
+    (goal 149 1)
     (goal produce-cavalry-archers 0)
 =>
     (up-modify-goal produce-archers g:= good-archers)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
-    (goal 141 2)
+    (goal full-water-map 0)
+    (goal 149 2)
 =>
     (up-modify-goal produce-hand-cannoneers g:= good-hand-cannoneers)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
-    (goal 141 3)
+    (goal full-water-map 0)
+    (goal 149 3)
 =>
     (up-modify-goal produce-skirmishers g:= good-skirmishers)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
-    (goal 141 4)
+    (goal full-water-map 0)
+    (goal 149 4)
     (goal produce-archers 0)
 =>
     (up-modify-goal produce-cavalry-archers g:= good-cavalry-archers)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
-    (goal 141 5)
+    (goal full-water-map 0)
+    (goal 149 5)
     (goal produce-eagles 0)
 =>
     (up-modify-goal produce-militia g:= good-militia)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
-    (goal 141 6)
+    (goal full-water-map 0)
+    (goal 149 6)
     (goal produce-eagles 0)
 =>
     (up-modify-goal produce-spearmen g:= good-spearmen)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
-    (goal 141 7)
+    (goal full-water-map 0)
+    (goal 149 7)
     (and (goal produce-spearmen 0) (goal produce-militia 0))
 =>
     (up-modify-goal produce-eagles g:= good-eagles)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
-    (goal 141 8)
+    (goal full-water-map 0)
+    (goal 149 8)
     (and (goal produce-knights 0) (goal produce-battle-elephants 0))
 =>
     (up-modify-goal produce-scouts g:= good-scouts)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
-    (goal 141 9)
+    (goal full-water-map 0)
+    (goal 149 9)
     (and (goal produce-scouts 0) (goal produce-battle-elephants 0))
 =>
     (up-modify-goal produce-knights g:= good-knights)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
-    (goal 141 10)
+    (goal full-water-map 0)
+    (goal 149 10)
 =>
     (up-modify-goal produce-camels g:= good-camels)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
-    (goal 141 11)
+    (goal full-water-map 0)
+    (goal 149 11)
     (and (goal produce-scouts 0) (goal produce-knights 0))
 =>
     (up-modify-goal produce-battle-elephants g:= good-battle-elephants)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
-    (goal 141 12)
+    (goal full-water-map 0)
+    (goal 149 12)
 =>
     (up-modify-goal produce-mangonels g:= good-mangonels)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
-    (goal 141 13)
+    (goal full-water-map 0)
+    (goal 149 13)
 =>
     (up-modify-goal produce-scorpions g:= good-scorpions)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
-    (goal 141 14)
+    (goal full-water-map 0)
+    (goal 149 14)
 =>
     (up-modify-goal produce-monks g:= good-monks)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
-    (goal 141 15)
+    (goal full-water-map 0)
+    (goal 149 15)
 =>
     (up-modify-goal produce-unique-units g:= good-unique-units)
+)
+(defrule
+    (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
+    (goal 149 16)
+    (goal water-map 1)
+=>
+    (up-modify-goal produce-galleys g:= good-galleys)
+)
+(defrule
+    (up-compare-goal total-units-selected g:< desired-units)
+    (goal full-water-map 0)
+    (goal 149 17)
+    (goal water-map 1)
+=>
+    (up-modify-goal produce-fire-ships g:= good-fire-ships)
+)
+(defrule
+    (up-compare-goal total-units-selected g:< desired-units)
+    (not (goal full-water-map 0))
+=>
+    (generate-random-number select-random-4f54fc10-a463-42e6-b62a-3cc72e114892)
+    (set-goal 150 0)
+)
+(defrule
+    (random-number == 1)
+    (goal 150 0)
+    (up-compare-goal total-units-selected g:< desired-units)
+    (not (goal full-water-map 0))
+=>
+    (set-goal 150 1)
+)
+(defrule
+    (random-number == 2)
+    (goal 150 0)
+    (up-compare-goal total-units-selected g:< desired-units)
+    (not (goal full-water-map 0))
+=>
+    (set-goal 150 2)
+)
+(defrule
+    (up-compare-goal total-units-selected g:< desired-units)
+    (not (goal full-water-map 0))
+    (goal 150 1)
+=>
+    (up-modify-goal produce-galleys g:= good-galleys)
+)
+(defrule
+    (up-compare-goal total-units-selected g:< desired-units)
+    (not (goal full-water-map 0))
+    (goal 150 2)
+=>
+    (up-modify-goal produce-fire-ships g:= good-fire-ships)
 )
 (defrule
     (goal produce-archers 1)
 =>
     (chat-local-to-self "produce-archers")
-    (disable-self)
 )
 (defrule
     (goal produce-hand-cannoneers 1)
 =>
     (chat-local-to-self "produce-hand-cannoneers")
-    (disable-self)
 )
 (defrule
     (goal produce-skirmishers 1)
 =>
     (chat-local-to-self "produce-skirmishers")
-    (disable-self)
 )
 (defrule
     (goal produce-cavalry-archers 1)
 =>
     (chat-local-to-self "produce-cavalry-archers")
-    (disable-self)
 )
 (defrule
     (goal produce-militia 1)
 =>
     (chat-local-to-self "produce-militia")
-    (disable-self)
 )
 (defrule
     (goal produce-spearmen 1)
 =>
     (chat-local-to-self "produce-spearmen")
-    (disable-self)
 )
 (defrule
     (goal produce-eagles 1)
 =>
     (chat-local-to-self "produce-eagles")
-    (disable-self)
 )
 (defrule
     (goal produce-scouts 1)
 =>
     (chat-local-to-self "produce-scouts")
-    (disable-self)
 )
 (defrule
     (goal produce-knights 1)
 =>
     (chat-local-to-self "produce-knights")
-    (disable-self)
 )
 (defrule
     (goal produce-camels 1)
 =>
     (chat-local-to-self "produce-camels")
-    (disable-self)
 )
 (defrule
     (goal produce-battle-elephants 1)
 =>
     (chat-local-to-self "produce-battle-elephants")
-    (disable-self)
 )
 (defrule
     (goal produce-mangonels 1)
 =>
     (chat-local-to-self "produce-mangonels")
-    (disable-self)
 )
 (defrule
     (goal produce-scorpions 1)
 =>
     (chat-local-to-self "produce-scorpions")
-    (disable-self)
 )
 (defrule
     (goal produce-monks 1)
 =>
     (chat-local-to-self "produce-monks")
-    (disable-self)
 )
 (defrule
     (goal produce-unique-units 1)
 =>
     (chat-local-to-self "produce-unique-units")
-    (disable-self)
+)
+(defrule
+    (goal produce-galleys 1)
+=>
+    (chat-local-to-self "produce-galleys")
 )
 (defrule
     (goal attack-ready 1)
     (military-population >= 8)
 =>
-    (generate-random-number select-random-2887b6f7-5bd7-448d-9443-5f0ba72f6dd2)
-    (set-goal 142 0)
+    (generate-random-number select-random-305f7eaf-2cff-4c39-87bf-481f971f17a4)
+    (set-goal 151 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 142 0)
+    (goal 151 0)
     (goal attack-ready 1)
     (military-population >= 8)
 =>
-    (set-goal 142 1)
+    (set-goal 151 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 142 0)
+    (goal 151 0)
     (goal attack-ready 1)
     (military-population >= 8)
 =>
-    (set-goal 142 2)
+    (set-goal 151 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 142 0)
+    (goal 151 0)
     (goal attack-ready 1)
     (military-population >= 8)
 =>
-    (set-goal 142 3)
+    (set-goal 151 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 142 0)
+    (goal 151 0)
     (goal attack-ready 1)
     (military-population >= 8)
 =>
-    (set-goal 142 4)
+    (set-goal 151 4)
     (disable-self)
 )
 (defrule
-    (not (and (goal attack-ready 1) (and (military-population >= 8) (goal 142 1))))
+    (not (and (goal attack-ready 1) (and (military-population >= 8) (goal 151 1))))
 =>
     (up-jump-rule 3)
 )
@@ -16341,7 +17700,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal attacking 0)
 )
 (defrule
-    (not (and (goal attack-ready 1) (and (military-population >= 8) (goal 142 2))))
+    (not (and (goal attack-ready 1) (and (military-population >= 8) (goal 151 2))))
 =>
     (up-jump-rule 3)
 )
@@ -16363,7 +17722,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal attacking 0)
 )
 (defrule
-    (not (and (goal attack-ready 1) (and (military-population >= 8) (goal 142 3))))
+    (not (and (goal attack-ready 1) (and (military-population >= 8) (goal 151 3))))
 =>
     (up-jump-rule 3)
 )
@@ -16385,7 +17744,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal attacking 0)
 )
 (defrule
-    (not (and (goal attack-ready 1) (and (military-population >= 8) (goal 142 4))))
+    (not (and (goal attack-ready 1) (and (military-population >= 8) (goal 151 4))))
 =>
     (up-jump-rule 3)
 )
@@ -16415,62 +17774,62 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (goal attack-ready 1)
 =>
-    (generate-random-number select-random-03ae9827-0517-4ebd-8369-1c32bdd42440)
-    (set-goal 143 0)
+    (generate-random-number select-random-de4585dd-abdc-4eba-8267-49730d2f30f8)
+    (set-goal 152 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 143 0)
+    (goal 152 0)
     (goal attack-ready 1)
 =>
-    (set-goal 143 1)
+    (set-goal 152 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 143 0)
+    (goal 152 0)
     (goal attack-ready 1)
 =>
-    (set-goal 143 2)
+    (set-goal 152 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 143 0)
+    (goal 152 0)
     (goal attack-ready 1)
 =>
-    (set-goal 143 3)
+    (set-goal 152 3)
     (disable-self)
 )
 (defrule
     (goal attack-ready 1)
-    (goal 143 1)
+    (goal 152 1)
 =>
-    (generate-random-number select-random-0171e4cd-8cc2-48a1-8d8d-9d6e9634f8b7)
-    (set-goal 144 0)
+    (generate-random-number select-random-3088e075-8dee-4951-9c0e-f3108da68915)
+    (set-goal 153 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 144 0)
+    (goal 153 0)
     (goal attack-ready 1)
-    (goal 143 1)
+    (goal 152 1)
 =>
-    (set-goal 144 1)
+    (set-goal 153 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 144 0)
+    (goal 153 0)
     (goal attack-ready 1)
-    (goal 143 1)
+    (goal 152 1)
 =>
-    (set-goal 144 2)
+    (set-goal 153 2)
     (disable-self)
 )
 (defrule
-    (not (and (goal attack-ready 1) (and (goal 143 1) (goal 144 1))))
+    (not (and (goal attack-ready 1) (and (goal 152 1) (goal 153 1))))
 =>
     (up-jump-rule 5)
 )
@@ -16505,7 +17864,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal do-research 1)
 )
 (defrule
-    (not (and (goal attack-ready 1) (and (goal 143 1) (goal 144 2))))
+    (not (and (goal attack-ready 1) (and (goal 152 1) (goal 153 2))))
 =>
     (up-jump-rule 5)
 )
@@ -16540,7 +17899,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal do-research 1)
 )
 (defrule
-    (not (and (goal attack-ready 1) (goal 143 2)))
+    (not (and (goal attack-ready 1) (goal 152 2)))
 =>
     (up-jump-rule 12)
 )
@@ -16617,7 +17976,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal do-research 1)
 )
 (defrule
-    (not (and (goal attack-ready 1) (goal 143 3)))
+    (not (and (goal attack-ready 1) (goal 152 3)))
 =>
     (up-jump-rule 2)
 )
@@ -16669,51 +18028,51 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (goal emergency-trash 1)
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
 =>
-    (generate-random-number select-random-5fe99621-2f0d-4ffa-b37b-be76a6e8d209)
-    (set-goal 147 0)
+    (generate-random-number select-random-e81c8874-c549-4d16-b932-beb065fe9d46)
+    (set-goal 156 0)
 )
 (defrule
     (random-number == 1)
-    (goal 147 0)
+    (goal 156 0)
     (goal emergency-trash 1)
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
 =>
-    (set-goal 147 1)
+    (set-goal 156 1)
 )
 (defrule
     (random-number == 2)
-    (goal 147 0)
+    (goal 156 0)
     (goal emergency-trash 1)
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
 =>
-    (set-goal 147 2)
+    (set-goal 156 2)
 )
 (defrule
     (random-number == 3)
-    (goal 147 0)
+    (goal 156 0)
     (goal emergency-trash 1)
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
 =>
-    (set-goal 147 3)
+    (set-goal 156 3)
 )
 (defrule
     (goal emergency-trash 1)
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
-    (goal 147 1)
+    (goal 156 1)
 =>
     (set-goal good-skirmishers 1)
 )
 (defrule
     (goal emergency-trash 1)
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
-    (goal 147 2)
+    (goal 156 2)
 =>
     (set-goal good-scouts 1)
 )
 (defrule
     (goal emergency-trash 1)
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
-    (goal 147 3)
+    (goal 156 3)
 =>
     (set-goal good-spearmen 1)
 )
@@ -16771,7 +18130,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (not (goal attack-ready 1))
 =>
-    (up-jump-rule 8)
+    (up-jump-rule 10)
 )
 (defrule
     (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town))))
@@ -16781,6 +18140,21 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 )
 (defrule
     (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
+    (goal full-water-map 1)
+    (and (current-age == imperial-age) (and (unit-type-count-total cannon-galleon-line < max-trebs) (or (research-available ri-cannon-galleon) (unit-available cannon-galleon-line))))
+=>
+    (set-goal produce-cannon-galleons 1)
+)
+(defrule
+    (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
+    (goal full-water-map 1)
+    (not (and (current-age == imperial-age) (and (unit-type-count-total cannon-galleon-line < max-trebs) (or (research-available ri-cannon-galleon) (unit-available cannon-galleon-line)))))
+=>
+    (set-goal produce-cannon-galleons 0)
+)
+(defrule
+    (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
+    (not (goal full-water-map 1))
     (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1)))
     (or (military-population >= 20) (enemy-buildings-in-town))
     (or (and (unit-type-count-total battering-ram-line < 5) (current-age == castle-age)) (and (unit-type-count-total battering-ram-line < max-rams) (current-age == imperial-age)))
@@ -16789,6 +18163,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 )
 (defrule
     (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
+    (not (goal full-water-map 1))
     (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1)))
     (or (military-population >= 20) (enemy-buildings-in-town))
     (not (or (and (unit-type-count-total battering-ram-line < 5) (current-age == castle-age)) (and (unit-type-count-total battering-ram-line < max-rams) (current-age == imperial-age))))
@@ -16797,6 +18172,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 )
 (defrule
     (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
+    (not (goal full-water-map 1))
     (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1)))
     (not (or (military-population >= 20) (enemy-buildings-in-town)))
 =>
@@ -16804,12 +18180,14 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 )
 (defrule
     (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
+    (not (goal full-water-map 1))
     (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1)))
 =>
     (set-goal produce-trebuchets 0)
 )
 (defrule
     (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
+    (not (goal full-water-map 1))
     (not (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1))))
     (current-age == imperial-age)
 =>
@@ -16817,6 +18195,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 )
 (defrule
     (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
+    (not (goal full-water-map 1))
     (not (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1))))
     (current-age == imperial-age)
     (unit-type-count-total trebuchet-set < max-trebs)
@@ -16825,6 +18204,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 )
 (defrule
     (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
+    (not (goal full-water-map 1))
     (not (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1))))
     (current-age == imperial-age)
     (not (unit-type-count-total trebuchet-set < max-trebs))
@@ -16839,18 +18219,18 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (true)
 =>
-    (up-find-player enemy find-closest 148)
-    (up-modify-sn sn-target-player-number g:= 148)
-    (up-modify-sn sn-focus-player-number g:= 148)
+    (up-find-player enemy find-closest 157)
+    (up-modify-sn sn-target-player-number g:= 157)
+    (up-modify-sn sn-focus-player-number g:= 157)
     (disable-self)
     (up-send-scout group-type-land-explore scout-enemy)
 )
 (defrule
     (not (player-in-game target-player))
 =>
-    (up-find-player enemy find-closest 149)
-    (up-modify-sn sn-target-player-number g:= 149)
-    (up-modify-sn sn-focus-player-number g:= 149)
+    (up-find-player enemy find-closest 158)
+    (up-modify-sn sn-target-player-number g:= 158)
+    (up-modify-sn sn-focus-player-number g:= 158)
     (up-send-scout group-type-land-explore scout-enemy)
 )
 (defrule
@@ -17190,41 +18570,41 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (goal do-taunt-target every-ally)
     (goal do-taunt 1)
 =>
-    (generate-random-number select-random-f009cfa9-bb60-4333-bbb2-49afd8a50c91)
-    (set-goal 156 0)
+    (generate-random-number select-random-4c82d826-d263-49d7-ad84-8dd220502638)
+    (set-goal 165 0)
 )
 (defrule
     (random-number == 1)
-    (goal 156 0)
+    (goal 165 0)
     (not (goal do-taunt -1))
     (goal do-taunt-target every-ally)
     (goal do-taunt 1)
 =>
-    (set-goal 156 1)
+    (set-goal 165 1)
 )
 (defrule
     (random-number == 2)
-    (goal 156 0)
+    (goal 165 0)
     (not (goal do-taunt -1))
     (goal do-taunt-target every-ally)
     (goal do-taunt 1)
 =>
-    (set-goal 156 2)
+    (set-goal 165 2)
 )
 (defrule
     (random-number == 3)
-    (goal 156 0)
+    (goal 165 0)
     (not (goal do-taunt -1))
     (goal do-taunt-target every-ally)
     (goal do-taunt 1)
 =>
-    (set-goal 156 3)
+    (set-goal 165 3)
 )
 (defrule
     (not (goal do-taunt -1))
     (goal do-taunt-target every-ally)
     (goal do-taunt 1)
-    (goal 156 1)
+    (goal 165 1)
 =>
     (chat-to-allies "1Sure.")
 )
@@ -17232,7 +18612,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal do-taunt -1))
     (goal do-taunt-target every-ally)
     (goal do-taunt 1)
-    (goal 156 2)
+    (goal 165 2)
 =>
     (chat-to-allies "1Of course.")
 )
@@ -17240,7 +18620,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal do-taunt -1))
     (goal do-taunt-target every-ally)
     (goal do-taunt 1)
-    (goal 156 3)
+    (goal 165 3)
 =>
     (chat-to-allies "1Okay.")
 )
@@ -17249,41 +18629,41 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (goal do-taunt-target every-ally)
     (goal do-taunt 2)
 =>
-    (generate-random-number select-random-7bab0a6e-7924-4bea-a7a7-959793e4bfe0)
-    (set-goal 157 0)
+    (generate-random-number select-random-8d473dcf-c4e1-44a2-b7ac-8a1e07593112)
+    (set-goal 166 0)
 )
 (defrule
     (random-number == 1)
-    (goal 157 0)
+    (goal 166 0)
     (not (goal do-taunt -1))
     (goal do-taunt-target every-ally)
     (goal do-taunt 2)
 =>
-    (set-goal 157 1)
+    (set-goal 166 1)
 )
 (defrule
     (random-number == 2)
-    (goal 157 0)
+    (goal 166 0)
     (not (goal do-taunt -1))
     (goal do-taunt-target every-ally)
     (goal do-taunt 2)
 =>
-    (set-goal 157 2)
+    (set-goal 166 2)
 )
 (defrule
     (random-number == 3)
-    (goal 157 0)
+    (goal 166 0)
     (not (goal do-taunt -1))
     (goal do-taunt-target every-ally)
     (goal do-taunt 2)
 =>
-    (set-goal 157 3)
+    (set-goal 166 3)
 )
 (defrule
     (not (goal do-taunt -1))
     (goal do-taunt-target every-ally)
     (goal do-taunt 2)
-    (goal 157 1)
+    (goal 166 1)
 =>
     (chat-to-allies "2Sorry, no.")
 )
@@ -17291,7 +18671,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal do-taunt -1))
     (goal do-taunt-target every-ally)
     (goal do-taunt 2)
-    (goal 157 2)
+    (goal 166 2)
 =>
     (chat-to-allies "2Not right now, sorry.")
 )
@@ -17299,7 +18679,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal do-taunt -1))
     (goal do-taunt-target every-ally)
     (goal do-taunt 2)
-    (goal 157 3)
+    (goal 166 3)
 =>
     (chat-to-allies "2Sorry, no can do!")
 )
@@ -17309,45 +18689,45 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (goal do-taunt-target every-enemy)
     (goal do-taunt 1)
 =>
-    (generate-random-number select-random-259932a2-a226-4fb9-90cf-34007739d3a8)
-    (set-goal 158 0)
+    (generate-random-number select-random-73508740-51eb-4e7b-b076-eb9cca2fbf9e)
+    (set-goal 167 0)
 )
 (defrule
     (random-number == 1)
-    (goal 158 0)
+    (goal 167 0)
     (not (goal do-taunt -1))
     (not (goal do-taunt-target every-ally))
     (goal do-taunt-target every-enemy)
     (goal do-taunt 1)
 =>
-    (set-goal 158 1)
+    (set-goal 167 1)
 )
 (defrule
     (random-number == 2)
-    (goal 158 0)
+    (goal 167 0)
     (not (goal do-taunt -1))
     (not (goal do-taunt-target every-ally))
     (goal do-taunt-target every-enemy)
     (goal do-taunt 1)
 =>
-    (set-goal 158 2)
+    (set-goal 167 2)
 )
 (defrule
     (random-number == 3)
-    (goal 158 0)
+    (goal 167 0)
     (not (goal do-taunt -1))
     (not (goal do-taunt-target every-ally))
     (goal do-taunt-target every-enemy)
     (goal do-taunt 1)
 =>
-    (set-goal 158 3)
+    (set-goal 167 3)
 )
 (defrule
     (not (goal do-taunt -1))
     (not (goal do-taunt-target every-ally))
     (goal do-taunt-target every-enemy)
     (goal do-taunt 1)
-    (goal 158 1)
+    (goal 167 1)
 =>
     (chat-to-allies "1Why not?")
 )
@@ -17356,7 +18736,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal do-taunt-target every-ally))
     (goal do-taunt-target every-enemy)
     (goal do-taunt 1)
-    (goal 158 2)
+    (goal 167 2)
 =>
     (chat-to-allies "1Sounds good.")
 )
@@ -17365,7 +18745,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal do-taunt-target every-ally))
     (goal do-taunt-target every-enemy)
     (goal do-taunt 1)
-    (goal 158 3)
+    (goal 167 3)
 =>
     (chat-to-allies "1Sure.")
 )
@@ -17375,45 +18755,45 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (goal do-taunt-target every-enemy)
     (goal do-taunt 2)
 =>
-    (generate-random-number select-random-245af9dc-50fc-4d52-8ccc-ab7c43cd71fc)
-    (set-goal 159 0)
+    (generate-random-number select-random-5545cfb9-d097-4ad5-89b4-7370d75806e0)
+    (set-goal 168 0)
 )
 (defrule
     (random-number == 1)
-    (goal 159 0)
+    (goal 168 0)
     (not (goal do-taunt -1))
     (not (goal do-taunt-target every-ally))
     (goal do-taunt-target every-enemy)
     (goal do-taunt 2)
 =>
-    (set-goal 159 1)
+    (set-goal 168 1)
 )
 (defrule
     (random-number == 2)
-    (goal 159 0)
+    (goal 168 0)
     (not (goal do-taunt -1))
     (not (goal do-taunt-target every-ally))
     (goal do-taunt-target every-enemy)
     (goal do-taunt 2)
 =>
-    (set-goal 159 2)
+    (set-goal 168 2)
 )
 (defrule
     (random-number == 3)
-    (goal 159 0)
+    (goal 168 0)
     (not (goal do-taunt -1))
     (not (goal do-taunt-target every-ally))
     (goal do-taunt-target every-enemy)
     (goal do-taunt 2)
 =>
-    (set-goal 159 3)
+    (set-goal 168 3)
 )
 (defrule
     (not (goal do-taunt -1))
     (not (goal do-taunt-target every-ally))
     (goal do-taunt-target every-enemy)
     (goal do-taunt 2)
-    (goal 159 1)
+    (goal 168 1)
 =>
     (chat-to-allies "2Absolutely not.")
 )
@@ -17422,7 +18802,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal do-taunt-target every-ally))
     (goal do-taunt-target every-enemy)
     (goal do-taunt 2)
-    (goal 159 2)
+    (goal 168 2)
 =>
     (chat-to-allies "2Are you out of your mind?")
 )
@@ -17431,7 +18811,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal do-taunt-target every-ally))
     (goal do-taunt-target every-enemy)
     (goal do-taunt 2)
-    (goal 159 3)
+    (goal 168 3)
 =>
     (chat-to-allies "2As if!")
 )
@@ -17439,41 +18819,41 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (game-time < 5)
     (or (goal free-for-all 1) (goal team-game 1))
 =>
-    (generate-random-number select-random-d4ffc283-950b-4e76-bbc7-757fe4d20d29)
-    (set-goal 160 0)
+    (generate-random-number select-random-02542e08-8612-4318-b051-aa6bda18150e)
+    (set-goal 169 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 160 0)
+    (goal 169 0)
     (game-time < 5)
     (or (goal free-for-all 1) (goal team-game 1))
 =>
-    (set-goal 160 1)
+    (set-goal 169 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 160 0)
+    (goal 169 0)
     (game-time < 5)
     (or (goal free-for-all 1) (goal team-game 1))
 =>
-    (set-goal 160 2)
+    (set-goal 169 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 160 0)
+    (goal 169 0)
     (game-time < 5)
     (or (goal free-for-all 1) (goal team-game 1))
 =>
-    (set-goal 160 3)
+    (set-goal 169 3)
     (disable-self)
 )
 (defrule
     (game-time < 5)
     (or (goal free-for-all 1) (goal team-game 1))
-    (goal 160 1)
+    (goal 169 1)
 =>
     (chat-to-all "Good luck and have fun everyone!")
     (disable-self)
@@ -17481,7 +18861,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (game-time < 5)
     (or (goal free-for-all 1) (goal team-game 1))
-    (goal 160 2)
+    (goal 169 2)
     (goal free-for-all 1)
 =>
     (chat-to-all "May the best ruler win!")
@@ -17490,7 +18870,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (game-time < 5)
     (or (goal free-for-all 1) (goal team-game 1))
-    (goal 160 2)
+    (goal 169 2)
     (not (goal free-for-all 1))
 =>
     (chat-to-all "May the best team win!")
@@ -17499,7 +18879,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (game-time < 5)
     (or (goal free-for-all 1) (goal team-game 1))
-    (goal 160 3)
+    (goal 169 3)
 =>
     (chat-to-all "GL everyone!!!")
     (disable-self)
@@ -17508,77 +18888,77 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (generate-random-number select-random-b3616f70-36b0-43b5-b5e4-da4ada1e7800)
-    (set-goal 161 0)
+    (generate-random-number select-random-bc3c2eec-7e59-481d-9a88-73c96b3d79a4)
+    (set-goal 170 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 161 0)
+    (goal 170 0)
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (set-goal 161 1)
+    (set-goal 170 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 161 0)
+    (goal 170 0)
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (set-goal 161 2)
+    (set-goal 170 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 161 0)
+    (goal 170 0)
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (set-goal 161 3)
+    (set-goal 170 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 161 0)
+    (goal 170 0)
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (set-goal 161 4)
+    (set-goal 170 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 161 0)
+    (goal 170 0)
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (set-goal 161 5)
+    (set-goal 170 5)
     (disable-self)
 )
 (defrule
     (random-number == 6)
-    (goal 161 0)
+    (goal 170 0)
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (set-goal 161 6)
+    (set-goal 170 6)
     (disable-self)
 )
 (defrule
     (random-number == 7)
-    (goal 161 0)
+    (goal 170 0)
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (set-goal 161 7)
+    (set-goal 170 7)
     (disable-self)
 )
 (defrule
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
-    (goal 161 1)
+    (goal 170 1)
 =>
     (chat-to-all "Hi! Go easy on me, okay?")
     (disable-self)
@@ -17586,7 +18966,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
-    (goal 161 2)
+    (goal 170 2)
 =>
     (chat-to-all "Looking forward to this. Let's go.")
     (disable-self)
@@ -17594,7 +18974,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
-    (goal 161 3)
+    (goal 170 3)
 =>
     (chat-to-all "Good luck, have fun!")
     (disable-self)
@@ -17602,7 +18982,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
-    (goal 161 4)
+    (goal 170 4)
 =>
     (chat-to-all "GL!")
     (disable-self)
@@ -17610,7 +18990,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
-    (goal 161 5)
+    (goal 170 5)
 =>
     (chat-to-all "HF!")
     (disable-self)
@@ -17618,7 +18998,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
-    (goal 161 6)
+    (goal 170 6)
 =>
     (chat-to-all "Good luck!")
     (disable-self)
@@ -17626,7 +19006,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
-    (goal 161 7)
+    (goal 170 7)
 =>
     (chat-to-all "Have fun!")
     (disable-self)
@@ -17642,45 +19022,45 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal score-percentage c:<= 70)
     (goal free-for-all 1)
 =>
-    (generate-random-number select-random-48b99b03-0b62-4c4c-bab3-684987b1c2e1)
-    (set-goal 162 0)
+    (generate-random-number select-random-c0f88b27-9a87-4d51-ad4c-840efafb78cc)
+    (set-goal 171 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 162 0)
+    (goal 171 0)
     (timer-triggered 4)
     (up-compare-goal score-percentage c:<= 70)
     (goal free-for-all 1)
 =>
-    (set-goal 162 1)
+    (set-goal 171 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 162 0)
+    (goal 171 0)
     (timer-triggered 4)
     (up-compare-goal score-percentage c:<= 70)
     (goal free-for-all 1)
 =>
-    (set-goal 162 2)
+    (set-goal 171 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 162 0)
+    (goal 171 0)
     (timer-triggered 4)
     (up-compare-goal score-percentage c:<= 70)
     (goal free-for-all 1)
 =>
-    (set-goal 162 3)
+    (set-goal 171 3)
     (disable-self)
 )
 (defrule
     (timer-triggered 4)
     (up-compare-goal score-percentage c:<= 70)
     (goal free-for-all 1)
-    (goal 162 1)
+    (goal 171 1)
 =>
     (chat-to-all "I'm having some trouble with this one.")
     (disable-self)
@@ -17689,7 +19069,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (timer-triggered 4)
     (up-compare-goal score-percentage c:<= 70)
     (goal free-for-all 1)
-    (goal 162 2)
+    (goal 171 2)
 =>
     (chat-to-all "This is a tough game.")
     (disable-self)
@@ -17698,7 +19078,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (timer-triggered 4)
     (up-compare-goal score-percentage c:<= 70)
     (goal free-for-all 1)
-    (goal 162 3)
+    (goal 171 3)
 =>
     (chat-to-all "I don't like my chances here.")
     (disable-self)
@@ -17709,41 +19089,41 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal free-for-all 1))
     (goal team-game 1)
 =>
-    (generate-random-number select-random-62b7209f-572e-4da5-b672-7200daeed2ab)
-    (set-goal 163 0)
+    (generate-random-number select-random-cb6df109-8f89-464e-b63f-208cd5b90396)
+    (set-goal 172 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 163 0)
+    (goal 172 0)
     (timer-triggered 4)
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (goal team-game 1)
 =>
-    (set-goal 163 1)
+    (set-goal 172 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 163 0)
+    (goal 172 0)
     (timer-triggered 4)
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (goal team-game 1)
 =>
-    (set-goal 163 2)
+    (set-goal 172 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 163 0)
+    (goal 172 0)
     (timer-triggered 4)
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (goal team-game 1)
 =>
-    (set-goal 163 3)
+    (set-goal 172 3)
     (disable-self)
 )
 (defrule
@@ -17751,7 +19131,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (goal team-game 1)
-    (goal 163 1)
+    (goal 172 1)
 =>
     (chat-to-all "We may need a different strategy...")
     (disable-self)
@@ -17761,7 +19141,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (goal team-game 1)
-    (goal 163 2)
+    (goal 172 2)
 =>
     (chat-to-all "I'm crumbling... Hopefully we still have a shot?")
     (disable-self)
@@ -17771,7 +19151,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (goal team-game 1)
-    (goal 163 3)
+    (goal 172 3)
 =>
     (chat-to-all "This is hard.")
     (disable-self)
@@ -17782,63 +19162,63 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal free-for-all 1))
     (not (goal team-game 1))
 =>
-    (generate-random-number select-random-c10ea98f-0753-4af8-bc58-ef0b83c56b90)
-    (set-goal 164 0)
+    (generate-random-number select-random-6c14653d-54cf-4b9c-88f1-eb3add9d6092)
+    (set-goal 173 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 164 0)
+    (goal 173 0)
     (timer-triggered 4)
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
 =>
-    (set-goal 164 1)
+    (set-goal 173 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 164 0)
+    (goal 173 0)
     (timer-triggered 4)
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
 =>
-    (set-goal 164 2)
+    (set-goal 173 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 164 0)
+    (goal 173 0)
     (timer-triggered 4)
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
 =>
-    (set-goal 164 3)
+    (set-goal 173 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 164 0)
+    (goal 173 0)
     (timer-triggered 4)
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
 =>
-    (set-goal 164 4)
+    (set-goal 173 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 164 0)
+    (goal 173 0)
     (timer-triggered 4)
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
 =>
-    (set-goal 164 5)
+    (set-goal 173 5)
     (disable-self)
 )
 (defrule
@@ -17846,7 +19226,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
-    (goal 164 1)
+    (goal 173 1)
 =>
     (chat-to-all "I feel vastly outpaced, you're playing a good game.")
     (disable-self)
@@ -17856,7 +19236,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
-    (goal 164 2)
+    (goal 173 2)
 =>
     (chat-to-all "I'm not doing very well...")
     (disable-self)
@@ -17866,7 +19246,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
-    (goal 164 3)
+    (goal 173 3)
 =>
     (chat-to-all "This could have gone better, oh well.")
     (disable-self)
@@ -17876,7 +19256,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
-    (goal 164 4)
+    (goal 173 4)
 =>
     (chat-to-all "You're playing quite well.")
     (disable-self)
@@ -17886,7 +19266,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
-    (goal 164 5)
+    (goal 173 5)
 =>
     (chat-to-all "I'm not sure I can best you.")
     (disable-self)
@@ -17897,30 +19277,30 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal score-percentage c:>= 140)
     (goal free-for-all 1)
 =>
-    (generate-random-number select-random-2b122063-11af-4426-b629-4c770ba878e5)
-    (set-goal 165 0)
+    (generate-random-number select-random-c2b8a4b4-c690-4d49-9197-ef6dca73519d)
+    (set-goal 174 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 165 0)
+    (goal 174 0)
     (timer-triggered 4)
     (not (up-compare-goal score-percentage c:<= 70))
     (up-compare-goal score-percentage c:>= 140)
     (goal free-for-all 1)
 =>
-    (set-goal 165 1)
+    (set-goal 174 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 165 0)
+    (goal 174 0)
     (timer-triggered 4)
     (not (up-compare-goal score-percentage c:<= 70))
     (up-compare-goal score-percentage c:>= 140)
     (goal free-for-all 1)
 =>
-    (set-goal 165 2)
+    (set-goal 174 2)
     (disable-self)
 )
 (defrule
@@ -17928,7 +19308,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (up-compare-goal score-percentage c:<= 70))
     (up-compare-goal score-percentage c:>= 140)
     (goal free-for-all 1)
-    (goal 165 1)
+    (goal 174 1)
 =>
     (chat-to-all "I'm pretty sure I've got this game.")
     (disable-self)
@@ -17938,7 +19318,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (up-compare-goal score-percentage c:<= 70))
     (up-compare-goal score-percentage c:>= 140)
     (goal free-for-all 1)
-    (goal 165 2)
+    (goal 174 2)
 =>
     (chat-to-all "It was tough, but I got there in the end.")
     (disable-self)
@@ -17968,75 +19348,75 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
 =>
-    (generate-random-number select-random-51672b1f-61ba-4a3c-8cf6-a4147656b39d)
-    (set-goal 166 0)
+    (generate-random-number select-random-45380e98-61d5-4923-99a3-803bc73e14f5)
+    (set-goal 175 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 166 0)
+    (goal 175 0)
     (timer-triggered 4)
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
 =>
-    (set-goal 166 1)
+    (set-goal 175 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 166 0)
+    (goal 175 0)
     (timer-triggered 4)
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
 =>
-    (set-goal 166 2)
+    (set-goal 175 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 166 0)
+    (goal 175 0)
     (timer-triggered 4)
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
 =>
-    (set-goal 166 3)
+    (set-goal 175 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 166 0)
+    (goal 175 0)
     (timer-triggered 4)
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
 =>
-    (set-goal 166 4)
+    (set-goal 175 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 166 0)
+    (goal 175 0)
     (timer-triggered 4)
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
 =>
-    (set-goal 166 5)
+    (set-goal 175 5)
     (disable-self)
 )
 (defrule
     (random-number == 6)
-    (goal 166 0)
+    (goal 175 0)
     (timer-triggered 4)
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
 =>
-    (set-goal 166 6)
+    (set-goal 175 6)
     (disable-self)
 )
 (defrule
     (timer-triggered 4)
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
-    (goal 166 1)
+    (goal 175 1)
 =>
     (chat-to-all "I don't like this...")
     (disable-self)
@@ -18045,7 +19425,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (timer-triggered 4)
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
-    (goal 166 2)
+    (goal 175 2)
 =>
     (chat-to-all "Dicey.")
     (disable-self)
@@ -18054,7 +19434,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (timer-triggered 4)
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
-    (goal 166 3)
+    (goal 175 3)
 =>
     (chat-to-all "I'd better step on the pedal a bit, sheesh.")
     (disable-self)
@@ -18063,7 +19443,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (timer-triggered 4)
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
-    (goal 166 4)
+    (goal 175 4)
 =>
     (chat-to-all "...please don't hurt me!")
     (disable-self)
@@ -18072,7 +19452,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (timer-triggered 4)
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
-    (goal 166 5)
+    (goal 175 5)
     (or (goal team-game 1) (goal free-for-all 1))
 =>
     (chat-to-all "It's looking scary out there...")
@@ -18082,7 +19462,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (timer-triggered 4)
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
-    (goal 166 5)
+    (goal 175 5)
     (not (or (goal team-game 1) (goal free-for-all 1)))
 =>
     (chat-to-all "You're looking scary...")
@@ -18092,7 +19472,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (timer-triggered 4)
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
-    (goal 166 6)
+    (goal 175 6)
 =>
     (chat-to-all "That's a lot of stuff.")
     (disable-self)
@@ -18104,104 +19484,104 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
 =>
-    (generate-random-number select-random-5a652e9f-7458-4b12-913b-7654ef4d3f78)
-    (set-goal 167 0)
+    (generate-random-number select-random-9c4dec3d-5530-4ffb-936e-28572328f428)
+    (set-goal 176 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 167 0)
+    (goal 176 0)
     (timer-triggered 4)
     (military-population >= 20)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
 =>
-    (set-goal 167 1)
+    (set-goal 176 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 167 0)
+    (goal 176 0)
     (timer-triggered 4)
     (military-population >= 20)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
 =>
-    (set-goal 167 2)
+    (set-goal 176 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 167 0)
+    (goal 176 0)
     (timer-triggered 4)
     (military-population >= 20)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
 =>
-    (set-goal 167 3)
+    (set-goal 176 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 167 0)
+    (goal 176 0)
     (timer-triggered 4)
     (military-population >= 20)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
 =>
-    (set-goal 167 4)
+    (set-goal 176 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 167 0)
+    (goal 176 0)
     (timer-triggered 4)
     (military-population >= 20)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
 =>
-    (set-goal 167 5)
+    (set-goal 176 5)
     (disable-self)
 )
 (defrule
     (random-number == 6)
-    (goal 167 0)
+    (goal 176 0)
     (timer-triggered 4)
     (military-population >= 20)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
 =>
-    (set-goal 167 6)
+    (set-goal 176 6)
     (disable-self)
 )
 (defrule
     (random-number == 7)
-    (goal 167 0)
+    (goal 176 0)
     (timer-triggered 4)
     (military-population >= 20)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
 =>
-    (set-goal 167 7)
+    (set-goal 176 7)
     (disable-self)
 )
 (defrule
     (random-number == 8)
-    (goal 167 0)
+    (goal 176 0)
     (timer-triggered 4)
     (military-population >= 20)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
 =>
-    (set-goal 167 8)
+    (set-goal 176 8)
     (disable-self)
 )
 (defrule
@@ -18210,7 +19590,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
-    (goal 167 1)
+    (goal 176 1)
     (or (goal team-game 1) (goal free-for-all 1))
 =>
     (chat-to-all "Let's crush 'em!")
@@ -18222,7 +19602,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
-    (goal 167 1)
+    (goal 176 1)
     (not (or (goal team-game 1) (goal free-for-all 1)))
 =>
     (chat-to-all "It's time for some violence!")
@@ -18234,7 +19614,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
-    (goal 167 2)
+    (goal 176 2)
 =>
     (chat-to-all "Oh yeah, this is good.")
     (disable-self)
@@ -18245,7 +19625,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
-    (goal 167 3)
+    (goal 176 3)
     (or (goal team-game 1) (goal free-for-all 1))
 =>
     (chat-to-all "You lot aren't prepared for this.")
@@ -18257,7 +19637,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
-    (goal 167 3)
+    (goal 176 3)
     (not (or (goal team-game 1) (goal free-for-all 1)))
 =>
     (chat-to-all "You aren't prepared for this.")
@@ -18269,7 +19649,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
-    (goal 167 4)
+    (goal 176 4)
 =>
     (chat-to-all "[cracks knuckles]")
     (disable-self)
@@ -18280,7 +19660,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
-    (goal 167 5)
+    (goal 176 5)
 =>
     (chat-to-all "I'm pumped! Let's go!!!")
     (disable-self)
@@ -18291,7 +19671,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
-    (goal 167 6)
+    (goal 176 6)
 =>
     (chat-to-all "Allow me to show you some numbers.")
     (disable-self)
@@ -18302,7 +19682,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
-    (goal 167 7)
+    (goal 176 7)
     (goal team-game 1)
 =>
     (chat-to-all "We're bringing the pain.")
@@ -18314,7 +19694,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
-    (goal 167 7)
+    (goal 176 7)
     (not (goal team-game 1))
 =>
     (chat-to-all "I'm bringing the pain.")
@@ -18326,7 +19706,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
-    (goal 167 8)
+    (goal 176 8)
 =>
     (chat-to-all "If I win this battle, it's all over.")
     (disable-self)
@@ -18338,68 +19718,68 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (goal attacking 1))
 =>
-    (generate-random-number select-random-fe65448c-47aa-41fa-a3b6-4c84542f1791)
-    (set-goal 168 0)
+    (generate-random-number select-random-15d894fb-e5d2-4c94-9e94-1aed76b94064)
+    (set-goal 177 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 168 0)
+    (goal 177 0)
     (timer-triggered 4)
     (military-population >= 20)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (goal attacking 1))
 =>
-    (set-goal 168 1)
+    (set-goal 177 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 168 0)
+    (goal 177 0)
     (timer-triggered 4)
     (military-population >= 20)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (goal attacking 1))
 =>
-    (set-goal 168 2)
+    (set-goal 177 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 168 0)
+    (goal 177 0)
     (timer-triggered 4)
     (military-population >= 20)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (goal attacking 1))
 =>
-    (set-goal 168 3)
+    (set-goal 177 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 168 0)
+    (goal 177 0)
     (timer-triggered 4)
     (military-population >= 20)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (goal attacking 1))
 =>
-    (set-goal 168 4)
+    (set-goal 177 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 168 0)
+    (goal 177 0)
     (timer-triggered 4)
     (military-population >= 20)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (goal attacking 1))
 =>
-    (set-goal 168 5)
+    (set-goal 177 5)
     (disable-self)
 )
 (defrule
@@ -18408,7 +19788,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (goal attacking 1))
-    (goal 168 1)
+    (goal 177 1)
     (or (goal team-game 1) (goal free-for-all 1))
 =>
     (chat-to-all "Why doesn't someone attack me right now? It'll go well. Promise.")
@@ -18420,7 +19800,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (goal attacking 1))
-    (goal 168 1)
+    (goal 177 1)
     (not (or (goal team-game 1) (goal free-for-all 1)))
 =>
     (chat-to-all "Why don't you attack me right now? Go on.")
@@ -18432,7 +19812,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (goal attacking 1))
-    (goal 168 2)
+    (goal 177 2)
 =>
     (chat-to-all "Feeling confident.")
     (disable-self)
@@ -18443,7 +19823,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (goal attacking 1))
-    (goal 168 3)
+    (goal 177 3)
 =>
     (chat-to-all "Feeling good.")
     (disable-self)
@@ -18454,7 +19834,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (goal attacking 1))
-    (goal 168 4)
+    (goal 177 4)
 =>
     (chat-to-all "I am prepared.")
     (disable-self)
@@ -18465,7 +19845,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (goal attacking 1))
-    (goal 168 5)
+    (goal 177 5)
 =>
     (chat-to-all "Are you ready?")
     (disable-self)
@@ -18473,66 +19853,66 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (goal resign 1)
 =>
-    (generate-random-number select-random-46de1f27-0361-4a12-9171-9f90f3a2e5e0)
-    (set-goal 169 0)
+    (generate-random-number select-random-39403d72-c67f-4b1b-9feb-7919a934b403)
+    (set-goal 178 0)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 169 0)
+    (goal 178 0)
     (goal resign 1)
 =>
-    (set-goal 169 1)
+    (set-goal 178 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 169 0)
+    (goal 178 0)
     (goal resign 1)
 =>
-    (set-goal 169 2)
+    (set-goal 178 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 169 0)
+    (goal 178 0)
     (goal resign 1)
 =>
-    (set-goal 169 3)
+    (set-goal 178 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 169 0)
+    (goal 178 0)
     (goal resign 1)
 =>
-    (set-goal 169 4)
+    (set-goal 178 4)
     (disable-self)
 )
 (defrule
     (goal resign 1)
-    (goal 169 1)
+    (goal 178 1)
 =>
     (chat-to-all "My heart's not really in this anymore, sorry.")
     (disable-self)
 )
 (defrule
     (goal resign 1)
-    (goal 169 2)
+    (goal 178 2)
 =>
     (chat-to-all "It was a good game, I think I'm out though.")
     (disable-self)
 )
 (defrule
     (goal resign 1)
-    (goal 169 3)
+    (goal 178 3)
 =>
     (chat-to-all "Good game, well played.")
     (disable-self)
 )
 (defrule
     (goal resign 1)
-    (goal 169 4)
+    (goal 178 4)
 =>
     (chat-to-all "I'm done.")
     (disable-self)

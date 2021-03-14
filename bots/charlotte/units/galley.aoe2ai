@@ -1,0 +1,25 @@
+//load "research/town_center/feudal_age.aoe2ai"
+load "research/dock/prerequisites.aoe2ai"
+
+#if unit-available galley-line
+
+  #if current-age == feudal-age
+    load "research/blacksmith/fletching.aoe2ai"
+  #else if current-age == castle-age
+    load "research/blacksmith/bodkin_arrow.aoe2ai"
+    load "research/dock/war_galley.aoe2ai"
+  #else if current-age == imperial-age
+    load "research/blacksmith/bracer.aoe2ai"
+    load "research/dock/galleon.aoe2ai"
+  #end if
+  
+  load "units/types/ship.aoe2ai"
+  
+  #if goal produce-units 1 and goal enough-wood 1 and goal enough-gold 1
+    #when
+      train galley-line
+    #then
+      goal trained-unit = 1
+    #end when
+  #end if
+#end if

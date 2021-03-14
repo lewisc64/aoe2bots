@@ -1,0 +1,14 @@
+#if not research-completed ri-fast-fire-ship
+  load "research/dock/prerequisites.aoe2ai"
+  //load "research/town_center/imperial_age.aoe2ai"
+  load "research/dock/war_galley.aoe2ai"
+
+  #if research-available ri-fast-fire-ship
+    #if up-research-status c: ri-fast-fire-ship < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-fast-fire-ship
+    #end if
+  #end if
+#end if
