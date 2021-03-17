@@ -298,10 +298,11 @@
     (disable-self)
 )
 (defrule
-    (generate-random-number 5)
+    (true)
 =>
     (set-goal 12 0)
     (disable-self)
+    (generate-random-number 5)
 )
 (defrule
     (random-number == 1)
@@ -707,10 +708,10 @@
 (defrule
     (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
     (players-building-type-count any-ally market >= 1)
-    (generate-random-number 2)
 =>
     (set-goal 89 0)
     (disable-self)
+    (generate-random-number 2)
 )
 (defrule
     (random-number == 1)
@@ -745,10 +746,11 @@
     (set-goal produce-trade-carts 0)
 )
 (defrule
-    (generate-random-number 2)
+    (true)
 =>
     (set-goal 90 0)
     (disable-self)
+    (generate-random-number 2)
 )
 (defrule
     (random-number == 1)
@@ -849,9 +851,10 @@
     (build town-center)
 )
 (defrule
-    (generate-random-number 2)
+    (true)
 =>
     (set-goal 92 0)
+    (generate-random-number 2)
 )
 (defrule
     (random-number == 1)
@@ -1006,10 +1009,10 @@
 (defrule
     (up-research-status c: feudal-age >= research-pending)
     (not (goal produce-unique-units 1))
-    (generate-random-number 3)
 =>
     (set-goal 96 0)
     (disable-self)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -16422,10 +16425,11 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-modify-goal produce-units g:= old-produce-units)
 )
 (defrule
-    (generate-random-number 2)
+    (true)
 =>
     (set-goal 143 0)
     (disable-self)
+    (generate-random-number 2)
 )
 (defrule
     (random-number == 1)
@@ -16773,10 +16777,10 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 )
 (defrule
     (and (strategic-number sn-stone-gatherer-percentage > 0) (false))
-    (generate-random-number 2)
 =>
     (set-goal 144 0)
     (disable-self)
+    (generate-random-number 2)
 )
 (defrule
     (random-number == 1)
@@ -17301,9 +17305,9 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
     (goal full-water-map 0)
-    (generate-random-number 17)
 =>
     (set-goal 149 0)
+    (generate-random-number 17)
 )
 (defrule
     (random-number == 1)
@@ -17573,9 +17577,9 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
     (not (goal full-water-map 0))
-    (generate-random-number 2)
 =>
     (set-goal 150 0)
+    (generate-random-number 2)
 )
 (defrule
     (random-number == 1)
@@ -17711,10 +17715,10 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 )
 (defrule
     (goal attack-ready 1)
-    (generate-random-number 4)
 =>
     (set-goal 151 0)
     (disable-self)
+    (generate-random-number 4)
 )
 (defrule
     (random-number == 1)
@@ -18186,9 +18190,9 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (goal emergency-trash 1)
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
-    (generate-random-number 3)
 =>
     (set-goal 154 0)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -18755,9 +18759,9 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal do-taunt -1))
     (goal do-taunt-target every-ally)
     (goal do-taunt 1)
-    (generate-random-number 3)
 =>
     (set-goal 164 0)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -18814,9 +18818,9 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal do-taunt -1))
     (goal do-taunt-target every-ally)
     (goal do-taunt 2)
-    (generate-random-number 3)
 =>
     (set-goal 165 0)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -18874,9 +18878,9 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal do-taunt-target every-ally))
     (goal do-taunt-target every-enemy)
     (goal do-taunt 1)
-    (generate-random-number 3)
 =>
     (set-goal 166 0)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -18940,9 +18944,9 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal do-taunt-target every-ally))
     (goal do-taunt-target every-enemy)
     (goal do-taunt 2)
-    (generate-random-number 3)
 =>
     (set-goal 167 0)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -19004,10 +19008,10 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (game-time < 5)
     (or (goal free-for-all 1) (goal team-game 1))
-    (generate-random-number 3)
 =>
     (set-goal 168 0)
     (disable-self)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -19073,10 +19077,10 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
-    (generate-random-number 7)
 =>
     (set-goal 169 0)
     (disable-self)
+    (generate-random-number 7)
 )
 (defrule
     (random-number == 1)
@@ -19207,10 +19211,10 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (timer-triggered 7)
     (up-compare-goal score-percentage c:<= 70)
     (goal free-for-all 1)
-    (generate-random-number 3)
 =>
     (set-goal 170 0)
     (disable-self)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -19274,10 +19278,10 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (goal team-game 1)
-    (generate-random-number 3)
 =>
     (set-goal 171 0)
     (disable-self)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -19347,10 +19351,10 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal score-percentage c:<= 70)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
-    (generate-random-number 5)
 =>
     (set-goal 172 0)
     (disable-self)
+    (generate-random-number 5)
 )
 (defrule
     (random-number == 1)
@@ -19462,10 +19466,10 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (up-compare-goal score-percentage c:<= 70))
     (up-compare-goal score-percentage c:>= 140)
     (goal free-for-all 1)
-    (generate-random-number 2)
 =>
     (set-goal 173 0)
     (disable-self)
+    (generate-random-number 2)
 )
 (defrule
     (random-number == 1)
@@ -19533,10 +19537,10 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (timer-triggered 7)
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
-    (generate-random-number 6)
 =>
     (set-goal 174 0)
     (disable-self)
+    (generate-random-number 6)
 )
 (defrule
     (random-number == 1)
@@ -19669,10 +19673,10 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
-    (generate-random-number 8)
 =>
     (set-goal 175 0)
     (disable-self)
+    (generate-random-number 8)
 )
 (defrule
     (random-number == 1)
@@ -19903,10 +19907,10 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (goal attacking 1))
-    (generate-random-number 5)
 =>
     (set-goal 176 0)
     (disable-self)
+    (generate-random-number 5)
 )
 (defrule
     (random-number == 1)
@@ -20038,10 +20042,10 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 )
 (defrule
     (goal resign 1)
-    (generate-random-number 4)
 =>
     (set-goal 177 0)
     (disable-self)
+    (generate-random-number 4)
 )
 (defrule
     (random-number == 1)
