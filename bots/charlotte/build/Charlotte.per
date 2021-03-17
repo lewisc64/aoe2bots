@@ -19011,7 +19011,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 =>
     (set-goal 168 0)
     (disable-self)
-    (generate-random-number 3)
+    (generate-random-number 4)
 )
 (defrule
     (random-number == 1)
@@ -19038,6 +19038,15 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (or (goal free-for-all 1) (goal team-game 1))
 =>
     (set-goal 168 3)
+    (disable-self)
+)
+(defrule
+    (random-number == 4)
+    (goal 168 0)
+    (game-time < 5)
+    (or (goal free-for-all 1) (goal team-game 1))
+=>
+    (set-goal 168 4)
     (disable-self)
 )
 (defrule
@@ -19072,6 +19081,14 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (goal 168 3)
 =>
     (chat-to-all "GL everyone!!!")
+    (disable-self)
+)
+(defrule
+    (game-time < 5)
+    (or (goal free-for-all 1) (goal team-game 1))
+    (goal 168 4)
+=>
+    (chat-to-all "Let's do this!")
     (disable-self)
 )
 (defrule
@@ -20105,5 +20122,96 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (goal 177 4)
 =>
     (chat-to-all "I'm done.")
+    (disable-self)
+)
+(defrule
+    (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
+=>
+    (set-goal 178 0)
+    (disable-self)
+    (generate-random-number 5)
+)
+(defrule
+    (random-number == 1)
+    (goal 178 0)
+    (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
+=>
+    (set-goal 178 1)
+    (disable-self)
+)
+(defrule
+    (random-number == 2)
+    (goal 178 0)
+    (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
+=>
+    (set-goal 178 2)
+    (disable-self)
+)
+(defrule
+    (random-number == 3)
+    (goal 178 0)
+    (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
+=>
+    (set-goal 178 3)
+    (disable-self)
+)
+(defrule
+    (random-number == 4)
+    (goal 178 0)
+    (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
+=>
+    (set-goal 178 4)
+    (disable-self)
+)
+(defrule
+    (random-number == 5)
+    (goal 178 0)
+    (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
+=>
+    (set-goal 178 5)
+    (disable-self)
+)
+(defrule
+    (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
+    (goal 178 1)
+=>
+    (chat-to-all "Why must you do this?")
+    (disable-self)
+)
+(defrule
+    (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
+    (goal 178 2)
+    (goal team-game 1)
+=>
+    (chat-to-all "Your teammate is a real piece of work.")
+    (disable-self)
+)
+(defrule
+    (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
+    (goal 178 2)
+    (not (goal team-game 1))
+=>
+    (chat-to-all "I don't think I like you very much...")
+    (disable-self)
+)
+(defrule
+    (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
+    (goal 178 3)
+=>
+    (chat-to-all "[sigh]")
+    (disable-self)
+)
+(defrule
+    (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
+    (goal 178 4)
+=>
+    (chat-to-all "Why can't we just have fun?")
+    (disable-self)
+)
+(defrule
+    (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
+    (goal 178 5)
+=>
+    (chat-to-all "You know I can't deal with this. It's unfair.")
     (disable-self)
 )

@@ -58,6 +58,8 @@
         #end if
       #randor
         chat to all "GL everyone!!!"
+      #randor
+        chat to all "Let's do this!"
       #end select
     #else
       #select random persistant
@@ -196,6 +198,7 @@
     #end if
   #end delay
   
+  // resigning
   #if goal resign 1
     #select random persistant
       chat to all "My heart's not really in this anymore, sorry."
@@ -205,6 +208,25 @@
       chat to all "Good game, well played."
     #randor
       chat to all "I'm done."
+    #end select
+  #end if
+  
+  // being trushed
+  #if goal attacking 0 and goal threat-source watch-tower and current-age == feudal-age and enemy-buildings-in-town
+    #select random persistant
+      chat to all "Why must you do this?"
+    #randor
+      #if goal team-game 1
+        chat to all "Your teammate is a real piece of work."
+      #else
+        chat to all "I don't think I like you very much..."
+      #end if
+    #randor
+      chat to all "[sigh]"
+    #randor
+      chat to all "Why can't we just have fun?"
+    #randor
+      chat to all "You know I can't deal with this. It's unfair."
     #end select
   #end if
 #end do
