@@ -1,16 +1,16 @@
 ;Translated by https://github.com/lewisc64/aoe2ai
 (defconst out-count 112)
-(defconst select-random-5cb3b1d1-0f30-40b7-abb1-6a6825f1a09a 8)
+(defconst select-random-0 8)
 (defconst taunt-enemies 102)
-(defconst select-random-ae5efc82-536e-459e-a142-af0bb88e2aad 4)
-(defconst select-random-781c2cb2-9acf-4726-bb1c-784c0c666204 3)
-(defconst select-random-91d01577-f144-441f-9f4c-bd97033c4c7b 3)
-(defconst select-random-4a959ec2-5029-44c1-8711-6fe9e9b8eff3 3)
-(defconst select-random-13bfa911-8c06-4f00-9599-e499616ff7fb 2)
-(defconst select-random-0d35b0b7-989a-4bd9-aeee-7edeac8119ab 2)
-(defconst select-random-5cc291a2-42eb-4faa-b9a1-0f5b894a3cdc 2)
-(defconst select-random-d18dd471-198b-4460-9c4d-d75b93c52bbe 3)
-(defconst select-random-859d865b-b796-4847-88d9-74b2f3d05162 3)
+(defconst select-random-1 4)
+(defconst select-random-2 3)
+(defconst select-random-3 3)
+(defconst select-random-4 3)
+(defconst select-random-5 2)
+(defconst select-random-6 2)
+(defconst select-random-7 2)
+(defconst select-random-8 3)
+(defconst select-random-9 3)
 (defconst choose-initial-balance 100)
 (defconst score-additions-count 99)
 (defconst gold-score-subtotal 98)
@@ -246,7 +246,6 @@
     (set-goal build-walls 0)
     (set-goal help-allies 1)
     (disable-self)
-    (set-strategic-number sn-minimum-boar-hunt-group-size 3)
 )
 (defrule
     (true)
@@ -278,14 +277,17 @@
     (set-strategic-number sn-do-not-scale-for-difficulty-level 1)
     (set-strategic-number sn-number-build-attempts-before-skip 5)
     (set-strategic-number sn-max-skips-per-attempt 5)
-    (set-strategic-number sn-enable-boar-hunting 2)
-    (set-strategic-number sn-minimum-number-hunters 3)
-    (set-strategic-number sn-minimum-boar-lure-group-size 3)
+    (set-strategic-number sn-dropsite-separation-distance 8)
     (disable-self)
+    (set-strategic-number sn-target-evaluation-siege-weapon 500)
 )
 (defrule
     (true)
 =>
+    (set-strategic-number sn-enable-boar-hunting 2)
+    (set-strategic-number sn-minimum-number-hunters 3)
+    (set-strategic-number sn-minimum-boar-lure-group-size 3)
+    (set-strategic-number sn-minimum-boar-hunt-group-size 3)
     (set-strategic-number sn-wall-targeting-mode 1)
     (set-strategic-number sn-maximum-gold-drop-distance 8)
     (set-strategic-number sn-maximum-stone-drop-distance 8)
@@ -312,7 +314,11 @@
     (set-strategic-number sn-target-evaluation-randomness 0)
     (set-strategic-number sn-target-evaluation-range 0)
     (set-strategic-number sn-target-evaluation-rof 0)
-    (set-strategic-number sn-target-evaluation-siege-weapon 500)
+    (disable-self)
+)
+(defrule
+    (true)
+=>
     (set-strategic-number sn-target-evaluation-time-kill-ratio 0)
     (set-strategic-number sn-ttkfactor-scalar 500)
     (disable-self)
@@ -4933,7 +4939,7 @@
 (defrule
     (game-time < 5)
 =>
-    (generate-random-number select-random-5cb3b1d1-0f30-40b7-abb1-6a6825f1a09a)
+    (generate-random-number select-random-0)
     (set-goal 101 0)
     (disable-self)
 )
@@ -5068,7 +5074,7 @@
 (defrule
     (timer-triggered 9)
 =>
-    (generate-random-number select-random-ae5efc82-536e-459e-a142-af0bb88e2aad)
+    (generate-random-number select-random-1)
     (set-goal 103 0)
     (disable-self)
 )
@@ -5135,7 +5141,7 @@
 (defrule
     (goal taunt-allies 1)
 =>
-    (generate-random-number select-random-781c2cb2-9acf-4726-bb1c-784c0c666204)
+    (generate-random-number select-random-2)
     (set-goal 104 0)
 )
 (defrule
@@ -5185,7 +5191,7 @@
 (defrule
     (goal taunt-allies 2)
 =>
-    (generate-random-number select-random-91d01577-f144-441f-9f4c-bd97033c4c7b)
+    (generate-random-number select-random-3)
     (set-goal 105 0)
 )
 (defrule
@@ -5235,7 +5241,7 @@
 (defrule
     (goal taunt-allies 3)
 =>
-    (generate-random-number select-random-4a959ec2-5029-44c1-8711-6fe9e9b8eff3)
+    (generate-random-number select-random-4)
     (set-goal 106 0)
 )
 (defrule
@@ -5285,7 +5291,7 @@
 (defrule
     (goal taunt-allies 4)
 =>
-    (generate-random-number select-random-13bfa911-8c06-4f00-9599-e499616ff7fb)
+    (generate-random-number select-random-5)
     (set-goal 107 0)
 )
 (defrule
@@ -5322,7 +5328,7 @@
 (defrule
     (goal taunt-allies 5)
 =>
-    (generate-random-number select-random-0d35b0b7-989a-4bd9-aeee-7edeac8119ab)
+    (generate-random-number select-random-6)
     (set-goal 108 0)
 )
 (defrule
@@ -5359,7 +5365,7 @@
 (defrule
     (goal taunt-allies 6)
 =>
-    (generate-random-number select-random-5cc291a2-42eb-4faa-b9a1-0f5b894a3cdc)
+    (generate-random-number select-random-7)
     (set-goal 109 0)
 )
 (defrule
@@ -5396,7 +5402,7 @@
 (defrule
     (goal taunt-allies 12)
 =>
-    (generate-random-number select-random-d18dd471-198b-4460-9c4d-d75b93c52bbe)
+    (generate-random-number select-random-8)
     (set-goal 110 0)
 )
 (defrule
@@ -5446,7 +5452,7 @@
 (defrule
     (goal taunt-allies 31)
 =>
-    (generate-random-number select-random-859d865b-b796-4847-88d9-74b2f3d05162)
+    (generate-random-number select-random-9)
     (set-goal 111 0)
 )
 (defrule
