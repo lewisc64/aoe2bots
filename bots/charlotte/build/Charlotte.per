@@ -1,20 +1,20 @@
 ;Translated by https://github.com/lewisc64/aoe2ai
 (defconst do-taunt-target 162)
 (defconst do-taunt 163)
-(defconst select-random-11 3)
-(defconst select-random-12 3)
-(defconst select-random-13 3)
-(defconst select-random-14 3)
-(defconst select-random-15 3)
-(defconst select-random-16 7)
-(defconst select-random-17 3)
-(defconst select-random-18 3)
-(defconst select-random-19 5)
-(defconst select-random-20 2)
-(defconst select-random-21 6)
-(defconst select-random-22 8)
-(defconst select-random-23 5)
-(defconst select-random-24 4)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-11 3)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-12 3)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-13 3)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-14 3)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-15 3)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-16 7)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-17 3)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-18 3)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-19 5)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-20 2)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-21 6)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-22 8)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-23 5)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-24 4)
 (defconst max-wood 1600)
 (defconst max-food 1600)
 (defconst max-gold 1600)
@@ -52,24 +52,24 @@
 (defconst dock-count 106)
 (defconst desired-villagers-with-subtractions 102)
 (defconst trained-unit 104)
-(defconst select-random-5 2)
-(defconst select-random-6 2)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-5 2)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-6 2)
 (defconst good-hand-cannoneer 147)
 (defconst good-miltia 146)
 (defconst good-speamen 145)
-(defconst select-random-8 2)
-(defconst select-random-7 17)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-8 2)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-7 17)
 (defconst total-units-selected 148)
-(defconst select-random-9 4)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-9 4)
 (defconst balanced-aggressive 152)
-(defconst select-random-10 3)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-10 3)
 (defconst emergency-trash 153)
 (defconst next-retarget 157)
 (defconst retarget-interval 300)
-(defconst select-random-1 2)
-(defconst select-random-2 2)
-(defconst select-random-3 2)
-(defconst select-random-4 3)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-1 2)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-2 2)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-3 2)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-4 3)
 (defconst attempted-researches 88)
 (defconst escrowed-wood 57)
 (defconst escrowed-food 58)
@@ -146,7 +146,7 @@
 (defconst produce-units 15)
 (defconst pop-cap-goal 14)
 (defconst desired-units 13)
-(defconst select-random-0 5)
+(defconst ece68be9-bb87-4460-b929-f5380c05f942-select-random-0 5)
 (defconst desired-fishing-ships 11)
 (defconst desired-trade-carts 10)
 (defconst desired-villagers 9)
@@ -325,7 +325,7 @@
 (defrule
     (true)
 =>
-    (generate-random-number select-random-0)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-0)
     (set-goal 12 0)
     (disable-self)
 )
@@ -734,7 +734,7 @@
     (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
     (players-building-type-count any-ally market >= 1)
 =>
-    (generate-random-number select-random-1)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-1)
     (set-goal 89 0)
     (disable-self)
 )
@@ -773,7 +773,7 @@
 (defrule
     (true)
 =>
-    (generate-random-number select-random-2)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-2)
     (set-goal 90 0)
     (disable-self)
 )
@@ -878,7 +878,7 @@
 (defrule
     (true)
 =>
-    (generate-random-number select-random-3)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-3)
     (set-goal 92 0)
 )
 (defrule
@@ -1035,7 +1035,7 @@
     (up-research-status c: feudal-age >= research-pending)
     (not (goal produce-unique-units 1))
 =>
-    (generate-random-number select-random-4)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-4)
     (set-goal 96 0)
     (disable-self)
 )
@@ -1135,7 +1135,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 2654)
+    (up-jump-rule 2661)
 )
 (defrule
     (true)
@@ -7772,7 +7772,7 @@
 (defrule
     (not (and (goal produce-scouts 1) (unit-available scout-cavalry-line)))
 =>
-    (up-jump-rule 100)
+    (up-jump-rule 107)
 )
 (defrule
     (not (building-type-count-total stable == 0))
@@ -7842,7 +7842,7 @@
 (defrule
     (not (and (unit-available scout-cavalry-line) (and (not (current-age == castle-age)) (current-age == imperial-age))))
 =>
-    (up-jump-rule 6)
+    (up-jump-rule 13)
 )
 (defrule
     (not (not (research-completed ri-hussar)))
@@ -7868,6 +7868,51 @@
     (building-type-count barracks >= 1)
 =>
     (build stable)
+)
+(defrule
+    (not (not (research-completed ri-hussar)))
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not (not (research-completed ri-light-cavalry)))
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (not (building-type-count-total stable == 0))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build barracks)
+    (building-type-count-total barracks < 1)
+    (building-type-count-total barracks == 0)
+=>
+    (build barracks)
+)
+(defrule
+    (can-build stable)
+    (building-type-count-total stable < 1)
+    (building-type-count-total stable == 0)
+    (building-type-count barracks >= 1)
+=>
+    (build stable)
+)
+(defrule
+    (not (research-completed ri-light-cavalry))
+    (research-available ri-light-cavalry)
+    (up-research-status c: ri-light-cavalry < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-light-cavalry)
+    (not (research-completed ri-light-cavalry))
+    (research-available ri-light-cavalry)
+    (goal do-research 1)
+=>
+    (research ri-light-cavalry)
 )
 (defrule
     (not (research-completed ri-hussar))
@@ -16407,7 +16452,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (true)
 =>
-    (generate-random-number select-random-5)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-5)
     (set-goal 143 0)
     (disable-self)
 )
@@ -16758,7 +16803,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (and (strategic-number sn-stone-gatherer-percentage > 0) (false))
 =>
-    (generate-random-number select-random-6)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-6)
     (set-goal 144 0)
     (disable-self)
 )
@@ -17286,7 +17331,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal total-units-selected g:< desired-units)
     (goal full-water-map 0)
 =>
-    (generate-random-number select-random-7)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-7)
     (set-goal 149 0)
 )
 (defrule
@@ -17558,7 +17603,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal total-units-selected g:< desired-units)
     (not (goal full-water-map 0))
 =>
-    (generate-random-number select-random-8)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-8)
     (set-goal 150 0)
 )
 (defrule
@@ -17696,7 +17741,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (goal attack-ready 1)
 =>
-    (generate-random-number select-random-9)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-9)
     (set-goal 151 0)
     (disable-self)
 )
@@ -18171,7 +18216,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (goal emergency-trash 1)
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
 =>
-    (generate-random-number select-random-10)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-10)
     (set-goal 154 0)
 )
 (defrule
@@ -18740,7 +18785,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (goal do-taunt-target every-ally)
     (goal do-taunt 1)
 =>
-    (generate-random-number select-random-11)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-11)
     (set-goal 164 0)
 )
 (defrule
@@ -18799,7 +18844,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (goal do-taunt-target every-ally)
     (goal do-taunt 2)
 =>
-    (generate-random-number select-random-12)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-12)
     (set-goal 165 0)
 )
 (defrule
@@ -18859,7 +18904,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (goal do-taunt-target every-enemy)
     (goal do-taunt 1)
 =>
-    (generate-random-number select-random-13)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-13)
     (set-goal 166 0)
 )
 (defrule
@@ -18925,7 +18970,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (goal do-taunt-target every-enemy)
     (goal do-taunt 2)
 =>
-    (generate-random-number select-random-14)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-14)
     (set-goal 167 0)
 )
 (defrule
@@ -18989,7 +19034,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (game-time < 5)
     (or (goal free-for-all 1) (goal team-game 1))
 =>
-    (generate-random-number select-random-15)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-15)
     (set-goal 168 0)
     (disable-self)
 )
@@ -19058,7 +19103,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (game-time < 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (generate-random-number select-random-16)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-16)
     (set-goal 169 0)
     (disable-self)
 )
@@ -19192,7 +19237,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal score-percentage c:<= 70)
     (goal free-for-all 1)
 =>
-    (generate-random-number select-random-17)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-17)
     (set-goal 170 0)
     (disable-self)
 )
@@ -19259,7 +19304,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal free-for-all 1))
     (goal team-game 1)
 =>
-    (generate-random-number select-random-18)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-18)
     (set-goal 171 0)
     (disable-self)
 )
@@ -19332,7 +19377,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (not (goal free-for-all 1))
     (not (goal team-game 1))
 =>
-    (generate-random-number select-random-19)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-19)
     (set-goal 172 0)
     (disable-self)
 )
@@ -19447,7 +19492,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal score-percentage c:>= 140)
     (goal free-for-all 1)
 =>
-    (generate-random-number select-random-20)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-20)
     (set-goal 173 0)
     (disable-self)
 )
@@ -19518,7 +19563,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (military-population >= 20)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
 =>
-    (generate-random-number select-random-21)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-21)
     (set-goal 174 0)
     (disable-self)
 )
@@ -19654,7 +19699,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (goal attacking 1)
 =>
-    (generate-random-number select-random-22)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-22)
     (set-goal 175 0)
     (disable-self)
 )
@@ -19888,7 +19933,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (goal attacking 1))
 =>
-    (generate-random-number select-random-23)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-23)
     (set-goal 176 0)
     (disable-self)
 )
@@ -20023,7 +20068,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
 (defrule
     (goal resign 1)
 =>
-    (generate-random-number select-random-24)
+    (generate-random-number ece68be9-bb87-4460-b929-f5380c05f942-select-random-24)
     (set-goal 177 0)
     (disable-self)
 )
