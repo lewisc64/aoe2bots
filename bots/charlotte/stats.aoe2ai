@@ -21,6 +21,11 @@
 @up-modify-goal non-escrowed-food g:- escrowed-food
 @up-modify-goal non-escrowed-gold g:- escrowed-gold
 
+#do once
+  goal game-time-goal = 0
+#end do
+@up-get-fact game-time 0 game-time-goal
+
 // time spent not mining gold
 
 #do once
@@ -103,7 +108,6 @@
   goal previous-target-player-score = 0
   goal target-player-score = 0
 #end do
-target closest enemy
 @up-get-target-fact current-score 0 target-player-score
 goal target-player-score-delta = 0
 @up-modify-goal target-player-score-delta g:= target-player-score

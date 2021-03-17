@@ -1,8 +1,0 @@
-#do once
-  target closest enemy
-  scout enemy
-#end do
-#if not player-in-game target-player
-  target closest enemy
-  scout enemy
-#end if

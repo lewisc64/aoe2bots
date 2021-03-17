@@ -1,10 +1,12 @@
 #do once
   goal attack-ready = 0
   goal attacking = 0
+  goal do-backstep = 0
 #end do
 
 load "directives/age/feudal_rush.aoe2ai"
 load "directives/do_misc_research.aoe2ai"
+load "directives/mad_strats.aoe2ai"
 
 load "units/all_switched.aoe2ai"
 
@@ -21,40 +23,26 @@ load "units/all_switched.aoe2ai"
   
   load "directives/civ_decisions.aoe2ai"
   load "directives/random_unit_selection.aoe2ai"
-  //goal produce-archers = 1
-  //goal produce-skirmishers = 1
   
-  #if military-population >= 8
-    #select random persistant
-      load "directives/attack_decision/passive.aoe2ai"
-    #randor
-      load "directives/attack_decision/cautious.aoe2ai"
-    #randor
-      load "directives/attack_decision/aggressive.aoe2ai"
-    #randor
-      load "directives/attack_decision/reckless.aoe2ai"
-    #end select
-  #else
-    goal attacking = 0
-  #end if
-
   #select random persistant
-    #select random persistant
-      load "directives/pacing/thoughtful.aoe2ai"
-    #randor
-      load "directives/pacing/numbers.aoe2ai"
-    #end select
-  #randor
+    load "directives/attack_decision/passive.aoe2ai"
     load "directives/pacing/balanced.aoe2ai"
   #randor
-    load "directives/pacing/reckless.aoe2ai"
+    load "directives/attack_decision/cautious.aoe2ai"
+    load "directives/pacing/balanced.aoe2ai"
+  #randor
+    load "directives/attack_decision/aggressive.aoe2ai"
+    load "directives/pacing/balanced.aoe2ai"
+  #randor
+    load "directives/attack_decision/reckless.aoe2ai"
+    load "directives/pacing/balanced.aoe2ai"
   #end select
   
   load "directives/emergency_trash.aoe2ai"
   load "directives/being_countered_system.aoe2ai"
   load "directives/mandatory_siege.aoe2ai"
   
-  load "directives/target_closest.aoe2ai"
+  load "directives/targetting.aoe2ai"
   load "directives/town_size_attack.aoe2ai"
 #else
   goal do-research = 1

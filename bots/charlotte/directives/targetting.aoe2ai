@@ -1,0 +1,25 @@
+const retarget-interval = 300
+
+#do once
+  target closest enemy
+  scout enemy
+#end do
+#if not player-in-game target-player
+  target closest enemy
+  scout enemy
+#end if
+
+#do once
+  goal next-retarget = 0
+#end do
+#if up-compare-goal game-time-goal g:>= next-retarget and (goal threat-target castle or goal threat-target town-center or goal threat-target mining-camp or goal threat-target house or goal threat-target barracks or goal threat-target archery-range or goal threat-target stable or goal threat-target siege-workshop)
+  #if up-compare-goal threat-player s:!= sn-target-player-number and up-compare-goal threat-player c:>= 1 and up-compare-goal threat-player c:<= 8
+    @up-modify-sn sn-target-player-number g:= threat-player
+    @up-modify-sn sn-focus-player-number g:= threat-player
+    @up-reset-unit c: -1
+    retreat
+    @up-modify-goal next-retarget g:= game-time-goal
+    @up-modify-goal next-retarget c:+ retarget-interval
+    @up-chat-data-to-self "Retaliating against player %d" g: threat-player
+  #end if
+#end if

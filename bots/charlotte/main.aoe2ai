@@ -72,19 +72,7 @@ const gold-unit-threshold = 0
   #end if
   
   goal desired-military-buildings-per-type = 2
-  #select random persistant
-    goal desired-town-centers = 1
-  #randor
-    goal desired-town-centers = 2
-  #randor
-    goal desired-town-centers = 3
-  #randor
-    goal desired-town-centers = 3
-  #randor
-    goal desired-town-centers = 3
-  #randor
-    goal desired-town-centers = 4
-  #end select
+  goal desired-town-centers = 3
   
   goal desired-villagers = 120
   #if goal team-game 1
