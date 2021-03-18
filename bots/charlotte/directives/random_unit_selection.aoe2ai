@@ -14,6 +14,8 @@ goal total-units-selected = 0
 @up-modify-goal total-units-selected g:+ produce-scorpions
 @up-modify-goal total-units-selected g:+ produce-monks
 @up-modify-goal total-units-selected g:+ produce-unique-units
+@up-modify-goal total-units-selected g:+ produce-galleys
+@up-modify-goal total-units-selected g:+ produce-fire-ships
 
 #if up-compare-goal total-units-selected g:< desired-units
   #if goal full-water-map 0
