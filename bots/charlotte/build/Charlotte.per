@@ -21,13 +21,6 @@
 (defconst attack-ready 99)
 (defconst attacking 100)
 (defconst do-backstep 101)
-(defconst monastery-count 138)
-(defconst castle-count 135)
-(defconst old-desired-military-buildings-per-type 136)
-(defconst siege-workshop-count 129)
-(defconst stable-count 124)
-(defconst barracks-count 120)
-(defconst archery-range-count 115)
 (defconst total-type-production 114)
 (defconst enough-gold 113)
 (defconst enough-food 112)
@@ -38,6 +31,13 @@
 (defconst dock-count 106)
 (defconst desired-villagers-with-subtractions 102)
 (defconst trained-unit 104)
+(defconst archery-range-count 115)
+(defconst barracks-count 120)
+(defconst stable-count 124)
+(defconst siege-workshop-count 129)
+(defconst castle-count 135)
+(defconst old-desired-military-buildings-per-type 136)
+(defconst monastery-count 138)
 (defconst good-hand-cannoneer 147)
 (defconst good-miltia 146)
 (defconst good-speamen 145)
@@ -11577,19 +11577,19 @@
     (up-modify-goal produce-units g:= old-produce-units)
 )
 (defrule
-    (and (goal produce-trebuchets 1) (unit-available trebuchet))
+    (and (goal produce-trebuchets 1) (unit-available trebuchet-set))
 =>
     (up-modify-goal old-produce-units g:= produce-units)
     (up-get-fact unit-type-count trebuchet-set current-unit-amount)
 )
 (defrule
-    (and (goal produce-trebuchets 1) (unit-available trebuchet))
+    (and (goal produce-trebuchets 1) (unit-available trebuchet-set))
     (up-compare-goal current-unit-amount g:> expected-units-per-type)
 =>
     (set-goal produce-units 0)
 )
 (defrule
-    (not (and (goal produce-trebuchets 1) (unit-available trebuchet)))
+    (not (and (goal produce-trebuchets 1) (unit-available trebuchet-set)))
 =>
     (up-jump-rule 22)
 )
@@ -11735,7 +11735,7 @@
     (set-goal 134 0)
 )
 (defrule
-    (and (goal produce-trebuchets 1) (unit-available trebuchet))
+    (and (goal produce-trebuchets 1) (unit-available trebuchet-set))
 =>
     (up-modify-goal produce-units g:= old-produce-units)
 )
@@ -15023,19 +15023,19 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-modify-goal produce-units g:= old-produce-units)
 )
 (defrule
-    (and (goal produce-monks 1) (unit-available monk))
+    (and (goal produce-monks 1) (unit-available monk-set))
 =>
     (up-modify-goal old-produce-units g:= produce-units)
     (up-get-fact unit-type-count monk-set current-unit-amount)
 )
 (defrule
-    (and (goal produce-monks 1) (unit-available monk))
+    (and (goal produce-monks 1) (unit-available monk-set))
     (up-compare-goal current-unit-amount g:> expected-units-per-type)
 =>
     (set-goal produce-units 0)
 )
 (defrule
-    (not (and (goal produce-monks 1) (unit-available monk)))
+    (not (and (goal produce-monks 1) (unit-available monk-set)))
 =>
     (up-jump-rule 43)
 )
@@ -15316,7 +15316,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (set-goal 139 0)
 )
 (defrule
-    (and (goal produce-monks 1) (unit-available monk))
+    (and (goal produce-monks 1) (unit-available monk-set))
 =>
     (up-modify-goal produce-units g:= old-produce-units)
 )

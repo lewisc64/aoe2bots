@@ -85,268 +85,44 @@ goal total-type-production = 0
 
 load "units/prerequisites.aoe2ai"
 
-// ARCHERY RANGE
-
-#if goal produce-archers 1 and unit-available archer-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count archer-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
+#subroutine load-unit
+  #if goal {production_goal} 1 and unit-available {unit}
+    @up-modify-goal old-produce-units g:= produce-units
+    
+    @up-get-fact unit-type-count {unit} current-unit-amount
+    #if up-compare-goal current-unit-amount g:> expected-units-per-type
+      goal produce-units = 0
+    #end if
+    
+    load "{unit_path}"
+    @up-modify-goal produce-units g:= old-produce-units
   #end if
-  
-  load "units/archer.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
+#end subroutine
 
-#if goal produce-hand-cannoneers 1 and unit-available hand-cannoneer
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count hand-cannoneer current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/hand_cannoneer.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
+call load-unit(production_goal="produce-archers",unit="archer-line",unit_path="units/archer.aoe2ai")
+call load-unit(production_goal="produce-hand-cannoneers",unit="hand-cannoneer",unit_path="units/hand_cannoneer.aoe2ai")
+call load-unit(production_goal="produce-skirmishers",unit="skirmisher-line",unit_path="units/skirmisher.aoe2ai")
+call load-unit(production_goal="produce-cavalry-archers",unit="cavalry-archer-line",unit_path="units/cavalry_archer.aoe2ai")
 
-#if goal produce-skirmishers 1 and unit-available skirmisher-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count skirmisher-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/skirmisher.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
+call load-unit(production_goal="produce-militia",unit="militiaman-line",unit_path="units/militia.aoe2ai")
+call load-unit(production_goal="produce-spearmen",unit="spearman-line",unit_path="units/spearman.aoe2ai")
+call load-unit(production_goal="produce-eagles",unit="eagle-warrior-line",unit_path="units/eagle_warrior.aoe2ai")
 
-#if goal produce-cavalry-archers 1 and unit-available cavalry-archer-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count cavalry-archer-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/cavalry_archer.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
+call load-unit(production_goal="produce-scouts",unit="scout-cavalry-line",unit_path="units/scout_cavalry.aoe2ai")
+call load-unit(production_goal="produce-knights",unit="knight-line",unit_path="units/knight.aoe2ai")
+call load-unit(production_goal="produce-camels",unit="camel-line",unit_path="units/camel.aoe2ai")
+call load-unit(production_goal="produce-battle-elephants",unit="battle-elephant-line",unit_path="units/battle_elephant.aoe2ai")
 
-// BARRACKS
+call load-unit(production_goal="produce-battering-rams",unit="battering-ram-line",unit_path="units/battering_ram.aoe2ai")
+call load-unit(production_goal="produce-mangonels",unit="mangonel-line",unit_path="units/mangonel.aoe2ai")
+call load-unit(production_goal="produce-scorpions",unit="scorpion-line",unit_path="units/scorpion.aoe2ai")
+call load-unit(production_goal="produce-bombard-cannons",unit="bombard-cannon",unit_path="units/bombard_cannon.aoe2ai")
 
-#if goal produce-militia 1 and unit-available militiaman-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count militiaman-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/militia.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
+call load-unit(production_goal="produce-trebuchets",unit="trebuchet-set",unit_path="units/trebuchet.aoe2ai")
+call load-unit(production_goal="produce-unique-units",unit="my-unique-unit-line",unit_path="units/unique_unit.aoe2ai")
 
-#if goal produce-spearmen 1 and unit-available spearman-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count spearman-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/spearman.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
+call load-unit(production_goal="produce-monks",unit="monk-set",unit_path="units/monk.aoe2ai")
 
-#if goal produce-eagles 1 and unit-available eagle-warrior-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count eagle-warrior-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/eagle_warrior.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
-
-// STABLE
-
-#if goal produce-scouts 1 and unit-available scout-cavalry-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count scout-cavalry-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/scout_cavalry.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
-
-#if goal produce-knights 1 and unit-available knight-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count knight-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/knight.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
-
-#if goal produce-camels 1 and unit-available camel-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count camel-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/camel.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
-
-#if goal produce-battle-elephants 1 and unit-available battle-elephant-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count battle-elephant-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/battle_elephant.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
-
-// SIEGE WORKSHOP
-
-#if goal produce-battering-rams 1 and unit-available battering-ram-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count battering-ram-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/battering_ram.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
-
-#if goal produce-mangonels 1 and unit-available mangonel-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count mangonel-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/mangonel.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
-
-#if goal produce-scorpions 1 and unit-available scorpion-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count scorpion-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/scorpion.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
-
-#if goal produce-bombard-cannons 1 and unit-available bombard-cannon
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count bombard-cannon current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/bombard_cannon.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
-
-// CASTLE
-
-#if goal produce-trebuchets 1 and unit-available trebuchet
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count trebuchet-set current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/trebuchet.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
-
-#if goal produce-unique-units 1 and unit-available my-unique-unit-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count my-unique-unit-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/unique_unit.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
-
-// MONASTERY
-
-#if goal produce-monks 1 and unit-available monk
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count monk-set current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/monk.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
-
-// DOCK
-
-#if goal produce-galleys 1 and unit-available galley-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count galley-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/galley.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
-
-#if goal produce-fire-ships 1 and unit-available fire-ship-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count fire-ship-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/fire_ship.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
-
-#if goal produce-cannon-galleons 1 and unit-available cannon-galleon-line
-  @up-modify-goal old-produce-units g:= produce-units
-  
-  @up-get-fact unit-type-count cannon-galleon-line current-unit-amount
-  #if up-compare-goal current-unit-amount g:> expected-units-per-type
-    goal produce-units = 0
-  #end if
-  
-  load "units/cannon_galleon.aoe2ai"
-  @up-modify-goal produce-units g:= old-produce-units
-#end if
+call load-unit(production_goal="produce-galleys",unit="galley-line",unit_path="units/galley.aoe2ai")
+call load-unit(production_goal="produce-fire-ships",unit="fire-ship-line",unit_path="units/fire_ship.aoe2ai")
+call load-unit(production_goal="produce-cannon-galleons",unit="cannon-galleon-line",unit_path="units/cannon_galleon.aoe2ai")
