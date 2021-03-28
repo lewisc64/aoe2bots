@@ -1110,7 +1110,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 2661)
+    (up-jump-rule 2662)
 )
 (defrule
     (true)
@@ -1600,10 +1600,15 @@
 )
 (defrule
     (can-build watch-tower-line)
-    (building-type-count-total watch-tower-line < 3)
-    (and (military-population <= 1) (and (up-compare-goal target-military-population c:>= 5) (false)))
+    (building-type-count-total watch-tower-line < 1)
+    (and (military-population <= 1) (up-compare-goal target-military-population c:>= 5))
 =>
     (build watch-tower-line)
+)
+(defrule
+    (and (building-type-count town-center-foundation >= 1) (building-type-count town-center == 0))
+=>
+    (delete-building farm)
 )
 (defrule
     (can-build town-center)

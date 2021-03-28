@@ -10,6 +10,11 @@
 #end if
 
 // about to get wrecked, build towers
-#if military-population <= 1 and up-compare-goal target-military-population c:>= 5 and false // actually, this is bad.
-  build 3 watch-tower-line
+#if military-population <= 1 and up-compare-goal target-military-population c:>= 5
+  build 1 watch-tower-line
+#end if
+
+// delete farms that may be miles away
+#if building-type-count town-center-foundation >= 1 and building-type-count town-center == 0
+  delete building farm
 #end if
