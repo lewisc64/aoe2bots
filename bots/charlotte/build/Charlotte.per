@@ -10873,7 +10873,7 @@
     (build siege-workshop)
 )
 (defrule
-    (not (and (unit-available mangonel-line) (and (current-age == imperial-age) (civilian-population >= expensive-tech-villagers))))
+    (not (and (unit-available mangonel-line) (and (current-age == imperial-age) (civilian-population >= extortionate-tech-villagers))))
 =>
     (up-jump-rule 13)
 )
@@ -10965,7 +10965,7 @@
     (research ri-siege-onager)
 )
 (defrule
-    (not (and (unit-available mangonel-line) (and (current-age == imperial-age) (and (not (civilian-population >= expensive-tech-villagers)) (civilian-population >= extortionate-tech-villagers)))))
+    (not (and (unit-available mangonel-line) (and (current-age == imperial-age) (and (not (civilian-population >= extortionate-tech-villagers)) (civilian-population >= expensive-tech-villagers)))))
 =>
     (up-jump-rule 6)
 )

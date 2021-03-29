@@ -3,9 +3,9 @@ load "research/siege_workshop/prerequisites.aoe2ai"
 
 #if unit-available mangonel-line
   #if current-age == imperial-age
-    #if civilian-population >= expensive-tech-villagers
+    #if civilian-population >= extortionate-tech-villagers
       load "research/siege_workshop/siege_onager.aoe2ai"
-    #else if civilian-population >= extortionate-tech-villagers
+    #else if civilian-population >= expensive-tech-villagers
       load "research/siege_workshop/onager.aoe2ai"
     #end if
   #end if
