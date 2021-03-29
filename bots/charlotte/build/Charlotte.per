@@ -1601,7 +1601,7 @@
 (defrule
     (can-build watch-tower-line)
     (building-type-count-total watch-tower-line < 1)
-    (and (military-population <= 1) (up-compare-goal target-military-population c:>= 5))
+    (and (military-population <= 1) (and (up-compare-goal target-military-population c:>= 5) (goal attacking 0)))
 =>
     (build watch-tower-line)
 )
@@ -10875,52 +10875,6 @@
 (defrule
     (not (and (unit-available mangonel-line) (and (current-age == imperial-age) (civilian-population >= expensive-tech-villagers))))
 =>
-    (up-jump-rule 6)
-)
-(defrule
-    (not (not (research-completed ri-onager)))
-=>
-    (up-jump-rule 3)
-)
-(defrule
-    (not (building-type-count-total siege-workshop == 0))
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (building-type-count-total blacksmith < 1)
-    (building-type-count-total blacksmith == 0)
-    (wood-amount >= 200)
-=>
-    (build blacksmith)
-)
-(defrule
-    (can-build siege-workshop)
-    (building-type-count-total siege-workshop < 1)
-    (building-type-count-total siege-workshop == 0)
-    (building-type-count blacksmith >= 1)
-=>
-    (build siege-workshop)
-)
-(defrule
-    (not (research-completed ri-onager))
-    (research-available ri-onager)
-    (up-research-status c: ri-onager < research-pending)
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-onager)
-    (not (research-completed ri-onager))
-    (research-available ri-onager)
-    (goal do-research 1)
-=>
-    (research ri-onager)
-)
-(defrule
-    (not (and (unit-available mangonel-line) (and (current-age == imperial-age) (and (not (civilian-population >= expensive-tech-villagers)) (civilian-population >= extortionate-tech-villagers)))))
-=>
     (up-jump-rule 13)
 )
 (defrule
@@ -11009,6 +10963,52 @@
     (goal do-research 1)
 =>
     (research ri-siege-onager)
+)
+(defrule
+    (not (and (unit-available mangonel-line) (and (current-age == imperial-age) (and (not (civilian-population >= expensive-tech-villagers)) (civilian-population >= extortionate-tech-villagers)))))
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not (not (research-completed ri-onager)))
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (not (building-type-count-total siege-workshop == 0))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (building-type-count-total blacksmith < 1)
+    (building-type-count-total blacksmith == 0)
+    (wood-amount >= 200)
+=>
+    (build blacksmith)
+)
+(defrule
+    (can-build siege-workshop)
+    (building-type-count-total siege-workshop < 1)
+    (building-type-count-total siege-workshop == 0)
+    (building-type-count blacksmith >= 1)
+=>
+    (build siege-workshop)
+)
+(defrule
+    (not (research-completed ri-onager))
+    (research-available ri-onager)
+    (up-research-status c: ri-onager < research-pending)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-onager)
+    (not (research-completed ri-onager))
+    (research-available ri-onager)
+    (goal do-research 1)
+=>
+    (research ri-onager)
 )
 (defrule
     (not (unit-available mangonel-line))
