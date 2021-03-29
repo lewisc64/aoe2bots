@@ -151,17 +151,17 @@ train 1 monk
 #if up-research-status c: feudal-age >= research-pending and not research-completed castle-age
   build 2 barracks with wood escrow
   #if current-age >= castle-age
-    build 2 archery-range
+    build 2 archery-range with wood escrow
   #end if
 #else if current-age == castle-age
   build 3 barracks with wood escrow
   #if current-age >= castle-age
-    build 3 archery-range
+    build 3 archery-range with wood escrow
   #end if
 #else if current-age == imperial-age
   build 5 barracks with wood escrow
   #if current-age >= castle-age
-    build 5 archery-range
+    build 5 archery-range with wood escrow
   #end if
 #end if
 
@@ -228,15 +228,15 @@ build castle
   #end if
   
   #repeat every 60 seconds
-    #if up-compare-goal non-escrowed-wood > max-wood
+    #if up-compare-goal non-escrowed-wood c:> max-wood
       distribute 4 villagers from wood to food and gold
     #end if
     
-    #if up-compare-goal non-escrowed-food > max-food
+    #if up-compare-goal non-escrowed-food c:> max-food
       distribute 4 villagers from food to wood and gold
     #end if
     
-    #if up-compare-goal non-escrowed-gold > max-gold
+    #if up-compare-goal non-escrowed-gold c:> max-gold
       distribute 4 villagers from gold to wood and food
     #end if
   #end repeat
