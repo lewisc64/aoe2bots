@@ -1,7 +1,3 @@
-#do once
-  goal emergency-trash = 0
-#end do
-
 #if up-compare-goal no-gold-mining-time c:>= 300 and resource-found gold and goal produce-trade-carts 0 and game-time >= 1800
   goal emergency-trash = 1
 #end if

@@ -2,6 +2,7 @@
   goal attack-ready = 0
   goal attacking = 0
   goal do-backstep = 0
+  goal emergency-trash = 0
 #end do
 
 load "directives/age/feudal_rush.aoe2ai"
@@ -39,7 +40,10 @@ load "units/all_switched.aoe2ai"
   #end select
   
   load "directives/emergency_trash.aoe2ai"
-  load "directives/being_countered_system.aoe2ai"
+  #if goal emergency-trash 0
+    load "directives/being_countered_system.aoe2ai"
+    load "directives/counter_system.aoe2ai"
+  #end if
   load "directives/mandatory_siege.aoe2ai"
   
   load "directives/targetting.aoe2ai"

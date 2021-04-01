@@ -14,6 +14,9 @@ const tc-arrow = 54
 const watch-tower-arrow = 786
 const castle-arrow = 746
 const castle-arrow-chemistry = 747
+const ranged-unit-class = 900
+const infantry-unit-class = 906
+const cavalry-unit-class = 912
 
 const dark-age-town-size = 12
 const feudal-age-town-size = 14
@@ -28,6 +31,52 @@ const expensive-tech-villagers = 70
 const wood-unit-threshold = 275
 const food-unit-threshold = 0
 const gold-unit-threshold = 0
+
+#subroutine clear-units
+  goal produce-trade-carts = 0
+  goal produce-archers = 0
+  goal produce-hand-cannoneers = 0
+  goal produce-skirmishers = 0
+  goal produce-cavalry-archers = 0
+  goal produce-militia = 0
+  goal produce-spearmen = 0
+  goal produce-eagles = 0
+  goal produce-scouts = 0
+  goal produce-knights = 0
+  goal produce-camels = 0
+  goal produce-battle-elephants = 0
+  goal produce-battering-rams = 0
+  goal produce-mangonels = 0
+  goal produce-scorpions = 0
+  goal produce-bombard-cannons = 0
+  goal produce-trebuchets = 0
+  goal produce-unique-units = 0
+  goal produce-monks = 0
+  goal produce-galleys = 0
+  goal produce-fire-ships = 0
+  goal produce-cannon-galleons = 0
+#end subroutine
+
+#subroutine clear-good-units
+  goal good-archers = 0
+  goal good-hand-cannoneers = 0
+  goal good-skirmishers = 0
+  goal good-cavalry-archers = 0
+  goal good-militia = 0
+  goal good-spearmen = 0
+  goal good-eagles = 0
+  goal good-scouts = 0
+  goal good-knights = 0
+  goal good-camels = 0
+  goal good-battle-elephants = 0
+  goal good-battering-rams = 0
+  goal good-mangonels = 0
+  goal good-scorpions = 0
+  goal good-monks = 0
+  goal good-unique-units = 0
+  goal good-galleys = 0
+  goal good-fire-ships = 0
+#end subroutine
 
 #do once
   set up basics
@@ -116,47 +165,8 @@ const gold-unit-threshold = 0
 #end do
 
 #do once
-  goal produce-trade-carts = 0
-  goal produce-archers = 0
-  goal produce-hand-cannoneers = 0
-  goal produce-skirmishers = 0
-  goal produce-cavalry-archers = 0
-  goal produce-militia = 0
-  goal produce-spearmen = 0
-  goal produce-eagles = 0
-  goal produce-scouts = 0
-  goal produce-knights = 0
-  goal produce-camels = 0
-  goal produce-battle-elephants = 0
-  goal produce-battering-rams = 0
-  goal produce-mangonels = 0
-  goal produce-scorpions = 0
-  goal produce-bombard-cannons = 0
-  goal produce-trebuchets = 0
-  goal produce-unique-units = 0
-  goal produce-monks = 0
-  goal produce-galleys = 0
-  goal produce-fire-ships = 0
-  goal produce-cannon-galleons = 0
-  
-  goal good-archers = 0
-  goal good-hand-cannoneers = 0
-  goal good-skirmishers = 0
-  goal good-cavalry-archers = 0
-  goal good-militia = 0
-  goal good-spearmen = 0
-  goal good-eagles = 0
-  goal good-scouts = 0
-  goal good-knights = 0
-  goal good-camels = 0
-  goal good-battle-elephants = 0
-  goal good-battering-rams = 0
-  goal good-mangonels = 0
-  goal good-scorpions = 0
-  goal good-monks = 0
-  goal good-unique-units = 0
-  goal good-galleys = 0
-  goal good-fire-ships = 0
+  call clear-units
+  call clear-good-units
 #end do
 
 load "stats.aoe2ai"
