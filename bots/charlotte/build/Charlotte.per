@@ -1601,7 +1601,7 @@
 (defrule
     (can-build watch-tower-line)
     (building-type-count-total watch-tower-line < 1)
-    (and (military-population <= 1) (and (up-compare-goal target-military-population c:>= 5) (goal attacking 0)))
+    (and (military-population <= 1) (and (up-compare-goal largest-enemy-military-population c:>= 5) (goal attacking 0)))
 =>
     (build watch-tower-line)
 )

@@ -31,7 +31,7 @@ load "units/villager.aoe2ai"
   goal enough-gold = 0
 #end if
 
-#if goal attacking 0 and town-under-attack// or current-age == feudal-age and current-age-time < 600
+#if goal attacking 0 and town-under-attack// or current-age == feudal-age
   goal enough-wood = 1
   goal enough-food = 1
   goal enough-gold = 1

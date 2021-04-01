@@ -10,7 +10,7 @@
 #end if
 
 // about to get wrecked, build towers
-#if military-population <= 1 and up-compare-goal target-military-population c:>= 5 and goal attacking 0
+#if military-population <= 1 and up-compare-goal largest-enemy-military-population c:>= 5 and goal attacking 0
   build 1 watch-tower-line
 #end if
 
