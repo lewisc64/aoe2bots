@@ -1,123 +1,155 @@
 #do once
   set up basics
-  take boar
-  chat to all "raze the system"
+  
+  goal invasion = 0
+  
+  assign 8 builders to castle
+  assign 8 builders to town-center-foundation
 #end do
 
-build lumber camps
-build mills
-build 3 town-center
-#if building-type-count-total town-center >= 3
-  build castle
+target closest enemy
+#if not player-in-game target-player
+  target closest enemy
 #end if
-build 1 blacksmith
-build 1 university
 
 #if current-age == feudal-age
-  build 1 barracks
-  build 1 archery-range
-  build 1 stable
+  sn-maximum-town-size = 20
 #else if current-age == castle-age
-  build 2 barracks
-  build 2 archery-range
-  build 2 stable
-  build 1 monastery
-  build 1 siege-workshop
+  sn-maximum-town-size = 27
 #else if current-age == imperial-age
-  build 3 barracks
-  build 3 archery-range
-  build 3 stable
-  build 2 monastery
-  build 2 siege-workshop
+  sn-maximum-town-size = 32
 #end if
 
-#when
-  research feudal-age
-  research castle-age
-  research imperial-age
-#then
-  sn-maximum-town-size += 4
-#end when
-research ri-chemistry
+build houses
+build lumber camps
+#if building-type-count-total lumber-camp >= 1
+  build mills
+#end if
+
+#if up-research-status c: feudal-age >= research-pending
+  build 1 barracks
+  build 1 archery-range
+  #if building-type-count-total archery-range >= 1
+    build farms
+    build 1 blacksmith
+    build 1 market
+    
+    build 3 town-center
+    #if building-type-count-total town-center >= 3
+      build 1 monastery
+      build 1 university
+
+      #if current-age >= castle-age
+        build 3 barracks
+        build 3 archery-range
+        build 3 stable
+        build 3 siege-workshop
+        build 3 monastery
+        build castle
+      #end if
+    #end if
+  #end if
+#end if
+
 research ri-loom
 research lumber camp upgrades
-research gold mining camp upgrades
+research mining camp upgrades
+research mill upgrades
+research all upgrades
 
-train 120 villager
+research castle-age
+research imperial-age
 
-#when
-  attack with 30 units
-#then always
-  #do once
-    #select random
-      chat to all "41the system is bad"
-    #randor
-      chat to all "41the system is wrong"
-    #randor
-      chat to all "41the system is broken"
-    #randor
-      chat to all "41the system will die"
-    #randor
-      chat to all "41the system is destruction"
-    #randor
-      chat to all "41the system is tarnished"
-    #randor
-      chat to all "41the system hurts"
-    #randor
-      chat to all "41pain"
-    #randor
-      chat to all "41misery"
-    #randor
-      chat to all "41agony"
-    #randor
-      chat to all "41strife"
-    #randor
-      chat to all "41fate is slavery"
-    #randor
-      chat to all "41fate is deniable"
-    #randor
-      chat to all "41fate is exhausting"
-    #randor
-      chat to all "41fate will die"
-    #randor
-      chat to all "41chaos is inevitable"
-    #end select
-  #end do
-#end when
+#if current-age == feudal-age
+  buy food when gold >= 300
+  sell food when food >= 900
+  sell wood when wood >= 400
+#end if
 
 #if current-age == dark-age
+  
   #do once
-    distribute villagers 25 75 0 0
+    distribute villagers 20 80 0 0
   #end do
   
-  build houses with 5 headroom
+  lure boars
   
-  #if wood-amount >= 100
-    build farms
-  #end if
-
+  build farms
+  
+  research feudal-age
+  
 #else
 
   #do once
-    distribute villagers 38 38 20 4
+    distribute villagers 38 37 20 5
   #end do
-  
-  build houses with 20 headroom
-  
-  #if wood-amount >= 200
-    build farms
-  #end if
-  
+
+  build houses with 15 headroom
+
   #when
     build gold mining camps
     build stone mining camps
   #then
     sn-camp-max-distance += 8
   #end when
+
 #end if
 
-#if wood-amount < 100 and not town-under-attack
+train 120 villager
+train 1 monk
+#if unit-type-count villager > 120
+  delete unit villager
+#end if
+
+#do once
+  goal trick = -1
+#end do
+
+#if wood-amount >= 1000 and food-amount >= 1000 and gold-amount >= 1000 and stone-amount >= 1000 and current-age == imperial-age or game-time >= 4800
+  goal invasion = 1
+#end if
+
+#if not (goal invasion 1 and (wood-amount > 100 or town-under-attack) or military-population < 10)
   @up-jump-rule 10000
+#end if
+
+#if military-population >= 50
+  sn-maximum-town-size = 255
+  #do once
+    #select random
+      chat to all "41THE SYSTEM IS BAD"
+    #randor
+      chat to all "41THE SYSTEM IS WRONG"
+    #randor
+      chat to all "41THE SYSTEM IS BROKEN"
+    #randor
+      chat to all "41THE SYSTEM WILL DIE"
+    #randor
+      chat to all "41THE SYSTEM IS DESTRUCTION"
+    #randor
+      chat to all "41THE SYSTEM IS TARNISHED"
+    #randor
+      chat to all "41THE SYSTEM HURTS"
+    #randor
+      chat to all "41PAIN"
+    #randor
+      chat to all "41MISERY"
+    #randor
+      chat to all "41AGONY"
+    #randor
+      chat to all "41STRIFE"
+    #randor
+      chat to all "41FATE IS SLAVERY"
+    #randor
+      chat to all "41FATE IS DENIABLE"
+    #randor
+      chat to all "41FATE IS EXHAUSTING"
+    #randor
+      chat to all "41FATE WILL DIE"
+    #randor
+      chat to all "41CHAOS IS INEVITABLE"
+    #end select
+  #end do
 #end if
 
 // my while loop isn't working :(
@@ -511,3 +543,1174 @@ train 120 villager
 #randor
   train bombard-cannon
 #end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+#select random
+  train archer-line
+#randor
+  train skirmisher-line
+#randor
+  train cavalry-archer-line
+#randor
+  train hand-cannoneer
+#randor
+  train militiaman-line
+#randor
+  train spearman-line
+#randor
+  train eagle-warrior-line
+#randor
+  train scout-cavalry-line
+#randor
+  train knight-line
+#randor
+  train camel-line
+#randor
+  train battle-elephant-line
+#randor
+  train monk
+#randor
+  train my-unique-unit
+#randor
+  train petard
+#randor
+  train trebuchet
+#randor
+  train battering-ram-line
+#randor
+  train mangonel-line
+#randor
+  train scorpion-line
+#randor
+  train bombard-cannon
+#end select
+
