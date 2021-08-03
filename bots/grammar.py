@@ -45,7 +45,7 @@ class Grammar:
                 current_choice.append(result)
                 result = ""
                 inside_quote_char = None
-            elif c in quote_chars and bracket_level == 0:
+            elif c in quote_chars and bracket_level == 0 and inside_quote_char is None:
                 inside_quote_char = c
             elif inside_quote_char is not None and bracket_level == 0:
                 result += c
@@ -109,3 +109,7 @@ class Grammar:
                     output += str(item)
 
         return output
+
+if __name__ == "__main__":
+    g = Grammar("""<test> ::= '"' "hello" '"'""")
+    print(g.random_chain(g.keys["test"].results))

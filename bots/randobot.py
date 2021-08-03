@@ -82,6 +82,7 @@ BACKUS_NAUR = """
              | "do-nothing"
              | "attack-now"
              | ("sell" | "buy") "-commodity " <commodity>
+             | "chat-to-" ("all" | "allies" | "enemies") ' "' <chat-message> '"'
              | "disable-self"
 
 <building> ::= "archery-range" | "barracks" | "blacksmith" | "bombard-tower" | "castle" | "dock" | "farm" | "fish-trap" | "guard-tower" | "house" | "keep" | "lumber-camp" | "market" | "mill" | "mining-camp" | "monastery" | "outpost" | "siege-workshop" | "stable" | "town-center" | "university" | "watch-tower" | "wonder" | "watch-tower-line"
