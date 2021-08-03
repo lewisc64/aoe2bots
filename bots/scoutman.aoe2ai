@@ -5,7 +5,7 @@
     take boar
   #end delay
   chat to all "Quantity is quality."
-  goal explore-like-mad = 0
+  goal explore-like-mad = 1
   assign 8 builders to castle
 #end do once
 
@@ -70,6 +70,11 @@ attack with 50 units
     sn-percentage-explore-exterminators = 100
     sn-minimum-explore-group-size = 10
     sn-maximum-explore-group-size = 20
+    #repeat every 1 minute
+      sn-total-number-explorers = 0
+      sn-number-explore-groups = 0
+      @up-reset-unit c: -1
+    #end repeat
   #end if
 #end if
 
