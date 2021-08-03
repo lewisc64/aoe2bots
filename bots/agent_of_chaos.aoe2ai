@@ -7,7 +7,9 @@
   assign 8 builders to town-center-foundation
 #end do
 
-target closest enemy
+#do once
+  target closest enemy
+#end do
 #if not player-in-game target-player
   target closest enemy
 #end if
