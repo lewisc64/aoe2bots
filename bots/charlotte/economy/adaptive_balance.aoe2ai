@@ -4,7 +4,7 @@ const max-gold = 1600
 
 const minimum-wood-gatherer-percentage = 30
 const minimum-food-gatherer-percentage = 30
-const minimum-gold-gatherer-percentage = 30
+const minimum-gold-gatherer-percentage = 10
 
 const wood-threshold = 300
 const food-threshold = 300
@@ -72,8 +72,6 @@ const good-food-sell-price = 200
 #end if
 
 #repeat every 60 seconds
-
-
   #if up-compare-goal non-escrowed-wood c:> wood-threshold
     #if up-compare-goal non-escrowed-food c:> food-threshold
       #if up-compare-goal non-escrowed-gold c:> gold-threshold
@@ -109,10 +107,10 @@ const good-food-sell-price = 200
   distribute 2 villagers from food and gold to wood
 #end if
 
-#if strategic-number sn-food-gatherer-percentage < 30
+#if strategic-number sn-food-gatherer-percentage < minimum-food-gatherer-percentage
   distribute 2 villagers from wood and gold to food
 #end if
 
-#if strategic-number sn-gold-gatherer-percentage < 10
+#if strategic-number sn-gold-gatherer-percentage < minimum-gold-gatherer-percentage
   distribute 2 villagers from wood and food to gold
 #end if

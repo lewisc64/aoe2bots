@@ -143,3 +143,108 @@ goal target-player-score-delta = 0
   goal threat-target = 0
 #end do
 @up-get-threat-data threat-time threat-player threat-source threat-target
+
+// unit class investment
+
+goal ranged-blacksmith-techs-done = 0
+goal cavalry-blacksmith-techs-done = 0
+goal infantry-blacksmith-techs-done = 0
+
+#if research-completed ri-fletching
+  goal ranged-blacksmith-techs-done += 1
+#end if
+
+#if research-completed ri-bodkin-arrow
+  goal ranged-blacksmith-techs-done += 1
+#end if
+
+#if research-completed ri-bracer
+  goal ranged-blacksmith-techs-done += 1
+#end if
+
+#if research-completed ri-padded-archer-armor
+  goal ranged-blacksmith-techs-done += 1
+#end if
+
+#if research-completed ri-leather-archer-armor
+  goal ranged-blacksmith-techs-done += 1
+#end if
+
+#if research-completed ri-ring-archer-armor
+  goal ranged-blacksmith-techs-done += 1
+#end if
+
+#if research-completed ri-forging
+  goal infantry-blacksmith-techs-done += 1
+  goal cavalry-blacksmith-techs-done += 1
+#end if
+
+#if research-completed ri-iron-casting
+  goal infantry-blacksmith-techs-done += 1
+  goal cavalry-blacksmith-techs-done += 1
+#end if
+
+#if research-completed ri-blast-furnace
+  goal infantry-blacksmith-techs-done += 1
+  goal cavalry-blacksmith-techs-done += 1
+#end if
+
+#if research-completed ri-scale-barding
+  goal cavalry-blacksmith-techs-done += 1
+#end if
+
+#if research-completed ri-chain-barding
+  goal cavalry-blacksmith-techs-done += 1
+#end if
+
+#if research-completed ri-plate-barding
+  goal cavalry-blacksmith-techs-done += 1
+#end if
+
+#if research-completed ri-scale-mail
+  goal infantry-blacksmith-techs-done += 1
+#end if
+
+#if research-completed ri-chain-mail
+  goal infantry-blacksmith-techs-done += 1
+#end if
+
+#if research-completed ri-plate-mail
+  goal infantry-blacksmith-techs-done += 1
+#end if
+
+goal partial-ranged-blacksmith-investment = 0
+goal full-ranged-blacksmith-investment = 0
+goal partial-cavalry-blacksmith-investment = 0
+goal full-cavalry-blacksmith-investment = 0
+goal partial-infantry-blacksmith-investment = 0
+goal full-infantry-blacksmith-investment = 0
+
+#subroutine decide-blacksmith-investment
+  #if current-age == feudal-age
+    #if goal {type}-blacksmith-techs-done 1
+      goal partial-{type}-blacksmith-investment = 1
+    #else if goal {type}-blacksmith-techs-done 2
+      goal partial-{type}-blacksmith-investment = 1
+      goal full-{type}-blacksmith-investment = 1
+    #end if
+  #else if current-age == castle-age
+    #if goal {type}-blacksmith-techs-done 3
+      goal partial-{type}-blacksmith-investment = 1
+    #else if goal {type}-blacksmith-techs-done 4
+      goal partial-{type}-blacksmith-investment = 1
+      goal full-{type}-blacksmith-investment = 1
+    #end if
+  #else if current-age == imperial-age
+    #if goal {type}-blacksmith-techs-done 5
+      goal partial-{type}-blacksmith-investment = 1
+    #else if goal {type}-blacksmith-techs-done 6
+      goal partial-{type}-blacksmith-investment = 1
+      goal full-{type}-blacksmith-investment = 1
+    #end if
+  #end if
+#end subroutine
+
+call decide-blacksmith-investment(type="ranged")
+call decide-blacksmith-investment(type="cavalry")
+call decide-blacksmith-investment(type="infantry")

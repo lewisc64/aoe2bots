@@ -24,6 +24,7 @@ const castle-age-town-size = 24
 const imperial-age-town-size = 30
 const max-rams = 10
 const max-trebs = 3
+const min-detection-units = 5
 
 const extortionate-tech-villagers = 100
 const expensive-tech-villagers = 70
@@ -31,6 +32,48 @@ const expensive-tech-villagers = 70
 const wood-unit-threshold = 275
 const food-unit-threshold = 0
 const gold-unit-threshold = 0
+
+#if false // build queue debugging
+  #subroutine in-build-queue
+    goal temp = 0
+    @up-get-fact building-type-count-total {building} temp
+    #if up-pending-objects c: {building} > 0
+      @up-chat-data-to-all "There are '{building}' queued. Count total: %d" g: temp
+    #end if
+  #end subroutine
+
+  call in-build-queue(building="archery-range")
+  call in-build-queue(building="barracks")
+  call in-build-queue(building="blacksmith")
+  call in-build-queue(building="bombard-tower")
+  call in-build-queue(building="castle")
+  call in-build-queue(building="dock")
+  call in-build-queue(building="farm")
+  call in-build-queue(building="fish-trap")
+  call in-build-queue(building="guard-tower")
+  call in-build-queue(building="house")
+  call in-build-queue(building="keep")
+  call in-build-queue(building="lumber-camp")
+  call in-build-queue(building="market")
+  call in-build-queue(building="mill")
+  call in-build-queue(building="mining-camp")
+  call in-build-queue(building="monastery")
+  call in-build-queue(building="outpost")
+  call in-build-queue(building="siege-workshop")
+  call in-build-queue(building="stable")
+  call in-build-queue(building="town-center")
+  call in-build-queue(building="university")
+  call in-build-queue(building="watch-tower")
+  call in-build-queue(building="watch-tower-line")
+  call in-build-queue(building="wonder")
+#end if
+
+#if false // gatherer percentage debugging
+  @up-chat-data-to-all "wood gatherers: %d" s: sn-wood-gatherer-percentage
+  @up-chat-data-to-all "food gatherers: %d" s: sn-food-gatherer-percentage
+  @up-chat-data-to-all "gold gatherers: %d" s: sn-gold-gatherer-percentage
+  @up-chat-data-to-all "stone gatherers: %d" s: sn-stone-gatherer-percentage
+#end if
 
 #subroutine clear-units
   goal produce-trade-carts = 0
