@@ -18794,7 +18794,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (up-jump-rule 10)
 )
 (defrule
-    (and (up-compare-goal no-gold-mining-time c:>= 180) (and (resource-found gold) (and (goal produce-trade-carts 0) (game-time >= 1800))))
+    (and (up-compare-goal no-gold-mining-time c:>= 120) (and (resource-found gold) (and (goal produce-trade-carts 0) (game-time >= 1800))))
 =>
     (set-goal emergency-trash 1)
 )
@@ -19176,7 +19176,7 @@ gothic) (or (civ-selected incan) (or (civ-selected japanese) (or (civ-selected m
     (resign)
 )
 (defrule
-    (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (and (up-compare-goal score-percentage c:<= 50) (game-time >= 1200)))
+    (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (and (up-compare-goal score-percentage c:<= 50) (and (game-time >= 1200) (goal team-game 0))))
 =>
     (set-goal resign 1)
 )
