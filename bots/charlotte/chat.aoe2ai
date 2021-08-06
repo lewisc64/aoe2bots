@@ -180,9 +180,9 @@
         #else
           #select random persistant
             #if goal team-game 1 or goal free-for-all 1
-              chat to all "Why doesn't someone attack me right now? It'll go well. Promise."
+              chat to all "Come at me."
             #else
-              chat to all "Why don't you attack me right now? Go on."
+              chat to all "I'm ready for what you've got."
             #end if
           #randor
             chat to all "Feeling confident."

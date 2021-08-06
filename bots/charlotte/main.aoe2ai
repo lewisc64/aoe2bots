@@ -70,7 +70,7 @@ const gold-unit-threshold = 0
 
 // @up-chat-data-to-all "town size: %d" s: sn-maximum-town-size
 
-#if strategic-number sn-food-gatherer-percentage == 0 // gatherer percentage debugging
+#if strategic-number sn-food-gatherer-percentage == 0 and false // gatherer percentage debugging
   @up-chat-data-to-all "wood gatherers: %d" s: sn-wood-gatherer-percentage
   @up-chat-data-to-all "food gatherers: %d" s: sn-food-gatherer-percentage
   @up-chat-data-to-all "gold gatherers: %d" s: sn-gold-gatherer-percentage
