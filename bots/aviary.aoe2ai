@@ -209,37 +209,33 @@ build castle
     scout opposite
   #end do
 
-  #if wood-amount < 300
+  #if escrow-amount wood < 300
     escrow 10 wood
   #else
     escrow 0 wood
   #end if
   
-  #if food-amount < 1000
+  #if escrow-amount food < 1000
     escrow 10 food
   #else
     escrow 0 food
   #end if
   
-  #if gold-amount < 800
+  #if escrow-amount gold < 800
     escrow 10 gold
   #else
     escrow 0 gold
   #end if
   
-  #repeat every 60 seconds
-    #if up-compare-goal non-escrowed-wood c:> max-wood
-      distribute 4 villagers from wood to food and gold
-    #end if
-    
-    #if up-compare-goal non-escrowed-food c:> max-food
-      distribute 4 villagers from food to wood and gold
-    #end if
-    
-    #if up-compare-goal non-escrowed-gold c:> max-gold
-      distribute 4 villagers from gold to wood and food
-    #end if
-  #end repeat
+  #if up-compare-goal non-escrowed-gold < 1500
+    sell wood when wood > 1500
+    sell food when food > 1500
+  #else
+    buy wood when wood < 1500
+    buy food when food < 1500
+  #end if
+  
+  auto balance wood and food and gold
   
   build houses with 20 headroom
   
