@@ -271,6 +271,11 @@
     (set-strategic-number sn-percent-enemy-sighted-response 100)
     (set-strategic-number sn-task-ungrouped-soldiers 0)
     (set-strategic-number sn-gather-defense-units 1)
+    (disable-self)
+)
+(defrule
+    (true)
+=>
     (set-strategic-number sn-defer-dropsite-update 1)
     (set-strategic-number sn-do-not-scale-for-difficulty-level 1)
     (set-strategic-number sn-number-build-attempts-before-skip 5)
@@ -286,12 +291,12 @@
     (set-strategic-number sn-maximum-food-drop-distance dark-age-town-size)
     (set-strategic-number sn-maximum-hunt-drop-distance 48)
     (set-strategic-number sn-max-retask-gather-amount 0)
+    (set-strategic-number sn-retask-gather-amount 0)
     (disable-self)
 )
 (defrule
     (true)
 =>
-    (set-strategic-number sn-retask-gather-amount 0)
     (set-strategic-number sn-camp-max-distance 15)
     (set-strategic-number sn-mill-max-distance 32)
     (set-strategic-number sn-town-center-placement lumber-camp)
