@@ -27,15 +27,19 @@ load "units/all_switched.aoe2ai"
   
   #select random persistant
     load "directives/attack_decision/passive.aoe2ai"
-    load "directives/pacing/balanced.aoe2ai"
   #randor
     load "directives/attack_decision/cautious.aoe2ai"
-    load "directives/pacing/balanced.aoe2ai"
   #randor
     load "directives/attack_decision/aggressive.aoe2ai"
-    load "directives/pacing/balanced.aoe2ai"
   #randor
     load "directives/attack_decision/reckless.aoe2ai"
+  #end select
+  
+  #select random persistant
+    load "directives/pacing/reckless.aoe2ai"
+  #randor
+    load "directives/pacing/thoughtful.aoe2ai"
+  #randor
     load "directives/pacing/balanced.aoe2ai"
   #end select
   
