@@ -106,7 +106,7 @@ sn-ttkfactor-scalar = 500
 #if goal team-game 0 and player-valid 1 and player-valid 2 and player-valid 3
   chat to all "So, something of a free for all game here, eh?"
   goal free-for-all = 1
-  goal turtle = 1
+  goal turtle = 0
 #else
   goal free-for-all = 0
 #end if
