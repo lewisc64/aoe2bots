@@ -141,10 +141,10 @@
     (true)
 =>
     (set-goal wood-modifier-percentage 0)
-    (disable-self)
     (set-goal food-modifier-percentage 0)
     (set-goal gold-modifier-percentage 0)
     (set-goal stone-modifier-percentage 0)
+    (disable-self)
 )
 (defrule
     (true)
@@ -163,34 +163,34 @@
     (disable-self)
 )
 (defrule
-    (game-time < 10)
     (current-age == dark-age)
+    (game-time < 10)
 =>
     (set-goal initial-age dark-age)
     (disable-self)
 )
 (defrule
-    (game-time < 10)
-    (not (current-age == dark-age))
     (current-age == feudal-age)
+    (not (current-age == dark-age))
+    (game-time < 10)
 =>
     (set-goal initial-age feudal-age)
     (disable-self)
 )
 (defrule
-    (game-time < 10)
+    (current-age == castle-age)
     (not (current-age == dark-age))
     (not (current-age == feudal-age))
-    (current-age == castle-age)
+    (game-time < 10)
 =>
     (set-goal initial-age castle-age)
     (disable-self)
 )
 (defrule
-    (game-time < 10)
-    (not (current-age == dark-age))
     (not (current-age == feudal-age))
+    (not (current-age == dark-age))
     (not (current-age == castle-age))
+    (game-time < 10)
 =>
     (set-goal initial-age imperial-age)
     (disable-self)
@@ -209,6 +209,14 @@
     (up-modify-goal desired-trade c:/ 100)
     (up-modify-goal desired-villagers-with-trade g:= desired-villagers)
     (up-modify-goal desired-villagers-with-trade g:- desired-trade)
+    (disable-self)
+)
+(defrule
+    (false)
+=>
+    (up-chat-data-to-all "vills: %d" g: desired-villagers)
+    (up-chat-data-to-all "trade: %d" g: desired-trade)
+    (up-chat-data-to-all "vills with trade: %d" g: desired-villagers-with-trade)
     (disable-self)
 )
 (defrule
@@ -235,11 +243,6 @@
     (set-goal resign 0)
     (set-goal build-walls 0)
     (set-goal help-allies 1)
-    (disable-self)
-)
-(defrule
-    (true)
-=>
     (set-strategic-number sn-enable-new-building-system 1)
     (set-strategic-number sn-percent-building-cancellation 20)
     (set-strategic-number sn-cap-civilian-builders 200)
@@ -248,6 +251,11 @@
     (set-strategic-number sn-total-number-explorers 1)
     (set-strategic-number sn-number-explore-groups 1)
     (set-strategic-number sn-initial-exploration-required 0)
+    (disable-self)
+)
+(defrule
+    (true)
+=>
     (set-difficulty-parameter ability-to-maintain-distance 0)
     (set-difficulty-parameter ability-to-dodge-missiles 0)
     (set-strategic-number sn-percent-attack-soldiers 100)
@@ -268,12 +276,6 @@
     (set-strategic-number sn-number-build-attempts-before-skip 5)
     (set-strategic-number sn-max-skips-per-attempt 5)
     (set-strategic-number sn-dropsite-separation-distance 8)
-    (disable-self)
-    (set-strategic-number sn-target-evaluation-siege-weapon 500)
-)
-(defrule
-    (true)
-=>
     (set-strategic-number sn-enable-boar-hunting 2)
     (set-strategic-number sn-minimum-number-hunters 3)
     (set-strategic-number sn-minimum-boar-lure-group-size 3)
@@ -284,6 +286,11 @@
     (set-strategic-number sn-maximum-food-drop-distance dark-age-town-size)
     (set-strategic-number sn-maximum-hunt-drop-distance 48)
     (set-strategic-number sn-max-retask-gather-amount 0)
+    (disable-self)
+)
+(defrule
+    (true)
+=>
     (set-strategic-number sn-retask-gather-amount 0)
     (set-strategic-number sn-camp-max-distance 15)
     (set-strategic-number sn-mill-max-distance 32)
@@ -304,11 +311,7 @@
     (set-strategic-number sn-target-evaluation-randomness 0)
     (set-strategic-number sn-target-evaluation-range 0)
     (set-strategic-number sn-target-evaluation-rof 0)
-    (disable-self)
-)
-(defrule
-    (true)
-=>
+    (set-strategic-number sn-target-evaluation-siege-weapon 500)
     (set-strategic-number sn-target-evaluation-time-kill-ratio 0)
     (set-strategic-number sn-ttkfactor-scalar 500)
     (disable-self)
@@ -361,21 +364,21 @@
     (set-escrow-percentage stone 0)
 )
 (defrule
-    (and (goal militant 1) (strategic-number sn-enable-training-queue == 0))
     (or (and (current-age == feudal-age) (escrow-amount wood < 200)) (or (and (current-age == castle-age) (escrow-amount wood < 300)) (and (current-age == imperial-age) (escrow-amount wood < 1100))))
+    (and (goal militant 1) (strategic-number sn-enable-training-queue == 0))
 =>
     (set-escrow-percentage wood 10)
 )
 (defrule
-    (and (goal militant 1) (strategic-number sn-enable-training-queue == 0))
-    (or (up-compare-goal non-escrowed-food >= 100) (true))
     (or (and (current-age == feudal-age) (escrow-amount food < 800)) (or (and (current-age == castle-age) (escrow-amount food < 1000)) (and (current-age == imperial-age) (escrow-amount food < 1300))))
+    (or (up-compare-goal non-escrowed-food >= 100) (true))
+    (and (goal militant 1) (strategic-number sn-enable-training-queue == 0))
 =>
     (set-escrow-percentage food 10)
 )
 (defrule
-    (and (goal militant 1) (strategic-number sn-enable-training-queue == 0))
     (or (and (current-age == feudal-age) (escrow-amount gold < 200)) (and (current-age >= castle-age) (escrow-amount gold < 800)))
+    (and (goal militant 1) (strategic-number sn-enable-training-queue == 0))
 =>
     (set-escrow-percentage gold 10)
 )
@@ -390,12 +393,12 @@
     (true)
 =>
     (set-goal escrowed-wood 0)
-    (disable-self)
     (set-goal escrowed-food 0)
     (set-goal escrowed-gold 0)
     (set-goal non-escrowed-wood 0)
     (set-goal non-escrowed-food 0)
     (set-goal non-escrowed-gold 0)
+    (disable-self)
 )
 (defrule
     (true)
@@ -411,10 +414,17 @@
     (up-modify-goal non-escrowed-gold g:- escrowed-gold)
 )
 (defrule
+    (false)
+=>
+    (chat-local-to-self "-----------------")
+    (up-chat-data-to-all "wood: %d" g: non-escrowed-wood)
+    (up-chat-data-to-all "food: %d" g: non-escrowed-food)
+    (up-chat-data-to-all "gold: %d" g: non-escrowed-gold)
+)
+(defrule
     (true)
 =>
     (set-goal total-villagers 0)
-    (disable-self)
     (set-goal total-trade 0)
     (set-goal total-wood-gatherer-percentage 0)
     (set-goal total-food-gatherer-percentage 0)
@@ -424,6 +434,7 @@
     (set-goal expected-food-gatherers 0)
     (set-goal expected-gold-gatherers 0)
     (set-goal expected-stone-gatherers 0)
+    (disable-self)
 )
 (defrule
     (true)
@@ -467,8 +478,8 @@
     (set-goal resign 1)
 )
 (defrule
-    (or (and (building-type-count-total town-center == 0) (and (civilian-population < 30) (and (game-time >= 600) (goal team-game 0)))) (and (civilian-population == 0) (and (food-amount < 50) (goal team-game 0))))
     (goal team-game 1)
+    (or (and (building-type-count-total town-center == 0) (and (civilian-population < 30) (and (game-time >= 600) (goal team-game 0)))) (and (civilian-population == 0) (and (food-amount < 50) (goal team-game 0))))
 =>
     (release-escrow wood)
     (release-escrow food)
@@ -491,36 +502,36 @@
     (set-goal age-up-now 0)
 )
 (defrule
-    (goal age-up 1)
-    (goal age-up-now 1)
-    (current-age == feudal-age)
     (food-amount < 800)
+    (current-age == feudal-age)
+    (goal age-up-now 1)
+    (goal age-up 1)
 =>
     (set-escrow-percentage food 50)
 )
 (defrule
-    (goal age-up 1)
-    (goal age-up-now 1)
-    (current-age == feudal-age)
     (gold-amount < 200)
+    (current-age == feudal-age)
+    (goal age-up-now 1)
+    (goal age-up 1)
 =>
     (set-escrow-percentage gold 50)
 )
 (defrule
-    (goal age-up 1)
-    (goal age-up-now 1)
-    (not (current-age == feudal-age))
-    (current-age == castle-age)
     (food-amount < 1000)
+    (current-age == castle-age)
+    (not (current-age == feudal-age))
+    (goal age-up-now 1)
+    (goal age-up 1)
 =>
     (set-escrow-percentage food 50)
 )
 (defrule
-    (goal age-up 1)
-    (goal age-up-now 1)
-    (not (current-age == feudal-age))
-    (current-age == castle-age)
     (gold-amount < 800)
+    (current-age == castle-age)
+    (not (current-age == feudal-age))
+    (goal age-up-now 1)
+    (goal age-up 1)
 =>
     (set-escrow-percentage gold 50)
 )
@@ -539,8 +550,8 @@
     (set-goal 42 1)
 )
 (defrule
-    (goal age-up 1)
     (goal 42 1)
+    (goal age-up 1)
 =>
     (set-goal age-up-now 0)
 )
@@ -565,8 +576,8 @@
     (set-goal 43 1)
 )
 (defrule
-    (goal age-up 1)
     (goal 43 1)
+    (goal age-up 1)
 =>
     (set-goal age-up-now 0)
 )
@@ -591,8 +602,8 @@
     (set-goal 44 1)
 )
 (defrule
-    (goal age-up 1)
     (goal 44 1)
+    (goal age-up 1)
 =>
     (set-goal age-up-now 0)
 )
@@ -605,31 +616,31 @@
     (up-research-status c: imperial-age >= research-pending)
 =>
     (set-strategic-number sn-maximum-town-size imperial-age-town-size)
-    (disable-self)
     (set-strategic-number sn-minimum-town-size imperial-age-town-size)
     (set-strategic-number sn-safe-town-size imperial-age-town-size)
     (set-strategic-number sn-maximum-food-drop-distance imperial-age-town-size)
+    (disable-self)
 )
 (defrule
-    (not (up-research-status c: imperial-age >= research-pending))
     (up-research-status c: castle-age >= research-pending)
+    (not (up-research-status c: imperial-age >= research-pending))
 =>
     (set-strategic-number sn-maximum-town-size castle-age-town-size)
-    (disable-self)
     (set-strategic-number sn-minimum-town-size castle-age-town-size)
     (set-strategic-number sn-safe-town-size castle-age-town-size)
     (set-strategic-number sn-maximum-food-drop-distance castle-age-town-size)
+    (disable-self)
 )
 (defrule
+    (up-research-status c: feudal-age >= research-pending)
     (not (up-research-status c: imperial-age >= research-pending))
     (not (up-research-status c: castle-age >= research-pending))
-    (up-research-status c: feudal-age >= research-pending)
 =>
     (set-strategic-number sn-maximum-town-size feudal-age-town-size)
-    (disable-self)
     (set-strategic-number sn-minimum-town-size feudal-age-town-size)
     (set-strategic-number sn-safe-town-size feudal-age-town-size)
     (set-strategic-number sn-maximum-food-drop-distance feudal-age-town-size)
+    (disable-self)
 )
 (defrule
     (not (goal research-economy-upgrades 1))
@@ -832,16 +843,16 @@
     (delete-unit villager)
 )
 (defrule
-    (not (and (up-compare-goal desired-villagers g:< total-villagers) (and (population-headroom == 0) (housing-headroom == 0))))
-    (unit-type-count-total trade-cart > 0)
     (up-compare-goal total-villagers g:< desired-villagers-with-trade)
+    (unit-type-count-total trade-cart > 0)
+    (not (and (up-compare-goal desired-villagers g:< total-villagers) (and (population-headroom == 0) (housing-headroom == 0))))
 =>
     (set-goal should-make-villagers 1)
 )
 (defrule
+    (up-compare-goal total-villagers g:< desired-villagers)
     (not (and (up-compare-goal desired-villagers g:< total-villagers) (and (population-headroom == 0) (housing-headroom == 0))))
     (not (unit-type-count-total trade-cart > 0))
-    (up-compare-goal total-villagers g:< desired-villagers)
 =>
     (set-goal should-make-villagers 1)
 )
@@ -853,15 +864,15 @@
 )
 (defrule
     (can-train trade-cart)
-    (and (goal team-game 1) (and (current-age >= castle-age) (military-population >= min-army)))
-    (players-building-type-count any-ally market >= 1)
     (up-compare-goal total-trade g:< desired-trade)
+    (players-building-type-count any-ally market >= 1)
+    (and (goal team-game 1) (and (current-age >= castle-age) (military-population >= min-army)))
 =>
     (train trade-cart)
 )
 (defrule
-    (and (goal team-game 1) (and (current-age >= castle-age) (military-population >= min-army)))
     (not (players-building-type-count any-ally market >= 1))
+    (and (goal team-game 1) (and (current-age >= castle-age) (military-population >= min-army)))
 =>
     (chat-to-allies "Market?")
     (disable-self)
@@ -941,8 +952,8 @@
     (build town-center)
 )
 (defrule
-    (and (goal boom 1) (goal should-make-villagers 1))
     (and (current-age >= castle-age) (building-type-count-total town-center < 3))
+    (and (goal boom 1) (goal should-make-villagers 1))
 =>
     (set-escrow-percentage wood 100)
     (set-escrow-percentage stone 100)
@@ -972,8 +983,8 @@
 (defrule
     (can-build-with-escrow market)
     (building-type-count-total market < 1)
-    (or (civilian-population >= 20) (death-match-game))
     (building-type-count-total blacksmith > 0)
+    (or (civilian-population >= 20) (death-match-game))
 =>
     (release-escrow wood)
     (build market)
@@ -1027,21 +1038,21 @@
 (defrule
     (can-build farm)
     (building-type-count-total farm < 3)
-    (up-research-status c: feudal-age < research-pending)
     (building-type-count-total lumber-camp > 0)
+    (up-research-status c: feudal-age < research-pending)
 =>
     (build farm)
 )
 (defrule
-    (up-research-status c: feudal-age < research-pending)
     (building-type-count-total house == 0)
+    (up-research-status c: feudal-age < research-pending)
 =>
     (up-assign-builders c: house c: 2)
     (disable-self)
 )
 (defrule
-    (up-research-status c: feudal-age < research-pending)
     (not (building-type-count-total house == 0))
+    (up-research-status c: feudal-age < research-pending)
 =>
     (up-assign-builders c: house c: 1)
     (disable-self)
@@ -1060,25 +1071,25 @@
     (up-pending-objects c: house == 0)
     (can-build house)
     (housing-headroom < 10)
-    (not (up-research-status c: feudal-age < research-pending))
     (and (up-research-status c: feudal-age >= research-pending) (up-research-status c: castle-age < research-pending))
+    (not (up-research-status c: feudal-age < research-pending))
 =>
     (build house)
 )
 (defrule
     (can-build lumber-camp)
     (building-type-count-total lumber-camp < 2)
-    (not (up-research-status c: feudal-age < research-pending))
     (and (up-research-status c: feudal-age >= research-pending) (up-research-status c: castle-age < research-pending))
+    (not (up-research-status c: feudal-age < research-pending))
 =>
     (build lumber-camp)
 )
 (defrule
     (can-build-with-escrow mining-camp)
     (building-type-count-total mining-camp < 1)
-    (not (up-research-status c: feudal-age < research-pending))
-    (and (up-research-status c: feudal-age >= research-pending) (up-research-status c: castle-age < research-pending))
     (building-type-count-total barracks >= 1)
+    (and (up-research-status c: feudal-age >= research-pending) (up-research-status c: castle-age < research-pending))
+    (not (up-research-status c: feudal-age < research-pending))
 =>
     (release-escrow wood)
     (build mining-camp)
@@ -1086,24 +1097,24 @@
 (defrule
     (wood-amount >= 400)
     (can-sell-commodity wood)
-    (not (up-research-status c: feudal-age < research-pending))
     (and (up-research-status c: feudal-age >= research-pending) (up-research-status c: castle-age < research-pending))
+    (not (up-research-status c: feudal-age < research-pending))
 =>
     (sell-commodity wood)
 )
 (defrule
     (food-amount >= 900)
     (can-sell-commodity food)
-    (not (up-research-status c: feudal-age < research-pending))
     (and (up-research-status c: feudal-age >= research-pending) (up-research-status c: castle-age < research-pending))
+    (not (up-research-status c: feudal-age < research-pending))
 =>
     (sell-commodity food)
 )
 (defrule
     (gold-amount >= 400)
     (can-buy-commodity food)
-    (not (up-research-status c: feudal-age < research-pending))
     (and (up-research-status c: feudal-age >= research-pending) (up-research-status c: castle-age < research-pending))
+    (not (up-research-status c: feudal-age < research-pending))
 =>
     (buy-commodity food)
 )
@@ -1129,29 +1140,22 @@
     (build house)
 )
 (defrule
+    (and (population-headroom != 0) (housing-headroom == 0))
     (not (up-research-status c: feudal-age < research-pending))
     (not (and (up-research-status c: feudal-age >= research-pending) (up-research-status c: castle-age < research-pending)))
-    (and (population-headroom != 0) (housing-headroom == 0))
 =>
     (enable-timer 1 60)
     (disable-self)
 )
 (defrule
+    (timer-triggered 1)
+    (and (population-headroom != 0) (housing-headroom == 0))
     (not (up-research-status c: feudal-age < research-pending))
     (not (and (up-research-status c: feudal-age >= research-pending) (up-research-status c: castle-age < research-pending)))
-    (and (population-headroom != 0) (housing-headroom == 0))
-    (timer-triggered 1)
 =>
     (chat-to-all "I'm housed! Panic!")
     (up-modify-sn sn-minimum-town-size c:+ 5)
     (up-modify-sn sn-maximum-town-size c:+ 5)
-)
-(defrule
-    (timer-triggered 1)
-    (not (up-research-status c: feudal-age < research-pending))
-    (not (and (up-research-status c: feudal-age >= research-pending) (up-research-status c: castle-age < research-pending)))
-    (and (population-headroom != 0) (housing-headroom == 0))
-=>
     (disable-timer 1)
     (enable-timer 1 60)
 )
@@ -1170,7 +1174,7 @@
     (sell-commodity wood)
 )
 (defrule
-    (not (and (or (up-research-status c: feudal-age >= research-pending) (wood-amount > 200)) (and (up-compare-goal non-escrowed-wood > 100) (dropsite-min-distance wood < 10))))
+    (not (and (and (up-compare-goal non-escrowed-wood > 100) (dropsite-min-distance wood < 10)) (or (up-research-status c: feudal-age >= research-pending) (wood-amount > 200))))
 =>
     (up-jump-rule 8)
 )
@@ -1197,50 +1201,50 @@
 (defrule
     (can-build mill)
     (building-type-count-total mill < 100)
-    (not (and (building-type-count-total mill <= 1) (building-type-count-total farm >= 17)))
     (and (building-type-count-total mill <= 2) (building-type-count-total farm >= 24))
+    (not (and (building-type-count-total mill <= 1) (building-type-count-total farm >= 17)))
 =>
     (build mill)
 )
 (defrule
     (can-build mill)
     (building-type-count-total mill < 100)
-    (not (and (building-type-count-total mill <= 1) (building-type-count-total farm >= 17)))
-    (not (and (building-type-count-total mill <= 2) (building-type-count-total farm >= 24)))
     (and (building-type-count-total mill <= 3) (building-type-count-total farm >= 31))
+    (not (and (building-type-count-total mill <= 1) (building-type-count-total farm >= 17)))
+    (not (and (building-type-count-total mill <= 2) (building-type-count-total farm >= 24)))
 =>
     (build mill)
 )
 (defrule
     (can-build mill)
     (building-type-count-total mill < 100)
-    (not (and (building-type-count-total mill <= 1) (building-type-count-total farm >= 17)))
-    (not (and (building-type-count-total mill <= 2) (building-type-count-total farm >= 24)))
-    (not (and (building-type-count-total mill <= 3) (building-type-count-total farm >= 31)))
     (and (building-type-count-total mill <= 4) (building-type-count-total farm >= 38))
+    (not (and (building-type-count-total mill <= 2) (building-type-count-total farm >= 24)))
+    (not (and (building-type-count-total mill <= 1) (building-type-count-total farm >= 17)))
+    (not (and (building-type-count-total mill <= 3) (building-type-count-total farm >= 31)))
 =>
     (build mill)
 )
 (defrule
     (can-build mill)
     (building-type-count-total mill < 100)
-    (not (and (building-type-count-total mill <= 1) (building-type-count-total farm >= 17)))
-    (not (and (building-type-count-total mill <= 2) (building-type-count-total farm >= 24)))
-    (not (and (building-type-count-total mill <= 3) (building-type-count-total farm >= 31)))
-    (not (and (building-type-count-total mill <= 4) (building-type-count-total farm >= 38)))
     (and (building-type-count-total mill <= 5) (building-type-count-total farm >= 45))
+    (not (and (building-type-count-total mill <= 3) (building-type-count-total farm >= 31)))
+    (not (and (building-type-count-total mill <= 1) (building-type-count-total farm >= 17)))
+    (not (and (building-type-count-total mill <= 2) (building-type-count-total farm >= 24)))
+    (not (and (building-type-count-total mill <= 4) (building-type-count-total farm >= 38)))
 =>
     (build mill)
 )
 (defrule
     (can-build mill)
     (building-type-count-total mill < 100)
-    (not (and (building-type-count-total mill <= 1) (building-type-count-total farm >= 17)))
-    (not (and (building-type-count-total mill <= 2) (building-type-count-total farm >= 24)))
-    (not (and (building-type-count-total mill <= 3) (building-type-count-total farm >= 31)))
-    (not (and (building-type-count-total mill <= 4) (building-type-count-total farm >= 38)))
-    (not (and (building-type-count-total mill <= 5) (building-type-count-total farm >= 45)))
     (and (building-type-count-total mill <= 6) (building-type-count-total farm >= 52))
+    (not (and (building-type-count-total mill <= 4) (building-type-count-total farm >= 38)))
+    (not (and (building-type-count-total mill <= 2) (building-type-count-total farm >= 24)))
+    (not (and (building-type-count-total mill <= 1) (building-type-count-total farm >= 17)))
+    (not (and (building-type-count-total mill <= 3) (building-type-count-total farm >= 31)))
+    (not (and (building-type-count-total mill <= 5) (building-type-count-total farm >= 45)))
 =>
     (build mill)
 )
@@ -1262,8 +1266,8 @@
     (set-goal 48 1)
 )
 (defrule
-    (or (up-research-status c: feudal-age >= research-pending) (wood-amount > 200))
     (goal 48 1)
+    (or (up-research-status c: feudal-age >= research-pending) (wood-amount > 200))
 =>
     (up-modify-sn sn-camp-max-distance c:+ 10)
 )
@@ -1273,16 +1277,16 @@
     (set-goal 48 0)
 )
 (defrule
-    (or (up-research-status c: feudal-age >= research-pending) (wood-amount > 200))
     (goal build-walls 1)
+    (or (up-research-status c: feudal-age >= research-pending) (wood-amount > 200))
 =>
     (enable-wall-placement 2)
     (disable-self)
 )
 (defrule
     (can-build-wall 2 stone-wall-line)
-    (or (up-research-status c: feudal-age >= research-pending) (wood-amount > 200))
     (goal build-walls 1)
+    (or (up-research-status c: feudal-age >= research-pending) (wood-amount > 200))
 =>
     (build-wall 2 stone-wall-line)
 )
@@ -1290,23 +1294,23 @@
     (building-type-count-total stone-wall-line > 0)
     (can-build-gate 2)
     (building-type-count-total gate < 5)
-    (or (up-research-status c: feudal-age >= research-pending) (wood-amount > 200))
     (goal build-walls 1)
+    (or (up-research-status c: feudal-age >= research-pending) (wood-amount > 200))
 =>
     (build-gate 2)
 )
 (defrule
     (not (goal militant 1))
 =>
-    (up-jump-rule 376)
+    (up-jump-rule 393)
 )
 (defrule
     (true)
 =>
     (set-goal focus-player-military-population 0)
-    (disable-self)
     (set-goal own-military-population 0)
     (set-goal temp 0)
+    (disable-self)
 )
 (defrule
     (true)
@@ -1377,14 +1381,14 @@
     (set-goal produce-monks 1)
 )
 (defrule
-    (civ-selected berbers)
     (current-age <= feudal-age)
+    (civ-selected berbers)
 =>
     (set-goal produce-archers 1)
 )
 (defrule
-    (civ-selected berbers)
     (not (current-age <= feudal-age))
+    (civ-selected berbers)
 =>
     (set-goal produce-knights 1)
 )
@@ -1394,8 +1398,8 @@
     (set-goal produce-archers 1)
 )
 (defrule
-    (civ-selected burmese)
     (current-age <= feudal-age)
+    (civ-selected burmese)
 =>
     (set-goal produce-archers 1)
 )
@@ -1418,26 +1422,26 @@
     (set-goal produce-militia 1)
 )
 (defrule
-    (or (civ-selected frankish) (civ-selected persian))
     (current-age <= feudal-age)
+    (or (civ-selected frankish) (civ-selected persian))
 =>
     (set-goal produce-scouts 1)
 )
 (defrule
-    (or (civ-selected frankish) (civ-selected persian))
     (not (current-age <= feudal-age))
+    (or (civ-selected frankish) (civ-selected persian))
 =>
     (set-goal produce-knights 1)
 )
 (defrule
-    (or (civ-selected gothic) (or (civ-selected malian) (civ-selected celtic)))
     (current-age <= feudal-age)
+    (or (civ-selected gothic) (or (civ-selected malian) (civ-selected celtic)))
 =>
     (set-goal produce-archers 1)
 )
 (defrule
-    (or (civ-selected gothic) (or (civ-selected malian) (civ-selected celtic)))
     (not (current-age <= feudal-age))
+    (or (civ-selected gothic) (or (civ-selected malian) (civ-selected celtic)))
 =>
     (set-goal produce-militia 1)
 )
@@ -1452,14 +1456,14 @@
     (set-goal produce-eagles 1)
 )
 (defrule
-    (civ-selected indian)
     (current-age <= feudal-age)
+    (civ-selected indian)
 =>
     (set-goal produce-archers 1)
 )
 (defrule
-    (civ-selected indian)
     (not (current-age <= feudal-age))
+    (civ-selected indian)
 =>
     (set-goal produce-camels 1)
 )
@@ -1503,8 +1507,8 @@
     (set-goal produce-cavalry-archers 1)
 )
 (defrule
-    (civ-selected mongol)
     (current-age >= imperial-age)
+    (civ-selected mongol)
 =>
     (set-goal produce-scouts 1)
 )
@@ -1531,8 +1535,8 @@
     (set-goal produce-militia 1)
 )
 (defrule
-    (civ-selected teutonic)
     (current-age >= castle)
+    (civ-selected teutonic)
 =>
     (set-goal produce-knights 1)
 )
@@ -1764,15 +1768,15 @@
     (set-goal produce-hand-cannoneers 1)
 )
 (defrule
-    (current-age == feudal-age)
     (players-building-type-count any-enemy archery-range >= 1)
+    (current-age == feudal-age)
 =>
     (set-goal produce-skirmishers 1)
 )
 (defrule
-    (current-age == feudal-age)
-    (players-building-type-count any-enemy stable >= 1)
     (unit-type-count-total spearman-line < 5)
+    (players-building-type-count any-enemy stable >= 1)
+    (current-age == feudal-age)
 =>
     (set-goal produce-spearmen 1)
 )
@@ -1815,14 +1819,14 @@
     (set-goal produce-battle-elephants 0)
 )
 (defrule
-    (players-unit-type-count any-enemy archer-line >= min-detection-units)
     (and (goal allowed-skirmishers 1) (goal produce-scouts 0))
+    (players-unit-type-count any-enemy archer-line >= min-detection-units)
 =>
     (set-goal produce-skirmishers 1)
 )
 (defrule
-    (players-unit-type-count any-enemy archer-line >= min-detection-units)
     (current-age >= castle-age)
+    (players-unit-type-count any-enemy archer-line >= min-detection-units)
 =>
     (set-goal produce-knights 1)
 )
@@ -1833,8 +1837,8 @@
     (set-goal produce-hand-cannoneers 0)
 )
 (defrule
-    (players-unit-type-count any-enemy archer-line >= min-detection-units)
     (and (current-age == castle-age) (and (building-type-count-total siege-workshop == 0) (goal military-superiority 1)))
+    (players-unit-type-count any-enemy archer-line >= min-detection-units)
 =>
     (set-escrow-percentage wood 90)
 )
@@ -1847,28 +1851,28 @@
     (set-goal produce-battle-elephants 0)
 )
 (defrule
-    (players-unit-type-count any-enemy cavalry-archer-line >= min-detection-units)
     (goal allowed-skirmishers 1)
+    (players-unit-type-count any-enemy cavalry-archer-line >= min-detection-units)
 =>
     (set-goal produce-skirmishers 1)
 )
 (defrule
-    (players-unit-type-count any-enemy cavalry-archer-line >= min-detection-units)
     (current-age >= castle-age)
+    (players-unit-type-count any-enemy cavalry-archer-line >= min-detection-units)
 =>
     (set-goal produce-knights 1)
     (set-goal produce-hand-cannoneers 0)
 )
 (defrule
-    (players-unit-type-count any-enemy skirmisher-line >= min-detection-units)
     (current-age <= castle-age)
+    (players-unit-type-count any-enemy skirmisher-line >= min-detection-units)
 =>
     (set-goal produce-archers 0)
     (set-goal produce-cavalry-archers 0)
 )
 (defrule
-    (players-unit-type-count any-enemy skirmisher-line >= min-detection-units)
     (and (goal allowed-skirmishers 1) (goal produce-scouts 0))
+    (players-unit-type-count any-enemy skirmisher-line >= min-detection-units)
 =>
     (set-goal produce-skirmishers 1)
 )
@@ -1878,8 +1882,8 @@
     (set-goal produce-mangonels 1)
 )
 (defrule
-    (players-unit-type-count any-enemy skirmisher-line >= min-detection-units)
     (current-age >= castle-age)
+    (players-unit-type-count any-enemy skirmisher-line >= min-detection-units)
 =>
     (set-goal produce-eagles 1)
     (set-goal produce-knights 1)
@@ -1930,15 +1934,15 @@
     (set-goal produce-militia 1)
 )
 (defrule
-    (players-unit-type-count any-enemy scout-cavalry-line >= min-detection-units)
-    (current-age <= feudal-age)
     (unit-type-count-total spearman-line < 5)
+    (current-age <= feudal-age)
+    (players-unit-type-count any-enemy scout-cavalry-line >= min-detection-units)
 =>
     (set-goal produce-spearmen 1)
 )
 (defrule
-    (players-unit-type-count any-enemy scout-cavalry-line >= min-detection-units)
     (not (current-age <= feudal-age))
+    (players-unit-type-count any-enemy scout-cavalry-line >= min-detection-units)
 =>
     (set-goal produce-spearmen 1)
 )
@@ -1969,8 +1973,8 @@
     (set-goal produce-scorpions 0)
 )
 (defrule
-    (players-unit-type-count any-enemy mangonel-line >= min-detection-units)
     (current-age <= castle-age)
+    (players-unit-type-count any-enemy mangonel-line >= min-detection-units)
 =>
     (set-goal produce-archers 0)
     (set-goal produce-cavalry 0)
@@ -1994,8 +1998,8 @@
     (set-goal produce-bombard-cannons 1)
 )
 (defrule
-    (current-age == feudal-age)
     (players-unit-type-count any-enemy archer-line >= min-detection-units)
+    (current-age == feudal-age)
 =>
     (set-goal produce-spearmen 0)
 )
@@ -2024,7 +2028,7 @@
     (set-goal produce-trebuchets 1)
 )
 (defrule
-    (not (and (not (or (up-research-status c: feudal-age < research-pending) (and (current-age == dark-age) (death-match-game)))) (goal producing-trash 1)))
+    (not (and (goal producing-trash 1) (not (or (up-research-status c: feudal-age < research-pending) (and (current-age == dark-age) (death-match-game))))))
 =>
     (up-jump-rule 9)
 )
@@ -2162,101 +2166,101 @@
     (set-goal produce-monks 0)
 )
 (defrule
-    (current-age >= castle-age)
     (and (goal produce-archers 1) (and (not (research-available ri-crossbow)) (up-research-status c: ri-crossbow < research-pending)))
+    (current-age >= castle-age)
 =>
     (set-goal produce-archers 0)
 )
 (defrule
-    (current-age >= castle-age)
     (and (goal produce-skirmishers 1) (and (not (research-available ri-elite-skirmisher)) (up-research-status c: ri-elite-skirmisher < research-pending)))
+    (current-age >= castle-age)
 =>
     (set-goal produce-skirmishers 0)
 )
 (defrule
-    (current-age >= castle-age)
     (and (goal produce-scouts 1) (and (not (research-available ri-light-cavalry)) (up-research-status c: ri-light-cavalry < research-pending)))
+    (current-age >= castle-age)
 =>
     (set-goal produce-scouts 0)
 )
 (defrule
-    (current-age >= castle-age)
     (and (goal produce-spearmen 1) (and (not (research-available ri-pikeman)) (up-research-status c: ri-pikeman < research-pending)))
+    (current-age >= castle-age)
 =>
     (set-goal produce-spearmen 0)
 )
 (defrule
-    (current-age >= castle-age)
     (and (goal produce-cavalry-archers 1) (and (not (research-available ri-parthian-tactics)) (up-research-status c: ri-parthian-tactics < research-pending)))
+    (current-age >= castle-age)
 =>
     (set-goal produce-cavalry-archers 0)
 )
 (defrule
-    (current-age == imperial-age)
     (and (goal produce-archers 1) (and (research-completed ri-crossbow) (and (not (research-available ri-arbalest)) (up-research-status c: ri-arbalest < research-pending))))
+    (current-age == imperial-age)
 =>
     (set-goal produce-archers 0)
     (set-goal produce-cavalry-archers 1)
 )
 (defrule
-    (current-age == imperial-age)
     (and (goal produce-scouts 1) (and (research-completed ri-light-cavalry) (and (not (research-available ri-hussar)) (up-research-status c: ri-hussar < research-pending))))
+    (current-age == imperial-age)
 =>
     (set-goal produce-scouts 0)
 )
 (defrule
-    (current-age == imperial-age)
     (and (goal produce-knights 1) (and (not (research-available ri-cavalier)) (up-research-status c: ri-cavalier < research-pending)))
+    (current-age == imperial-age)
 =>
     (set-goal produce-knights 0)
 )
 (defrule
-    (current-age == imperial-age)
     (and (goal produce-camels 1) (and (not (research-available ri-heavy-camel)) (up-research-status c: ri-heavy-camel < research-pending)))
+    (current-age == imperial-age)
 =>
     (set-goal produce-camels 0)
     (set-goal produce-spearmen 1)
 )
 (defrule
-    (current-age == imperial-age)
     (and (goal produce-rams 1) (and (not (research-available ri-capped-ram)) (and (up-research-status c: ri-capped-ram < research-pending) (building-type-count castle >= 1))))
+    (current-age == imperial-age)
 =>
     (set-goal produce-rams 0)
     (set-goal produce-trebuchets 1)
 )
 (defrule
-    (current-age == imperial-age)
     (and (goal produce-mangonels 1) (and (not (research-available ri-onager)) (up-research-status c: ri-onager < research-pending)))
+    (current-age == imperial-age)
 =>
     (set-goal produce-mangonels 0)
 )
 (defrule
-    (current-age == imperial-age)
     (and (goal produce-scorpions 1) (and (not (research-available ri-heavy-scorpion)) (up-research-status c: ri-heavy-scorpion < research-pending)))
+    (current-age == imperial-age)
 =>
     (set-goal produce-scorpions 0)
 )
 (defrule
-    (current-age == imperial-age)
     (and (goal produce-spearmen 1) (and (research-completed ri-pikeman) (and (not (research-available ri-halberdier)) (up-research-status c: ri-halberdier < research-pending))))
+    (current-age == imperial-age)
 =>
     (set-goal produce-spearmen 0)
 )
 (defrule
-    (current-age == imperial-age)
     (and (goal produce-monks 1) (and (not (research-available ri-theocracy)) (up-research-status c: ri-theocracy < research-pending)))
+    (current-age == imperial-age)
 =>
     (set-goal produce-monks 0)
 )
 (defrule
-    (or (goal produce-archers 1) (goal produce-cavalry-archers 1))
     (goal produce-knights 1)
+    (or (goal produce-archers 1) (goal produce-cavalry-archers 1))
 =>
     (set-goal produce-knights 0)
 )
 (defrule
-    (or (goal produce-archers 1) (goal produce-cavalry-archers 1))
     (goal produce-militia 1)
+    (or (goal produce-archers 1) (goal produce-cavalry-archers 1))
 =>
     (set-goal produce-militia 0)
 )
@@ -2326,8 +2330,8 @@
     (set-goal produce-trebuchets 0)
 )
 (defrule
-    (current-age == feudal-age)
     (and (goal produce-scouts 1) (goal produce-skirmishers 1))
+    (current-age == feudal-age)
 =>
     (set-goal produce-skirmishers 0)
 )
@@ -2365,30 +2369,30 @@
     (up-jump-rule 8)
 )
 (defrule
-    (or (civ-selected berbers) (or (civ-selected briton) (or (civ-selected chinese) (or (civ-selected mayan) (or (civ-selected mongol) (or (civ-selected korean) (or (civ-selected indian) (or (civ-selected italian) (civ-selected burmese)))))))))
     (or (goal produce-archers 1) (goal produce-cavalry-archers 1))
+    (or (civ-selected berbers) (or (civ-selected briton) (or (civ-selected chinese) (or (civ-selected mayan) (or (civ-selected mongol) (or (civ-selected korean) (or (civ-selected indian) (or (civ-selected italian) (civ-selected burmese)))))))))
 =>
     (set-goal produce-archers 0)
     (set-goal produce-cavalry-archers 0)
     (set-goal produce-unique-unit 1)
 )
 (defrule
-    (or (civ-selected ethiopian) (or (civ-selected teutonic) (or (civ-selected viking) (or (civ-selected celtic) (or (civ-selected frankish) (or (civ-selected japanese) (or (civ-selected malay) (civ-selected malian))))))))
     (goal produce-militia 1)
+    (or (civ-selected ethiopian) (or (civ-selected teutonic) (or (civ-selected viking) (or (civ-selected celtic) (or (civ-selected frankish) (or (civ-selected japanese) (or (civ-selected malay) (civ-selected malian))))))))
 =>
     (set-goal produce-militia 0)
     (set-goal produce-unique-unit 1)
 )
 (defrule
-    (or (civ-selected vietnamese) (civ-selected gothic))
     (goal produce-skirmishers 1)
+    (or (civ-selected vietnamese) (civ-selected gothic))
 =>
     (set-goal produce-skirmishers 0)
     (set-goal produce-unique-unit 1)
 )
 (defrule
-    (or (civ-selected byzantine) (or (civ-selected persian) (or (civ-selected slavic) (civ-selected magyar))))
     (or (goal produce-knights 1) (goal produce-scouts 1))
+    (or (civ-selected byzantine) (or (civ-selected persian) (or (civ-selected slavic) (civ-selected magyar))))
 =>
     (set-goal produce-knights 0)
     (set-goal produce-scouts 0)
@@ -2407,8 +2411,8 @@
     (set-goal produce-unique-unit 1)
 )
 (defrule
-    (or (civ-selected spanish) (or (civ-selected turkish) (civ-selected portuguese)))
     (goal produce-hand-cannoneers 1)
+    (or (civ-selected spanish) (or (civ-selected turkish) (civ-selected portuguese)))
 =>
     (set-goal produce-hand-cannoneers 0)
     (set-goal produce-unique-unit 1)
@@ -2420,21 +2424,135 @@
     (set-goal produce-unique-unit 1)
 )
 (defrule
+    (false)
+=>
+    (chat-local-to-self "-----------------")
+)
+(defrule
+    (goal produce-militia 1)
+    (false)
+=>
+    (chat-local-to-self "making militia")
+)
+(defrule
+    (goal produce-spearmen 1)
+    (false)
+=>
+    (chat-local-to-self "making spearmen")
+)
+(defrule
+    (goal produce-condottiero 1)
+    (false)
+=>
+    (chat-local-to-self "making condottiero")
+)
+(defrule
+    (goal produce-archers 1)
+    (false)
+=>
+    (chat-local-to-self "making archers")
+)
+(defrule
+    (goal produce-skirmishers 1)
+    (false)
+=>
+    (chat-local-to-self "making skirmishers")
+)
+(defrule
+    (goal produce-scouts 1)
+    (false)
+=>
+    (chat-local-to-self "making scouts")
+)
+(defrule
+    (goal produce-knights 1)
+    (false)
+=>
+    (chat-local-to-self "making knights")
+)
+(defrule
+    (goal produce-rams 1)
+    (false)
+=>
+    (chat-local-to-self "making rams")
+)
+(defrule
+    (goal produce-mangonels 1)
+    (false)
+=>
+    (chat-local-to-self "making mangonels")
+)
+(defrule
+    (goal produce-scorpions 1)
+    (false)
+=>
+    (chat-local-to-self "making scorpions")
+)
+(defrule
+    (goal produce-unique-unit 1)
+    (false)
+=>
+    (chat-local-to-self "making unique-unit")
+)
+(defrule
+    (goal produce-monks 1)
+    (false)
+=>
+    (chat-local-to-self "making monks")
+)
+(defrule
+    (goal produce-trebuchets 1)
+    (false)
+=>
+    (chat-local-to-self "making trebuchets")
+)
+(defrule
+    (goal produce-battle-elephants 1)
+    (false)
+=>
+    (chat-local-to-self "making battle-elephants")
+)
+(defrule
+    (goal produce-camels 1)
+    (false)
+=>
+    (chat-local-to-self "making camels")
+)
+(defrule
+    (goal produce-cavalry-archers 1)
+    (false)
+=>
+    (chat-local-to-self "making cavalry-archers")
+)
+(defrule
+    (goal produce-eagles 1)
+    (false)
+=>
+    (chat-local-to-self "making eagles")
+)
+(defrule
+    (goal produce-hand-cannoneers 1)
+    (false)
+=>
+    (chat-local-to-self "making hand-cannoneers")
+)
+(defrule
+    (goal produce-bombard-cannons 1)
+    (false)
+=>
+    (chat-local-to-self "making bombard-cannons")
+)
+(defrule
     (and (goal team-game 0) (goal free-for-all 0))
 =>
     (enable-timer 2 300)
     (disable-self)
 )
 (defrule
-    (and (goal team-game 0) (goal free-for-all 0))
     (timer-triggered 2)
+    (and (goal team-game 0) (goal free-for-all 0))
 =>
     (up-send-scout group-type-land-explore scout-opposite)
-)
-(defrule
-    (timer-triggered 2)
-    (and (goal team-game 0) (goal free-for-all 0))
-=>
     (disable-timer 2)
     (enable-timer 2 300)
 )
@@ -2442,12 +2560,12 @@
     (true)
 =>
     (up-send-scout group-type-land-explore scout-opposite)
-    (disable-self)
     (enable-timer 3 300)
+    (disable-self)
 )
 (defrule
-    (timer-triggered 3)
     (and (town-under-attack) (military-population < min-army))
+    (timer-triggered 3)
 =>
     (set-goal taunt-allies 12)
 )
@@ -2625,8 +2743,8 @@
 (defrule
     (can-build-with-escrow barracks)
     (building-type-count-total barracks < max-imperial-military-buildings)
-    (goal producing-infantry 1)
     (or (current-age == imperial-age) (death-match-game))
+    (goal producing-infantry 1)
 =>
     (release-escrow wood)
     (build barracks)
@@ -2634,9 +2752,9 @@
 (defrule
     (can-build-with-escrow barracks)
     (building-type-count-total barracks < max-castle-military-buildings)
-    (goal producing-infantry 1)
-    (not (or (current-age == imperial-age) (death-match-game)))
     (current-age == castle-age)
+    (not (or (current-age == imperial-age) (death-match-game)))
+    (goal producing-infantry 1)
 =>
     (release-escrow wood)
     (build barracks)
@@ -2644,10 +2762,10 @@
 (defrule
     (can-build-with-escrow barracks)
     (building-type-count-total barracks < 1)
-    (goal producing-infantry 1)
-    (not (or (current-age == imperial-age) (death-match-game)))
-    (not (current-age == castle-age))
     (and (goal producing-cavalry 1) (building-type-count-total stable >= 2))
+    (not (or (current-age == imperial-age) (death-match-game)))
+    (not (current-age == castle-age))
+    (goal producing-infantry 1)
 =>
     (release-escrow wood)
     (build barracks)
@@ -2655,11 +2773,11 @@
 (defrule
     (can-build-with-escrow barracks)
     (building-type-count-total barracks < 1)
-    (goal producing-infantry 1)
+    (and (goal producing-ranged 1) (building-type-count-total archery-range >= 2))
+    (not (and (goal producing-cavalry 1) (building-type-count-total stable >= 2)))
     (not (or (current-age == imperial-age) (death-match-game)))
     (not (current-age == castle-age))
-    (not (and (goal producing-cavalry 1) (building-type-count-total stable >= 2)))
-    (and (goal producing-ranged 1) (building-type-count-total archery-range >= 2))
+    (goal producing-infantry 1)
 =>
     (release-escrow wood)
     (build barracks)
@@ -2667,11 +2785,11 @@
 (defrule
     (can-build-with-escrow barracks)
     (building-type-count-total barracks < max-feudal-military-buildings)
-    (goal producing-infantry 1)
-    (not (or (current-age == imperial-age) (death-match-game)))
-    (not (current-age == castle-age))
     (not (and (goal producing-cavalry 1) (building-type-count-total stable >= 2)))
     (not (and (goal producing-ranged 1) (building-type-count-total archery-range >= 2)))
+    (not (or (current-age == imperial-age) (death-match-game)))
+    (not (current-age == castle-age))
+    (goal producing-infantry 1)
 =>
     (release-escrow wood)
     (build barracks)
@@ -2842,8 +2960,8 @@
 (defrule
     (can-build-with-escrow archery-range)
     (building-type-count-total archery-range < max-imperial-military-buildings)
-    (goal producing-ranged 1)
     (or (current-age == imperial-age) (death-match-game))
+    (goal producing-ranged 1)
 =>
     (release-escrow wood)
     (build archery-range)
@@ -2851,9 +2969,9 @@
 (defrule
     (can-build-with-escrow archery-range)
     (building-type-count-total archery-range < max-castle-military-buildings)
-    (goal producing-ranged 1)
-    (not (or (current-age == imperial-age) (death-match-game)))
     (current-age == castle-age)
+    (not (or (current-age == imperial-age) (death-match-game)))
+    (goal producing-ranged 1)
 =>
     (release-escrow wood)
     (build archery-range)
@@ -2861,10 +2979,10 @@
 (defrule
     (can-build-with-escrow archery-range)
     (building-type-count-total archery-range < 1)
-    (goal producing-ranged 1)
-    (not (or (current-age == imperial-age) (death-match-game)))
-    (not (current-age == castle-age))
     (and (goal producing-cavalry 1) (building-type-count-total stable >= 2))
+    (not (or (current-age == imperial-age) (death-match-game)))
+    (not (current-age == castle-age))
+    (goal producing-ranged 1)
 =>
     (release-escrow wood)
     (build archery-range)
@@ -2872,11 +2990,11 @@
 (defrule
     (can-build-with-escrow archery-range)
     (building-type-count-total archery-range < 1)
-    (goal producing-ranged 1)
+    (and (goal producing-infantry 1) (building-type-count-total barracks >= 2))
+    (not (and (goal producing-cavalry 1) (building-type-count-total stable >= 2)))
     (not (or (current-age == imperial-age) (death-match-game)))
     (not (current-age == castle-age))
-    (not (and (goal producing-cavalry 1) (building-type-count-total stable >= 2)))
-    (and (goal producing-infantry 1) (building-type-count-total barracks >= 2))
+    (goal producing-ranged 1)
 =>
     (release-escrow wood)
     (build archery-range)
@@ -2884,11 +3002,11 @@
 (defrule
     (can-build-with-escrow archery-range)
     (building-type-count-total archery-range < max-feudal-military-buildings)
-    (goal producing-ranged 1)
-    (not (or (current-age == imperial-age) (death-match-game)))
-    (not (current-age == castle-age))
     (not (and (goal producing-cavalry 1) (building-type-count-total stable >= 2)))
     (not (and (goal producing-infantry 1) (building-type-count-total barracks >= 2)))
+    (not (or (current-age == imperial-age) (death-match-game)))
+    (not (current-age == castle-age))
+    (goal producing-ranged 1)
 =>
     (release-escrow wood)
     (build archery-range)
@@ -3010,8 +3128,8 @@
 (defrule
     (can-build-with-escrow stable)
     (building-type-count-total stable < max-imperial-military-buildings)
-    (goal producing-cavalry 1)
     (or (current-age == imperial-age) (death-match-game))
+    (goal producing-cavalry 1)
 =>
     (release-escrow wood)
     (build stable)
@@ -3019,9 +3137,9 @@
 (defrule
     (can-build-with-escrow stable)
     (building-type-count-total stable < max-castle-military-buildings)
-    (goal producing-cavalry 1)
-    (not (or (current-age == imperial-age) (death-match-game)))
     (current-age == castle-age)
+    (not (or (current-age == imperial-age) (death-match-game)))
+    (goal producing-cavalry 1)
 =>
     (release-escrow wood)
     (build stable)
@@ -3029,10 +3147,10 @@
 (defrule
     (can-build-with-escrow stable)
     (building-type-count-total stable < 1)
-    (goal producing-cavalry 1)
-    (not (or (current-age == imperial-age) (death-match-game)))
-    (not (current-age == castle-age))
     (and (goal producing-infantry 1) (building-type-count-total barracks >= 2))
+    (not (or (current-age == imperial-age) (death-match-game)))
+    (not (current-age == castle-age))
+    (goal producing-cavalry 1)
 =>
     (release-escrow wood)
     (build stable)
@@ -3040,11 +3158,11 @@
 (defrule
     (can-build-with-escrow stable)
     (building-type-count-total stable < 1)
-    (goal producing-cavalry 1)
+    (and (goal producing-ranged 1) (building-type-count-total archery-range >= 2))
+    (not (and (goal producing-infantry 1) (building-type-count-total barracks >= 2)))
     (not (or (current-age == imperial-age) (death-match-game)))
     (not (current-age == castle-age))
-    (not (and (goal producing-infantry 1) (building-type-count-total barracks >= 2)))
-    (and (goal producing-ranged 1) (building-type-count-total archery-range >= 2))
+    (goal producing-cavalry 1)
 =>
     (release-escrow wood)
     (build stable)
@@ -3052,11 +3170,11 @@
 (defrule
     (can-build-with-escrow stable)
     (building-type-count-total stable < max-feudal-military-buildings)
-    (goal producing-cavalry 1)
-    (not (or (current-age == imperial-age) (death-match-game)))
-    (not (current-age == castle-age))
     (not (and (goal producing-infantry 1) (building-type-count-total barracks >= 2)))
     (not (and (goal producing-ranged 1) (building-type-count-total archery-range >= 2)))
+    (not (or (current-age == imperial-age) (death-match-game)))
+    (not (current-age == castle-age))
+    (goal producing-cavalry 1)
 =>
     (release-escrow wood)
     (build stable)
@@ -3170,8 +3288,8 @@
 )
 (defrule
     (can-research-with-escrow ri-atonement)
-    (goal produce-monks 1)
     (players-unit-type-count any-enemy monk >= 1)
+    (goal produce-monks 1)
 =>
     (release-escrow gold)
     (research ri-atonement)
@@ -3218,36 +3336,36 @@
     (set-goal make-food-unit 0)
 )
 (defrule
-    (military-population >= min-army)
-    (goal produce-trebuchets 1)
-    (unit-type-count-total trebuchet-set < 1)
     (and (goal producing-trash 0) (building-type-count castle >= 1))
+    (unit-type-count-total trebuchet-set < 1)
+    (goal produce-trebuchets 1)
+    (military-population >= min-army)
 =>
     (chat-local-to-self "escrow for treb")
 )
 (defrule
-    (military-population >= min-army)
-    (goal produce-trebuchets 1)
-    (unit-type-count-total trebuchet-set < 1)
-    (and (goal producing-trash 0) (building-type-count castle >= 1))
     (up-compare-goal escrowed-wood < 200)
+    (and (goal producing-trash 0) (building-type-count castle >= 1))
+    (unit-type-count-total trebuchet-set < 1)
+    (goal produce-trebuchets 1)
+    (military-population >= min-army)
 =>
     (set-escrow-percentage wood 100)
 )
 (defrule
-    (military-population >= min-army)
-    (goal produce-trebuchets 1)
-    (unit-type-count-total trebuchet-set < 1)
-    (and (goal producing-trash 0) (building-type-count castle >= 1))
     (up-compare-goal escrowed-gold < 200)
+    (and (goal producing-trash 0) (building-type-count castle >= 1))
+    (unit-type-count-total trebuchet-set < 1)
+    (goal produce-trebuchets 1)
+    (military-population >= min-army)
 =>
     (set-escrow-percentage gold 100)
 )
 (defrule
     (can-train-with-escrow trebuchet)
-    (military-population >= min-army)
-    (goal produce-trebuchets 1)
     (unit-type-count-total trebuchet-set < 1)
+    (goal produce-trebuchets 1)
+    (military-population >= min-army)
 =>
     (release-escrow wood)
     (release-escrow gold)
@@ -3255,43 +3373,43 @@
 )
 (defrule
     (can-train trebuchet)
-    (military-population >= min-army)
-    (goal produce-trebuchets 1)
     (and (unit-type-count-total trebuchet-set < max-trebuchets) (goal make-wood-unit 1))
+    (goal produce-trebuchets 1)
+    (military-population >= min-army)
 =>
     (train trebuchet)
 )
 (defrule
-    (military-population >= min-army)
-    (goal produce-rams 1)
-    (unit-type-count-total battering-ram-line < 2)
     (and (goal producing-trash 0) (and (building-type-count siege-workshop >= 1) (or (goal military-superiority 1) (and (town-under-attack) (enemy-buildings-in-town)))))
+    (unit-type-count-total battering-ram-line < 2)
+    (goal produce-rams 1)
+    (military-population >= min-army)
 =>
     (chat-local-to-self "escrow for ram")
 )
 (defrule
-    (military-population >= min-army)
-    (goal produce-rams 1)
-    (unit-type-count-total battering-ram-line < 2)
-    (and (goal producing-trash 0) (and (building-type-count siege-workshop >= 1) (or (goal military-superiority 1) (and (town-under-attack) (enemy-buildings-in-town)))))
     (up-compare-goal escrowed-wood < 200)
+    (and (goal producing-trash 0) (and (building-type-count siege-workshop >= 1) (or (goal military-superiority 1) (and (town-under-attack) (enemy-buildings-in-town)))))
+    (unit-type-count-total battering-ram-line < 2)
+    (goal produce-rams 1)
+    (military-population >= min-army)
 =>
     (set-escrow-percentage wood 100)
 )
 (defrule
-    (military-population >= min-army)
-    (goal produce-rams 1)
-    (unit-type-count-total battering-ram-line < 2)
-    (and (goal producing-trash 0) (and (building-type-count siege-workshop >= 1) (or (goal military-superiority 1) (and (town-under-attack) (enemy-buildings-in-town)))))
     (up-compare-goal escrowed-gold < 200)
+    (and (goal producing-trash 0) (and (building-type-count siege-workshop >= 1) (or (goal military-superiority 1) (and (town-under-attack) (enemy-buildings-in-town)))))
+    (unit-type-count-total battering-ram-line < 2)
+    (goal produce-rams 1)
+    (military-population >= min-army)
 =>
     (set-escrow-percentage gold 100)
 )
 (defrule
     (can-train-with-escrow battering-ram-line)
-    (military-population >= min-army)
-    (goal produce-rams 1)
     (unit-type-count-total battering-ram-line < 2)
+    (goal produce-rams 1)
+    (military-population >= min-army)
 =>
     (release-escrow wood)
     (release-escrow gold)
@@ -3300,9 +3418,9 @@
 (defrule
     (can-train battering-ram-line)
     (unit-type-count-total battering-ram-line < max-rams)
-    (military-population >= min-army)
-    (goal produce-rams 1)
     (goal make-wood-unit 1)
+    (goal produce-rams 1)
+    (military-population >= min-army)
 =>
     (train battering-ram-line)
 )
@@ -3315,135 +3433,135 @@
 (defrule
     (can-train militiaman-line)
     (unit-type-count-total militiaman-line < max-basic-units)
-    (goal make-food-unit 1)
-    (goal produce-militia 1)
     (and (current-age == feudal-age) (not (research-completed ri-man-at-arms)))
+    (goal produce-militia 1)
+    (goal make-food-unit 1)
 =>
     (train militiaman-line)
 )
 (defrule
     (can-train militiaman-line)
-    (goal make-food-unit 1)
-    (goal produce-militia 1)
     (not (and (current-age == feudal-age) (not (research-completed ri-man-at-arms))))
+    (goal produce-militia 1)
+    (goal make-food-unit 1)
 =>
     (train militiaman-line)
 )
 (defrule
     (can-train spearman-line)
     (unit-type-count-total spearman-line < max-basic-units)
-    (goal make-food-unit 1)
-    (goal make-wood-unit 1)
-    (goal produce-spearmen 1)
     (and (current-age == castle-age) (not (research-completed ri-pikeman)))
+    (goal produce-spearmen 1)
+    (goal make-wood-unit 1)
+    (goal make-food-unit 1)
 =>
     (train spearman-line)
 )
 (defrule
     (can-train spearman-line)
-    (goal make-food-unit 1)
-    (goal make-wood-unit 1)
-    (goal produce-spearmen 1)
     (not (and (current-age == castle-age) (not (research-completed ri-pikeman))))
+    (goal produce-spearmen 1)
+    (goal make-wood-unit 1)
+    (goal make-food-unit 1)
 =>
     (train spearman-line)
 )
 (defrule
     (can-train skirmisher-line)
-    (goal make-food-unit 1)
-    (goal make-wood-unit 1)
     (goal produce-skirmishers 1)
+    (goal make-wood-unit 1)
+    (goal make-food-unit 1)
 =>
     (train skirmisher-line)
 )
 (defrule
     (can-train knight-line)
-    (goal make-food-unit 1)
     (goal produce-knights 1)
+    (goal make-food-unit 1)
 =>
     (train knight-line)
 )
 (defrule
     (can-train scout-cavalry-line)
-    (goal make-food-unit 1)
     (goal produce-scouts 1)
+    (goal make-food-unit 1)
 =>
     (train scout-cavalry-line)
 )
 (defrule
     (can-train my-unique-unit)
-    (goal make-food-unit 1)
     (goal produce-unique-unit 1)
+    (goal make-food-unit 1)
 =>
     (train my-unique-unit)
 )
 (defrule
     (can-train battle-elephant-line)
-    (goal make-food-unit 1)
     (goal produce-battle-elephants 1)
+    (goal make-food-unit 1)
 =>
     (train battle-elephant-line)
 )
 (defrule
     (can-train camel-line)
-    (goal make-food-unit 1)
     (goal produce-camels 1)
+    (goal make-food-unit 1)
 =>
     (train camel-line)
 )
 (defrule
     (can-train eagle-warrior-line)
-    (goal make-food-unit 1)
     (goal produce-eagles 1)
+    (goal make-food-unit 1)
 =>
     (train eagle-warrior-line)
 )
 (defrule
     (can-train hand-cannoneer)
-    (goal make-food-unit 1)
     (goal produce-hand-cannoneers 1)
+    (goal make-food-unit 1)
 =>
     (train hand-cannoneer)
 )
 (defrule
     (can-train condottiero)
-    (goal make-food-unit 1)
     (goal produce-condottiero 1)
+    (goal make-food-unit 1)
 =>
     (train condottiero)
 )
 (defrule
     (can-train archer-line)
-    (goal make-wood-unit 1)
     (goal produce-archers 1)
+    (goal make-wood-unit 1)
 =>
     (train archer-line)
 )
 (defrule
     (can-train mangonel-line)
-    (goal make-wood-unit 1)
     (goal produce-mangonels 1)
+    (goal make-wood-unit 1)
 =>
     (train mangonel-line)
 )
 (defrule
     (can-train scorpion-line)
-    (goal make-wood-unit 1)
     (goal produce-scorpions 1)
+    (goal make-wood-unit 1)
 =>
     (train scorpion-line)
 )
 (defrule
     (can-train cavalry-archer-line)
-    (goal make-wood-unit 1)
     (goal produce-cavalry-archers 1)
+    (goal make-wood-unit 1)
 =>
     (train cavalry-archer-line)
 )
 (defrule
     (can-train bombard-cannon)
-    (goal make-wood-unit 1)
     (goal produce-bombard-cannons 1)
+    (goal make-wood-unit 1)
 =>
     (train bombard-cannon)
 )
@@ -3474,35 +3592,35 @@
     (disable-self)
 )
 (defrule
-    (not (or (building-type-count-total barracks >= 2) (or (building-type-count-total stable >= 2) (building-type-count-total archery-range >= 2))))
-    (and (up-research-status c: feudal-age >= research-pending) (civilian-population >= 20))
     (or (goal producing-infantry 1) (or (goal producing-ranged 1) (goal producing-cavalry 1)))
+    (and (up-research-status c: feudal-age >= research-pending) (civilian-population >= 20))
+    (not (or (building-type-count-total barracks >= 2) (or (building-type-count-total stable >= 2) (building-type-count-total archery-range >= 2))))
 =>
     (set-escrow-percentage wood 100)
 )
 (defrule
-    (not (or (building-type-count-total barracks >= 2) (or (building-type-count-total stable >= 2) (building-type-count-total archery-range >= 2))))
-    (and (up-research-status c: feudal-age >= research-pending) (civilian-population >= 20))
     (or (goal producing-infantry 1) (or (goal producing-ranged 1) (goal producing-cavalry 1)))
+    (and (up-research-status c: feudal-age >= research-pending) (civilian-population >= 20))
+    (not (or (building-type-count-total barracks >= 2) (or (building-type-count-total stable >= 2) (building-type-count-total archery-range >= 2))))
 =>
     (set-goal research-economy-upgrades 0)
     (disable-self)
 )
 (defrule
-    (and (not (town-under-attack)) (civilian-population >= 20))
     (and (goal producing-infantry 1) (building-type-count-total barracks < 1))
+    (and (not (town-under-attack)) (civilian-population >= 20))
 =>
     (set-escrow-percentage wood 100)
 )
 (defrule
-    (and (not (town-under-attack)) (civilian-population >= 20))
     (and (goal producing-cavalry 1) (building-type-count-total stable < 1))
+    (and (not (town-under-attack)) (civilian-population >= 20))
 =>
     (set-escrow-percentage wood 100)
 )
 (defrule
-    (and (not (town-under-attack)) (civilian-population >= 20))
     (and (goal producing-ranged 1) (building-type-count-total archery-range < 1))
+    (and (not (town-under-attack)) (civilian-population >= 20))
 =>
     (set-escrow-percentage wood 100)
 )
@@ -3530,207 +3648,207 @@
     (set-strategic-number sn-enable-training-queue 1)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
     (or (not (research-completed ri-loom)) (not (research-completed feudal-age)))
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: feudal-age >= research-pending)
     (or (not (research-completed castle-age)) (not (research-completed ri-wheel-barrow)))
+    (up-research-status c: feudal-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: feudal-age >= research-pending)
     (and (goal producing-infantry 1) (not (research-completed ri-tracking)))
+    (up-research-status c: feudal-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: feudal-age >= research-pending)
     (and (goal produce-militia 1) (not (research-completed ri-man-at-arms)))
-=>
-    (set-strategic-number sn-enable-training-queue 0)
-)
-(defrule
-    (strategic-number sn-enable-training-queue == 1)
     (up-research-status c: feudal-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
+=>
+    (set-strategic-number sn-enable-training-queue 0)
+)
+(defrule
     (and (goal producing-cavalry 1) (and (not (research-completed ri-bloodlines)) (research-available ri-bloodlines)))
+    (up-research-status c: feudal-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: castle-age >= research-pending)
     (or (not (research-completed imperial-age)) (not (research-completed ri-hand-cart)))
+    (up-research-status c: castle-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: castle-age >= research-pending)
     (and (goal producing-ranged 1) (not (research-completed ri-thumb-ring)))
+    (up-research-status c: castle-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: castle-age >= research-pending)
-    (goal produce-archers 1)
     (and (not (research-completed ri-crossbow)) (research-available ri-crossbow))
-=>
-    (set-strategic-number sn-enable-training-queue 0)
-)
-(defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: castle-age >= research-pending)
-    (goal produce-skirmishers 1)
-    (and (not (research-completed ri-elite-skirmisher)) (research-available ri-elite-skirmisher))
-=>
-    (set-strategic-number sn-enable-training-queue 0)
-)
-(defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: castle-age >= research-pending)
-    (goal producing-infantry 1)
-    (or (and (not (research-completed ri-squires)) (research-available ri-squires)) (and (not (research-completed ri-arson)) (research-available ri-arson)))
-=>
-    (set-strategic-number sn-enable-training-queue 0)
-)
-(defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: castle-age >= research-pending)
-    (and (goal produce-militia 1) (not (research-completed ri-long-swordsman)))
-=>
-    (set-strategic-number sn-enable-training-queue 0)
-)
-(defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: castle-age >= research-pending)
-    (and (goal produce-spearmen 1) (and (not (research-completed ri-pikeman)) (research-available ri-pikeman)))
-=>
-    (set-strategic-number sn-enable-training-queue 0)
-)
-(defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: castle-age >= research-pending)
-    (and (goal produce-eagles 1) (not (research-completed ri-eagle-warrior)))
-=>
-    (set-strategic-number sn-enable-training-queue 0)
-)
-(defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: castle-age >= research-pending)
-    (and (goal producing-cavalry 1) (and (not (research-completed ri-husbandry)) (research-available ri-husbandry)))
-=>
-    (set-strategic-number sn-enable-training-queue 0)
-)
-(defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: castle-age >= research-pending)
-    (and (goal produce-scouts 1) (and (not (research-completed ri-light-cavalry)) (research-available ri-light-cavalry)))
-=>
-    (set-strategic-number sn-enable-training-queue 0)
-)
-(defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: imperial-age >= research-pending)
     (goal produce-archers 1)
-    (and (not (research-completed ri-arbalest)) (research-available ri-arbalest))
+    (up-research-status c: castle-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: imperial-age >= research-pending)
+    (and (not (research-completed ri-elite-skirmisher)) (research-available ri-elite-skirmisher))
     (goal produce-skirmishers 1)
+    (up-research-status c: castle-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
+=>
+    (set-strategic-number sn-enable-training-queue 0)
+)
+(defrule
+    (or (and (not (research-completed ri-squires)) (research-available ri-squires)) (and (not (research-completed ri-arson)) (research-available ri-arson)))
+    (goal producing-infantry 1)
+    (up-research-status c: castle-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
+=>
+    (set-strategic-number sn-enable-training-queue 0)
+)
+(defrule
+    (and (goal produce-militia 1) (not (research-completed ri-long-swordsman)))
+    (up-research-status c: castle-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
+=>
+    (set-strategic-number sn-enable-training-queue 0)
+)
+(defrule
+    (and (goal produce-spearmen 1) (and (not (research-completed ri-pikeman)) (research-available ri-pikeman)))
+    (up-research-status c: castle-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
+=>
+    (set-strategic-number sn-enable-training-queue 0)
+)
+(defrule
+    (and (goal produce-eagles 1) (not (research-completed ri-eagle-warrior)))
+    (up-research-status c: castle-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
+=>
+    (set-strategic-number sn-enable-training-queue 0)
+)
+(defrule
+    (and (goal producing-cavalry 1) (and (not (research-completed ri-husbandry)) (research-available ri-husbandry)))
+    (up-research-status c: castle-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
+=>
+    (set-strategic-number sn-enable-training-queue 0)
+)
+(defrule
+    (and (goal produce-scouts 1) (and (not (research-completed ri-light-cavalry)) (research-available ri-light-cavalry)))
+    (up-research-status c: castle-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
+=>
+    (set-strategic-number sn-enable-training-queue 0)
+)
+(defrule
+    (and (not (research-completed ri-arbalest)) (research-available ri-arbalest))
+    (goal produce-archers 1)
+    (up-research-status c: imperial-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
+=>
+    (set-strategic-number sn-enable-training-queue 0)
+)
+(defrule
     (and (not (research-completed ri-imperial-skirmisher)) (research-available ri-imperial-skirmisher))
+    (goal produce-skirmishers 1)
+    (up-research-status c: imperial-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: imperial-age >= research-pending)
-    (goal produce-cavalry-archers 1)
     (or (and (not (research-completed ri-heavy-cavalry-archer)) (research-available ri-heavy-cavalry-archer)) (and (not (research-completed ri-parthian-tactics)) (research-available ri-parthian-tactics)))
+    (goal produce-cavalry-archers 1)
+    (up-research-status c: imperial-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: imperial-age >= research-pending)
-    (goal produce-militia 1)
     (or (and (not (research-completed ri-two-handed-swordsman)) (research-available ri-two-handed-swordsman)) (and (not (research-completed ri-champion)) (research-available ri-champion)))
+    (goal produce-militia 1)
+    (up-research-status c: imperial-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: imperial-age >= research-pending)
     (and (goal produce-spearmen 1) (and (not (research-completed ri-halberdier)) (research-available ri-halberdier)))
+    (up-research-status c: imperial-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: imperial-age >= research-pending)
     (and (goal produce-eagles 1) (and (not (research-completed ri-elite-eagle-warrior)) (research-available ri-elite-eagle-warrior)))
+    (up-research-status c: imperial-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: imperial-age >= research-pending)
     (and (goal produce-scouts 1) (and (not (research-completed ri-hussar)) (research-available ri-hussar)))
+    (up-research-status c: imperial-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: imperial-age >= research-pending)
-    (goal produce-knights 1)
     (or (and (not (research-completed ri-cavalier)) (research-available ri-cavalier)) (and (not (research-completed ri-paladin)) (research-available ri-paladin)))
+    (goal produce-knights 1)
+    (up-research-status c: imperial-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: imperial-age >= research-pending)
     (and (goal produce-camels 1) (and (not (research-completed ri-heavy-camel)) (research-available ri-heavy-camel)))
+    (up-research-status c: imperial-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: imperial-age >= research-pending)
     (and (goal produce-battle-elephants 1) (and (not (research-completed ri-elite-battle-elephant)) (research-available ri-elite-battle-elephant)))
+    (up-research-status c: imperial-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: imperial-age >= research-pending)
-    (goal produce-rams 1)
     (or (and (not (research-completed ri-capped-ram)) (research-available ri-capped-ram)) (and (not (research-completed ri-siege-ram)) (research-available ri-siege-ram)))
+    (goal produce-rams 1)
+    (up-research-status c: imperial-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: imperial-age >= research-pending)
-    (goal produce-mangonels 1)
     (or (and (not (research-completed ri-onager)) (research-available ri-onager)) (and (not (research-completed ri-siege-onager)) (research-available ri-siege-onager)))
+    (goal produce-mangonels 1)
+    (up-research-status c: imperial-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
 (defrule
-    (strategic-number sn-enable-training-queue == 1)
-    (up-research-status c: imperial-age >= research-pending)
     (and (goal produce-scorpions 1) (and (not (research-completed ri-heavy-scorpion)) (research-available ri-heavy-scorpion)))
+    (up-research-status c: imperial-age >= research-pending)
+    (strategic-number sn-enable-training-queue == 1)
 =>
     (set-strategic-number sn-enable-training-queue 0)
 )
@@ -3743,7 +3861,7 @@
 (defrule
     (not (true))
 =>
-    (up-jump-rule 22)
+    (up-jump-rule 20)
 )
 (defrule
     (true)
@@ -3755,17 +3873,13 @@
     (true)
 =>
     (set-goal retarget 1)
-    (disable-self)
     (enable-timer 5 600)
+    (disable-self)
 )
 (defrule
     (timer-triggered 5)
 =>
     (set-goal retarget 1)
-)
-(defrule
-    (timer-triggered 5)
-=>
     (disable-timer 5)
     (enable-timer 5 600)
 )
@@ -3777,54 +3891,54 @@
     (up-modify-sn sn-focus-player-number g:= 87)
 )
 (defrule
-    (and (goal turtle 1) (building-type-count castle < 3))
     (or (military-population >= max-army) (and (population-headroom == 0) (housing-headroom == 0)))
+    (and (goal turtle 1) (building-type-count castle < 3))
 =>
     (chat-local-to-self "attacking turtle")
     (set-goal attacking 1)
 )
 (defrule
-    (not (and (goal turtle 1) (building-type-count castle < 3)))
     (population >= 195)
+    (not (and (goal turtle 1) (building-type-count castle < 3)))
 =>
     (chat-local-to-self "attacking pop blocked")
     (set-goal attacking 1)
 )
 (defrule
+    (military-population >= 5)
+    (and (up-research-status c: feudal-age < research-pending) (current-age == dark-age))
     (not (and (goal turtle 1) (building-type-count castle < 3)))
     (not (population >= 195))
-    (and (up-research-status c: feudal-age < research-pending) (current-age == dark-age))
-    (military-population >= 5)
 =>
     (chat-local-to-self "attacking dark")
     (set-goal attacking 1)
 )
 (defrule
+    (or (goal producing-ranged 0) (and (goal producing-ranged 1) (up-research-status c: ri-fletching >= research-pending)))
+    (and (military-population >= 12) (goal military-superiority 1))
+    (and (up-research-status c: feudal-age >= research-pending) (and (up-research-status c: castle-age < research-pending) (current-age == feudal-age)))
+    (not (and (up-research-status c: feudal-age < research-pending) (current-age == dark-age)))
     (not (and (goal turtle 1) (building-type-count castle < 3)))
     (not (population >= 195))
-    (not (and (up-research-status c: feudal-age < research-pending) (current-age == dark-age)))
-    (and (up-research-status c: feudal-age >= research-pending) (and (up-research-status c: castle-age < research-pending) (current-age == feudal-age)))
-    (and (military-population >= 12) (goal military-superiority 1))
-    (or (goal producing-ranged 0) (and (goal producing-ranged 1) (up-research-status c: ri-fletching >= research-pending)))
 =>
     (chat-local-to-self "attacking feudal")
     (set-goal attacking 1)
 )
 (defrule
-    (not (and (goal turtle 1) (building-type-count castle < 3)))
-    (not (population >= 195))
+    (and (military-population >= 30) (or (goal military-superiority 1) (players-current-age every-enemy < current-age)))
     (not (and (up-research-status c: feudal-age < research-pending) (current-age == dark-age)))
     (not (and (up-research-status c: feudal-age >= research-pending) (and (up-research-status c: castle-age < research-pending) (current-age == feudal-age))))
-    (and (military-population >= 30) (or (goal military-superiority 1) (players-current-age every-enemy < current-age)))
+    (not (and (goal turtle 1) (building-type-count castle < 3)))
+    (not (population >= 195))
 =>
     (chat-local-to-self "attacking castle/imp")
     (set-goal attacking 1)
 )
 (defrule
-    (and (goal attacking 1) (goal use-town-size-attack 1))
-    (or (cc-players-unit-type-count any-enemy tc-arrow > 0) (or (cc-players-unit-type-count any-enemy castle-arrow > 0) (or (cc-players-unit-type-count any-enemy castle-arrow-chemistry > 0) (cc-players-unit-type-count any-enemy watch-tower-arrow > 0))))
-    (and (unit-type-count battering-ram-line == 0) (and (unit-type-count trebuchet-set == 0) (unit-type-count bombard-cannon == 0)))
     (or (goal threat-source town-center) (goal threat-source castle))
+    (and (unit-type-count battering-ram-line == 0) (and (unit-type-count trebuchet-set == 0) (unit-type-count bombard-cannon == 0)))
+    (or (cc-players-unit-type-count any-enemy tc-arrow > 0) (or (cc-players-unit-type-count any-enemy castle-arrow > 0) (or (cc-players-unit-type-count any-enemy castle-arrow-chemistry > 0) (cc-players-unit-type-count any-enemy watch-tower-arrow > 0))))
+    (and (goal attacking 1) (goal use-town-size-attack 1))
 =>
     (up-retreat-now)
     (set-goal attacking 0)
@@ -3835,141 +3949,135 @@
     (set-strategic-number sn-gather-defense-units 0)
 )
 (defrule
-    (not (and (goal attacking 1) (strategic-number sn-gather-defense-units == 1)))
     (and (goal attacking 0) (strategic-number sn-gather-defense-units == 0))
+    (not (and (goal attacking 1) (strategic-number sn-gather-defense-units == 1)))
 =>
     (set-strategic-number sn-gather-defense-units 1)
 )
 (defrule
-    (goal use-town-size-attack 1)
     (goal attacking 1)
+    (goal use-town-size-attack 1)
 =>
     (chat-local-to-self "attacking with TSA")
     (set-strategic-number sn-maximum-town-size 255)
 )
 (defrule
-    (goal use-town-size-attack 1)
-    (not (goal attacking 1))
-    (strategic-number sn-maximum-town-size == 255)
     (up-research-status c: imperial-age >= research-pending)
+    (strategic-number sn-maximum-town-size == 255)
+    (not (goal attacking 1))
+    (goal use-town-size-attack 1)
 =>
     (set-strategic-number sn-maximum-town-size imperial-age-town-size)
 )
 (defrule
-    (goal use-town-size-attack 1)
-    (not (goal attacking 1))
-    (strategic-number sn-maximum-town-size == 255)
-    (not (up-research-status c: imperial-age >= research-pending))
     (up-research-status c: castle-age >= research-pending)
+    (not (up-research-status c: imperial-age >= research-pending))
+    (strategic-number sn-maximum-town-size == 255)
+    (not (goal attacking 1))
+    (goal use-town-size-attack 1)
 =>
     (set-strategic-number sn-maximum-town-size castle-age-town-size)
 )
 (defrule
-    (goal use-town-size-attack 1)
-    (not (goal attacking 1))
-    (strategic-number sn-maximum-town-size == 255)
+    (up-research-status c: feudal-age >= research-pending)
     (not (up-research-status c: imperial-age >= research-pending))
     (not (up-research-status c: castle-age >= research-pending))
-    (up-research-status c: feudal-age >= research-pending)
+    (strategic-number sn-maximum-town-size == 255)
+    (not (goal attacking 1))
+    (goal use-town-size-attack 1)
 =>
     (set-strategic-number sn-maximum-town-size feudal-age-town-size)
 )
 (defrule
-    (goal use-town-size-attack 1)
-    (not (goal attacking 1))
-    (strategic-number sn-maximum-town-size == 255)
-    (not (up-research-status c: imperial-age >= research-pending))
     (not (up-research-status c: castle-age >= research-pending))
+    (not (up-research-status c: imperial-age >= research-pending))
     (not (up-research-status c: feudal-age >= research-pending))
+    (strategic-number sn-maximum-town-size == 255)
+    (not (goal attacking 1))
+    (goal use-town-size-attack 1)
 =>
     (set-strategic-number sn-maximum-town-size dark-age-town-size)
 )
 (defrule
-    (not (goal use-town-size-attack 1))
     (town-under-attack)
+    (not (goal use-town-size-attack 1))
 =>
     (set-goal attacking 0)
 )
 (defrule
-    (not (goal use-town-size-attack 1))
     (goal attacking 1)
+    (not (goal use-town-size-attack 1))
 =>
     (enable-timer 6 60)
     (disable-self)
 )
 (defrule
-    (not (goal use-town-size-attack 1))
-    (goal attacking 1)
     (timer-triggered 6)
+    (goal attacking 1)
+    (not (goal use-town-size-attack 1))
 =>
     (set-goal taunt-allies 31)
     (attack-now)
     (chat-local-to-self "attacking with groups")
-)
-(defrule
-    (timer-triggered 6)
-    (not (goal use-town-size-attack 1))
-    (goal attacking 1)
-=>
     (disable-timer 6)
     (enable-timer 6 60)
 )
 (defrule
     (not (goal militant 1))
 =>
-    (up-jump-rule 64)
+    (up-jump-rule 65)
 )
 (defrule
-    (and (goal team-game 1) (gold-amount > max-gold))
-    (wood-amount > max-wood)
     (up-allied-resource-amount any-ally wood < max-wood)
+    (wood-amount > max-wood)
+    (and (goal team-game 1) (gold-amount > max-gold))
 =>
     (tribute-to-player this-any-ally wood 100)
 )
 (defrule
     (gold-amount < max-gold)
     (can-sell-commodity wood)
-    (and (goal team-game 1) (gold-amount > max-gold))
-    (wood-amount > max-wood)
     (not (up-allied-resource-amount any-ally wood < max-wood))
+    (wood-amount > max-wood)
+    (and (goal team-game 1) (gold-amount > max-gold))
 =>
     (sell-commodity wood)
 )
 (defrule
-    (and (goal team-game 1) (gold-amount > max-gold))
-    (food-amount > max-food)
     (up-allied-resource-amount any-ally food < max-food)
+    (food-amount > max-food)
+    (and (goal team-game 1) (gold-amount > max-gold))
 =>
     (tribute-to-player this-any-ally food 100)
 )
 (defrule
     (gold-amount < max-gold)
     (can-sell-commodity food)
-    (and (goal team-game 1) (gold-amount > max-gold))
-    (food-amount > max-food)
     (not (up-allied-resource-amount any-ally food < max-food))
+    (food-amount > max-food)
+    (and (goal team-game 1) (gold-amount > max-gold))
 =>
     (sell-commodity food)
 )
 (defrule
-    (and (goal team-game 1) (gold-amount > max-gold))
     (up-allied-resource-amount any-ally gold < max-gold)
+    (and (goal team-game 1) (gold-amount > max-gold))
 =>
     (tribute-to-player this-any-ally gold 100)
 )
 (defrule
     (wood-amount > max-wood)
     (can-sell-commodity wood)
-    (not (and (goal team-game 1) (gold-amount > max-gold)))
     (gold-amount < max-gold)
+    (not (and (goal team-game 1) (gold-amount > max-gold)))
 =>
     (sell-commodity wood)
 )
 (defrule
     (food-amount > max-food)
     (can-sell-commodity food)
-    (not (and (goal team-game 1) (gold-amount > max-gold)))
     (gold-amount < max-gold)
+    (not (and (goal team-game 1) (gold-amount > max-gold)))
 =>
     (sell-commodity food)
 )
@@ -3991,11 +4099,11 @@
     (true)
 =>
     (set-goal creation-time 0)
-    (disable-self)
     (set-goal current-score 0)
     (set-goal resource-multiplier 1000)
     (set-goal multiplier 0)
     (set-goal temp 0)
+    (disable-self)
 )
 (defrule
     (true)
@@ -4081,22 +4189,22 @@
     (up-modify-goal score-additions-count c:+ 1)
 )
 (defrule
-    (goal produce-eagles 1)
     (research-completed ri-elite-eagle-warrior)
+    (goal produce-eagles 1)
 =>
     (set-goal creation-time 20)
 )
 (defrule
-    (goal produce-eagles 1)
-    (not (research-completed ri-elite-eagle-warrior))
     (research-completed ri-eagle-warrior)
+    (not (research-completed ri-elite-eagle-warrior))
+    (goal produce-eagles 1)
 =>
     (set-goal creation-time 35)
 )
 (defrule
-    (goal produce-eagles 1)
     (not (research-completed ri-elite-eagle-warrior))
     (not (research-completed ri-eagle-warrior))
+    (goal produce-eagles 1)
 =>
     (set-goal creation-time 60)
 )
@@ -4131,14 +4239,14 @@
     (set-goal score-additions-count 0)
 )
 (defrule
-    (goal produce-archers 1)
     (research-completed ri-crossbow)
+    (goal produce-archers 1)
 =>
     (set-goal creation-time 27)
 )
 (defrule
-    (goal produce-archers 1)
     (not (research-completed ri-crossbow))
+    (goal produce-archers 1)
 =>
     (set-goal creation-time 35)
 )
@@ -4174,14 +4282,14 @@
     (up-modify-goal score-additions-count c:+ 1)
 )
 (defrule
-    (goal produce-cavalry-archers 1)
     (research-completed ri-heavy-cavalry-archer)
+    (goal produce-cavalry-archers 1)
 =>
     (set-goal creation-time 27)
 )
 (defrule
-    (goal produce-cavalry-archers 1)
     (not (research-completed ri-heavy-cavalry-archer))
+    (goal produce-cavalry-archers 1)
 =>
     (set-goal creation-time 34)
 )
@@ -4259,14 +4367,14 @@
     (up-modify-goal score-additions-count c:+ 1)
 )
 (defrule
-    (goal produce-camels 1)
     (research-completed ri-imperial-camel)
+    (goal produce-camels 1)
 =>
     (set-goal creation-time 20)
 )
 (defrule
-    (goal produce-camels 1)
     (not (research-completed ri-imperial-camel))
+    (goal produce-camels 1)
 =>
     (set-goal creation-time 22)
 )
@@ -4503,145 +4611,145 @@
     (disable-self)
 )
 (defrule
-    (timer-triggered 7)
-    (up-compare-goal non-escrowed-wood <= low-wood)
-    (up-compare-goal non-escrowed-food <= low-food)
-    (up-compare-goal non-escrowed-gold >= high-gold)
     (up-compare-goal total-gold-gatherer-percentage > min-gold-percentage)
+    (up-compare-goal non-escrowed-gold >= high-gold)
+    (up-compare-goal non-escrowed-food <= low-food)
+    (up-compare-goal non-escrowed-wood <= low-wood)
+    (timer-triggered 7)
 =>
     (up-modify-goal gold-modifier-percentage c:- 4)
     (up-modify-goal wood-modifier-percentage c:+ 2)
     (up-modify-goal food-modifier-percentage c:+ 2)
 )
 (defrule
-    (timer-triggered 7)
-    (up-compare-goal non-escrowed-wood <= low-wood)
-    (not (up-compare-goal non-escrowed-food <= low-food))
-    (up-compare-goal non-escrowed-food >= high-food)
-    (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0))
     (up-compare-goal total-food-gatherer-percentage > min-food-percentage)
+    (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0))
+    (up-compare-goal non-escrowed-food >= high-food)
+    (not (up-compare-goal non-escrowed-food <= low-food))
+    (up-compare-goal non-escrowed-wood <= low-wood)
+    (timer-triggered 7)
 =>
     (up-modify-goal food-modifier-percentage c:- 4)
     (up-modify-goal wood-modifier-percentage c:+ 2)
     (up-modify-goal gold-modifier-percentage c:+ 2)
 )
 (defrule
-    (timer-triggered 7)
-    (up-compare-goal non-escrowed-wood <= low-wood)
-    (not (up-compare-goal non-escrowed-food <= low-food))
-    (up-compare-goal non-escrowed-food >= high-food)
-    (not (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0)))
-    (up-compare-goal non-escrowed-gold >= high-gold)
     (and (up-compare-goal total-food-gatherer-percentage > min-food-percentage) (up-compare-goal total-gold-gatherer-percentage > min-gold-percentage))
+    (up-compare-goal non-escrowed-gold >= high-gold)
+    (not (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0)))
+    (up-compare-goal non-escrowed-food >= high-food)
+    (not (up-compare-goal non-escrowed-food <= low-food))
+    (up-compare-goal non-escrowed-wood <= low-wood)
+    (timer-triggered 7)
 =>
     (up-modify-goal food-modifier-percentage c:- 2)
     (up-modify-goal gold-modifier-percentage c:- 2)
     (up-modify-goal wood-modifier-percentage c:+ 4)
 )
 (defrule
-    (timer-triggered 7)
-    (up-compare-goal non-escrowed-wood <= low-wood)
-    (not (up-compare-goal non-escrowed-food <= low-food))
-    (up-compare-goal non-escrowed-food >= high-food)
+    (up-compare-goal total-food-gatherer-percentage > min-food-percentage)
     (not (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0)))
     (not (up-compare-goal non-escrowed-gold >= high-gold))
-    (up-compare-goal total-food-gatherer-percentage > min-food-percentage)
+    (up-compare-goal non-escrowed-food >= high-food)
+    (not (up-compare-goal non-escrowed-food <= low-food))
+    (up-compare-goal non-escrowed-wood <= low-wood)
+    (timer-triggered 7)
 =>
     (up-modify-goal food-modifier-percentage c:- 4)
     (up-modify-goal wood-modifier-percentage c:+ 4)
 )
 (defrule
-    (timer-triggered 7)
-    (up-compare-goal non-escrowed-wood <= low-wood)
+    (up-compare-goal total-gold-gatherer-percentage > min-gold-percentage)
+    (up-compare-goal non-escrowed-gold >= high-gold)
     (not (up-compare-goal non-escrowed-food <= low-food))
     (not (up-compare-goal non-escrowed-food >= high-food))
-    (up-compare-goal non-escrowed-gold >= high-gold)
-    (up-compare-goal total-gold-gatherer-percentage > min-gold-percentage)
+    (up-compare-goal non-escrowed-wood <= low-wood)
+    (timer-triggered 7)
 =>
     (up-modify-goal gold-modifier-percentage c:- 4)
     (up-modify-goal wood-modifier-percentage c:+ 4)
 )
 (defrule
-    (timer-triggered 7)
-    (not (up-compare-goal non-escrowed-wood <= low-wood))
-    (up-compare-goal non-escrowed-wood >= high-wood)
-    (up-compare-goal non-escrowed-food <= low-food)
-    (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0))
     (up-compare-goal total-wood-gatherer-percentage > min-wood-percentage)
+    (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0))
+    (up-compare-goal non-escrowed-food <= low-food)
+    (up-compare-goal non-escrowed-wood >= high-wood)
+    (not (up-compare-goal non-escrowed-wood <= low-wood))
+    (timer-triggered 7)
 =>
     (up-modify-goal wood-modifier-percentage c:- 4)
     (up-modify-goal food-modifier-percentage c:+ 2)
     (up-modify-goal gold-modifier-percentage c:+ 2)
 )
 (defrule
-    (timer-triggered 7)
-    (not (up-compare-goal non-escrowed-wood <= low-wood))
-    (up-compare-goal non-escrowed-wood >= high-wood)
-    (up-compare-goal non-escrowed-food <= low-food)
-    (not (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0)))
-    (up-compare-goal non-escrowed-gold >= high-gold)
     (and (up-compare-goal total-wood-gatherer-percentage > min-wood-percentage) (up-compare-goal total-gold-gatherer-percentage > min-gold-percentage))
+    (up-compare-goal non-escrowed-gold >= high-gold)
+    (not (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0)))
+    (up-compare-goal non-escrowed-food <= low-food)
+    (up-compare-goal non-escrowed-wood >= high-wood)
+    (not (up-compare-goal non-escrowed-wood <= low-wood))
+    (timer-triggered 7)
 =>
     (up-modify-goal wood-modifier-percentage c:- 2)
     (up-modify-goal gold-modifier-percentage c:- 2)
     (up-modify-goal food-modifier-percentage c:+ 4)
 )
 (defrule
-    (timer-triggered 7)
-    (not (up-compare-goal non-escrowed-wood <= low-wood))
-    (up-compare-goal non-escrowed-wood >= high-wood)
-    (up-compare-goal non-escrowed-food <= low-food)
+    (up-compare-goal total-wood-gatherer-percentage > min-wood-percentage)
     (not (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0)))
     (not (up-compare-goal non-escrowed-gold >= high-gold))
-    (up-compare-goal total-wood-gatherer-percentage > min-wood-percentage)
+    (up-compare-goal non-escrowed-food <= low-food)
+    (up-compare-goal non-escrowed-wood >= high-wood)
+    (not (up-compare-goal non-escrowed-wood <= low-wood))
+    (timer-triggered 7)
 =>
     (up-modify-goal wood-modifier-percentage c:- 4)
     (up-modify-goal food-modifier-percentage c:+ 4)
 )
 (defrule
-    (timer-triggered 7)
-    (not (up-compare-goal non-escrowed-wood <= low-wood))
-    (up-compare-goal non-escrowed-wood >= high-wood)
-    (not (up-compare-goal non-escrowed-food <= low-food))
-    (up-compare-goal non-escrowed-food >= high-food)
-    (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0))
     (and (up-compare-goal total-wood-gatherer-percentage > min-wood-percentage) (up-compare-goal total-food-gatherer-percentage > min-food-percentage))
+    (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0))
+    (up-compare-goal non-escrowed-food >= high-food)
+    (not (up-compare-goal non-escrowed-food <= low-food))
+    (up-compare-goal non-escrowed-wood >= high-wood)
+    (not (up-compare-goal non-escrowed-wood <= low-wood))
+    (timer-triggered 7)
 =>
     (up-modify-goal wood-modifier-percentage c:- 2)
     (up-modify-goal food-modifier-percentage c:- 2)
     (up-modify-goal gold-modifier-percentage c:+ 4)
 )
 (defrule
-    (timer-triggered 7)
-    (not (up-compare-goal non-escrowed-wood <= low-wood))
-    (up-compare-goal non-escrowed-wood >= high-wood)
+    (up-compare-goal total-wood-gatherer-percentage > min-wood-percentage)
+    (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0))
     (not (up-compare-goal non-escrowed-food <= low-food))
     (not (up-compare-goal non-escrowed-food >= high-food))
-    (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0))
-    (up-compare-goal total-wood-gatherer-percentage > min-wood-percentage)
+    (up-compare-goal non-escrowed-wood >= high-wood)
+    (not (up-compare-goal non-escrowed-wood <= low-wood))
+    (timer-triggered 7)
 =>
     (up-modify-goal wood-modifier-percentage c:- 4)
     (up-modify-goal food-modifier-percentage c:+ 4)
 )
 (defrule
-    (timer-triggered 7)
+    (up-compare-goal total-gold-gatherer-percentage > min-gold-percentage)
+    (up-compare-goal non-escrowed-gold >= high-gold)
+    (up-compare-goal non-escrowed-food <= low-food)
     (not (up-compare-goal non-escrowed-wood <= low-wood))
     (not (up-compare-goal non-escrowed-wood >= high-wood))
-    (up-compare-goal non-escrowed-food <= low-food)
-    (up-compare-goal non-escrowed-gold >= high-gold)
-    (up-compare-goal total-gold-gatherer-percentage > min-gold-percentage)
+    (timer-triggered 7)
 =>
     (up-modify-goal gold-modifier-percentage c:- 4)
     (up-modify-goal food-modifier-percentage c:+ 4)
 )
 (defrule
-    (timer-triggered 7)
+    (up-compare-goal total-food-gatherer-percentage > min-food-percentage)
+    (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0))
+    (up-compare-goal non-escrowed-food >= high-food)
+    (not (up-compare-goal non-escrowed-food <= low-food))
     (not (up-compare-goal non-escrowed-wood <= low-wood))
     (not (up-compare-goal non-escrowed-wood >= high-wood))
-    (not (up-compare-goal non-escrowed-food <= low-food))
-    (up-compare-goal non-escrowed-food >= high-food)
-    (and (up-compare-goal non-escrowed-gold <= low-gold) (goal producing-trash 0))
-    (up-compare-goal total-food-gatherer-percentage > min-food-percentage)
+    (timer-triggered 7)
 =>
     (up-modify-goal food-modifier-percentage c:- 4)
     (up-modify-goal gold-modifier-percentage c:+ 4)
@@ -4651,6 +4759,14 @@
 =>
     (disable-timer 7)
     (enable-timer 7 30)
+)
+(defrule
+    (false)
+=>
+    (up-chat-data-to-all "wood: %d" g: total-wood-gatherer-percentage)
+    (up-chat-data-to-all "food: %d" g: total-food-gatherer-percentage)
+    (up-chat-data-to-all "gold: %d" g: total-gold-gatherer-percentage)
+    (up-chat-data-to-all "stone: %d" g: total-stone-gatherer-percentage)
 )
 (defrule
     (not (current-age == dark-age))
@@ -4671,8 +4787,8 @@
     (set-strategic-number sn-preferred-mill-placement 0)
 )
 (defrule
-    (not (civilian-population <= 8))
     (civilian-population <= 12)
+    (not (civilian-population <= 8))
 =>
     (set-strategic-number sn-wood-gatherer-percentage 30)
     (set-strategic-number sn-food-gatherer-percentage 70)
@@ -4680,32 +4796,32 @@
     (set-strategic-number sn-stone-gatherer-percentage 0)
 )
 (defrule
-    (not (and (and (goal initial-age dark-age) (and (current-age <= feudal-age) (and (population-cap == 200) (not (death-match-game))))) (building-type-count stone-wall-line == 0)))
+    (not (and (building-type-count stone-wall-line == 0) (and (goal initial-age dark-age) (and (current-age <= feudal-age) (and (population-cap == 200) (not (death-match-game)))))))
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 10)
 )
 (defrule
     (true)
 =>
     (chat-to-allies "I'm going to be aggressive in the feudal age.")
-    (disable-self)
     (set-strategic-number sn-wood-gatherer-percentage 20)
     (set-strategic-number sn-food-gatherer-percentage 80)
     (set-strategic-number sn-gold-gatherer-percentage 0)
     (set-strategic-number sn-stone-gatherer-percentage 0)
     (set-goal age-up 0)
     (set-strategic-number sn-enable-training-queue 1)
+    (disable-self)
 )
 (defrule
-    (current-age == dark-age)
     (civilian-population >= 20)
+    (current-age == dark-age)
 =>
     (set-strategic-number sn-enable-training-queue 0)
     (disable-self)
 )
 (defrule
-    (current-age == dark-age)
     (civilian-population >= 21)
+    (current-age == dark-age)
 =>
     (set-goal age-up 1)
     (disable-self)
@@ -4717,7 +4833,76 @@
     (disable-self)
 )
 (defrule
-    (not (and (and (goal initial-age dark-age) (and (current-age <= feudal-age) (and (population-cap == 200) (not (death-match-game))))) (not (building-type-count stone-wall-line == 0))))
+    (false)
+    (up-research-status c: feudal-age >= research-pending)
+=>
+    (set-goal choose-initial-balance 1)
+    (enable-timer 8 120)
+    (disable-self)
+)
+(defrule
+    (timer-triggered 8)
+    (false)
+    (up-research-status c: feudal-age >= research-pending)
+=>
+    (set-goal choose-initial-balance 0)
+    (disable-self)
+)
+(defrule
+    (goal produce-archers 1)
+    (goal choose-initial-balance 1)
+    (false)
+    (up-research-status c: feudal-age >= research-pending)
+=>
+    (set-strategic-number sn-wood-gatherer-percentage 40)
+    (set-strategic-number sn-food-gatherer-percentage 35)
+    (set-strategic-number sn-gold-gatherer-percentage 25)
+    (set-strategic-number sn-stone-gatherer-percentage 0)
+    (disable-self)
+)
+(defrule
+    (goal produce-eagles 1)
+    (not (goal produce-archers 1))
+    (goal choose-initial-balance 1)
+    (false)
+    (up-research-status c: feudal-age >= research-pending)
+=>
+    (set-strategic-number sn-wood-gatherer-percentage 35)
+    (set-strategic-number sn-food-gatherer-percentage 35)
+    (set-strategic-number sn-gold-gatherer-percentage 30)
+    (set-strategic-number sn-stone-gatherer-percentage 0)
+    (disable-self)
+)
+(defrule
+    (or (goal produce-militia 1) (goal produce-scouts 1))
+    (not (goal produce-archers 1))
+    (not (goal produce-eagles 1))
+    (goal choose-initial-balance 1)
+    (false)
+    (up-research-status c: feudal-age >= research-pending)
+=>
+    (set-strategic-number sn-wood-gatherer-percentage 35)
+    (set-strategic-number sn-food-gatherer-percentage 55)
+    (set-strategic-number sn-gold-gatherer-percentage 10)
+    (set-strategic-number sn-stone-gatherer-percentage 0)
+    (disable-self)
+)
+(defrule
+    (not (goal produce-eagles 1))
+    (not (goal produce-archers 1))
+    (not (or (goal produce-militia 1) (goal produce-scouts 1)))
+    (goal choose-initial-balance 1)
+    (false)
+    (up-research-status c: feudal-age >= research-pending)
+=>
+    (set-strategic-number sn-wood-gatherer-percentage 40)
+    (set-strategic-number sn-food-gatherer-percentage 45)
+    (set-strategic-number sn-gold-gatherer-percentage 15)
+    (set-strategic-number sn-stone-gatherer-percentage 0)
+    (disable-self)
+)
+(defrule
+    (not (and (not (building-type-count stone-wall-line == 0)) (and (goal initial-age dark-age) (and (current-age <= feudal-age) (and (population-cap == 200) (not (death-match-game)))))))
 =>
     (up-jump-rule 10)
 )
@@ -4725,24 +4910,24 @@
     (true)
 =>
     (chat-to-allies "I'm fast castling. Well, I *say* fast...")
-    (disable-self)
     (set-strategic-number sn-wood-gatherer-percentage 20)
     (set-strategic-number sn-food-gatherer-percentage 80)
     (set-strategic-number sn-gold-gatherer-percentage 0)
     (set-strategic-number sn-stone-gatherer-percentage 0)
     (set-goal age-up 0)
     (set-strategic-number sn-enable-training-queue 1)
+    (disable-self)
 )
 (defrule
-    (current-age == dark-age)
     (civilian-population >= 24)
+    (current-age == dark-age)
 =>
     (set-strategic-number sn-enable-training-queue 0)
     (disable-self)
 )
 (defrule
-    (current-age == dark-age)
     (civilian-population >= 25)
+    (current-age == dark-age)
 =>
     (set-goal age-up 1)
     (disable-self)
@@ -4751,8 +4936,8 @@
     (up-research-status c: castle-age >= research-pending)
 =>
     (set-goal militant 1)
-    (disable-self)
     (set-goal research-economy-upgrades 1)
+    (disable-self)
 )
 (defrule
     (current-age >= feudal-age)
@@ -4772,8 +4957,8 @@
     (build mining-camp)
 )
 (defrule
-    (current-age == feudal-age)
     (or (building-type-count-total market == 0) (building-type-count-total blacksmith == 0))
+    (current-age == feudal-age)
 =>
     (set-escrow-percentage wood 90)
     (disable-self)
@@ -4809,12 +4994,12 @@
     (and (players-current-age any-ally == dark-age) (game-time >= 900))
 =>
     (chat-to-player this-any-ally "Come on! Age up! Make sure you have a lumber camp and a mill.")
-    (disable-self)
     (chat-to-player this-any-ally "I'll send you food when I'm able to.")
+    (disable-self)
 )
 (defrule
-    (and (players-current-age any-ally == dark-age) (game-time >= 900))
     (and (food-amount > 200) (up-allied-resource-amount this-any-ally food < 500))
+    (and (players-current-age any-ally == dark-age) (game-time >= 900))
 =>
     (tribute-to-player this-any-ally food 100)
 )
@@ -4822,26 +5007,71 @@
     (and (players-current-age any-ally == feudal-age) (and (game-time >= 1800) (current-age >= castle-age)))
 =>
     (chat-to-player this-any-ally "Don't feel like going to the castle age?")
-    (disable-self)
     (chat-to-player this-any-ally "Make sure you have a blacksmith, and either a market or a military building.")
     (chat-to-player this-any-ally "I can send you the resources when I have enough.")
+    (disable-self)
 )
 (defrule
-    (and (players-current-age any-ally == feudal-age) (and (game-time >= 1800) (current-age >= castle-age)))
     (and (food-amount > 200) (up-allied-resource-amount this-any-ally food < 800))
+    (and (players-current-age any-ally == feudal-age) (and (game-time >= 1800) (current-age >= castle-age)))
 =>
     (tribute-to-player this-any-ally food 100)
 )
 (defrule
-    (and (players-current-age any-ally == feudal-age) (and (game-time >= 1800) (current-age >= castle-age)))
     (and (gold-amount > 200) (up-allied-resource-amount this-any-ally gold < 200))
+    (and (players-current-age any-ally == feudal-age) (and (game-time >= 1800) (current-age >= castle-age)))
 =>
     (tribute-to-player this-any-ally gold 100)
 )
 (defrule
     (not (goal team-game 1))
 =>
-    (up-jump-rule 13)
+    (up-jump-rule 19)
+)
+(defrule
+    (taunt-detected any-ally 31)
+    (false)
+=>
+    (set-strategic-number sn-target-player-number 0)
+)
+(defrule
+    (goal attacking 1)
+    (taunt-detected any-ally 31)
+    (false)
+=>
+    (chat-to-allies "Already attacking!")
+)
+(defrule
+    (and (goal militant 1) (and (military-population > 5) (goal use-town-size-attack 0)))
+    (not (goal attacking 1))
+    (taunt-detected any-ally 31)
+    (false)
+=>
+    (set-goal taunt-allies 1)
+    (attack-now)
+)
+(defrule
+    (not (goal attacking 1))
+    (not (and (goal militant 1) (and (military-population > 5) (goal use-town-size-attack 0))))
+    (taunt-detected any-ally 31)
+    (false)
+=>
+    (set-goal taunt-allies 2)
+)
+(defrule
+    (taunt-detected any-ally 31)
+    (false)
+=>
+    (acknowledge-taunt this-any-ally 31)
+)
+(defrule
+    (taunt-detected any-ally 12)
+    (false)
+=>
+    (set-strategic-number sn-target-player-number -1)
+    (attack-now)
+    (chat-to-allies "1Help is on the way!")
+    (acknowledge-taunt this-any-ally 12)
 )
 (defrule
     (strategic-number sn-target-player-number == -1)
@@ -4849,15 +5079,15 @@
     (set-strategic-number sn-target-player-number 0)
 )
 (defrule
-    (taunt-detected any-ally 3)
     (and (building-type-count market > 0) (food-amount > 100))
+    (taunt-detected any-ally 3)
 =>
     (tribute-to-player this-any-ally food 100)
     (set-goal taunt-allies 1)
 )
 (defrule
-    (taunt-detected any-ally 3)
     (not (and (building-type-count market > 0) (food-amount > 100)))
+    (taunt-detected any-ally 3)
 =>
     (set-goal taunt-allies 2)
 )
@@ -4867,15 +5097,15 @@
     (acknowledge-taunt this-any-ally 3)
 )
 (defrule
-    (taunt-detected any-ally 4)
     (and (building-type-count market > 0) (wood-amount > 100))
+    (taunt-detected any-ally 4)
 =>
     (tribute-to-player this-any-ally wood 100)
     (set-goal taunt-allies 1)
 )
 (defrule
-    (taunt-detected any-ally 4)
     (not (and (building-type-count market > 0) (wood-amount > 100)))
+    (taunt-detected any-ally 4)
 =>
     (set-goal taunt-allies 2)
 )
@@ -4885,15 +5115,15 @@
     (acknowledge-taunt this-any-ally 4)
 )
 (defrule
-    (taunt-detected any-ally 5)
     (and (building-type-count market > 0) (gold-amount > 100))
+    (taunt-detected any-ally 5)
 =>
     (tribute-to-player this-any-ally gold 100)
     (set-goal taunt-allies 1)
 )
 (defrule
-    (taunt-detected any-ally 5)
     (not (and (building-type-count market > 0) (gold-amount > 100)))
+    (taunt-detected any-ally 5)
 =>
     (set-goal taunt-allies 2)
 )
@@ -4903,15 +5133,15 @@
     (acknowledge-taunt this-any-ally 5)
 )
 (defrule
-    (taunt-detected any-ally 6)
     (and (building-type-count market > 0) (stone-amount > 100))
+    (taunt-detected any-ally 6)
 =>
     (tribute-to-player this-any-ally stone 100)
     (set-goal taunt-allies 1)
 )
 (defrule
-    (taunt-detected any-ally 6)
     (not (and (building-type-count market > 0) (stone-amount > 100)))
+    (taunt-detected any-ally 6)
 =>
     (set-goal taunt-allies 2)
 )
@@ -4927,6 +5157,7 @@
     (disable-self)
 )
 (defrule
+    (goal 101 1)
     (game-time < 5)
 =>
     (set-goal 101 0)
@@ -4998,57 +5229,57 @@
     (disable-self)
 )
 (defrule
-    (game-time < 5)
     (goal 101 1)
+    (game-time < 5)
 =>
     (chat-to-all "Let's dance, punk!")
     (disable-self)
 )
 (defrule
-    (game-time < 5)
     (goal 101 2)
+    (game-time < 5)
 =>
     (chat-to-all "Do a headstand!")
     (disable-self)
 )
 (defrule
-    (game-time < 5)
     (goal 101 3)
+    (game-time < 5)
 =>
     (chat-to-all "Hit the floor!")
     (disable-self)
 )
 (defrule
-    (game-time < 5)
     (goal 101 4)
+    (game-time < 5)
 =>
     (chat-to-all "Hit it!")
     (disable-self)
 )
 (defrule
-    (game-time < 5)
     (goal 101 5)
+    (game-time < 5)
 =>
     (chat-to-all "Man, I like the vibe in here.")
     (disable-self)
 )
 (defrule
-    (game-time < 5)
     (goal 101 6)
+    (game-time < 5)
 =>
     (chat-to-all "Start the music!")
     (disable-self)
 )
 (defrule
-    (game-time < 5)
     (goal 101 7)
+    (game-time < 5)
 =>
     (chat-to-all "Let's turn it up a notch.")
     (disable-self)
 )
 (defrule
-    (game-time < 5)
     (goal 101 8)
+    (game-time < 5)
 =>
     (chat-to-all "Turn up the volume!")
     (disable-self)
@@ -5057,11 +5288,12 @@
     (true)
 =>
     (set-goal taunt-allies 0)
-    (disable-self)
     (set-goal taunt-enemies 0)
     (enable-timer 9 7200)
+    (disable-self)
 )
 (defrule
+    (goal 103 1)
     (timer-triggered 9)
 =>
     (set-goal 103 0)
@@ -5101,34 +5333,35 @@
     (disable-self)
 )
 (defrule
-    (timer-triggered 9)
     (goal 103 1)
+    (timer-triggered 9)
 =>
     (chat-to-all "This party's getting a bit stale...")
     (disable-self)
 )
 (defrule
-    (timer-triggered 9)
     (goal 103 2)
+    (timer-triggered 9)
 =>
     (chat-to-all "I'm getting a little tired...")
     (disable-self)
 )
 (defrule
-    (timer-triggered 9)
     (goal 103 3)
+    (timer-triggered 9)
 =>
     (chat-to-all "It's been a long night...")
     (disable-self)
 )
 (defrule
-    (timer-triggered 9)
     (goal 103 4)
+    (timer-triggered 9)
 =>
     (chat-to-all "All this dancing is giving me a headache...")
     (disable-self)
 )
 (defrule
+    (goal 104 1)
     (goal taunt-allies 1)
 =>
     (set-goal 104 0)
@@ -5156,20 +5389,20 @@
     (set-goal 104 3)
 )
 (defrule
-    (goal taunt-allies 1)
     (goal 104 1)
+    (goal taunt-allies 1)
 =>
     (chat-to-allies "1I'll dance to that!")
 )
 (defrule
-    (goal taunt-allies 1)
     (goal 104 2)
+    (goal taunt-allies 1)
 =>
     (chat-to-allies "1Right away.")
 )
 (defrule
-    (goal taunt-allies 1)
     (goal 104 3)
+    (goal taunt-allies 1)
 =>
     (chat-to-allies "1Gotcha!")
 )
@@ -5179,6 +5412,7 @@
     (set-goal taunt-allies 0)
 )
 (defrule
+    (goal 105 1)
     (goal taunt-allies 2)
 =>
     (set-goal 105 0)
@@ -5206,20 +5440,20 @@
     (set-goal 105 3)
 )
 (defrule
-    (goal taunt-allies 2)
     (goal 105 1)
+    (goal taunt-allies 2)
 =>
     (chat-to-allies "2Not really feelin' the vibe...")
 )
 (defrule
-    (goal taunt-allies 2)
     (goal 105 2)
+    (goal taunt-allies 2)
 =>
     (chat-to-allies "2Nah.")
 )
 (defrule
-    (goal taunt-allies 2)
     (goal 105 3)
+    (goal taunt-allies 2)
 =>
     (chat-to-allies "2No can-do, matey.")
 )
@@ -5229,6 +5463,7 @@
     (set-goal taunt-allies 0)
 )
 (defrule
+    (goal 106 1)
     (goal taunt-allies 3)
 =>
     (set-goal 106 0)
@@ -5256,20 +5491,20 @@
     (set-goal 106 3)
 )
 (defrule
-    (goal taunt-allies 3)
     (goal 106 1)
+    (goal taunt-allies 3)
 =>
     (chat-to-allies "3Any extra grub?")
 )
 (defrule
-    (goal taunt-allies 3)
     (goal 106 2)
+    (goal taunt-allies 3)
 =>
     (chat-to-allies "3Man, I'm starving.")
 )
 (defrule
-    (goal taunt-allies 3)
     (goal 106 3)
+    (goal taunt-allies 3)
 =>
     (chat-to-allies "3Working up an appetite here. Help?")
 )
@@ -5279,6 +5514,7 @@
     (set-goal taunt-allies 0)
 )
 (defrule
+    (goal 107 1)
     (goal taunt-allies 4)
 =>
     (set-goal 107 0)
@@ -5299,14 +5535,14 @@
     (set-goal 107 2)
 )
 (defrule
-    (goal taunt-allies 4)
     (goal 107 1)
+    (goal taunt-allies 4)
 =>
     (chat-to-allies "4Need wood. For plates?")
 )
 (defrule
-    (goal taunt-allies 4)
     (goal 107 2)
+    (goal taunt-allies 4)
 =>
     (chat-to-allies "4The stove's run out of fuel! You don't want me to freeze, right?")
 )
@@ -5316,6 +5552,7 @@
     (set-goal taunt-allies 0)
 )
 (defrule
+    (goal 108 1)
     (goal taunt-allies 5)
 =>
     (set-goal 108 0)
@@ -5336,14 +5573,14 @@
     (set-goal 108 2)
 )
 (defrule
-    (goal taunt-allies 5)
     (goal 108 1)
+    (goal taunt-allies 5)
 =>
     (chat-to-allies "5Spent all my money on drinks...")
 )
 (defrule
-    (goal taunt-allies 5)
     (goal 108 2)
+    (goal taunt-allies 5)
 =>
     (chat-to-allies "5Out of cash. Fix me up?")
 )
@@ -5353,6 +5590,7 @@
     (set-goal taunt-allies 0)
 )
 (defrule
+    (goal 109 1)
     (goal taunt-allies 6)
 =>
     (set-goal 109 0)
@@ -5373,14 +5611,14 @@
     (set-goal 109 2)
 )
 (defrule
-    (goal taunt-allies 6)
     (goal 109 1)
+    (goal taunt-allies 6)
 =>
     (chat-to-allies "6Need some rocks to throw.")
 )
 (defrule
-    (goal taunt-allies 6)
     (goal 109 2)
+    (goal taunt-allies 6)
 =>
     (chat-to-allies "6I fancy getting a bit stoned tonight.")
 )
@@ -5390,6 +5628,7 @@
     (set-goal taunt-allies 0)
 )
 (defrule
+    (goal 110 1)
     (goal taunt-allies 12)
 =>
     (set-goal 110 0)
@@ -5417,20 +5656,20 @@
     (set-goal 110 3)
 )
 (defrule
-    (goal taunt-allies 12)
     (goal 110 1)
+    (goal taunt-allies 12)
 =>
     (chat-to-allies "12Could use some help here!")
 )
 (defrule
-    (goal taunt-allies 12)
     (goal 110 2)
+    (goal taunt-allies 12)
 =>
     (chat-to-allies "12It's not looking good.")
 )
 (defrule
-    (goal taunt-allies 12)
     (goal 110 3)
+    (goal taunt-allies 12)
 =>
     (chat-to-allies "12Nasties in my base! Help?")
 )
@@ -5440,6 +5679,7 @@
     (set-goal taunt-allies 0)
 )
 (defrule
+    (goal 111 1)
     (goal taunt-allies 31)
 =>
     (set-goal 111 0)
@@ -5467,20 +5707,20 @@
     (set-goal 111 3)
 )
 (defrule
-    (goal taunt-allies 31)
     (goal 111 1)
+    (goal taunt-allies 31)
 =>
     (chat-to-allies "31Let's rock and roll!")
 )
 (defrule
-    (goal taunt-allies 31)
     (goal 111 2)
+    (goal taunt-allies 31)
 =>
     (chat-to-allies "31It's time to boogie!")
 )
 (defrule
-    (goal taunt-allies 31)
     (goal 111 3)
+    (goal taunt-allies 31)
 =>
     (chat-to-allies "31Let's waltz on in there!")
 )
@@ -5488,6 +5728,30 @@
     (goal taunt-allies 31)
 =>
     (set-goal taunt-allies 0)
+)
+(defrule
+    (false)
+=>
+    (set-goal out-count 0)
+    (disable-self)
+)
+(defrule
+    (and (up-pending-objects c: villager == 0) (civilian-population < 100))
+    (false)
+=>
+    (up-modify-goal out-count c:+ 1)
+)
+(defrule
+    (not (and (up-pending-objects c: villager == 0) (civilian-population < 100)))
+    (false)
+=>
+    (set-goal out-count 0)
+)
+(defrule
+    (up-compare-goal out-count >= 2)
+    (false)
+=>
+    (chat-to-all "I'm not making any villagers!")
 )
 (defrule
     (true)
