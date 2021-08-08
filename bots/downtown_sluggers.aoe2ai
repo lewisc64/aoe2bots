@@ -18,7 +18,7 @@ load "templates/fast_castle.aoe2ai"
   sell food when food > 1500
   buy stone when gold > 1500
   
-  build forward 10 castle
+  build forward 10 castle near town-center
   build houses
   build farms
   build lumber camps
