@@ -67,6 +67,7 @@ const max-gold = 1500
   research imperial-age with food and gold escrow
 #then
   sn-maximum-town-size += 4
+  sn-enable-training-queue = 0
 #end when
 
 #if up-compare-goal non-escrowed-wood >= 200
