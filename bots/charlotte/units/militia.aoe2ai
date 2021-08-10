@@ -10,7 +10,7 @@ load "research/barracks/prerequisites.aoe2ai"
     load "research/barracks/champion.aoe2ai"
   #end if
   
-  load "units/types/infantry.aoe2ai"
+  load "types/infantry.aoe2ai"
   
   #if goal produce-units 1 and goal enough-food 1 and goal enough-gold 1
     #when

@@ -1,9 +1,9 @@
-load "units/villager.aoe2ai"
+load "villager.aoe2ai"
 #if goal produce-trade-carts 1
-  load "units/trade_cart.aoe2ai"
+  load "trade_cart.aoe2ai"
 #end if
 #if goal water-map 1
-  load "units/fishing_ship.aoe2ai"
+  load "fishing_ship.aoe2ai"
 #end if
 
 #do once
@@ -83,7 +83,7 @@ goal total-type-production = 0
 @up-get-fact military-population 0 expected-units-per-type
 @up-modify-goal expected-units-per-type g:/ total-type-production
 
-load "units/prerequisites.aoe2ai"
+load "prerequisites.aoe2ai"
 
 #subroutine load-unit
   #if goal {production_goal} 1 and unit-available {unit}
@@ -99,30 +99,30 @@ load "units/prerequisites.aoe2ai"
   #end if
 #end subroutine
 
-call load-unit(production_goal="produce-archers",unit="archer-line",unit_path="units/archer.aoe2ai")
-call load-unit(production_goal="produce-hand-cannoneers",unit="hand-cannoneer",unit_path="units/hand_cannoneer.aoe2ai")
-call load-unit(production_goal="produce-skirmishers",unit="skirmisher-line",unit_path="units/skirmisher.aoe2ai")
-call load-unit(production_goal="produce-cavalry-archers",unit="cavalry-archer-line",unit_path="units/cavalry_archer.aoe2ai")
+call load-unit(production_goal="produce-archers",unit="archer-line",unit_path="archer.aoe2ai")
+call load-unit(production_goal="produce-hand-cannoneers",unit="hand-cannoneer",unit_path="hand_cannoneer.aoe2ai")
+call load-unit(production_goal="produce-skirmishers",unit="skirmisher-line",unit_path="skirmisher.aoe2ai")
+call load-unit(production_goal="produce-cavalry-archers",unit="cavalry-archer-line",unit_path="cavalry_archer.aoe2ai")
 
-call load-unit(production_goal="produce-militia",unit="militiaman-line",unit_path="units/militia.aoe2ai")
-call load-unit(production_goal="produce-spearmen",unit="spearman-line",unit_path="units/spearman.aoe2ai")
-call load-unit(production_goal="produce-eagles",unit="eagle-warrior-line",unit_path="units/eagle_warrior.aoe2ai")
+call load-unit(production_goal="produce-militia",unit="militiaman-line",unit_path="militia.aoe2ai")
+call load-unit(production_goal="produce-spearmen",unit="spearman-line",unit_path="spearman.aoe2ai")
+call load-unit(production_goal="produce-eagles",unit="eagle-warrior-line",unit_path="eagle_warrior.aoe2ai")
 
-call load-unit(production_goal="produce-scouts",unit="scout-cavalry-line",unit_path="units/scout_cavalry.aoe2ai")
-call load-unit(production_goal="produce-knights",unit="knight-line",unit_path="units/knight.aoe2ai")
-call load-unit(production_goal="produce-camels",unit="camel-line",unit_path="units/camel.aoe2ai")
-call load-unit(production_goal="produce-battle-elephants",unit="battle-elephant-line",unit_path="units/battle_elephant.aoe2ai")
+call load-unit(production_goal="produce-scouts",unit="scout-cavalry-line",unit_path="scout_cavalry.aoe2ai")
+call load-unit(production_goal="produce-knights",unit="knight-line",unit_path="knight.aoe2ai")
+call load-unit(production_goal="produce-camels",unit="camel-line",unit_path="camel.aoe2ai")
+call load-unit(production_goal="produce-battle-elephants",unit="battle-elephant-line",unit_path="battle_elephant.aoe2ai")
 
-call load-unit(production_goal="produce-battering-rams",unit="battering-ram-line",unit_path="units/battering_ram.aoe2ai")
-call load-unit(production_goal="produce-mangonels",unit="mangonel-line",unit_path="units/mangonel.aoe2ai")
-call load-unit(production_goal="produce-scorpions",unit="scorpion-line",unit_path="units/scorpion.aoe2ai")
-call load-unit(production_goal="produce-bombard-cannons",unit="bombard-cannon",unit_path="units/bombard_cannon.aoe2ai")
+call load-unit(production_goal="produce-battering-rams",unit="battering-ram-line",unit_path="battering_ram.aoe2ai")
+call load-unit(production_goal="produce-mangonels",unit="mangonel-line",unit_path="mangonel.aoe2ai")
+call load-unit(production_goal="produce-scorpions",unit="scorpion-line",unit_path="scorpion.aoe2ai")
+call load-unit(production_goal="produce-bombard-cannons",unit="bombard-cannon",unit_path="bombard_cannon.aoe2ai")
 
-call load-unit(production_goal="produce-trebuchets",unit="trebuchet-set",unit_path="units/trebuchet.aoe2ai")
-call load-unit(production_goal="produce-unique-units",unit="my-unique-unit-line",unit_path="units/unique_unit.aoe2ai")
+call load-unit(production_goal="produce-trebuchets",unit="trebuchet-set",unit_path="trebuchet.aoe2ai")
+call load-unit(production_goal="produce-unique-units",unit="my-unique-unit-line",unit_path="unique_unit.aoe2ai")
 
-call load-unit(production_goal="produce-monks",unit="monk-set",unit_path="units/monk.aoe2ai")
+call load-unit(production_goal="produce-monks",unit="monk-set",unit_path="monk.aoe2ai")
 
-call load-unit(production_goal="produce-galleys",unit="galley-line",unit_path="units/galley.aoe2ai")
-call load-unit(production_goal="produce-fire-ships",unit="fire-ship-line",unit_path="units/fire_ship.aoe2ai")
-call load-unit(production_goal="produce-cannon-galleons",unit="cannon-galleon-line",unit_path="units/cannon_galleon.aoe2ai")
+call load-unit(production_goal="produce-galleys",unit="galley-line",unit_path="galley.aoe2ai")
+call load-unit(production_goal="produce-fire-ships",unit="fire-ship-line",unit_path="fire_ship.aoe2ai")
+call load-unit(production_goal="produce-cannon-galleons",unit="cannon-galleon-line",unit_path="cannon_galleon.aoe2ai")

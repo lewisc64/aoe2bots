@@ -5,16 +5,16 @@
   goal emergency-trash = 0
 #end do
 
-load "directives/age/feudal_rush.aoe2ai"
-load "directives/do_misc_research.aoe2ai"
-load "directives/mad_strats.aoe2ai"
+load "age/feudal_rush.aoe2ai"
+load "do_misc_research.aoe2ai"
+load "mad_strats.aoe2ai"
 
 load "units/all_switched.aoe2ai"
 
 #select random persistant
-  load "directives/fortification/full.aoe2ai"
+  load "fortification/full.aoe2ai"
 #randor
-  load "directives/fortification/murder_holes_only.aoe2ai"
+  load "fortification/murder_holes_only.aoe2ai"
 #end select
 
 #if goal attack-ready 1
@@ -22,32 +22,32 @@ load "units/all_switched.aoe2ai"
     chat to self "attack ready!"
   #end do
   
-  load "directives/civ_decisions.aoe2ai"
-  load "directives/random_unit_selection.aoe2ai"
+  load "civ_decisions.aoe2ai"
+  load "random_unit_selection.aoe2ai"
   
   #select random persistant
-    load "directives/attack_decision/passive.aoe2ai"
-    load "directives/pacing/balanced.aoe2ai"
+    load "attack_decision/passive.aoe2ai"
+    load "pacing/balanced.aoe2ai"
   #randor
-    load "directives/attack_decision/cautious.aoe2ai"
-    load "directives/pacing/balanced.aoe2ai"
+    load "attack_decision/cautious.aoe2ai"
+    load "pacing/balanced.aoe2ai"
   #randor
-    load "directives/attack_decision/aggressive.aoe2ai"
-    load "directives/pacing/balanced.aoe2ai"
+    load "attack_decision/aggressive.aoe2ai"
+    load "pacing/balanced.aoe2ai"
   #randor
-    load "directives/attack_decision/reckless.aoe2ai"
-    load "directives/pacing/balanced.aoe2ai"
+    load "attack_decision/reckless.aoe2ai"
+    load "pacing/balanced.aoe2ai"
   #end select
   
-  load "directives/emergency_trash.aoe2ai"
+  load "emergency_trash.aoe2ai"
   #if goal emergency-trash 0
-    load "directives/being_countered_system.aoe2ai"
-    load "directives/counter_system.aoe2ai"
+    load "being_countered_system.aoe2ai"
+    load "counter_system.aoe2ai"
   #end if
-  load "directives/mandatory_siege.aoe2ai"
+  load "mandatory_siege.aoe2ai"
   
-  load "directives/targetting.aoe2ai"
-  load "directives/town_size_attack.aoe2ai"
+  load "targetting.aoe2ai"
+  load "town_size_attack.aoe2ai"
 #else
   goal do-research = 1
   goal produce-units = 0
@@ -69,5 +69,5 @@ load "units/all_switched.aoe2ai"
   sn-enable-training-queue = 0
 #end if
 
-load "directives/help_allies.aoe2ai"
-load "directives/resigning.aoe2ai"
+load "help_allies.aoe2ai"
+load "resigning.aoe2ai"

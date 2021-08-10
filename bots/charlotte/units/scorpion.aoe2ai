@@ -11,7 +11,7 @@ load "research/siege_workshop/prerequisites.aoe2ai"
     #end if
   #end if
   
-  load "units/types/siege.aoe2ai"
+  load "types/siege.aoe2ai"
   
   #if goal produce-units 1 and goal enough-wood 1 and goal enough-gold 1
     #when

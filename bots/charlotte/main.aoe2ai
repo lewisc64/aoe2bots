@@ -33,7 +33,7 @@ const wood-unit-threshold = 275
 const food-unit-threshold = 0
 const gold-unit-threshold = 0
 
-#if false // build queue debugging
+#if true // build queue debugging
   #subroutine in-build-queue
     goal temp = 0
     @up-get-fact building-type-count-total {building} temp
@@ -70,7 +70,7 @@ const gold-unit-threshold = 0
 
 // @up-chat-data-to-all "town size: %d" s: sn-maximum-town-size
 
-#if strategic-number sn-food-gatherer-percentage == 0 and false // gatherer percentage debugging
+#if strategic-number sn-food-gatherer-percentage == 0 // gatherer percentage debugging
   @up-chat-data-to-all "wood gatherers: %d" s: sn-wood-gatherer-percentage
   @up-chat-data-to-all "food gatherers: %d" s: sn-food-gatherer-percentage
   @up-chat-data-to-all "gold gatherers: %d" s: sn-gold-gatherer-percentage

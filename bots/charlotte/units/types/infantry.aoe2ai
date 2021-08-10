@@ -18,7 +18,7 @@
   #end if
 #end if
 
-load "units/types/infantry_cavalry.aoe2ai"
+load "infantry_cavalry.aoe2ai"
 
 #do once
   goal barracks-count = 0

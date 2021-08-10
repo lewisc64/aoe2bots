@@ -9,7 +9,7 @@
 #end repeat
 
 #if goal balanced-aggressive 1
-  load "directives/pacing/reckless.aoe2ai"
+  load "reckless.aoe2ai"
 #else
-  load "directives/pacing/thoughtful.aoe2ai"
+  load "thoughtful.aoe2ai"
 #end if

@@ -40,16 +40,16 @@
   goal desired-military-buildings-per-type = 0
   
   #if civ-selected aztec or civ-selected celtic or civ-selected ethiopian or civ-selected frankish or civ-selected gothic or civ-selected incan or civ-selected japanese or civ-selected malay or civ-selected malian or civ-selected teutonic or civ-selected viking
-    load "units/types/infantry.aoe2ai"
+    load "types/infantry.aoe2ai"
   #end if
   #if civ-selected berbers or civ-selected indian or civ-selected korean or civ-selected mongol or civ-selected burmese
-    load "units/types/cavalry_archer.aoe2ai"
+    load "types/cavalry_archer.aoe2ai"
   #end if
   #if civ-selected briton or civ-selected chinese or civ-selected italian or civ-selected mayan or civ-selected vietnamese
-    load "units/types/ranged.aoe2ai"
+    load "types/ranged.aoe2ai"
   #end if
   #if civ-selected byzantine or civ-selected hun or civ-selected magyar or civ-selected persian or civ-selected saracen or civ-selected slavic
-    load "units/types/cavalry.aoe2ai"
+    load "types/cavalry.aoe2ai"
   #end if
   
   #if civ-selected briton and current-age >= castle-age and civilian-population >= expensive-tech-villagers

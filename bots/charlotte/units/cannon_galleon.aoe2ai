@@ -3,7 +3,7 @@ load "research/dock/prerequisites.aoe2ai"
 
 #if unit-available cannon-galleon-line
   
-  load "units/types/ship.aoe2ai"
+  load "types/ship.aoe2ai"
   
   #if goal produce-units 1 and goal enough-wood 1 and goal enough-gold 1
     #when
