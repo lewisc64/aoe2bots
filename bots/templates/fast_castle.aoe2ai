@@ -1,6 +1,5 @@
 #do once
   set up basics
-  take boar
 #end do once
 
 #if current-age <= feudal-age
@@ -25,6 +24,8 @@
     distribute villagers 20 80 0 0
     sn-enable-training-queue = 1
   #end do once
+  
+  lure boars
   
   research ri-loom
   
