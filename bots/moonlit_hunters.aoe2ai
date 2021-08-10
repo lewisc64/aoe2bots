@@ -22,6 +22,8 @@ load "templates/fast_castle.aoe2ai"
     escrow 10 gold
   #end do
   
+  auto balance wood and food and gold
+  
   research imperial-age with food and gold escrow
   
   research lumber camp upgrades with food and gold escrow
@@ -47,9 +49,9 @@ load "templates/fast_castle.aoe2ai"
   
   build 1 barracks
   #if current-age <= castle-age
-    build 3 archery-range
-  #else
     build 4 archery-range
+  #else
+    build 6 archery-range
   #end if
   build 1 stable
   build 1 blacksmith
