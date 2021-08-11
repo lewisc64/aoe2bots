@@ -33,7 +33,7 @@ const wood-unit-threshold = 275
 const food-unit-threshold = 0
 const gold-unit-threshold = 0
 
-#if true // build queue debugging
+#if false // build queue debugging
   #subroutine in-build-queue
     goal temp = 0
     @up-get-fact building-type-count-total {building} temp
