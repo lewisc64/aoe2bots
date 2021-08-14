@@ -14,7 +14,7 @@ load "../research/siege_workshop/prerequisites.aoe2ai"
   
   load "../research/blacksmith/ring_archer_armor.aoe2ai"
 
-  #if goal produce-units 1 and goal enough-food 1 and goal enough-gold 1
+  #if goal produce-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1
     #when
       train hand-cannoneer
     #then

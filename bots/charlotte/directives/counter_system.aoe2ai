@@ -3,16 +3,16 @@
 #if goal partial-ranged-blacksmith-investment 1
   #if players-unit-type-count target-player skirmisher-line >= min-detection-units
     goal produce-skirmishers = 1
-    chat to all "COUNTER SKIRMS WITH SKIRMS"
+    chat to self "COUNTER SKIRMS WITH SKIRMS"
   #else if players-unit-type-count target-player archer-line >= min-detection-units
     goal produce-skirmishers = 1
-    chat to all "COUNTER ARCHERS WITH SKIRMS"
+    chat to self "COUNTER ARCHERS WITH SKIRMS"
   #else if players-unit-type-count target-player cavalry-archer-line >= min-detection-units
     goal produce-skirmishers = 1
-    chat to all "COUNTER CAV ARCHERS WITH SKIRMS"
+    chat to self "COUNTER CAV ARCHERS WITH SKIRMS"
   #else if players-unit-type-count target-player spearman-line >= min-detection-units
     goal produce-skirmishers = 1
-    chat to all "COUNTER SPEARMEN WITH SKIRMS"
+    chat to self "COUNTER SPEARMEN WITH SKIRMS"
   #else
     goal produce-skirmishers = 0
   #end if
@@ -22,16 +22,16 @@
 
 #if goal partial-infantry-blacksmith-investment 1 and (current-age == feudal-age or research-available ri-pikeman or research-completed ri-pikeman)
   #if players-unit-type-count target-player scout-cavalry-line >= min-detection-units
-    chat to all "COUNTER SCOUTS WITH SPEARMEN"
+    chat to self "COUNTER SCOUTS WITH SPEARMEN"
     goal produce-spearmen = 1
   #else if players-unit-type-count target-player knight-line >= min-detection-units and goal produce-monks 0
-    chat to all "COUNTER KNIGHTS WITH SPEARMEN"
+    chat to self "COUNTER KNIGHTS WITH SPEARMEN"
     goal produce-spearmen = 1
   #else if players-unit-type-count target-player battle-elephant-line >= min-detection-units and goal produce-monks 0
-    chat to all "COUNTER ELES WITH SPEARMEN"
+    chat to self "COUNTER ELES WITH SPEARMEN"
     goal produce-spearmen = 1
   #else if players-unit-type-count target-player camel-line >= min-detection-units and goal produce-monks 0
-    chat to all "COUNTER CAMELS WITH SPEARMEN"
+    chat to self "COUNTER CAMELS WITH SPEARMEN"
     goal produce-spearmen = 1
   #else
     goal produce-spearmen = 0
@@ -42,6 +42,6 @@
 
 // light counters, do not go through full flow
 #if current-age == feudal-age and players-unit-type-count target-player scout-cavalry-line >= 2
-  chat to all "LIGHT COUNTER SCOUTS WITH SPEARMEN"
+  chat to self "LIGHT COUNTER SCOUTS WITH SPEARMEN"
   train 4 spearman-line
 #end if

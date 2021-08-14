@@ -3,45 +3,43 @@
   goal do-taunt = -1
 #end do
 
-#if not goal do-taunt -1
-  #if goal do-taunt-target every-ally
-    #if goal do-taunt 1
-      #select random
-        chat to allies "1Sure."
-      #randor
-        chat to allies "1Of course."
-      #randor
-        chat to allies "1Okay."
-      #end select
-    #end if
-    #if goal do-taunt 2
-      #select random
-        chat to allies "2Sorry, no."
-      #randor
-        chat to allies "2Not right now, sorry."
-      #randor
-        chat to allies "2Sorry, no can do!"
-      #end select
-    #end if
-  #else if goal do-taunt-target every-enemy
-    #if goal do-taunt 1
-      #select random
-        chat to allies "1Why not?"
-      #randor
-        chat to allies "1Sounds good."
-      #randor
-        chat to allies "1Sure."
-      #end select
-    #end if
-    #if goal do-taunt 2
-      #select random
-        chat to allies "2Absolutely not."
-      #randor
-        chat to allies "2Are you out of your mind?"
-      #randor
-        chat to allies "2As if!"
-      #end select
-    #end if
+#if goal do-taunt-target every-ally
+  #if goal do-taunt 1
+    #select random
+      chat to allies "1Sure."
+    #randor
+      chat to allies "1Of course."
+    #randor
+      chat to allies "1Okay."
+    #end select
+  #end if
+  #if goal do-taunt 2
+    #select random
+      chat to allies "2Sorry, no."
+    #randor
+      chat to allies "2Not right now, sorry."
+    #randor
+      chat to allies "2Sorry, no can do!"
+    #end select
+  #end if
+#else if goal do-taunt-target every-enemy
+  #if goal do-taunt 1
+    #select random
+      chat to allies "1Why not?"
+    #randor
+      chat to allies "1Sounds good."
+    #randor
+      chat to allies "1Sure."
+    #end select
+  #end if
+  #if goal do-taunt 2
+    #select random
+      chat to allies "2Absolutely not."
+    #randor
+      chat to allies "2Are you out of your mind?"
+    #randor
+      chat to allies "2As if!"
+    #end select
   #end if
 #end if
 

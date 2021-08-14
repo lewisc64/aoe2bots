@@ -33,14 +33,16 @@
   #end if
 #end repeat
 
-// do we trade?
+// how late do we trade?
 #if goal team-game 1 and current-age >= castle-age and (goal full-water-map 0 or map-type team-islands)
   build 1 market
   #if players-building-type-count any-ally market >= 1
     #select random persistant
       goal produce-trade-carts = 1
     #randor
-      goal produce-trade-carts = 0
+      #if current-age >= imperial-age
+        goal produce-trade-carts = 0
+      #end if
     #end select
   #end if
 #end if

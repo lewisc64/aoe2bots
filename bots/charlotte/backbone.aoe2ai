@@ -1,0 +1,247 @@
+const ri-yeomen = 3
+const ri-el-dorado = 4
+const ri-garland-wars = 24
+const ri-beserkergang = 49
+const ri-perfusion = 457
+const ri-logistica = 61
+const ri-mahouts = 7
+const ri-sipahi = 491
+const ri-rocketry = 52
+const ri-bearded-axe = 83
+
+const sea-fish = 905
+const tc-arrow = 54
+const watch-tower-arrow = 786
+const castle-arrow = 746
+const castle-arrow-chemistry = 747
+const ranged-unit-class = 900
+const infantry-unit-class = 906
+const cavalry-unit-class = 912
+
+const dark-age-town-size = 12
+const feudal-age-town-size = 14
+const castle-age-town-size = 24
+const imperial-age-town-size = 30
+const max-rams = 10
+const max-trebs = 3
+const min-detection-units = 5
+
+const extortionate-tech-villagers = 100
+const expensive-tech-villagers = 70
+
+const wood-unit-threshold = 275
+const food-unit-threshold = 0
+const gold-unit-threshold = 0
+
+#if false // build queue debugging
+  #subroutine in-build-queue
+    goal temp = 0
+    @up-get-fact building-type-count-total {building} temp
+    #if up-pending-objects c: {building} > 0
+      @up-chat-data-to-all "There are '{building}' queued. Count total: %d" g: temp
+    #end if
+  #end subroutine
+
+  call in-build-queue(building="archery-range")
+  call in-build-queue(building="barracks")
+  call in-build-queue(building="blacksmith")
+  call in-build-queue(building="bombard-tower")
+  call in-build-queue(building="castle")
+  call in-build-queue(building="dock")
+  call in-build-queue(building="farm")
+  call in-build-queue(building="fish-trap")
+  call in-build-queue(building="guard-tower")
+  call in-build-queue(building="house")
+  call in-build-queue(building="keep")
+  call in-build-queue(building="lumber-camp")
+  call in-build-queue(building="market")
+  call in-build-queue(building="mill")
+  call in-build-queue(building="mining-camp")
+  call in-build-queue(building="monastery")
+  call in-build-queue(building="outpost")
+  call in-build-queue(building="siege-workshop")
+  call in-build-queue(building="stable")
+  call in-build-queue(building="town-center")
+  call in-build-queue(building="university")
+  call in-build-queue(building="watch-tower")
+  call in-build-queue(building="watch-tower-line")
+  call in-build-queue(building="wonder")
+#end if
+
+// @up-chat-data-to-all "town size: %d" s: sn-maximum-town-size
+
+#if strategic-number sn-food-gatherer-percentage == 0 // gatherer percentage debugging
+  @up-chat-data-to-all "wood gatherers: %d" s: sn-wood-gatherer-percentage
+  @up-chat-data-to-all "food gatherers: %d" s: sn-food-gatherer-percentage
+  @up-chat-data-to-all "gold gatherers: %d" s: sn-gold-gatherer-percentage
+  @up-chat-data-to-all "stone gatherers: %d" s: sn-stone-gatherer-percentage
+#end if
+
+#subroutine clear-units
+  goal produce-trade-carts = 0
+  goal produce-archers = 0
+  goal produce-hand-cannoneers = 0
+  goal produce-skirmishers = 0
+  goal produce-cavalry-archers = 0
+  goal produce-militia = 0
+  goal produce-spearmen = 0
+  goal produce-eagles = 0
+  goal produce-scouts = 0
+  goal produce-knights = 0
+  goal produce-camels = 0
+  goal produce-battle-elephants = 0
+  goal produce-battering-rams = 0
+  goal produce-mangonels = 0
+  goal produce-scorpions = 0
+  goal produce-bombard-cannons = 0
+  goal produce-trebuchets = 0
+  goal produce-unique-units = 0
+  goal produce-monks = 0
+  goal produce-galleys = 0
+  goal produce-fire-ships = 0
+  goal produce-cannon-galleons = 0
+#end subroutine
+
+#subroutine clear-good-units
+  goal good-archers = 0
+  goal good-hand-cannoneers = 0
+  goal good-skirmishers = 0
+  goal good-cavalry-archers = 0
+  goal good-militia = 0
+  goal good-spearmen = 0
+  goal good-eagles = 0
+  goal good-scouts = 0
+  goal good-knights = 0
+  goal good-camels = 0
+  goal good-battle-elephants = 0
+  goal good-battering-rams = 0
+  goal good-mangonels = 0
+  goal good-scorpions = 0
+  goal good-monks = 0
+  goal good-unique-units = 0
+  goal good-galleys = 0
+  goal good-fire-ships = 0
+#end subroutine
+
+#do once
+  set up basics
+  take boar
+  target walls
+  
+  goal resign = 0
+  
+  sn-maximum-gold-drop-distance = 8
+  sn-maximum-stone-drop-distance = 8
+  sn-maximum-hunt-drop-distance = 48
+  
+  sn-maximum-attack-group-size = 1
+  sn-minimum-attack-group-size = 1
+  sn-special-attack-type2 = villager
+  
+  #if cc-players-unit-type-count any-ally villager > 0
+    goal team-game = 1
+  #else
+    goal team-game = 0
+  #end if
+  
+  #if goal team-game 0 and player-valid 1 and player-valid 2 and player-valid 3
+    goal free-for-all = 1
+  #else
+    goal free-for-all = 0
+  #end if
+  
+  goal full-water-map = 0
+  goal partial-water-map = 0
+  
+  #if map-type islands or map-type team-islands or map-type migration or map-type archipelago
+    goal full-water-map = 1
+  #else if map-type coastal or map-type rivers or map-type baltic or cc-players-unit-type-count 0 sea-fish >= 5
+    goal partial-water-map = 1
+  #end if
+  
+  #if goal full-water-map 1 or goal partial-water-map 1
+    goal water-map = 1
+  #else
+    goal water-map = 0
+  #end if
+  
+  goal desired-military-buildings-per-type = 2
+  goal desired-town-centers = 3
+  
+  goal desired-villagers = 120
+  #if goal team-game 1
+    goal desired-trade-carts = 20
+  #else
+    goal desired-trade-carts = 0
+  #end if
+  #if goal water-map 1
+    goal desired-fishing-ships = 10
+  #else
+    goal desired-fishing-ships = 0
+  #end if
+  
+  #select random persistant
+    goal desired-units = 1
+  #randor
+    goal desired-units = 1
+  #randor
+    goal desired-units = 2
+  #randor
+    goal desired-units = 2
+  #randor
+    goal desired-units = 3
+  #end select
+  
+  // previous numbers assume pop cap of 200, normalise to actual pop cap.
+  goal pop-cap-goal = 0
+  @up-get-fact population-cap 0 pop-cap-goal
+  @up-modify-goal desired-villagers g:* pop-cap-goal
+  @up-modify-goal desired-villagers c:/ 200
+  @up-modify-goal desired-trade-carts g:* pop-cap-goal
+  @up-modify-goal desired-trade-carts c:/ 200
+  @up-modify-goal desired-fishing-ships g:* pop-cap-goal
+  @up-modify-goal desired-fishing-ships c:/ 200
+  
+  goal produce-units = 1
+  goal do-research = 1
+  goal attacking = 0
+  goal enough-wood-for-units = 1
+  goal enough-food-for-units = 1
+  goal enough-gold-for-units = 1
+  
+  assign 8 builders to castle
+  assign 4 builders to town-center-foundation
+#end do
+
+#do once
+  call clear-units
+  call clear-good-units
+#end do
+
+goal attempted-researches = 0
+
+load "stats.aoe2ai"
+
+#if wood-amount >= wood-unit-threshold
+  goal enough-wood-for-units = 1
+#else
+  goal enough-wood-for-units = 0
+#end if
+
+#if food-amount >= food-unit-threshold
+  goal enough-food-for-units = 1
+#else
+  goal enough-food-for-units = 0
+#end if
+
+#if gold-amount >= gold-unit-threshold
+  goal enough-gold-for-units = 1
+#else
+  goal enough-gold-for-units = 0
+#end if
+
+#if goal attacking 0 and town-under-attack// or current-age == feudal-age
+  goal enough-wood-for-units = 1
+  goal enough-food-for-units = 1
+  goal enough-gold-for-units = 1
+#end if
