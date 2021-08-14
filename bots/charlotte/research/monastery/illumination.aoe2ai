@@ -1,6 +1,6 @@
 #if not research-completed ri-illumination
-  load "research/monastery/prerequisites.aoe2ai"
-  //load "research/town_center/imperial_age.aoe2ai"
+  load "../monastery/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
 
   #if research-available ri-illumination
     #if up-research-status c: ri-illumination < research-pending

@@ -1,6 +1,6 @@
 #if not research-completed ri-man-at-arms
-  load "research/barracks/prerequisites.aoe2ai"
-  //load "research/town_center/feudal_age.aoe2ai"
+  load "../barracks/prerequisites.aoe2ai"
+  //load "../town_center/feudal_age.aoe2ai"
 
   #if research-available ri-man-at-arms
     #if up-research-status c: ri-man-at-arms < research-pending

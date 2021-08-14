@@ -1,6 +1,6 @@
 #if not research-completed ri-wheel-barrow
-  load "research/town_center/prerequisites.aoe2ai"
-  //load "research/town_center/feudal_age.aoe2ai"
+  load "../town_center/prerequisites.aoe2ai"
+  //load "../town_center/feudal_age.aoe2ai"
 
   #if research-available ri-wheel-barrow
     #if up-research-status c: ri-wheel-barrow < research-pending

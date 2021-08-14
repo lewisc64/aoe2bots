@@ -9,7 +9,7 @@ load "age/feudal_rush.aoe2ai"
 load "do_misc_research.aoe2ai"
 load "mad_strats.aoe2ai"
 
-load "units/all_switched.aoe2ai"
+load "../units/all_switched.aoe2ai"
 
 #select random persistant
   load "fortification/full.aoe2ai"

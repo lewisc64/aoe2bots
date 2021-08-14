@@ -1,6 +1,6 @@
 #if not research-completed my-unique-unit-upgrade
-  load "research/castle/prerequisites.aoe2ai"
-  //load "research/town_center/imperial_age.aoe2ai"
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
 
   #if research-available my-unique-unit-upgrade
     #if up-research-status c: my-unique-unit-upgrade < research-pending

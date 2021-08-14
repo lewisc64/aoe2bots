@@ -1,7 +1,7 @@
 #if not research-completed ri-elite-eagle-warrior
-  load "research/barracks/prerequisites.aoe2ai"
-  //load "research/town_center/imperial_age.aoe2ai"
-  load "research/barracks/eagle_warrior.aoe2ai"
+  load "../barracks/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+  load "../barracks/eagle_warrior.aoe2ai"
 
   #if research-available ri-elite-eagle-warrior
     #if up-research-status c: ri-elite-eagle-warrior < research-pending

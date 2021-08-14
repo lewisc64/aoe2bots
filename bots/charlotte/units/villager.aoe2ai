@@ -1,26 +1,26 @@
-load "research/town_center/prerequisites.aoe2ai"
+load "../research/town_center/prerequisites.aoe2ai"
 
 #if unit-available villager
   #if current-age >= feudal-age
-    load "research/town_center/loom.aoe2ai"
+    load "../research/town_center/loom.aoe2ai"
   #end if
   
   #if current-age == feudal-age
-    load "research/town_center/wheelbarrow.aoe2ai"
-    load "research/lumber_camp/double_bit_axe.aoe2ai"
-    load "research/mill/horse_collar.aoe2ai"
-    load "research/mining_camp/gold_mining.aoe2ai"
+    load "../research/town_center/wheelbarrow.aoe2ai"
+    load "../research/lumber_camp/double_bit_axe.aoe2ai"
+    load "../research/mill/horse_collar.aoe2ai"
+    load "../research/mining_camp/gold_mining.aoe2ai"
   #else if current-age == castle-age
-    load "research/lumber_camp/bow_saw.aoe2ai"
-    load "research/mill/heavy_plow.aoe2ai"
+    load "../research/lumber_camp/bow_saw.aoe2ai"
+    load "../research/mill/heavy_plow.aoe2ai"
   #else if current-age == imperial-age
-    load "research/town_center/hand_cart.aoe2ai"
-    load "research/lumber_camp/two_man_saw.aoe2ai"
-    load "research/mill/crop_rotation.aoe2ai"
+    load "../research/town_center/hand_cart.aoe2ai"
+    load "../research/lumber_camp/two_man_saw.aoe2ai"
+    load "../research/mill/crop_rotation.aoe2ai"
   #end if
   
   #if current-age >= castle-age
-    load "research/mining_camp/gold_shaft_mining.aoe2ai"
+    load "../research/mining_camp/gold_shaft_mining.aoe2ai"
   #end if
   
   #do once
@@ -43,6 +43,6 @@ load "research/town_center/prerequisites.aoe2ai"
   #end if
   
   #if game-time >= 60
-    load "research/town_center/loom.aoe2ai"
+    load "../research/town_center/loom.aoe2ai"
   #end if
 #end if

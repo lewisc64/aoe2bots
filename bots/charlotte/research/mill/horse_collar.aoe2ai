@@ -1,6 +1,6 @@
 #if not research-completed ri-horse-collar
-  load "research/mill/prerequisites.aoe2ai"
-  //load "research/town_center/feudal_age.aoe2ai"
+  load "../mill/prerequisites.aoe2ai"
+  //load "../town_center/feudal_age.aoe2ai"
 
   #if research-available ri-horse-collar
     #if up-research-status c: ri-horse-collar < research-pending

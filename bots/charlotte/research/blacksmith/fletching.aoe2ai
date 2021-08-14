@@ -1,6 +1,6 @@
 #if not research-completed ri-fletching
-  load "research/blacksmith/prerequisites.aoe2ai"
-  //load "research/town_center/feudal_age.aoe2ai"
+  load "../blacksmith/prerequisites.aoe2ai"
+  //load "../town_center/feudal_age.aoe2ai"
 
   #if research-available ri-fletching
     #if up-research-status c: ri-fletching < research-pending

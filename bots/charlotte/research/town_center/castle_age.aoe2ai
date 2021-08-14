@@ -1,10 +1,10 @@
 #if not research-completed castle-age
-  load "research/town_center/prerequisites.aoe2ai"
-  load "research/town_center/feudal_age.aoe2ai"
+  load "../town_center/prerequisites.aoe2ai"
+  load "../town_center/feudal_age.aoe2ai"
 
-  load "research/blacksmith/prerequisites.aoe2ai"
+  load "../blacksmith/prerequisites.aoe2ai"
   #if building-type-count archery-range == 0 and building-type-count stable == 0
-    load "research/market/prerequisites.aoe2ai"
+    load "../market/prerequisites.aoe2ai"
   #end if
   
   #if food-amount < 800

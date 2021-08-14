@@ -1,6 +1,6 @@
 #if not research-completed ri-pikeman
-  load "research/barracks/prerequisites.aoe2ai"
-  //load "research/town_center/castle_age.aoe2ai"
+  load "../barracks/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
 
   #if research-available ri-pikeman
     #if up-research-status c: ri-pikeman < research-pending

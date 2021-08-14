@@ -1,6 +1,6 @@
 #if not research-completed ri-padded-archer-armor
-  load "research/blacksmith/prerequisites.aoe2ai"
-  //load "research/town_center/feudal_age.aoe2ai"
+  load "../blacksmith/prerequisites.aoe2ai"
+  //load "../town_center/feudal_age.aoe2ai"
 
   #if research-available ri-padded-archer-armor
     #if up-research-status c: ri-padded-archer-armor < research-pending

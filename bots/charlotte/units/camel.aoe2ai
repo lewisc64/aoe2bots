@@ -1,10 +1,10 @@
-//load "research/town_center/castle_age.aoe2ai"
-load "research/stable/prerequisites.aoe2ai"
+//load "../research/town_center/castle_age.aoe2ai"
+load "../research/stable/prerequisites.aoe2ai"
 
 #if unit-available camel-line
   #if current-age == imperial-age
-    load "research/stable/heavy_camel.aoe2ai"
-    load "research/stable/imperial_camel.aoe2ai"
+    load "../research/stable/heavy_camel.aoe2ai"
+    load "../research/stable/imperial_camel.aoe2ai"
   #end if
   
   load "types/cavalry.aoe2ai"

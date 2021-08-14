@@ -1,6 +1,6 @@
 #if not research-completed ri-fortified-wall
-  load "research/university/prerequisites.aoe2ai"
-  //load "research/town_center/castle_age.aoe2ai"
+  load "../university/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
 
   #if research-available ri-fortified-wall
     #if up-research-status c: ri-fortified-wall < research-pending

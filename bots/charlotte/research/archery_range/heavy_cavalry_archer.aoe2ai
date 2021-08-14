@@ -1,6 +1,6 @@
 #if not research-completed ri-heavy-cavalry-archer
-  load "research/archery_range/prerequisites.aoe2ai"
-  //load "research/town_center/imperial_age.aoe2ai"
+  load "../archery_range/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
 
   #if research-available ri-heavy-cavalry-archer
     #if up-research-status c: ri-heavy-cavalry-archer < research-pending

@@ -1,18 +1,18 @@
 #if current-age == feudal-age
-  load "research/blacksmith/fletching.aoe2ai"
-  load "research/blacksmith/padded_archer_armor.aoe2ai"
+  load "../../research/blacksmith/fletching.aoe2ai"
+  load "../../research/blacksmith/padded_archer_armor.aoe2ai"
 #else if current-age == castle-age
-  load "research/blacksmith/bodkin_arrow.aoe2ai"
-  load "research/blacksmith/leather_archer_armor.aoe2ai"
+  load "../../research/blacksmith/bodkin_arrow.aoe2ai"
+  load "../../research/blacksmith/leather_archer_armor.aoe2ai"
 #else if current-age == imperial-age
-  load "research/blacksmith/bracer.aoe2ai"
-  load "research/blacksmith/ring_archer_armor.aoe2ai"
-  load "research/university/chemistry.aoe2ai"
+  load "../../research/blacksmith/bracer.aoe2ai"
+  load "../../research/blacksmith/ring_archer_armor.aoe2ai"
+  load "../../research/university/chemistry.aoe2ai"
 #end if
 
 #if current-age >= castle-age
-  load "research/archery_range/thumb_ring.aoe2ai"
-  load "research/university/ballistics.aoe2ai"
+  load "../../research/archery_range/thumb_ring.aoe2ai"
+  load "../../research/university/ballistics.aoe2ai"
 #end if
 
 build 1 barracks

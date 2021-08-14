@@ -1,6 +1,6 @@
 #if not research-completed ri-bloodlines
-  load "research/stable/prerequisites.aoe2ai"
-  //load "research/town_center/feudal_age.aoe2ai"
+  load "../stable/prerequisites.aoe2ai"
+  //load "../town_center/feudal_age.aoe2ai"
 
   #if research-available ri-bloodlines
     #if up-research-status c: ri-bloodlines < research-pending

@@ -1,5 +1,5 @@
 #if civilian-population >= 27 or death-match-game or population-cap < 100
-  load "research/town_center/imperial_age.aoe2ai"
+  load "../../research/town_center/imperial_age.aoe2ai"
 #end if
 
 #if up-research-status c: castle-age >= research-pending

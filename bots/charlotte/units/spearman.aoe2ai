@@ -1,11 +1,11 @@
-//load "research/town_center/feudal_age.aoe2ai"
-load "research/barracks/prerequisites.aoe2ai"
+//load "../research/town_center/feudal_age.aoe2ai"
+load "../research/barracks/prerequisites.aoe2ai"
 
 #if unit-available spearman-line
   #if current-age == castle-age
-    load "research/barracks/pikeman.aoe2ai"
+    load "../research/barracks/pikeman.aoe2ai"
   #else if current-age == imperial-age and civilian-population >= expensive-tech-villagers
-    load "research/barracks/halberdier.aoe2ai"
+    load "../research/barracks/halberdier.aoe2ai"
   #end if
   
   load "types/infantry.aoe2ai"

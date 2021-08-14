@@ -1,12 +1,12 @@
-//load "research/town_center/castle_age.aoe2ai"
-load "research/stable/prerequisites.aoe2ai"
+//load "../research/town_center/castle_age.aoe2ai"
+load "../research/stable/prerequisites.aoe2ai"
 
 #if unit-available knight-line
   #if current-age == imperial-age
     #if civilian-population >= extortionate-tech-villagers
-      load "research/stable/paladin.aoe2ai"
+      load "../research/stable/paladin.aoe2ai"
     #else
-      load "research/stable/cavalier.aoe2ai"
+      load "../research/stable/cavalier.aoe2ai"
     #end if
   #end if
   

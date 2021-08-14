@@ -1,8 +1,8 @@
 #if not research-completed ri-champion
-  load "research/barracks/prerequisites.aoe2ai"
-  //load "research/town_center/imperial_age.aoe2ai"
+  load "../barracks/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
   
-  load "research/barracks/two_handed_swordsman.aoe2ai"
+  load "../barracks/two_handed_swordsman.aoe2ai"
 
   #if research-available ri-champion
     #if up-research-status c: ri-champion < research-pending

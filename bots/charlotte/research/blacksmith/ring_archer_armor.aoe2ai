@@ -1,7 +1,7 @@
 #if not research-completed ri-ring-archer-armor
-  load "research/blacksmith/prerequisites.aoe2ai"
-  //load "research/town_center/imperial_age.aoe2ai"
-  load "research/blacksmith/leather_archer_armor.aoe2ai"
+  load "../blacksmith/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+  load "../blacksmith/leather_archer_armor.aoe2ai"
 
   #if research-available ri-ring-archer-armor
     #if up-research-status c: ri-ring-archer-armor < research-pending

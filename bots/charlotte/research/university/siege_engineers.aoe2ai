@@ -1,6 +1,6 @@
 #if not research-completed ri-siege-engineers
-  load "research/university/prerequisites.aoe2ai"
-  //load "research/town_center/imperial_age.aoe2ai"
+  load "../university/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
 
   #if research-available ri-siege-engineers
     #if up-research-status c: ri-siege-engineers < research-pending

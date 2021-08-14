@@ -1,6 +1,6 @@
 #if not research-completed ri-husbandry
-  load "research/stable/prerequisites.aoe2ai"
-  //load "research/town_center/castle_age.aoe2ai"
+  load "../stable/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
 
   #if research-available ri-husbandry
     #if up-research-status c: ri-husbandry < research-pending

@@ -1,14 +1,14 @@
 #if not research-completed imperial-age
-  load "research/town_center/prerequisites.aoe2ai"
-  load "research/town_center/castle_age.aoe2ai"
+  load "../town_center/prerequisites.aoe2ai"
+  load "../town_center/castle_age.aoe2ai"
 
   #if strategic-number sn-stone-gatherer-percentage > 0
     #if building-type-count monastery == 0 or building-type-count university == 0
-      load "research/castle/prerequisites.aoe2ai"
+      load "../castle/prerequisites.aoe2ai"
     #end if
   #else
-    load "research/monastery/prerequisites.aoe2ai"
-    load "research/university/prerequisites.aoe2ai"
+    load "../monastery/prerequisites.aoe2ai"
+    load "../university/prerequisites.aoe2ai"
   #end if
 
   #if research-available imperial-age

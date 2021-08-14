@@ -1,15 +1,15 @@
-//load "research/town_center/feudal_age.aoe2ai"
-load "research/archery_range/prerequisites.aoe2ai"
+//load "../research/town_center/feudal_age.aoe2ai"
+load "../research/archery_range/prerequisites.aoe2ai"
 
 #if unit-available archer-line
   #if current-age == castle-age
-    load "research/archery_range/crossbow.aoe2ai"
+    load "../research/archery_range/crossbow.aoe2ai"
   #else if current-age == imperial-age
-    load "research/archery_range/arbalest.aoe2ai"
+    load "../research/archery_range/arbalest.aoe2ai"
   #end if
   
   #if current-age >= castle-age and civilian-population >= expensive-tech-villagers
-    load "research/castle/yeomen.aoe2ai"
+    load "../research/castle/yeomen.aoe2ai"
   #end if
   
   load "types/ranged.aoe2ai"

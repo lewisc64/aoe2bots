@@ -1,6 +1,6 @@
 #if building-type-count-total stable == 0
-  load "research/barracks/prerequisites.aoe2ai"
-  //load "research/town_center/feudal_age.aoe2ai"
+  load "../barracks/prerequisites.aoe2ai"
+  //load "../town_center/feudal_age.aoe2ai"
 
   #if building-type-count barracks >= 1
     build 1 stable

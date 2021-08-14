@@ -1,6 +1,6 @@
 #if not research-completed ri-cavalier
-  load "research/stable/prerequisites.aoe2ai"
-  //load "research/town_center/imperial_age.aoe2ai"
+  load "../stable/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
 
   #if research-available ri-cavalier
     #if up-research-status c: ri-cavalier < research-pending

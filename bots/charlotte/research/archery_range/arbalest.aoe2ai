@@ -1,7 +1,7 @@
 #if not research-completed ri-arbalest
-  load "research/archery_range/prerequisites.aoe2ai"
-  load "research/archery_range/crossbow.aoe2ai"
-  //load "research/town_center/imperial_age.aoe2ai"
+  load "../archery_range/prerequisites.aoe2ai"
+  load "../archery_range/crossbow.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
 
   #if research-available ri-arbalest
     #if up-research-status c: ri-arbalest < research-pending

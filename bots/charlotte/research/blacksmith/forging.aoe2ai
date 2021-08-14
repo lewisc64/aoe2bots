@@ -1,6 +1,6 @@
 #if not research-completed ri-forging
-  load "research/blacksmith/prerequisites.aoe2ai"
-  //load "research/town_center/feudal_age.aoe2ai"
+  load "../blacksmith/prerequisites.aoe2ai"
+  //load "../town_center/feudal_age.aoe2ai"
 
   #if research-available ri-forging
     #if up-research-status c: ri-forging < research-pending

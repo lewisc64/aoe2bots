@@ -1,15 +1,15 @@
-load "research/monastery/prerequisites.aoe2ai"
+load "../research/monastery/prerequisites.aoe2ai"
 
 #if unit-available monk
   
-  load "research/monastery/theocracy.aoe2ai"
-  load "research/monastery/illumination.aoe2ai"
-  load "research/monastery/block_printing.aoe2ai"
+  load "../research/monastery/theocracy.aoe2ai"
+  load "../research/monastery/illumination.aoe2ai"
+  load "../research/monastery/block_printing.aoe2ai"
   
-  load "research/monastery/redemption.aoe2ai"
-  load "research/monastery/atonement.aoe2ai"
-  load "research/monastery/sanctity.aoe2ai"
-  load "research/monastery/fervor.aoe2ai"
+  load "../research/monastery/redemption.aoe2ai"
+  load "../research/monastery/atonement.aoe2ai"
+  load "../research/monastery/sanctity.aoe2ai"
+  load "../research/monastery/fervor.aoe2ai"
   
   #do once
     goal monastery-count = 0

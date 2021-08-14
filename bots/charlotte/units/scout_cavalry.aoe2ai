@@ -1,11 +1,11 @@
-//load "research/town_center/feudal_age.aoe2ai"
-load "research/stable/prerequisites.aoe2ai"
+//load "../research/town_center/feudal_age.aoe2ai"
+load "../research/stable/prerequisites.aoe2ai"
 
 #if unit-available scout-cavalry-line
   #if current-age == castle-age
-    load "research/stable/light_cavalry.aoe2ai"
+    load "../research/stable/light_cavalry.aoe2ai"
   #else if current-age == imperial-age
-    load "research/stable/hussar.aoe2ai"
+    load "../research/stable/hussar.aoe2ai"
   #end if
   
   load "types/cavalry.aoe2ai"

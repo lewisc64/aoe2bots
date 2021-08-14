@@ -1,9 +1,9 @@
-//load "research/town_center/feudal_age.aoe2ai"
-load "research/dock/prerequisites.aoe2ai"
+//load "../research/town_center/feudal_age.aoe2ai"
+load "../research/dock/prerequisites.aoe2ai"
 
 #if unit-available fishing-ship
   #if current-age >= castle-age
-    load "research/dock/gillnets.aoe2ai"
+    load "../research/dock/gillnets.aoe2ai"
   #end if
   
   load "types/ship.aoe2ai"

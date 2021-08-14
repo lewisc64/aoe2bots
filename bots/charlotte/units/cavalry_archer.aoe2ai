@@ -1,9 +1,9 @@
-//load "research/town_center/castle_age.aoe2ai"
-load "research/archery_range/prerequisites.aoe2ai"
+//load "../research/town_center/castle_age.aoe2ai"
+load "../research/archery_range/prerequisites.aoe2ai"
 
 #if unit-available cavalry-archer-line
   #if current-age == imperial-age and civilian-population >= expensive-tech-villagers
-    load "research/archery_range/heavy_cavalry_archer.aoe2ai"
+    load "../research/archery_range/heavy_cavalry_archer.aoe2ai"
   #end if
   
   load "types/cavalry_archer.aoe2ai"

@@ -1,8 +1,8 @@
 #if not research-completed ri-long-swordsman
-  load "research/barracks/prerequisites.aoe2ai"
-  //load "research/town_center/castle_age.aoe2ai"
+  load "../barracks/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
   
-  load "research/barracks/man_at_arms.aoe2ai"
+  load "../barracks/man_at_arms.aoe2ai"
 
   #if research-available ri-long-swordsman
     #if up-research-status c: ri-long-swordsman < research-pending

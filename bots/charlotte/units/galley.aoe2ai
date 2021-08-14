@@ -1,16 +1,16 @@
-//load "research/town_center/feudal_age.aoe2ai"
-load "research/dock/prerequisites.aoe2ai"
+//load "../research/town_center/feudal_age.aoe2ai"
+load "../research/dock/prerequisites.aoe2ai"
 
 #if unit-available galley-line
 
   #if current-age == feudal-age
-    load "research/blacksmith/fletching.aoe2ai"
+    load "../research/blacksmith/fletching.aoe2ai"
   #else if current-age == castle-age
-    load "research/blacksmith/bodkin_arrow.aoe2ai"
-    load "research/dock/war_galley.aoe2ai"
+    load "../research/blacksmith/bodkin_arrow.aoe2ai"
+    load "../research/dock/war_galley.aoe2ai"
   #else if current-age == imperial-age
-    load "research/blacksmith/bracer.aoe2ai"
-    load "research/dock/galleon.aoe2ai"
+    load "../research/blacksmith/bracer.aoe2ai"
+    load "../research/dock/galleon.aoe2ai"
   #end if
   
   load "types/ship.aoe2ai"

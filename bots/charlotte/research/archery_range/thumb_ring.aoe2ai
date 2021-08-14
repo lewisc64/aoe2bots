@@ -1,5 +1,5 @@
 #if not research-completed ri-thumb-ring
-  load "research/archery_range/prerequisites.aoe2ai"
+  load "../archery_range/prerequisites.aoe2ai"
 
   #if research-available ri-thumb-ring
     #if up-research-status c: ri-thumb-ring < research-pending

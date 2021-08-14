@@ -1,6 +1,6 @@
 #if not research-completed ri-redemption
-  load "research/monastery/prerequisites.aoe2ai"
-  //load "research/town_center/castle_age.aoe2ai"
+  load "../monastery/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
 
   #if research-available ri-redemption
     #if up-research-status c: ri-redemption < research-pending

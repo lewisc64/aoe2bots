@@ -1,7 +1,7 @@
 #if not research-completed ri-imperial-camel
-  load "research/stable/prerequisites.aoe2ai"
-  //load "research/town_center/imperial_age.aoe2ai"
-  load "research/stable/heavy_camel.aoe2ai"
+  load "../stable/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+  load "../stable/heavy_camel.aoe2ai"
 
   #if research-available ri-imperial-camel
     #if up-research-status c: ri-imperial-camel < research-pending

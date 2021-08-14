@@ -1,14 +1,14 @@
-load "units/types/ranged.aoe2ai"
+load "ranged.aoe2ai"
 
 #if current-age >= feudal-age
-  load "research/stable/bloodlines.aoe2ai"
+  load "../../research/stable/bloodlines.aoe2ai"
 #end if
 
 #if current-age >= castle-age
-  load "research/stable/husbandry.aoe2ai"
+  load "../../research/stable/husbandry.aoe2ai"
 #end if
 
 #if current-age >= imperial-age
-  load "research/archery_range/parthian_tactics.aoe2ai"
-  load "research/castle/sipahi.aoe2ai"
+  load "../../research/archery_range/parthian_tactics.aoe2ai"
+  load "../../research/castle/sipahi.aoe2ai"
 #end if

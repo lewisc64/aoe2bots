@@ -1,11 +1,11 @@
-//load "research/town_center/feudal_age.aoe2ai"
-load "research/dock/prerequisites.aoe2ai"
+//load "../research/town_center/feudal_age.aoe2ai"
+load "../research/dock/prerequisites.aoe2ai"
 
 #if unit-available fire-ship-line
   #if current-age == castle-age
-    load "research/dock/war_galley.aoe2ai"
+    load "../research/dock/war_galley.aoe2ai"
   #else if current-age == imperial-age
-    load "research/dock/fast_fire_ship.aoe2ai"
+    load "../research/dock/fast_fire_ship.aoe2ai"
   #end if
   
   load "types/ship.aoe2ai"

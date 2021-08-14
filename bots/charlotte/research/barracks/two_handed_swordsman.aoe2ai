@@ -1,8 +1,8 @@
 #if not research-completed ri-two-handed-swordsman
-  load "research/barracks/prerequisites.aoe2ai"
-  //load "research/town_center/imperial_age.aoe2ai"
+  load "../barracks/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
   
-  load "research/barracks/longswordsman.aoe2ai"
+  load "../barracks/longswordsman.aoe2ai"
 
   #if research-available ri-two-handed-swordsman
     #if up-research-status c: ri-two-handed-swordsman < research-pending

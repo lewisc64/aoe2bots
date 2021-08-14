@@ -1,5 +1,5 @@
 #if not research-completed ri-parthian-tactics
-  load "research/archery_range/prerequisites.aoe2ai"
+  load "../archery_range/prerequisites.aoe2ai"
 
   #if research-available ri-parthian-tactics
     #if up-research-status c: ri-parthian-tactics < research-pending

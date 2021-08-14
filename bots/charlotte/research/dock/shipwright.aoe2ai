@@ -1,6 +1,6 @@
 #if not research-completed ri-shipwright
-  load "research/dock/prerequisites.aoe2ai"
-  //load "research/town_center/imperial-age.aoe2ai"
+  load "../dock/prerequisites.aoe2ai"
+  //load "../town_center/imperial-age.aoe2ai"
 
   #if research-available ri-shipwright
     #if up-research-status c: ri-shipwright < research-pending

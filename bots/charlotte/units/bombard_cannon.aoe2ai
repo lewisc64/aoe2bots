@@ -1,5 +1,5 @@
-//load "research/town_center/imperial_age.aoe2ai"
-load "research/siege_workshop/prerequisites.aoe2ai"
+//load "../research/town_center/imperial_age.aoe2ai"
+load "../research/siege_workshop/prerequisites.aoe2ai"
 
 #if unit-available bombard-cannon
   load "types/siege.aoe2ai"

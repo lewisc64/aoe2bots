@@ -1,6 +1,6 @@
 #if not research-completed ri-masonry
-  load "research/university/prerequisites.aoe2ai"
-  //load "research/town_center/castle_age.aoe2ai"
+  load "../university/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
 
   #if research-available ri-masonry
     #if up-research-status c: ri-masonry < research-pending

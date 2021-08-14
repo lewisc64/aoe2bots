@@ -1,6 +1,6 @@
 #if not research-completed ri-block-printing
-  load "research/monastery/prerequisites.aoe2ai"
-  //load "research/town_center/imperial_age.aoe2ai"
+  load "../monastery/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
 
   #if research-available ri-block-printing
     #if up-research-status c: ri-block-printing < research-pending

@@ -1,11 +1,11 @@
-//load "research/town_center/castle_age.aoe2ai"
+//load "../research/town_center/castle_age.aoe2ai"
 
 #do once
   goal castle-count = 0
 #end do
 @up-get-fact building-type-count-total castle castle-count
 #if up-compare-goal castle-count g:< desired-military-buildings-per-type and current-age >= castle-age
-  load "research/market/prerequisites.aoe2ai"
+  load "../research/market/prerequisites.aoe2ai"
   
   #if building-type-count-total castle == 0
     sell wood when wood >= 400
@@ -30,7 +30,7 @@
 #if unit-available my-unique-unit-line
 
   #if current-age == imperial-age and (not civ-selected byzantine or civilian-population >= extortionate-tech-villagers) and civilian-population >= expensive-tech-villagers
-    load "research/castle/my_unique_unit_upgrade.aoe2ai"
+    load "../research/castle/my_unique_unit_upgrade.aoe2ai"
   #end if
   
   #do once
@@ -53,45 +53,45 @@
   #end if
   
   #if civ-selected briton and current-age >= castle-age and civilian-population >= expensive-tech-villagers
-    load "research/castle/yeomen.aoe2ai"
+    load "../research/castle/yeomen.aoe2ai"
   #end if
   
   #if (civ-selected viking or civ-selected byzantine) and current-age >= imperial-age and civilian-population >= expensive-tech-villagers
-    load "research/castle/beserkergang.aoe2ai"
-    load "research/castle/logistica.aoe2ai"
+    load "../research/castle/beserkergang.aoe2ai"
+    load "../research/castle/logistica.aoe2ai"
   #end if
   
   #if civ-selected persian
-    load "research/castle/mahouts.aoe2ai"
+    load "../research/castle/mahouts.aoe2ai"
   #end if
   
   #if civ-selected chinese and civilian-population >= expensive-tech-villagers
-    load "research/castle/rocketry.aoe2ai"
+    load "../research/castle/rocketry.aoe2ai"
   #end if
   
   #if civ-selected frankish and civilian-population >= expensive-tech-villagers
-    load "research/castle/bearded_axe.aoe2ai"
+    load "../research/castle/bearded_axe.aoe2ai"
   #end if
   
   @up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type
   
   #if civ-selected portuguese
-    load "research/university/siege_engineers.aoe2ai"
+    load "../research/university/siege_engineers.aoe2ai"
   #end if
   #if civ-selected khmer
-    load "research/university/siege_engineers.aoe2ai"
-    load "research/university/ballistics.aoe2ai"
-    load "research/stable/husbandry.aoe2ai"
-    load "research/stable/bloodlines.aoe2ai"
-    load "research/blacksmith/plate_barding.aoe2ai"
+    load "../research/university/siege_engineers.aoe2ai"
+    load "../research/university/ballistics.aoe2ai"
+    load "../research/stable/husbandry.aoe2ai"
+    load "../research/stable/bloodlines.aoe2ai"
+    load "../research/blacksmith/plate_barding.aoe2ai"
   #end if
   #if civ-selected spanish
-    load "research/blacksmith/ring_archer_armor.aoe2ai"
-    load "research/stable/husbandry.aoe2ai"
-    load "research/stable/bloodlines.aoe2ai"
+    load "../research/blacksmith/ring_archer_armor.aoe2ai"
+    load "../research/stable/husbandry.aoe2ai"
+    load "../research/stable/bloodlines.aoe2ai"
   #end if
   #if civ-selected turkish
-    load "research/blacksmith/ring_archer_armor.aoe2ai"
+    load "../research/blacksmith/ring_archer_armor.aoe2ai"
   #end if
   
   #if goal produce-units 1 and goal enough-wood 1 and goal enough-food 1 and goal enough-gold 1

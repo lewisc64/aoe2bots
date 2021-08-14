@@ -1,5 +1,5 @@
 #if not research-completed ri-double-bit-axe
-  load "research/lumber_camp/prerequisites.aoe2ai"
+  load "../lumber_camp/prerequisites.aoe2ai"
 
   #if research-available ri-double-bit-axe
     #if up-research-status c: ri-double-bit-axe < research-pending

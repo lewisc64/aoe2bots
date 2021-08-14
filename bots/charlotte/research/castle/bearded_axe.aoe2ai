@@ -1,6 +1,6 @@
 #if not research-completed ri-bearded-axe
-  load "research/castle/prerequisites.aoe2ai"
-  //load "research/town_center/imperial_age.aoe2ai"
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
 
   #if research-available ri-bearded-axe
     #if up-research-status c: ri-bearded-axe < research-pending

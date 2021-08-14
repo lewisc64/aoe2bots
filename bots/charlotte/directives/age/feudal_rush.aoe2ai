@@ -1,11 +1,11 @@
 #if civilian-population >= 25 or death-match-game or population-cap < 200
-  load "research/town_center/feudal_age.aoe2ai"
+  load "../../research/town_center/feudal_age.aoe2ai"
 #end if
 
 #if current-age == feudal-age// and (current-age-time >= 360 or death-match-game)
-  load "research/town_center/castle_age.aoe2ai"
+  load "../../research/town_center/castle_age.aoe2ai"
 #else if current-age == castle-age and (civilian-population >= expensive-tech-villagers or population-cap < 200 or can-afford-research imperial-age)
-  load "research/town_center/imperial_age.aoe2ai"
+  load "../../research/town_center/imperial_age.aoe2ai"
 #end if
 
 #if up-research-status c: feudal-age >= research-pending

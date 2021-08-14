@@ -1,9 +1,9 @@
-//load "research/town_center/castle_age.aoe2ai"
-load "research/stable/prerequisites.aoe2ai"
+//load "../research/town_center/castle_age.aoe2ai"
+load "../research/stable/prerequisites.aoe2ai"
 
 #if unit-available battle-elephant-line
   #if current-age == imperial-age
-    load "research/stable/elite_battle_elephant.aoe2ai"
+    load "../research/stable/elite_battle_elephant.aoe2ai"
   #end if
   
   load "types/cavalry.aoe2ai"

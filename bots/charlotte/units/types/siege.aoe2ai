@@ -1,9 +1,9 @@
 #if current-age == imperial-age
-  load "research/university/siege_engineers.aoe2ai"
-  load "research/university/chemistry.aoe2ai"
+  load "../../research/university/siege_engineers.aoe2ai"
+  load "../../research/university/chemistry.aoe2ai"
 #end if
 
-load "research/siege_workshop/prerequisites.aoe2ai"
+load "../../research/siege_workshop/prerequisites.aoe2ai"
 
 #do once
   goal siege-workshop-count = 0

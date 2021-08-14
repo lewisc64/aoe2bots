@@ -1,7 +1,7 @@
 #if not research-completed ri-heavy-plow
-  load "research/mill/prerequisites.aoe2ai"
-  //load "research/town_center/castle_age.aoe2ai"
-  load "research/mill/horse_collar.aoe2ai"
+  load "../mill/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
+  load "../mill/horse_collar.aoe2ai"
 
   #if research-available ri-heavy-plow
     #if up-research-status c: ri-heavy-plow < research-pending
