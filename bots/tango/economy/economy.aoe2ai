@@ -1,5 +1,5 @@
 #if goal research-economy-upgrades 1
-  load "economy/economy_research.aoe2ai"
+  load "economy_research.aoe2ai"
 #end if
 
 #if current-age >= castle-age
@@ -142,7 +142,7 @@ build 5 bombard-tower
 
 #if up-research-status c: feudal-age >= research-pending or wood-amount > 200
   #if up-compare-goal non-escrowed-wood > 100 and dropsite-min-distance wood < 10
-    load "economy/farming.aoe2ai"
+    load "farming.aoe2ai"
   #end if
   
   #when

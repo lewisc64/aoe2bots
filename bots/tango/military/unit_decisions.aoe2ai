@@ -27,10 +27,10 @@ goal produce-bombard-cannons = 0
 #if up-research-status c: feudal-age < research-pending or current-age == dark-age and death-match-game
   goal produce-militia = 1
 #else
-  load "military/civ_unit_decisions.aoe2ai"
-  load "military/counters.aoe2ai"
+  load "civ_unit_decisions.aoe2ai"
+  load "counters.aoe2ai"
   #if goal producing-trash 1
-    load "military/trash_substitutions.aoe2ai"
+    load "trash_substitutions.aoe2ai"
   #end if
 #end if
 
@@ -260,7 +260,7 @@ goal producing-siege = 0
 #end if
 
 #if building-type-count castle >= 2 and goal producing-trash 0
-  load "military/uu_substitutions.aoe2ai"
+  load "uu_substitutions.aoe2ai"
 #end if
 
 //DEBUG

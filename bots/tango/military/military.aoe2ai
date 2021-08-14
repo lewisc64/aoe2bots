@@ -19,7 +19,7 @@
   goal military-superiority = 0
 #end if
 
-load "military/unit_decisions.aoe2ai"
+load "unit_decisions.aoe2ai"
 
 #if goal team-game 0 and goal free-for-all 0
   #repeat every 5 minutes
@@ -60,19 +60,19 @@ load "military/unit_decisions.aoe2ai"
 research my-unique-research with wood and food and gold escrow
 
 #if goal producing-infantry 1 or unit-type-count infantry-unit-class >= max-basic-units
-  load "military/types/infantry.aoe2ai"
+  load "types/infantry.aoe2ai"
 #end if
 
 #if goal producing-ranged 1 or unit-type-count ranged-unit-class >= max-basic-units
-  load "military/types/ranged.aoe2ai"
+  load "types/ranged.aoe2ai"
 #end if
 
 #if goal producing-cavalry 1 or unit-type-count cavalry-unit-class >= max-basic-units
-  load "military/types/cavalry.aoe2ai"
+  load "types/cavalry.aoe2ai"
 #end if
 
 #if goal producing-siege 1
-  load "military/types/siege.aoe2ai"
+  load "types/siege.aoe2ai"
 #end if
 
 #if goal produce-monks 1
@@ -96,7 +96,7 @@ research my-unique-research with wood and food and gold escrow
 #end if
 
 #if military-population < max-army
-  load "military/training.aoe2ai"
+  load "training.aoe2ai"
 #end if
 
 #if building-type-count-total barracks == 0
@@ -135,8 +135,8 @@ build 1 barracks with wood escrow
 build 1 siege-workshop with wood escrow
 
 #repeat every 5 minutes
-  load "military/training_queue.aoe2ai"
+  load "training_queue.aoe2ai"
 #end repeat
 #if true
-  load "military/attacking.aoe2ai"
+  load "attacking.aoe2ai"
 #end if

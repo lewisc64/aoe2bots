@@ -27,7 +27,7 @@
 
 sell stone when stone > max-stone
 
-load "economy/auto_balance_predictive.aoe2ai"
+load "auto_balance_predictive.aoe2ai"
 
 #if true // enabled
   #if up-compare-goal total-wood-gatherer-percentage < min-wood-percentage
