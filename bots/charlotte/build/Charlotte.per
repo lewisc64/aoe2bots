@@ -558,7 +558,7 @@
     (up-chat-data-to-all "There are 'wonder' queued. Count total: %d" g: temp)
 )
 (defrule
-    (strategic-number sn-food-gatherer-percentage == 0)
+    (and (strategic-number sn-food-gatherer-percentage == 0) (game-time >= 5))
 =>
     (up-chat-data-to-all "wood gatherers: %d" s: sn-wood-gatherer-percentage)
     (up-chat-data-to-all "food gatherers: %d" s: sn-food-gatherer-percentage)
@@ -18246,7 +18246,7 @@ watch-tower-arrow > 0))))
     (up-modify-goal produce-unique-units g:= good-unique-units)
 )
 (defrule
-    (goal water-map 1)
+    (and (goal water-map 1) (up-compare-goal total-units-selected c:> 1))
     (goal 160 16)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
@@ -18254,7 +18254,7 @@ watch-tower-arrow > 0))))
     (up-modify-goal produce-galleys g:= good-galleys)
 )
 (defrule
-    (goal water-map 1)
+    (and (goal water-map 1) (up-compare-goal total-units-selected c:> 1))
     (goal 160 17)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)

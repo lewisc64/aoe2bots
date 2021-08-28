@@ -81,12 +81,12 @@ goal total-units-selected = 0
       @up-modify-goal produce-unique-units g:= good-unique-units
     
     #randor
-      #if goal water-map 1
+      #if goal water-map 1 and up-compare-goal total-units-selected c:> 1
         @up-modify-goal produce-galleys g:= good-galleys
       #end if
     
     #randor
-      #if goal water-map 1
+      #if goal water-map 1 and up-compare-goal total-units-selected c:> 1
         @up-modify-goal produce-fire-ships g:= good-fire-ships
       #end if
       
