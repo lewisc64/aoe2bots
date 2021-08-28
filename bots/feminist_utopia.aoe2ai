@@ -258,7 +258,11 @@ buy stone when gold > 1500
 
 #if current-age >= feudal-age
 
-  build gold mining camps
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 8
+  #end when
   build stone mining camps
   
   auto balance wood and food and gold
