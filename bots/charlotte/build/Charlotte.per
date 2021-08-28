@@ -1826,7 +1826,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 2659)
+    (up-jump-rule 2658)
 )
 (defrule
     (true)
@@ -12439,7 +12439,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-unique-units 1) (unit-available my-unique-unit-line)))
 =>
-    (up-jump-rule 500)
+    (up-jump-rule 499)
 )
 (defrule
     (true)
@@ -15675,7 +15675,6 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (can-train my-unique-unit-line)
-    (or (building-type-count castle >= 2) (goal desired-units 1))
     (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (and (goal enough-food-for-units 1) (goal enough-gold-for-units 1))))
     (unit-available my-unique-unit-line)
 =>
@@ -15684,7 +15683,6 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (goal 148 1)
-    (or (building-type-count castle >= 2) (goal desired-units 1))
     (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (and (goal enough-food-for-units 1) (goal enough-gold-for-units 1))))
     (unit-available my-unique-unit-line)
 =>
@@ -15694,13 +15692,6 @@ watch-tower-arrow > 0))))
     (true)
 =>
     (set-goal 148 0)
-)
-(defrule
-    (not (or (building-type-count castle >= 2) (goal desired-units 1)))
-    (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (and (goal enough-food-for-units 1) (goal enough-gold-for-units 1))))
-    (unit-available my-unique-unit-line)
-=>
-    (set-goal trained-unit 1)
 )
 (defrule
     (and (goal produce-unique-units 1) (unit-available my-unique-unit-line))
