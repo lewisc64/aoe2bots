@@ -6,7 +6,6 @@ load "templates/fast_castle.aoe2ai"
     distribute villagers 20 57 15 8
     escrow 10 food
     escrow 10 gold
-    sn-maximum-town-size = 255
     assign 8 builders to castle
   #end do
   
@@ -18,7 +17,7 @@ load "templates/fast_castle.aoe2ai"
   sell food when food > 1500
   buy stone when gold > 1500
   
-  build forward 10 castle near town-center
+  build forward 10 castle
   build houses
   build farms
   build lumber camps
@@ -49,5 +48,9 @@ load "templates/fast_castle.aoe2ai"
   train 120 villager
   train 3 trebuchet
   train my-unique-unit
+  
+  #repeat every 30 seconds
+    attack
+  #end repeat
 
 #end if
