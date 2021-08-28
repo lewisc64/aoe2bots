@@ -89,8 +89,19 @@ load "templates/fast_castle.aoe2ai"
 
 #if up-research-status c: imperial-age >= research-pending
 
-  escrow 10 food
-  escrow 10 gold
+  escrow 0 wood
+  #if escrow-amount food < 1200
+    escrow 10 food
+  #else
+    escrow 0 food
+  #end if
+  #if escrow-amount gold < 1000
+    escrow 10 gold
+  #else
+    escrow 0 gold
+  #end if
+  
+  auto balance wood and food and gold
   
   research monastery upgrades
   research ri-chemistry

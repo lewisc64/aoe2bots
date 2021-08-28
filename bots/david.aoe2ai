@@ -1,0 +1,53 @@
+resign
+
+#do once
+  set up basics
+  
+  sn-maximum-food-drop-distance = 12
+  #if current-age == imperial-age
+    sn-maximum-food-drop-distance = -1
+  #end if
+  sn-maximum-hunt-drop-distance = 0
+#end do
+
+
+research feudal-age
+research castle-age
+research imperial-age
+
+research town center upgrades
+research mill upgrades
+research lumber camp upgrades
+
+train 120 villager
+
+#if current-age == dark-age
+  #do once
+    distribute villagers 20 80 0 0
+  #end do
+
+  build houses with 5 headroom
+
+#else if current-age == feudal-age
+  #do once
+    sn-maximum-food-drop-distance = 8
+    distribute villagers 20 80 0 0
+  #end do
+
+  build houses with 10 headroom
+
+#else if current-age == castle-age
+  #do once
+    sn-maximum-food-drop-distance = 8
+    distribute villagers 20 80 0 0
+  #end do
+  build houses with 15 headroom
+
+
+#else if current-age == imperial-age
+  #do once
+    sn-maximum-food-drop-distance = 8
+    distribute villagers 20 80 0 0
+  #end do
+  build 5 barracks
+#end if
