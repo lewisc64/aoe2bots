@@ -1,0 +1,94 @@
+// play as franks
+
+load "templates/fast_castle.aoe2ai"
+
+#if current-age >= castle-age
+
+  #do once
+    assign 4 builders to town-center-foundation
+    sn-maximum-gold-drop-distance = 8
+    sn-maximum-stone-drop-distance = 8
+    sn-maximum-hunt-drop-distance = 48
+    sn-special-attack-type2 = villager
+  #end do
+  
+  #if research-completed ri-paladin and not town-under-attack
+    #if escrow-amount food < 1300
+      escrow 10 food
+    #else
+      escrow 0 food
+    #end if
+    #if escrow-amount gold < 800
+      escrow 10 gold
+    #else
+      escrow 0 gold
+    #end if
+  #else
+    escrow 0 food
+    escrow 0 gold
+    #if not town-under-attack
+      @release-escrow food
+      @release-escrow gold
+    #end if
+  #end if
+
+  #if building-type-count-total stable >= 2
+    #do once
+      distribute villagers 30 50 20 0
+    #end do
+  #else
+    #do once
+      distribute villagers 55 30 15 0
+    #end do
+  #end if
+  
+  auto balance wood and food and gold
+  
+  build 3 town-center
+  
+  build 1 barracks
+  
+  #if current-age == imperial-age
+    build 5 stable
+  #else
+    build 2 stable
+  #end if
+  build houses
+  build lumber camps
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 8
+  #end when
+  build 1 university
+  build 1 monastery
+  build 1 market
+  
+  #if wood-amount >= 200
+    build farms
+  #end if
+  
+  research imperial-age with food and gold escrow
+  
+  research ri-husbandry with food escrow
+  research ri-bloodlines with food and gold escrow
+  research cavalry blacksmith upgrades with food and gold escrow
+  research ri-cavalier with food and gold escrow
+  research ri-paladin with food and gold escrow
+  
+  #if player-in-game any-ally and players-building-type-count any-ally market >= 1
+    train 100 villager
+    research ri-caravan
+    train 20 trade-cart
+  #else
+    train 120 villager
+  #end if
+  
+  train knight-line
+  train 1 monk
+  
+  #repeat every 30 seconds
+    attack with 20 units
+  #end repeat
+
+#end if
