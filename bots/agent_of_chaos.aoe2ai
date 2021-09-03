@@ -27,12 +27,14 @@ build lumber camps
 #if building-type-count-total lumber-camp >= 1
   build mills
 #end if
+#if wood-amount >= 200
+  build farms
+#end if
 
 #if up-research-status c: feudal-age >= research-pending
   build 1 barracks
   build 1 archery-range
   #if building-type-count-total archery-range >= 1
-    build farms
     build 1 blacksmith
     build 1 market
     
@@ -47,7 +49,7 @@ build lumber camps
         build 3 stable
         build 3 siege-workshop
         build 3 monastery
-        build castle
+        build 5 castle
       #end if
     #end if
   #end if
@@ -85,6 +87,8 @@ research imperial-age
   #do once
     distribute villagers 38 37 20 5
   #end do
+  
+  auto balance wood and food and gold
 
   build houses with 15 headroom
 
@@ -103,12 +107,13 @@ train 1 monk
   delete unit villager
 #end if
 
-#do once
-  goal trick = -1
-#end do
-
 #if wood-amount >= 1000 and food-amount >= 1000 and gold-amount >= 1000 and stone-amount >= 1000 and current-age == imperial-age or game-time >= 4800
   goal invasion = 1
+#end if
+
+#if gold-amount < 2000
+  sell wood when wood > 2000
+  sell food when food > 2000
 #end if
 
 #if not (goal invasion 1 and (wood-amount > 100 or town-under-attack) or military-population < 10)
