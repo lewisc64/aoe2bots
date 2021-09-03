@@ -130,7 +130,7 @@ train 120 villager
         #end do
       #end if
     #end if
-  #else if civilian-population >= 13
+  #else if civilian-population >= 13 and not player-valid 3
     #do once
       scout opposite
     #end do
