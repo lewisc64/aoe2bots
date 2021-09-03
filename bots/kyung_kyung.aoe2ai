@@ -93,6 +93,8 @@ load "templates/fast_castle.aoe2ai"
     sn-maximum-town-size = 25
   #end if
   
+  auto balance wood and food and gold
+  
   sell wood when wood > 2000
   sell food when food > 2000
   
