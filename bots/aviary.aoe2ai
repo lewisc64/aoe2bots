@@ -13,7 +13,6 @@ const max-gold = 1500
 
 #do once
   set up basics
-  take boar
   
   sn-maximum-attack-group-size = 1
   sn-minimum-attack-group-size = 1
@@ -167,6 +166,7 @@ train 1 monk
 #end if
 
 build mills
+build safety mill
 build lumber camps
 #if up-compare-goal non-escrowed-wood >= 200
   build 1 blacksmith
@@ -183,6 +183,8 @@ build castle
     distribute villagers 25 75 0 0
     sn-enable-training-queue = 1
   #end do
+  
+  lure boars
   
   #if food-amount < 50
     drop off food
