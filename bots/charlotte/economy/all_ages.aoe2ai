@@ -41,9 +41,13 @@
       goal produce-trade-carts = 1
     #randor
       #if current-age >= imperial-age
+        goal produce-trade-carts = 1
+      #else
         goal produce-trade-carts = 0
       #end if
     #end select
+  #else
+    goal produce-trade-carts = 0
   #end if
 #end if
 

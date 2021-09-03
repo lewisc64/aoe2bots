@@ -1459,6 +1459,20 @@
     (players-building-type-count any-ally market >= 1)
     (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
 =>
+    (set-goal produce-trade-carts 1)
+)
+(defrule
+    (not (current-age >= imperial-age))
+    (goal 103 2)
+    (players-building-type-count any-ally market >= 1)
+    (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
+=>
+    (set-goal produce-trade-carts 0)
+)
+(defrule
+    (not (players-building-type-count any-ally market >= 1))
+    (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
+=>
     (set-goal produce-trade-carts 0)
 )
 (defrule
