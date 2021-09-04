@@ -129,7 +129,7 @@ load "templates/fast_castle.aoe2ai"
     research ri-chemistry with food and gold escrow
   #end when
   
-  #if players-building-type-count any-ally market >= 1
+  #if players-building-type-count any-ally market >= 1 and current-age >= imperial-age
     train 90 villager
     research ri-caravan with food and gold escrow
     #if up-compare-goal non-escrowed-gold c:> 150
