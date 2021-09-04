@@ -111,10 +111,7 @@ train 1 monk
   goal invasion = 1
 #end if
 
-#if gold-amount < 2000
-  sell wood when wood > 2000
-  sell food when food > 2000
-#end if
+trade excess wood and food and gold at 2000
 
 #if not (goal invasion 1 and (wood-amount > 100 or town-under-attack) or military-population < 10)
   @up-jump-rule 10000

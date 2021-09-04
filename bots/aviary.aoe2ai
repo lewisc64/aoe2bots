@@ -230,13 +230,7 @@ build castle
     escrow 0 gold
   #end if
   
-  #if up-compare-goal non-escrowed-gold < 1500
-    sell wood when wood > 1500
-    sell food when food > 1500
-  #else
-    buy wood when wood < 1500
-    buy food when food < 1500
-  #end if
+  trade excess wood and food and gold at 1500
   
   auto balance wood and food and gold
   
