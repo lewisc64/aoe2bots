@@ -12,6 +12,11 @@
 
 #if current-age >= castle-age
   load "../../research/stable/husbandry.aoe2ai"
+  load "../../research/castle/chivalry.aoe2ai"
+#end if
+
+#if current-age >= imperial-age
+  load "../../research/castle/manipur_cavalry.aoe2ai"
 #end if
 
 load "infantry_cavalry.aoe2ai"

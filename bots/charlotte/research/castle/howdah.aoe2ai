@@ -1,0 +1,13 @@
+#if not research-completed ri-howdah
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
+
+  #if research-available ri-howdah
+    #if up-research-status c: ri-howdah < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-howdah
+    #end if
+  #end if
+#end if

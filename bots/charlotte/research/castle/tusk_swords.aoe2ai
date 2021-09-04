@@ -1,0 +1,13 @@
+#if not research-completed ri-tusk-swords
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
+
+  #if research-available ri-tusk-swords
+    #if up-research-status c: ri-tusk-swords < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-tusk-swords
+    #end if
+  #end if
+#end if

@@ -9,6 +9,7 @@ load "../research/siege_workshop/prerequisites.aoe2ai"
     #if civilian-population >= expensive-tech-villagers
       load "../research/castle/rocketry.aoe2ai"
     #end if
+    load "../research/castle/double_crossbow.aoe2ai"
   #end if
   
   load "types/siege.aoe2ai"

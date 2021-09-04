@@ -1,0 +1,13 @@
+#if not research-completed ri-furor-celtica
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+
+  #if research-available ri-furor-celtica
+    #if up-research-status c: ri-furor-celtica < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-furor-celtica
+    #end if
+  #end if
+#end if

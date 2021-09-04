@@ -73,6 +73,10 @@
     load "../research/castle/bearded_axe.aoe2ai"
   #end if
   
+  #if civ-selected khmer and current-age == imperial-age
+    load "../research/castle/double_crossbow.aoe2ai"
+  #end if
+  
   @up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type
   
   #if civ-selected portuguese

@@ -7,6 +7,7 @@ load "../research/siege_workshop/prerequisites.aoe2ai"
       load "../research/siege_workshop/siege_onager.aoe2ai"
     #else if civilian-population >= expensive-tech-villagers
       load "../research/siege_workshop/onager.aoe2ai"
+      load "../research/castle/shinkichon.aoe2ai"
     #end if
   #end if
   
