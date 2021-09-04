@@ -1840,7 +1840,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 2658)
+    (up-jump-rule 2657)
 )
 (defrule
     (true)
@@ -18912,7 +18912,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal emergency-trash 0) (goal attack-ready 1)))
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 6)
 )
 (defrule
     (players-unit-type-count any-enemy monk-set >= min-detection-units)
@@ -18953,12 +18953,6 @@ watch-tower-arrow > 0))))
     (set-goal produce-militia 0)
     (set-goal produce-spearmen 0)
     (set-goal produce-eagles 0)
-)
-(defrule
-    (players-unit-type-count any-enemy archer >= min-detection-units)
-    (goal desired-units 1)
-=>
-    (set-goal produce-monks 0)
 )
 (defrule
     (not (and (goal emergency-trash 0) (goal attack-ready 1)))
@@ -19234,7 +19228,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (resign)
 )
 (defrule
-    (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (and (up-compare-goal score-percentage c:<= 50) (and (game-time >= 1200) (goal team-game 0))))
+    (and (up-compare-goal target-military-percentage c:<= 50) (and (up-compare-goal score-percentage c:<= 70) (and (game-time >= 1200) (goal team-game 0))))
 =>
     (set-goal resign 1)
 )
