@@ -1,5 +1,7 @@
 // play as franks
 
+const minimum-army = 12
+
 load "charlotte/stats.aoe2ai"
 load "templates/fast_castle.aoe2ai"
 
@@ -18,7 +20,7 @@ load "templates/fast_castle.aoe2ai"
 
 #if current-age >= castle-age
 
-  #if unit-type-count-total knight < 10 or research-completed ri-paladin
+  #if unit-type-count-total knight < 10 or up-research-status c: ri-paladin >= research-pending
     call escrow-resources(percentage=0)
   #else if unit-type-count-total knight < 20
     call escrow-resources(percentage=10)
@@ -115,30 +117,36 @@ load "templates/fast_castle.aoe2ai"
   
   research ri-husbandry with food escrow
   research cavalry blacksmith upgrades with food and gold escrow
-  research ri-cavalier with food and gold escrow => research ri-capped-ram => research ri-chemistry with food and gold escrow
-  research ri-paladin with food and gold escrow => research ri-siege-ram with food escrow
+  #when
+    research ri-cavalier with food and gold escrow
+  #then always
+    research ri-capped-ram with wood and food escrow
+    research ri-siege-ram with wood and food escrow
+  #end when
+  #when
+    research ri-paladin with food and gold escrow
+  #then always
+    research ri-chemistry with food and gold escrow
+  #end when
   
-  #if player-in-game any-ally and players-building-type-count any-ally market >= 1
-    train 100 villager
+  #if players-building-type-count any-ally market >= 1
+    train 90 villager
     research ri-caravan with food and gold escrow
-    train 20 trade-cart
+    #if up-compare-goal non-escrowed-gold c:> 150
+      train 30 trade-cart
+    #end if
   #else
     train 120 villager
   #end if
   
   train 1 monk with gold escrow
   
-  #if up-compare-goal target-military-percentage < 200
-    #if food-amount >= 150 or town-under-attack
-      #if town-under-attack
-        train knight-line
-      #else if unit-type-count-total battering-ram-line <= 5 and up-pending-objects c: battering-ram-line == 0 and building-type-count siege-workshop >= 1 and up-compare-goal target-military-percentage >= 100
-        train battering-ram-line
-      #else if unit-type-count-total trebuchet-set <= 3 and up-pending-objects c: trebuchet-set == 0 and building-type-count castle >= 1 and up-compare-goal target-military-percentage >= 100
-        train trebuchet
-      #else
-        train knight-line
-      #end if
+  #if food-amount >= 150 or town-under-attack
+    #if town-under-attack
+      train knight-line
+    #else
+      train 5 battering-ram-line
+      train knight-line
     #end if
   #end if
   
@@ -157,11 +165,11 @@ load "templates/fast_castle.aoe2ai"
     scout enemy
   #end if
   
-  #if (up-compare-goal target-military-percentage >= 120 or up-compare-goal population-space-remaining c:<= 5) and military-population >= 10
+  #if (up-compare-goal target-military-percentage c:>= 120 or up-compare-goal population-space-remaining c:<= 5) and unit-type-count knight-line >= minimum-army
     goal attacking = 1
   #end if
   
-  #if up-compare-goal target-military-percentage <= 70 and goal attacking 1
+  #if up-compare-goal target-military-percentage c:<= 70 and goal attacking 1
     retreat
     goal attacking = 0
   #end if
@@ -246,7 +254,6 @@ load "templates/fast_castle.aoe2ai"
           #end delay
         #end delay
       #end delay
-    #randor
     #end select
   #end if
 
@@ -254,7 +261,7 @@ load "templates/fast_castle.aoe2ai"
     #select random persistant
       chat to all "I had nightmares as a child."
       #delay by 6 seconds
-        chat to all "Demons crawling on my back, peeling off rolls of skin with their wicked claws."
+        chat to all "Demons crawling on my back, peeling off rolls of skin with their claws."
         #delay by 16 seconds
           chat to all "The demons were saints, and I their lamb."
         #end delay
