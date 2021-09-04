@@ -10,10 +10,14 @@
 (defconst wood-threshold 300)
 (defconst food-threshold 300)
 (defconst gold-threshold 300)
-(defconst good-wood-price 50)
-(defconst good-food-price 50)
-(defconst good-wood-sell-price 200)
-(defconst good-food-sell-price 200)
+(defconst good-wood-price 75)
+(defconst good-food-price 75)
+(defconst good-wood-sell-price 150)
+(defconst good-food-sell-price 150)
+(defconst excellent-wood-price 50)
+(defconst excellent-food-price 50)
+(defconst excellent-wood-sell-price 200)
+(defconst excellent-food-sell-price 200)
 (defconst can-buy-wood 168)
 (defconst can-buy-food 169)
 (defconst can-sell-wood 170)
@@ -51,7 +55,14 @@
 (defconst ri-mahouts 7)
 (defconst ri-sipahi 491)
 (defconst ri-rocketry 52)
+(defconst ri-chivalry 493)
 (defconst ri-bearded-axe 83)
+(defconst ri-shinkichon 445)
+(defconst ri-howdah 626)
+(defconst ri-manipur-cavalry 627)
+(defconst ri-furor-celtica 5)
+(defconst ri-tusk-swords 622)
+(defconst ri-double-crossbow 623)
 (defconst sea-fish 905)
 (defconst tc-arrow 54)
 (defconst watch-tower-arrow 786)
@@ -1840,7 +1851,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 2657)
+    (up-jump-rule 2757)
 )
 (defrule
     (true)
@@ -8446,7 +8457,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-scouts 1) (unit-available scout-cavalry-line)))
 =>
-    (up-jump-rule 107)
+    (up-jump-rule 117)
 )
 (defrule
     (not (building-type-count-total stable == 0))
@@ -8606,7 +8617,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (unit-available scout-cavalry-line))
 =>
-    (up-jump-rule 78)
+    (up-jump-rule 88)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -8895,6 +8906,70 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-husbandry))
 =>
     (research ri-husbandry)
+)
+(defrule
+    (not (current-age >= castle-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-chivalry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-chivalry < research-pending)
+    (research-available ri-chivalry)
+    (not (research-completed ri-chivalry))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-chivalry)
+    (goal do-research 1)
+    (research-available ri-chivalry)
+    (not (research-completed ri-chivalry))
+=>
+    (research ri-chivalry)
+)
+(defrule
+    (not (current-age >= imperial-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-manipur-cavalry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-manipur-cavalry < research-pending)
+    (research-available ri-manipur-cavalry)
+    (not (research-completed ri-manipur-cavalry))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-manipur-cavalry)
+    (goal do-research 1)
+    (research-available ri-manipur-cavalry)
+    (not (research-completed ri-manipur-cavalry))
+=>
+    (research ri-manipur-cavalry)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -9164,7 +9239,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-knights 1) (unit-available knight-line)))
 =>
-    (up-jump-rule 107)
+    (up-jump-rule 117)
 )
 (defrule
     (not (building-type-count-total stable == 0))
@@ -9324,7 +9399,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (unit-available knight-line))
 =>
-    (up-jump-rule 78)
+    (up-jump-rule 88)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -9613,6 +9688,70 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-husbandry))
 =>
     (research ri-husbandry)
+)
+(defrule
+    (not (current-age >= castle-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-chivalry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-chivalry < research-pending)
+    (research-available ri-chivalry)
+    (not (research-completed ri-chivalry))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-chivalry)
+    (goal do-research 1)
+    (research-available ri-chivalry)
+    (not (research-completed ri-chivalry))
+=>
+    (research ri-chivalry)
+)
+(defrule
+    (not (current-age >= imperial-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-manipur-cavalry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-manipur-cavalry < research-pending)
+    (research-available ri-manipur-cavalry)
+    (not (research-completed ri-manipur-cavalry))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-manipur-cavalry)
+    (goal do-research 1)
+    (research-available ri-manipur-cavalry)
+    (not (research-completed ri-manipur-cavalry))
+=>
+    (research ri-manipur-cavalry)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -9882,7 +10021,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-camels 1) (unit-available camel-line)))
 =>
-    (up-jump-rule 107)
+    (up-jump-rule 117)
 )
 (defrule
     (not (building-type-count-total stable == 0))
@@ -10042,7 +10181,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (unit-available camel-line))
 =>
-    (up-jump-rule 78)
+    (up-jump-rule 88)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -10331,6 +10470,70 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-husbandry))
 =>
     (research ri-husbandry)
+)
+(defrule
+    (not (current-age >= castle-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-chivalry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-chivalry < research-pending)
+    (research-available ri-chivalry)
+    (not (research-completed ri-chivalry))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-chivalry)
+    (goal do-research 1)
+    (research-available ri-chivalry)
+    (not (research-completed ri-chivalry))
+=>
+    (research ri-chivalry)
+)
+(defrule
+    (not (current-age >= imperial-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-manipur-cavalry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-manipur-cavalry < research-pending)
+    (research-available ri-manipur-cavalry)
+    (not (research-completed ri-manipur-cavalry))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-manipur-cavalry)
+    (goal do-research 1)
+    (research-available ri-manipur-cavalry)
+    (not (research-completed ri-manipur-cavalry))
+=>
+    (research ri-manipur-cavalry)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -10600,7 +10803,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-battle-elephants 1) (unit-available battle-elephant-line)))
 =>
-    (up-jump-rule 93)
+    (up-jump-rule 113)
 )
 (defrule
     (not (building-type-count-total stable == 0))
@@ -10621,6 +10824,70 @@ watch-tower-arrow > 0))))
     (building-type-count-total stable == 0)
 =>
     (build stable)
+)
+(defrule
+    (not (and (current-age >= castle-age) (unit-available battle-elephant-line)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-howdah)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-howdah < research-pending)
+    (research-available ri-howdah)
+    (not (research-completed ri-howdah))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-howdah)
+    (goal do-research 1)
+    (research-available ri-howdah)
+    (not (research-completed ri-howdah))
+=>
+    (research ri-howdah)
+)
+(defrule
+    (not (and (current-age >= castle-age) (unit-available battle-elephant-line)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-tusk-swords)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-tusk-swords < research-pending)
+    (research-available ri-tusk-swords)
+    (not (research-completed ri-tusk-swords))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-tusk-swords)
+    (goal do-research 1)
+    (research-available ri-tusk-swords)
+    (not (research-completed ri-tusk-swords))
+=>
+    (research ri-tusk-swords)
 )
 (defrule
     (not (and (current-age == imperial-age) (unit-available battle-elephant-line)))
@@ -10670,7 +10937,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (unit-available battle-elephant-line))
 =>
-    (up-jump-rule 78)
+    (up-jump-rule 88)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -10961,6 +11228,70 @@ watch-tower-arrow > 0))))
     (research ri-husbandry)
 )
 (defrule
+    (not (current-age >= castle-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-chivalry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-chivalry < research-pending)
+    (research-available ri-chivalry)
+    (not (research-completed ri-chivalry))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-chivalry)
+    (goal do-research 1)
+    (research-available ri-chivalry)
+    (not (research-completed ri-chivalry))
+=>
+    (research ri-chivalry)
+)
+(defrule
+    (not (current-age >= imperial-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-manipur-cavalry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-manipur-cavalry < research-pending)
+    (research-available ri-manipur-cavalry)
+    (not (research-completed ri-manipur-cavalry))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-manipur-cavalry)
+    (goal do-research 1)
+    (research-available ri-manipur-cavalry)
+    (not (research-completed ri-manipur-cavalry))
+=>
+    (research ri-manipur-cavalry)
+)
+(defrule
     (not (current-age == feudal-age))
 =>
     (up-jump-rule 4)
@@ -11228,7 +11559,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-battering-rams 1) (unit-available battering-ram-line)))
 =>
-    (up-jump-rule 45)
+    (up-jump-rule 50)
 )
 (defrule
     (not (building-type-count-total siege-workshop == 0))
@@ -11392,7 +11723,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (unit-available battering-ram-line))
 =>
-    (up-jump-rule 16)
+    (up-jump-rule 21)
 )
 (defrule
     (not (current-age == imperial-age))
@@ -11457,6 +11788,38 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-chemistry))
 =>
     (research ri-chemistry)
+)
+(defrule
+    (not (current-age == imperial-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-furor-celtica)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-furor-celtica < research-pending)
+    (research-available ri-furor-celtica)
+    (not (research-completed ri-furor-celtica))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-furor-celtica)
+    (goal do-research 1)
+    (research-available ri-furor-celtica)
+    (not (research-completed ri-furor-celtica))
+=>
+    (research ri-furor-celtica)
 )
 (defrule
     (not (building-type-count-total siege-workshop == 0))
@@ -11543,7 +11906,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-mangonels 1) (unit-available mangonel-line)))
 =>
-    (up-jump-rule 45)
+    (up-jump-rule 55)
 )
 (defrule
     (not (building-type-count-total siege-workshop == 0))
@@ -11705,9 +12068,41 @@ watch-tower-arrow > 0))))
     (research ri-onager)
 )
 (defrule
+    (not (and (civilian-population >= expensive-tech-villagers) (and (not (civilian-population >= extortionate-tech-villagers)) (and (current-age == imperial-age) (unit-available mangonel-line)))))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-shinkichon)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-shinkichon < research-pending)
+    (research-available ri-shinkichon)
+    (not (research-completed ri-shinkichon))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-shinkichon)
+    (goal do-research 1)
+    (research-available ri-shinkichon)
+    (not (research-completed ri-shinkichon))
+=>
+    (research ri-shinkichon)
+)
+(defrule
     (not (unit-available mangonel-line))
 =>
-    (up-jump-rule 16)
+    (up-jump-rule 21)
 )
 (defrule
     (not (current-age == imperial-age))
@@ -11772,6 +12167,38 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-chemistry))
 =>
     (research ri-chemistry)
+)
+(defrule
+    (not (current-age == imperial-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-furor-celtica)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-furor-celtica < research-pending)
+    (research-available ri-furor-celtica)
+    (not (research-completed ri-furor-celtica))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-furor-celtica)
+    (goal do-research 1)
+    (research-available ri-furor-celtica)
+    (not (research-completed ri-furor-celtica))
+=>
+    (research ri-furor-celtica)
 )
 (defrule
     (not (building-type-count-total siege-workshop == 0))
@@ -11858,7 +12285,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-scorpions 1) (unit-available scorpion-line)))
 =>
-    (up-jump-rule 36)
+    (up-jump-rule 46)
 )
 (defrule
     (not (building-type-count-total siege-workshop == 0))
@@ -11960,9 +12387,41 @@ watch-tower-arrow > 0))))
     (research ri-rocketry)
 )
 (defrule
+    (not (and (current-age == imperial-age) (unit-available scorpion-line)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-double-crossbow)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-double-crossbow < research-pending)
+    (research-available ri-double-crossbow)
+    (not (research-completed ri-double-crossbow))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-double-crossbow)
+    (goal do-research 1)
+    (research-available ri-double-crossbow)
+    (not (research-completed ri-double-crossbow))
+=>
+    (research ri-double-crossbow)
+)
+(defrule
     (not (unit-available scorpion-line))
 =>
-    (up-jump-rule 16)
+    (up-jump-rule 21)
 )
 (defrule
     (not (current-age == imperial-age))
@@ -12027,6 +12486,38 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-chemistry))
 =>
     (research ri-chemistry)
+)
+(defrule
+    (not (current-age == imperial-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-furor-celtica)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-furor-celtica < research-pending)
+    (research-available ri-furor-celtica)
+    (not (research-completed ri-furor-celtica))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-furor-celtica)
+    (goal do-research 1)
+    (research-available ri-furor-celtica)
+    (not (research-completed ri-furor-celtica))
+=>
+    (research ri-furor-celtica)
 )
 (defrule
     (not (building-type-count-total siege-workshop == 0))
@@ -12113,7 +12604,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-bombard-cannons 1) (unit-available bombard-cannon)))
 =>
-    (up-jump-rule 24)
+    (up-jump-rule 29)
 )
 (defrule
     (not (building-type-count-total siege-workshop == 0))
@@ -12139,7 +12630,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (unit-available bombard-cannon))
 =>
-    (up-jump-rule 16)
+    (up-jump-rule 21)
 )
 (defrule
     (not (current-age == imperial-age))
@@ -12204,6 +12695,38 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-chemistry))
 =>
     (research ri-chemistry)
+)
+(defrule
+    (not (current-age == imperial-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-furor-celtica)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-furor-celtica < research-pending)
+    (research-available ri-furor-celtica)
+    (not (research-completed ri-furor-celtica))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-furor-celtica)
+    (goal do-research 1)
+    (research-available ri-furor-celtica)
+    (not (research-completed ri-furor-celtica))
+=>
+    (research ri-furor-celtica)
 )
 (defrule
     (not (building-type-count-total siege-workshop == 0))
@@ -12290,7 +12813,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-trebuchets 1) (unit-available trebuchet-set)))
 =>
-    (up-jump-rule 22)
+    (up-jump-rule 27)
 )
 (defrule
     (can-build castle)
@@ -12302,7 +12825,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (unit-available trebuchet))
 =>
-    (up-jump-rule 16)
+    (up-jump-rule 21)
 )
 (defrule
     (not (current-age == imperial-age))
@@ -12367,6 +12890,38 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-chemistry))
 =>
     (research ri-chemistry)
+)
+(defrule
+    (not (current-age == imperial-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-furor-celtica)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-furor-celtica < research-pending)
+    (research-available ri-furor-celtica)
+    (not (research-completed ri-furor-celtica))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-furor-celtica)
+    (goal do-research 1)
+    (research-available ri-furor-celtica)
+    (not (research-completed ri-furor-celtica))
+=>
+    (research ri-furor-celtica)
 )
 (defrule
     (not (building-type-count-total siege-workshop == 0))
@@ -12453,7 +13008,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-unique-units 1) (unit-available my-unique-unit-line)))
 =>
-    (up-jump-rule 499)
+    (up-jump-rule 514)
 )
 (defrule
     (true)
@@ -14399,7 +14954,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (or (civ-selected byzantine) (or (civ-selected hun) (or (civ-selected magyar) (or (civ-selected persian) (or (civ-selected saracen) (civ-selected slavic)))))) (unit-available my-unique-unit-line)))
 =>
-    (up-jump-rule 78)
+    (up-jump-rule 88)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -14688,6 +15243,70 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-husbandry))
 =>
     (research ri-husbandry)
+)
+(defrule
+    (not (current-age >= castle-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-chivalry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-chivalry < research-pending)
+    (research-available ri-chivalry)
+    (not (research-completed ri-chivalry))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-chivalry)
+    (goal do-research 1)
+    (research-available ri-chivalry)
+    (not (research-completed ri-chivalry))
+=>
+    (research ri-chivalry)
+)
+(defrule
+    (not (current-age >= imperial-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-manipur-cavalry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-manipur-cavalry < research-pending)
+    (research-available ri-manipur-cavalry)
+    (not (research-completed ri-manipur-cavalry))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-manipur-cavalry)
+    (goal do-research 1)
+    (research-available ri-manipur-cavalry)
+    (not (research-completed ri-manipur-cavalry))
+=>
+    (research ri-manipur-cavalry)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -15102,6 +15721,38 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-bearded-axe))
 =>
     (research ri-bearded-axe)
+)
+(defrule
+    (not (and (and (civ-selected khmer) (current-age == imperial-age)) (unit-available my-unique-unit-line)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-double-crossbow)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-double-crossbow < research-pending)
+    (research-available ri-double-crossbow)
+    (not (research-completed ri-double-crossbow))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-double-crossbow)
+    (goal do-research 1)
+    (research-available ri-double-crossbow)
+    (not (research-completed ri-double-crossbow))
+=>
+    (research ri-double-crossbow)
 )
 (defrule
     (unit-available my-unique-unit-line)
@@ -19240,7 +19891,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (current-age >= feudal-age))
 =>
-    (up-jump-rule 32)
+    (up-jump-rule 40)
 )
 (defrule
     (can-build market)
@@ -19316,6 +19967,50 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (not (commodity-selling-price food >= good-food-sell-price))
 =>
     (set-goal can-sell-food 0)
+)
+(defrule
+    (and (commodity-buying-price wood <= excellent-wood-price) (and (or (up-compare-goal non-escrowed-wood c:< wood-threshold) (up-compare-goal non-escrowed-gold c:> gold-threshold)) (wood-amount < max-wood)))
+=>
+    (chat-local-to-self "buy wood, excellent price.")
+)
+(defrule
+    (can-buy-commodity wood)
+    (and (commodity-buying-price wood <= excellent-wood-price) (and (or (up-compare-goal non-escrowed-wood c:< wood-threshold) (up-compare-goal non-escrowed-gold c:> gold-threshold)) (wood-amount < max-wood)))
+=>
+    (buy-commodity wood)
+)
+(defrule
+    (and (commodity-buying-price food <= excellent-food-price) (and (or (up-compare-goal non-escrowed-food c:< food-threshold) (up-compare-goal non-escrowed-gold c:> gold-threshold)) (food-amount < max-food)))
+=>
+    (chat-local-to-self "buy food, excellent price.")
+)
+(defrule
+    (can-buy-commodity food)
+    (and (commodity-buying-price food <= excellent-food-price) (and (or (up-compare-goal non-escrowed-food c:< food-threshold) (up-compare-goal non-escrowed-gold c:> gold-threshold)) (food-amount < max-food)))
+=>
+    (buy-commodity food)
+)
+(defrule
+    (and (commodity-selling-price wood >= excellent-wood-sell-price) (and (or (up-compare-goal non-escrowed-wood c:> wood-threshold) (up-compare-goal non-escrowed-gold c:< gold-threshold)) (gold-amount < max-gold)))
+=>
+    (chat-local-to-self "sell wood, excellent price.")
+)
+(defrule
+    (can-sell-commodity wood)
+    (and (commodity-selling-price wood >= excellent-wood-sell-price) (and (or (up-compare-goal non-escrowed-wood c:> wood-threshold) (up-compare-goal non-escrowed-gold c:< gold-threshold)) (gold-amount < max-gold)))
+=>
+    (sell-commodity wood)
+)
+(defrule
+    (and (commodity-selling-price food >= excellent-food-sell-price) (or (up-compare-goal non-escrowed-food c:> food-threshold) (up-compare-goal non-escrowed-gold c:< gold-threshold)))
+=>
+    (chat-local-to-self "sell food, excellent price.")
+)
+(defrule
+    (can-sell-commodity food)
+    (and (commodity-selling-price food >= excellent-food-sell-price) (or (up-compare-goal non-escrowed-food c:> food-threshold) (up-compare-goal non-escrowed-gold c:< gold-threshold)))
+=>
+    (sell-commodity food)
 )
 (defrule
     (and (up-compare-goal non-escrowed-wood c:< wood-threshold) (goal can-buy-wood 1))
