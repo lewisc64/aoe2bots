@@ -7,7 +7,14 @@ const ri-logistica = 61
 const ri-mahouts = 7
 const ri-sipahi = 491
 const ri-rocketry = 52
+const ri-chivalry = 493
 const ri-bearded-axe = 83
+const ri-shinkichon = 445
+const ri-howdah = 626
+const ri-manipur-cavalry = 627
+const ri-furor-celtica = 5
+const ri-tusk-swords = 622
+const ri-double-crossbow = 623
 
 const sea-fish = 905
 const tc-arrow = 54
@@ -170,7 +177,7 @@ const gold-unit-threshold = 0
   
   goal desired-villagers = 120
   #if goal team-game 1
-    goal desired-trade-carts = 20
+    goal desired-trade-carts = 30
   #else
     goal desired-trade-carts = 0
   #end if
