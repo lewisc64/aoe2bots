@@ -1,50 +1,66 @@
 // play as franks
 
+load "charlotte/stats.aoe2ai"
 load "templates/fast_castle.aoe2ai"
 
+#subroutine escrow-resources
+  #if escrow-amount food < 1300
+    escrow {percentage} food
+  #else
+    escrow 0 food
+  #end if
+  #if escrow-amount gold < 800
+    escrow {percentage} gold
+  #else
+    escrow 0 gold
+  #end if
+#end subroutine
+
 #if current-age >= castle-age
+
+  #if unit-type-count-total knight < 10 or research-completed ri-paladin
+    call escrow-resources(percentage=0)
+  #else if unit-type-count-total knight < 20
+    call escrow-resources(percentage=10)
+  #else if unit-type-count-total knight < 30
+    call escrow-resources(percentage=20)
+  #else
+    call escrow-resources(percentage=40)
+  #end if
 
   #do once
     assign 4 builders to town-center-foundation
     sn-maximum-gold-drop-distance = 8
     sn-maximum-stone-drop-distance = 8
     sn-maximum-hunt-drop-distance = 48
+    @up-modify-sn sn-maximum-food-drop-distance s:= sn-maximum-town-size
+    
+    sn-maximum-attack-group-size = 1
+    sn-minimum-attack-group-size = 1
     sn-special-attack-type2 = villager
+    
+    #if current-age == imperial-age
+      sn-maximum-town-size += 5
+    #end if
   #end do
-  
-  #if research-completed ri-paladin and not town-under-attack
-    #if escrow-amount food < 1300
-      escrow 10 food
-    #else
-      escrow 0 food
-    #end if
-    #if escrow-amount gold < 800
-      escrow 10 gold
-    #else
-      escrow 0 gold
-    #end if
-  #else
-    escrow 0 food
-    escrow 0 gold
-    #if not town-under-attack
-      @release-escrow food
-      @release-escrow gold
-    #end if
-  #end if
 
   #if building-type-count-total stable >= 2
     #do once
-      distribute villagers 30 50 20 0
+      distribute villagers 35 55 10 0
     #end do
+    auto balance wood and food and gold
+    #if strategic-number sn-gold-gatherer-percentage < 15
+      distribute 2 villagers from wood and food to gold
+    #end if
+    #if strategic-number sn-food-gatherer-percentage < 40
+      distribute 2 villagers from food and gold to food
+    #end if
   #else
     #do once
-      distribute villagers 55 30 15 0
+      distribute villagers 40 50 10 0
     #end do
   #end if
   
-  auto balance wood and food and gold
-  
-  build 3 town-center
   
   build 1 barracks
   
@@ -53,42 +69,216 @@ load "templates/fast_castle.aoe2ai"
   #else
     build 2 stable
   #end if
-  build houses
+  
+  #if building-type-count-total stable >= 2
+    #when
+      build 1 university
+    #then always
+      #when
+        build 1 monastery
+      #then always
+        build 3 town-center
+      #end when
+    #end when
+  #end if
+  
+  build houses with 15 headroom
   build lumber camps
   #when
     build gold mining camps
   #then
     sn-camp-max-distance += 8
   #end when
-  build 1 university
-  build 1 monastery
-  build 1 market
   
-  #if wood-amount >= 200
+  build 1 market
+  build 1 blacksmith
+  
+  #if military-population >= 10 and building-type-count-total town-center >= 3
+    build 1 siege-workshop
+  #end if
+  
+  #if wood-amount >= 200 or building-type-count-total stable >= 2
     build farms
   #end if
   
+  //#if current-age == imperial-age
+  //  #if building-type-count-total castle == 0
+  //    buy stone when stone < 650
+  //    build castle
+  //  #end if
+  //#end if
+  
+  research mill upgrades with wood and food escrow
+  research gold mining camp upgrades with wood and food escrow
+  research lumber camp upgrades with wood and food escrow
   research imperial-age with food and gold escrow
   
   research ri-husbandry with food escrow
-  research ri-bloodlines with food and gold escrow
   research cavalry blacksmith upgrades with food and gold escrow
-  research ri-cavalier with food and gold escrow
-  research ri-paladin with food and gold escrow
+  research ri-cavalier with food and gold escrow => research ri-capped-ram => research ri-chemistry with food and gold escrow
+  research ri-paladin with food and gold escrow => research ri-siege-ram with food escrow
   
   #if player-in-game any-ally and players-building-type-count any-ally market >= 1
     train 100 villager
-    research ri-caravan
+    research ri-caravan with food and gold escrow
     train 20 trade-cart
   #else
     train 120 villager
   #end if
   
-  train knight-line
-  train 1 monk
+  train 1 monk with gold escrow
   
-  #repeat every 30 seconds
-    attack with 20 units
-  #end repeat
+  #if up-compare-goal target-military-percentage < 200
+    #if food-amount >= 150 or town-under-attack
+      #if town-under-attack
+        train knight-line
+      #else if unit-type-count-total battering-ram-line <= 5 and up-pending-objects c: battering-ram-line == 0 and building-type-count siege-workshop >= 1 and up-compare-goal target-military-percentage >= 100
+        train battering-ram-line
+      #else if unit-type-count-total trebuchet-set <= 3 and up-pending-objects c: trebuchet-set == 0 and building-type-count castle >= 1 and up-compare-goal target-military-percentage >= 100
+        train trebuchet
+      #else
+        train knight-line
+      #end if
+    #end if
+  #end if
+  
+  trade excess wood and food and gold at 2000
+  
+  #if town-under-attack
+    trade excess wood and food and gold at 300
+  #end if
+  
+  #do once
+    target closest enemy
+    scout enemy
+  #end do
+  #if not player-valid target-player
+    target closest enemy
+    scout enemy
+  #end if
+  
+  #if (up-compare-goal target-military-percentage >= 120 or up-compare-goal population-space-remaining c:<= 5) and military-population >= 10
+    goal attacking = 1
+  #end if
+  
+  #if up-compare-goal target-military-percentage <= 70 and goal attacking 1
+    retreat
+    goal attacking = 0
+  #end if
+  
+  #if goal attacking 1
+    sn-number-attack-groups = 200
+  #else
+    sn-number-attack-groups = 0
+  #end if
 
 #end if
+
+#do once
+
+  chat to all "It is fate that we have met here, of all places."
+  #delay by 15 seconds
+    chat to all "Let us weave tales of grandeur."
+  #end delay
+
+  #if research-completed ri-husbandry
+    #select random persistant
+      chat to all "A swift steed my father promised me. A thousand times I begged."
+      #delay by 16 seconds
+        chat to all "He passed long ago. But while rotting in his grave, he kept his word."
+        #delay by 16 seconds
+          chat to all "Now I understand."
+        #end delay
+      #end delay
+    #randor
+      chat to all "Only once have I encountered true tricksters"
+      #delay by 10 seconds
+        chat to all "They smiled. They laughed. They pretended to care."
+        #delay by 11 seconds
+          chat to all "Now their souls adorn the palace of my mind. All tortured."
+        #end delay
+      #end delay
+    #randor
+      chat to all "I took my vow at a young age."
+      #delay by 6 seconds
+        chat to all "As I drank from the chalice, I told lies."
+        #delay by 8 seconds
+          chat to all "They gorged on my sweetened words, and made me a lady."
+          #delay by 10 seconds
+            chat to all "Drunk on their own reflections."
+          #end delay
+        #end delay
+      #end delay
+    #randor
+      chat to all "A farmer once came to my court."
+      #delay by 8 seconds
+        chat to all "Sickly and weak, he begged me for boon."
+        #delay by 16 seconds
+          chat to all "Naturally I refused."
+          #delay by 5 seconds
+            chat to all "Compassion only goes so far. Don't you think?"
+          #end delay
+        #end delay
+      #end delay
+    #end select
+  #end if
+  
+  #if research-completed ri-cavalier
+    #select random persistant
+      chat to all "People were born cruel, and people were born foolish. As was I."
+      #delay by 15 seconds
+        chat to all "But I have changed."
+        #delay by 6 seconds
+          chat to all "Go ahead. Lift up my veil. Watch my eyes sparkle."
+        #end delay
+      #end delay
+    #randor
+      chat to all "My head under a boot, I hear a scratchy voice worming into my thoughts:"
+      #delay by 16 seconds
+        chat to all "'Hurts, doesn't it?'"
+        #delay by 7 seconds
+          chat to all "'Feeling your skin bubble and your blood jet through your pores...'"
+          #delay by 16 seconds
+            chat to all "It did not hurt."
+            #delay by 5 seconds
+              chat to all "Not for me."
+            #end delay
+          #end delay
+        #end delay
+      #end delay
+    #randor
+    #end select
+  #end if
+
+  #if research-completed ri-paladin
+    #select random persistant
+      chat to all "I had nightmares as a child."
+      #delay by 6 seconds
+        chat to all "Demons crawling on my back, peeling off rolls of skin with their wicked claws."
+        #delay by 16 seconds
+          chat to all "The demons were saints, and I their lamb."
+        #end delay
+      #end delay
+    #randor
+      chat to all "As tears pooled up in his eyes, I grit my teeth."
+      #delay by 14 seconds
+        chat to all "He asked what it was all for. What it all meant."
+        #delay by 10 seconds
+          chat to all "I looked him in the eye, and severed him in twain."
+        #end delay
+      #end delay
+    #randor
+      chat to all "A wide-eyed girl looked up at the stars."
+      #delay by 10 seconds
+        chat to all "Were they pretty?"
+        #delay by 4 seconds
+          chat to all "Were they beautiful?"
+          #delay by 8 seconds
+            chat to all "All she saw was fire."
+          #end delay
+        #end delay
+      #end delay
+    #end select
+  #end if
+
+#end do
