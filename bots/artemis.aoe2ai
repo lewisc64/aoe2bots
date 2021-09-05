@@ -1,0 +1,333 @@
+// play as Ethiopians
+
+const tc-arrow = 54
+const watch-tower-arrow = 786
+const castle-arrow = 746
+const castle-arrow-chemistry = 747
+const ranged-unit-class = 900
+const infantry-unit-class = 906
+const cavalry-unit-class = 912
+
+#if false
+  @up-chat-data-to-all "wood gatherers: %d" s: sn-wood-gatherer-percentage
+  @up-chat-data-to-all "food gatherers: %d" s: sn-food-gatherer-percentage
+  @up-chat-data-to-all "gold gatherers: %d" s: sn-gold-gatherer-percentage
+  @up-chat-data-to-all "stone gatherers: %d" s: sn-stone-gatherer-percentage
+#end if
+
+#do once
+  set up basics
+  
+  goal attacking = 0
+  
+  assign 2 builders to archery-range
+  assign 4 builders to town-center-foundation
+  assign 8 builders to castle
+#end do
+
+#if current-age == castle-age
+  #do once
+    sn-maximum-town-size += 4
+    sn-minimum-town-size += 4
+  #end do
+#end if
+
+#if current-age == imperial-age
+  #do once
+    sn-maximum-town-size += 4
+    sn-minimum-town-size += 4
+  #end do
+#end if
+
+#if not player-in-game target-player
+  target closest enemy
+#end if
+
+load "charlotte/stats.aoe2ai"
+
+#if current-age >= feudal-age and military-population >= 12
+  #if escrow-amount wood < 300
+    escrow 10 wood
+  #else
+    escrow 0 wood
+  #end if
+  #if escrow-amount food < 1200
+    escrow 10 food
+  #else
+    escrow 0 food
+  #end if
+  #if escrow-amount gold < 1000
+    escrow 10 gold
+  #else
+    escrow 0 gold
+  #end if
+#else
+  escrow 0 wood
+  escrow 0 food
+  escrow 0 gold
+#end if
+
+lure boars
+
+build lumber camps
+
+#if building-type-count lumber-camp >= 1
+  build mills
+#end if
+
+#if strategic-number sn-gold-gatherer-percentage > 0
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 8
+  #end when
+#end if
+
+#if current-age == dark-age
+  #do once
+    distribute villagers 30 70 0 0
+    sn-enable-training-queue = 1
+  #end do
+  
+  #if food-amount >= 350
+    sn-enable-training-queue = 0
+  #end if
+  
+  #when
+    research feudal-age with food escrow
+  #then always
+    #do once
+      distribute villagers 70 20 10 0
+    #end do
+    build 1 barracks
+  #end when
+  
+  build houses with 5 headroom
+  #if building-type-count lumber-camp >= 1
+    build safety mill
+  #end if
+  build farms
+  
+  #if food-amount < 50 and up-pending-objects c: villager <= 1
+    drop off food
+  #end if
+#end if
+
+#if current-age == feudal-age
+  #do once
+    // distribute villagers 100 0 0 0
+    sn-enable-training-queue = 0
+    goal do-skirms = 0
+  #end do
+  
+  build 2 archery-range
+  
+  #if building-type-count-total archery-range >= 2
+    #do once
+      distribute villagers 40 20 40 0
+    #end do
+    #when
+      build 1 blacksmith
+    #then always
+      build 1 market
+    #end when
+  #end if
+  
+  sell wood when wood > 400
+  sell food when food > 900
+  buy food when gold > 300
+  
+  #if building-type-count-total blacksmith >= 1
+    #if up-compare-goal non-escrowed-wood c:> 100
+      build farms
+    #end if
+    #if military-population >= 9// and up-research-status c: ri-fletching >= research-pending
+      goal attacking = 1
+      #do once
+        distribute villagers 30 50 20 0
+      #end do
+    #else
+      // goal attacking = 0
+    #end if
+  #end if
+  
+  research castle-age with food and gold escrow
+  research blacksmith ranged upgrades with food and gold escrow
+  
+  #respond to archery-range building from target-player
+    #do once
+      goal do-skirms = 1
+      distribute 10 villagers from gold to wood and food
+    #end do
+    #if up-compare-goal non-escrowed-wood c:> 100 or town-under-attack
+      train skirmisher-line
+    #end if
+  #end respond
+  
+  #respond to 2 scout-cavalry-line from target-player
+    #if research-completed ri-fletching and research-completed ri-padded-archer-armor
+      research blacksmith infantry upgrades with food and gold escrow
+    #end if
+    train 4 spearman-line
+  #end respond
+  
+  #if goal do-skirms 0
+    train archer-line
+  #end if
+#end if
+
+#if up-research-status c: castle-age >= research-pending
+  
+  build 3 archery-range
+  build 3 town-center with wood and stone escrow
+  #if building-type-count-total town-center < 3 and up-compare-goal non-escrowed-stone c:< 100
+    build 1 market
+    buy stone
+  #end if
+  build 1 blacksmith
+  #if players-building-type-count any-ally market >= 1
+    build 1 market
+  #end if
+  build 1 monastery
+  build 1 siege-workshop with wood escrow
+  
+  auto balance wood and food and gold
+  
+  #if strategic-number sn-gold-gatherer-percentage < 10
+    distribute 2 villagers from wood and food to gold
+  #end if
+  
+  research blacksmith ranged upgrades with food and gold escrow
+  research ri-crossbow with food and gold escrow
+  //research ri-royal-heirs with food and gold escrow
+  research ri-capped-ram with food escrow
+  research ri-siege-ram with food escrow
+  //research my-unique-unit-upgrade with food and gold escrow
+  research imperial-age with food and gold escrow
+  
+  #if up-compare-goal non-escrowed-wood c:> 100
+    build farms
+  #end if
+  
+  goal stop-normal-prod = 0
+  
+  #respond to 5 archer-line from target-player
+    build 2 archery-range
+    research ri-elite-skirmisher with wood and gold escrow
+    research ranged blacksmith upgrades
+    #if up-compare-goal non-escrowed-food c:>= 75
+      train skirmisher-line
+    #end if
+  #end respond
+  
+  #respond to 5 skirmisher-line from target-player
+    research ri-onager with food and gold escrow
+    build 2 siege-workshop
+    train 5 mangonel
+    #if unit-type-count-total mangonel < 5
+      goal stop-normal-prod = 1
+    #end if
+  #end respond
+  
+  #respond to 5 scorpion-line from target-player
+    research ri-onager with food and gold escrow
+    build 2 siege-workshop
+    train 5 mangonel
+    #if unit-type-count-total mangonel < 5
+      goal stop-normal-prod = 1
+    #end if
+  #end respond
+  
+  #respond to 5 knight-line from target-player
+    build 3 barracks
+    #if up-compare-goal non-escrowed-food c:>= 85
+      train spearman-line
+    #end if
+  #end respond
+  
+  #respond to 5 camel-line from target-player
+    build 3 barracks
+    #if up-compare-goal non-escrowed-food c:>= 85
+      train spearman-line
+    #end if
+  #end respond
+  
+  #respond to 5 battle-elephant-line from target-player
+    build 3 barracks
+    #if up-compare-goal non-escrowed-food c:>= 85
+      train spearman-line
+    #end if
+  #end respond
+  
+  #if goal stop-normal-prod 0
+    train archer-line
+    #if current-age == imperial-age
+      train 10 battering-ram-line
+    #else
+      train 5 battering-ram-line
+    #end if
+  #end if
+  
+  train 1 monk
+  
+  #if up-compare-goal target-military-percentage c:>= 100
+    goal attacking = 1
+  #else if up-compare-goal target-military-percentage c:< 80 and goal attacking 1
+    goal attacking = 0
+    retreat
+  #end if
+  
+#end if
+
+#if current-age >= feudal-age
+
+  build 1 barracks with wood escrow
+  build houses with 15 headroom
+  
+  research ri-loom with gold escrow
+  research ri-double-bit-axe with food and wood escrow
+  research ri-bow-saw with food and wood escrow
+  research ri-gold-mining with food and wood escrow
+  
+  // tc fire avoidance
+  #when
+    #if cc-players-unit-type-count target-player tc-arrow > 0 or cc-players-unit-type-count target-player castle-arrow > 0 or cc-players-unit-type-count target-player castle-arrow-chemistry > 0 or cc-players-unit-type-count target-player watch-tower-arrow > 0
+      #if unit-type-count battering-ram-line == 0 and unit-type-count trebuchet-set == 0 and unit-type-count bombard-cannon == 0
+        #if goal threat-source town-center or goal threat-source castle
+          @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
+          retreat
+          goal attacking = 0
+        #end if
+      #end if
+    #end if
+  #then always
+    #do once
+      build forward siege-workshop with wood escrow
+    #end do
+  #end when
+#end if
+
+#if current-age > dark-age or up-compare-goal non-escrowed-food c:< 400
+  #if players-building-type-count any-ally market >= 1 and current-age >= imperial-age
+    train 90 villager
+    research ri-caravan with food and gold escrow
+    train 30 trade-cart
+  #else
+    train 120 villager
+  #end if
+#end if
+research ri-loom with gold escrow
+
+#if goal attacking 1
+  #do once
+    target closest enemy
+    scout enemy
+  #end do
+  #if not player-in-game target-player
+    target closest enemy
+    scout enemy
+  #end if
+  sn-maximum-town-size = 255
+#else
+  @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
+#end if
