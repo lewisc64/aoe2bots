@@ -155,12 +155,15 @@ build lumber camps
   research blacksmith ranged upgrades with food and gold escrow
   
   #respond to archery-range building from target-player
-    #do once
-      goal do-skirms = 1
-      distribute 10 villagers from gold to wood and food
-    #end do
-    #if up-compare-goal non-escrowed-wood c:> 100 or town-under-attack
-      train skirmisher-line
+    #if building-type-count-total archery-range >= 2
+      #do once
+        goal do-skirms = 1
+        distribute 10 villagers from gold to wood and food
+        distribute 10 villagers from gold to wood and food
+      #end do
+      #if up-compare-goal non-escrowed-wood c:> 100 or town-under-attack
+        train skirmisher-line
+      #end if
     #end if
   #end respond
   
@@ -180,7 +183,7 @@ build lumber camps
   
   build 3 archery-range
   build 3 town-center with wood and stone escrow
-  #if building-type-count-total town-center < 3 and up-compare-goal non-escrowed-stone c:< 100
+  #if building-type-count-total town-center < 3 and stone-amount < 100
     build 1 market
     buy stone
   #end if
