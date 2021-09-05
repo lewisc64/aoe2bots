@@ -4,6 +4,9 @@
 (defconst max-wood 1600)
 (defconst max-food 1600)
 (defconst max-gold 1600)
+(defconst half-max-wood 800)
+(defconst half-max-food 800)
+(defconst half-max-gold 800)
 (defconst minimum-wood-gatherer-percentage 30)
 (defconst minimum-food-gatherer-percentage 30)
 (defconst minimum-gold-gatherer-percentage 10)
@@ -19970,53 +19973,53 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 )
 (defrule
     (and (commodity-buying-price wood <= excellent-wood-price) (and (or (up-compare-goal non-escrowed-wood c:< wood-threshold) (up-compare-goal non-escrowed-gold c:> gold-threshold)) (and (up-compare-goal non-escrowed-gold c:> gold-threshold)
-(wood-amount < max-wood))))
+(wood-amount < half-max-wood))))
 =>
     (chat-local-to-self "buy wood, excellent price.")
 )
 (defrule
     (can-buy-commodity wood)
     (and (commodity-buying-price wood <= excellent-wood-price) (and (or (up-compare-goal non-escrowed-wood c:< wood-threshold) (up-compare-goal non-escrowed-gold c:> gold-threshold)) (and (up-compare-goal non-escrowed-gold c:> gold-threshold)
-(wood-amount < max-wood))))
+(wood-amount < half-max-wood))))
 =>
     (buy-commodity wood)
 )
 (defrule
     (and (commodity-buying-price food <= excellent-food-price) (and (or (up-compare-goal non-escrowed-food c:< food-threshold) (up-compare-goal non-escrowed-gold c:> gold-threshold)) (and (up-compare-goal non-escrowed-gold c:> gold-threshold)
-(food-amount < max-food))))
+(food-amount < half-max-food))))
 =>
     (chat-local-to-self "buy food, excellent price.")
 )
 (defrule
     (can-buy-commodity food)
     (and (commodity-buying-price food <= excellent-food-price) (and (or (up-compare-goal non-escrowed-food c:< food-threshold) (up-compare-goal non-escrowed-gold c:> gold-threshold)) (and (up-compare-goal non-escrowed-gold c:> gold-threshold)
-(food-amount < max-food))))
+(food-amount < half-max-food))))
 =>
     (buy-commodity food)
 )
 (defrule
     (and (commodity-selling-price wood >= excellent-wood-sell-price) (and (or (up-compare-goal non-escrowed-wood c:> wood-threshold) (up-compare-goal non-escrowed-gold c:< gold-threshold)) (and (up-compare-goal non-escrowed-wood c:> wood-threshold)
-(gold-amount < max-gold))))
+(gold-amount < half-max-gold))))
 =>
     (chat-local-to-self "sell wood, excellent price.")
 )
 (defrule
     (can-sell-commodity wood)
     (and (commodity-selling-price wood >= excellent-wood-sell-price) (and (or (up-compare-goal non-escrowed-wood c:> wood-threshold) (up-compare-goal non-escrowed-gold c:< gold-threshold)) (and (up-compare-goal non-escrowed-wood c:> wood-threshold)
-(gold-amount < max-gold))))
+(gold-amount < half-max-gold))))
 =>
     (sell-commodity wood)
 )
 (defrule
     (and (commodity-selling-price food >= excellent-food-sell-price) (and (or (up-compare-goal non-escrowed-food c:> food-threshold) (up-compare-goal non-escrowed-gold c:< gold-threshold)) (and (up-compare-goal non-escrowed-food c:> food-threshold)
-(gold-amount < max-gold))))
+(gold-amount < half-max-gold))))
 =>
     (chat-local-to-self "sell food, excellent price.")
 )
 (defrule
     (can-sell-commodity food)
     (and (commodity-selling-price food >= excellent-food-sell-price) (and (or (up-compare-goal non-escrowed-food c:> food-threshold) (up-compare-goal non-escrowed-gold c:< gold-threshold)) (and (up-compare-goal non-escrowed-food c:> food-threshold)
-(gold-amount < max-gold))))
+(gold-amount < half-max-gold))))
 =>
     (sell-commodity food)
 )

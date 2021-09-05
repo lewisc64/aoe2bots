@@ -2,6 +2,10 @@ const max-wood = 1600
 const max-food = 1600
 const max-gold = 1600
 
+const half-max-wood = 800
+const half-max-food = 800
+const half-max-gold = 800
+
 const minimum-wood-gatherer-percentage = 30
 const minimum-food-gatherer-percentage = 30
 const minimum-gold-gatherer-percentage = 10
@@ -56,22 +60,22 @@ const excellent-food-sell-price = 200
   goal can-sell-food = 0
 #end if
 
-#if commodity-buying-price wood <= excellent-wood-price and (up-compare-goal non-escrowed-wood c:< wood-threshold or up-compare-goal non-escrowed-gold c:> gold-threshold) and up-compare-goal non-escrowed-gold c:> gold-threshold and wood-amount < max-wood
+#if commodity-buying-price wood <= excellent-wood-price and (up-compare-goal non-escrowed-wood c:< wood-threshold or up-compare-goal non-escrowed-gold c:> gold-threshold) and up-compare-goal non-escrowed-gold c:> gold-threshold and wood-amount < half-max-wood
   chat to self "buy wood, excellent price."
   buy wood
 #end if
 
-#if commodity-buying-price food <= excellent-food-price and (up-compare-goal non-escrowed-food c:< food-threshold or up-compare-goal non-escrowed-gold c:> gold-threshold) and up-compare-goal non-escrowed-gold c:> gold-threshold and food-amount < max-food
+#if commodity-buying-price food <= excellent-food-price and (up-compare-goal non-escrowed-food c:< food-threshold or up-compare-goal non-escrowed-gold c:> gold-threshold) and up-compare-goal non-escrowed-gold c:> gold-threshold and food-amount < half-max-food
   chat to self "buy food, excellent price."
   buy food
 #end if
 
-#if commodity-selling-price wood >= excellent-wood-sell-price and (up-compare-goal non-escrowed-wood c:> wood-threshold or up-compare-goal non-escrowed-gold c:< gold-threshold) and up-compare-goal non-escrowed-wood c:> wood-threshold and gold-amount < max-gold
+#if commodity-selling-price wood >= excellent-wood-sell-price and (up-compare-goal non-escrowed-wood c:> wood-threshold or up-compare-goal non-escrowed-gold c:< gold-threshold) and up-compare-goal non-escrowed-wood c:> wood-threshold and gold-amount < half-max-gold
   chat to self "sell wood, excellent price."
   sell wood
 #end if
 
-#if commodity-selling-price food >= excellent-food-sell-price and (up-compare-goal non-escrowed-food c:> food-threshold or up-compare-goal non-escrowed-gold c:< gold-threshold) and up-compare-goal non-escrowed-food c:> food-threshold and gold-amount < max-gold
+#if commodity-selling-price food >= excellent-food-sell-price and (up-compare-goal non-escrowed-food c:> food-threshold or up-compare-goal non-escrowed-gold c:< gold-threshold) and up-compare-goal non-escrowed-food c:> food-threshold and gold-amount < half-max-gold
   chat to self "sell food, excellent price."
   sell food
 #end if
