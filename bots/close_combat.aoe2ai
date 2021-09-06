@@ -1,13 +1,13 @@
 #do once
   set up basics
-  sn-livestock-to-town-center = 0
-  take boar
   
   goal do-douche = 0
   goal douche-done = 0
   
   assign 8 builders to castle
 #end do
+
+lure boars
 
 build 2 mill
 build mills
@@ -139,5 +139,9 @@ train 120 villager
     escrow 0 wood
     distribute villagers 25 75 0 0
     take boar and deer
+  #end if
+  #if goal do-douche 1 and goal douche-done 0
+    delete building lumber-camp
+    delete building mill
   #end if
 #end if
