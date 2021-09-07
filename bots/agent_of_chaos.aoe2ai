@@ -36,7 +36,6 @@ build lumber camps
   build 1 archery-range
   #if building-type-count-total archery-range >= 1
     build 1 blacksmith
-    build 1 market
     
     build 3 town-center
     #if building-type-count-total town-center >= 3
@@ -63,12 +62,6 @@ research all upgrades
 
 research castle-age
 research imperial-age
-
-#if current-age == feudal-age
-  buy food when gold >= 300
-  sell food when food >= 900
-  sell wood when wood >= 400
-#end if
 
 #if current-age == dark-age
   
