@@ -1,6 +1,5 @@
 const ri-el-dorado = 4
 const ri-garland-wars = 24
-const ri-andean-sling = 516
 
 const tc-arrow = 54
 const watch-tower-arrow = 786
@@ -21,34 +20,7 @@ const max-gold = 1500
   assign 4 builders to town-center-foundation
 #end do
 
-#do once
-  goal escrowed-wood = 0
-  goal escrowed-food = 0
-  goal escrowed-gold = 0
-  goal non-escrowed-wood = 0
-  goal non-escrowed-food = 0
-  goal non-escrowed-gold = 0
-#end do
-
-@up-get-fact escrow-amount wood escrowed-wood
-@up-get-fact escrow-amount food escrowed-food
-@up-get-fact escrow-amount gold escrowed-gold
-
-@up-get-fact resource-amount wood non-escrowed-wood
-@up-get-fact resource-amount food non-escrowed-food
-@up-get-fact resource-amount gold non-escrowed-gold
-
-@up-modify-goal non-escrowed-wood g:- escrowed-wood
-@up-modify-goal non-escrowed-food g:- escrowed-food
-@up-modify-goal non-escrowed-gold g:- escrowed-gold
-
-#do once
-  goal threat-time = 0
-  goal threat-player = 0
-  goal threat-source = 0
-  goal threat-target = 0
-#end do
-@up-get-threat-data threat-time threat-player threat-source threat-target
+load "charlotte/stats.aoe2ai"
 
 #if building-type-count-total house == 0
   #do once
@@ -93,13 +65,6 @@ research ri-elite-eagle-warrior with food and gold escrow
 research ri-squires with food escrow
 
 research blacksmith infantry upgrades with food and gold escrow
-#if current-age >= castle-age
-  research blacksmith ranged upgrades with food and gold escrow
-  research ri-thumb-ring with food and wood escrow
-  build 1 university
-  research ri-ballistics with wood and gold escrow
-  research ri-andean-sling with food and gold escrow
-#end if
 
 //research ri-capped-ram with food escrow
 //research ri-siege-ram with food escrow
@@ -108,19 +73,29 @@ research blacksmith infantry upgrades with food and gold escrow
   research ri-loom with gold escrow
 #end if
 
-train 120 villager
+#if players-building-type-count any-ally market >= 1 and current-age >= imperial-age
+  train 90 villager
+  research ri-caravan with food and gold escrow
+  #if up-compare-goal non-escrowed-gold c:>= 100
+    train 30 trade-cart
+  #end if
+#else
+  train 120 villager
+#end if
 research ri-loom with gold escrow
 
-#if building-type-count siege-workshop >= 1 and unit-type-count-total battering-ram-line < 3 and current-age <= castle-age
+#if not town-under-attack or goal threat-source castle
+  goal build-siege = 1
+#else
+  goal build-siege = 0
+#end if
+
+#if building-type-count siege-workshop >= 1 and unit-type-count-total battering-ram-line < 3 and current-age <= castle-age and goal build-siege 1
   train battering-ram-line
-#else if building-type-count castle >= 1 and unit-type-count-total trebuchet-set < 2 and current-age == imperial-age
+#else if building-type-count castle >= 1 and unit-type-count-total trebuchet-set < 2 and current-age == imperial-age and goal build-siege 1
   train trebuchet
 #else
-  #if building-type-count archery-range >= 2
-    train eagle-warrior-line => train eagle-warrior-line => train eagle-warrior-line => train slinger
-  #else
-    train eagle-warrior-line
-  #end if
+  train eagle-warrior-line
 #end if
 
 train 1 monk
@@ -143,26 +118,19 @@ train 1 monk
 
 #do once
   target closest enemy
+  scout enemy
 #end do
-#if not player-valid target-player
+#if not player-in-game target-player
   target closest enemy
+  scout enemy
 #end if
 
 #if up-research-status c: feudal-age >= research-pending and not research-completed castle-age
   build 2 barracks with wood escrow
-  #if current-age >= castle-age
-    build 2 archery-range with wood escrow
-  #end if
 #else if current-age == castle-age
   build 3 barracks with wood escrow
-  #if current-age >= castle-age
-    build 3 archery-range with wood escrow
-  #end if
 #else if current-age == imperial-age
   build 5 barracks with wood escrow
-  #if current-age >= castle-age
-    build 5 archery-range with wood escrow
-  #end if
 #end if
 
 build mills
