@@ -94,7 +94,7 @@ research ri-loom with gold escrow
   train battering-ram-line
 #else if building-type-count castle >= 1 and unit-type-count-total trebuchet-set < 2 and current-age == imperial-age and goal build-siege 1
   train trebuchet
-#else
+#else if up-compare-goal non-escrowed-food c:>= 70
   train eagle-warrior-line
 #end if
 
@@ -148,7 +148,7 @@ build castle
 #if up-research-status c: feudal-age < research-pending
 
   #do once
-    distribute villagers 25 75 0 0
+    distribute villagers 20 80 0 0
     sn-enable-training-queue = 1
   #end do
   
