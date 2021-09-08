@@ -240,16 +240,27 @@ load "templates/fast_castle.aoe2ai"
           #end delay
         #end delay
       #end delay
+    #randor
+      chat to all "The sun glinted off my lance as I levelled it at my opponent."
+      #delay by 6 seconds
+        chat to all "They held theirs, shaking with inexperience."
+        #delay by 6 seconds
+          chat to all "We clashed and were both thrown from our mounts."
+          #delay by 7 seconds
+            chat to all "I recovered quickly. They died the next day."
+          #end delay
+        #end delay
+      #end delay
     #end select
   #end if
   
   #if research-completed ri-cavalier
     #select random persistant
-      chat to all "People were born cruel, and people were born foolish. As was I."
-      #delay by 15 seconds
-        chat to all "But I have changed."
-        #delay by 6 seconds
-          chat to all "Go ahead. Lift up my veil. Watch my eyes sparkle."
+      chat to all "As tears pooled up in his eyes, I grit my teeth."
+      #delay by 14 seconds
+        chat to all "He asked what it was all for. What it all meant."
+        #delay by 10 seconds
+          chat to all "I looked him in the eye, and severed him in twain."
         #end delay
       #end delay
     #randor
@@ -266,6 +277,17 @@ load "templates/fast_castle.aoe2ai"
           #end delay
         #end delay
       #end delay
+    #randor
+      chat to all "I never believed in goblins."
+      #delay by 5 seconds
+        chat to all "Creatures of jealousy, I'm told. Born from your thoughts."
+        #delay by 12 seconds
+          chat to all "They claimed to see them all around me."
+          #delay by 5 seconds
+            chat to all "Perhaps their noses obscured their vision."
+          #end delay
+        #end delay
+      #end delay
     #end select
   #end if
 
@@ -279,11 +301,11 @@ load "templates/fast_castle.aoe2ai"
         #end delay
       #end delay
     #randor
-      chat to all "As tears pooled up in his eyes, I grit my teeth."
-      #delay by 14 seconds
-        chat to all "He asked what it was all for. What it all meant."
-        #delay by 10 seconds
-          chat to all "I looked him in the eye, and severed him in twain."
+      chat to all "People were born cruel, and people were born foolish. As was I."
+      #delay by 15 seconds
+        chat to all "But I have changed."
+        #delay by 6 seconds
+          chat to all "Go ahead. Lift up my veil. Watch my eyes sparkle."
         #end delay
       #end delay
     #randor
