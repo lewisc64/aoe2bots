@@ -2,30 +2,37 @@
   set up basics
 #end do once
 
-#if current-age <= feudal-age
+#if up-research-status c: castle-age < research-pending
   
   #if civilian-population >= 27
-    research feudal-age
+    #when
+      research feudal-age
+    #then
+      distribute villagers 80 20 0 0
+    #end when
   #end if
   research castle-age
+  
+  lure boars
 
   build houses
-  build mills
-  build lumber camps
+  #when
+    build lumber camps
+  #then always
+    build mills
+  #end when
   build 1 market
   build 1 blacksmith
   build 1 town-center
   
 #end if
 
-#if current-age == dark-age
+#if up-research-status c: feudal-age < research-pending
 
   #do once
     distribute villagers 20 80 0 0
     sn-enable-training-queue = 1
   #end do once
-  
-  lure boars
   
   research ri-loom
   
@@ -39,12 +46,12 @@
   #end if
   
   #if building-type-count-total lumber-camp >= 1
-    build 8 farm
+    build farms
   #end if
   
   build safety mill
   
-#else if current-age == feudal-age
+#else if up-research-status c: castle-age < research-pending
   
   #if wood-amount > 100
     build farms
@@ -57,11 +64,11 @@
   #end when
   
   #do once
-    distribute villagers 50 30 20 0
+    distribute villagers 30 50 20 0
     #if building-type-count-total blacksmith >= 1 and building-type-count-total market >= 1
-      distribute villagers 40 50 10 0
+      distribute villagers 20 60 20 0
     #end if
-  #end do once
+  #end do
   train villager
   
   #if up-research-status c: feudal-age < research-pending
