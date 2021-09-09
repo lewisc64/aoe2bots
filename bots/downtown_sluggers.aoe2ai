@@ -7,11 +7,8 @@ load "templates/fast_castle.aoe2ai"
     escrow 10 food
     escrow 10 gold
     assign 8 builders to castle
+    sn-percent-building-cancellation = 0
   #end do
-  
-  #repeat every 3 minutes
-    //build forward outpost
-  #end repeat
   
   sell wood when wood > 1500
   sell food when food > 1500
@@ -33,6 +30,11 @@ load "templates/fast_castle.aoe2ai"
   #then
     sn-camp-max-distance += 8
   #end when
+  
+  research mill upgrades with wood and food escrow
+  research lumber camp upgrades with wood and food escrow
+  research stone mining camp upgrades with wood and food escrow
+  research gold mining camp upgrades with wood and food escrow
   
   research imperial-age with food and gold escrow
   research blacksmith infantry upgrades with food and gold escrow
