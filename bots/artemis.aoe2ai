@@ -32,13 +32,6 @@ const cavalry-unit-class = 912
   #end do
 #end if
 
-#if current-age == imperial-age
-  #do once
-    sn-maximum-town-size += 4
-    sn-minimum-town-size += 4
-  #end do
-#end if
-
 #if not player-in-game target-player
   target closest enemy
 #end if
@@ -202,11 +195,8 @@ build lumber camps
   
   research blacksmith ranged upgrades with food and gold escrow
   research ri-crossbow with food and gold escrow
-  //research ri-royal-heirs with food and gold escrow
   research ri-capped-ram with food escrow
   research ri-siege-ram with food escrow
-  //research my-unique-unit-upgrade with food and gold escrow
-  research imperial-age with food and gold escrow
   
   #if up-compare-goal non-escrowed-wood c:> 100
     build farms
@@ -264,11 +254,7 @@ build lumber camps
   
   #if goal stop-normal-prod 0
     train archer-line
-    #if current-age == imperial-age
-      train 10 battering-ram-line
-    #else
-      train 5 battering-ram-line
-    #end if
+    train 5 battering-ram-line
   #end if
   
   train 1 monk
