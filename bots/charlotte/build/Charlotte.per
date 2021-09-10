@@ -2344,7 +2344,7 @@
     (research ri-heresy)
 )
 (defrule
-    (not (current-age == imperial-age))
+    (not (and (current-age == imperial-age) (goal team-game 1)))
 =>
     (up-jump-rule 9)
 )

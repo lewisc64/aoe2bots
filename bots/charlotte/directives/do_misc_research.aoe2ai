@@ -6,6 +6,6 @@
   load "../research/monastery/heresy.aoe2ai"
 #end respond
 
-#if current-age == imperial-age
+#if current-age == imperial-age and goal team-game 1
   load "../research/market/banking.aoe2ai"
 #end if
