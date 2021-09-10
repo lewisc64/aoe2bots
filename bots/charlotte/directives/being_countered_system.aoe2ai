@@ -35,8 +35,10 @@
     goal produce-eagles = 0
   #end respond
   
-  #respond to min-detection-units archer
-    // goal produce-monks = 0
+  #respond to min-detection-units jaguar-man-line
+    goal produce-militia = 0
+    goal produce-spearmen = 0
+    goal produce-eagles = 0
   #end respond
   
 #end if

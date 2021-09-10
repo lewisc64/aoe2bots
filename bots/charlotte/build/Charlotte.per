@@ -1863,7 +1863,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 2767)
+    (up-jump-rule 2768)
 )
 (defrule
     (true)
@@ -19641,7 +19641,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal emergency-trash 0) (goal attack-ready 1)))
 =>
-    (up-jump-rule 6)
+    (up-jump-rule 7)
 )
 (defrule
     (players-unit-type-count any-enemy monk-set >= min-detection-units)
@@ -19677,6 +19677,14 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (players-unit-type-count any-enemy hand-cannoneer >= min-detection-units)
+    (goal desired-units 1)
+=>
+    (set-goal produce-militia 0)
+    (set-goal produce-spearmen 0)
+    (set-goal produce-eagles 0)
+)
+(defrule
+    (players-unit-type-count any-enemy jaguar-man-line >= min-detection-units)
     (goal desired-units 1)
 =>
     (set-goal produce-militia 0)
