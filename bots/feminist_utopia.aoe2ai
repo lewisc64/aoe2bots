@@ -99,14 +99,19 @@ escrow 0 gold
 #when
   research castle-age with food and gold escrow
 #then
-  distribute villagers 30 50 10 10
-  goal purge = 1
+  distribute villagers 50 30 10 10
 #end when
 
 #if current-age >= castle-age
   #do once
-    distribute villagers 30 50 10 10
+    distribute villagers 50 30 10 10
+  #end do
+#end if
+
+#if building-type-count-total town-center >= 6
+  #do once
     goal purge = 1
+    distribute villagers 30 50 10 10
   #end do
 #end if
 
