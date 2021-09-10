@@ -4,6 +4,7 @@
 (defconst max-wood 1600)
 (defconst max-food 1600)
 (defconst max-gold 1600)
+(defconst max-stone 1600)
 (defconst half-max-wood 800)
 (defconst half-max-food 800)
 (defconst half-max-gold 800)
@@ -1853,7 +1854,7 @@
     (build farm)
 )
 (defrule
-    (current-age == castle-age)
+    (current-age >= castle-age)
 =>
     (delete-building stone-wall-line)
     (delete-building palisade-wall)
@@ -1862,7 +1863,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 2757)
+    (up-jump-rule 2767)
 )
 (defrule
     (true)
@@ -2341,6 +2342,72 @@
     (not (research-completed ri-heresy))
 =>
     (research ri-heresy)
+)
+(defrule
+    (not (current-age == imperial-age))
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (not (not (research-completed ri-banking)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+)
+(defrule
+    (not (not (research-completed ri-banking)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-coinage)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+)
+(defrule
+    (up-research-status c: ri-coinage < research-pending)
+    (research-available ri-coinage)
+    (not (research-completed ri-coinage))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-coinage)
+    (goal do-research 1)
+    (research-available ri-coinage)
+    (not (research-completed ri-coinage))
+=>
+    (research ri-coinage)
+)
+(defrule
+    (up-research-status c: ri-banking < research-pending)
+    (research-available ri-banking)
+    (not (research-completed ri-banking))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-banking)
+    (goal do-research 1)
+    (research-available ri-banking)
+    (not (research-completed ri-banking))
+=>
+    (research ri-banking)
 )
 (defrule
     (and (or (goal threat-source town-center) (goal threat-source castle)) (up-compare-goal threat-target c:!= battering-ram-line))

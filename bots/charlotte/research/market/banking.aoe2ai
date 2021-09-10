@@ -1,0 +1,15 @@
+#if not research-completed ri-banking
+  load "../market/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+
+  load "coinage.aoe2ai"
+
+  #if research-available ri-banking
+    #if up-research-status c: ri-banking < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-banking
+    #end if
+  #end if
+#end if

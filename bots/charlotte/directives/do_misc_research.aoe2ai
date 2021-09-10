@@ -5,3 +5,7 @@
 #respond to 10 monk-set
   load "../research/monastery/heresy.aoe2ai"
 #end respond
+
+#if current-age == imperial-age
+  load "../research/market/banking.aoe2ai"
+#end if

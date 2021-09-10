@@ -163,6 +163,6 @@ build houses with 5 headroom
   
 #end if
 
-#if current-age == castle-age
+#if current-age >= castle-age
   delete walls
 #end if
