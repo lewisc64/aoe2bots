@@ -4,22 +4,27 @@
   goal escrowed-wood = 0
   goal escrowed-food = 0
   goal escrowed-gold = 0
+  goal escrowed-stone = 0
   goal non-escrowed-wood = 0
   goal non-escrowed-food = 0
   goal non-escrowed-gold = 0
+  goal non-escrowed-stone = 0
 #end do
 
 @up-get-fact escrow-amount wood escrowed-wood
 @up-get-fact escrow-amount food escrowed-food
 @up-get-fact escrow-amount gold escrowed-gold
+@up-get-fact escrow-amount stone escrowed-stone
 
 @up-get-fact resource-amount wood non-escrowed-wood
 @up-get-fact resource-amount food non-escrowed-food
 @up-get-fact resource-amount gold non-escrowed-gold
+@up-get-fact resource-amount stone non-escrowed-stone
 
 @up-modify-goal non-escrowed-wood g:- escrowed-wood
 @up-modify-goal non-escrowed-food g:- escrowed-food
 @up-modify-goal non-escrowed-gold g:- escrowed-gold
+@up-modify-goal non-escrowed-stone g:- escrowed-stone
 
 #do once
   goal game-time-goal = 0

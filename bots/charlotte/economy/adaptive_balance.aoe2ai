@@ -13,6 +13,7 @@ const minimum-gold-gatherer-percentage = 10
 const wood-threshold = 300
 const food-threshold = 300
 const gold-threshold = 300
+const stone-threshold = 300
 
 const good-wood-price = 75
 const good-food-price = 75
@@ -28,12 +29,20 @@ const excellent-food-sell-price = 200
   build 1 market
 #end if
 
-#if gold-amount > max-gold
-  buy food when food < max-food
-  buy wood when wood < max-wood
+#subroutine send-excess-to-ally
+  #if up-allied-resource-amount any-ally {resource} < {resource}-threshold and up-compare-goal non-escrowed-{resource} c:> max-{resource}
+    tribute 100 {resource} to this-any-ally
+    chat to self "sending {resource} to ally"
+  #end if
+#end subroutine
+
+#if goal team-game 1
+  call send-excess-to-ally(resource="wood")
+  call send-excess-to-ally(resource="food")
+  call send-excess-to-ally(resource="gold")
+  call send-excess-to-ally(resource="stone")
 #else
-  sell wood when wood > max-wood
-  sell food when food > max-food
+  trade excess wood and food and gold at max-gold
 #end if
 
 #if commodity-buying-price wood <= good-wood-price
