@@ -64,19 +64,17 @@
   #end when
   
   #do once
-    distribute villagers 30 50 20 0
+    distribute villagers 50 30 20 0
     #if building-type-count-total blacksmith >= 1 and building-type-count-total market >= 1
-      distribute villagers 20 60 20 0
+      distribute villagers 30 50 20 0
     #end if
   #end do
   train villager
   
-  #if up-research-status c: feudal-age < research-pending
-    #if food-amount < 600 or gold-amount < 200
-      sell wood when wood >= 200
-    #end if
-    buy food when gold >= 300
-    sell food when food >= 900
+  #if food-amount < 600 or gold-amount < 200
+    sell wood when wood >= 200
   #end if
+  buy food when gold >= 300
+  sell food when food >= 900
 
 #end if
