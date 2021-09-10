@@ -18,7 +18,7 @@ load "templates/fast_castle.aoe2ai"
   #end if
 #end subroutine
 
-#if current-age >= castle-age
+#if up-research-status c: castle-age >= research-pending
 
   #if unit-type-count-total knight < 10 or up-research-status c: ri-paladin >= research-pending
     call escrow-resources(percentage=0)
@@ -116,6 +116,10 @@ load "templates/fast_castle.aoe2ai"
   //  #end if
   //#end if
   
+  research ri-wheel-barrow with wood and food escrow
+  #if current-age >= imperial-age
+    research ri-hand-cart with wood and food escrow
+  #end if
   research mill upgrades with wood and food escrow
   research gold mining camp upgrades with wood and food escrow
   research lumber camp upgrades with wood and food escrow
