@@ -117,7 +117,7 @@ train monk
     enable walls with perimeter 2
     sn-maximum-town-size = town-size
   #end do once
-  train 130 villager
+  train 130 villager with 30 trade
   build houses with 15 headroom
   //sell stone when stone >= 750
   build gold mining camps

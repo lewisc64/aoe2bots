@@ -73,7 +73,7 @@ load "templates/fast_castle.aoe2ai"
     research ri-fortified-wall with food and wood escrow
   #end if
   
-  train 120 villager
+  train 120 villager with 30 trade using escrow for caravan
   #if current-age == imperial-age
     train my-unique-unit => train my-unique-unit => train my-unique-unit => train my-unique-unit => train trebuchet
   #else

@@ -48,7 +48,7 @@ load "templates/fast_castle.aoe2ai"
     escrow 0 gold
   #end when
   
-  train 120 villager
+  train 120 villagers with 30 trade
   train 3 trebuchet
   train my-unique-unit
   

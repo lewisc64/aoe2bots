@@ -94,7 +94,7 @@ research imperial-age
 
 #end if
 
-train 120 villager
+train 120 villager with 30 trade
 train 1 monk
 #if unit-type-count villager > 120
   delete unit villager

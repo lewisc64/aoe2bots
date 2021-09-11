@@ -25,7 +25,7 @@ load "templates/fast_castle.aoe2ai"
     buy stone when gold > 2000
   #end if
   
-  train 100 villager
+  train 100 villager with 30 trade
   train bombard-cannon
   
   research imperial-age

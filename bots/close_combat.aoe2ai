@@ -101,7 +101,7 @@ research ri-siege-ram
 
 #end if
 
-train 120 villager
+train 120 villager with 30 trade
 
 // douching
 #if current-age == dark-age

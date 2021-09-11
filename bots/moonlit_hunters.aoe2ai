@@ -60,7 +60,7 @@ load "templates/fast_castle.aoe2ai"
   build 1 monastery
   build forward 5 castle
   
-  train 120 villager
+  train 120 villager with 30 trade using escrow for caravan
   train cavalry-archer-line
   train petard
   #if unit-type-count-total monk-set < 1

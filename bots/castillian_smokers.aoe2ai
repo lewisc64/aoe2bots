@@ -83,7 +83,7 @@ load "templates/fast_castle.aoe2ai"
     build farms
   #end if
   
-  train 120 villager
+  train 120 villager with 30 trade
 
 #end if
 

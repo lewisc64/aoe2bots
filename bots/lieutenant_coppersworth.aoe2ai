@@ -63,11 +63,7 @@ load "templates/fast_castle.aoe2ai"
   research mill upgrades with food and gold escrow
   research gold mining camp upgrades with food and gold escrow
   
-  #if civilian-population > 120
-    delete unit villager
-  #else
-    train 120 villager
-  #end if
+  train 120 villager with 30 trade using escrow for caravan
 
   train 10 monk
   train 60 camel-line
