@@ -108,7 +108,7 @@ escrow 0 gold
   #end do
 #end if
 
-#if building-type-count-total town-center >= 6
+#if building-type-count town-center >= 6
   #do once
     goal purge = 1
     distribute villagers 30 50 10 10
@@ -197,9 +197,11 @@ train 130 villager
   train 5 trebuchet with gold escrow
 #end if
 
-#repeat every 1 minute
-  attack with 30 units
-#end repeat
+#if military-population > 30
+  sn-maximum-town-size = 255
+#else
+  @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
+#end if
 
 #if military-population > 30
   #do once
@@ -257,6 +259,7 @@ buy stone when gold > 1500
       chat to all "We shall see."
     #end delay
     sn-maximum-town-size = 30
+    sn-minimum-town-size = 30
   #end do
   
 #end if
