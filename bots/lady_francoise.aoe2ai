@@ -109,13 +109,6 @@ load "templates/fast_castle.aoe2ai"
     build farms
   #end if
   
-  //#if current-age == imperial-age
-  //  #if building-type-count-total castle == 0
-  //    buy stone when stone < 650
-  //    build castle
-  //  #end if
-  //#end if
-  
   research ri-wheel-barrow with wood and food escrow
   #if current-age >= imperial-age
     research ri-hand-cart with wood and food escrow
@@ -125,6 +118,7 @@ load "templates/fast_castle.aoe2ai"
   research lumber camp upgrades with wood and food escrow
   research imperial-age with food and gold escrow
   
+  research ri-bloodlines with food and gold escrow
   research ri-husbandry with food escrow
   research cavalry blacksmith upgrades with food and gold escrow
   #when
