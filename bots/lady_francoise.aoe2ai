@@ -5,7 +5,7 @@ const minimum-army = 12
 load "charlotte/stats.aoe2ai"
 load "templates/fast_castle.aoe2ai"
 
-#subroutine escrow-resources
+#template escrow-resources
   #if escrow-amount food < 1300
     escrow {percentage} food
   #else
@@ -16,18 +16,18 @@ load "templates/fast_castle.aoe2ai"
   #else
     escrow 0 gold
   #end if
-#end subroutine
+#end template
 
 #if up-research-status c: castle-age >= research-pending
 
   #if unit-type-count-total knight < 10 or up-research-status c: ri-paladin >= research-pending
-    call escrow-resources(percentage=0)
+    insert escrow-resources(percentage=0)
   #else if unit-type-count-total knight < 20
-    call escrow-resources(percentage=10)
+    insert escrow-resources(percentage=10)
   #else if unit-type-count-total knight < 30
-    call escrow-resources(percentage=20)
+    insert escrow-resources(percentage=20)
   #else
-    call escrow-resources(percentage=40)
+    insert escrow-resources(percentage=40)
   #end if
 
   #do once

@@ -225,7 +225,7 @@ goal full-cavalry-blacksmith-investment = 0
 goal partial-infantry-blacksmith-investment = 0
 goal full-infantry-blacksmith-investment = 0
 
-#subroutine decide-blacksmith-investment
+#template decide-blacksmith-investment
   #if current-age == feudal-age
     #if goal {type}-blacksmith-techs-done 1
       goal partial-{type}-blacksmith-investment = 1
@@ -248,8 +248,8 @@ goal full-infantry-blacksmith-investment = 0
       goal full-{type}-blacksmith-investment = 1
     #end if
   #end if
-#end subroutine
+#end template
 
-call decide-blacksmith-investment(type="ranged")
-call decide-blacksmith-investment(type="cavalry")
-call decide-blacksmith-investment(type="infantry")
+insert decide-blacksmith-investment(type="ranged")
+insert decide-blacksmith-investment(type="cavalry")
+insert decide-blacksmith-investment(type="infantry")

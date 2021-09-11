@@ -41,38 +41,38 @@ const food-unit-threshold = 0
 const gold-unit-threshold = 0
 
 #if false // build queue debugging
-  #subroutine in-build-queue
+  #template in-build-queue
     goal temp = 0
     @up-get-fact building-type-count-total {building} temp
     #if up-pending-objects c: {building} > 0
       @up-chat-data-to-all "There are '{building}' queued. Count total: %d" g: temp
     #end if
-  #end subroutine
+  #end template
 
-  call in-build-queue(building="archery-range")
-  call in-build-queue(building="barracks")
-  call in-build-queue(building="blacksmith")
-  call in-build-queue(building="bombard-tower")
-  call in-build-queue(building="castle")
-  call in-build-queue(building="dock")
-  call in-build-queue(building="farm")
-  call in-build-queue(building="fish-trap")
-  call in-build-queue(building="guard-tower")
-  call in-build-queue(building="house")
-  call in-build-queue(building="keep")
-  call in-build-queue(building="lumber-camp")
-  call in-build-queue(building="market")
-  call in-build-queue(building="mill")
-  call in-build-queue(building="mining-camp")
-  call in-build-queue(building="monastery")
-  call in-build-queue(building="outpost")
-  call in-build-queue(building="siege-workshop")
-  call in-build-queue(building="stable")
-  call in-build-queue(building="town-center")
-  call in-build-queue(building="university")
-  call in-build-queue(building="watch-tower")
-  call in-build-queue(building="watch-tower-line")
-  call in-build-queue(building="wonder")
+  insert in-build-queue(building="archery-range")
+  insert in-build-queue(building="barracks")
+  insert in-build-queue(building="blacksmith")
+  insert in-build-queue(building="bombard-tower")
+  insert in-build-queue(building="castle")
+  insert in-build-queue(building="dock")
+  insert in-build-queue(building="farm")
+  insert in-build-queue(building="fish-trap")
+  insert in-build-queue(building="guard-tower")
+  insert in-build-queue(building="house")
+  insert in-build-queue(building="keep")
+  insert in-build-queue(building="lumber-camp")
+  insert in-build-queue(building="market")
+  insert in-build-queue(building="mill")
+  insert in-build-queue(building="mining-camp")
+  insert in-build-queue(building="monastery")
+  insert in-build-queue(building="outpost")
+  insert in-build-queue(building="siege-workshop")
+  insert in-build-queue(building="stable")
+  insert in-build-queue(building="town-center")
+  insert in-build-queue(building="university")
+  insert in-build-queue(building="watch-tower")
+  insert in-build-queue(building="watch-tower-line")
+  insert in-build-queue(building="wonder")
 #end if
 
 // @up-chat-data-to-all "town size: %d" s: sn-maximum-town-size
@@ -84,7 +84,7 @@ const gold-unit-threshold = 0
   @up-chat-data-to-all "stone gatherers: %d" s: sn-stone-gatherer-percentage
 #end if
 
-#subroutine clear-units
+#template clear-units
   goal produce-trade-carts = 0
   goal produce-archers = 0
   goal produce-hand-cannoneers = 0
@@ -107,9 +107,9 @@ const gold-unit-threshold = 0
   goal produce-galleys = 0
   goal produce-fire-ships = 0
   goal produce-cannon-galleons = 0
-#end subroutine
+#end template
 
-#subroutine clear-good-units
+#template clear-good-units
   goal good-archers = 0
   goal good-hand-cannoneers = 0
   goal good-skirmishers = 0
@@ -128,7 +128,7 @@ const gold-unit-threshold = 0
   goal good-unique-units = 0
   goal good-galleys = 0
   goal good-fire-ships = 0
-#end subroutine
+#end template
 
 #do once
   set up basics
@@ -218,8 +218,8 @@ const gold-unit-threshold = 0
 #end do
 
 #do once
-  call clear-units
-  call clear-good-units
+  insert clear-units
+  insert clear-good-units
 #end do
 
 load "stats.aoe2ai"

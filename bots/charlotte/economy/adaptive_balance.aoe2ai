@@ -30,18 +30,18 @@ const excellent-food-sell-price = 200
   build 1 market
 #end if
 
-#subroutine send-excess-to-ally
+#template send-excess-to-ally
   #if up-allied-resource-amount any-ally {resource} < {resource}-threshold and up-compare-goal non-escrowed-{resource} c:> max-{resource}
     tribute 100 {resource} to this-any-ally
     chat to self "sending {resource} to ally"
   #end if
-#end subroutine
+#end template
 
 #if goal team-game 1
-  call send-excess-to-ally(resource="wood")
-  call send-excess-to-ally(resource="food")
-  call send-excess-to-ally(resource="gold")
-  call send-excess-to-ally(resource="stone")
+  insert send-excess-to-ally(resource="wood")
+  insert send-excess-to-ally(resource="food")
+  insert send-excess-to-ally(resource="gold")
+  insert send-excess-to-ally(resource="stone")
 #else
   trade excess wood and food and gold at max-gold
 #end if
