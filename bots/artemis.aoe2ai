@@ -298,11 +298,7 @@ build lumber camps
 #end if
 
 #if current-age > dark-age or up-compare-goal non-escrowed-food c:< 400
-  #if current-age >= imperial-age
-    train 120 villager with 30 trade using escrow for caravan
-  #else
-    train 120 villager
-  #end if
+  train 120 villager with 30 trade using escrow for caravan
 #end if
 research ri-loom with gold escrow
 
