@@ -4,14 +4,17 @@
 
 #if up-research-status c: castle-age < research-pending
   
-  #if civilian-population >= 27
-    #when
-      research feudal-age
-    #then
-      distribute villagers 80 20 0 0
-    #end when
+  research ri-loom
+  
+  #if building-type-count-total market >= 1 and building-type-count-total blacksmith >= 1
+    research ri-double-bit-axe
+    research ri-horse-collar
+    research ri-wheel-barrow
   #end if
-  research castle-age
+  
+  #if up-research-status c: ri-double-bit-axe >= research-pending and up-research-status c: ri-horse-collar >= research-pending and up-research-status c: ri-wheel-barrow >= research-pending
+    research castle-age
+  #end if
   
   lure boars
 
@@ -34,9 +37,23 @@
     sn-enable-training-queue = 1
   #end do once
   
-  research ri-loom
+  #if civilian-population >= 20
+    #do once
+      distribute villagers 40 60 0 0
+    #end do
+  #end if
+  
+  #if civilian-population >= 27
+    #when
+      research feudal-age
+    #then
+      distribute villagers 80 20 0 0
+    #end when
+  #end if
   
   train villager
+  research ri-loom
+  
   #if civilian-population >= 25
     sn-enable-training-queue = 0
   #end if
@@ -64,9 +81,9 @@
   #end when
   
   #do once
-    distribute villagers 50 30 20 0
+    distribute villagers 50 40 10 0
     #if building-type-count-total blacksmith >= 1 and building-type-count-total market >= 1
-      distribute villagers 30 50 20 0
+      distribute villagers 30 60 10 0
     #end if
   #end do
   train villager
