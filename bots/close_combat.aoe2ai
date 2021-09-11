@@ -9,17 +9,19 @@
 
 lure boars
 
-build mills
-build lumber camps
-build 1 university
-build 1 blacksmith
-build 2 archery-range
-build 3 town-center
-build 3 castle
-build 1 siege-workshop
+#if building-type-count town-center >= 1
+  build mills
+  build lumber camps
+  build 1 university
+  build 1 blacksmith
+  build 2 archery-range
+  build 3 town-center
+  build 3 castle
+  build 1 siege-workshop
 
-#if goal douche-done 1 and building-type-count town-center >= 1 and (current-age == dark-age and wood-amount >= 100 or current-age >= feudal-age and wood-amount >= 200)
-  build farms
+  #if goal douche-done 1 and building-type-count town-center >= 1 and (current-age == dark-age and wood-amount >= 100 or current-age >= feudal-age and wood-amount >= 200)
+    build farms
+  #end if
 #end if
 
 research feudal-age
