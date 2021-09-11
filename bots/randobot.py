@@ -61,7 +61,6 @@ BACKUS_NAUR = """
                       | "players-military-population " <player-number>
                       | "players-population " <player-number>
                       | "players-score " <player-number>
-                      | "players-current-age-time " <player-number>
                       | "players-tribute " <player-number> " " <resource-type>
                       | "players-tribute-memory " <player-number> " " <resource-type>
                       | "players-unit-count " <player-number>
