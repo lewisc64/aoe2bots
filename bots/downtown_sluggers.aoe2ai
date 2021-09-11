@@ -3,7 +3,7 @@ load "templates/fast_castle.aoe2ai"
 #if up-research-status c: castle-age >= research-pending
   
   #do once
-    distribute villagers 18 53 12 17
+    distribute villagers 18 50 15 17
     escrow 10 food
     escrow 10 gold
     assign 8 builders to castle
