@@ -19965,7 +19965,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (resign)
 )
 (defrule
-    (and (up-compare-goal target-military-percentage c:<= 50) (and (up-compare-goal score-percentage c:<= 70) (and (game-time >= 1200) (goal team-game 0))))
+    (and (up-compare-goal target-military-percentage c:<= 50) (and (up-compare-goal score-percentage c:<= 70) (and (civilian-population <= 30) (and (game-time >= 1200) (goal team-game 0)))))
 =>
     (set-goal resign 1)
 )
