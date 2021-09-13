@@ -1,4 +1,4 @@
-#if goal resign 1 and (building-type-count castle == 0 or goal team-game 1)
+#if goal resign 1 and (building-type-count castle == 0 and building-type-count town-center == 0 or goal team-game 1)
   resign
 #end if
 
@@ -8,4 +8,5 @@
 
 #if goal resign 1 and goal team-game 0
   delete building castle
+  delete building town-center
 #end if
