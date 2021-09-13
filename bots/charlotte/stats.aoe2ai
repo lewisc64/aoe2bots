@@ -253,3 +253,130 @@ goal full-infantry-blacksmith-investment = 0
 insert decide-blacksmith-investment(type="ranged")
 insert decide-blacksmith-investment(type="cavalry")
 insert decide-blacksmith-investment(type="infantry")
+
+// unique unit information
+
+#template get-unique-unit-information
+
+  goal {prefix}unique-unit-is-cavalry = 0
+  goal {prefix}unique-unit-is-infantry = 0
+  goal {prefix}unique-unit-is-ranged = 0
+  goal {prefix}unique-unit-is-cavalry-archer = 0
+  goal {prefix}unique-unit-is-expensive = 0
+  
+  goal {prefix}unique-unit-counters-cavalry = 0
+  goal {prefix}unique-unit-counters-infantry = 0
+  goal {prefix}unique-unit-counters-ranged = 0
+  goal {prefix}unique-unit-counters-cavalry-archer = 0
+  goal {prefix}unique-unit-counters-unique-unit = 0
+
+  #if players-civ {player} aztec
+    goal {prefix}unique-unit-is-infantry = 1
+    goal {prefix}unique-unit-counters-infantry = 1
+  #end if
+  #if players-civ {player} berbers
+    goal {prefix}unique-unit-is-cavalry-archer = 1
+    goal {prefix}unique-unit-counters-cavalry-archer = 1
+  #end if
+  #if players-civ {player} briton
+    goal {prefix}unique-unit-is-ranged = 1
+  #end if
+  #if players-civ {player} burmese
+    goal {prefix}unique-unit-is-cavalry-archer = 1
+  #end if
+  #if players-civ {player} byzantine
+    goal {prefix}unique-unit-is-cavalry = 1
+  #end if
+  #if players-civ {player} celtic
+    goal {prefix}unique-unit-is-infantry = 1
+  #end if
+  #if players-civ {player} chinese
+    goal {prefix}unique-unit-is-ranged = 1
+  #end if
+  #if players-civ {player} ethiopian
+    goal {prefix}unique-unit-is-infantry = 1
+  #end if
+  #if players-civ {player} frankish
+    goal {prefix}unique-unit-is-infantry = 1
+  #end if
+  #if players-civ {player} gothic
+    goal {prefix}unique-unit-is-infantry = 1
+  #end if
+  #if players-civ {player} hun
+    goal {prefix}unique-unit-is-cavalry = 1
+  #end if
+  #if players-civ {player} incan
+    goal {prefix}unique-unit-is-infantry = 1
+    goal {prefix}unique-unit-counters-cavalry = 1
+  #end if
+  #if players-civ {player} indian
+    goal {prefix}unique-unit-is-cavalry-archer = 1
+  #end if
+  #if players-civ {player} italian
+    goal {prefix}unique-unit-is-ranged = 1
+    goal {prefix}unique-unit-counters-cavalry = 1
+  #end if
+  #if players-civ {player} japanese
+    goal {prefix}unique-unit-is-infantry = 1
+    goal {prefix}unique-unit-counters-unique-unit = 1
+  #end if
+  #if players-civ {player} khmer
+    goal {prefix}unique-unit-is-cavalry = 1
+    goal {prefix}unique-unit-counters-infantry = 1
+  #end if
+  #if players-civ {player} korean
+    goal {prefix}unique-unit-is-cavalry-archer = 1
+    goal {prefix}unique-unit-counters-ranged = 1
+  #end if
+  #if players-civ {player} magyar
+    goal {prefix}unique-unit-is-cavalry = 1
+  #end if
+  #if players-civ {player} malay
+    goal {prefix}unique-unit-is-infantry = 1
+  #end if
+  #if players-civ {player} malian
+    goal {prefix}unique-unit-is-infantry = 1
+  #end if
+  #if players-civ {player} mayan
+    goal {prefix}unique-unit-is-ranged = 1
+  #end if
+  #if players-civ {player} mongol
+    goal {prefix}unique-unit-is-cavalry-archer = 1
+  #end if
+  #if players-civ {player} persian
+    goal {prefix}unique-unit-is-cavalry = 1
+    goal {prefix}unique-unit-is-expensive = 1
+  #end if
+  #if players-civ {player} portuguese
+    // may as well not exist.
+  #end if
+  #if players-civ {player} saracen
+    goal {prefix}unique-unit-is-cavalry = 1
+    goal {prefix}unique-unit-counters-cavalry = 1
+  #end if
+  #if players-civ {player} slavic
+    goal {prefix}unique-unit-is-cavalry = 1
+  #end if
+  #if players-civ {player} spanish
+    goal {prefix}unique-unit-is-cavalry-archer = 1
+  #end if
+  #if players-civ {player} teutonic
+    goal {prefix}unique-unit-is-infantry = 1
+    goal {prefix}unique-unit-is-expensive = 1
+  #end if
+  #if players-civ {player} turkish
+    goal {prefix}unique-unit-is-infantry = 1
+    goal {prefix}unique-unit-counters-infantry = 1
+  #end if
+  #if players-civ {player} vietnamese
+    goal {prefix}unique-unit-is-ranged = 1
+    goal {prefix}unique-unit-counters-ranged = 1
+  #end if
+  #if players-civ {player} viking
+    goal {prefix}unique-unit-is-infantry = 1
+  #end if
+#end template
+
+#do once
+  insert get-unique-unit-information(prefix="",player="my-player-number")
+#end do

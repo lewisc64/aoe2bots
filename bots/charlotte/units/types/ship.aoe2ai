@@ -14,6 +14,6 @@
   goal dock-count = 0
 #end do
 @up-get-fact building-type-count-total dock dock-count
-#if up-compare-goal dock-count g:< desired-military-buildings-per-type
+#if up-compare-goal dock-count g:< desired-military-buildings-per-type and up-pending-objects c: dock < 1
   build dock
 #end if

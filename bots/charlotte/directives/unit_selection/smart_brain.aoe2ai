@@ -1,0 +1,140 @@
+// Oh yeah. It's big brain time.
+
+insert get-unique-unit-information(prefix="enemy-",player="target-player")
+
+#if goal enemy-good-archers 1 or goal enemy-unique-unit-is-ranged 1 // archers will counter low pierce armor units
+  goal produce-hand-cannoneers = 0
+  goal produce-militia = 0
+  goal produce-spearmen = 0
+  goal produce-monks = 0
+#end if
+
+#if goal enemy-good-skirmishers 1 // skirmishers will counter archer units
+  goal produce-archers = 0
+  goal produce-cavalry-archers = 0
+  #if goal unique-unit-is-ranged 1 and goal unique-unit-counters-ranged 0
+    goal produce-unique-units = 0
+  #end if
+#end if
+
+#if goal enemy-good-skirmishers 1 // skirmishers will counter squishy slow units
+  goal produce-spearmen = 0
+  goal produce-monks = 0
+#end if
+
+#if goal enemy-good-eagles 1 // eagles have high pierce armor
+  goal produce-archers = 0
+  goal produce-skirmishers = 0
+  goal produce-cavalry-archers = 0
+  #if goal unique-unit-is-ranged 1 and goal unique-unit-counters-infantry 0
+    goal produce-unique-units = 0
+  #end if
+#end if
+
+#if goal enemy-good-monks 1 // monks counter expensive units
+  goal produce-knights = 0
+  goal produce-battle-elephants = 0
+  goal produce-camels = 0
+  #if goal unique-unit-is-expensive 1
+    goal produce-unique-units = 0
+  #end if
+#end if
+
+#if goal enemy-good-militia 1 // strong infantry counter eagles
+  goal produce-eagles = 0
+#end if
+
+#if goal enemy-good-hand-cannoneers 1 // hand cannoneers counter infantry
+  goal produce-militia = 0
+  goal produce-spearmen = 0
+  goal produce-eagles = 0
+  #if goal unique-unit-is-infantry 1
+    goal produce-unique-units = 1
+  #end if
+#end if
+
+#if goal enemy-good-knights 1 // knights counter ranged units
+  goal produce-archers = 0
+  goal produce-skirmishers = 0
+  #if goal unique-unit-is-ranged 1 and goal unique-unit-counters-cavalry 0
+    goal produce-unique-units = 0
+  #end if
+#end if
+
+#if goal enemy-good-camels 1 // camels counter cavalry
+  goal produce-knights = 0
+  goal produce-scouts = 0
+  #if goal unique-unit-is-cavalry 1 and goal unique-unit-counters-cavalry 0
+    goal produce-unique-units = 0
+  #end if
+#end if
+
+#if goal enemy-good-spearmen 1 // spearmen counter cavalry
+  goal produce-knights = 0
+  goal produce-scouts = 0
+  #if goal unique-unit-is-cavalry 1 and goal unique-unit-counters-infantry 0
+    goal produce-unique-units = 0
+  #end if
+#end if
+
+#if goal enemy-good-mangonels 1 // mangonels counter scorpions
+  goal produce-scorpions = 0
+#end if
+
+#if goal enemy-good-scouts 1 or goal enemy-good-knights 1 or goal enemy-unique-unit-is-cavalry 1 // cavalry counter scorpions
+  goal produce-scorpions = 0
+#end if
+
+#if goal enemy-good-scouts 1 or goal enemy-good-knights 1 or goal enemy-good-camels 1 or goal enemy-unique-unit-is-cavalry 1 // cavalry counter skirmishers
+  goal produce-skirmishers = 0
+#end if
+
+#if goal enemy-good-militia 1 // militia counter skirmishers
+  goal produce-skirmishers = 0
+#end if
+
+#if goal enemy-good-scouts 1 // scouts counter hand cannoneers
+  goal produce-hand-cannoneers = 0
+#end if
+
+#if goal enemy-good-militia 1 // militia counter spearmen
+  goal produce-spearmen = 0
+#end if
+
+#if goal enemy-unique-unit-counters-infantry 1 // enemy UU counters infantry
+  goal produce-militia = 0
+  goal produce-spearmen = 0
+  goal produce-eagles = 0
+  #if goal unique-unit-is-infantry 1
+    goal produce-unique-units = 0
+  #end if
+#end if
+
+#if goal enemy-unique-unit-counters-ranged 1 // enemy UU counters ranged
+  goal produce-archers = 0
+  goal produce-skirmishers = 0
+  goal produce-cavalry-archers = 0
+  #if goal unique-unit-is-ranged 1
+    goal produce-unique-units = 0
+  #end if
+#end if
+
+#if goal enemy-unique-unit-counters-cavalry-archer 1 // enemy UU counters cavalry archers
+  goal cavalry-archers = 0
+  #if goal unique-unit-is-cavalry-archer 1
+    goal produce-unique-units = 0
+  #end if
+#end if
+
+#if goal enemy-unique-unit-counters-cavalry 1 // enemy UU counters cavalry
+  goal produce-knights = 0
+  goal produce-scouts = 0
+  goal produce-camels = 0
+  #if goal unique-unit-is-cavalry 1
+    goal produce-unique-units = 0
+  #end if
+#end if
+
+#if goal enemy-unique-unit-counters-unique-unit 1 // enemy UU counters unique unit
+  goal produce-unique-units = 0
+#end if

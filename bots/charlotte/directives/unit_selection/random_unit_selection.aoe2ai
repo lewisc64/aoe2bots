@@ -1,0 +1,106 @@
+#template count-units-selected
+  goal total-units-selected = 0
+  @up-modify-goal total-units-selected g:+ produce-archers
+  @up-modify-goal total-units-selected g:+ produce-hand-cannoneers
+  @up-modify-goal total-units-selected g:+ produce-skirmishers
+  @up-modify-goal total-units-selected g:+ produce-cavalry-archers
+  @up-modify-goal total-units-selected g:+ produce-militia
+  @up-modify-goal total-units-selected g:+ produce-spearmen
+  @up-modify-goal total-units-selected g:+ produce-eagles
+  @up-modify-goal total-units-selected g:+ produce-scouts
+  @up-modify-goal total-units-selected g:+ produce-knights
+  @up-modify-goal total-units-selected g:+ produce-camels
+  @up-modify-goal total-units-selected g:+ produce-battle-elephants
+  @up-modify-goal total-units-selected g:+ produce-mangonels
+  @up-modify-goal total-units-selected g:+ produce-scorpions
+  @up-modify-goal total-units-selected g:+ produce-monks
+  @up-modify-goal total-units-selected g:+ produce-unique-units
+  @up-modify-goal total-units-selected g:+ produce-galleys
+  @up-modify-goal total-units-selected g:+ produce-fire-ships
+#end template
+
+insert count-units-selected
+
+#if up-compare-goal total-units-selected g:< desired-units
+  #if goal full-water-map 0
+    #select random
+      #if goal produce-cavalry-archers 0
+        @up-modify-goal produce-archers g:= good-archers
+      #end if
+      
+    #randor
+      @up-modify-goal produce-hand-cannoneers g:= good-hand-cannoneers
+      
+    #randor
+      @up-modify-goal produce-skirmishers g:= good-skirmishers
+      
+    #randor
+      #if goal produce-archers 0
+        @up-modify-goal produce-cavalry-archers g:= good-cavalry-archers
+      #end if
+      
+    #randor
+      #if goal produce-eagles 0
+        @up-modify-goal produce-militia g:= good-militia
+      #end if
+      
+    #randor
+      #if goal produce-eagles 0
+        @up-modify-goal produce-spearmen g:= good-spearmen
+      #end if
+      
+    #randor
+      #if goal produce-spearmen 0 and goal produce-militia 0
+        @up-modify-goal produce-eagles g:= good-eagles
+      #end if
+      
+    #randor
+      #if goal produce-knights 0 and goal produce-battle-elephants 0
+        @up-modify-goal produce-scouts g:= good-scouts
+      #end if
+      
+    #randor
+      #if goal produce-scouts 0 and goal produce-battle-elephants 0
+        @up-modify-goal produce-knights g:= good-knights
+      #end if
+      
+    #randor
+      @up-modify-goal produce-camels g:= good-camels
+      
+    #randor
+      #if goal produce-scouts 0 and goal produce-knights 0
+        @up-modify-goal produce-battle-elephants g:= good-battle-elephants
+      #end if
+      
+    #randor
+      @up-modify-goal produce-mangonels g:= good-mangonels
+      
+    #randor
+      @up-modify-goal produce-scorpions g:= good-scorpions
+      
+    #randor
+      @up-modify-goal produce-monks g:= good-monks
+    
+    #randor
+      @up-modify-goal produce-unique-units g:= good-unique-units
+    
+    #randor
+      #if goal water-map 1 and up-compare-goal total-units-selected c:> 1
+        @up-modify-goal produce-galleys g:= good-galleys
+      #end if
+    
+    #randor
+      #if goal water-map 1 and up-compare-goal total-units-selected c:> 1
+        @up-modify-goal produce-fire-ships g:= good-fire-ships
+      #end if
+      
+    #end select
+  #else
+    #select random
+      @up-modify-goal produce-galleys g:= good-galleys
+    #randor
+      @up-modify-goal produce-fire-ships g:= good-fire-ships
+    #end select
+  #end if
+#end if
+

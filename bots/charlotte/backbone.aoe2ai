@@ -110,24 +110,45 @@ const gold-unit-threshold = 0
 #end template
 
 #template clear-good-units
-  goal good-archers = 0
-  goal good-hand-cannoneers = 0
-  goal good-skirmishers = 0
-  goal good-cavalry-archers = 0
-  goal good-militia = 0
-  goal good-spearmen = 0
-  goal good-eagles = 0
-  goal good-scouts = 0
-  goal good-knights = 0
-  goal good-camels = 0
-  goal good-battle-elephants = 0
-  goal good-battering-rams = 0
-  goal good-mangonels = 0
-  goal good-scorpions = 0
-  goal good-monks = 0
-  goal good-unique-units = 0
-  goal good-galleys = 0
-  goal good-fire-ships = 0
+  goal {prefix}good-archers = 0
+  goal {prefix}good-hand-cannoneers = 0
+  goal {prefix}good-skirmishers = 0
+  goal {prefix}good-cavalry-archers = 0
+  goal {prefix}good-militia = 0
+  goal {prefix}good-spearmen = 0
+  goal {prefix}good-eagles = 0
+  goal {prefix}good-scouts = 0
+  goal {prefix}good-knights = 0
+  goal {prefix}good-camels = 0
+  goal {prefix}good-battle-elephants = 0
+  goal {prefix}good-battering-rams = 0
+  goal {prefix}good-mangonels = 0
+  goal {prefix}good-scorpions = 0
+  goal {prefix}good-monks = 0
+  goal {prefix}good-unique-units = 0
+  goal {prefix}good-galleys = 0
+  goal {prefix}good-fire-ships = 0
+#end template
+
+#template produce-good-units
+  @up-modify-goal produce-hand-cannoneers g:= good-hand-cannoneers
+  @up-modify-goal produce-archers g:= good-archers
+  @up-modify-goal produce-skirmishers g:= good-skirmishers
+  @up-modify-goal produce-cavalry-archers g:= good-cavalry-archers
+  @up-modify-goal produce-militia g:= good-militia
+  @up-modify-goal produce-spearmen g:= good-spearmen
+  @up-modify-goal produce-eagles g:= good-eagles
+  @up-modify-goal produce-scouts g:= good-scouts
+  @up-modify-goal produce-knights g:= good-knights
+  @up-modify-goal produce-camels g:= good-camels
+  @up-modify-goal produce-battle-elephants g:= good-battle-elephants
+  @up-modify-goal produce-battering-rams g:= good-battering-rams
+  @up-modify-goal produce-mangonels g:= good-mangonels
+  @up-modify-goal produce-scorpions g:= good-scorpions
+  @up-modify-goal produce-unique-units g:= good-unique-units
+  @up-modify-goal produce-monks g:= good-monks
+  @up-modify-goal produce-galleys g:= good-galleys
+  @up-modify-goal produce-fire-ships g:= good-fire-ships
 #end template
 
 #do once
@@ -219,7 +240,7 @@ const gold-unit-threshold = 0
 
 #do once
   insert clear-units
-  insert clear-good-units
+  insert clear-good-units(prefix="")
 #end do
 
 load "stats.aoe2ai"

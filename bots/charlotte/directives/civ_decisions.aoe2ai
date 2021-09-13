@@ -1,282 +1,290 @@
-#do once
-  goal good-unique-units = 1
 
-  #if civ-selected aztec
-    goal good-eagles = 1
-    goal good-monks = 1
-    goal good-militia = 1
-    goal good-fire-ships = 1
+#template get-good-units
+  insert clear-good-units(prefix="{prefix}")
+
+  goal {prefix}good-unique-units = 1
+
+  #if players-civ {player} aztec
+    goal {prefix}good-eagles = 1
+    goal {prefix}good-monks = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-fire-ships = 1
   #end if
-  #if civ-selected berbers
-    goal good-hand-cannoneers = 1
-    goal good-militia = 1
-    goal good-scouts = 1
-    goal good-camels = 1
-    goal good-scorpions = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} berbers
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-camels = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected briton
-    goal good-archers = 1
-    goal good-skirmishers = 1
-    goal good-militia = 1
-    goal good-spearmen = 1
-    goal good-scorpions = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} briton
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected burmese
-    goal good-scouts = 1
-    goal good-militia = 1
-    goal good-spearmen = 1
-    goal good-scorpions = 1
-    goal good-battle-elephants = 1
-    goal good-monks = 1
-    goal good-galleys = 1
+  #if players-civ {player} burmese
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-battle-elephants = 1
+    goal {prefix}good-monks = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected byzantine
-    goal good-speamen = 1
-    goal good-archers = 1
-    goal good-skirmishers = 1
-    goal good-militia = 1
-    goal good-camels = 1
-    goal good-battering-rams = 1
-    goal good-hand-cannoneers = 1
-    goal good-monks = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} byzantine
+    goal {prefix}good-speamen = 1
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-camels = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-monks = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected celtic
-    goal good-battering-rams = 1
-    goal good-scorpions = 1
-    goal good-mangonels = 1
-    goal good-militia = 1
-    goal good-spearmen = 1
-    goal good-galleys = 1
+  #if players-civ {player} celtic
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-mangonels = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected chinese
-    goal good-archers = 1
-    goal good-skirmishers = 1
-    goal good-miltia = 1
-    goal good-spearmen = 1
-    goal good-camels = 1
-    goal good-battering-rams = 1
-    goal good-scorpions = 1
-    goal good-galleys = 1
+  #if players-civ {player} chinese
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-miltia = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-camels = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected ethiopian
-    goal good-archers = 1
-    goal good-skirmishers = 1
-    goal good-spearmen = 1
-    goal good-galleys = 1
+  #if players-civ {player} ethiopian
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected frankish
-    goal good-militia = 1
-    goal good-spearmen = 1
-    goal good-knights = 1
-    goal good-scorpions = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} frankish
+    goal {prefix}good-militia = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-knights = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected gothic
-    goal good-militia = 1
-    goal good-spearmen = 1
-    goal good-scouts = 1
-    goal good-scorpions = 1
-    goal good-hand-cannoneers = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} gothic
+    goal {prefix}good-militia = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected hun
-    goal good-cavalry-archers = 1
-    goal good-battering-rams = 1
-    goal good-scouts = 1
-    goal good-knights = 1
-    goal good-galleys = 1
+  #if players-civ {player} hun
+    goal {prefix}good-cavalry-archers = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-knights = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected incan
-    goal good-eagles = 1
-    goal good-militia = 1
-    goal good-battering-rams = 1
-    goal good-scorpions = 1
-    goal good-archers = 1
-    goal good-spearmen = 1
-    goal good-skirmishers = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} incan
+    goal {prefix}good-eagles = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-archers = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected indian
-    goal good-skirmishers = 1
-    goal good-hand-cannoneers = 1
-    goal good-cavalry-archers = 1
-    goal good-camels = 1
-    goal good-scouts = 1
-    goal good-galleys = 1
+  #if players-civ {player} indian
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-cavalry-archers = 1
+    goal {prefix}good-camels = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected italian
-    goal good-archers = 1
-    goal good-skirmishers = 1
-    goal good-militia = 1
-    goal good-scouts = 1
-    goal good-monks = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} italian
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-monks = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected japanese
-    goal good-archers = 1
-    goal good-skirmishers = 1
-    goal good-cavalry-archers = 1
-    goal good-militia = 1
-    goal good-spearmen = 1
-    goal good-scorpions = 1
-    goal good-monks = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} japanese
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-cavalry-archers = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-monks = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected khmer
-    goal good-spearmen = 1
-    goal good-battle-elephants = 1
-    goal good-battering-rams = 1
-    goal good-scorpions = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} khmer
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-battle-elephants = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected korean
-    goal good-archers = 1
-    goal good-skirmishers = 1
-    goal good-mangonels = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} korean
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-mangonels = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected magyar
-    goal good-archers = 1
-    goal good-skirmishers = 1
-    goal good-cavalry-archers = 1
-    goal good-scouts = 1
-    goal good-knights = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} magyar
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-cavalry-archers = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-knights = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected malay
-    goal good-archers = 1
-    goal good-skirmishers = 1
-    goal good-spearmen = 1
-    goal good-scorpions = 1
-    goal good-battle-elephants = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} malay
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-battle-elephants = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected malian
-    goal good-mangonels = 1
-    goal good-militia = 1
-    goal good-hand-cannoneer = 1
-    goal good-galleys = 1
+  #if players-civ {player} malian
+    goal {prefix}good-mangonels = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-hand-cannoneer = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected mayan
-    goal good-archers = 1
-    goal good-skirmishers = 1
-    goal good-eagles = 1
-    goal good-spearmen = 1
-    goal good-battering-rams = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} mayan
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-eagles = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected mongol
-    goal good-cavalry-archers = 1
-    goal good-scouts = 1
-    goal good-militia = 1
-    goal good-battering-rams = 1
-    goal good-mangonels = 1
-    goal good-scorpions = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} mongol
+    goal {prefix}good-cavalry-archers = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-mangonels = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected persian
-    goal good-scouts = 1
-    goal good-knights = 1
-    goal good-camels = 1
-    goal good-hand-cannoneers = 1
-    goal good-spearmen = 1
-    goal good-battering-rams = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} persian
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-knights = 1
+    goal {prefix}good-camels = 1
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected portuguese
-    goal good-archers = 1
-    goal good-skirmishers = 1
-    goal good-hand-cannoneers = 1
-    goal good-militia = 1
-    goal good-spearmen = 1
-    goal good-knights = 1
-    goal good-galleys = 1
+  #if players-civ {player} portuguese
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-knights = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected saracen
-    goal good-archers = 1
-    goal good-skirmishers = 1
-    goal good-cavalry-archers = 1
-    goal good-hand-cannoneers = 1
-    goal good-militia = 1
-    goal good-scouts = 1
-    goal good-camels = 1
-    goal good-monks = 1
-    goal good-battering-rams = 1
-    goal good-mangonels = 1
-    goal good-galleys = 1
+  #if players-civ {player} saracen
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-cavalry-archers = 1
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-camels = 1
+    goal {prefix}good-monks = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-mangonels = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected slavic
-    goal good-militia = 1
-    goal good-spearmen = 1
-    goal good-scouts = 1
-    goal good-monks = 1
-    goal good-battering-rams = 1
-    goal good-mangonels = 1
-    goal good-scorpions = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} slavic
+    goal {prefix}good-militia = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-monks = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-mangonels = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected spanish
-    goal good-skirmishers = 1
-    goal good-hand-cannoneers = 1
-    goal good-militia = 1
-    goal good-spearmen = 1
-    goal good-scouts = 1
-    goal good-knights = 1
-    goal good-monks = 1
-    goal good-battering-rams = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} spanish
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-knights = 1
+    goal {prefix}good-monks = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected teutonic
-    goal good-hand-cannoneers = 1
-    goal good-militia = 1
-    goal good-spearmen = 1
-    goal good-monks = 1
-    goal good-mangonels = 1
-    goal good-scorpions = 1
-    goal good-fire-ships = 1
-    goal good-galleys = 1
+  #if players-civ {player} teutonic
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-monks = 1
+    goal {prefix}good-mangonels = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected turkish
-    goal good-hand-cannoneers = 1
-    goal good-cavalry-archers = 1
-    goal good-militia = 1
-    goal good-scouts = 1
-    goal good-camels = 1
-    goal good-battering-rams = 1
-    goal good-galleys = 1
+  #if players-civ {player} turkish
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-cavalry-archers = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-camels = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected vietnamese
-    goal good-archers = 1
-    goal good-skirmishers = 1
+  #if players-civ {player} vietnamese
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
     //elephants?
-    goal good-galleys = 1
+    goal {prefix}good-galleys = 1
   #end if
-  #if civ-selected viking
-    goal good-archers = 1
-    goal good-skirmishers = 1
-    goal good-militia = 1
-    goal good-battering-rams = 1
-    goal good-scorpions = 1
-    goal good-galleys = 1
+  #if players-civ {player} viking
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-galleys = 1
   #end if
+#end template
+
+#do once
+  insert get-good-units(prefix="",player="my-player-number")
+  insert get-good-units(prefix="enemy-",player="target-player")
 #end do

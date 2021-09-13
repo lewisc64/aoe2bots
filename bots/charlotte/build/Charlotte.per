@@ -1,6 +1,6 @@
 ;Translated by https://github.com/lewisc64/aoe2ai
-(defconst do-taunt-target 180)
-(defconst do-taunt 181)
+(defconst do-taunt-target 223)
+(defconst do-taunt 224)
 (defconst max-wood 1600)
 (defconst max-food 1600)
 (defconst max-gold 1600)
@@ -23,33 +23,66 @@
 (defconst excellent-food-price 50)
 (defconst excellent-wood-sell-price 200)
 (defconst excellent-food-sell-price 200)
-(defconst can-buy-wood 176)
-(defconst can-buy-food 177)
-(defconst can-sell-wood 178)
-(defconst can-sell-food 179)
-(defconst attack-ready 115)
-(defconst do-backstep 116)
-(defconst emergency-trash 117)
-(defconst monastery-count 151)
-(defconst old-desired-military-buildings-per-type 149)
-(defconst castle-count 148)
-(defconst siege-workshop-count 142)
-(defconst stable-count 137)
-(defconst barracks-count 133)
-(defconst archery-range-count 128)
-(defconst total-type-production 127)
-(defconst expected-units-per-type 126)
-(defconst current-unit-amount 125)
-(defconst old-produce-units 124)
-(defconst dock-count 122)
-(defconst desired-villagers-with-subtractions 118)
-(defconst trained-unit 120)
-(defconst good-hand-cannoneer 160)
-(defconst good-miltia 159)
-(defconst good-speamen 158)
-(defconst total-units-selected 161)
-(defconst balanced-aggressive 165)
-(defconst next-retarget 169)
+(defconst can-buy-wood 219)
+(defconst can-buy-food 220)
+(defconst can-sell-wood 221)
+(defconst can-sell-food 222)
+(defconst attack-ready 125)
+(defconst do-backstep 126)
+(defconst emergency-trash 127)
+(defconst monastery-count 161)
+(defconst old-desired-military-buildings-per-type 159)
+(defconst castle-count 158)
+(defconst siege-workshop-count 152)
+(defconst stable-count 147)
+(defconst barracks-count 143)
+(defconst archery-range-count 138)
+(defconst total-type-production 137)
+(defconst expected-units-per-type 136)
+(defconst current-unit-amount 135)
+(defconst old-produce-units 134)
+(defconst dock-count 132)
+(defconst desired-villagers-with-subtractions 128)
+(defconst trained-unit 130)
+(defconst enemy-good-fire-ships 188)
+(defconst enemy-good-galleys 187)
+(defconst enemy-good-unique-units 186)
+(defconst enemy-good-monks 185)
+(defconst enemy-good-scorpions 184)
+(defconst enemy-good-mangonels 183)
+(defconst enemy-good-battering-rams 182)
+(defconst enemy-good-battle-elephants 181)
+(defconst enemy-good-camels 180)
+(defconst enemy-good-knights 179)
+(defconst enemy-good-scouts 178)
+(defconst enemy-good-eagles 177)
+(defconst enemy-good-spearmen 176)
+(defconst enemy-good-militia 175)
+(defconst enemy-good-cavalry-archers 174)
+(defconst enemy-good-skirmishers 173)
+(defconst enemy-good-hand-cannoneers 172)
+(defconst enemy-good-archers 171)
+(defconst enemy-good-speamen 189)
+(defconst enemy-good-miltia 190)
+(defconst enemy-good-hand-cannoneer 191)
+(defconst good-speamen 168)
+(defconst good-miltia 169)
+(defconst good-hand-cannoneer 170)
+(defconst total-units-selected 192)
+(defconst balanced-aggressive 196)
+(defconst be-smart 198)
+(defconst cavalry-archers 209)
+(defconst enemy-unique-unit-is-cavalry 199)
+(defconst enemy-unique-unit-is-infantry 200)
+(defconst enemy-unique-unit-is-ranged 201)
+(defconst enemy-unique-unit-is-cavalry-archer 202)
+(defconst enemy-unique-unit-is-expensive 203)
+(defconst enemy-unique-unit-counters-cavalry 204)
+(defconst enemy-unique-unit-counters-infantry 205)
+(defconst enemy-unique-unit-counters-ranged 206)
+(defconst enemy-unique-unit-counters-cavalry-archer 207)
+(defconst enemy-unique-unit-counters-unique-unit 208)
+(defconst next-retarget 212)
 (defconst retarget-interval 300)
 (defconst ri-yeomen 3)
 (defconst ri-el-dorado 4)
@@ -145,6 +178,16 @@
 (defconst good-skirmishers 43)
 (defconst good-hand-cannoneers 42)
 (defconst good-archers 41)
+(defconst unique-unit-is-cavalry 101)
+(defconst unique-unit-is-infantry 102)
+(defconst unique-unit-is-ranged 103)
+(defconst unique-unit-is-cavalry-archer 104)
+(defconst unique-unit-is-expensive 105)
+(defconst unique-unit-counters-cavalry 106)
+(defconst unique-unit-counters-infantry 107)
+(defconst unique-unit-counters-ranged 108)
+(defconst unique-unit-counters-cavalry-archer 109)
+(defconst unique-unit-counters-unique-unit 110)
 (defconst full-infantry-blacksmith-investment 100)
 (defconst partial-infantry-blacksmith-investment 99)
 (defconst full-cavalry-blacksmith-investment 98)
@@ -187,10 +230,10 @@
 (defconst escrowed-gold 61)
 (defconst escrowed-food 60)
 (defconst escrowed-wood 59)
-(defconst enough-wood-for-units 101)
-(defconst enough-food-for-units 102)
-(defconst enough-gold-for-units 103)
-(defconst attempted-researches 104)
+(defconst enough-wood-for-units 111)
+(defconst enough-food-for-units 112)
+(defconst enough-gold-for-units 113)
+(defconst attempted-researches 114)
 (defrule
     (not (false))
 =>
@@ -1300,6 +1343,213 @@
     (set-goal full-infantry-blacksmith-investment 1)
 )
 (defrule
+    (true)
+=>
+    (set-goal unique-unit-is-cavalry 0)
+    (set-goal unique-unit-is-infantry 0)
+    (set-goal unique-unit-is-ranged 0)
+    (set-goal unique-unit-is-cavalry-archer 0)
+    (set-goal unique-unit-is-expensive 0)
+    (set-goal unique-unit-counters-cavalry 0)
+    (set-goal unique-unit-counters-infantry 0)
+    (set-goal unique-unit-counters-ranged 0)
+    (set-goal unique-unit-counters-cavalry-archer 0)
+    (set-goal unique-unit-counters-unique-unit 0)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number aztec)
+=>
+    (set-goal unique-unit-is-infantry 1)
+    (set-goal unique-unit-counters-infantry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number berbers)
+=>
+    (set-goal unique-unit-is-cavalry-archer 1)
+    (set-goal unique-unit-counters-cavalry-archer 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number briton)
+=>
+    (set-goal unique-unit-is-ranged 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number burmese)
+=>
+    (set-goal unique-unit-is-cavalry-archer 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number byzantine)
+=>
+    (set-goal unique-unit-is-cavalry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number celtic)
+=>
+    (set-goal unique-unit-is-infantry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number chinese)
+=>
+    (set-goal unique-unit-is-ranged 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number ethiopian)
+=>
+    (set-goal unique-unit-is-infantry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number frankish)
+=>
+    (set-goal unique-unit-is-infantry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number gothic)
+=>
+    (set-goal unique-unit-is-infantry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number hun)
+=>
+    (set-goal unique-unit-is-cavalry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number incan)
+=>
+    (set-goal unique-unit-is-infantry 1)
+    (set-goal unique-unit-counters-cavalry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number indian)
+=>
+    (set-goal unique-unit-is-cavalry-archer 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number italian)
+=>
+    (set-goal unique-unit-is-ranged 1)
+    (set-goal unique-unit-counters-cavalry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number japanese)
+=>
+    (set-goal unique-unit-is-infantry 1)
+    (set-goal unique-unit-counters-unique-unit 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number khmer)
+=>
+    (set-goal unique-unit-is-cavalry 1)
+    (set-goal unique-unit-counters-infantry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number korean)
+=>
+    (set-goal unique-unit-is-cavalry-archer 1)
+    (set-goal unique-unit-counters-ranged 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number magyar)
+=>
+    (set-goal unique-unit-is-cavalry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number malay)
+=>
+    (set-goal unique-unit-is-infantry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number malian)
+=>
+    (set-goal unique-unit-is-infantry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number mayan)
+=>
+    (set-goal unique-unit-is-ranged 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number mongol)
+=>
+    (set-goal unique-unit-is-cavalry-archer 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number persian)
+=>
+    (set-goal unique-unit-is-cavalry 1)
+    (set-goal unique-unit-is-expensive 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number saracen)
+=>
+    (set-goal unique-unit-is-cavalry 1)
+    (set-goal unique-unit-counters-cavalry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number slavic)
+=>
+    (set-goal unique-unit-is-cavalry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number spanish)
+=>
+    (set-goal unique-unit-is-cavalry-archer 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number teutonic)
+=>
+    (set-goal unique-unit-is-infantry 1)
+    (set-goal unique-unit-is-expensive 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number turkish)
+=>
+    (set-goal unique-unit-is-infantry 1)
+    (set-goal unique-unit-counters-infantry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number vietnamese)
+=>
+    (set-goal unique-unit-is-ranged 1)
+    (set-goal unique-unit-counters-ranged 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number viking)
+=>
+    (set-goal unique-unit-is-infantry 1)
+    (disable-self)
+)
+(defrule
     (wood-amount >= wood-unit-threshold)
 =>
     (set-goal enough-wood-for-units 1)
@@ -1378,6 +1628,15 @@
     (set-goal attempted-researches 0)
 )
 (defrule
+    (can-build-with-escrow town-center)
+    (building-type-count-total town-center < 1)
+    (game-time < 60)
+=>
+    (release-escrow wood)
+    (release-escrow stone)
+    (build town-center)
+)
+(defrule
     (up-research-status c: imperial-age >= research-pending)
 =>
     (set-strategic-number sn-maximum-town-size imperial-age-town-size)
@@ -1447,30 +1706,30 @@
     (players-building-type-count any-ally market >= 1)
     (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
 =>
-    (set-goal 105 0)
+    (set-goal 115 0)
     (disable-self)
     (generate-random-number 2)
 )
 (defrule
     (random-number == 1)
-    (goal 105 0)
+    (goal 115 0)
     (players-building-type-count any-ally market >= 1)
     (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
 =>
-    (set-goal 105 1)
+    (set-goal 115 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 105 0)
+    (goal 115 0)
     (players-building-type-count any-ally market >= 1)
     (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
 =>
-    (set-goal 105 2)
+    (set-goal 115 2)
     (disable-self)
 )
 (defrule
-    (goal 105 1)
+    (goal 115 1)
     (players-building-type-count any-ally market >= 1)
     (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
 =>
@@ -1478,7 +1737,7 @@
 )
 (defrule
     (current-age >= imperial-age)
-    (goal 105 2)
+    (goal 115 2)
     (players-building-type-count any-ally market >= 1)
     (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
 =>
@@ -1486,7 +1745,7 @@
 )
 (defrule
     (not (current-age >= imperial-age))
-    (goal 105 2)
+    (goal 115 2)
     (players-building-type-count any-ally market >= 1)
     (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
 =>
@@ -1501,35 +1760,35 @@
 (defrule
     (true)
 =>
-    (set-goal 106 0)
+    (set-goal 116 0)
     (disable-self)
     (generate-random-number 2)
 )
 (defrule
     (random-number == 1)
-    (goal 106 0)
+    (goal 116 0)
 =>
-    (set-goal 106 1)
+    (set-goal 116 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 106 0)
+    (goal 116 0)
 =>
-    (set-goal 106 2)
+    (set-goal 116 2)
     (disable-self)
 )
 (defrule
     (can-build monastery)
     (building-type-count-total monastery < 1)
-    (goal 106 1)
+    (goal 116 1)
 =>
     (build monastery)
 )
 (defrule
     (can-train monk)
     (unit-type-count-total monk-set < 1)
-    (goal 106 1)
+    (goal 116 1)
 =>
     (train monk)
 )
@@ -1556,7 +1815,7 @@
 (defrule
     (true)
 =>
-    (set-goal 107 0)
+    (set-goal 117 0)
     (disable-self)
 )
 (defrule
@@ -1567,17 +1826,17 @@
     (can-build lumber-camp)
 =>
     (build lumber-camp)
-    (set-goal 107 1)
+    (set-goal 117 1)
 )
 (defrule
-    (goal 107 1)
+    (goal 117 1)
 =>
     (up-modify-sn sn-camp-max-distance c:+ 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 107 0)
+    (set-goal 117 0)
 )
 (defrule
     (can-build market)
@@ -1606,25 +1865,25 @@
 (defrule
     (true)
 =>
-    (set-goal 108 0)
+    (set-goal 118 0)
     (generate-random-number 2)
 )
 (defrule
     (random-number == 1)
-    (goal 108 0)
+    (goal 118 0)
 =>
-    (set-goal 108 1)
+    (set-goal 118 1)
 )
 (defrule
     (random-number == 2)
-    (goal 108 0)
+    (goal 118 0)
 =>
-    (set-goal 108 2)
+    (set-goal 118 2)
 )
 (defrule
     (can-build castle)
     (building-type-count-total castle < 100)
-    (goal 108 1)
+    (goal 118 1)
 =>
     (build castle)
 )
@@ -1632,7 +1891,7 @@
     (can-build castle)
     (building-type-count-total castle < 100)
     (goal attacking 1)
-    (goal 108 2)
+    (goal 118 2)
 =>
     (up-set-placement-data any-enemy town-center c: 0)
     (up-build place-forward 0 c: castle)
@@ -1640,7 +1899,7 @@
 (defrule
     (true)
 =>
-    (set-goal 109 0)
+    (set-goal 119 0)
     (disable-self)
 )
 (defrule
@@ -1652,7 +1911,7 @@
     (strategic-number sn-gold-gatherer-percentage > 0)
 =>
     (build mining-camp)
-    (set-goal 109 1)
+    (set-goal 119 1)
 )
 (defrule
     (dropsite-min-distance stone > 3)
@@ -1663,17 +1922,17 @@
     (strategic-number sn-stone-gatherer-percentage > 0)
 =>
     (build mining-camp)
-    (set-goal 109 1)
+    (set-goal 119 1)
 )
 (defrule
-    (goal 109 1)
+    (goal 119 1)
 =>
     (up-modify-sn sn-camp-max-distance c:+ 4)
 )
 (defrule
     (true)
 =>
-    (set-goal 109 0)
+    (set-goal 119 0)
 )
 (defrule
     (current-age == dark-age)
@@ -1723,18 +1982,18 @@
     (build mill)
 )
 (defrule
-    (and (wood-amount >= 100) (and (up-pending-objects c: farm == 0) (or (goal water-map 0) (up-compare-goal total-fishing-ships g:>= desired-fishing-ships))))
+    (and (wood-amount >= 100) (and (up-pending-objects c: farm == 0) (or (goal water-map 0) (and (up-compare-goal total-fishing-ships g:>= desired-fishing-ships) (building-type-count-total dock >= 1)))))
     (current-age == dark-age)
 =>
-    (up-get-fact unit-type-count villager 110)
-    (up-modify-goal 110 s:* sn-food-gatherer-percentage)
-    (up-modify-goal 110 c:/ 100)
-    (up-get-fact building-type-count-total farm 111)
+    (up-get-fact unit-type-count villager 120)
+    (up-modify-goal 120 s:* sn-food-gatherer-percentage)
+    (up-modify-goal 120 c:/ 100)
+    (up-get-fact building-type-count-total farm 121)
 )
 (defrule
-    (up-compare-goal 111 g:< 110)
+    (up-compare-goal 121 g:< 120)
     (can-build farm)
-    (and (wood-amount >= 100) (and (up-pending-objects c: farm == 0) (or (goal water-map 0) (up-compare-goal total-fishing-ships g:>= desired-fishing-ships))))
+    (and (wood-amount >= 100) (and (up-pending-objects c: farm == 0) (or (goal water-map 0) (and (up-compare-goal total-fishing-ships g:>= desired-fishing-ships) (building-type-count-total dock >= 1)))))
     (current-age == dark-age)
 =>
     (build farm)
@@ -1763,39 +2022,39 @@
     (not (goal produce-unique-units 1))
     (up-research-status c: feudal-age >= research-pending)
 =>
-    (set-goal 112 0)
+    (set-goal 122 0)
     (disable-self)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 112 0)
+    (goal 122 0)
     (not (goal produce-unique-units 1))
     (up-research-status c: feudal-age >= research-pending)
 =>
-    (set-goal 112 1)
+    (set-goal 122 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 112 0)
+    (goal 122 0)
     (not (goal produce-unique-units 1))
     (up-research-status c: feudal-age >= research-pending)
 =>
-    (set-goal 112 2)
+    (set-goal 122 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 112 0)
+    (goal 122 0)
     (not (goal produce-unique-units 1))
     (up-research-status c: feudal-age >= research-pending)
 =>
-    (set-goal 112 3)
+    (set-goal 122 3)
     (disable-self)
 )
 (defrule
-    (goal 112 1)
+    (goal 122 1)
     (not (goal produce-unique-units 1))
     (up-research-status c: feudal-age >= research-pending)
 =>
@@ -1806,7 +2065,7 @@
     (disable-self)
 )
 (defrule
-    (goal 112 2)
+    (goal 122 2)
     (not (goal produce-unique-units 1))
     (up-research-status c: feudal-age >= research-pending)
 =>
@@ -1817,7 +2076,7 @@
     (disable-self)
 )
 (defrule
-    (goal 112 3)
+    (goal 122 3)
     (not (goal produce-unique-units 1))
     (up-research-status c: feudal-age >= research-pending)
 =>
@@ -1840,13 +2099,13 @@
     (and (wood-amount >= 200) (or (goal water-map 0) (up-compare-goal total-fishing-ships g:>= desired-fishing-ships)))
     (up-research-status c: feudal-age >= research-pending)
 =>
-    (up-get-fact unit-type-count villager 113)
-    (up-modify-goal 113 s:* sn-food-gatherer-percentage)
-    (up-modify-goal 113 c:/ 100)
-    (up-get-fact building-type-count-total farm 114)
+    (up-get-fact unit-type-count villager 123)
+    (up-modify-goal 123 s:* sn-food-gatherer-percentage)
+    (up-modify-goal 123 c:/ 100)
+    (up-get-fact building-type-count-total farm 124)
 )
 (defrule
-    (up-compare-goal 114 g:< 113)
+    (up-compare-goal 124 g:< 123)
     (can-build farm)
     (and (wood-amount >= 200) (or (goal water-map 0) (up-compare-goal total-fishing-ships g:>= desired-fishing-ships)))
     (up-research-status c: feudal-age >= research-pending)
@@ -1863,7 +2122,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 2768)
+    (up-jump-rule 2868)
 )
 (defrule
     (true)
@@ -3066,7 +3325,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 119 0)
+    (set-goal 129 0)
     (disable-self)
 )
 (defrule
@@ -3075,10 +3334,10 @@ watch-tower-arrow > 0))))
     (unit-available villager)
 =>
     (train villager)
-    (set-goal 119 1)
+    (set-goal 129 1)
 )
 (defrule
-    (goal 119 1)
+    (goal 129 1)
     (up-compare-goal total-villagers g:< desired-villagers-with-subtractions)
     (unit-available villager)
 =>
@@ -3087,7 +3346,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 119 0)
+    (set-goal 129 0)
 )
 (defrule
     (and (up-compare-goal total-villagers g:> desired-villagers-with-subtractions) (up-compare-goal population-space-remaining c:<= 10))
@@ -3177,7 +3436,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 121 0)
+    (set-goal 131 0)
     (disable-self)
 )
 (defrule
@@ -3186,10 +3445,10 @@ watch-tower-arrow > 0))))
     (unit-available trade-cart)
 =>
     (train trade-cart)
-    (set-goal 121 1)
+    (set-goal 131 1)
 )
 (defrule
-    (goal 121 1)
+    (goal 131 1)
     (up-compare-goal total-trade-carts g:< desired-trade-carts)
     (unit-available trade-cart)
 =>
@@ -3198,7 +3457,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 121 0)
+    (set-goal 131 0)
 )
 (defrule
     (not (goal water-map 1))
@@ -3423,14 +3682,14 @@ watch-tower-arrow > 0))))
 (defrule
     (can-build dock)
     (building-type-count-total dock < 100)
-    (up-compare-goal dock-count g:< desired-military-buildings-per-type)
+    (and (up-compare-goal dock-count g:< desired-military-buildings-per-type) (up-pending-objects c: dock < 1))
 =>
     (build dock)
 )
 (defrule
     (true)
 =>
-    (set-goal 123 0)
+    (set-goal 133 0)
     (disable-self)
 )
 (defrule
@@ -3439,10 +3698,10 @@ watch-tower-arrow > 0))))
     (unit-available fishing-ship)
 =>
     (train fishing-ship)
-    (set-goal 123 1)
+    (set-goal 133 1)
 )
 (defrule
-    (goal 123 1)
+    (goal 133 1)
     (and (up-compare-goal total-fishing-ships g:< desired-fishing-ships) (wood-amount >= 100))
     (unit-available fishing-ship)
 =>
@@ -3451,7 +3710,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 123 0)
+    (set-goal 133 0)
 )
 (defrule
     (true)
@@ -4360,7 +4619,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 129 0)
+    (set-goal 139 0)
     (disable-self)
 )
 (defrule
@@ -4369,10 +4628,10 @@ watch-tower-arrow > 0))))
     (unit-available archer-line)
 =>
     (train archer-line)
-    (set-goal 129 1)
+    (set-goal 139 1)
 )
 (defrule
-    (goal 129 1)
+    (goal 139 1)
     (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available archer-line)
 =>
@@ -4381,7 +4640,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 129 0)
+    (set-goal 139 0)
 )
 (defrule
     (and (goal produce-archers 1) (unit-available archer-line))
@@ -4559,7 +4818,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 130 0)
+    (set-goal 140 0)
     (disable-self)
 )
 (defrule
@@ -4568,10 +4827,10 @@ watch-tower-arrow > 0))))
     (unit-available hand-cannoneer)
 =>
     (train hand-cannoneer)
-    (set-goal 130 1)
+    (set-goal 140 1)
 )
 (defrule
-    (goal 130 1)
+    (goal 140 1)
     (and (goal produce-units 1) (and (goal enough-food-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available hand-cannoneer)
 =>
@@ -4580,7 +4839,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 130 0)
+    (set-goal 140 0)
 )
 (defrule
     (and (goal produce-hand-cannoneers 1) (unit-available hand-cannoneer))
@@ -5296,7 +5555,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 131 0)
+    (set-goal 141 0)
     (disable-self)
 )
 (defrule
@@ -5305,10 +5564,10 @@ watch-tower-arrow > 0))))
     (unit-available skirmisher-line)
 =>
     (train skirmisher-line)
-    (set-goal 131 1)
+    (set-goal 141 1)
 )
 (defrule
-    (goal 131 1)
+    (goal 141 1)
     (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (goal enough-food-for-units 1)))
     (unit-available skirmisher-line)
 =>
@@ -5317,7 +5576,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 131 0)
+    (set-goal 141 0)
 )
 (defrule
     (and (goal produce-skirmishers 1) (unit-available skirmisher-line))
@@ -6110,7 +6369,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 132 0)
+    (set-goal 142 0)
     (disable-self)
 )
 (defrule
@@ -6119,10 +6378,10 @@ watch-tower-arrow > 0))))
     (unit-available cavalry-archer-line)
 =>
     (train cavalry-archer-line)
-    (set-goal 132 1)
+    (set-goal 142 1)
 )
 (defrule
-    (goal 132 1)
+    (goal 142 1)
     (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available cavalry-archer-line)
 =>
@@ -6131,7 +6390,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 132 0)
+    (set-goal 142 0)
 )
 (defrule
     (and (goal produce-cavalry-archers 1) (unit-available cavalry-archer-line))
@@ -6968,7 +7227,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 134 0)
+    (set-goal 144 0)
     (disable-self)
 )
 (defrule
@@ -6977,10 +7236,10 @@ watch-tower-arrow > 0))))
     (unit-available militiaman-line)
 =>
     (train militiaman-line)
-    (set-goal 134 1)
+    (set-goal 144 1)
 )
 (defrule
-    (goal 134 1)
+    (goal 144 1)
     (and (goal produce-units 1) (and (goal enough-food-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available militiaman-line)
 =>
@@ -6989,7 +7248,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 134 0)
+    (set-goal 144 0)
 )
 (defrule
     (and (goal produce-militia 1) (unit-available militiaman-line))
@@ -7698,7 +7957,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 135 0)
+    (set-goal 145 0)
     (disable-self)
 )
 (defrule
@@ -7707,10 +7966,10 @@ watch-tower-arrow > 0))))
     (unit-available spearman-line)
 =>
     (train spearman-line)
-    (set-goal 135 1)
+    (set-goal 145 1)
 )
 (defrule
-    (goal 135 1)
+    (goal 145 1)
     (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (goal enough-food-for-units 1)))
     (unit-available spearman-line)
 =>
@@ -7719,7 +7978,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 135 0)
+    (set-goal 145 0)
 )
 (defrule
     (and (goal produce-spearmen 1) (unit-available spearman-line))
@@ -8492,7 +8751,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 136 0)
+    (set-goal 146 0)
     (disable-self)
 )
 (defrule
@@ -8501,10 +8760,10 @@ watch-tower-arrow > 0))))
     (unit-available eagle-warrior-line)
 =>
     (train eagle-warrior-line)
-    (set-goal 136 1)
+    (set-goal 146 1)
 )
 (defrule
-    (goal 136 1)
+    (goal 146 1)
     (and (goal produce-units 1) (and (goal enough-food-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available eagle-warrior-line)
 =>
@@ -8513,7 +8772,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 136 0)
+    (set-goal 146 0)
 )
 (defrule
     (and (goal produce-eagles 1) (unit-available eagle-warrior-line))
@@ -9274,7 +9533,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 138 0)
+    (set-goal 148 0)
     (disable-self)
 )
 (defrule
@@ -9283,10 +9542,10 @@ watch-tower-arrow > 0))))
     (unit-available scout-cavalry-line)
 =>
     (train scout-cavalry-line)
-    (set-goal 138 1)
+    (set-goal 148 1)
 )
 (defrule
-    (goal 138 1)
+    (goal 148 1)
     (and (goal produce-units 1) (goal enough-food-for-units 1))
     (unit-available scout-cavalry-line)
 =>
@@ -9295,7 +9554,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 138 0)
+    (set-goal 148 0)
 )
 (defrule
     (and (goal produce-scouts 1) (unit-available scout-cavalry-line))
@@ -10056,7 +10315,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 139 0)
+    (set-goal 149 0)
     (disable-self)
 )
 (defrule
@@ -10065,10 +10324,10 @@ watch-tower-arrow > 0))))
     (unit-available knight-line)
 =>
     (train knight-line)
-    (set-goal 139 1)
+    (set-goal 149 1)
 )
 (defrule
-    (goal 139 1)
+    (goal 149 1)
     (and (goal produce-units 1) (and (goal enough-food-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available knight-line)
 =>
@@ -10077,7 +10336,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 139 0)
+    (set-goal 149 0)
 )
 (defrule
     (and (goal produce-knights 1) (unit-available knight-line))
@@ -10838,7 +11097,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 140 0)
+    (set-goal 150 0)
     (disable-self)
 )
 (defrule
@@ -10847,10 +11106,10 @@ watch-tower-arrow > 0))))
     (unit-available camel-line)
 =>
     (train camel-line)
-    (set-goal 140 1)
+    (set-goal 150 1)
 )
 (defrule
-    (goal 140 1)
+    (goal 150 1)
     (and (goal produce-units 1) (and (goal enough-food-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available camel-line)
 =>
@@ -10859,7 +11118,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 140 0)
+    (set-goal 150 0)
 )
 (defrule
     (and (goal produce-camels 1) (unit-available camel-line))
@@ -11594,7 +11853,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 141 0)
+    (set-goal 151 0)
     (disable-self)
 )
 (defrule
@@ -11603,10 +11862,10 @@ watch-tower-arrow > 0))))
     (unit-available battle-elephant-line)
 =>
     (train battle-elephant-line)
-    (set-goal 141 1)
+    (set-goal 151 1)
 )
 (defrule
-    (goal 141 1)
+    (goal 151 1)
     (and (goal produce-units 1) (and (goal enough-food-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available battle-elephant-line)
 =>
@@ -11615,7 +11874,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 141 0)
+    (set-goal 151 0)
 )
 (defrule
     (and (goal produce-battle-elephants 1) (unit-available battle-elephant-line))
@@ -11941,7 +12200,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 143 0)
+    (set-goal 153 0)
     (disable-self)
 )
 (defrule
@@ -11950,10 +12209,10 @@ watch-tower-arrow > 0))))
     (unit-available battering-ram-line)
 =>
     (train battering-ram-line)
-    (set-goal 143 1)
+    (set-goal 153 1)
 )
 (defrule
-    (goal 143 1)
+    (goal 153 1)
     (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available battering-ram-line)
 =>
@@ -11962,7 +12221,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 143 0)
+    (set-goal 153 0)
 )
 (defrule
     (and (goal produce-battering-rams 1) (unit-available battering-ram-line))
@@ -12320,7 +12579,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 144 0)
+    (set-goal 154 0)
     (disable-self)
 )
 (defrule
@@ -12329,10 +12588,10 @@ watch-tower-arrow > 0))))
     (unit-available mangonel-line)
 =>
     (train mangonel-line)
-    (set-goal 144 1)
+    (set-goal 154 1)
 )
 (defrule
-    (goal 144 1)
+    (goal 154 1)
     (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available mangonel-line)
 =>
@@ -12341,7 +12600,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 144 0)
+    (set-goal 154 0)
 )
 (defrule
     (and (goal produce-mangonels 1) (unit-available mangonel-line))
@@ -12639,7 +12898,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 145 0)
+    (set-goal 155 0)
     (disable-self)
 )
 (defrule
@@ -12648,10 +12907,10 @@ watch-tower-arrow > 0))))
     (unit-available scorpion-line)
 =>
     (train scorpion-line)
-    (set-goal 145 1)
+    (set-goal 155 1)
 )
 (defrule
-    (goal 145 1)
+    (goal 155 1)
     (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available scorpion-line)
 =>
@@ -12660,7 +12919,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 145 0)
+    (set-goal 155 0)
 )
 (defrule
     (and (goal produce-scorpions 1) (unit-available scorpion-line))
@@ -12848,7 +13107,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 146 0)
+    (set-goal 156 0)
     (disable-self)
 )
 (defrule
@@ -12857,10 +13116,10 @@ watch-tower-arrow > 0))))
     (unit-available bombard-cannon)
 =>
     (train bombard-cannon)
-    (set-goal 146 1)
+    (set-goal 156 1)
 )
 (defrule
-    (goal 146 1)
+    (goal 156 1)
     (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available bombard-cannon)
 =>
@@ -12869,7 +13128,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 146 0)
+    (set-goal 156 0)
 )
 (defrule
     (and (goal produce-bombard-cannons 1) (unit-available bombard-cannon))
@@ -13043,7 +13302,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 147 0)
+    (set-goal 157 0)
     (disable-self)
 )
 (defrule
@@ -13052,10 +13311,10 @@ watch-tower-arrow > 0))))
     (unit-available trebuchet)
 =>
     (train trebuchet)
-    (set-goal 147 1)
+    (set-goal 157 1)
 )
 (defrule
-    (goal 147 1)
+    (goal 157 1)
     (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available trebuchet)
 =>
@@ -13064,7 +13323,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 147 0)
+    (set-goal 157 0)
 )
 (defrule
     (and (goal produce-trebuchets 1) (unit-available trebuchet-set))
@@ -16413,7 +16672,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 150 0)
+    (set-goal 160 0)
     (disable-self)
 )
 (defrule
@@ -16422,10 +16681,10 @@ watch-tower-arrow > 0))))
     (unit-available my-unique-unit-line)
 =>
     (train my-unique-unit-line)
-    (set-goal 150 1)
+    (set-goal 160 1)
 )
 (defrule
-    (goal 150 1)
+    (goal 160 1)
     (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (and (goal enough-food-for-units 1) (goal enough-gold-for-units 1))))
     (unit-available my-unique-unit-line)
 =>
@@ -16434,7 +16693,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 150 0)
+    (set-goal 160 0)
 )
 (defrule
     (and (goal produce-unique-units 1) (unit-available my-unique-unit-line))
@@ -16711,7 +16970,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 152 0)
+    (set-goal 162 0)
     (disable-self)
 )
 (defrule
@@ -16720,10 +16979,10 @@ watch-tower-arrow > 0))))
     (unit-available monk)
 =>
     (train monk)
-    (set-goal 152 1)
+    (set-goal 162 1)
 )
 (defrule
-    (goal 152 1)
+    (goal 162 1)
     (and (goal produce-units 1) (goal enough-gold-for-units 1))
     (unit-available monk)
 =>
@@ -16732,7 +16991,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 152 0)
+    (set-goal 162 0)
 )
 (defrule
     (and (goal produce-monks 1) (unit-available monk-set))
@@ -17236,14 +17495,14 @@ watch-tower-arrow > 0))))
 (defrule
     (can-build dock)
     (building-type-count-total dock < 100)
-    (up-compare-goal dock-count g:< desired-military-buildings-per-type)
+    (and (up-compare-goal dock-count g:< desired-military-buildings-per-type) (up-pending-objects c: dock < 1))
 =>
     (build dock)
 )
 (defrule
     (true)
 =>
-    (set-goal 153 0)
+    (set-goal 163 0)
     (disable-self)
 )
 (defrule
@@ -17252,10 +17511,10 @@ watch-tower-arrow > 0))))
     (unit-available galley-line)
 =>
     (train galley-line)
-    (set-goal 153 1)
+    (set-goal 163 1)
 )
 (defrule
-    (goal 153 1)
+    (goal 163 1)
     (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available galley-line)
 =>
@@ -17264,7 +17523,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 153 0)
+    (set-goal 163 0)
 )
 (defrule
     (and (goal produce-galleys 1) (unit-available galley-line))
@@ -17570,14 +17829,14 @@ watch-tower-arrow > 0))))
 (defrule
     (can-build dock)
     (building-type-count-total dock < 100)
-    (up-compare-goal dock-count g:< desired-military-buildings-per-type)
+    (and (up-compare-goal dock-count g:< desired-military-buildings-per-type) (up-pending-objects c: dock < 1))
 =>
     (build dock)
 )
 (defrule
     (true)
 =>
-    (set-goal 154 0)
+    (set-goal 164 0)
     (disable-self)
 )
 (defrule
@@ -17586,10 +17845,10 @@ watch-tower-arrow > 0))))
     (unit-available fire-ship-line)
 =>
     (train fire-ship-line)
-    (set-goal 154 1)
+    (set-goal 164 1)
 )
 (defrule
-    (goal 154 1)
+    (goal 164 1)
     (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available fire-ship-line)
 =>
@@ -17598,7 +17857,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 154 0)
+    (set-goal 164 0)
 )
 (defrule
     (and (goal produce-fire-ships 1) (unit-available fire-ship-line))
@@ -17808,14 +18067,14 @@ watch-tower-arrow > 0))))
 (defrule
     (can-build dock)
     (building-type-count-total dock < 100)
-    (up-compare-goal dock-count g:< desired-military-buildings-per-type)
+    (and (up-compare-goal dock-count g:< desired-military-buildings-per-type) (up-pending-objects c: dock < 1))
 =>
     (build dock)
 )
 (defrule
     (true)
 =>
-    (set-goal 155 0)
+    (set-goal 165 0)
     (disable-self)
 )
 (defrule
@@ -17824,10 +18083,10 @@ watch-tower-arrow > 0))))
     (unit-available cannon-galleon-line)
 =>
     (train cannon-galleon-line)
-    (set-goal 155 1)
+    (set-goal 165 1)
 )
 (defrule
-    (goal 155 1)
+    (goal 165 1)
     (and (goal produce-units 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1)))
     (unit-available cannon-galleon-line)
 =>
@@ -17836,7 +18095,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 155 0)
+    (set-goal 165 0)
 )
 (defrule
     (and (goal produce-cannon-galleons 1) (unit-available cannon-galleon-line))
@@ -17846,26 +18105,26 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal 156 0)
+    (set-goal 166 0)
     (disable-self)
     (generate-random-number 2)
 )
 (defrule
     (random-number == 1)
-    (goal 156 0)
+    (goal 166 0)
 =>
-    (set-goal 156 1)
+    (set-goal 166 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 156 0)
+    (goal 166 0)
 =>
-    (set-goal 156 2)
+    (set-goal 166 2)
     (disable-self)
 )
 (defrule
-    (not (goal 156 1))
+    (not (goal 166 1))
 =>
     (up-jump-rule 61)
 )
@@ -18197,28 +18456,28 @@ watch-tower-arrow > 0))))
 (defrule
     (and (strategic-number sn-stone-gatherer-percentage > 0) (false))
 =>
-    (set-goal 157 0)
+    (set-goal 167 0)
     (disable-self)
     (generate-random-number 2)
 )
 (defrule
     (random-number == 1)
-    (goal 157 0)
+    (goal 167 0)
     (and (strategic-number sn-stone-gatherer-percentage > 0) (false))
 =>
-    (set-goal 157 1)
+    (set-goal 167 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 157 0)
+    (goal 167 0)
     (and (strategic-number sn-stone-gatherer-percentage > 0) (false))
 =>
-    (set-goal 157 2)
+    (set-goal 167 2)
     (disable-self)
 )
 (defrule
-    (goal 157 1)
+    (goal 167 1)
     (and (strategic-number sn-stone-gatherer-percentage > 0) (false))
 =>
     (enable-wall-placement 2)
@@ -18226,7 +18485,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (can-build-wall 2 stone-wall-line)
-    (goal 157 1)
+    (goal 167 1)
     (and (strategic-number sn-stone-gatherer-percentage > 0) (false))
 =>
     (build-wall 2 stone-wall-line)
@@ -18235,13 +18494,13 @@ watch-tower-arrow > 0))))
     (building-type-count-total stone-wall-line > 0)
     (can-build-gate 2)
     (building-type-count-total gate < 5)
-    (goal 157 1)
+    (goal 167 1)
     (and (strategic-number sn-stone-gatherer-percentage > 0) (false))
 =>
     (build-gate 2)
 )
 (defrule
-    (not (and (goal 157 1) (and (strategic-number sn-stone-gatherer-percentage > 0) (false))))
+    (not (and (goal 167 1) (and (strategic-number sn-stone-gatherer-percentage > 0) (false))))
 =>
     (up-jump-rule 4)
 )
@@ -18273,7 +18532,7 @@ watch-tower-arrow > 0))))
     (research ri-fortified-wall)
 )
 (defrule
-    (not (goal 156 2))
+    (not (goal 166 2))
 =>
     (up-jump-rule 5)
 )
@@ -18318,16 +18577,34 @@ watch-tower-arrow > 0))))
 (defrule
     (not (goal attack-ready 1))
 =>
-    (up-jump-rule 32)
+    (up-jump-rule 64)
 )
 (defrule
     (true)
 =>
+    (set-goal good-archers 0)
+    (set-goal good-hand-cannoneers 0)
+    (set-goal good-skirmishers 0)
+    (set-goal good-cavalry-archers 0)
+    (set-goal good-militia 0)
+    (set-goal good-spearmen 0)
+    (set-goal good-eagles 0)
+    (set-goal good-scouts 0)
+    (set-goal good-knights 0)
+    (set-goal good-camels 0)
+    (set-goal good-battle-elephants 0)
+    (set-goal good-battering-rams 0)
+    (set-goal good-mangonels 0)
+    (set-goal good-scorpions 0)
+    (set-goal good-monks 0)
+    (set-goal good-unique-units 0)
+    (set-goal good-galleys 0)
+    (set-goal good-fire-ships 0)
     (set-goal good-unique-units 1)
     (disable-self)
 )
 (defrule
-    (civ-selected aztec)
+    (players-civ my-player-number aztec)
 =>
     (set-goal good-eagles 1)
     (set-goal good-monks 1)
@@ -18336,7 +18613,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected berbers)
+    (players-civ my-player-number berbers)
 =>
     (set-goal good-hand-cannoneers 1)
     (set-goal good-militia 1)
@@ -18348,7 +18625,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected briton)
+    (players-civ my-player-number briton)
 =>
     (set-goal good-archers 1)
     (set-goal good-skirmishers 1)
@@ -18360,7 +18637,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected burmese)
+    (players-civ my-player-number burmese)
 =>
     (set-goal good-scouts 1)
     (set-goal good-militia 1)
@@ -18372,7 +18649,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected byzantine)
+    (players-civ my-player-number byzantine)
 =>
     (set-goal good-speamen 1)
     (set-goal good-archers 1)
@@ -18387,7 +18664,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected celtic)
+    (players-civ my-player-number celtic)
 =>
     (set-goal good-battering-rams 1)
     (set-goal good-scorpions 1)
@@ -18398,7 +18675,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected chinese)
+    (players-civ my-player-number chinese)
 =>
     (set-goal good-archers 1)
     (set-goal good-skirmishers 1)
@@ -18411,7 +18688,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected ethiopian)
+    (players-civ my-player-number ethiopian)
 =>
     (set-goal good-archers 1)
     (set-goal good-skirmishers 1)
@@ -18420,7 +18697,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected frankish)
+    (players-civ my-player-number frankish)
 =>
     (set-goal good-militia 1)
     (set-goal good-spearmen 1)
@@ -18431,7 +18708,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected gothic)
+    (players-civ my-player-number gothic)
 =>
     (set-goal good-militia 1)
     (set-goal good-spearmen 1)
@@ -18443,7 +18720,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected hun)
+    (players-civ my-player-number hun)
 =>
     (set-goal good-cavalry-archers 1)
     (set-goal good-battering-rams 1)
@@ -18453,7 +18730,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected incan)
+    (players-civ my-player-number incan)
 =>
     (set-goal good-eagles 1)
     (set-goal good-militia 1)
@@ -18467,7 +18744,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected indian)
+    (players-civ my-player-number indian)
 =>
     (set-goal good-skirmishers 1)
     (set-goal good-hand-cannoneers 1)
@@ -18478,7 +18755,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected italian)
+    (players-civ my-player-number italian)
 =>
     (set-goal good-archers 1)
     (set-goal good-skirmishers 1)
@@ -18490,7 +18767,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected japanese)
+    (players-civ my-player-number japanese)
 =>
     (set-goal good-archers 1)
     (set-goal good-skirmishers 1)
@@ -18504,7 +18781,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected khmer)
+    (players-civ my-player-number khmer)
 =>
     (set-goal good-spearmen 1)
     (set-goal good-battle-elephants 1)
@@ -18515,7 +18792,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected korean)
+    (players-civ my-player-number korean)
 =>
     (set-goal good-archers 1)
     (set-goal good-skirmishers 1)
@@ -18525,7 +18802,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected magyar)
+    (players-civ my-player-number magyar)
 =>
     (set-goal good-archers 1)
     (set-goal good-skirmishers 1)
@@ -18537,7 +18814,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected malay)
+    (players-civ my-player-number malay)
 =>
     (set-goal good-archers 1)
     (set-goal good-skirmishers 1)
@@ -18549,7 +18826,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected malian)
+    (players-civ my-player-number malian)
 =>
     (set-goal good-mangonels 1)
     (set-goal good-militia 1)
@@ -18558,7 +18835,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected mayan)
+    (players-civ my-player-number mayan)
 =>
     (set-goal good-archers 1)
     (set-goal good-skirmishers 1)
@@ -18570,7 +18847,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected mongol)
+    (players-civ my-player-number mongol)
 =>
     (set-goal good-cavalry-archers 1)
     (set-goal good-scouts 1)
@@ -18583,7 +18860,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected persian)
+    (players-civ my-player-number persian)
 =>
     (set-goal good-scouts 1)
     (set-goal good-knights 1)
@@ -18596,7 +18873,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected portuguese)
+    (players-civ my-player-number portuguese)
 =>
     (set-goal good-archers 1)
     (set-goal good-skirmishers 1)
@@ -18608,7 +18885,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected saracen)
+    (players-civ my-player-number saracen)
 =>
     (set-goal good-archers 1)
     (set-goal good-skirmishers 1)
@@ -18624,7 +18901,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected slavic)
+    (players-civ my-player-number slavic)
 =>
     (set-goal good-militia 1)
     (set-goal good-spearmen 1)
@@ -18638,7 +18915,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected spanish)
+    (players-civ my-player-number spanish)
 =>
     (set-goal good-skirmishers 1)
     (set-goal good-hand-cannoneers 1)
@@ -18653,7 +18930,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected teutonic)
+    (players-civ my-player-number teutonic)
 =>
     (set-goal good-hand-cannoneers 1)
     (set-goal good-militia 1)
@@ -18666,7 +18943,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected turkish)
+    (players-civ my-player-number turkish)
 =>
     (set-goal good-hand-cannoneers 1)
     (set-goal good-cavalry-archers 1)
@@ -18678,7 +18955,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected vietnamese)
+    (players-civ my-player-number vietnamese)
 =>
     (set-goal good-archers 1)
     (set-goal good-skirmishers 1)
@@ -18686,7 +18963,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (civ-selected viking)
+    (players-civ my-player-number viking)
 =>
     (set-goal good-archers 1)
     (set-goal good-skirmishers 1)
@@ -18694,12 +18971,406 @@ watch-tower-arrow > 0))))
     (set-goal good-battering-rams 1)
     (set-goal good-scorpions 1)
     (set-goal good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (true)
+=>
+    (set-goal enemy-good-archers 0)
+    (set-goal enemy-good-hand-cannoneers 0)
+    (set-goal enemy-good-skirmishers 0)
+    (set-goal enemy-good-cavalry-archers 0)
+    (set-goal enemy-good-militia 0)
+    (set-goal enemy-good-spearmen 0)
+    (set-goal enemy-good-eagles 0)
+    (set-goal enemy-good-scouts 0)
+    (set-goal enemy-good-knights 0)
+    (set-goal enemy-good-camels 0)
+    (set-goal enemy-good-battle-elephants 0)
+    (set-goal enemy-good-battering-rams 0)
+    (set-goal enemy-good-mangonels 0)
+    (set-goal enemy-good-scorpions 0)
+    (set-goal enemy-good-monks 0)
+    (set-goal enemy-good-unique-units 0)
+    (set-goal enemy-good-galleys 0)
+    (set-goal enemy-good-fire-ships 0)
+    (set-goal enemy-good-unique-units 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player aztec)
+=>
+    (set-goal enemy-good-eagles 1)
+    (set-goal enemy-good-monks 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-fire-ships 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player berbers)
+=>
+    (set-goal enemy-good-hand-cannoneers 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-scouts 1)
+    (set-goal enemy-good-camels 1)
+    (set-goal enemy-good-scorpions 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player briton)
+=>
+    (set-goal enemy-good-archers 1)
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-scorpions 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player burmese)
+=>
+    (set-goal enemy-good-scouts 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-scorpions 1)
+    (set-goal enemy-good-battle-elephants 1)
+    (set-goal enemy-good-monks 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player byzantine)
+=>
+    (set-goal enemy-good-speamen 1)
+    (set-goal enemy-good-archers 1)
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-camels 1)
+    (set-goal enemy-good-battering-rams 1)
+    (set-goal enemy-good-hand-cannoneers 1)
+    (set-goal enemy-good-monks 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player celtic)
+=>
+    (set-goal enemy-good-battering-rams 1)
+    (set-goal enemy-good-scorpions 1)
+    (set-goal enemy-good-mangonels 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player chinese)
+=>
+    (set-goal enemy-good-archers 1)
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-miltia 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-camels 1)
+    (set-goal enemy-good-battering-rams 1)
+    (set-goal enemy-good-scorpions 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player ethiopian)
+=>
+    (set-goal enemy-good-archers 1)
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player frankish)
+=>
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-knights 1)
+    (set-goal enemy-good-scorpions 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player gothic)
+=>
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-scouts 1)
+    (set-goal enemy-good-scorpions 1)
+    (set-goal enemy-good-hand-cannoneers 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player hun)
+=>
+    (set-goal enemy-good-cavalry-archers 1)
+    (set-goal enemy-good-battering-rams 1)
+    (set-goal enemy-good-scouts 1)
+    (set-goal enemy-good-knights 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player incan)
+=>
+    (set-goal enemy-good-eagles 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-battering-rams 1)
+    (set-goal enemy-good-scorpions 1)
+    (set-goal enemy-good-archers 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player indian)
+=>
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-hand-cannoneers 1)
+    (set-goal enemy-good-cavalry-archers 1)
+    (set-goal enemy-good-camels 1)
+    (set-goal enemy-good-scouts 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player italian)
+=>
+    (set-goal enemy-good-archers 1)
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-scouts 1)
+    (set-goal enemy-good-monks 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player japanese)
+=>
+    (set-goal enemy-good-archers 1)
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-cavalry-archers 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-scorpions 1)
+    (set-goal enemy-good-monks 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player khmer)
+=>
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-battle-elephants 1)
+    (set-goal enemy-good-battering-rams 1)
+    (set-goal enemy-good-scorpions 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player korean)
+=>
+    (set-goal enemy-good-archers 1)
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-mangonels 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player magyar)
+=>
+    (set-goal enemy-good-archers 1)
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-cavalry-archers 1)
+    (set-goal enemy-good-scouts 1)
+    (set-goal enemy-good-knights 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player malay)
+=>
+    (set-goal enemy-good-archers 1)
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-scorpions 1)
+    (set-goal enemy-good-battle-elephants 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player malian)
+=>
+    (set-goal enemy-good-mangonels 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-hand-cannoneer 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player mayan)
+=>
+    (set-goal enemy-good-archers 1)
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-eagles 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-battering-rams 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player mongol)
+=>
+    (set-goal enemy-good-cavalry-archers 1)
+    (set-goal enemy-good-scouts 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-battering-rams 1)
+    (set-goal enemy-good-mangonels 1)
+    (set-goal enemy-good-scorpions 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player persian)
+=>
+    (set-goal enemy-good-scouts 1)
+    (set-goal enemy-good-knights 1)
+    (set-goal enemy-good-camels 1)
+    (set-goal enemy-good-hand-cannoneers 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-battering-rams 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player portuguese)
+=>
+    (set-goal enemy-good-archers 1)
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-hand-cannoneers 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-knights 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player saracen)
+=>
+    (set-goal enemy-good-archers 1)
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-cavalry-archers 1)
+    (set-goal enemy-good-hand-cannoneers 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-scouts 1)
+    (set-goal enemy-good-camels 1)
+    (set-goal enemy-good-monks 1)
+    (set-goal enemy-good-battering-rams 1)
+    (set-goal enemy-good-mangonels 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player slavic)
+=>
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-scouts 1)
+    (set-goal enemy-good-monks 1)
+    (set-goal enemy-good-battering-rams 1)
+    (set-goal enemy-good-mangonels 1)
+    (set-goal enemy-good-scorpions 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player spanish)
+=>
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-hand-cannoneers 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-scouts 1)
+    (set-goal enemy-good-knights 1)
+    (set-goal enemy-good-monks 1)
+    (set-goal enemy-good-battering-rams 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player teutonic)
+=>
+    (set-goal enemy-good-hand-cannoneers 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-monks 1)
+    (set-goal enemy-good-mangonels 1)
+    (set-goal enemy-good-scorpions 1)
+    (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player turkish)
+=>
+    (set-goal enemy-good-hand-cannoneers 1)
+    (set-goal enemy-good-cavalry-archers 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-scouts 1)
+    (set-goal enemy-good-camels 1)
+    (set-goal enemy-good-battering-rams 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player vietnamese)
+=>
+    (set-goal enemy-good-archers 1)
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ target-player viking)
+=>
+    (set-goal enemy-good-archers 1)
+    (set-goal enemy-good-skirmishers 1)
+    (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-battering-rams 1)
+    (set-goal enemy-good-scorpions 1)
+    (set-goal enemy-good-galleys 1)
     (disable-self)
 )
 (defrule
     (not (goal attack-ready 1))
 =>
-    (up-jump-rule 58)
+    (up-jump-rule 41)
 )
 (defrule
     (true)
@@ -18727,162 +19398,162 @@ watch-tower-arrow > 0))))
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 0)
+    (set-goal 193 0)
     (generate-random-number 17)
 )
 (defrule
     (random-number == 1)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 1)
+    (set-goal 193 1)
 )
 (defrule
     (random-number == 2)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 2)
+    (set-goal 193 2)
 )
 (defrule
     (random-number == 3)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 3)
+    (set-goal 193 3)
 )
 (defrule
     (random-number == 4)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 4)
+    (set-goal 193 4)
 )
 (defrule
     (random-number == 5)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 5)
+    (set-goal 193 5)
 )
 (defrule
     (random-number == 6)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 6)
+    (set-goal 193 6)
 )
 (defrule
     (random-number == 7)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 7)
+    (set-goal 193 7)
 )
 (defrule
     (random-number == 8)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 8)
+    (set-goal 193 8)
 )
 (defrule
     (random-number == 9)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 9)
+    (set-goal 193 9)
 )
 (defrule
     (random-number == 10)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 10)
+    (set-goal 193 10)
 )
 (defrule
     (random-number == 11)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 11)
+    (set-goal 193 11)
 )
 (defrule
     (random-number == 12)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 12)
+    (set-goal 193 12)
 )
 (defrule
     (random-number == 13)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 13)
+    (set-goal 193 13)
 )
 (defrule
     (random-number == 14)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 14)
+    (set-goal 193 14)
 )
 (defrule
     (random-number == 15)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 15)
+    (set-goal 193 15)
 )
 (defrule
     (random-number == 16)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 16)
+    (set-goal 193 16)
 )
 (defrule
     (random-number == 17)
-    (goal 162 0)
+    (goal 193 0)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 162 17)
+    (set-goal 193 17)
 )
 (defrule
     (goal produce-cavalry-archers 0)
-    (goal 162 1)
+    (goal 193 1)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
     (up-modify-goal produce-archers g:= good-archers)
 )
 (defrule
-    (goal 162 2)
+    (goal 193 2)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
     (up-modify-goal produce-hand-cannoneers g:= good-hand-cannoneers)
 )
 (defrule
-    (goal 162 3)
+    (goal 193 3)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
@@ -18890,7 +19561,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (goal produce-archers 0)
-    (goal 162 4)
+    (goal 193 4)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
@@ -18898,7 +19569,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (goal produce-eagles 0)
-    (goal 162 5)
+    (goal 193 5)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
@@ -18906,7 +19577,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (goal produce-eagles 0)
-    (goal 162 6)
+    (goal 193 6)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
@@ -18914,7 +19585,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (and (goal produce-spearmen 0) (goal produce-militia 0))
-    (goal 162 7)
+    (goal 193 7)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
@@ -18922,7 +19593,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (and (goal produce-knights 0) (goal produce-battle-elephants 0))
-    (goal 162 8)
+    (goal 193 8)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
@@ -18930,14 +19601,14 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (and (goal produce-scouts 0) (goal produce-battle-elephants 0))
-    (goal 162 9)
+    (goal 193 9)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
     (up-modify-goal produce-knights g:= good-knights)
 )
 (defrule
-    (goal 162 10)
+    (goal 193 10)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
@@ -18945,35 +19616,35 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (and (goal produce-scouts 0) (goal produce-knights 0))
-    (goal 162 11)
+    (goal 193 11)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
     (up-modify-goal produce-battle-elephants g:= good-battle-elephants)
 )
 (defrule
-    (goal 162 12)
+    (goal 193 12)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
     (up-modify-goal produce-mangonels g:= good-mangonels)
 )
 (defrule
-    (goal 162 13)
+    (goal 193 13)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
     (up-modify-goal produce-scorpions g:= good-scorpions)
 )
 (defrule
-    (goal 162 14)
+    (goal 193 14)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
     (up-modify-goal produce-monks g:= good-monks)
 )
 (defrule
-    (goal 162 15)
+    (goal 193 15)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
@@ -18981,7 +19652,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (and (goal water-map 1) (up-compare-goal total-units-selected c:> 1))
-    (goal 162 16)
+    (goal 193 16)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
@@ -18989,7 +19660,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (and (goal water-map 1) (up-compare-goal total-units-selected c:> 1))
-    (goal 162 17)
+    (goal 193 17)
     (goal full-water-map 0)
     (up-compare-goal total-units-selected g:< desired-units)
 =>
@@ -18999,182 +19670,80 @@ watch-tower-arrow > 0))))
     (not (goal full-water-map 0))
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 163 0)
+    (set-goal 194 0)
     (generate-random-number 2)
 )
 (defrule
     (random-number == 1)
-    (goal 163 0)
+    (goal 194 0)
     (not (goal full-water-map 0))
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 163 1)
+    (set-goal 194 1)
 )
 (defrule
     (random-number == 2)
-    (goal 163 0)
+    (goal 194 0)
     (not (goal full-water-map 0))
     (up-compare-goal total-units-selected g:< desired-units)
 =>
-    (set-goal 163 2)
+    (set-goal 194 2)
 )
 (defrule
-    (goal 163 1)
+    (goal 194 1)
     (not (goal full-water-map 0))
     (up-compare-goal total-units-selected g:< desired-units)
 =>
     (up-modify-goal produce-galleys g:= good-galleys)
 )
 (defrule
-    (goal 163 2)
+    (goal 194 2)
     (not (goal full-water-map 0))
     (up-compare-goal total-units-selected g:< desired-units)
 =>
     (up-modify-goal produce-fire-ships g:= good-fire-ships)
 )
 (defrule
-    (goal produce-archers 1)
-=>
-    (chat-local-to-self "produce-archers")
-    (disable-self)
-)
-(defrule
-    (goal produce-hand-cannoneers 1)
-=>
-    (chat-local-to-self "produce-hand-cannoneers")
-    (disable-self)
-)
-(defrule
-    (goal produce-skirmishers 1)
-=>
-    (chat-local-to-self "produce-skirmishers")
-    (disable-self)
-)
-(defrule
-    (goal produce-cavalry-archers 1)
-=>
-    (chat-local-to-self "produce-cavalry-archers")
-    (disable-self)
-)
-(defrule
-    (goal produce-militia 1)
-=>
-    (chat-local-to-self "produce-militia")
-    (disable-self)
-)
-(defrule
-    (goal produce-spearmen 1)
-=>
-    (chat-local-to-self "produce-spearmen")
-    (disable-self)
-)
-(defrule
-    (goal produce-eagles 1)
-=>
-    (chat-local-to-self "produce-eagles")
-    (disable-self)
-)
-(defrule
-    (goal produce-scouts 1)
-=>
-    (chat-local-to-self "produce-scouts")
-    (disable-self)
-)
-(defrule
-    (goal produce-knights 1)
-=>
-    (chat-local-to-self "produce-knights")
-    (disable-self)
-)
-(defrule
-    (goal produce-camels 1)
-=>
-    (chat-local-to-self "produce-camels")
-    (disable-self)
-)
-(defrule
-    (goal produce-battle-elephants 1)
-=>
-    (chat-local-to-self "produce-battle-elephants")
-    (disable-self)
-)
-(defrule
-    (goal produce-mangonels 1)
-=>
-    (chat-local-to-self "produce-mangonels")
-    (disable-self)
-)
-(defrule
-    (goal produce-scorpions 1)
-=>
-    (chat-local-to-self "produce-scorpions")
-    (disable-self)
-)
-(defrule
-    (goal produce-monks 1)
-=>
-    (chat-local-to-self "produce-monks")
-    (disable-self)
-)
-(defrule
-    (goal produce-unique-units 1)
-=>
-    (chat-local-to-self "produce-unique-units")
-    (disable-self)
-)
-(defrule
-    (goal produce-galleys 1)
-=>
-    (chat-local-to-self "produce-galleys")
-    (disable-self)
-)
-(defrule
-    (goal produce-fire-ships 1)
-=>
-    (chat-local-to-self "produce-fire-ships")
-    (disable-self)
-)
-(defrule
     (goal attack-ready 1)
 =>
-    (set-goal 164 0)
+    (set-goal 195 0)
     (disable-self)
     (generate-random-number 4)
 )
 (defrule
     (random-number == 1)
-    (goal 164 0)
+    (goal 195 0)
     (goal attack-ready 1)
 =>
-    (set-goal 164 1)
+    (set-goal 195 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 164 0)
+    (goal 195 0)
     (goal attack-ready 1)
 =>
-    (set-goal 164 2)
+    (set-goal 195 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 164 0)
+    (goal 195 0)
     (goal attack-ready 1)
 =>
-    (set-goal 164 3)
+    (set-goal 195 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 164 0)
+    (goal 195 0)
     (goal attack-ready 1)
 =>
-    (set-goal 164 4)
+    (set-goal 195 4)
     (disable-self)
 )
 (defrule
-    (not (and (goal 164 1) (goal attack-ready 1)))
+    (not (and (goal 195 1) (goal attack-ready 1)))
 =>
     (up-jump-rule 3)
 )
@@ -19196,7 +19765,7 @@ watch-tower-arrow > 0))))
     (set-goal attacking 0)
 )
 (defrule
-    (not (and (goal 164 1) (goal attack-ready 1)))
+    (not (and (goal 195 1) (goal attack-ready 1)))
 =>
     (up-jump-rule 11)
 )
@@ -19269,7 +19838,7 @@ watch-tower-arrow > 0))))
     (set-goal do-research 1)
 )
 (defrule
-    (not (and (goal 164 2) (goal attack-ready 1)))
+    (not (and (goal 195 2) (goal attack-ready 1)))
 =>
     (up-jump-rule 3)
 )
@@ -19291,7 +19860,7 @@ watch-tower-arrow > 0))))
     (set-goal attacking 0)
 )
 (defrule
-    (not (and (goal 164 2) (goal attack-ready 1)))
+    (not (and (goal 195 2) (goal attack-ready 1)))
 =>
     (up-jump-rule 11)
 )
@@ -19364,7 +19933,7 @@ watch-tower-arrow > 0))))
     (set-goal do-research 1)
 )
 (defrule
-    (not (and (goal 164 3) (goal attack-ready 1)))
+    (not (and (goal 195 3) (goal attack-ready 1)))
 =>
     (up-jump-rule 3)
 )
@@ -19386,7 +19955,7 @@ watch-tower-arrow > 0))))
     (set-goal attacking 0)
 )
 (defrule
-    (not (and (goal 164 3) (goal attack-ready 1)))
+    (not (and (goal 195 3) (goal attack-ready 1)))
 =>
     (up-jump-rule 11)
 )
@@ -19459,7 +20028,7 @@ watch-tower-arrow > 0))))
     (set-goal do-research 1)
 )
 (defrule
-    (not (and (goal 164 4) (goal attack-ready 1)))
+    (not (and (goal 195 4) (goal attack-ready 1)))
 =>
     (up-jump-rule 3)
 )
@@ -19481,7 +20050,7 @@ watch-tower-arrow > 0))))
     (set-goal attacking 0)
 )
 (defrule
-    (not (and (goal 164 4) (goal attack-ready 1)))
+    (not (and (goal 195 4) (goal attack-ready 1)))
 =>
     (up-jump-rule 11)
 )
@@ -19590,53 +20159,453 @@ watch-tower-arrow > 0))))
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
     (goal emergency-trash 1)
 =>
-    (set-goal 166 0)
+    (set-goal 197 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 166 0)
+    (goal 197 0)
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
     (goal emergency-trash 1)
 =>
-    (set-goal 166 1)
+    (set-goal 197 1)
 )
 (defrule
     (random-number == 2)
-    (goal 166 0)
+    (goal 197 0)
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
     (goal emergency-trash 1)
 =>
-    (set-goal 166 2)
+    (set-goal 197 2)
 )
 (defrule
     (random-number == 3)
-    (goal 166 0)
+    (goal 197 0)
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
     (goal emergency-trash 1)
 =>
-    (set-goal 166 3)
+    (set-goal 197 3)
 )
 (defrule
-    (goal 166 1)
+    (goal 197 1)
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
     (goal emergency-trash 1)
 =>
     (set-goal good-skirmishers 1)
 )
 (defrule
-    (goal 166 2)
+    (goal 197 2)
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
     (goal emergency-trash 1)
 =>
     (set-goal good-scouts 1)
 )
 (defrule
-    (goal 166 3)
+    (goal 197 3)
     (and (goal good-skirmishers 0) (and (goal good-scouts 0) (goal good-spearmen 0)))
     (goal emergency-trash 1)
 =>
     (set-goal good-spearmen 1)
+)
+(defrule
+    (goal emergency-trash 0)
+    (goal attack-ready 1)
+=>
+    (set-goal be-smart 1)
+    (disable-self)
+)
+(defrule
+    (goal be-smart 1)
+    (goal emergency-trash 0)
+    (goal attack-ready 1)
+=>
+    (chat-local-to-self "being smart")
+)
+(defrule
+    (not (and (goal be-smart 1) (and (goal emergency-trash 0) (goal attack-ready 1))))
+=>
+    (up-jump-rule 63)
+)
+(defrule
+    (true)
+=>
+    (set-goal enemy-unique-unit-is-cavalry 0)
+    (set-goal enemy-unique-unit-is-infantry 0)
+    (set-goal enemy-unique-unit-is-ranged 0)
+    (set-goal enemy-unique-unit-is-cavalry-archer 0)
+    (set-goal enemy-unique-unit-is-expensive 0)
+    (set-goal enemy-unique-unit-counters-cavalry 0)
+    (set-goal enemy-unique-unit-counters-infantry 0)
+    (set-goal enemy-unique-unit-counters-ranged 0)
+    (set-goal enemy-unique-unit-counters-cavalry-archer 0)
+    (set-goal enemy-unique-unit-counters-unique-unit 0)
+)
+(defrule
+    (players-civ target-player aztec)
+=>
+    (set-goal enemy-unique-unit-is-infantry 1)
+    (set-goal enemy-unique-unit-counters-infantry 1)
+)
+(defrule
+    (players-civ target-player berbers)
+=>
+    (set-goal enemy-unique-unit-is-cavalry-archer 1)
+    (set-goal enemy-unique-unit-counters-cavalry-archer 1)
+)
+(defrule
+    (players-civ target-player briton)
+=>
+    (set-goal enemy-unique-unit-is-ranged 1)
+)
+(defrule
+    (players-civ target-player burmese)
+=>
+    (set-goal enemy-unique-unit-is-cavalry-archer 1)
+)
+(defrule
+    (players-civ target-player byzantine)
+=>
+    (set-goal enemy-unique-unit-is-cavalry 1)
+)
+(defrule
+    (players-civ target-player celtic)
+=>
+    (set-goal enemy-unique-unit-is-infantry 1)
+)
+(defrule
+    (players-civ target-player chinese)
+=>
+    (set-goal enemy-unique-unit-is-ranged 1)
+)
+(defrule
+    (players-civ target-player ethiopian)
+=>
+    (set-goal enemy-unique-unit-is-infantry 1)
+)
+(defrule
+    (players-civ target-player frankish)
+=>
+    (set-goal enemy-unique-unit-is-infantry 1)
+)
+(defrule
+    (players-civ target-player gothic)
+=>
+    (set-goal enemy-unique-unit-is-infantry 1)
+)
+(defrule
+    (players-civ target-player hun)
+=>
+    (set-goal enemy-unique-unit-is-cavalry 1)
+)
+(defrule
+    (players-civ target-player incan)
+=>
+    (set-goal enemy-unique-unit-is-infantry 1)
+    (set-goal enemy-unique-unit-counters-cavalry 1)
+)
+(defrule
+    (players-civ target-player indian)
+=>
+    (set-goal enemy-unique-unit-is-cavalry-archer 1)
+)
+(defrule
+    (players-civ target-player italian)
+=>
+    (set-goal enemy-unique-unit-is-ranged 1)
+    (set-goal enemy-unique-unit-counters-cavalry 1)
+)
+(defrule
+    (players-civ target-player japanese)
+=>
+    (set-goal enemy-unique-unit-is-infantry 1)
+    (set-goal enemy-unique-unit-counters-unique-unit 1)
+)
+(defrule
+    (players-civ target-player khmer)
+=>
+    (set-goal enemy-unique-unit-is-cavalry 1)
+    (set-goal enemy-unique-unit-counters-infantry 1)
+)
+(defrule
+    (players-civ target-player korean)
+=>
+    (set-goal enemy-unique-unit-is-cavalry-archer 1)
+    (set-goal enemy-unique-unit-counters-ranged 1)
+)
+(defrule
+    (players-civ target-player magyar)
+=>
+    (set-goal enemy-unique-unit-is-cavalry 1)
+)
+(defrule
+    (players-civ target-player malay)
+=>
+    (set-goal enemy-unique-unit-is-infantry 1)
+)
+(defrule
+    (players-civ target-player malian)
+=>
+    (set-goal enemy-unique-unit-is-infantry 1)
+)
+(defrule
+    (players-civ target-player mayan)
+=>
+    (set-goal enemy-unique-unit-is-ranged 1)
+)
+(defrule
+    (players-civ target-player mongol)
+=>
+    (set-goal enemy-unique-unit-is-cavalry-archer 1)
+)
+(defrule
+    (players-civ target-player persian)
+=>
+    (set-goal enemy-unique-unit-is-cavalry 1)
+    (set-goal enemy-unique-unit-is-expensive 1)
+)
+(defrule
+    (players-civ target-player saracen)
+=>
+    (set-goal enemy-unique-unit-is-cavalry 1)
+    (set-goal enemy-unique-unit-counters-cavalry 1)
+)
+(defrule
+    (players-civ target-player slavic)
+=>
+    (set-goal enemy-unique-unit-is-cavalry 1)
+)
+(defrule
+    (players-civ target-player spanish)
+=>
+    (set-goal enemy-unique-unit-is-cavalry-archer 1)
+)
+(defrule
+    (players-civ target-player teutonic)
+=>
+    (set-goal enemy-unique-unit-is-infantry 1)
+    (set-goal enemy-unique-unit-is-expensive 1)
+)
+(defrule
+    (players-civ target-player turkish)
+=>
+    (set-goal enemy-unique-unit-is-infantry 1)
+    (set-goal enemy-unique-unit-counters-infantry 1)
+)
+(defrule
+    (players-civ target-player vietnamese)
+=>
+    (set-goal enemy-unique-unit-is-ranged 1)
+    (set-goal enemy-unique-unit-counters-ranged 1)
+)
+(defrule
+    (players-civ target-player viking)
+=>
+    (set-goal enemy-unique-unit-is-infantry 1)
+)
+(defrule
+    (or (goal enemy-good-archers 1) (goal enemy-unique-unit-is-ranged 1))
+=>
+    (set-goal produce-hand-cannoneers 0)
+    (set-goal produce-militia 0)
+    (set-goal produce-spearmen 0)
+    (set-goal produce-monks 0)
+)
+(defrule
+    (goal enemy-good-skirmishers 1)
+=>
+    (set-goal produce-archers 0)
+    (set-goal produce-cavalry-archers 0)
+)
+(defrule
+    (and (goal unique-unit-is-ranged 1) (goal unique-unit-counters-ranged 0))
+    (goal enemy-good-skirmishers 1)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (goal enemy-good-skirmishers 1)
+=>
+    (set-goal produce-spearmen 0)
+    (set-goal produce-monks 0)
+)
+(defrule
+    (goal enemy-good-eagles 1)
+=>
+    (set-goal produce-archers 0)
+    (set-goal produce-skirmishers 0)
+    (set-goal produce-cavalry-archers 0)
+)
+(defrule
+    (and (goal unique-unit-is-ranged 1) (goal unique-unit-counters-infantry 0))
+    (goal enemy-good-eagles 1)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (goal enemy-good-monks 1)
+=>
+    (set-goal produce-knights 0)
+    (set-goal produce-battle-elephants 0)
+    (set-goal produce-camels 0)
+)
+(defrule
+    (goal unique-unit-is-expensive 1)
+    (goal enemy-good-monks 1)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (goal enemy-good-militia 1)
+=>
+    (set-goal produce-eagles 0)
+)
+(defrule
+    (goal enemy-good-hand-cannoneers 1)
+=>
+    (set-goal produce-militia 0)
+    (set-goal produce-spearmen 0)
+    (set-goal produce-eagles 0)
+)
+(defrule
+    (goal unique-unit-is-infantry 1)
+    (goal enemy-good-hand-cannoneers 1)
+=>
+    (set-goal produce-unique-units 1)
+)
+(defrule
+    (goal enemy-good-knights 1)
+=>
+    (set-goal produce-archers 0)
+    (set-goal produce-skirmishers 0)
+)
+(defrule
+    (and (goal unique-unit-is-ranged 1) (goal unique-unit-counters-cavalry 0))
+    (goal enemy-good-knights 1)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (goal enemy-good-camels 1)
+=>
+    (set-goal produce-knights 0)
+    (set-goal produce-scouts 0)
+)
+(defrule
+    (and (goal unique-unit-is-cavalry 1) (goal unique-unit-counters-cavalry 0))
+    (goal enemy-good-camels 1)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (goal enemy-good-spearmen 1)
+=>
+    (set-goal produce-knights 0)
+    (set-goal produce-scouts 0)
+)
+(defrule
+    (and (goal unique-unit-is-cavalry 1) (goal unique-unit-counters-infantry 0))
+    (goal enemy-good-spearmen 1)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (goal enemy-good-mangonels 1)
+=>
+    (set-goal produce-scorpions 0)
+)
+(defrule
+    (or (goal enemy-good-scouts 1) (or (goal enemy-good-knights 1) (goal enemy-unique-unit-is-cavalry 1)))
+=>
+    (set-goal produce-scorpions 0)
+)
+(defrule
+    (or (goal enemy-good-scouts 1) (or (goal enemy-good-knights 1) (or (goal enemy-good-camels 1) (goal enemy-unique-unit-is-cavalry 1))))
+=>
+    (set-goal produce-skirmishers 0)
+)
+(defrule
+    (goal enemy-good-militia 1)
+=>
+    (set-goal produce-skirmishers 0)
+)
+(defrule
+    (goal enemy-good-scouts 1)
+=>
+    (set-goal produce-hand-cannoneers 0)
+)
+(defrule
+    (goal enemy-good-militia 1)
+=>
+    (set-goal produce-spearmen 0)
+)
+(defrule
+    (goal enemy-unique-unit-counters-infantry 1)
+=>
+    (set-goal produce-militia 0)
+    (set-goal produce-spearmen 0)
+    (set-goal produce-eagles 0)
+)
+(defrule
+    (goal unique-unit-is-infantry 1)
+    (goal enemy-unique-unit-counters-infantry 1)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (goal enemy-unique-unit-counters-ranged 1)
+=>
+    (set-goal produce-archers 0)
+    (set-goal produce-skirmishers 0)
+    (set-goal produce-cavalry-archers 0)
+)
+(defrule
+    (goal unique-unit-is-ranged 1)
+    (goal enemy-unique-unit-counters-ranged 1)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (goal enemy-unique-unit-counters-cavalry-archer 1)
+=>
+    (set-goal cavalry-archers 0)
+)
+(defrule
+    (goal unique-unit-is-cavalry-archer 1)
+    (goal enemy-unique-unit-counters-cavalry-archer 1)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (goal enemy-unique-unit-counters-cavalry 1)
+=>
+    (set-goal produce-knights 0)
+    (set-goal produce-scouts 0)
+    (set-goal produce-camels 0)
+)
+(defrule
+    (goal unique-unit-is-cavalry 1)
+    (goal enemy-unique-unit-counters-cavalry 1)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (goal enemy-unique-unit-counters-unique-unit 1)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (goal emergency-trash 0)
+    (goal attack-ready 1)
+=>
+    (enable-timer 6 180)
+    (disable-self)
+)
+(defrule
+    (timer-triggered 6)
+    (goal emergency-trash 0)
+    (goal attack-ready 1)
+=>
+    (set-goal be-smart 0)
 )
 (defrule
     (not (and (goal emergency-trash 0) (goal attack-ready 1)))
@@ -19897,18 +20866,18 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (up-find-player enemy find-closest 167)
-    (up-modify-sn sn-target-player-number g:= 167)
-    (up-modify-sn sn-focus-player-number g:= 167)
+    (up-find-player enemy find-closest 210)
+    (up-modify-sn sn-target-player-number g:= 210)
+    (up-modify-sn sn-focus-player-number g:= 210)
     (up-send-scout group-type-land-explore scout-enemy)
     (disable-self)
 )
 (defrule
     (not (player-in-game target-player))
 =>
-    (up-find-player enemy find-closest 168)
-    (up-modify-sn sn-target-player-number g:= 168)
-    (up-modify-sn sn-focus-player-number g:= 168)
+    (up-find-player enemy find-closest 211)
+    (up-modify-sn sn-target-player-number g:= 211)
+    (up-modify-sn sn-focus-player-number g:= 211)
     (up-send-scout group-type-land-explore scout-enemy)
 )
 (defrule
@@ -19975,6 +20944,91 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (delete-building castle)
 )
 (defrule
+    (goal produce-archers 1)
+=>
+    (chat-local-to-self "produce-archers")
+)
+(defrule
+    (goal produce-hand-cannoneers 1)
+=>
+    (chat-local-to-self "produce-hand-cannoneers")
+)
+(defrule
+    (goal produce-skirmishers 1)
+=>
+    (chat-local-to-self "produce-skirmishers")
+)
+(defrule
+    (goal produce-cavalry-archers 1)
+=>
+    (chat-local-to-self "produce-cavalry-archers")
+)
+(defrule
+    (goal produce-militia 1)
+=>
+    (chat-local-to-self "produce-militia")
+)
+(defrule
+    (goal produce-spearmen 1)
+=>
+    (chat-local-to-self "produce-spearmen")
+)
+(defrule
+    (goal produce-eagles 1)
+=>
+    (chat-local-to-self "produce-eagles")
+)
+(defrule
+    (goal produce-scouts 1)
+=>
+    (chat-local-to-self "produce-scouts")
+)
+(defrule
+    (goal produce-knights 1)
+=>
+    (chat-local-to-self "produce-knights")
+)
+(defrule
+    (goal produce-camels 1)
+=>
+    (chat-local-to-self "produce-camels")
+)
+(defrule
+    (goal produce-battle-elephants 1)
+=>
+    (chat-local-to-self "produce-battle-elephants")
+)
+(defrule
+    (goal produce-mangonels 1)
+=>
+    (chat-local-to-self "produce-mangonels")
+)
+(defrule
+    (goal produce-scorpions 1)
+=>
+    (chat-local-to-self "produce-scorpions")
+)
+(defrule
+    (goal produce-monks 1)
+=>
+    (chat-local-to-self "produce-monks")
+)
+(defrule
+    (goal produce-unique-units 1)
+=>
+    (chat-local-to-self "produce-unique-units")
+)
+(defrule
+    (goal produce-galleys 1)
+=>
+    (chat-local-to-self "produce-galleys")
+)
+(defrule
+    (goal produce-fire-ships 1)
+=>
+    (chat-local-to-self "produce-fire-ships")
+)
+(defrule
     (not (current-age >= feudal-age))
 =>
     (up-jump-rule 49)
@@ -20033,43 +21087,43 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (goal team-game 1))
 =>
-    (up-get-fact resource-amount wood 170)
-    (up-get-fact escrow-amount wood 171)
-    (up-modify-goal 170 g:- 171)
-    (up-get-fact resource-amount food 172)
-    (up-get-fact escrow-amount food 173)
-    (up-modify-goal 172 g:- 173)
-    (up-get-fact resource-amount gold 174)
-    (up-get-fact escrow-amount gold 175)
-    (up-modify-goal 174 g:- 175)
+    (up-get-fact resource-amount wood 213)
+    (up-get-fact escrow-amount wood 214)
+    (up-modify-goal 213 g:- 214)
+    (up-get-fact resource-amount food 215)
+    (up-get-fact escrow-amount food 216)
+    (up-modify-goal 215 g:- 216)
+    (up-get-fact resource-amount gold 217)
+    (up-get-fact escrow-amount gold 218)
+    (up-modify-goal 217 g:- 218)
 )
 (defrule
-    (up-compare-goal 170 c:> max-gold)
+    (up-compare-goal 213 c:> max-gold)
     (can-sell-commodity wood)
-    (up-compare-goal 174 c:< max-gold)
+    (up-compare-goal 217 c:< max-gold)
     (not (goal team-game 1))
 =>
     (sell-commodity wood)
 )
 (defrule
-    (up-compare-goal 172 c:> max-gold)
+    (up-compare-goal 215 c:> max-gold)
     (can-sell-commodity food)
-    (up-compare-goal 174 c:< max-gold)
+    (up-compare-goal 217 c:< max-gold)
     (not (goal team-game 1))
 =>
     (sell-commodity food)
 )
 (defrule
-    (up-compare-goal 170 c:< max-gold)
-    (up-compare-goal 174 c:> max-gold)
+    (up-compare-goal 213 c:< max-gold)
+    (up-compare-goal 217 c:> max-gold)
     (can-buy-commodity wood)
     (not (goal team-game 1))
 =>
     (buy-commodity wood)
 )
 (defrule
-    (up-compare-goal 172 c:< max-gold)
-    (up-compare-goal 174 c:> max-gold)
+    (up-compare-goal 215 c:< max-gold)
+    (up-compare-goal 217 c:> max-gold)
     (can-buy-commodity food)
     (not (goal team-game 1))
 =>
@@ -20222,7 +21276,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (enable-timer 6 60)
+    (enable-timer 7 60)
     (disable-self)
 )
 (defrule
@@ -20232,7 +21286,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (not (up-compare-goal non-escrowed-gold c:> gold-threshold))
     (up-compare-goal non-escrowed-food c:> food-threshold)
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
-    (timer-triggered 6)
+    (timer-triggered 7)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 2)
     (up-modify-sn sn-food-gatherer-percentage c:- 2)
@@ -20245,7 +21299,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (up-compare-goal non-escrowed-gold c:> gold-threshold)
     (not (up-compare-goal non-escrowed-food c:> food-threshold))
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
-    (timer-triggered 6)
+    (timer-triggered 7)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 2)
     (up-modify-sn sn-gold-gatherer-percentage c:- 2)
@@ -20258,7 +21312,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (not (up-compare-goal non-escrowed-gold c:> gold-threshold))
     (not (up-compare-goal non-escrowed-food c:> food-threshold))
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
-    (timer-triggered 6)
+    (timer-triggered 7)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 4)
     (up-modify-sn sn-food-gatherer-percentage c:+ 2)
@@ -20271,7 +21325,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (up-compare-goal non-escrowed-gold c:> gold-threshold)
     (up-compare-goal non-escrowed-food c:> food-threshold)
     (not (up-compare-goal non-escrowed-wood c:> wood-threshold))
-    (timer-triggered 6)
+    (timer-triggered 7)
 =>
     (up-modify-sn sn-food-gatherer-percentage c:- 2)
     (up-modify-sn sn-gold-gatherer-percentage c:- 2)
@@ -20284,7 +21338,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (not (up-compare-goal non-escrowed-gold c:> gold-threshold))
     (up-compare-goal non-escrowed-food c:> food-threshold)
     (not (up-compare-goal non-escrowed-wood c:> wood-threshold))
-    (timer-triggered 6)
+    (timer-triggered 7)
 =>
     (up-modify-sn sn-food-gatherer-percentage c:- 4)
     (up-modify-sn sn-wood-gatherer-percentage c:+ 2)
@@ -20297,17 +21351,17 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (up-compare-goal non-escrowed-gold c:> gold-threshold)
     (not (up-compare-goal non-escrowed-food c:> food-threshold))
     (not (up-compare-goal non-escrowed-wood c:> wood-threshold))
-    (timer-triggered 6)
+    (timer-triggered 7)
 =>
     (up-modify-sn sn-gold-gatherer-percentage c:- 4)
     (up-modify-sn sn-wood-gatherer-percentage c:+ 2)
     (up-modify-sn sn-food-gatherer-percentage c:+ 2)
 )
 (defrule
-    (timer-triggered 6)
+    (timer-triggered 7)
 =>
-    (disable-timer 6)
-    (enable-timer 6 60)
+    (disable-timer 7)
+    (enable-timer 7 60)
 )
 (defrule
     (strategic-number sn-food-gatherer-percentage >= 1)
@@ -20350,49 +21404,49 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (goal do-taunt 1)
     (goal do-taunt-target every-ally)
 =>
-    (set-goal 182 0)
+    (set-goal 225 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 182 0)
+    (goal 225 0)
     (goal do-taunt 1)
     (goal do-taunt-target every-ally)
 =>
-    (set-goal 182 1)
+    (set-goal 225 1)
 )
 (defrule
     (random-number == 2)
-    (goal 182 0)
+    (goal 225 0)
     (goal do-taunt 1)
     (goal do-taunt-target every-ally)
 =>
-    (set-goal 182 2)
+    (set-goal 225 2)
 )
 (defrule
     (random-number == 3)
-    (goal 182 0)
+    (goal 225 0)
     (goal do-taunt 1)
     (goal do-taunt-target every-ally)
 =>
-    (set-goal 182 3)
+    (set-goal 225 3)
 )
 (defrule
-    (goal 182 1)
+    (goal 225 1)
     (goal do-taunt 1)
     (goal do-taunt-target every-ally)
 =>
     (chat-to-allies "1Sure.")
 )
 (defrule
-    (goal 182 2)
+    (goal 225 2)
     (goal do-taunt 1)
     (goal do-taunt-target every-ally)
 =>
     (chat-to-allies "1Of course.")
 )
 (defrule
-    (goal 182 3)
+    (goal 225 3)
     (goal do-taunt 1)
     (goal do-taunt-target every-ally)
 =>
@@ -20402,49 +21456,49 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (goal do-taunt 2)
     (goal do-taunt-target every-ally)
 =>
-    (set-goal 183 0)
+    (set-goal 226 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 183 0)
+    (goal 226 0)
     (goal do-taunt 2)
     (goal do-taunt-target every-ally)
 =>
-    (set-goal 183 1)
+    (set-goal 226 1)
 )
 (defrule
     (random-number == 2)
-    (goal 183 0)
+    (goal 226 0)
     (goal do-taunt 2)
     (goal do-taunt-target every-ally)
 =>
-    (set-goal 183 2)
+    (set-goal 226 2)
 )
 (defrule
     (random-number == 3)
-    (goal 183 0)
+    (goal 226 0)
     (goal do-taunt 2)
     (goal do-taunt-target every-ally)
 =>
-    (set-goal 183 3)
+    (set-goal 226 3)
 )
 (defrule
-    (goal 183 1)
+    (goal 226 1)
     (goal do-taunt 2)
     (goal do-taunt-target every-ally)
 =>
     (chat-to-allies "2Sorry, no.")
 )
 (defrule
-    (goal 183 2)
+    (goal 226 2)
     (goal do-taunt 2)
     (goal do-taunt-target every-ally)
 =>
     (chat-to-allies "2Not right now, sorry.")
 )
 (defrule
-    (goal 183 3)
+    (goal 226 3)
     (goal do-taunt 2)
     (goal do-taunt-target every-ally)
 =>
@@ -20455,38 +21509,38 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (goal do-taunt-target every-enemy)
     (not (goal do-taunt-target every-ally))
 =>
-    (set-goal 184 0)
+    (set-goal 227 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 184 0)
+    (goal 227 0)
     (goal do-taunt 1)
     (goal do-taunt-target every-enemy)
     (not (goal do-taunt-target every-ally))
 =>
-    (set-goal 184 1)
+    (set-goal 227 1)
 )
 (defrule
     (random-number == 2)
-    (goal 184 0)
+    (goal 227 0)
     (goal do-taunt 1)
     (goal do-taunt-target every-enemy)
     (not (goal do-taunt-target every-ally))
 =>
-    (set-goal 184 2)
+    (set-goal 227 2)
 )
 (defrule
     (random-number == 3)
-    (goal 184 0)
+    (goal 227 0)
     (goal do-taunt 1)
     (goal do-taunt-target every-enemy)
     (not (goal do-taunt-target every-ally))
 =>
-    (set-goal 184 3)
+    (set-goal 227 3)
 )
 (defrule
-    (goal 184 1)
+    (goal 227 1)
     (goal do-taunt 1)
     (goal do-taunt-target every-enemy)
     (not (goal do-taunt-target every-ally))
@@ -20494,7 +21548,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-to-allies "1Why not?")
 )
 (defrule
-    (goal 184 2)
+    (goal 227 2)
     (goal do-taunt 1)
     (goal do-taunt-target every-enemy)
     (not (goal do-taunt-target every-ally))
@@ -20502,7 +21556,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-to-allies "1Sounds good.")
 )
 (defrule
-    (goal 184 3)
+    (goal 227 3)
     (goal do-taunt 1)
     (goal do-taunt-target every-enemy)
     (not (goal do-taunt-target every-ally))
@@ -20514,38 +21568,38 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (goal do-taunt-target every-enemy)
     (not (goal do-taunt-target every-ally))
 =>
-    (set-goal 185 0)
+    (set-goal 228 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 185 0)
+    (goal 228 0)
     (goal do-taunt 2)
     (goal do-taunt-target every-enemy)
     (not (goal do-taunt-target every-ally))
 =>
-    (set-goal 185 1)
+    (set-goal 228 1)
 )
 (defrule
     (random-number == 2)
-    (goal 185 0)
+    (goal 228 0)
     (goal do-taunt 2)
     (goal do-taunt-target every-enemy)
     (not (goal do-taunt-target every-ally))
 =>
-    (set-goal 185 2)
+    (set-goal 228 2)
 )
 (defrule
     (random-number == 3)
-    (goal 185 0)
+    (goal 228 0)
     (goal do-taunt 2)
     (goal do-taunt-target every-enemy)
     (not (goal do-taunt-target every-ally))
 =>
-    (set-goal 185 3)
+    (set-goal 228 3)
 )
 (defrule
-    (goal 185 1)
+    (goal 228 1)
     (goal do-taunt 2)
     (goal do-taunt-target every-enemy)
     (not (goal do-taunt-target every-ally))
@@ -20553,7 +21607,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-to-allies "2Absolutely not.")
 )
 (defrule
-    (goal 185 2)
+    (goal 228 2)
     (goal do-taunt 2)
     (goal do-taunt-target every-enemy)
     (not (goal do-taunt-target every-ally))
@@ -20561,7 +21615,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-to-allies "2Are you out of your mind?")
 )
 (defrule
-    (goal 185 3)
+    (goal 228 3)
     (goal do-taunt 2)
     (goal do-taunt-target every-enemy)
     (not (goal do-taunt-target every-ally))
@@ -20572,48 +21626,48 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (or (goal free-for-all 1) (goal team-game 1))
     (game-time < 5)
 =>
-    (set-goal 186 0)
+    (set-goal 229 0)
     (disable-self)
     (generate-random-number 4)
 )
 (defrule
     (random-number == 1)
-    (goal 186 0)
+    (goal 229 0)
     (or (goal free-for-all 1) (goal team-game 1))
     (game-time < 5)
 =>
-    (set-goal 186 1)
+    (set-goal 229 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 186 0)
+    (goal 229 0)
     (or (goal free-for-all 1) (goal team-game 1))
     (game-time < 5)
 =>
-    (set-goal 186 2)
+    (set-goal 229 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 186 0)
+    (goal 229 0)
     (or (goal free-for-all 1) (goal team-game 1))
     (game-time < 5)
 =>
-    (set-goal 186 3)
+    (set-goal 229 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 186 0)
+    (goal 229 0)
     (or (goal free-for-all 1) (goal team-game 1))
     (game-time < 5)
 =>
-    (set-goal 186 4)
+    (set-goal 229 4)
     (disable-self)
 )
 (defrule
-    (goal 186 1)
+    (goal 229 1)
     (or (goal free-for-all 1) (goal team-game 1))
     (game-time < 5)
 =>
@@ -20622,7 +21676,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 )
 (defrule
     (goal free-for-all 1)
-    (goal 186 2)
+    (goal 229 2)
     (or (goal free-for-all 1) (goal team-game 1))
     (game-time < 5)
 =>
@@ -20631,7 +21685,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 )
 (defrule
     (not (goal free-for-all 1))
-    (goal 186 2)
+    (goal 229 2)
     (or (goal free-for-all 1) (goal team-game 1))
     (game-time < 5)
 =>
@@ -20639,7 +21693,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (disable-self)
 )
 (defrule
-    (goal 186 3)
+    (goal 229 3)
     (or (goal free-for-all 1) (goal team-game 1))
     (game-time < 5)
 =>
@@ -20647,7 +21701,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (disable-self)
 )
 (defrule
-    (goal 186 4)
+    (goal 229 4)
     (or (goal free-for-all 1) (goal team-game 1))
     (game-time < 5)
 =>
@@ -20658,75 +21712,75 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (not (or (goal free-for-all 1) (goal team-game 1)))
     (game-time < 5)
 =>
-    (set-goal 187 0)
+    (set-goal 230 0)
     (disable-self)
     (generate-random-number 7)
 )
 (defrule
     (random-number == 1)
-    (goal 187 0)
+    (goal 230 0)
     (not (or (goal free-for-all 1) (goal team-game 1)))
     (game-time < 5)
 =>
-    (set-goal 187 1)
+    (set-goal 230 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 187 0)
+    (goal 230 0)
     (not (or (goal free-for-all 1) (goal team-game 1)))
     (game-time < 5)
 =>
-    (set-goal 187 2)
+    (set-goal 230 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 187 0)
+    (goal 230 0)
     (not (or (goal free-for-all 1) (goal team-game 1)))
     (game-time < 5)
 =>
-    (set-goal 187 3)
+    (set-goal 230 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 187 0)
+    (goal 230 0)
     (not (or (goal free-for-all 1) (goal team-game 1)))
     (game-time < 5)
 =>
-    (set-goal 187 4)
+    (set-goal 230 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 187 0)
+    (goal 230 0)
     (not (or (goal free-for-all 1) (goal team-game 1)))
     (game-time < 5)
 =>
-    (set-goal 187 5)
+    (set-goal 230 5)
     (disable-self)
 )
 (defrule
     (random-number == 6)
-    (goal 187 0)
+    (goal 230 0)
     (not (or (goal free-for-all 1) (goal team-game 1)))
     (game-time < 5)
 =>
-    (set-goal 187 6)
+    (set-goal 230 6)
     (disable-self)
 )
 (defrule
     (random-number == 7)
-    (goal 187 0)
+    (goal 230 0)
     (not (or (goal free-for-all 1) (goal team-game 1)))
     (game-time < 5)
 =>
-    (set-goal 187 7)
+    (set-goal 230 7)
     (disable-self)
 )
 (defrule
-    (goal 187 1)
+    (goal 230 1)
     (not (or (goal free-for-all 1) (goal team-game 1)))
     (game-time < 5)
 =>
@@ -20734,7 +21788,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (disable-self)
 )
 (defrule
-    (goal 187 2)
+    (goal 230 2)
     (not (or (goal free-for-all 1) (goal team-game 1)))
     (game-time < 5)
 =>
@@ -20742,7 +21796,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (disable-self)
 )
 (defrule
-    (goal 187 3)
+    (goal 230 3)
     (not (or (goal free-for-all 1) (goal team-game 1)))
     (game-time < 5)
 =>
@@ -20750,7 +21804,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (disable-self)
 )
 (defrule
-    (goal 187 4)
+    (goal 230 4)
     (not (or (goal free-for-all 1) (goal team-game 1)))
     (game-time < 5)
 =>
@@ -20758,7 +21812,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (disable-self)
 )
 (defrule
-    (goal 187 5)
+    (goal 230 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
     (game-time < 5)
 =>
@@ -20766,7 +21820,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (disable-self)
 )
 (defrule
-    (goal 187 6)
+    (goal 230 6)
     (not (or (goal free-for-all 1) (goal team-game 1)))
     (game-time < 5)
 =>
@@ -20774,7 +21828,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (disable-self)
 )
 (defrule
-    (goal 187 7)
+    (goal 230 7)
     (not (or (goal free-for-all 1) (goal team-game 1)))
     (game-time < 5)
 =>
@@ -20784,71 +21838,71 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (enable-timer 7 1800)
+    (enable-timer 8 1800)
     (disable-self)
 )
 (defrule
     (goal free-for-all 1)
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 188 0)
+    (set-goal 231 0)
     (disable-self)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 188 0)
+    (goal 231 0)
     (goal free-for-all 1)
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 188 1)
+    (set-goal 231 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 188 0)
+    (goal 231 0)
     (goal free-for-all 1)
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 188 2)
+    (set-goal 231 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 188 0)
+    (goal 231 0)
     (goal free-for-all 1)
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 188 3)
+    (set-goal 231 3)
     (disable-self)
 )
 (defrule
-    (goal 188 1)
+    (goal 231 1)
     (goal free-for-all 1)
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "I'm having some trouble with this one.")
     (disable-self)
 )
 (defrule
-    (goal 188 2)
+    (goal 231 2)
     (goal free-for-all 1)
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "This is a tough game.")
     (disable-self)
 )
 (defrule
-    (goal 188 3)
+    (goal 231 3)
     (goal free-for-all 1)
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "I don't like my chances here.")
     (disable-self)
@@ -20857,71 +21911,71 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (goal team-game 1)
     (not (goal free-for-all 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 189 0)
+    (set-goal 232 0)
     (disable-self)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 189 0)
+    (goal 232 0)
     (goal team-game 1)
     (not (goal free-for-all 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 189 1)
+    (set-goal 232 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 189 0)
+    (goal 232 0)
     (goal team-game 1)
     (not (goal free-for-all 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 189 2)
+    (set-goal 232 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 189 0)
+    (goal 232 0)
     (goal team-game 1)
     (not (goal free-for-all 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 189 3)
+    (set-goal 232 3)
     (disable-self)
 )
 (defrule
-    (goal 189 1)
+    (goal 232 1)
     (goal team-game 1)
     (not (goal free-for-all 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "We may need a different strategy...")
     (disable-self)
 )
 (defrule
-    (goal 189 2)
+    (goal 232 2)
     (goal team-game 1)
     (not (goal free-for-all 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "I'm crumbling... Hopefully we still have a shot?")
     (disable-self)
 )
 (defrule
-    (goal 189 3)
+    (goal 232 3)
     (goal team-game 1)
     (not (goal free-for-all 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "This is hard.")
     (disable-self)
@@ -20930,113 +21984,113 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (not (goal free-for-all 1))
     (not (goal team-game 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 190 0)
+    (set-goal 233 0)
     (disable-self)
     (generate-random-number 5)
 )
 (defrule
     (random-number == 1)
-    (goal 190 0)
+    (goal 233 0)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 190 1)
+    (set-goal 233 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 190 0)
+    (goal 233 0)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 190 2)
+    (set-goal 233 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 190 0)
+    (goal 233 0)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 190 3)
+    (set-goal 233 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 190 0)
+    (goal 233 0)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 190 4)
+    (set-goal 233 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 190 0)
+    (goal 233 0)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 190 5)
+    (set-goal 233 5)
     (disable-self)
 )
 (defrule
-    (goal 190 1)
+    (goal 233 1)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "I feel vastly outpaced, you're playing a good game.")
     (disable-self)
 )
 (defrule
-    (goal 190 2)
+    (goal 233 2)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "I'm not doing very well...")
     (disable-self)
 )
 (defrule
-    (goal 190 3)
+    (goal 233 3)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "This could have gone better, oh well.")
     (disable-self)
 )
 (defrule
-    (goal 190 4)
+    (goal 233 4)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "You're playing quite well.")
     (disable-self)
 )
 (defrule
-    (goal 190 5)
+    (goal 233 5)
     (not (goal free-for-all 1))
     (not (goal team-game 1))
     (up-compare-goal score-percentage c:<= 70)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "I'm not sure I can best you.")
     (disable-self)
@@ -21045,50 +22099,50 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (goal free-for-all 1)
     (up-compare-goal score-percentage c:>= 140)
     (not (up-compare-goal score-percentage c:<= 70))
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 191 0)
+    (set-goal 234 0)
     (disable-self)
     (generate-random-number 2)
 )
 (defrule
     (random-number == 1)
-    (goal 191 0)
+    (goal 234 0)
     (goal free-for-all 1)
     (up-compare-goal score-percentage c:>= 140)
     (not (up-compare-goal score-percentage c:<= 70))
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 191 1)
+    (set-goal 234 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 191 0)
+    (goal 234 0)
     (goal free-for-all 1)
     (up-compare-goal score-percentage c:>= 140)
     (not (up-compare-goal score-percentage c:<= 70))
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 191 2)
+    (set-goal 234 2)
     (disable-self)
 )
 (defrule
-    (goal 191 1)
+    (goal 234 1)
     (goal free-for-all 1)
     (up-compare-goal score-percentage c:>= 140)
     (not (up-compare-goal score-percentage c:<= 70))
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "I'm pretty sure I've got this game.")
     (disable-self)
 )
 (defrule
-    (goal 191 2)
+    (goal 234 2)
     (goal free-for-all 1)
     (up-compare-goal score-percentage c:>= 140)
     (not (up-compare-goal score-percentage c:<= 70))
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "It was tough, but I got there in the end.")
     (disable-self)
@@ -21098,7 +22152,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (not (goal free-for-all 1))
     (up-compare-goal score-percentage c:>= 140)
     (not (up-compare-goal score-percentage c:<= 70))
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "Looks like we're close to getting this squared off.")
     (disable-self)
@@ -21108,7 +22162,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (not (goal team-game 1))
     (up-compare-goal score-percentage c:>= 140)
     (not (up-compare-goal score-percentage c:<= 70))
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "I'm winning this one. You played well though!")
     (disable-self)
@@ -21116,133 +22170,133 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 192 0)
+    (set-goal 235 0)
     (disable-self)
     (generate-random-number 6)
 )
 (defrule
     (random-number == 1)
-    (goal 192 0)
+    (goal 235 0)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 192 1)
+    (set-goal 235 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 192 0)
+    (goal 235 0)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 192 2)
+    (set-goal 235 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 192 0)
+    (goal 235 0)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 192 3)
+    (set-goal 235 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 192 0)
+    (goal 235 0)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 192 4)
+    (set-goal 235 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 192 0)
+    (goal 235 0)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 192 5)
+    (set-goal 235 5)
     (disable-self)
 )
 (defrule
     (random-number == 6)
-    (goal 192 0)
+    (goal 235 0)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 192 6)
+    (set-goal 235 6)
     (disable-self)
 )
 (defrule
-    (goal 192 1)
+    (goal 235 1)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "I don't like this...")
     (disable-self)
 )
 (defrule
-    (goal 192 2)
+    (goal 235 2)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "Dicey.")
     (disable-self)
 )
 (defrule
-    (goal 192 3)
+    (goal 235 3)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "I'd better step on the pedal a bit, sheesh.")
     (disable-self)
 )
 (defrule
-    (goal 192 4)
+    (goal 235 4)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "...please don't hurt me!")
     (disable-self)
 )
 (defrule
     (or (goal team-game 1) (goal free-for-all 1))
-    (goal 192 5)
+    (goal 235 5)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "It's looking scary out there...")
     (disable-self)
 )
 (defrule
     (not (or (goal team-game 1) (goal free-for-all 1)))
-    (goal 192 5)
+    (goal 235 5)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "You're looking scary...")
     (disable-self)
 )
 (defrule
-    (goal 192 6)
+    (goal 235 6)
     (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "That's a lot of stuff.")
     (disable-self)
@@ -21252,231 +22306,231 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 193 0)
+    (set-goal 236 0)
     (disable-self)
     (generate-random-number 8)
 )
 (defrule
     (random-number == 1)
-    (goal 193 0)
+    (goal 236 0)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 193 1)
+    (set-goal 236 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 193 0)
+    (goal 236 0)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 193 2)
+    (set-goal 236 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 193 0)
+    (goal 236 0)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 193 3)
+    (set-goal 236 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 193 0)
+    (goal 236 0)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 193 4)
+    (set-goal 236 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 193 0)
+    (goal 236 0)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 193 5)
+    (set-goal 236 5)
     (disable-self)
 )
 (defrule
     (random-number == 6)
-    (goal 193 0)
+    (goal 236 0)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 193 6)
+    (set-goal 236 6)
     (disable-self)
 )
 (defrule
     (random-number == 7)
-    (goal 193 0)
+    (goal 236 0)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 193 7)
+    (set-goal 236 7)
     (disable-self)
 )
 (defrule
     (random-number == 8)
-    (goal 193 0)
+    (goal 236 0)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 193 8)
+    (set-goal 236 8)
     (disable-self)
 )
 (defrule
     (or (goal team-game 1) (goal free-for-all 1))
-    (goal 193 1)
+    (goal 236 1)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "Let's crush 'em!")
     (disable-self)
 )
 (defrule
     (not (or (goal team-game 1) (goal free-for-all 1)))
-    (goal 193 1)
+    (goal 236 1)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "It's time for some violence!")
     (disable-self)
 )
 (defrule
-    (goal 193 2)
+    (goal 236 2)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "Oh yeah, this is good.")
     (disable-self)
 )
 (defrule
     (or (goal team-game 1) (goal free-for-all 1))
-    (goal 193 3)
+    (goal 236 3)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "You lot aren't prepared for this.")
     (disable-self)
 )
 (defrule
     (not (or (goal team-game 1) (goal free-for-all 1)))
-    (goal 193 3)
+    (goal 236 3)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "You aren't prepared for this.")
     (disable-self)
 )
 (defrule
-    (goal 193 4)
+    (goal 236 4)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "[cracks knuckles]")
     (disable-self)
 )
 (defrule
-    (goal 193 5)
+    (goal 236 5)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "I'm pumped! Let's go!!!")
     (disable-self)
 )
 (defrule
-    (goal 193 6)
+    (goal 236 6)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "Allow me to show you some numbers.")
     (disable-self)
 )
 (defrule
     (goal team-game 1)
-    (goal 193 7)
+    (goal 236 7)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "We're bringing the pain.")
     (disable-self)
 )
 (defrule
     (not (goal team-game 1))
-    (goal 193 7)
+    (goal 236 7)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "I'm bringing the pain.")
     (disable-self)
 )
 (defrule
-    (goal 193 8)
+    (goal 236 8)
     (goal attacking 1)
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "If I win this battle, it's all over.")
     (disable-self)
@@ -21486,136 +22540,136 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 194 0)
+    (set-goal 237 0)
     (disable-self)
     (generate-random-number 5)
 )
 (defrule
     (random-number == 1)
-    (goal 194 0)
+    (goal 237 0)
     (not (goal attacking 1))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 194 1)
+    (set-goal 237 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 194 0)
+    (goal 237 0)
     (not (goal attacking 1))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 194 2)
+    (set-goal 237 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 194 0)
+    (goal 237 0)
     (not (goal attacking 1))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 194 3)
+    (set-goal 237 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 194 0)
+    (goal 237 0)
     (not (goal attacking 1))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 194 4)
+    (set-goal 237 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 194 0)
+    (goal 237 0)
     (not (goal attacking 1))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (set-goal 194 5)
+    (set-goal 237 5)
     (disable-self)
 )
 (defrule
     (or (goal team-game 1) (goal free-for-all 1))
-    (goal 194 1)
+    (goal 237 1)
     (not (goal attacking 1))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "Come at me.")
     (disable-self)
 )
 (defrule
     (not (or (goal team-game 1) (goal free-for-all 1)))
-    (goal 194 1)
+    (goal 237 1)
     (not (goal attacking 1))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "I'm ready for what you've got.")
     (disable-self)
 )
 (defrule
-    (goal 194 2)
+    (goal 237 2)
     (not (goal attacking 1))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "Feeling confident.")
     (disable-self)
 )
 (defrule
-    (goal 194 3)
+    (goal 237 3)
     (not (goal attacking 1))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "Feeling good.")
     (disable-self)
 )
 (defrule
-    (goal 194 4)
+    (goal 237 4)
     (not (goal attacking 1))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "I am prepared.")
     (disable-self)
 )
 (defrule
-    (goal 194 5)
+    (goal 237 5)
     (not (goal attacking 1))
     (up-compare-goal largest-enemy-military-percentage c:>= 170)
     (not (and (up-compare-goal largest-enemy-military-percentage c:<= 50) (goal attacking 0)))
     (military-population >= 20)
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
     (chat-to-all "Are you ready?")
     (disable-self)
@@ -21623,65 +22677,65 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal resign 1)
 =>
-    (set-goal 195 0)
+    (set-goal 238 0)
     (disable-self)
     (generate-random-number 4)
 )
 (defrule
     (random-number == 1)
-    (goal 195 0)
+    (goal 238 0)
     (goal resign 1)
 =>
-    (set-goal 195 1)
+    (set-goal 238 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 195 0)
+    (goal 238 0)
     (goal resign 1)
 =>
-    (set-goal 195 2)
+    (set-goal 238 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 195 0)
+    (goal 238 0)
     (goal resign 1)
 =>
-    (set-goal 195 3)
+    (set-goal 238 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 195 0)
+    (goal 238 0)
     (goal resign 1)
 =>
-    (set-goal 195 4)
+    (set-goal 238 4)
     (disable-self)
 )
 (defrule
-    (goal 195 1)
+    (goal 238 1)
     (goal resign 1)
 =>
     (chat-to-all "My heart's not really in this anymore, sorry.")
     (disable-self)
 )
 (defrule
-    (goal 195 2)
+    (goal 238 2)
     (goal resign 1)
 =>
     (chat-to-all "It was a good game, I think I'm out though.")
     (disable-self)
 )
 (defrule
-    (goal 195 3)
+    (goal 238 3)
     (goal resign 1)
 =>
     (chat-to-all "Good game, well played.")
     (disable-self)
 )
 (defrule
-    (goal 195 4)
+    (goal 238 4)
     (goal resign 1)
 =>
     (chat-to-all "I'm done.")
@@ -21690,52 +22744,52 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
 =>
-    (set-goal 196 0)
+    (set-goal 239 0)
     (disable-self)
     (generate-random-number 5)
 )
 (defrule
     (random-number == 1)
-    (goal 196 0)
+    (goal 239 0)
     (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
 =>
-    (set-goal 196 1)
+    (set-goal 239 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 196 0)
+    (goal 239 0)
     (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
 =>
-    (set-goal 196 2)
+    (set-goal 239 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 196 0)
+    (goal 239 0)
     (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
 =>
-    (set-goal 196 3)
+    (set-goal 239 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 196 0)
+    (goal 239 0)
     (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
 =>
-    (set-goal 196 4)
+    (set-goal 239 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 196 0)
+    (goal 239 0)
     (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
 =>
-    (set-goal 196 5)
+    (set-goal 239 5)
     (disable-self)
 )
 (defrule
-    (goal 196 1)
+    (goal 239 1)
     (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
 =>
     (chat-to-all "Why must you do this?")
@@ -21743,7 +22797,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 )
 (defrule
     (goal team-game 1)
-    (goal 196 2)
+    (goal 239 2)
     (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
 =>
     (chat-to-all "Your teammate is a real piece of work.")
@@ -21751,28 +22805,28 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 )
 (defrule
     (not (goal team-game 1))
-    (goal 196 2)
+    (goal 239 2)
     (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
 =>
     (chat-to-all "I don't think I like you very much...")
     (disable-self)
 )
 (defrule
-    (goal 196 3)
+    (goal 239 3)
     (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
 =>
     (chat-to-all "[sigh]")
     (disable-self)
 )
 (defrule
-    (goal 196 4)
+    (goal 239 4)
     (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
 =>
     (chat-to-all "Why can't we just have fun?")
     (disable-self)
 )
 (defrule
-    (goal 196 5)
+    (goal 239 5)
     (and (goal attacking 0) (and (goal threat-source watch-tower) (and (current-age == feudal-age) (enemy-buildings-in-town))))
 =>
     (chat-to-all "You know I can't deal with this. It's unfair.")
