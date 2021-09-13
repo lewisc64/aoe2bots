@@ -34,6 +34,8 @@ const ri-obsidian-arrows = 485
   
 #end do
 
+build 1 town-center
+
 #if current-age >= feudal-age
   research ri-loom with gold escrow
 #end if
@@ -168,7 +170,6 @@ research blacksmith ranged upgrades
   #end if
 #end if
 
-build 1 town-center
 build safety mill
 build mills
 
