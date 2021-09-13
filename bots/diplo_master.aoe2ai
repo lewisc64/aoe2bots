@@ -8,6 +8,7 @@ const town-size = 30
   chat to all "21I look forward to you joining my side."
 #end do once
 
+build 1 town-center
 build houses
 #if wood-amount > 200
   build monastery
