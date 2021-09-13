@@ -246,11 +246,6 @@
     (set-strategic-number sn-enable-new-building-system 1)
     (set-strategic-number sn-percent-building-cancellation 20)
     (set-strategic-number sn-cap-civilian-builders 200)
-    (set-strategic-number sn-percent-civilian-explorers 0)
-    (set-strategic-number sn-cap-civilian-explorers 0)
-    (set-strategic-number sn-total-number-explorers 1)
-    (set-strategic-number sn-number-explore-groups 1)
-    (set-strategic-number sn-initial-exploration-required 0)
     (disable-self)
 )
 (defrule
@@ -271,17 +266,38 @@
     (set-strategic-number sn-percent-enemy-sighted-response 100)
     (set-strategic-number sn-task-ungrouped-soldiers 0)
     (set-strategic-number sn-gather-defense-units 1)
-    (disable-self)
-)
-(defrule
-    (true)
-=>
     (set-strategic-number sn-defer-dropsite-update 1)
     (set-strategic-number sn-do-not-scale-for-difficulty-level 1)
     (set-strategic-number sn-number-build-attempts-before-skip 5)
     (set-strategic-number sn-max-skips-per-attempt 5)
     (set-strategic-number sn-dropsite-separation-distance 8)
     (set-strategic-number sn-wall-targeting-mode 1)
+    (set-strategic-number sn-percent-civilian-explorers 0)
+    (set-strategic-number sn-cap-civilian-explorers 0)
+    (set-strategic-number sn-total-number-explorers 1)
+    (set-strategic-number sn-number-explore-groups 1)
+    (set-strategic-number sn-initial-exploration-required 0)
+    (disable-self)
+)
+(defrule
+    (military-population == 0)
+    (game-time < 60)
+=>
+    (set-strategic-number sn-percent-civilian-explorers 100)
+    (set-strategic-number sn-cap-civilian-explorers 1)
+    (disable-self)
+)
+(defrule
+    (game-time >= 360)
+    (strategic-number sn-cap-civilian-explorers == 1)
+=>
+    (set-strategic-number sn-percent-civilian-explorers 0)
+    (set-strategic-number sn-cap-civilian-explorers 0)
+    (disable-self)
+)
+(defrule
+    (true)
+=>
     (set-strategic-number sn-enable-boar-hunting 2)
     (set-strategic-number sn-minimum-number-hunters 3)
     (set-strategic-number sn-minimum-boar-lure-group-size 3)
@@ -292,16 +308,16 @@
     (set-strategic-number sn-maximum-food-drop-distance dark-age-town-size)
     (set-strategic-number sn-maximum-hunt-drop-distance 48)
     (set-strategic-number sn-max-retask-gather-amount 0)
-    (disable-self)
-)
-(defrule
-    (true)
-=>
     (set-strategic-number sn-retask-gather-amount 0)
     (set-strategic-number sn-camp-max-distance 15)
     (set-strategic-number sn-mill-max-distance 32)
     (set-strategic-number sn-town-center-placement lumber-camp)
     (set-strategic-number sn-random-placement-factor 0)
+    (disable-self)
+)
+(defrule
+    (true)
+=>
     (set-strategic-number sn-ignore-tower-elevation 1)
     (set-strategic-number sn-zero-priority-distance 450)
     (set-strategic-number sn-special-attack-type2 trebuchet-set)
