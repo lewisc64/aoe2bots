@@ -202,7 +202,7 @@ const gold-unit-threshold = 0
   #else
     goal desired-trade-carts = 0
   #end if
-  #if goal water-map 1
+  #if goal full-water-map 1
     goal desired-fishing-ships = 10
   #else
     goal desired-fishing-ships = 0

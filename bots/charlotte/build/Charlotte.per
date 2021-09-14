@@ -770,13 +770,13 @@
     (disable-self)
 )
 (defrule
-    (goal water-map 1)
+    (goal full-water-map 1)
 =>
     (set-goal desired-fishing-ships 10)
     (disable-self)
 )
 (defrule
-    (not (goal water-map 1))
+    (not (goal full-water-map 1))
 =>
     (set-goal desired-fishing-ships 0)
     (disable-self)
@@ -2001,7 +2001,7 @@
     (build mill)
 )
 (defrule
-    (and (wood-amount >= 100) (and (up-pending-objects c: farm == 0) (or (goal full-water-map 0) (and (up-compare-goal total-fishing-ships g:>= desired-fishing-ships) (building-type-count-total dock >= 1)))))
+    (and (wood-amount >= 100) (up-pending-objects c: farm == 0))
     (current-age == dark-age)
 =>
     (up-get-fact unit-type-count villager 120)
@@ -2012,7 +2012,7 @@
 (defrule
     (up-compare-goal 121 g:< 120)
     (can-build farm)
-    (and (wood-amount >= 100) (and (up-pending-objects c: farm == 0) (or (goal full-water-map 0) (and (up-compare-goal total-fishing-ships g:>= desired-fishing-ships) (building-type-count-total dock >= 1)))))
+    (and (wood-amount >= 100) (up-pending-objects c: farm == 0))
     (current-age == dark-age)
 =>
     (build farm)
@@ -2115,7 +2115,7 @@
     (build house)
 )
 (defrule
-    (and (wood-amount >= 200) (or (goal full-water-map 0) (and (up-compare-goal total-fishing-ships g:>= desired-fishing-ships) (building-type-count-total dock >= 1))))
+    (wood-amount >= 200)
     (up-research-status c: feudal-age >= research-pending)
 =>
     (up-get-fact unit-type-count villager 123)
@@ -2126,7 +2126,7 @@
 (defrule
     (up-compare-goal 124 g:< 123)
     (can-build farm)
-    (and (wood-amount >= 200) (or (goal full-water-map 0) (and (up-compare-goal total-fishing-ships g:>= desired-fishing-ships) (building-type-count-total dock >= 1))))
+    (wood-amount >= 200)
     (up-research-status c: feudal-age >= research-pending)
 =>
     (build farm)
