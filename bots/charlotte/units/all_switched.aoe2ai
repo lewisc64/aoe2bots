@@ -2,7 +2,7 @@ load "villager.aoe2ai"
 #if goal produce-trade-carts 1
   load "trade_cart.aoe2ai"
 #end if
-#if goal full-water-map 1
+#if goal full-water-map 1 or goal produce-galleys 1 or goal produce-fire-ships 1
   load "fishing_ship.aoe2ai"
 #end if
 

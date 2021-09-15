@@ -2141,7 +2141,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 2868)
+    (up-jump-rule 2867)
 )
 (defrule
     (true)
@@ -3479,7 +3479,7 @@ watch-tower-arrow > 0))))
     (set-goal 131 0)
 )
 (defrule
-    (not (goal full-water-map 1))
+    (not (or (goal full-water-map 1) (or (goal produce-galleys 1) (goal produce-fire-ships 1))))
 =>
     (up-jump-rule 39)
 )
@@ -18731,7 +18731,6 @@ watch-tower-arrow > 0))))
 =>
     (set-goal good-militia 1)
     (set-goal good-spearmen 1)
-    (set-goal good-scouts 1)
     (set-goal good-scorpions 1)
     (set-goal good-hand-cannoneers 1)
     (set-goal good-fire-ships 1)
@@ -19125,7 +19124,6 @@ watch-tower-arrow > 0))))
 =>
     (set-goal enemy-good-militia 1)
     (set-goal enemy-good-spearmen 1)
-    (set-goal enemy-good-scouts 1)
     (set-goal enemy-good-scorpions 1)
     (set-goal enemy-good-hand-cannoneers 1)
     (set-goal enemy-good-fire-ships 1)
@@ -20234,13 +20232,6 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (goal be-smart 1)
-    (goal emergency-trash 0)
-    (goal attack-ready 1)
-=>
-    (chat-local-to-self "being smart")
-)
-(defrule
     (not (and (goal be-smart 1) (and (goal emergency-trash 0) (goal attack-ready 1))))
 =>
     (up-jump-rule 63)
@@ -20967,86 +20958,103 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (goal produce-archers 1)
 =>
     (chat-local-to-self "produce-archers")
+    (disable-self)
 )
 (defrule
     (goal produce-hand-cannoneers 1)
 =>
     (chat-local-to-self "produce-hand-cannoneers")
+    (disable-self)
 )
 (defrule
     (goal produce-skirmishers 1)
 =>
     (chat-local-to-self "produce-skirmishers")
+    (disable-self)
 )
 (defrule
     (goal produce-cavalry-archers 1)
 =>
     (chat-local-to-self "produce-cavalry-archers")
+    (disable-self)
 )
 (defrule
     (goal produce-militia 1)
 =>
     (chat-local-to-self "produce-militia")
+    (disable-self)
 )
 (defrule
     (goal produce-spearmen 1)
 =>
     (chat-local-to-self "produce-spearmen")
+    (disable-self)
 )
 (defrule
     (goal produce-eagles 1)
 =>
     (chat-local-to-self "produce-eagles")
+    (disable-self)
 )
 (defrule
     (goal produce-scouts 1)
 =>
     (chat-local-to-self "produce-scouts")
+    (disable-self)
 )
 (defrule
     (goal produce-knights 1)
 =>
     (chat-local-to-self "produce-knights")
+    (disable-self)
 )
 (defrule
     (goal produce-camels 1)
 =>
     (chat-local-to-self "produce-camels")
+    (disable-self)
 )
 (defrule
     (goal produce-battle-elephants 1)
 =>
     (chat-local-to-self "produce-battle-elephants")
+    (disable-self)
 )
 (defrule
     (goal produce-mangonels 1)
 =>
     (chat-local-to-self "produce-mangonels")
+    (disable-self)
 )
 (defrule
     (goal produce-scorpions 1)
 =>
     (chat-local-to-self "produce-scorpions")
+    (disable-self)
 )
 (defrule
     (goal produce-monks 1)
 =>
     (chat-local-to-self "produce-monks")
+    (disable-self)
 )
 (defrule
     (goal produce-unique-units 1)
 =>
     (chat-local-to-self "produce-unique-units")
+    (disable-self)
 )
 (defrule
     (goal produce-galleys 1)
 =>
     (chat-local-to-self "produce-galleys")
+    (disable-self)
 )
 (defrule
     (goal produce-fire-ships 1)
 =>
     (chat-local-to-self "produce-fire-ships")
+    (disable-self)
 )
 (defrule
     (not (current-age >= feudal-age))
