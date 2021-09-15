@@ -370,7 +370,7 @@ insert decide-blacksmith-investment(type="infantry")
     goal {prefix}unique-unit-is-expensive = 1
   #end if
   #if players-civ {player} turkish
-    goal {prefix}unique-unit-is-infantry = 1
+    goal {prefix}unique-unit-is-ranged = 1
     goal {prefix}unique-unit-counters-infantry = 1
   #end if
   #if players-civ {player} vietnamese
