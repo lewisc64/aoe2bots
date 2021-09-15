@@ -1550,7 +1550,7 @@
 (defrule
     (players-civ my-player-number turkish)
 =>
-    (set-goal unique-unit-is-infantry 1)
+    (set-goal unique-unit-is-ranged 1)
     (set-goal unique-unit-counters-infantry 1)
     (disable-self)
 )
@@ -20089,7 +20089,7 @@ watch-tower-arrow > 0))))
 (defrule
     (players-civ target-player turkish)
 =>
-    (set-goal enemy-unique-unit-is-infantry 1)
+    (set-goal enemy-unique-unit-is-ranged 1)
     (set-goal enemy-unique-unit-counters-infantry 1)
 )
 (defrule
