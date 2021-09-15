@@ -57,6 +57,13 @@ lure boars
   #end if
 #end if
 
+// fish?
+#if goal produce-galleys 1 or goal produce-fire-ships 1 or goal full-water-map 1
+  goal produce-fishing-ships = 1
+#else
+  goal produce-fishing-ships = 0
+#end if
+
 // do we gather relics?
 #select random persistant
   build 1 monastery

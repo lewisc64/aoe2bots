@@ -86,6 +86,7 @@ const gold-unit-threshold = 0
 
 #template clear-units
   goal produce-trade-carts = 0
+  goal produce-fishing-ships = 0
   goal produce-archers = 0
   goal produce-hand-cannoneers = 0
   goal produce-skirmishers = 0
@@ -197,16 +198,8 @@ const gold-unit-threshold = 0
   goal desired-town-centers = 3
   
   goal desired-villagers = 120
-  #if goal team-game 1
-    goal desired-trade-carts = 30
-  #else
-    goal desired-trade-carts = 0
-  #end if
-  #if goal full-water-map 1
-    goal desired-fishing-ships = 10
-  #else
-    goal desired-fishing-ships = 0
-  #end if
+  goal desired-trade-carts = 30
+  goal desired-fishing-ships = 10
   
   #select random persistant
     goal desired-units = 1

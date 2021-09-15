@@ -3,14 +3,7 @@ load "villager.aoe2ai"
   load "trade_cart.aoe2ai"
 #end if
 
-#if goal produce-galleys 1 or goal produce-fire-ships 1
-  #do once
-    @up-get-fact population 0 desired-fishing-ships
-    @up-modify-goal desired-fishing-ships c:/ 20
-  #end do
-#end if
-
-#if not goal desired-fishing-ships 0
+#if goal produce-fishing-ships 1
   load "fishing_ship.aoe2ai"
 #end if
 

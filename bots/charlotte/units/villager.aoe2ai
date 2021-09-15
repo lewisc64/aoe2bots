@@ -27,14 +27,16 @@ load "../research/town_center/prerequisites.aoe2ai"
     goal desired-villagers-with-subtractions = 0
   #end do
   @up-modify-goal desired-villagers-with-subtractions g:= desired-villagers
-  @up-modify-goal desired-villagers-with-subtractions g:- desired-fishing-ships
   #if goal produce-trade-carts 1
     @up-modify-goal desired-villagers-with-subtractions g:- desired-trade-carts
+  #end if
+  #if goal produce-fishing-ships 1
+    @up-modify-goal desired-villagers-with-subtractions g:- desired-fishing-ships
   #end if
 
   #if up-compare-goal total-villagers g:< desired-villagers-with-subtractions
     #when
-        train villager
+      train villager
     #then
       goal trained-unit = 1
     #end when
