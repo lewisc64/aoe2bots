@@ -5,6 +5,9 @@
   goal produce-battle-elephants = 0
   goal produce-knights = 0
   goal produce-camels = 0
+  #if goal unique-unit-is-expensive 1
+    goal produce-unique-units = 0
+  #end if
 #end respond
 
 #respond to min-detection-units archer
