@@ -25,6 +25,10 @@
 
 #if goal desired-units 1
   
+  #respond to min-detection-units archer
+    goal produce-militia = 0
+  #end respond
+  
   #respond to min-detection-units spearman-line
     goal produce-knights = 0
     goal produce-scouts = 0

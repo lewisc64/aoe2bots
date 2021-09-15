@@ -119,25 +119,30 @@ goal target-player-score-delta = 0
 @up-modify-goal target-player-score-delta g:- previous-target-player-score
 @up-modify-goal previous-target-player-score g:= target-player-score
 
-// military
+// enemy populations
 
-#do once
-  goal my-military-population = 0
-  goal target-military-population = 0
-  goal target-military-percentage = 0
-  goal largest-enemy-military-population = 0
-  goal largest-enemy-military-percentage = 0
-#end do
+#template get-enemy-population-stats
+  #do once
+    goal my-{type}-population = 0
+    goal target-{type}-population = 0
+    goal target-{type}-percentage = 0
+    goal largest-enemy-{type}-population = 0
+    goal largest-enemy-{type}-percentage = 0
+  #end do
 
-@up-get-fact military-population 0 my-military-population
+  @up-get-fact {type}-population 0 my-{type}-population
 
-@up-get-target-fact military-population 0 target-military-population
-@up-get-fact-max any-enemy military-population 0 largest-enemy-military-population
-@up-modify-goal target-military-percentage g:= my-military-population
-@up-modify-goal target-military-percentage c:* 100
-@up-modify-goal largest-enemy-military-percentage g:= target-military-percentage
-@up-modify-goal target-military-percentage g:/ target-military-population
-@up-modify-goal largest-enemy-military-percentage g:/ largest-enemy-military-population
+  @up-get-target-fact {type}-population 0 target-{type}-population
+  @up-get-fact-max any-enemy {type}-population 0 largest-enemy-{type}-population
+  @up-modify-goal target-{type}-percentage g:= my-{type}-population
+  @up-modify-goal target-{type}-percentage c:* 100
+  @up-modify-goal largest-enemy-{type}-percentage g:= target-{type}-percentage
+  @up-modify-goal target-{type}-percentage g:/ target-{type}-population
+  @up-modify-goal largest-enemy-{type}-percentage g:/ largest-enemy-{type}-population
+#end template
+
+insert get-enemy-population-stats(type="military")
+insert get-enemy-population-stats(type="civilian")
 
 // threat data
 

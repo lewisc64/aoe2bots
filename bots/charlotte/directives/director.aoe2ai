@@ -25,19 +25,8 @@ load "../units/all_switched.aoe2ai"
   load "civ_decisions.aoe2ai"
   load "unit_selection/random_unit_selection.aoe2ai"
   
-  #select random persistant
-    load "attack_decision/passive.aoe2ai"
-    load "pacing/balanced.aoe2ai"
-  #randor
-    load "attack_decision/cautious.aoe2ai"
-    load "pacing/balanced.aoe2ai"
-  #randor
-    load "attack_decision/aggressive.aoe2ai"
-    load "pacing/balanced.aoe2ai"
-  #randor
-    load "attack_decision/reckless.aoe2ai"
-    load "pacing/balanced.aoe2ai"
-  #end select
+  load "attack_decision/aggressive.aoe2ai"
+  load "pacing/conniving.aoe2ai"
   
   load "emergency_trash.aoe2ai"
   #if goal emergency-trash 0
@@ -47,7 +36,7 @@ load "../units/all_switched.aoe2ai"
     #if goal be-smart 1
       load "unit_selection/smart_brain.aoe2ai"
     #end if
-    #delay by 3 minutes
+    #delay by 2 minutes
       goal be-smart = 0
     #end delay
     load "unit_selection/being_countered_system.aoe2ai"

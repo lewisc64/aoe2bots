@@ -1,0 +1,49 @@
+#do once
+  chat to self "being conniving"
+#end do
+
+goal conniving-produce = 0
+
+// keep a defense force
+#if goal conniving-produce 0 and up-compare-goal largest-enemy-military-percentage c:< 50
+  goal conniving-produce = 1
+  chat to self "not enough military! could be sideswiped."
+#end if
+
+// muster up military if the enemy is going for a big boom
+#if goal conniving-produce 0 and up-compare-goal target-civilian-percentage c:<= 80
+  goal conniving-produce = 1
+  chat to self "target has more villagers, mustering."
+#end if
+
+// good military lead, make it bigger.
+#if goal conniving-produce 0 and up-compare-goal target-military-percentage c:>= 100 and up-compare-goal target-military-percentage c:<= 150
+  goal conniving-produce = 1
+  chat to self "make military lead bigger."
+#end if
+
+// make units if no research
+#if goal conniving-produce 0 and goal attempted-researches 0
+  goal conniving-produce = 1
+  chat to self "no research, mustering."
+#end if
+
+// make units if being attacked
+#if goal conniving-produce 0 and town-under-attack and goal attacking 0
+  goal conniving-produce = 1
+  chat to self "under attack!"
+#end if
+
+#if goal conniving-produce 1
+  #if goal produce-units 0
+    chat to self "go! (conniving)"
+  #end if
+  goal produce-units = 1
+  goal do-research = 1
+#else
+  #if goal produce-units 1
+    chat to self "hold! (conniving)"
+  #end if
+  goal produce-units = 0
+  goal do-research = 1
+#end if
