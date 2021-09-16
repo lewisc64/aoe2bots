@@ -55,9 +55,13 @@ load "charlotte/stats.aoe2ai"
   #end if
 #end if
 
-research ri-garland-wars with food and gold escrow
-research ri-el-dorado with food and gold escrow
-research ri-couriers with food and gold escrow
+#when
+  research ri-garland-wars with food and gold escrow
+  research ri-el-dorado with food and gold escrow
+  research ri-couriers with food and gold escrow
+#then always
+  research ri-conscription with food and gold escrow
+#end when
 
 research ri-eagle-warrior with food and gold escrow => research ri-arson with food and gold escrow
 research ri-elite-eagle-warrior with food and gold escrow
