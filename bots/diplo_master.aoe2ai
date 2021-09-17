@@ -28,14 +28,16 @@ build houses
   build monastery
 #end if
 build lumber camps
-build mills
-build 1 blacksmith
-build 1 market
-build 1 university
-build stone walls with perimeter 2
-build stone gates on perimeter 2
-build bombard-tower
-build watch-tower-line
+#if building-type-count-total town-center >= 1
+  build mills
+  build 1 blacksmith
+  build 1 market
+  build 1 university
+  build stone walls with perimeter 2
+  build stone gates on perimeter 2
+  build bombard-tower
+  build watch-tower-line
+#end if
 
 #if building-type-count-total mill == 0 and game-time >= 360
   build 1 mill
