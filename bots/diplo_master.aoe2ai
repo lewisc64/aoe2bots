@@ -131,14 +131,18 @@ train monk
 
 #if current-age >= castle-age
   #do once
-    distribute villagers 20 30 40 10
+    distribute villagers 30 30 30 10
     enable walls with perimeter 2
     sn-maximum-town-size = town-size
   #end do once
   
   auto balance food and gold
   
-  train 130 villager with 30 trade
+  #if current-age >= imperial-age
+    train 130 villager with 30 trade
+  #else
+    train 130 villager
+  #end if
   build houses with 15 headroom
   //sell stone when stone >= 750
 
