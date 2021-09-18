@@ -1,0 +1,117 @@
+const ri-tigui = 576
+
+load "templates/fast_castle.aoe2ai"
+
+#template purge
+  #do once
+    chat to all "Rise up sisters! This farce has gone on long enough!"
+    #if town-under-attack
+      chat to all "We will not be silenced!"
+    #end if
+  #end do
+  delete unit scout-cavalry
+  delete unit 56 // VMFIS
+  delete unit 118 // VMBLD
+  delete unit 120 // VMFOR
+  delete unit 122 // VMHUN
+  delete unit 123 // VMLUM
+  delete unit 124 // VMMIN
+  delete unit 156 // VMREP
+  delete unit 259 // VMFAR
+  delete unit 579 // VMGLD
+  delete unit 592 // VMSHE
+#end template
+
+#if up-research-status c: castle-age >= research-pending
+
+  load "charlotte/stats.aoe2ai"
+
+  #do once
+    goal purge = 0
+    sn-maximum-town-size = 30
+    sn-minimum-town-size = 30
+    
+    assign 8 builders to town-center-foundation
+    assign 8 builders to castle
+  #end do
+  
+  #if escrow-amount food <= 1000
+    escrow 10 food
+  #else
+    escrow 0 food
+  #end if
+  
+  #if escrow-amount gold <= 800
+    escrow 10 gold
+  #else
+    escrow 0 gold
+  #end if
+
+  #stages
+    build 1 castle
+  #advance when building-type-count-total castle >= 1
+    build 6 town-center
+    build 5 castle
+  #end stages
+  
+  #when
+    build gold mining camps
+    build stone mining camps
+  #then
+    sn-camp-max-distance += 8
+  #end when
+  build farms
+  build houses with 20 headroom
+  build 2 siege-workshop
+
+  #stages
+    distribute villagers 40 30 10 20
+  #advance when building-type-count town-center >= 6
+    #do once
+      distribute villagers 25 60 10 5
+      #if civilian-population >= 70
+        goal purge = 1
+      #end if
+    #end do
+    auto balance wood and food and gold
+    trade excess wood and food and gold and stone at 2000
+  #end stages
+  
+  research imperial-age with food and gold escrow
+  research mill upgrades with wood and food escrow
+  research lumber camp upgrades with wood and food escrow
+  research ri-tigui with wood and food escrow
+  
+  research blacksmith infantry upgrades with food and gold escrow
+  research my-unique-unit-upgrade with food and gold escrow
+  
+  #if goal purge 1
+    insert purge
+    #if (military-population >= 10 or goal threat-source castle) and unit-type-count-total battering-ram-line < 5 and current-age == castle-age and not town-under-attack
+      train battering-ram-line
+    #else if (military-population >= 10 or goal threat-source castle) and unit-type-count-total trebuchet-set < 3 and current-age == imperial-age and not town-under-attack
+      train trebuchet
+    #else if up-compare-goal non-escrowed-food c:>= 100 or town-under-attack
+      train my-unique-unit
+    #end if
+  #end if
+  
+  #do once
+    target closest enemy
+  #end do
+  #if not player-in-game target-player
+    target closest enemy
+  #end if
+  
+  #if up-compare-goal target-military-percentage c:>= 300 or up-compare-goal population-space-remaining c:< 10
+    #do once
+      chat to all "We are enlightened, we are legion!"
+    #end do
+    sn-maximum-town-size = 255
+  #else
+    @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
+  #end if
+  
+  train 120 villager
+  
+#end if
