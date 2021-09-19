@@ -19468,7 +19468,7 @@ watch-tower-arrow > 0))))
     (set-goal attacking 1)
 )
 (defrule
-    (and (up-compare-goal target-military-percentage c:<= 50) (goal attacking 1))
+    (and (up-compare-goal target-military-percentage c:<= 80) (goal attacking 1))
     (not (and (or (up-compare-goal target-military-percentage c:>= 100) (up-compare-goal population-space-remaining c:<= 5)) (and (military-population >= 8) (goal attacking 0))))
 =>
     (set-goal attacking 0)
@@ -20060,6 +20060,7 @@ watch-tower-arrow > 0))))
     (goal desired-units 1)
 =>
     (set-goal produce-militia 0)
+    (set-goal produce-hand-cannoneers 0)
 )
 (defrule
     (players-unit-type-count any-enemy spearman-line >= min-detection-units)
