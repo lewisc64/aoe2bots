@@ -101,13 +101,15 @@ build houses with 5 headroom
 #end if
 
 // castle forwards?
-#select random
-  build castle
-#randor
-  #if goal attacking 1
-    build forward castle near town-center
-  #end if
-#end select
+#if up-pending-objects c: castle == 0
+  #select random
+    build castle
+  #randor
+    #if goal attacking 1
+      build forward castle near town-center
+    #end if
+  #end select
+#end if
 
 #when
   #if strategic-number sn-gold-gatherer-percentage > 0

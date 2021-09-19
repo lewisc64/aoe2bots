@@ -40,41 +40,6 @@ const wood-unit-threshold = 0 // was 275
 const food-unit-threshold = 0
 const gold-unit-threshold = 0
 
-#if false // build queue debugging
-  #template in-build-queue
-    goal temp = 0
-    @up-get-fact building-type-count-total {building} temp
-    #if up-pending-objects c: {building} > 0
-      @up-chat-data-to-all "There are '{building}' queued. Count total: %d" g: temp
-    #end if
-  #end template
-
-  insert in-build-queue(building="archery-range")
-  insert in-build-queue(building="barracks")
-  insert in-build-queue(building="blacksmith")
-  insert in-build-queue(building="bombard-tower")
-  insert in-build-queue(building="castle")
-  insert in-build-queue(building="dock")
-  insert in-build-queue(building="farm")
-  insert in-build-queue(building="fish-trap")
-  insert in-build-queue(building="guard-tower")
-  insert in-build-queue(building="house")
-  insert in-build-queue(building="keep")
-  insert in-build-queue(building="lumber-camp")
-  insert in-build-queue(building="market")
-  insert in-build-queue(building="mill")
-  insert in-build-queue(building="mining-camp")
-  insert in-build-queue(building="monastery")
-  insert in-build-queue(building="outpost")
-  insert in-build-queue(building="siege-workshop")
-  insert in-build-queue(building="stable")
-  insert in-build-queue(building="town-center")
-  insert in-build-queue(building="university")
-  insert in-build-queue(building="watch-tower")
-  insert in-build-queue(building="watch-tower-line")
-  insert in-build-queue(building="wonder")
-#end if
-
 // @up-chat-data-to-all "town size: %d" s: sn-maximum-town-size
 
 #if strategic-number sn-food-gatherer-percentage == 0 and game-time >= 5 // gatherer percentage debugging

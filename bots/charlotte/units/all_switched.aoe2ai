@@ -9,56 +9,62 @@ load "villager.aoe2ai"
 
 #do once
   goal old-produce-units = 0
-  goal trained-unit = 0 // unused
   goal current-unit-amount = 0
   goal expected-units-per-type = 0
 #end do
 
 goal total-type-production = 0
 
+#template add-to-total-type-production
+  #if unit-available {unit}
+    @up-modify-goal total-type-production g:+ {goal}
+  #end if
+#end template
+
 #if goal enough-wood-for-units 1 and goal enough-gold-for-units 1
-  @up-modify-goal total-type-production g:+ produce-archers
-  @up-modify-goal total-type-production g:+ produce-cavalry-archers
-  @up-modify-goal total-type-production g:+ produce-battering-rams
-  @up-modify-goal total-type-production g:+ produce-mangonels
-  @up-modify-goal total-type-production g:+ produce-scorpions
-  @up-modify-goal total-type-production g:+ produce-bombard-cannons
-  @up-modify-goal total-type-production g:+ produce-trebuchets
-  @up-modify-goal total-type-production g:+ produce-galleys
-  @up-modify-goal total-type-production g:+ produce-fire-ships
-  @up-modify-goal total-type-production g:+ produce-cannon-galleons
+  insert add-to-total-type-production(unit="archer-line",goal="produce-archers")
+  insert add-to-total-type-production(unit="cavalry-archer-line",goal="produce-cavalry-archers")
+  insert add-to-total-type-production(unit="battering-ram-line",goal="produce-battering-rams")
+  insert add-to-total-type-production(unit="mangonel-line",goal="produce-mangonels")
+  insert add-to-total-type-production(unit="scorpion-line",goal="produce-scorpions")
+  insert add-to-total-type-production(unit="bombard-cannon",goal="produce-bombard-cannons")
+  insert add-to-total-type-production(unit="trebuchet",goal="produce-trebuchets")
+  insert add-to-total-type-production(unit="galley-line",goal="produce-galleys")
+  insert add-to-total-type-production(unit="fire-ship-line",goal="produce-fire-ships")
+  insert add-to-total-type-production(unit="cannon-galleon-line",goal="produce-cannon-galleons")
 #end if
 
 #if goal enough-food-for-units 1 and goal enough-gold-for-units 1
-  #if unit-available hand-cannoneer
-    @up-modify-goal total-type-production g:+ produce-hand-cannoneers
-  #end if
-  @up-modify-goal total-type-production g:+ produce-militia
-  @up-modify-goal total-type-production g:+ produce-eagles
-  @up-modify-goal total-type-production g:+ produce-knights
-  @up-modify-goal total-type-production g:+ produce-camels
-  @up-modify-goal total-type-production g:+ produce-battle-elephants
+  insert add-to-total-type-production(unit="hand-cannoneer",goal="produce-hand-cannoneers")
+  insert add-to-total-type-production(unit="militiaman-line",goal="produce-militia")
+  insert add-to-total-type-production(unit="eagle-warrior-line",goal="produce-eagles")
+  insert add-to-total-type-production(unit="knight-line",goal="produce-knights")
+  insert add-to-total-type-production(unit="camel-line",goal="produce-camels")
+  insert add-to-total-type-production(unit="battle-elephant-line",goal="produce-battle-elephants")
 #end if
 
 #if goal enough-food-for-units 1
-  @up-modify-goal total-type-production g:+ produce-scouts
+  insert add-to-total-type-production(unit="scout-cavalry-line",goal="produce-scouts")
 #end if
 
 #if goal enough-wood-for-units 1 and goal enough-food-for-units 1
-  @up-modify-goal total-type-production g:+ produce-skirmishers
-  @up-modify-goal total-type-production g:+ produce-spearmen
+  insert add-to-total-type-production(unit="skirmisher-line",goal="produce-skirmishers")
+  insert add-to-total-type-production(unit="spearman-line",goal="produce-spearmen")
 #end if
 
-#if goal enough-wood-for-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1 and (building-type-count castle >= 2 or goal desired-units 1)
-  @up-modify-goal total-type-production g:+ produce-unique-units
+#if goal enough-wood-for-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1
+  insert add-to-total-type-production(unit="my-unique-unit-line",goal="produce-unique-units")
 #end if
 
 #if goal enough-gold-for-units 1
-  @up-modify-goal total-type-production g:+ produce-monks
+  insert add-to-total-type-production(unit="monk",goal="produce-monks")
 #end if
 
 @up-get-fact military-population 0 expected-units-per-type
 @up-modify-goal expected-units-per-type g:/ total-type-production
+
+//@up-chat-data-to-all "total type production: %d" g: total-type-production
+//@up-chat-data-to-all "expected units per type: %d" g: expected-units-per-type
 
 load "prerequisites.aoe2ai"
 

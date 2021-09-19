@@ -9,10 +9,6 @@ load "../research/dock/prerequisites.aoe2ai"
   load "types/ship.aoe2ai"
   
   #if up-compare-goal total-fishing-ships g:< desired-fishing-ships and wood-amount >= 100
-    #when
-      train fishing-ship
-    #then
-      goal trained-unit = 1
-    #end when
+    train fishing-ship
   #end if
 #end if

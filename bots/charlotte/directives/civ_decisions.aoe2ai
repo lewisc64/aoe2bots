@@ -11,6 +11,7 @@
     goal {prefix}good-fire-ships = 1
   #end if
   #if players-civ {player} berbers
+    goal {prefix}good-unique-units = 0 // my-unique-unit-line is broken on HD for this civ
     goal {prefix}good-hand-cannoneers = 1
     goal {prefix}good-militia = 1
     goal {prefix}good-scouts = 1

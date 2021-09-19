@@ -15,10 +15,6 @@ load "../research/archery_range/prerequisites.aoe2ai"
   load "types/ranged.aoe2ai"
   
   #if goal produce-units 1 and goal enough-wood-for-units 1 and goal enough-gold-for-units 1
-    #when
-      train archer-line
-    #then
-      goal trained-unit = 1
-    #end when
+    train archer-line
   #end if
 #end if

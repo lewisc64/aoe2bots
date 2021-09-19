@@ -14,10 +14,6 @@ load "../research/siege_workshop/prerequisites.aoe2ai"
   load "types/siege.aoe2ai"
   
   #if goal produce-units 1 and goal enough-wood-for-units 1 and goal enough-gold-for-units 1
-    #when
-      train mangonel-line
-    #then
-      goal trained-unit = 1
-    #end when
+    train mangonel-line
   #end if
 #end if

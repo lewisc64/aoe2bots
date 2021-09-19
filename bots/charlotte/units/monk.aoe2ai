@@ -20,10 +20,6 @@ load "../research/monastery/prerequisites.aoe2ai"
   #end if
   
   #if goal produce-units 1 and goal enough-gold-for-units 1
-    #when
-      train monk
-    #then
-      goal trained-unit = 1
-    #end when
+    train monk
   #end if
 #end if

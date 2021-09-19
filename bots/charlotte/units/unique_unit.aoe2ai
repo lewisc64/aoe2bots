@@ -99,10 +99,6 @@
   #end if
   
   #if goal produce-units 1 and goal enough-wood-for-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1
-    #when
-      train my-unique-unit-line
-    #then
-      goal trained-unit = 1
-    #end when
+    train my-unique-unit-line
   #end if
 #end if

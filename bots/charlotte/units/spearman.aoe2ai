@@ -11,10 +11,6 @@ load "../research/barracks/prerequisites.aoe2ai"
   load "types/infantry.aoe2ai"
   
   #if goal produce-units 1 and goal enough-wood-for-units 1 and goal enough-food-for-units 1
-    #when
-      train spearman-line
-    #then
-      goal trained-unit = 1
-    #end when
+    train spearman-line
   #end if
 #end if
