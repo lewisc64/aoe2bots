@@ -24,6 +24,13 @@ const town-size = 30
 
 build 1 town-center
 build houses
+
+#if building-available monastery and building-type-count-total monastery < 3
+  escrow 50 wood
+  build 3 monastery with wood escrow
+#else
+  escrow 0 wood
+#end if
 #if wood-amount > 300
   build monastery
 #end if
