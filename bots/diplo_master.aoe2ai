@@ -109,11 +109,14 @@ train monk
 
 #if current-age >= feudal-age
 
-  build farms
   #add action up-modify-sn sn-camp-max-distance c:+ 5
     build gold mining camps
     build stone mining camps
   #remove action
+  
+  #if up-compare-goal non-escrowed-wood-amount c:>= 100
+    build farms
+  #end if
 
 #end if
 
