@@ -44,11 +44,7 @@
   #end if
   
   #if civilian-population >= 27
-    #when
-      research feudal-age
-    #then
-      distribute villagers 80 20 0 0
-    #end when
+    research feudal-age
   #end if
   
   train villager
