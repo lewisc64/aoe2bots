@@ -1,4 +1,5 @@
 const ri-treadmill-crane = 54
+const ri-herbal-medicine = 441
 const town-size = 30
 
 #if current-age >= castle-age
@@ -58,10 +59,17 @@ train 2 monk
 
 research ri-loom with gold escrow
 research ri-fervor with gold escrow
-research ri-atonement with gold escrow
+#respond to 2 monk-set
+  research ri-atonement with gold escrow
+#end respond
+#if gold-amount >= 1000
+  research ri-atonement with gold escrow
+  research ri-faith with gold escrow
+  research ri-herbal-medicine with gold escrow
+  research ri-heresy with gold escrow
+#end if
 research ri-redemption with gold escrow
 research ri-sanctity with gold escrow
-research ri-faith with gold escrow
 research ri-illumination with gold escrow
 research ri-block-printing with gold escrow
 research ri-theocracy with gold escrow
@@ -70,6 +78,7 @@ research ri-theocracy with gold escrow
     chat to all "Shall it be a war of words, then? So be it."
   #end do once
   research ri-heresy with gold escrow
+  research ri-faith with gold escrow
 #end respond
 
 research ri-masonry
@@ -93,6 +102,9 @@ train monk
 #when
   #if military-population >= 50 and not(enemy-buildings-in-town)
     sn-maximum-town-size += 5
+    #repeat every 10 minutes
+      @up-reset-unit c: monk
+    #end repeat
   #else if strategic-number sn-maximum-town-size > town-size
     sn-maximum-town-size -= 1
   #end if
