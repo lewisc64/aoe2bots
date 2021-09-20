@@ -27,8 +27,12 @@ load "templates/fast_castle.aoe2ai"
   research mill upgrades with food and gold escrow
   
   build lumber camps
-  build gold mining camps
-  build stone mining camps
+  #when
+    build gold mining camps
+    build stone mining camps
+  #then
+    sn-camp-max-distance += 8
+  #end when
   build houses with 10 headroom
   
   build 1 monastery
