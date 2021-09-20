@@ -112,7 +112,7 @@ train 120 villager with 30 trade
     #do once
       escrow 100 wood
     #end do
-    #if wood-amount >= 275
+    #if wood-amount >= 375
       sn-maximum-town-size = 255
       sn-minimum-town-size = 255
       sn-safe-town-size = 255
