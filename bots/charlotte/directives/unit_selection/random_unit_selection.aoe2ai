@@ -29,7 +29,9 @@ insert count-units-selected
       #end if
       
     #randor
-      @up-modify-goal produce-hand-cannoneers g:= good-hand-cannoneers
+      #if not goal total-units-selected 0
+        @up-modify-goal produce-hand-cannoneers g:= good-hand-cannoneers
+      #end if
       
     #randor
       @up-modify-goal produce-skirmishers g:= good-skirmishers
@@ -85,12 +87,12 @@ insert count-units-selected
       @up-modify-goal produce-unique-units g:= good-unique-units
     
     #randor
-      #if goal water-map 1 and up-compare-goal total-units-selected c:> 1
+      #if goal water-map 1 and not goal total-units-selected 0
         @up-modify-goal produce-galleys g:= good-galleys
       #end if
     
     #randor
-      #if goal water-map 1 and up-compare-goal total-units-selected c:> 1
+      #if goal water-map 1 and not goal total-units-selected 0
         @up-modify-goal produce-fire-ships g:= good-fire-ships
       #end if
       

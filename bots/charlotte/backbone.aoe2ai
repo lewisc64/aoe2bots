@@ -15,6 +15,7 @@ const ri-manipur-cavalry = 627
 const ri-furor-celtica = 5
 const ri-tusk-swords = 622
 const ri-double-crossbow = 623
+const ri-mercenaries = 514
 
 const sea-fish = 905
 const tc-arrow = 54
@@ -160,7 +161,15 @@ const gold-unit-threshold = 0
   #end if
   
   goal desired-military-buildings-per-type = 2
-  goal desired-town-centers = 3
+  #select random persistant
+    goal desired-town-centers = 1
+  #randor
+    goal desired-town-centers = 2
+  #randor
+    goal desired-town-centers = 3
+  #randor
+    goal desired-town-centers = 3
+  #end select
   
   goal desired-villagers = 120
   goal desired-trade-carts = 30

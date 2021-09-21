@@ -4,6 +4,8 @@
 
 goal conniving-produce = 0
 
+goal conniving-was-outboomed = 0
+
 // keep a defense force
 #if goal conniving-produce 0 and up-compare-goal largest-enemy-military-percentage c:< 50
   goal conniving-produce = 1
@@ -13,7 +15,14 @@ goal conniving-produce = 0
 // muster up military if the enemy is going for a big boom
 #if goal conniving-produce 0 and up-compare-goal target-civilian-percentage c:<= 80
   goal conniving-produce = 1
+  goal conniving-was-outboomed = 1
   chat to self "target has more villagers, mustering."
+#end if
+
+// target outboomed but out militaried, make more TCs
+#if up-compare-goal target-military-percentage c:> 150 and goal conniving-was-outboomed 1
+  goal desired-town-centers = 3
+  chat to self "gained military lead, now booming"
 #end if
 
 // good military lead, make it bigger.

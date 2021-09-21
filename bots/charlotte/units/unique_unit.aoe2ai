@@ -77,6 +77,10 @@
     load "../research/castle/double_crossbow.aoe2ai"
   #end if
   
+  #if civ-selected magyar
+    load "../research/castle/mercenaries.aoe2ai"
+  #end if
+  
   @up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type
   
   #if civ-selected portuguese
