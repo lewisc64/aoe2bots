@@ -952,6 +952,7 @@
 )
 (defrule
     (can-build-with-escrow mill)
+    (up-pending-objects c: mill < 5)
     (building-type-count-total mill < 1)
     (and (building-type-count-total mill == 0) (game-time >= 360))
 =>
@@ -960,13 +961,14 @@
 )
 (defrule
     (can-build wonder)
-    (building-type-count-total wonder < 100)
+    (up-pending-objects c: wonder < 5)
     (not (death-match-game))
 =>
     (build wonder)
 )
 (defrule
     (can-build-with-escrow town-center)
+    (up-pending-objects c: town-center < 5)
     (building-type-count-total town-center < 1)
 =>
     (release-escrow wood)
@@ -982,6 +984,7 @@
 )
 (defrule
     (can-build-with-escrow town-center)
+    (up-pending-objects c: town-center < 5)
     (building-type-count-total town-center < 3)
     (and (goal boom 1) (goal should-make-villagers 1))
 =>
@@ -991,12 +994,14 @@
 )
 (defrule
     (can-build town-center)
+    (up-pending-objects c: town-center < 5)
     (building-type-count-total town-center < max-town-centers)
 =>
     (build town-center)
 )
 (defrule
     (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
     (building-type-count-total blacksmith < 1)
     (or (civilian-population >= 20) (death-match-game))
 =>
@@ -1004,6 +1009,7 @@
 )
 (defrule
     (can-build-with-escrow market)
+    (up-pending-objects c: market < 5)
     (building-type-count-total market < 1)
     (building-type-count-total blacksmith > 0)
     (or (civilian-population >= 20) (death-match-game))
@@ -1013,24 +1019,28 @@
 )
 (defrule
     (can-build university)
+    (up-pending-objects c: university < 5)
     (building-type-count-total university < 1)
 =>
     (build university)
 )
 (defrule
     (can-build monastery)
+    (up-pending-objects c: monastery < 5)
     (building-type-count-total monastery < 1)
 =>
     (build monastery)
 )
 (defrule
     (can-build bombard-tower)
+    (up-pending-objects c: bombard-tower < 5)
     (building-type-count-total bombard-tower < 5)
 =>
     (build bombard-tower)
 )
 (defrule
     (can-build castle)
+    (up-pending-objects c: castle < 5)
     (building-type-count-total castle < 5)
     (and (goal attacking 1) (goal use-town-size-attack 0))
 =>
@@ -1038,6 +1048,7 @@
 )
 (defrule
     (can-build castle)
+    (up-pending-objects c: castle < 5)
     (building-type-count-total castle < 5)
     (not (and (goal attacking 1) (goal use-town-size-attack 0)))
 =>
@@ -1050,6 +1061,7 @@
 )
 (defrule
     (can-build-with-escrow watch-tower-line)
+    (up-pending-objects c: watch-tower-line < 5)
     (building-type-count-total watch-tower-line < 3)
     (and (military-population < 5) (and (town-under-attack) (current-age <= feudal-age)))
 =>
@@ -1059,6 +1071,7 @@
 )
 (defrule
     (can-build farm)
+    (up-pending-objects c: farm < 5)
     (building-type-count-total farm < 3)
     (building-type-count-total lumber-camp > 0)
     (up-research-status c: feudal-age < research-pending)
@@ -1100,6 +1113,7 @@
 )
 (defrule
     (can-build lumber-camp)
+    (up-pending-objects c: lumber-camp < 5)
     (building-type-count-total lumber-camp < 2)
     (and (up-research-status c: feudal-age >= research-pending) (up-research-status c: castle-age < research-pending))
     (not (up-research-status c: feudal-age < research-pending))
@@ -1108,6 +1122,7 @@
 )
 (defrule
     (can-build-with-escrow mining-camp)
+    (up-pending-objects c: mining-camp < 5)
     (building-type-count-total mining-camp < 1)
     (building-type-count-total barracks >= 1)
     (and (up-research-status c: feudal-age >= research-pending) (up-research-status c: castle-age < research-pending))
@@ -1208,21 +1223,21 @@
 )
 (defrule
     (can-build farm)
-    (building-type-count-total farm < 100)
+    (up-pending-objects c: farm < 5)
     (up-compare-goal current-farm-count g:< expected-food-gatherers)
 =>
     (build farm)
 )
 (defrule
     (can-build mill)
-    (building-type-count-total mill < 100)
+    (up-pending-objects c: mill < 5)
     (and (building-type-count-total mill <= 1) (building-type-count-total farm >= 17))
 =>
     (build mill)
 )
 (defrule
     (can-build mill)
-    (building-type-count-total mill < 100)
+    (up-pending-objects c: mill < 5)
     (and (building-type-count-total mill <= 2) (building-type-count-total farm >= 24))
     (not (and (building-type-count-total mill <= 1) (building-type-count-total farm >= 17)))
 =>
@@ -1230,7 +1245,7 @@
 )
 (defrule
     (can-build mill)
-    (building-type-count-total mill < 100)
+    (up-pending-objects c: mill < 5)
     (and (building-type-count-total mill <= 3) (building-type-count-total farm >= 31))
     (not (and (building-type-count-total mill <= 1) (building-type-count-total farm >= 17)))
     (not (and (building-type-count-total mill <= 2) (building-type-count-total farm >= 24)))
@@ -1239,7 +1254,7 @@
 )
 (defrule
     (can-build mill)
-    (building-type-count-total mill < 100)
+    (up-pending-objects c: mill < 5)
     (and (building-type-count-total mill <= 4) (building-type-count-total farm >= 38))
     (not (and (building-type-count-total mill <= 2) (building-type-count-total farm >= 24)))
     (not (and (building-type-count-total mill <= 1) (building-type-count-total farm >= 17)))
@@ -1249,7 +1264,7 @@
 )
 (defrule
     (can-build mill)
-    (building-type-count-total mill < 100)
+    (up-pending-objects c: mill < 5)
     (and (building-type-count-total mill <= 5) (building-type-count-total farm >= 45))
     (not (and (building-type-count-total mill <= 3) (building-type-count-total farm >= 31)))
     (not (and (building-type-count-total mill <= 1) (building-type-count-total farm >= 17)))
@@ -1260,7 +1275,7 @@
 )
 (defrule
     (can-build mill)
-    (building-type-count-total mill < 100)
+    (up-pending-objects c: mill < 5)
     (and (building-type-count-total mill <= 6) (building-type-count-total farm >= 52))
     (not (and (building-type-count-total mill <= 4) (building-type-count-total farm >= 38)))
     (not (and (building-type-count-total mill <= 2) (building-type-count-total farm >= 24)))
@@ -2764,6 +2779,7 @@
 )
 (defrule
     (can-build-with-escrow barracks)
+    (up-pending-objects c: barracks < 5)
     (building-type-count-total barracks < max-imperial-military-buildings)
     (or (current-age == imperial-age) (death-match-game))
     (goal producing-infantry 1)
@@ -2773,6 +2789,7 @@
 )
 (defrule
     (can-build-with-escrow barracks)
+    (up-pending-objects c: barracks < 5)
     (building-type-count-total barracks < max-castle-military-buildings)
     (current-age == castle-age)
     (not (or (current-age == imperial-age) (death-match-game)))
@@ -2783,6 +2800,7 @@
 )
 (defrule
     (can-build-with-escrow barracks)
+    (up-pending-objects c: barracks < 5)
     (building-type-count-total barracks < 1)
     (and (goal producing-cavalry 1) (building-type-count-total stable >= 2))
     (not (or (current-age == imperial-age) (death-match-game)))
@@ -2794,6 +2812,7 @@
 )
 (defrule
     (can-build-with-escrow barracks)
+    (up-pending-objects c: barracks < 5)
     (building-type-count-total barracks < 1)
     (and (goal producing-ranged 1) (building-type-count-total archery-range >= 2))
     (not (and (goal producing-cavalry 1) (building-type-count-total stable >= 2)))
@@ -2806,6 +2825,7 @@
 )
 (defrule
     (can-build-with-escrow barracks)
+    (up-pending-objects c: barracks < 5)
     (building-type-count-total barracks < max-feudal-military-buildings)
     (not (and (goal producing-cavalry 1) (building-type-count-total stable >= 2)))
     (not (and (goal producing-ranged 1) (building-type-count-total archery-range >= 2)))
@@ -2871,6 +2891,7 @@
 )
 (defrule
     (can-build-with-escrow stable)
+    (up-pending-objects c: stable < 5)
     (building-type-count-total stable < 1)
     (or (goal produce-cavalry-archers 1) (unit-type-count cavalry-archer-line >= max-basic-units))
 =>
@@ -2981,6 +3002,7 @@
 )
 (defrule
     (can-build-with-escrow archery-range)
+    (up-pending-objects c: archery-range < 5)
     (building-type-count-total archery-range < max-imperial-military-buildings)
     (or (current-age == imperial-age) (death-match-game))
     (goal producing-ranged 1)
@@ -2990,6 +3012,7 @@
 )
 (defrule
     (can-build-with-escrow archery-range)
+    (up-pending-objects c: archery-range < 5)
     (building-type-count-total archery-range < max-castle-military-buildings)
     (current-age == castle-age)
     (not (or (current-age == imperial-age) (death-match-game)))
@@ -3000,6 +3023,7 @@
 )
 (defrule
     (can-build-with-escrow archery-range)
+    (up-pending-objects c: archery-range < 5)
     (building-type-count-total archery-range < 1)
     (and (goal producing-cavalry 1) (building-type-count-total stable >= 2))
     (not (or (current-age == imperial-age) (death-match-game)))
@@ -3011,6 +3035,7 @@
 )
 (defrule
     (can-build-with-escrow archery-range)
+    (up-pending-objects c: archery-range < 5)
     (building-type-count-total archery-range < 1)
     (and (goal producing-infantry 1) (building-type-count-total barracks >= 2))
     (not (and (goal producing-cavalry 1) (building-type-count-total stable >= 2)))
@@ -3023,6 +3048,7 @@
 )
 (defrule
     (can-build-with-escrow archery-range)
+    (up-pending-objects c: archery-range < 5)
     (building-type-count-total archery-range < max-feudal-military-buildings)
     (not (and (goal producing-cavalry 1) (building-type-count-total stable >= 2)))
     (not (and (goal producing-infantry 1) (building-type-count-total barracks >= 2)))
@@ -3149,6 +3175,7 @@
 )
 (defrule
     (can-build-with-escrow stable)
+    (up-pending-objects c: stable < 5)
     (building-type-count-total stable < max-imperial-military-buildings)
     (or (current-age == imperial-age) (death-match-game))
     (goal producing-cavalry 1)
@@ -3158,6 +3185,7 @@
 )
 (defrule
     (can-build-with-escrow stable)
+    (up-pending-objects c: stable < 5)
     (building-type-count-total stable < max-castle-military-buildings)
     (current-age == castle-age)
     (not (or (current-age == imperial-age) (death-match-game)))
@@ -3168,6 +3196,7 @@
 )
 (defrule
     (can-build-with-escrow stable)
+    (up-pending-objects c: stable < 5)
     (building-type-count-total stable < 1)
     (and (goal producing-infantry 1) (building-type-count-total barracks >= 2))
     (not (or (current-age == imperial-age) (death-match-game)))
@@ -3179,6 +3208,7 @@
 )
 (defrule
     (can-build-with-escrow stable)
+    (up-pending-objects c: stable < 5)
     (building-type-count-total stable < 1)
     (and (goal producing-ranged 1) (building-type-count-total archery-range >= 2))
     (not (and (goal producing-infantry 1) (building-type-count-total barracks >= 2)))
@@ -3191,6 +3221,7 @@
 )
 (defrule
     (can-build-with-escrow stable)
+    (up-pending-objects c: stable < 5)
     (building-type-count-total stable < max-feudal-military-buildings)
     (not (and (goal producing-infantry 1) (building-type-count-total barracks >= 2)))
     (not (and (goal producing-ranged 1) (building-type-count-total archery-range >= 2)))
@@ -3253,6 +3284,7 @@
 )
 (defrule
     (can-build siege-workshop)
+    (up-pending-objects c: siege-workshop < 5)
     (building-type-count-total siege-workshop < 2)
     (current-age == imperial-age)
 =>
@@ -3260,6 +3292,7 @@
 )
 (defrule
     (can-build-with-escrow siege-workshop)
+    (up-pending-objects c: siege-workshop < 5)
     (building-type-count-total siege-workshop < 1)
     (not (current-age == imperial-age))
 =>
@@ -3318,6 +3351,7 @@
 )
 (defrule
     (can-build monastery)
+    (up-pending-objects c: monastery < 5)
     (building-type-count-total monastery < max-castle-military-buildings)
     (goal produce-monks 1)
 =>
@@ -3594,6 +3628,7 @@
 )
 (defrule
     (can-build-with-escrow barracks)
+    (up-pending-objects c: barracks < 5)
     (building-type-count-total barracks < 1)
 =>
     (release-escrow wood)
@@ -3601,6 +3636,7 @@
 )
 (defrule
     (can-build-with-escrow blacksmith)
+    (up-pending-objects c: blacksmith < 5)
     (building-type-count-total blacksmith < 1)
     (or (building-type-count-total barracks >= 2) (or (building-type-count-total stable >= 2) (building-type-count-total archery-range >= 2)))
 =>
@@ -3648,6 +3684,7 @@
 )
 (defrule
     (can-build-with-escrow siege-workshop)
+    (up-pending-objects c: siege-workshop < 5)
     (building-type-count-total siege-workshop < 1)
 =>
     (release-escrow wood)
@@ -4972,6 +5009,7 @@
 )
 (defrule
     (can-build-with-escrow mining-camp)
+    (up-pending-objects c: mining-camp < 5)
     (building-type-count-total mining-camp < 1)
     (up-research-status c: feudal-age >= research-pending)
 =>
@@ -4993,6 +5031,7 @@
 )
 (defrule
     (can-build-with-escrow market)
+    (up-pending-objects c: market < 5)
     (building-type-count-total market < 1)
     (current-age == feudal-age)
 =>
@@ -5001,6 +5040,7 @@
 )
 (defrule
     (can-build-with-escrow blacksmith)
+    (up-pending-objects c: blacksmith < 5)
     (building-type-count-total blacksmith < 1)
     (current-age == feudal-age)
 =>
