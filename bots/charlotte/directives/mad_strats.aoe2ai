@@ -18,5 +18,6 @@
 #if up-compare-goal population-space-remaining > 10 and up-compare-goal desired-military-buildings-per-type c:< 8 and wood-amount >= 1000 and food-amount >= 1000 and gold-amount >= 1000
   #repeat every 10 minutes
     goal desired-military-buildings-per-type += 1
+    goal desired-town-centers += 1
   #end repeat
 #end if

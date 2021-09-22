@@ -3,6 +3,12 @@
 #end if
 
 #if goal emergency-trash 1
+  #if civ-selected magyar and research-completed ri-mercenaries
+    goal unique-unit-cavalry-trash = 1
+  #else
+    goal unique-unit-cavalry-trash = 0
+  #end if
+
   goal produce-archers = 0
   goal produce-hand-cannoneers = 0
   goal produce-cavalry-archers = 0
@@ -14,20 +20,31 @@
   goal produce-mangonels = 0
   goal produce-scorpions = 0
   goal produce-monks = 0
-  goal produce-unique-units = 0
-  
-  #if goal partial-water-map 1
-    goal produce-galleys = 0
-    goal produce-fire-ships = 0
+  #if goal unique-unit-cavalry-trash 1
+    goal produce-unique-units = 0
   #end if
   
-  #if goal good-skirmishers 0 and goal good-scouts 0 and goal good-spearmen 0
-    #select random
-      goal good-skirmishers = 1
-    #randor
-      goal good-scouts = 1
-    #randor
-      goal good-spearmen = 1
-    #end select
+  #respond to min-detection-units scout-cavalry-line
+    goal produce-spearmen = 1
+  #end respond
+  
+  #respond to min-detection-units skirmisher-line
+    goal produce-spearmen = 0
+    #if goal good-scouts 1
+      goal produce-scouts = 1
+      goal produce-skirmishers = 0
+    #else
+      goal produce-scouts = 0
+      goal produce-skirmishers = 1
+    #end if
+  #end respond
+  
+  #respond to min-detection-units spearman-line
+    goal produce-skirmishers = 1
+  #end respond
+  
+  #if goal produce-scouts 1 and goal unique-unit-cavalry-trash 1
+    goal produce-scouts = 0
+    goal produce-unique-unit = 1
   #end if
 #end if

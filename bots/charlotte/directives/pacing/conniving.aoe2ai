@@ -19,10 +19,14 @@ goal conniving-was-outboomed = 0
   chat to self "target has more villagers, mustering."
 #end if
 
-// target outboomed but out militaried, make more TCs
+// target outboomed but we have vastly more military, make more TCs
 #if up-compare-goal target-military-percentage c:> 150 and goal conniving-was-outboomed 1
-  goal desired-town-centers = 3
-  chat to self "gained military lead, now booming"
+  goal desired-town-centers = max-town-centers
+#end if
+
+// we have much more military than anyone, make more TCs
+#if up-compare-goal largest-enemy-military-percentage c:> 150
+  goal desired-town-centers = max-town-centers
 #end if
 
 // good military lead, make it bigger.

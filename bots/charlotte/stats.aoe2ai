@@ -401,6 +401,7 @@ insert decide-blacksmith-investment(type="infantry")
   #end if
   #if players-civ {player} spanish
     goal {prefix}unique-unit-is-cavalry-archer = 1
+    goal {prefix}unique-unit-is-expensive = 1
   #end if
   #if players-civ {player} teutonic
     goal {prefix}unique-unit-is-infantry = 1

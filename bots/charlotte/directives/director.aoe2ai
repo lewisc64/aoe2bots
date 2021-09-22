@@ -3,6 +3,7 @@
   goal attacking = 0
   goal do-backstep = 0
   goal emergency-trash = 0
+  goal be-smart = 1
 #end do
 
 load "age/feudal_rush.aoe2ai"
@@ -23,26 +24,30 @@ load "../units/all_switched.aoe2ai"
   #end do
   
   load "civ_decisions.aoe2ai"
-  load "unit_selection/random_unit_selection.aoe2ai"
   
-  load "attack_decision/aggressive.aoe2ai"
-  load "pacing/conniving.aoe2ai"
+  #if up-compare-goal no-gold-mining-time c:>= 120 and resource-found gold and goal produce-trade-carts 0 and game-time >= 1800
+    goal emergency-trash = 1
+  #end if
   
-  load "emergency_trash.aoe2ai"
-  #if goal emergency-trash 0
-    #do once
-      goal be-smart = 1
-    #end do
+  #if goal emergency-trash 1
+    load "emergency_trash.aoe2ai"
+  #else
+    load "unit_selection/random_unit_selection.aoe2ai"
+    
     #if goal be-smart 1
       load "unit_selection/smart_brain.aoe2ai"
     #end if
     #delay by 2 minutes
       goal be-smart = 0
     #end delay
+    
     load "unit_selection/being_countered_system.aoe2ai"
     load "unit_selection/counter_system.aoe2ai"
   #end if
-  load "mandatory_siege.aoe2ai"
+  load "unit_selection/mandatory_siege.aoe2ai"
+  
+  load "attack_decision/aggressive.aoe2ai"
+  load "pacing/conniving.aoe2ai"
   
   load "targetting.aoe2ai"
   load "town_size_attack.aoe2ai"
