@@ -1,0 +1,66 @@
+const ri-warwolf = 461
+
+load "templates/fast_castle.aoe2ai"
+
+#if up-research-status c: castle-age >= research-pending
+  #do once  
+    sn-free-siege-targeting = 1
+    distribute villagers 30 40 10 20
+    sn-maximum-town-size = 30
+    sn-minimum-town-size = 30
+    sn-safe-town-size = 30
+    assign 16 builders to castle
+  #end do
+  
+  build lumber camps
+  #when
+    build gold mining camps
+    build stone mining camps
+  #then
+    sn-camp-max-distance += 8
+  #end when
+  
+  build houses with 20 headroom
+  
+  build 1 market
+  build 1 university
+  build castle
+  #if wood-amount >= 100
+    build farms
+  #end if
+  
+  trade excess wood and food and gold and stone at 2000
+  
+  research imperial-age  
+  
+  research gold mining camp upgrades
+  research lumber camp upgrades
+  research mill upgrades
+  
+  research ri-siege-engineers
+  research ri-fletching
+  research ri-bodkin-arrow
+  research ri-bracer
+  research ri-murder-holes
+  research ri-masonry
+  research ri-architecture
+  research ri-hoardings
+  
+  #when
+    research ri-warwolf
+  #then always
+    #do once
+      distribute villagers 40 10 40 10
+    #end do
+    auto balance wood and food and gold
+    train trebuchet
+  #end when
+  
+  attack with 30 units
+  
+  #if current-age >= imperial-age
+    train 120 villager with 30 trade
+  #else
+    train 120 villager
+  #end if
+#end if
