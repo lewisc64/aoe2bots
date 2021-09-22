@@ -204,15 +204,15 @@ build castle
   
   build houses with 20 headroom
   
-  #if up-compare-goal non-escrowed-wood >= 200
-    build farms
-  #end if
-  
   #when
     build gold mining camps
     build stone mining camps
   #then
     sn-camp-max-distance += 8
   #end when
+  
+  #if up-compare-goal non-escrowed-wood >= 100
+    build farms
+  #end if
 
 #end if
