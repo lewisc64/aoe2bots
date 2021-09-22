@@ -15,8 +15,7 @@ load "templates/fast_castle.aoe2ai"
   buy stone when gold > 1500
   
   build 3 town-center
-  build forward 10 castle
-  build 20 castle
+  build forward castle near town-center
   build houses
   build farms
   build lumber camps
