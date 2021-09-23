@@ -1,5 +1,9 @@
 const ri-warwolf = 461
 
+#do once
+  chat to all "D'ya hear that? The rumbling."
+#end do
+
 load "templates/fast_castle.aoe2ai"
 
 #if up-research-status c: castle-age >= research-pending
@@ -56,7 +60,14 @@ load "templates/fast_castle.aoe2ai"
     train trebuchet
   #end when
   
-  attack with 30 units
+  
+    #repeat every 30 seconds
+      #when
+        attack with 30 units
+      #then
+        chat to all "Bring the thunder."
+      #end when
+    #end repeat
   
   #if current-age >= imperial-age
     train 120 villager with 30 trade
