@@ -30,7 +30,7 @@ goal conniving-was-outboomed = 0
 #end if
 
 // good military lead, make it bigger.
-#if goal conniving-produce 0 and up-compare-goal target-military-percentage c:>= 100 and up-compare-goal target-military-percentage c:<= 150
+#if goal conniving-produce 0 and up-compare-goal target-military-percentage c:> 100 and up-compare-goal target-military-percentage c:<= 150
   goal conniving-produce = 1
   chat to self "make military lead bigger."
 #end if

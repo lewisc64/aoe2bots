@@ -2231,7 +2231,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 2793)
+    (up-jump-rule 2794)
 )
 (defrule
     (true)
@@ -19758,12 +19758,18 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal emergency-trash 1) (goal attack-ready 1)))
 =>
-    (up-jump-rule 15)
+    (up-jump-rule 16)
 )
 (defrule
     (and (up-compare-goal no-gold-mining-time c:>= 120) (and (resource-found gold) (and (goal produce-trade-carts 0) (game-time >= 1800))))
 =>
     (set-goal emergency-trash 1)
+)
+(defrule
+    (goal emergency-trash 1)
+=>
+    (up-modify-goal desired-military-buildings-per-type c:+ 3)
+    (disable-self)
 )
 (defrule
     (and (civ-selected magyar) (research-completed ri-mercenaries))
@@ -20914,7 +20920,7 @@ watch-tower-arrow > 0))))
     (set-goal desired-town-centers max-town-centers)
 )
 (defrule
-    (and (goal conniving-produce 0) (and (up-compare-goal target-military-percentage c:>= 100) (up-compare-goal target-military-percentage c:<= 150)))
+    (and (goal conniving-produce 0) (and (up-compare-goal target-military-percentage c:> 100) (up-compare-goal target-military-percentage c:<= 150)))
 =>
     (set-goal conniving-produce 1)
     (chat-local-to-self "make military lead bigger.")

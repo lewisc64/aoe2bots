@@ -3,6 +3,10 @@
 #end if
 
 #if goal emergency-trash 1
+  #do once
+    goal desired-military-buildings-per-type += 3
+  #end do
+
   #if civ-selected magyar and research-completed ri-mercenaries
     goal unique-unit-cavalry-trash = 1
   #else
