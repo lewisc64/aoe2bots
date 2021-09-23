@@ -28,15 +28,31 @@
     goal produce-spearmen = 1
   #end respond
   
+  #respond to min-detection-units knight-line
+    goal produce-spearmen = 1
+  #end respond
+  
+  #respond to min-detection-units camel-line
+    goal produce-spearmen = 1
+  #end respond
+  
+  #respond to min-detection-units battle-elephant-line
+    goal produce-spearmen = 1
+  #end respond
+  
   #respond to min-detection-units skirmisher-line
     goal produce-spearmen = 0
     #if goal good-scouts 1
       goal produce-scouts = 1
       goal produce-skirmishers = 0
     #else
-      goal produce-scouts = 0
       goal produce-skirmishers = 1
     #end if
+  #end respond
+  
+  #respond to min-detection-units archer-line
+    goal produce-spearmen = 0
+    goal produce-skirmishers = 1
   #end respond
   
   #respond to min-detection-units spearman-line
