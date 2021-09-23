@@ -2231,7 +2231,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 2794)
+    (up-jump-rule 2795)
 )
 (defrule
     (true)
@@ -20882,7 +20882,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (goal attack-ready 1))
 =>
-    (up-jump-rule 13)
+    (up-jump-rule 14)
 )
 (defrule
     (true)
@@ -20908,6 +20908,13 @@ watch-tower-arrow > 0))))
     (set-goal conniving-produce 1)
     (set-goal conniving-was-outboomed 1)
     (chat-local-to-self "target has more villagers, mustering.")
+)
+(defrule
+    (and (goal conniving-produce 0) (goal desired-town-centers 1))
+=>
+    (set-goal conniving-produce 1)
+    (set-goal conniving-was-outboomed 1)
+    (chat-local-to-self "target will have more villagers, mustering.")
 )
 (defrule
     (and (up-compare-goal target-military-percentage c:> 150) (goal conniving-was-outboomed 1))
