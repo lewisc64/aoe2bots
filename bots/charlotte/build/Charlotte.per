@@ -2231,7 +2231,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 2789)
+    (up-jump-rule 2793)
 )
 (defrule
     (true)
@@ -19758,7 +19758,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal emergency-trash 1) (goal attack-ready 1)))
 =>
-    (up-jump-rule 11)
+    (up-jump-rule 15)
 )
 (defrule
     (and (up-compare-goal no-gold-mining-time c:>= 120) (and (resource-found gold) (and (goal produce-trade-carts 0) (game-time >= 1800))))
@@ -19805,6 +19805,24 @@ watch-tower-arrow > 0))))
     (set-goal produce-spearmen 1)
 )
 (defrule
+    (players-unit-type-count any-enemy knight-line >= min-detection-units)
+    (goal emergency-trash 1)
+=>
+    (set-goal produce-spearmen 1)
+)
+(defrule
+    (players-unit-type-count any-enemy camel-line >= min-detection-units)
+    (goal emergency-trash 1)
+=>
+    (set-goal produce-spearmen 1)
+)
+(defrule
+    (players-unit-type-count any-enemy battle-elephant-line >= min-detection-units)
+    (goal emergency-trash 1)
+=>
+    (set-goal produce-spearmen 1)
+)
+(defrule
     (players-unit-type-count any-enemy skirmisher-line >= min-detection-units)
     (goal emergency-trash 1)
 =>
@@ -19823,7 +19841,13 @@ watch-tower-arrow > 0))))
     (players-unit-type-count any-enemy skirmisher-line >= min-detection-units)
     (goal emergency-trash 1)
 =>
-    (set-goal produce-scouts 0)
+    (set-goal produce-skirmishers 1)
+)
+(defrule
+    (players-unit-type-count any-enemy archer-line >= min-detection-units)
+    (goal emergency-trash 1)
+=>
+    (set-goal produce-spearmen 0)
     (set-goal produce-skirmishers 1)
 )
 (defrule
