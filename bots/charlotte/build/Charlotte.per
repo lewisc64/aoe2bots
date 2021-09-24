@@ -104,6 +104,7 @@
 (defconst ri-tusk-swords 622)
 (defconst ri-double-crossbow 623)
 (defconst ri-mercenaries 514)
+(defconst ri-farimba 577)
 (defconst sea-fish 905)
 (defconst tc-arrow 54)
 (defconst watch-tower-arrow 786)
@@ -2231,7 +2232,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 2795)
+    (up-jump-rule 2819)
 )
 (defrule
     (true)
@@ -9096,7 +9097,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-scouts 1) (unit-available scout-cavalry-line)))
 =>
-    (up-jump-rule 114)
+    (up-jump-rule 119)
 )
 (defrule
     (not (building-type-count-total stable == 0))
@@ -9264,7 +9265,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (unit-available scout-cavalry-line))
 =>
-    (up-jump-rule 88)
+    (up-jump-rule 93)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -9629,6 +9630,39 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-manipur-cavalry))
 =>
     (research ri-manipur-cavalry)
+)
+(defrule
+    (not (current-age >= imperial-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-farimba)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-farimba < research-pending)
+    (research-available ri-farimba)
+    (not (research-completed ri-farimba))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-farimba)
+    (goal do-research 1)
+    (research-available ri-farimba)
+    (not (research-completed ri-farimba))
+=>
+    (research ri-farimba)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -9886,7 +9920,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-knights 1) (unit-available knight-line)))
 =>
-    (up-jump-rule 114)
+    (up-jump-rule 119)
 )
 (defrule
     (not (building-type-count-total stable == 0))
@@ -10054,7 +10088,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (unit-available knight-line))
 =>
-    (up-jump-rule 88)
+    (up-jump-rule 93)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -10419,6 +10453,39 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-manipur-cavalry))
 =>
     (research ri-manipur-cavalry)
+)
+(defrule
+    (not (current-age >= imperial-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-farimba)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-farimba < research-pending)
+    (research-available ri-farimba)
+    (not (research-completed ri-farimba))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-farimba)
+    (goal do-research 1)
+    (research-available ri-farimba)
+    (not (research-completed ri-farimba))
+=>
+    (research ri-farimba)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -10676,7 +10743,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-camels 1) (unit-available camel-line)))
 =>
-    (up-jump-rule 114)
+    (up-jump-rule 119)
 )
 (defrule
     (not (building-type-count-total stable == 0))
@@ -10844,7 +10911,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (unit-available camel-line))
 =>
-    (up-jump-rule 88)
+    (up-jump-rule 93)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -11209,6 +11276,39 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-manipur-cavalry))
 =>
     (research ri-manipur-cavalry)
+)
+(defrule
+    (not (current-age >= imperial-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-farimba)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-farimba < research-pending)
+    (research-available ri-farimba)
+    (not (research-completed ri-farimba))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-farimba)
+    (goal do-research 1)
+    (research-available ri-farimba)
+    (not (research-completed ri-farimba))
+=>
+    (research ri-farimba)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -11466,7 +11566,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-battle-elephants 1) (unit-available battle-elephant-line)))
 =>
-    (up-jump-rule 110)
+    (up-jump-rule 115)
 )
 (defrule
     (not (building-type-count-total stable == 0))
@@ -11606,7 +11706,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (unit-available battle-elephant-line))
 =>
-    (up-jump-rule 88)
+    (up-jump-rule 93)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -11971,6 +12071,39 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-manipur-cavalry))
 =>
     (research ri-manipur-cavalry)
+)
+(defrule
+    (not (current-age >= imperial-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-farimba)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-farimba < research-pending)
+    (research-available ri-farimba)
+    (not (research-completed ri-farimba))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-farimba)
+    (goal do-research 1)
+    (research-available ri-farimba)
+    (not (research-completed ri-farimba))
+=>
+    (research ri-farimba)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -13633,7 +13766,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-unique-units 1) (unit-available my-unique-unit-line)))
 =>
-    (up-jump-rule 516)
+    (up-jump-rule 521)
 )
 (defrule
     (true)
@@ -15639,7 +15772,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (or (civ-selected byzantine) (or (civ-selected hun) (or (civ-selected magyar) (or (civ-selected persian) (or (civ-selected saracen) (civ-selected slavic)))))) (unit-available my-unique-unit-line)))
 =>
-    (up-jump-rule 88)
+    (up-jump-rule 93)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -16004,6 +16137,39 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-manipur-cavalry))
 =>
     (research ri-manipur-cavalry)
+)
+(defrule
+    (not (current-age >= imperial-age))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-farimba)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-farimba < research-pending)
+    (research-available ri-farimba)
+    (not (research-completed ri-farimba))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-farimba)
+    (goal do-research 1)
+    (research-available ri-farimba)
+    (not (research-completed ri-farimba))
+=>
+    (research ri-farimba)
 )
 (defrule
     (not (current-age == feudal-age))
@@ -19214,6 +19380,7 @@ watch-tower-arrow > 0))))
     (set-goal good-militia 1)
     (set-goal good-hand-cannoneer 1)
     (set-goal good-galleys 1)
+    (set-goal good-knights 1)
     (disable-self)
 )
 (defrule
@@ -19608,6 +19775,7 @@ watch-tower-arrow > 0))))
     (set-goal enemy-good-militia 1)
     (set-goal enemy-good-hand-cannoneer 1)
     (set-goal enemy-good-galleys 1)
+    (set-goal enemy-good-knights 1)
     (disable-self)
 )
 (defrule
@@ -20882,7 +21050,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (goal attack-ready 1))
 =>
-    (up-jump-rule 14)
+    (up-jump-rule 13)
 )
 (defrule
     (true)
@@ -20917,12 +21085,8 @@ watch-tower-arrow > 0))))
     (chat-local-to-self "target will have more villagers, mustering.")
 )
 (defrule
-    (and (up-compare-goal target-military-percentage c:> 150) (goal conniving-was-outboomed 1))
-=>
-    (set-goal desired-town-centers max-town-centers)
-)
-(defrule
-    (up-compare-goal largest-enemy-military-percentage c:> 150)
+    (and (or (goal conniving-was-outboomed 1) (up-compare-goal largest-enemy-military-percentage c:> 150)) (up-compare-goal desired-town-centers c:< max-town-centers))
+    (and (up-compare-goal target-military-percentage c:> 150) (goal attacking 1))
 =>
     (set-goal desired-town-centers max-town-centers)
 )
