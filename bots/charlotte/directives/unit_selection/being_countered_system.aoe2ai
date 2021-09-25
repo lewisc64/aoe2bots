@@ -49,4 +49,12 @@
     goal produce-eagles = 0
   #end respond
   
+  #respond to min-detection-units knight-line
+    goal produce-mangonels = 0
+  #end respond
+  
+  #respond to min-detection-units scout-cavalry-line
+    goal produce-mangonels = 0
+  #end respond
+  
 #end if

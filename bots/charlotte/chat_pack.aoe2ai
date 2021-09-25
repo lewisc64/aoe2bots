@@ -1,0 +1,251 @@
+#template say-opening-line
+  #if goal free-for-all 1 or goal team-game 1
+    #select random persistant
+      chat to all "Good luck and have fun everyone!"
+    #randor
+      #if goal free-for-all 1
+        chat to all "May the best ruler win!"
+      #else
+        chat to all "May the best team win!"
+      #end if
+    #randor
+      chat to all "GL everyone!!!"
+    #randor
+      chat to all "Let's do this!"
+    #end select
+  #else
+    #select random persistant
+      chat to all "Hi! Go easy on me, okay?"
+    #randor
+      chat to all "Looking forward to this. Let's go."
+    #randor
+      chat to all "Good luck, have fun!"
+    #randor
+      chat to all "GL!"
+    #randor
+      chat to all "HF!"
+    #randor
+      chat to all "Good luck!"
+    #randor
+      chat to all "Have fun!"
+    #end select
+  #end if
+#end template
+
+#template say-resign-line
+  #select random persistant
+    chat to all "My heart's not really in this anymore, sorry."
+  #randor
+    chat to all "It was a good game, I think I'm out though."
+  #randor
+    chat to all "Good game, well played."
+  #randor
+    chat to all "I'm done."
+  #end select
+#end template
+
+#template say-yes-friendly
+  #select random
+    chat to {player} "1Sure."
+  #randor
+    chat to {player} "1Of course."
+  #randor
+    chat to {player} "1Okay."
+  #end select
+#end template
+
+#template say-no-friendly
+  #select random
+    chat to {player} "2Sorry, no."
+  #randor
+    chat to {player} "2Not right now, sorry."
+  #randor
+    chat to {player} "2Sorry, no can do!"
+  #end select
+#end template
+
+#template say-yes-unfriendly
+  #select random
+    chat to {player} "1Why not?"
+  #randor
+    chat to {player} "1Sounds good."
+  #randor
+    chat to {player} "1Sure."
+  #end select
+#end template
+
+#template say-no-unfriendly
+  #select random
+    chat to {player} "2Absolutely not."
+  #randor
+    chat to {player} "2Are you out of your mind?"
+  #randor
+    chat to {player} "2As if!"
+  #end select
+#end template
+
+#template say-current-age
+  #if up-research-status c: feudal-age < research-pending
+    chat to all "Dark age."
+  #else if up-research-status c: feudal-age == research-pending
+    chat to all "On my way to feudal."
+  #else if up-research-status c: castle-age < research-pending
+    chat to all "Feudal age."
+  #else if up-research-status c: castle-age == research-pending
+    chat to all "On my way to castle."
+  #else if up-research-status c: imperial-age < research-pending
+    chat to all "Castle age."
+  #else if up-research-status c: imperial-age == research-pending
+    chat to all "On my way to imperial."
+  #else
+    chat to all "Imperial age."
+  #end if
+#end template
+
+#template complain-score-free-for-all
+  #select random persistant
+    chat to all "I'm having some trouble with this one."
+  #randor
+    chat to all "This is a tough game."
+  #randor
+    chat to all "I don't like my chances here."
+  #end select
+#end template
+
+#template complain-score-team-game
+  #select random persistant
+    chat to all "We may need a different strategy..."
+  #randor
+    chat to all "I'm crumbling... Hopefully we still have a shot?"
+  #randor
+    chat to all "This is hard."
+  #end select
+#end template
+
+#template complain-score-duel
+  #select random persistant
+    chat to all "I feel vastly outpaced, you're playing a good game."
+  #randor
+    chat to all "I'm not doing very well..."
+  #randor
+    chat to all "This could have gone better, oh well."
+  #randor
+    chat to all "You're playing quite well."
+  #randor
+    chat to all "I'm not sure I can best you."
+  #end select
+#end template
+
+#template gloat-score-free-for-all
+  #select random persistant
+    chat to all "I'm pretty sure I've got this game."
+  #randor
+    chat to all "It was tough, but I got there in the end."
+  #end select
+#end template
+
+#template gloat-score-team-game
+  chat to all "Looks like we're close to getting this squared off."
+#end template
+
+#template gloat-score-duel
+  chat to all "I'm winning this one. You played well though!"
+#end template
+
+#template complain-military
+  #select random persistant
+    chat to all "I don't like this..."
+  #randor
+    chat to all "Dicey."
+  #randor
+    chat to all "I'd better step on the pedal a bit, sheesh."
+  #randor
+    chat to all "...please don't hurt me!"
+  #randor
+    #if goal team-game 1 or goal free-for-all 1
+      chat to all "It's looking scary out there..."
+    #else
+      chat to all "You're looking scary..."
+    #end if
+  #randor
+    chat to all "That's a lot of stuff."
+  #end select
+#end template
+
+#template gloat-military-attacking
+  #select random persistant
+    #if goal team-game 1 or goal free-for-all 1
+      chat to all "Let's crush 'em!"
+    #else
+      chat to all "It's time for some violence!"
+    #end if
+  #randor
+    chat to all "Oh yeah, this is good."
+  #randor
+    #if goal team-game 1 or goal free-for-all 1
+      chat to all "You lot aren't prepared for this."
+    #else
+      chat to all "You aren't prepared for this."
+    #end if
+  #randor
+    chat to all "[cracks knuckles]"
+  #randor
+    chat to all "I'm pumped! Let's go!!!"
+  #randor
+    chat to all "Allow me to show you some numbers."
+  #randor
+    #if goal team-game 1
+      chat to all "We're bringing the pain."
+    #else
+      chat to all "I'm bringing the pain."
+    #end if
+  #randor
+    chat to all "If I win this battle, it's all over."
+  #end select
+#end template
+
+#template gloat-military-defensive
+  #select random persistant
+    #if goal team-game 1 or goal free-for-all 1
+      chat to all "Come at me."
+    #else
+      chat to all "I'm ready for what you've got."
+    #end if
+  #randor
+    chat to all "Feeling confident."
+  #randor
+    chat to all "Feeling good."
+  #randor
+    chat to all "I am prepared."
+  #randor
+    chat to all "Are you ready?"
+  #end select
+#end template
+
+#template say-clicked-castle-line
+  #select random persistant
+    chat to allies "On my way up."
+  #randor
+    chat to allies "I've clicked up."
+  #randor
+    chat to allies "Going castle."
+  #end select
+#end template
+
+#template complain-being-exploited
+  #select random persistant
+    chat to all "Why must you do this?"
+  #randor
+    #if goal team-game 1
+      chat to all "Your teammate is a real piece of work."
+    #else
+      chat to all "I don't think I like you very much..."
+    #end if
+  #randor
+    chat to all "[sigh]"
+  #randor
+    chat to all "Why can't we just have fun?"
+  #randor
+    chat to all "You know I can't deal with this. It's unfair."
+  #end select
+#end template

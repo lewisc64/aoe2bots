@@ -1,0 +1,18 @@
+#reply to ally taunt 34
+  #if goal good-fire-ships 1
+    goal produce-fire-ships = 1
+  #else
+    goal produce-galleys = 1
+  #end if
+  insert say-yes-friendly(player="every-ally")
+#end reply
+
+#reply to ally taunt 35
+  #if goal full-water-map 0
+    goal produce-fire-ships = 0
+    goal produce-galleys = 0
+    insert say-yes-friendly(player="every-ally")
+  #else
+    insert say-no-friendly(player="every-ally")
+  #end if
+#end reply

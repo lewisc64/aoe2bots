@@ -37,11 +37,27 @@ const excellent-food-sell-price = 200
   #end if
 #end template
 
+#template handle-ally-resource-request
+  #reply to ally taunt {taunt}
+    #if up-compare-goal non-escrowed-{resource} c:> {resource}-threshold and building-type-count market >= 1
+      tribute 100 {resource} to this-any-ally
+      insert say-yes-friendly(player="every-ally")
+    #else
+      insert say-no-friendly(player="every-ally")
+    #end if
+  #end reply
+#end template
+
 #if goal team-game 1
   insert send-excess-to-ally(resource="wood")
   insert send-excess-to-ally(resource="food")
   insert send-excess-to-ally(resource="gold")
   insert send-excess-to-ally(resource="stone")
+  
+  insert handle-ally-resource-request(taunt=3,resource="food")
+  insert handle-ally-resource-request(taunt=4,resource="wood")
+  insert handle-ally-resource-request(taunt=5,resource="gold")
+  insert handle-ally-resource-request(taunt=6,resource="stone")
 #else
   trade excess wood and food and gold at max-gold
 #end if

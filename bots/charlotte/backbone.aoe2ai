@@ -41,7 +41,7 @@ const min-detection-units = 5
 const extortionate-tech-villagers = 100
 const expensive-tech-villagers = 70
 
-const wood-unit-threshold = 0 // was 275
+const wood-unit-threshold = 0
 const food-unit-threshold = 0
 const gold-unit-threshold = 0
 
@@ -165,13 +165,7 @@ const gold-unit-threshold = 0
   #end if
   
   goal desired-military-buildings-per-type = 2
-  #select random persistant
-    goal desired-town-centers = 1
-  #randor
-    goal desired-town-centers = 3
-  #randor
-    goal desired-town-centers = max-town-centers
-  #end select
+  goal desired-town-centers = max-town-centers
   
   goal desired-villagers = 120
   goal desired-trade-carts = 30
@@ -212,6 +206,7 @@ const gold-unit-threshold = 0
   insert clear-good-units(prefix="")
 #end do
 
+load "chat_pack.aoe2ai"
 load "stats.aoe2ai"
 
 #if wood-amount >= wood-unit-threshold
