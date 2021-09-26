@@ -122,6 +122,18 @@ const gold-unit-threshold = 0
   @up-modify-goal produce-fire-ships g:= good-fire-ships
 #end template
 
+#if cc-players-unit-type-count any-ally villager > 0
+  goal team-game = 1
+#else
+  goal team-game = 0
+#end if
+
+#if goal team-game 0 and player-valid 1 and player-valid 2 and player-valid 3
+  goal free-for-all = 1
+#else
+  goal free-for-all = 0
+#end if
+
 #do once
   set up basics
   take boar
@@ -136,18 +148,6 @@ const gold-unit-threshold = 0
   sn-maximum-attack-group-size = 1
   sn-minimum-attack-group-size = 1
   sn-special-attack-type2 = villager
-  
-  #if cc-players-unit-type-count any-ally villager > 0
-    goal team-game = 1
-  #else
-    goal team-game = 0
-  #end if
-  
-  #if goal team-game 0 and player-valid 1 and player-valid 2 and player-valid 3
-    goal free-for-all = 1
-  #else
-    goal free-for-all = 0
-  #end if
   
   goal full-water-map = 0
   goal partial-water-map = 0

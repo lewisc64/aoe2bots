@@ -57,6 +57,9 @@ load "../units/all_switched.aoe2ai"
 #end if
 
 load "help_allies.aoe2ai"
+#if goal team-game 1 or goal free-for-all 1
+  load "diplomacy/diplomacy.aoe2ai"
+#end if
 load "resigning.aoe2ai"
 
 #do once

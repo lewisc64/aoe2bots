@@ -1,6 +1,6 @@
 #template say-opening-line
   #if goal free-for-all 1 or goal team-game 1
-    #select random persistant
+    #select random
       chat to all "Good luck and have fun everyone!"
     #randor
       #if goal free-for-all 1
@@ -14,7 +14,7 @@
       chat to all "Let's do this!"
     #end select
   #else
-    #select random persistant
+    #select random
       chat to all "Hi! Go easy on me, okay?"
     #randor
       chat to all "Looking forward to this. Let's go."
@@ -33,7 +33,7 @@
 #end template
 
 #template say-resign-line
-  #select random persistant
+  #select random
     chat to all "My heart's not really in this anymore, sorry."
   #randor
     chat to all "It was a good game, I think I'm out though."
@@ -86,24 +86,24 @@
 
 #template say-current-age
   #if up-research-status c: feudal-age < research-pending
-    chat to all "Dark age."
+    chat to {player} "Dark age."
   #else if up-research-status c: feudal-age == research-pending
-    chat to all "On my way to feudal."
+    chat to {player} "On my way to feudal."
   #else if up-research-status c: castle-age < research-pending
-    chat to all "Feudal age."
+    chat to {player} "Feudal age."
   #else if up-research-status c: castle-age == research-pending
-    chat to all "On my way to castle."
+    chat to {player} "On my way to castle."
   #else if up-research-status c: imperial-age < research-pending
-    chat to all "Castle age."
+    chat to {player} "Castle age."
   #else if up-research-status c: imperial-age == research-pending
-    chat to all "On my way to imperial."
+    chat to {player} "On my way to imperial."
   #else
-    chat to all "Imperial age."
+    chat to {player} "Imperial age."
   #end if
 #end template
 
 #template complain-score-free-for-all
-  #select random persistant
+  #select random
     chat to all "I'm having some trouble with this one."
   #randor
     chat to all "This is a tough game."
@@ -113,7 +113,7 @@
 #end template
 
 #template complain-score-team-game
-  #select random persistant
+  #select random
     chat to all "We may need a different strategy..."
   #randor
     chat to all "I'm crumbling... Hopefully we still have a shot?"
@@ -123,7 +123,7 @@
 #end template
 
 #template complain-score-duel
-  #select random persistant
+  #select random
     chat to all "I feel vastly outpaced, you're playing a good game."
   #randor
     chat to all "I'm not doing very well..."
@@ -137,7 +137,7 @@
 #end template
 
 #template gloat-score-free-for-all
-  #select random persistant
+  #select random
     chat to all "I'm pretty sure I've got this game."
   #randor
     chat to all "It was tough, but I got there in the end."
@@ -153,7 +153,7 @@
 #end template
 
 #template complain-military
-  #select random persistant
+  #select random
     chat to all "I don't like this..."
   #randor
     chat to all "Dicey."
@@ -173,7 +173,7 @@
 #end template
 
 #template gloat-military-attacking
-  #select random persistant
+  #select random
     #if goal team-game 1 or goal free-for-all 1
       chat to all "Let's crush 'em!"
     #else
@@ -205,7 +205,7 @@
 #end template
 
 #template gloat-military-defensive
-  #select random persistant
+  #select random
     #if goal team-game 1 or goal free-for-all 1
       chat to all "Come at me."
     #else
@@ -223,7 +223,7 @@
 #end template
 
 #template say-clicked-castle-line
-  #select random persistant
+  #select random
     chat to allies "On my way up."
   #randor
     chat to allies "I've clicked up."
@@ -233,7 +233,7 @@
 #end template
 
 #template complain-being-exploited
-  #select random persistant
+  #select random
     chat to all "Why must you do this?"
   #randor
     #if goal team-game 1
@@ -247,5 +247,61 @@
     chat to all "Why can't we just have fun?"
   #randor
     chat to all "You know I can't deal with this. It's unfair."
+  #end select
+#end template
+
+#template say-accept-alliance-line
+  #select random
+    chat to {player} "Good idea."
+  #randor
+    chat to {player} "I was hoping you'd do that!"
+  #randor
+    chat to {player} "I agree, let's be friends."
+  #end select
+#end template
+
+#template say-request-alliance-line
+  #select random
+    chat to {player} "Friends?"
+  #randor
+    chat to {player} "Let's be allies."
+  #randor
+    chat to {player} "Want to work together?"
+  #end select
+#end template
+
+#template say-alliance-begin-line
+  #select random
+    chat to {player} "Let's do this. Together."
+  #randor
+    chat to {player} "Nice to have you with me."
+  #randor
+    chat to {player} "Thanks."
+  #randor
+    chat to {player} "Unstoppable team!"
+  #end select
+#end template
+
+#template say-alliance-betrayal-line
+  #select random
+    chat to {player} "Really?"
+  #randor
+    chat to {player} "I thought we were friends."
+  #randor
+    chat to {player} "You asked for it."
+  #randor
+    chat to {player} "You backstabbing so-and-so!"
+  #end select
+#end template
+
+#template say-do-betrayal-line
+  #select random
+    chat to {player} "It could never have worked between us."
+  #randor
+    chat to {player} "I've had enough of you."
+  #randor
+    chat to {player} "You're next."
+  #randor
+    chat to {player} "You aren't needed anymore."
   #end select
 #end template

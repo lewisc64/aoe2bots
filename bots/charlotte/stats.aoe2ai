@@ -423,3 +423,38 @@ insert decide-blacksmith-investment(type="infantry")
 #do once
   insert get-unique-unit-information(prefix="",player="my-player-number")
 #end do
+
+// player type counts
+
+#template add-to-player-count
+  #if player-in-game {player}
+    #if stance-toward {player} ally
+      goal ally-players-count += 1
+    #else if stance-toward {player} neutral
+      goal neutral-players-count += 1
+    #else if stance-toward {player} enemy
+      goal enemy-players-count += 1
+    #end if
+  #end if
+#end template
+
+goal ally-players-count = 0
+goal neutral-players-count = 0
+goal enemy-players-count = 0
+
+insert add-to-player-count(player=1)
+insert add-to-player-count(player=2)
+insert add-to-player-count(player=3)
+insert add-to-player-count(player=4)
+insert add-to-player-count(player=5)
+insert add-to-player-count(player=6)
+insert add-to-player-count(player=7)
+insert add-to-player-count(player=8)
+
+#if stance-toward my-player-number ally
+  goal ally-players-count -= 1
+#else if stance-toward my-player-number neutral
+  goal neutral-players-count -= 1
+#else if stance-toward my-player-number enemy
+  goal enemy-players-count -= 1
+#end if

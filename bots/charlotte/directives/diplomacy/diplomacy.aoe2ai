@@ -1,0 +1,131 @@
+
+#do once
+  goal want-alliance = 0
+  goal player-1-is-bad-egg = 0
+  goal player-2-is-bad-egg = 0
+  goal player-3-is-bad-egg = 0
+  goal player-4-is-bad-egg = 0
+  goal player-5-is-bad-egg = 0
+  goal player-6-is-bad-egg = 0
+  goal player-7-is-bad-egg = 0
+  goal player-8-is-bad-egg = 0
+  goal allied-with-player-1 = 0
+  goal allied-with-player-2 = 0
+  goal allied-with-player-3 = 0
+  goal allied-with-player-4 = 0
+  goal allied-with-player-5 = 0
+  goal allied-with-player-6 = 0
+  goal allied-with-player-7 = 0
+  goal allied-with-player-8 = 0
+#end do
+
+#template handle-stance-changes
+
+  #if goal player-{player}-is-bad-egg 0 and goal allied-with-player-{player} 0
+    #if players-stance {player} ally
+      #if stance-toward {player} enemy or stance-toward {player} neutral
+        insert say-accept-alliance-line(player={player})
+        chat to self "accepting alliance request from player {player}"
+        @set-stance {player} ally
+        goal allied-with-player-{player} = 1
+      #else
+        insert say-alliance-begin-line(player={player})
+        chat to self "player {player} accepted our alliance request"
+        goal allied-with-player-{player} = 1
+      #end if
+    #end if
+  #end if
+  
+  #if players-stance {player} enemy
+    #if goal allied-with-player-{player} 1
+      insert say-alliance-betrayal-line(player={player})
+      chat to self "betrayed by player {player}"
+      goal player-{player}-is-bad-egg = 1
+      goal allied-with-player-{player} = 0
+      @set-stance {player} enemy
+    #else if goal threat-player {player} and not stance-toward {player} enemy
+      @set-stance {player} enemy
+    #end if
+  #end if
+
+#end template
+
+#template betray-ally
+  #if goal allied-with-player-{player} 1
+    insert say-do-betrayal-line(player={player})
+    @set-stance {player} enemy
+    chat to self "betraying player {player}"
+    goal player-{player}-is-bad-egg = 1
+    goal allied-with-player-{player} = 0
+  #end if
+#end template
+
+#template enemy-if-neutral
+  #if players-stance {player} neutral and not stance-toward {player} enemy
+    @set-stance {player} enemy
+  #end if
+#end template
+
+load "nice.aoe2ai"
+
+#if goal want-alliance 1
+  @set-stance any-neutral ally
+#end if
+
+#if goal enemy-players-count 0
+  #select random
+    insert enemy-if-neutral(player=1)
+  #randor
+    insert enemy-if-neutral(player=2)
+  #randor
+    insert enemy-if-neutral(player=3)
+  #randor
+    insert enemy-if-neutral(player=4)
+  #randor
+    insert enemy-if-neutral(player=5)
+  #randor
+    insert enemy-if-neutral(player=6)
+  #randor
+    insert enemy-if-neutral(player=7)
+  #randor
+    insert enemy-if-neutral(player=8)
+  #end select
+#end if
+
+#if goal want-alliance -1
+  #select random
+    insert betray-ally(player=1)
+  #randor
+    insert betray-ally(player=2)
+  #randor
+    insert betray-ally(player=3)
+  #randor
+    insert betray-ally(player=4)
+  #randor
+    insert betray-ally(player=5)
+  #randor
+    insert betray-ally(player=6)
+  #randor
+    insert betray-ally(player=7)
+  #randor
+    insert betray-ally(player=8)
+  #end select
+#end if
+
+#select random
+  insert handle-stance-changes(player=1)
+#randor
+  insert handle-stance-changes(player=2)
+#randor
+  insert handle-stance-changes(player=3)
+#randor
+  insert handle-stance-changes(player=4)
+#randor
+  insert handle-stance-changes(player=5)
+#randor
+  insert handle-stance-changes(player=6)
+#randor
+  insert handle-stance-changes(player=7)
+#randor
+  insert handle-stance-changes(player=8)
+#end select

@@ -6,6 +6,10 @@
   goal resign = 1
 #end if
 
+#if population < 10 and building-type-count-total town-center == 0 and game-time >= 1200
+  goal resign = 1
+#end if
+
 #if goal resign 1 and goal team-game 0
   delete building castle
   delete building town-center

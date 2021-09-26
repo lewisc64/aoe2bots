@@ -1,6 +1,6 @@
 // respond to chat taunts
 #reply to ally taunt 42
-  insert say-current-age
+  insert say-current-age(player="every-ally")
 #end reply
 
 #reply to enemy taunt 34

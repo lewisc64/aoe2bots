@@ -1,0 +1,14 @@
+#do once
+  chat to self "Being nice."
+  @set-stance every-enemy neutral
+#end do
+
+#if up-compare-goal enemy-players-count g:> ally-players-count
+  goal want-alliance = 1
+  chat to self "want alliance"
+#else if goal enemy-players-count 0 and goal neutral-players-count 0
+  goal want-alliance = -1
+  chat to self "want betrayal"
+#else
+  goal want-alliance = 0
+#end if
