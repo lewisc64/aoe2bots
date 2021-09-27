@@ -28,12 +28,11 @@ load "templates/fast_castle.aoe2ai"
 
   #do once
     goal purge = 0
-    sn-maximum-town-size = 30
-    sn-minimum-town-size = 30
-    
     assign 8 builders to town-center-foundation
     assign 8 builders to castle
   #end do
+  
+  auto expand town size to 30
   
   #if escrow-amount food <= 1000
     escrow 10 food
