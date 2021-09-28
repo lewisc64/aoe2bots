@@ -61,7 +61,7 @@
 #end template
 
 #template enemy-if-neutral
-  #if players-stance {player} neutral and not stance-toward {player} enemy
+  #if (players-stance {player} neutral or stance-toward {player} neutral) and not stance-toward {player} enemy
     @set-stance {player} enemy
   #end if
 #end template

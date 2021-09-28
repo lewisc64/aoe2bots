@@ -6,7 +6,7 @@
 #if up-compare-goal enemy-players-count g:> ally-players-count
   goal want-alliance = 1
   chat to self "want alliance"
-#else if goal enemy-players-count 0 and goal neutral-players-count 0
+#else if goal enemy-players-count 0 and goal neutral-players-count 0 and current-age >= imperial-age
   goal want-alliance = -1
   chat to self "want betrayal"
 #else

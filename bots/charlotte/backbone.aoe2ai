@@ -27,11 +27,6 @@ const ranged-unit-class = 900
 const infantry-unit-class = 906
 const cavalry-unit-class = 912
 
-const dark-age-town-size = 12
-const feudal-age-town-size = 14
-const castle-age-town-size = 24
-const imperial-age-town-size = 30
-
 const max-town-centers = 3
 const max-castle-age-rams = 5
 const max-imperial-age-rams = 10
@@ -122,18 +117,6 @@ const gold-unit-threshold = 0
   @up-modify-goal produce-fire-ships g:= good-fire-ships
 #end template
 
-#if cc-players-unit-type-count any-ally villager > 0
-  goal team-game = 1
-#else
-  goal team-game = 0
-#end if
-
-#if goal team-game 0 and player-valid 1 and player-valid 2 and player-valid 3
-  goal free-for-all = 1
-#else
-  goal free-for-all = 0
-#end if
-
 #do once
   set up basics
   take boar
@@ -209,6 +192,18 @@ const gold-unit-threshold = 0
 load "chat_pack.aoe2ai"
 load "stats.aoe2ai"
 
+#if players-stance any-ally ally and stance-toward any-ally ally
+  goal team-game = 1
+#else
+  goal team-game = 0
+#end if
+
+#if goal team-game 0 and player-valid 1 and player-valid 2 and player-valid 3
+  goal free-for-all = 1
+#else
+  goal free-for-all = 0
+#end if
+
 #if wood-amount >= wood-unit-threshold
   goal enough-wood-for-units = 1
 #else
@@ -243,37 +238,7 @@ load "stats.aoe2ai"
   goal desired-military-buildings-per-type = 5
 #end if
 
-#do once
-  #if up-research-status c: imperial-age >= research-pending
-    sn-maximum-town-size = imperial-age-town-size
-    sn-minimum-town-size = imperial-age-town-size
-    sn-safe-town-size = imperial-age-town-size
-    sn-maximum-food-drop-distance = imperial-age-town-size
-    sn-maximum-gold-drop-distance = 16
-    sn-maximum-stone-drop-distance = 16
-  #else if up-research-status c: castle-age >= research-pending
-    sn-maximum-town-size = castle-age-town-size
-    sn-minimum-town-size = castle-age-town-size
-    sn-safe-town-size = castle-age-town-size
-    sn-maximum-food-drop-distance = castle-age-town-size
-    sn-maximum-gold-drop-distance = 8
-    sn-maximum-stone-drop-distance = 8
-  #else if up-research-status c: feudal-age >= research-pending
-    sn-maximum-town-size = feudal-age-town-size
-    sn-minimum-town-size = feudal-age-town-size
-    sn-safe-town-size = feudal-age-town-size
-    sn-maximum-food-drop-distance = feudal-age-town-size
-    sn-maximum-gold-drop-distance = 8
-    sn-maximum-stone-drop-distance = 8
-  #else
-    sn-maximum-town-size = dark-age-town-size
-    sn-minimum-town-size = dark-age-town-size
-    sn-safe-town-size = dark-age-town-size
-    sn-maximum-food-drop-distance = dark-age-town-size
-    sn-maximum-gold-drop-distance = 8
-    sn-maximum-stone-drop-distance = 8
-  #end if
-#end do
+auto expand town size to 30
 
 #if goal attempted-researches 0
   sn-enable-training-queue = 1

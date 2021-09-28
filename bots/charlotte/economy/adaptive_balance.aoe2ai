@@ -62,25 +62,25 @@ const excellent-food-sell-price = 200
   trade excess wood and food and gold at max-gold
 #end if
 
-#if commodity-buying-price wood <= good-wood-price
+#if commodity-buying-price wood <= good-wood-price or town-under-attack
   goal can-buy-wood = 1
 #else
   goal can-buy-wood = 0
 #end if
 
-#if commodity-buying-price food <= good-food-price
+#if commodity-buying-price food <= good-food-price or town-under-attack
   goal can-buy-food = 1
 #else
   goal can-buy-food = 0
 #end if
 
-#if commodity-selling-price wood >= good-wood-sell-price
+#if commodity-selling-price wood >= good-wood-sell-price or town-under-attack
   goal can-sell-wood = 1
 #else
   goal can-sell-wood = 0
 #end if
 
-#if commodity-selling-price food >= good-food-sell-price
+#if commodity-selling-price food >= good-food-sell-price or town-under-attack
   goal can-sell-food = 1
 #else
   goal can-sell-food = 0

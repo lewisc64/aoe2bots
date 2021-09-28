@@ -164,6 +164,7 @@ goal target-player-score-delta = 0
     goal target-{type}-population = 0
     goal target-{type}-percentage = 0
     goal largest-enemy-{type}-population = 0
+    goal largest-neutral-{type}-population = 0 // consider neutrals as enemies
     goal largest-enemy-{type}-percentage = 0
   #end do
 
@@ -171,11 +172,16 @@ goal target-player-score-delta = 0
 
   @up-get-target-fact {type}-population 0 target-{type}-population
   @up-get-fact-max any-enemy {type}-population 0 largest-enemy-{type}-population
+  @up-get-fact-max any-neutral {type}-population 0 largest-neutral-{type}-population
   @up-modify-goal target-{type}-percentage g:= my-{type}-population
   @up-modify-goal target-{type}-percentage c:* 100
   @up-modify-goal largest-enemy-{type}-percentage g:= target-{type}-percentage
   @up-modify-goal target-{type}-percentage g:/ target-{type}-population
-  @up-modify-goal largest-enemy-{type}-percentage g:/ largest-enemy-{type}-population
+  #if up-compare-goal largest-neutral-{type}-population g:> largest-enemy-{type}-population
+    @up-modify-goal largest-enemy-{type}-percentage g:/ largest-neutral-{type}-population
+  #else
+    @up-modify-goal largest-enemy-{type}-percentage g:/ largest-enemy-{type}-population
+  #end if
 #end template
 
 insert get-enemy-population-stats(type="military")

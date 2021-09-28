@@ -10,7 +10,12 @@
   goal resign = 1
 #end if
 
-#if goal resign 1 and goal team-game 0
+#if goal resign 1
+  @set-stance every-neutral ally
+  @set-stance every-enemy ally
+#end if
+
+#if goal resign 1 and goal team-game 0 and stance-toward any-enemy enemy
   delete building castle
   delete building town-center
 #end if
