@@ -147,7 +147,6 @@ build lumber camps
   #end if
   
   research castle-age with food and gold escrow
-  research imperial-age with food and gold escrow
   research blacksmith ranged upgrades with food and gold escrow
   
   #respond to archery-range building from target-player
@@ -195,6 +194,7 @@ build lumber camps
     distribute 2 villagers from wood and food to gold
   #end if
   
+  research imperial-age with food and gold escrow
   research blacksmith ranged upgrades with food and gold escrow
   research ri-crossbow with food and gold escrow
   research ri-arbalest with food and gold escrow
