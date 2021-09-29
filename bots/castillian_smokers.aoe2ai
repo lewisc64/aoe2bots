@@ -4,6 +4,8 @@
   chat to all "We're too cool for school, back off, fool!"
 #end do
 
+do basic diplomacy
+
 load "templates/fast_castle.aoe2ai"
 
 #if up-research-status c: castle-age >= research-pending

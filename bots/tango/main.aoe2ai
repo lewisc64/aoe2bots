@@ -55,6 +55,8 @@ goal attacking = 0
   goal stone-modifier-percentage = 0
 #end do
 
+do basic diplomacy
+
 @up-modify-sn sn-wood-gatherer-percentage g:- wood-modifier-percentage
 @up-modify-sn sn-food-gatherer-percentage g:- food-modifier-percentage
 @up-modify-sn sn-gold-gatherer-percentage g:- gold-modifier-percentage

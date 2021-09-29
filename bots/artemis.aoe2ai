@@ -25,6 +25,12 @@ const cavalry-unit-class = 912
   assign 8 builders to castle
 #end do
 
+do basic diplomacy
+
+#if game-time >= 10
+  do basic diplomacy
+#end if
+
 #if current-age == castle-age
   #do once
     sn-maximum-town-size += 4

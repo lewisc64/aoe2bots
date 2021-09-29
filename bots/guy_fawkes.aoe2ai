@@ -6,6 +6,8 @@ const town-size = 18
 
 load "templates/fast_castle.aoe2ai"
 
+do basic diplomacy
+
 research ri-loom
 
 #if building-type-count-total castle > 0

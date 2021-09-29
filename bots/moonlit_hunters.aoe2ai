@@ -1,5 +1,7 @@
 load "templates/fast_castle.aoe2ai"
 
+do basic diplomacy
+
 #if up-research-status c: castle-age >= research-pending
   #do once
     

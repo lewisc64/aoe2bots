@@ -5,6 +5,8 @@ const minimum-army = 12
 load "charlotte/stats.aoe2ai"
 load "templates/fast_castle.aoe2ai"
 
+do basic diplomacy
+
 #template escrow-resources
   #if escrow-amount food < 1300
     escrow {percentage} food

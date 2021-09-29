@@ -20,6 +20,8 @@ const max-gold = 1500
   assign 4 builders to town-center-foundation
 #end do
 
+do basic diplomacy
+
 load "charlotte/stats.aoe2ai"
 
 #if building-type-count-total house == 0

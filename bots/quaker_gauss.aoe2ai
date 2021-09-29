@@ -4,6 +4,8 @@ const ri-warwolf = 461
   chat to all "D'ya hear that? The rumbling."
 #end do
 
+do basic diplomacy
+
 load "templates/fast_castle.aoe2ai"
 
 #if up-research-status c: castle-age >= research-pending
