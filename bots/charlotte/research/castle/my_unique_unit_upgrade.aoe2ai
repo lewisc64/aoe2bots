@@ -2,7 +2,7 @@
   load "../castle/prerequisites.aoe2ai"
   //load "../town_center/imperial_age.aoe2ai"
 
-  #if research-available my-unique-unit-upgrade
+  #if research-available my-unique-unit-upgrade and building-type-count castle >= 1
     #if up-research-status c: my-unique-unit-upgrade < research-pending
       goal attempted-researches += 1
     #end if

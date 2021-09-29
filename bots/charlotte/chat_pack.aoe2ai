@@ -267,6 +267,12 @@
     chat to {player} "Let's be allies."
   #randor
     chat to {player} "Want to work together?"
+  #randor
+    chat to {player} "Ally?"
+  #randor
+    chat to {player} "Want to team up?"
+  #randor
+    chat to {player} "Want to be friends?"
   #end select
 #end template
 
@@ -290,7 +296,11 @@
   #randor
     chat to {player} "You asked for it."
   #randor
-    chat to {player} "You backstabbing so-and-so!"
+    chat to {player} "You backstabbing-!"
+  #randor
+    chat to {player} "What gives?"
+  #randor
+    chat to {player} "Alright."
   #end select
 #end template
 
@@ -303,5 +313,7 @@
     chat to {player} "You're next."
   #randor
     chat to {player} "You aren't needed anymore."
+  #randor
+    chat to {player} "Alright, the fun's over."
   #end select
 #end template

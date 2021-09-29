@@ -36,16 +36,14 @@
     #end if
   #end if
   
-  #if players-stance {player} enemy
-    #if goal allied-with-player-{player} 1
-      insert say-alliance-betrayal-line(player={player})
-      chat to self "betrayed by player {player}"
-      goal player-{player}-is-bad-egg = 1
-      goal allied-with-player-{player} = 0
-      @set-stance {player} enemy
-    #else if goal threat-player {player} and not stance-toward {player} enemy
-      @set-stance {player} enemy
-    #end if
+  #if goal allied-with-player-{player} 1 and not players-stance {player} ally
+    insert say-alliance-betrayal-line(player={player})
+    chat to self "betrayed by player {player}"
+    goal player-{player}-is-bad-egg = 1
+    goal allied-with-player-{player} = 0
+    @set-stance {player} enemy
+  #else if goal threat-player {player} and not stance-toward {player} enemy
+    @set-stance {player} enemy
   #end if
 
 #end template
@@ -63,6 +61,13 @@
 #template enemy-if-neutral
   #if (players-stance {player} neutral or stance-toward {player} neutral) and not stance-toward {player} enemy
     @set-stance {player} enemy
+  #end if
+#end template
+
+#template ally-if-neutral
+  #if players-stance {player} neutral and not stance-toward {player} ally
+    @set-stance {player} ally
+    insert say-request-alliance-line(player={player})
   #end if
 #end template
 

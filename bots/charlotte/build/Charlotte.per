@@ -2501,7 +2501,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 3261)
+    (up-jump-rule 3309)
 )
 (defrule
     (true)
@@ -2957,7 +2957,7 @@
 )
 (defrule
     (up-research-status c: ri-conscription < research-pending)
-    (research-available ri-conscription)
+    (and (research-available ri-conscription) (building-type-count castle >= 1))
     (not (research-completed ri-conscription))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -2965,7 +2965,7 @@
 (defrule
     (can-research ri-conscription)
     (goal do-research 1)
-    (research-available ri-conscription)
+    (and (research-available ri-conscription) (building-type-count castle >= 1))
     (not (research-completed ri-conscription))
 =>
     (research ri-conscription)
@@ -4629,7 +4629,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-yeomen < research-pending)
-    (research-available ri-yeomen)
+    (and (research-available ri-yeomen) (building-type-count castle >= 1))
     (not (research-completed ri-yeomen))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -4637,7 +4637,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-yeomen)
     (goal do-research 1)
-    (research-available ri-yeomen)
+    (and (research-available ri-yeomen) (building-type-count castle >= 1))
     (not (research-completed ri-yeomen))
 =>
     (research ri-yeomen)
@@ -6932,7 +6932,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-sipahi < research-pending)
-    (research-available ri-sipahi)
+    (and (research-available ri-sipahi) (building-type-count castle >= 1))
     (not (research-completed ri-sipahi))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -6940,7 +6940,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-sipahi)
     (goal do-research 1)
-    (research-available ri-sipahi)
+    (and (research-available ri-sipahi) (building-type-count castle >= 1))
     (not (research-completed ri-sipahi))
 =>
     (research ri-sipahi)
@@ -7442,7 +7442,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-perfusion < research-pending)
-    (research-available ri-perfusion)
+    (and (research-available ri-perfusion) (building-type-count castle >= 1))
     (not (research-completed ri-perfusion))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -7450,7 +7450,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-perfusion)
     (goal do-research 1)
-    (research-available ri-perfusion)
+    (and (research-available ri-perfusion) (building-type-count castle >= 1))
     (not (research-completed ri-perfusion))
 =>
     (research ri-perfusion)
@@ -7574,7 +7574,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-garland-wars < research-pending)
-    (research-available ri-garland-wars)
+    (and (research-available ri-garland-wars) (building-type-count castle >= 1))
     (not (research-completed ri-garland-wars))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -7582,7 +7582,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-garland-wars)
     (goal do-research 1)
-    (research-available ri-garland-wars)
+    (and (research-available ri-garland-wars) (building-type-count castle >= 1))
     (not (research-completed ri-garland-wars))
 =>
     (research ri-garland-wars)
@@ -8174,7 +8174,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-perfusion < research-pending)
-    (research-available ri-perfusion)
+    (and (research-available ri-perfusion) (building-type-count castle >= 1))
     (not (research-completed ri-perfusion))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -8182,7 +8182,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-perfusion)
     (goal do-research 1)
-    (research-available ri-perfusion)
+    (and (research-available ri-perfusion) (building-type-count castle >= 1))
     (not (research-completed ri-perfusion))
 =>
     (research ri-perfusion)
@@ -8306,7 +8306,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-garland-wars < research-pending)
-    (research-available ri-garland-wars)
+    (and (research-available ri-garland-wars) (building-type-count castle >= 1))
     (not (research-completed ri-garland-wars))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -8314,7 +8314,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-garland-wars)
     (goal do-research 1)
-    (research-available ri-garland-wars)
+    (and (research-available ri-garland-wars) (building-type-count castle >= 1))
     (not (research-completed ri-garland-wars))
 =>
     (research ri-garland-wars)
@@ -8697,7 +8697,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-couriers < research-pending)
-    (research-available ri-couriers)
+    (and (research-available ri-couriers) (building-type-count castle >= 1))
     (not (research-completed ri-couriers))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -8705,7 +8705,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-couriers)
     (goal do-research 1)
-    (research-available ri-couriers)
+    (and (research-available ri-couriers) (building-type-count castle >= 1))
     (not (research-completed ri-couriers))
 =>
     (research ri-couriers)
@@ -8730,7 +8730,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-el-dorado < research-pending)
-    (research-available ri-el-dorado)
+    (and (research-available ri-el-dorado) (building-type-count castle >= 1))
     (not (research-completed ri-el-dorado))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -8738,7 +8738,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-el-dorado)
     (goal do-research 1)
-    (research-available ri-el-dorado)
+    (and (research-available ri-el-dorado) (building-type-count castle >= 1))
     (not (research-completed ri-el-dorado))
 =>
     (research ri-el-dorado)
@@ -8972,7 +8972,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-perfusion < research-pending)
-    (research-available ri-perfusion)
+    (and (research-available ri-perfusion) (building-type-count castle >= 1))
     (not (research-completed ri-perfusion))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -8980,7 +8980,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-perfusion)
     (goal do-research 1)
-    (research-available ri-perfusion)
+    (and (research-available ri-perfusion) (building-type-count castle >= 1))
     (not (research-completed ri-perfusion))
 =>
     (research ri-perfusion)
@@ -9104,7 +9104,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-garland-wars < research-pending)
-    (research-available ri-garland-wars)
+    (and (research-available ri-garland-wars) (building-type-count castle >= 1))
     (not (research-completed ri-garland-wars))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -9112,7 +9112,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-garland-wars)
     (goal do-research 1)
-    (research-available ri-garland-wars)
+    (and (research-available ri-garland-wars) (building-type-count castle >= 1))
     (not (research-completed ri-garland-wars))
 =>
     (research ri-garland-wars)
@@ -9854,7 +9854,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-chivalry < research-pending)
-    (research-available ri-chivalry)
+    (and (research-available ri-chivalry) (building-type-count castle >= 1))
     (not (research-completed ri-chivalry))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -9862,7 +9862,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-chivalry)
     (goal do-research 1)
-    (research-available ri-chivalry)
+    (and (research-available ri-chivalry) (building-type-count castle >= 1))
     (not (research-completed ri-chivalry))
 =>
     (research ri-chivalry)
@@ -9887,7 +9887,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-manipur-cavalry < research-pending)
-    (research-available ri-manipur-cavalry)
+    (and (research-available ri-manipur-cavalry) (building-type-count castle >= 1))
     (not (research-completed ri-manipur-cavalry))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -9895,7 +9895,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-manipur-cavalry)
     (goal do-research 1)
-    (research-available ri-manipur-cavalry)
+    (and (research-available ri-manipur-cavalry) (building-type-count castle >= 1))
     (not (research-completed ri-manipur-cavalry))
 =>
     (research ri-manipur-cavalry)
@@ -9920,7 +9920,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-farimba < research-pending)
-    (research-available ri-farimba)
+    (and (research-available ri-farimba) (building-type-count castle >= 1))
     (not (research-completed ri-farimba))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -9928,7 +9928,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-farimba)
     (goal do-research 1)
-    (research-available ri-farimba)
+    (and (research-available ri-farimba) (building-type-count castle >= 1))
     (not (research-completed ri-farimba))
 =>
     (research ri-farimba)
@@ -10677,7 +10677,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-chivalry < research-pending)
-    (research-available ri-chivalry)
+    (and (research-available ri-chivalry) (building-type-count castle >= 1))
     (not (research-completed ri-chivalry))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -10685,7 +10685,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-chivalry)
     (goal do-research 1)
-    (research-available ri-chivalry)
+    (and (research-available ri-chivalry) (building-type-count castle >= 1))
     (not (research-completed ri-chivalry))
 =>
     (research ri-chivalry)
@@ -10710,7 +10710,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-manipur-cavalry < research-pending)
-    (research-available ri-manipur-cavalry)
+    (and (research-available ri-manipur-cavalry) (building-type-count castle >= 1))
     (not (research-completed ri-manipur-cavalry))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -10718,7 +10718,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-manipur-cavalry)
     (goal do-research 1)
-    (research-available ri-manipur-cavalry)
+    (and (research-available ri-manipur-cavalry) (building-type-count castle >= 1))
     (not (research-completed ri-manipur-cavalry))
 =>
     (research ri-manipur-cavalry)
@@ -10743,7 +10743,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-farimba < research-pending)
-    (research-available ri-farimba)
+    (and (research-available ri-farimba) (building-type-count castle >= 1))
     (not (research-completed ri-farimba))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -10751,7 +10751,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-farimba)
     (goal do-research 1)
-    (research-available ri-farimba)
+    (and (research-available ri-farimba) (building-type-count castle >= 1))
     (not (research-completed ri-farimba))
 =>
     (research ri-farimba)
@@ -11500,7 +11500,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-chivalry < research-pending)
-    (research-available ri-chivalry)
+    (and (research-available ri-chivalry) (building-type-count castle >= 1))
     (not (research-completed ri-chivalry))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -11508,7 +11508,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-chivalry)
     (goal do-research 1)
-    (research-available ri-chivalry)
+    (and (research-available ri-chivalry) (building-type-count castle >= 1))
     (not (research-completed ri-chivalry))
 =>
     (research ri-chivalry)
@@ -11533,7 +11533,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-manipur-cavalry < research-pending)
-    (research-available ri-manipur-cavalry)
+    (and (research-available ri-manipur-cavalry) (building-type-count castle >= 1))
     (not (research-completed ri-manipur-cavalry))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -11541,7 +11541,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-manipur-cavalry)
     (goal do-research 1)
-    (research-available ri-manipur-cavalry)
+    (and (research-available ri-manipur-cavalry) (building-type-count castle >= 1))
     (not (research-completed ri-manipur-cavalry))
 =>
     (research ri-manipur-cavalry)
@@ -11566,7 +11566,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-farimba < research-pending)
-    (research-available ri-farimba)
+    (and (research-available ri-farimba) (building-type-count castle >= 1))
     (not (research-completed ri-farimba))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -11574,7 +11574,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-farimba)
     (goal do-research 1)
-    (research-available ri-farimba)
+    (and (research-available ri-farimba) (building-type-count castle >= 1))
     (not (research-completed ri-farimba))
 =>
     (research ri-farimba)
@@ -11879,7 +11879,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-howdah < research-pending)
-    (research-available ri-howdah)
+    (and (research-available ri-howdah) (building-type-count castle >= 1))
     (not (research-completed ri-howdah))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -11887,7 +11887,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-howdah)
     (goal do-research 1)
-    (research-available ri-howdah)
+    (and (research-available ri-howdah) (building-type-count castle >= 1))
     (not (research-completed ri-howdah))
 =>
     (research ri-howdah)
@@ -11912,7 +11912,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-tusk-swords < research-pending)
-    (research-available ri-tusk-swords)
+    (and (research-available ri-tusk-swords) (building-type-count castle >= 1))
     (not (research-completed ri-tusk-swords))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -11920,7 +11920,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-tusk-swords)
     (goal do-research 1)
-    (research-available ri-tusk-swords)
+    (and (research-available ri-tusk-swords) (building-type-count castle >= 1))
     (not (research-completed ri-tusk-swords))
 =>
     (research ri-tusk-swords)
@@ -12295,7 +12295,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-chivalry < research-pending)
-    (research-available ri-chivalry)
+    (and (research-available ri-chivalry) (building-type-count castle >= 1))
     (not (research-completed ri-chivalry))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -12303,7 +12303,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-chivalry)
     (goal do-research 1)
-    (research-available ri-chivalry)
+    (and (research-available ri-chivalry) (building-type-count castle >= 1))
     (not (research-completed ri-chivalry))
 =>
     (research ri-chivalry)
@@ -12328,7 +12328,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-manipur-cavalry < research-pending)
-    (research-available ri-manipur-cavalry)
+    (and (research-available ri-manipur-cavalry) (building-type-count castle >= 1))
     (not (research-completed ri-manipur-cavalry))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -12336,7 +12336,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-manipur-cavalry)
     (goal do-research 1)
-    (research-available ri-manipur-cavalry)
+    (and (research-available ri-manipur-cavalry) (building-type-count castle >= 1))
     (not (research-completed ri-manipur-cavalry))
 =>
     (research ri-manipur-cavalry)
@@ -12361,7 +12361,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-farimba < research-pending)
-    (research-available ri-farimba)
+    (and (research-available ri-farimba) (building-type-count castle >= 1))
     (not (research-completed ri-farimba))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -12369,7 +12369,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-farimba)
     (goal do-research 1)
-    (research-available ri-farimba)
+    (and (research-available ri-farimba) (building-type-count castle >= 1))
     (not (research-completed ri-farimba))
 =>
     (research ri-farimba)
@@ -12890,7 +12890,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-furor-celtica < research-pending)
-    (research-available ri-furor-celtica)
+    (and (research-available ri-furor-celtica) (building-type-count castle >= 1))
     (not (research-completed ri-furor-celtica))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -12898,7 +12898,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-furor-celtica)
     (goal do-research 1)
-    (research-available ri-furor-celtica)
+    (and (research-available ri-furor-celtica) (building-type-count castle >= 1))
     (not (research-completed ri-furor-celtica))
 =>
     (research ri-furor-celtica)
@@ -13160,7 +13160,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-shinkichon < research-pending)
-    (research-available ri-shinkichon)
+    (and (research-available ri-shinkichon) (building-type-count castle >= 1))
     (not (research-completed ri-shinkichon))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -13168,7 +13168,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-shinkichon)
     (goal do-research 1)
-    (research-available ri-shinkichon)
+    (and (research-available ri-shinkichon) (building-type-count castle >= 1))
     (not (research-completed ri-shinkichon))
 =>
     (research ri-shinkichon)
@@ -13264,7 +13264,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-furor-celtica < research-pending)
-    (research-available ri-furor-celtica)
+    (and (research-available ri-furor-celtica) (building-type-count castle >= 1))
     (not (research-completed ri-furor-celtica))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -13272,7 +13272,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-furor-celtica)
     (goal do-research 1)
-    (research-available ri-furor-celtica)
+    (and (research-available ri-furor-celtica) (building-type-count castle >= 1))
     (not (research-completed ri-furor-celtica))
 =>
     (research ri-furor-celtica)
@@ -13438,7 +13438,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-rocketry < research-pending)
-    (research-available ri-rocketry)
+    (and (research-available ri-rocketry) (building-type-count castle >= 1))
     (not (research-completed ri-rocketry))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -13446,7 +13446,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-rocketry)
     (goal do-research 1)
-    (research-available ri-rocketry)
+    (and (research-available ri-rocketry) (building-type-count castle >= 1))
     (not (research-completed ri-rocketry))
 =>
     (research ri-rocketry)
@@ -13471,7 +13471,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-double-crossbow < research-pending)
-    (research-available ri-double-crossbow)
+    (and (research-available ri-double-crossbow) (building-type-count castle >= 1))
     (not (research-completed ri-double-crossbow))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -13479,7 +13479,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-double-crossbow)
     (goal do-research 1)
-    (research-available ri-double-crossbow)
+    (and (research-available ri-double-crossbow) (building-type-count castle >= 1))
     (not (research-completed ri-double-crossbow))
 =>
     (research ri-double-crossbow)
@@ -13575,7 +13575,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-furor-celtica < research-pending)
-    (research-available ri-furor-celtica)
+    (and (research-available ri-furor-celtica) (building-type-count castle >= 1))
     (not (research-completed ri-furor-celtica))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -13583,7 +13583,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-furor-celtica)
     (goal do-research 1)
-    (research-available ri-furor-celtica)
+    (and (research-available ri-furor-celtica) (building-type-count castle >= 1))
     (not (research-completed ri-furor-celtica))
 =>
     (research ri-furor-celtica)
@@ -13772,7 +13772,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-furor-celtica < research-pending)
-    (research-available ri-furor-celtica)
+    (and (research-available ri-furor-celtica) (building-type-count castle >= 1))
     (not (research-completed ri-furor-celtica))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -13780,7 +13780,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-furor-celtica)
     (goal do-research 1)
-    (research-available ri-furor-celtica)
+    (and (research-available ri-furor-celtica) (building-type-count castle >= 1))
     (not (research-completed ri-furor-celtica))
 =>
     (research ri-furor-celtica)
@@ -13954,7 +13954,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-furor-celtica < research-pending)
-    (research-available ri-furor-celtica)
+    (and (research-available ri-furor-celtica) (building-type-count castle >= 1))
     (not (research-completed ri-furor-celtica))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -13962,7 +13962,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-furor-celtica)
     (goal do-research 1)
-    (research-available ri-furor-celtica)
+    (and (research-available ri-furor-celtica) (building-type-count castle >= 1))
     (not (research-completed ri-furor-celtica))
 =>
     (research ri-furor-celtica)
@@ -14140,7 +14140,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: my-unique-unit-upgrade < research-pending)
-    (research-available my-unique-unit-upgrade)
+    (and (research-available my-unique-unit-upgrade) (building-type-count castle >= 1))
     (not (research-completed my-unique-unit-upgrade))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -14148,7 +14148,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research my-unique-unit-upgrade)
     (goal do-research 1)
-    (research-available my-unique-unit-upgrade)
+    (and (research-available my-unique-unit-upgrade) (building-type-count castle >= 1))
     (not (research-completed my-unique-unit-upgrade))
 =>
     (research my-unique-unit-upgrade)
@@ -14395,7 +14395,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-perfusion < research-pending)
-    (research-available ri-perfusion)
+    (and (research-available ri-perfusion) (building-type-count castle >= 1))
     (not (research-completed ri-perfusion))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -14403,7 +14403,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-perfusion)
     (goal do-research 1)
-    (research-available ri-perfusion)
+    (and (research-available ri-perfusion) (building-type-count castle >= 1))
     (not (research-completed ri-perfusion))
 =>
     (research ri-perfusion)
@@ -14527,7 +14527,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-garland-wars < research-pending)
-    (research-available ri-garland-wars)
+    (and (research-available ri-garland-wars) (building-type-count castle >= 1))
     (not (research-completed ri-garland-wars))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -14535,7 +14535,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-garland-wars)
     (goal do-research 1)
-    (research-available ri-garland-wars)
+    (and (research-available ri-garland-wars) (building-type-count castle >= 1))
     (not (research-completed ri-garland-wars))
 =>
     (research ri-garland-wars)
@@ -15474,7 +15474,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-sipahi < research-pending)
-    (research-available ri-sipahi)
+    (and (research-available ri-sipahi) (building-type-count castle >= 1))
     (not (research-completed ri-sipahi))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -15482,7 +15482,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-sipahi)
     (goal do-research 1)
-    (research-available ri-sipahi)
+    (and (research-available ri-sipahi) (building-type-count castle >= 1))
     (not (research-completed ri-sipahi))
 =>
     (research ri-sipahi)
@@ -16361,7 +16361,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-chivalry < research-pending)
-    (research-available ri-chivalry)
+    (and (research-available ri-chivalry) (building-type-count castle >= 1))
     (not (research-completed ri-chivalry))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -16369,7 +16369,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-chivalry)
     (goal do-research 1)
-    (research-available ri-chivalry)
+    (and (research-available ri-chivalry) (building-type-count castle >= 1))
     (not (research-completed ri-chivalry))
 =>
     (research ri-chivalry)
@@ -16394,7 +16394,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-manipur-cavalry < research-pending)
-    (research-available ri-manipur-cavalry)
+    (and (research-available ri-manipur-cavalry) (building-type-count castle >= 1))
     (not (research-completed ri-manipur-cavalry))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -16402,7 +16402,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-manipur-cavalry)
     (goal do-research 1)
-    (research-available ri-manipur-cavalry)
+    (and (research-available ri-manipur-cavalry) (building-type-count castle >= 1))
     (not (research-completed ri-manipur-cavalry))
 =>
     (research ri-manipur-cavalry)
@@ -16427,7 +16427,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-farimba < research-pending)
-    (research-available ri-farimba)
+    (and (research-available ri-farimba) (building-type-count castle >= 1))
     (not (research-completed ri-farimba))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -16435,7 +16435,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-farimba)
     (goal do-research 1)
-    (research-available ri-farimba)
+    (and (research-available ri-farimba) (building-type-count castle >= 1))
     (not (research-completed ri-farimba))
 =>
     (research ri-farimba)
@@ -16689,7 +16689,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-yeomen < research-pending)
-    (research-available ri-yeomen)
+    (and (research-available ri-yeomen) (building-type-count castle >= 1))
     (not (research-completed ri-yeomen))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -16697,7 +16697,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-yeomen)
     (goal do-research 1)
-    (research-available ri-yeomen)
+    (and (research-available ri-yeomen) (building-type-count castle >= 1))
     (not (research-completed ri-yeomen))
 =>
     (research ri-yeomen)
@@ -16722,7 +16722,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-beserkergang < research-pending)
-    (research-available ri-beserkergang)
+    (and (research-available ri-beserkergang) (building-type-count castle >= 1))
     (not (research-completed ri-beserkergang))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -16730,7 +16730,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-beserkergang)
     (goal do-research 1)
-    (research-available ri-beserkergang)
+    (and (research-available ri-beserkergang) (building-type-count castle >= 1))
     (not (research-completed ri-beserkergang))
 =>
     (research ri-beserkergang)
@@ -16755,7 +16755,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-logistica < research-pending)
-    (research-available ri-logistica)
+    (and (research-available ri-logistica) (building-type-count castle >= 1))
     (not (research-completed ri-logistica))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -16763,7 +16763,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-logistica)
     (goal do-research 1)
-    (research-available ri-logistica)
+    (and (research-available ri-logistica) (building-type-count castle >= 1))
     (not (research-completed ri-logistica))
 =>
     (research ri-logistica)
@@ -16788,7 +16788,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-mahouts < research-pending)
-    (research-available ri-mahouts)
+    (and (research-available ri-mahouts) (building-type-count castle >= 1))
     (not (research-completed ri-mahouts))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -16796,7 +16796,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-mahouts)
     (goal do-research 1)
-    (research-available ri-mahouts)
+    (and (research-available ri-mahouts) (building-type-count castle >= 1))
     (not (research-completed ri-mahouts))
 =>
     (research ri-mahouts)
@@ -16821,7 +16821,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-rocketry < research-pending)
-    (research-available ri-rocketry)
+    (and (research-available ri-rocketry) (building-type-count castle >= 1))
     (not (research-completed ri-rocketry))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -16829,7 +16829,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-rocketry)
     (goal do-research 1)
-    (research-available ri-rocketry)
+    (and (research-available ri-rocketry) (building-type-count castle >= 1))
     (not (research-completed ri-rocketry))
 =>
     (research ri-rocketry)
@@ -16854,7 +16854,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-bearded-axe < research-pending)
-    (research-available ri-bearded-axe)
+    (and (research-available ri-bearded-axe) (building-type-count castle >= 1))
     (not (research-completed ri-bearded-axe))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -16862,7 +16862,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-bearded-axe)
     (goal do-research 1)
-    (research-available ri-bearded-axe)
+    (and (research-available ri-bearded-axe) (building-type-count castle >= 1))
     (not (research-completed ri-bearded-axe))
 =>
     (research ri-bearded-axe)
@@ -16887,7 +16887,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-double-crossbow < research-pending)
-    (research-available ri-double-crossbow)
+    (and (research-available ri-double-crossbow) (building-type-count castle >= 1))
     (not (research-completed ri-double-crossbow))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -16895,7 +16895,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-double-crossbow)
     (goal do-research 1)
-    (research-available ri-double-crossbow)
+    (and (research-available ri-double-crossbow) (building-type-count castle >= 1))
     (not (research-completed ri-double-crossbow))
 =>
     (research ri-double-crossbow)
@@ -16920,7 +16920,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-mercenaries < research-pending)
-    (research-available ri-mercenaries)
+    (and (research-available ri-mercenaries) (building-type-count castle >= 1))
     (not (research-completed ri-mercenaries))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -16928,7 +16928,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-mercenaries)
     (goal do-research 1)
-    (research-available ri-mercenaries)
+    (and (research-available ri-mercenaries) (building-type-count castle >= 1))
     (not (research-completed ri-mercenaries))
 =>
     (research ri-mercenaries)
@@ -18953,7 +18953,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (up-research-status c: ri-hoardings < research-pending)
-    (research-available ri-hoardings)
+    (and (research-available ri-hoardings) (building-type-count castle >= 1))
     (not (research-completed ri-hoardings))
 =>
     (up-modify-goal attempted-researches c:+ 1)
@@ -18961,7 +18961,7 @@ watch-tower-arrow > 0))))
 (defrule
     (can-research ri-hoardings)
     (goal do-research 1)
-    (research-available ri-hoardings)
+    (and (research-available ri-hoardings) (building-type-count castle >= 1))
     (not (research-completed ri-hoardings))
 =>
     (research ri-hoardings)
@@ -21648,7 +21648,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (or (goal team-game 1) (goal free-for-all 1)))
 =>
-    (up-jump-rule 408)
+    (up-jump-rule 456)
 )
 (defrule
     (true)
@@ -21905,18 +21905,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (and (goal 222 1) (goal want-alliance -1)))
 =>
-    (up-jump-rule 11)
+    (up-jump-rule 13)
 )
 (defrule
     (not (goal allied-with-player-1 1))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 11)
 )
 (defrule
     (true)
 =>
     (set-goal 223 0)
-    (generate-random-number 4)
+    (generate-random-number 5)
 )
 (defrule
     (random-number == 1)
@@ -21943,6 +21943,12 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 223 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 223 0)
+=>
+    (set-goal 223 5)
+)
+(defrule
     (goal 223 1)
 =>
     (chat-to-player 1 "It could never have worked between us.")
@@ -21963,6 +21969,11 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-to-player 1 "You aren't needed anymore.")
 )
 (defrule
+    (goal 223 5)
+=>
+    (chat-to-player 1 "Alright, the fun's over.")
+)
+(defrule
     (goal allied-with-player-1 1)
 =>
     (set-stance 1 enemy)
@@ -21973,18 +21984,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (and (goal 222 2) (goal want-alliance -1)))
 =>
-    (up-jump-rule 11)
+    (up-jump-rule 13)
 )
 (defrule
     (not (goal allied-with-player-2 1))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 11)
 )
 (defrule
     (true)
 =>
     (set-goal 224 0)
-    (generate-random-number 4)
+    (generate-random-number 5)
 )
 (defrule
     (random-number == 1)
@@ -22011,6 +22022,12 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 224 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 224 0)
+=>
+    (set-goal 224 5)
+)
+(defrule
     (goal 224 1)
 =>
     (chat-to-player 2 "It could never have worked between us.")
@@ -22031,6 +22048,11 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-to-player 2 "You aren't needed anymore.")
 )
 (defrule
+    (goal 224 5)
+=>
+    (chat-to-player 2 "Alright, the fun's over.")
+)
+(defrule
     (goal allied-with-player-2 1)
 =>
     (set-stance 2 enemy)
@@ -22041,18 +22063,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (and (goal 222 3) (goal want-alliance -1)))
 =>
-    (up-jump-rule 11)
+    (up-jump-rule 13)
 )
 (defrule
     (not (goal allied-with-player-3 1))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 11)
 )
 (defrule
     (true)
 =>
     (set-goal 225 0)
-    (generate-random-number 4)
+    (generate-random-number 5)
 )
 (defrule
     (random-number == 1)
@@ -22079,6 +22101,12 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 225 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 225 0)
+=>
+    (set-goal 225 5)
+)
+(defrule
     (goal 225 1)
 =>
     (chat-to-player 3 "It could never have worked between us.")
@@ -22099,6 +22127,11 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-to-player 3 "You aren't needed anymore.")
 )
 (defrule
+    (goal 225 5)
+=>
+    (chat-to-player 3 "Alright, the fun's over.")
+)
+(defrule
     (goal allied-with-player-3 1)
 =>
     (set-stance 3 enemy)
@@ -22109,18 +22142,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (and (goal 222 4) (goal want-alliance -1)))
 =>
-    (up-jump-rule 11)
+    (up-jump-rule 13)
 )
 (defrule
     (not (goal allied-with-player-4 1))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 11)
 )
 (defrule
     (true)
 =>
     (set-goal 226 0)
-    (generate-random-number 4)
+    (generate-random-number 5)
 )
 (defrule
     (random-number == 1)
@@ -22147,6 +22180,12 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 226 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 226 0)
+=>
+    (set-goal 226 5)
+)
+(defrule
     (goal 226 1)
 =>
     (chat-to-player 4 "It could never have worked between us.")
@@ -22167,6 +22206,11 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-to-player 4 "You aren't needed anymore.")
 )
 (defrule
+    (goal 226 5)
+=>
+    (chat-to-player 4 "Alright, the fun's over.")
+)
+(defrule
     (goal allied-with-player-4 1)
 =>
     (set-stance 4 enemy)
@@ -22177,18 +22221,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (and (goal 222 5) (goal want-alliance -1)))
 =>
-    (up-jump-rule 11)
+    (up-jump-rule 13)
 )
 (defrule
     (not (goal allied-with-player-5 1))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 11)
 )
 (defrule
     (true)
 =>
     (set-goal 227 0)
-    (generate-random-number 4)
+    (generate-random-number 5)
 )
 (defrule
     (random-number == 1)
@@ -22215,6 +22259,12 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 227 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 227 0)
+=>
+    (set-goal 227 5)
+)
+(defrule
     (goal 227 1)
 =>
     (chat-to-player 5 "It could never have worked between us.")
@@ -22235,6 +22285,11 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-to-player 5 "You aren't needed anymore.")
 )
 (defrule
+    (goal 227 5)
+=>
+    (chat-to-player 5 "Alright, the fun's over.")
+)
+(defrule
     (goal allied-with-player-5 1)
 =>
     (set-stance 5 enemy)
@@ -22245,18 +22300,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (and (goal 222 6) (goal want-alliance -1)))
 =>
-    (up-jump-rule 11)
+    (up-jump-rule 13)
 )
 (defrule
     (not (goal allied-with-player-6 1))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 11)
 )
 (defrule
     (true)
 =>
     (set-goal 228 0)
-    (generate-random-number 4)
+    (generate-random-number 5)
 )
 (defrule
     (random-number == 1)
@@ -22283,6 +22338,12 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 228 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 228 0)
+=>
+    (set-goal 228 5)
+)
+(defrule
     (goal 228 1)
 =>
     (chat-to-player 6 "It could never have worked between us.")
@@ -22303,6 +22364,11 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-to-player 6 "You aren't needed anymore.")
 )
 (defrule
+    (goal 228 5)
+=>
+    (chat-to-player 6 "Alright, the fun's over.")
+)
+(defrule
     (goal allied-with-player-6 1)
 =>
     (set-stance 6 enemy)
@@ -22313,18 +22379,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (and (goal 222 7) (goal want-alliance -1)))
 =>
-    (up-jump-rule 11)
+    (up-jump-rule 13)
 )
 (defrule
     (not (goal allied-with-player-7 1))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 11)
 )
 (defrule
     (true)
 =>
     (set-goal 229 0)
-    (generate-random-number 4)
+    (generate-random-number 5)
 )
 (defrule
     (random-number == 1)
@@ -22351,6 +22417,12 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 229 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 229 0)
+=>
+    (set-goal 229 5)
+)
+(defrule
     (goal 229 1)
 =>
     (chat-to-player 7 "It could never have worked between us.")
@@ -22371,6 +22443,11 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-to-player 7 "You aren't needed anymore.")
 )
 (defrule
+    (goal 229 5)
+=>
+    (chat-to-player 7 "Alright, the fun's over.")
+)
+(defrule
     (goal allied-with-player-7 1)
 =>
     (set-stance 7 enemy)
@@ -22381,18 +22458,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (and (goal 222 8) (goal want-alliance -1)))
 =>
-    (up-jump-rule 11)
+    (up-jump-rule 13)
 )
 (defrule
     (not (goal allied-with-player-8 1))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 11)
 )
 (defrule
     (true)
 =>
     (set-goal 230 0)
-    (generate-random-number 4)
+    (generate-random-number 5)
 )
 (defrule
     (random-number == 1)
@@ -22419,6 +22496,12 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 230 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 230 0)
+=>
+    (set-goal 230 5)
+)
+(defrule
     (goal 230 1)
 =>
     (chat-to-player 8 "It could never have worked between us.")
@@ -22437,6 +22520,11 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (goal 230 4)
 =>
     (chat-to-player 8 "You aren't needed anymore.")
+)
+(defrule
+    (goal 230 5)
+=>
+    (chat-to-player 8 "Alright, the fun's over.")
 )
 (defrule
     (goal allied-with-player-8 1)
@@ -22503,7 +22591,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (goal 231 1))
 =>
-    (up-jump-rule 32)
+    (up-jump-rule 36)
 )
 (defrule
     (not (and (or (stance-toward 1 enemy) (stance-toward 1 neutral)) (and (players-stance 1 ally) (and (goal player-1-is-bad-egg 0) (goal allied-with-player-1 0)))))
@@ -22622,15 +22710,15 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal allied-with-player-1 1)
 )
 (defrule
-    (not (and (goal allied-with-player-1 1) (players-stance 1 enemy)))
+    (not (and (goal allied-with-player-1 1) (not (players-stance 1 ally))))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 13)
 )
 (defrule
     (true)
 =>
     (set-goal 234 0)
-    (generate-random-number 4)
+    (generate-random-number 6)
 )
 (defrule
     (random-number == 1)
@@ -22657,6 +22745,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 234 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 234 0)
+=>
+    (set-goal 234 5)
+)
+(defrule
+    (random-number == 6)
+    (goal 234 0)
+=>
+    (set-goal 234 6)
+)
+(defrule
     (goal 234 1)
 =>
     (chat-to-player 1 "Really?")
@@ -22674,11 +22774,20 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 234 4)
 =>
-    (chat-to-player 1 "You backstabbing so-and-so!")
+    (chat-to-player 1 "You backstabbing-!")
 )
 (defrule
-    (goal allied-with-player-1 1)
-    (players-stance 1 enemy)
+    (goal 234 5)
+=>
+    (chat-to-player 1 "What gives?")
+)
+(defrule
+    (goal 234 6)
+=>
+    (chat-to-player 1 "Alright.")
+)
+(defrule
+    (and (goal allied-with-player-1 1) (not (players-stance 1 ally)))
 =>
     (chat-local-to-self "betrayed by player 1")
     (set-goal player-1-is-bad-egg 1)
@@ -22687,15 +22796,14 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 )
 (defrule
     (and (goal threat-player 1) (not (stance-toward 1 enemy)))
-    (not (goal allied-with-player-1 1))
-    (players-stance 1 enemy)
+    (not (and (goal allied-with-player-1 1) (not (players-stance 1 ally))))
 =>
     (set-stance 1 enemy)
 )
 (defrule
     (not (goal 231 2))
 =>
-    (up-jump-rule 32)
+    (up-jump-rule 36)
 )
 (defrule
     (not (and (or (stance-toward 2 enemy) (stance-toward 2 neutral)) (and (players-stance 2 ally) (and (goal player-2-is-bad-egg 0) (goal allied-with-player-2 0)))))
@@ -22814,15 +22922,15 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal allied-with-player-2 1)
 )
 (defrule
-    (not (and (goal allied-with-player-2 1) (players-stance 2 enemy)))
+    (not (and (goal allied-with-player-2 1) (not (players-stance 2 ally))))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 13)
 )
 (defrule
     (true)
 =>
     (set-goal 237 0)
-    (generate-random-number 4)
+    (generate-random-number 6)
 )
 (defrule
     (random-number == 1)
@@ -22849,6 +22957,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 237 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 237 0)
+=>
+    (set-goal 237 5)
+)
+(defrule
+    (random-number == 6)
+    (goal 237 0)
+=>
+    (set-goal 237 6)
+)
+(defrule
     (goal 237 1)
 =>
     (chat-to-player 2 "Really?")
@@ -22866,11 +22986,20 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 237 4)
 =>
-    (chat-to-player 2 "You backstabbing so-and-so!")
+    (chat-to-player 2 "You backstabbing-!")
 )
 (defrule
-    (goal allied-with-player-2 1)
-    (players-stance 2 enemy)
+    (goal 237 5)
+=>
+    (chat-to-player 2 "What gives?")
+)
+(defrule
+    (goal 237 6)
+=>
+    (chat-to-player 2 "Alright.")
+)
+(defrule
+    (and (goal allied-with-player-2 1) (not (players-stance 2 ally)))
 =>
     (chat-local-to-self "betrayed by player 2")
     (set-goal player-2-is-bad-egg 1)
@@ -22879,15 +23008,14 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 )
 (defrule
     (and (goal threat-player 2) (not (stance-toward 2 enemy)))
-    (not (goal allied-with-player-2 1))
-    (players-stance 2 enemy)
+    (not (and (goal allied-with-player-2 1) (not (players-stance 2 ally))))
 =>
     (set-stance 2 enemy)
 )
 (defrule
     (not (goal 231 3))
 =>
-    (up-jump-rule 32)
+    (up-jump-rule 36)
 )
 (defrule
     (not (and (or (stance-toward 3 enemy) (stance-toward 3 neutral)) (and (players-stance 3 ally) (and (goal player-3-is-bad-egg 0) (goal allied-with-player-3 0)))))
@@ -23006,15 +23134,15 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal allied-with-player-3 1)
 )
 (defrule
-    (not (and (goal allied-with-player-3 1) (players-stance 3 enemy)))
+    (not (and (goal allied-with-player-3 1) (not (players-stance 3 ally))))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 13)
 )
 (defrule
     (true)
 =>
     (set-goal 240 0)
-    (generate-random-number 4)
+    (generate-random-number 6)
 )
 (defrule
     (random-number == 1)
@@ -23041,6 +23169,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 240 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 240 0)
+=>
+    (set-goal 240 5)
+)
+(defrule
+    (random-number == 6)
+    (goal 240 0)
+=>
+    (set-goal 240 6)
+)
+(defrule
     (goal 240 1)
 =>
     (chat-to-player 3 "Really?")
@@ -23058,11 +23198,20 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 240 4)
 =>
-    (chat-to-player 3 "You backstabbing so-and-so!")
+    (chat-to-player 3 "You backstabbing-!")
 )
 (defrule
-    (goal allied-with-player-3 1)
-    (players-stance 3 enemy)
+    (goal 240 5)
+=>
+    (chat-to-player 3 "What gives?")
+)
+(defrule
+    (goal 240 6)
+=>
+    (chat-to-player 3 "Alright.")
+)
+(defrule
+    (and (goal allied-with-player-3 1) (not (players-stance 3 ally)))
 =>
     (chat-local-to-self "betrayed by player 3")
     (set-goal player-3-is-bad-egg 1)
@@ -23071,15 +23220,14 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 )
 (defrule
     (and (goal threat-player 3) (not (stance-toward 3 enemy)))
-    (not (goal allied-with-player-3 1))
-    (players-stance 3 enemy)
+    (not (and (goal allied-with-player-3 1) (not (players-stance 3 ally))))
 =>
     (set-stance 3 enemy)
 )
 (defrule
     (not (goal 231 4))
 =>
-    (up-jump-rule 32)
+    (up-jump-rule 36)
 )
 (defrule
     (not (and (or (stance-toward 4 enemy) (stance-toward 4 neutral)) (and (players-stance 4 ally) (and (goal player-4-is-bad-egg 0) (goal allied-with-player-4 0)))))
@@ -23198,15 +23346,15 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal allied-with-player-4 1)
 )
 (defrule
-    (not (and (goal allied-with-player-4 1) (players-stance 4 enemy)))
+    (not (and (goal allied-with-player-4 1) (not (players-stance 4 ally))))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 13)
 )
 (defrule
     (true)
 =>
     (set-goal 243 0)
-    (generate-random-number 4)
+    (generate-random-number 6)
 )
 (defrule
     (random-number == 1)
@@ -23233,6 +23381,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 243 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 243 0)
+=>
+    (set-goal 243 5)
+)
+(defrule
+    (random-number == 6)
+    (goal 243 0)
+=>
+    (set-goal 243 6)
+)
+(defrule
     (goal 243 1)
 =>
     (chat-to-player 4 "Really?")
@@ -23250,11 +23410,20 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 243 4)
 =>
-    (chat-to-player 4 "You backstabbing so-and-so!")
+    (chat-to-player 4 "You backstabbing-!")
 )
 (defrule
-    (goal allied-with-player-4 1)
-    (players-stance 4 enemy)
+    (goal 243 5)
+=>
+    (chat-to-player 4 "What gives?")
+)
+(defrule
+    (goal 243 6)
+=>
+    (chat-to-player 4 "Alright.")
+)
+(defrule
+    (and (goal allied-with-player-4 1) (not (players-stance 4 ally)))
 =>
     (chat-local-to-self "betrayed by player 4")
     (set-goal player-4-is-bad-egg 1)
@@ -23263,15 +23432,14 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 )
 (defrule
     (and (goal threat-player 4) (not (stance-toward 4 enemy)))
-    (not (goal allied-with-player-4 1))
-    (players-stance 4 enemy)
+    (not (and (goal allied-with-player-4 1) (not (players-stance 4 ally))))
 =>
     (set-stance 4 enemy)
 )
 (defrule
     (not (goal 231 5))
 =>
-    (up-jump-rule 32)
+    (up-jump-rule 36)
 )
 (defrule
     (not (and (or (stance-toward 5 enemy) (stance-toward 5 neutral)) (and (players-stance 5 ally) (and (goal player-5-is-bad-egg 0) (goal allied-with-player-5 0)))))
@@ -23390,15 +23558,15 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal allied-with-player-5 1)
 )
 (defrule
-    (not (and (goal allied-with-player-5 1) (players-stance 5 enemy)))
+    (not (and (goal allied-with-player-5 1) (not (players-stance 5 ally))))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 13)
 )
 (defrule
     (true)
 =>
     (set-goal 246 0)
-    (generate-random-number 4)
+    (generate-random-number 6)
 )
 (defrule
     (random-number == 1)
@@ -23425,6 +23593,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 246 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 246 0)
+=>
+    (set-goal 246 5)
+)
+(defrule
+    (random-number == 6)
+    (goal 246 0)
+=>
+    (set-goal 246 6)
+)
+(defrule
     (goal 246 1)
 =>
     (chat-to-player 5 "Really?")
@@ -23442,11 +23622,20 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 246 4)
 =>
-    (chat-to-player 5 "You backstabbing so-and-so!")
+    (chat-to-player 5 "You backstabbing-!")
 )
 (defrule
-    (goal allied-with-player-5 1)
-    (players-stance 5 enemy)
+    (goal 246 5)
+=>
+    (chat-to-player 5 "What gives?")
+)
+(defrule
+    (goal 246 6)
+=>
+    (chat-to-player 5 "Alright.")
+)
+(defrule
+    (and (goal allied-with-player-5 1) (not (players-stance 5 ally)))
 =>
     (chat-local-to-self "betrayed by player 5")
     (set-goal player-5-is-bad-egg 1)
@@ -23455,15 +23644,14 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 )
 (defrule
     (and (goal threat-player 5) (not (stance-toward 5 enemy)))
-    (not (goal allied-with-player-5 1))
-    (players-stance 5 enemy)
+    (not (and (goal allied-with-player-5 1) (not (players-stance 5 ally))))
 =>
     (set-stance 5 enemy)
 )
 (defrule
     (not (goal 231 6))
 =>
-    (up-jump-rule 32)
+    (up-jump-rule 36)
 )
 (defrule
     (not (and (or (stance-toward 6 enemy) (stance-toward 6 neutral)) (and (players-stance 6 ally) (and (goal player-6-is-bad-egg 0) (goal allied-with-player-6 0)))))
@@ -23582,15 +23770,15 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal allied-with-player-6 1)
 )
 (defrule
-    (not (and (goal allied-with-player-6 1) (players-stance 6 enemy)))
+    (not (and (goal allied-with-player-6 1) (not (players-stance 6 ally))))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 13)
 )
 (defrule
     (true)
 =>
     (set-goal 249 0)
-    (generate-random-number 4)
+    (generate-random-number 6)
 )
 (defrule
     (random-number == 1)
@@ -23617,6 +23805,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 249 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 249 0)
+=>
+    (set-goal 249 5)
+)
+(defrule
+    (random-number == 6)
+    (goal 249 0)
+=>
+    (set-goal 249 6)
+)
+(defrule
     (goal 249 1)
 =>
     (chat-to-player 6 "Really?")
@@ -23634,11 +23834,20 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 249 4)
 =>
-    (chat-to-player 6 "You backstabbing so-and-so!")
+    (chat-to-player 6 "You backstabbing-!")
 )
 (defrule
-    (goal allied-with-player-6 1)
-    (players-stance 6 enemy)
+    (goal 249 5)
+=>
+    (chat-to-player 6 "What gives?")
+)
+(defrule
+    (goal 249 6)
+=>
+    (chat-to-player 6 "Alright.")
+)
+(defrule
+    (and (goal allied-with-player-6 1) (not (players-stance 6 ally)))
 =>
     (chat-local-to-self "betrayed by player 6")
     (set-goal player-6-is-bad-egg 1)
@@ -23647,15 +23856,14 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 )
 (defrule
     (and (goal threat-player 6) (not (stance-toward 6 enemy)))
-    (not (goal allied-with-player-6 1))
-    (players-stance 6 enemy)
+    (not (and (goal allied-with-player-6 1) (not (players-stance 6 ally))))
 =>
     (set-stance 6 enemy)
 )
 (defrule
     (not (goal 231 7))
 =>
-    (up-jump-rule 32)
+    (up-jump-rule 36)
 )
 (defrule
     (not (and (or (stance-toward 7 enemy) (stance-toward 7 neutral)) (and (players-stance 7 ally) (and (goal player-7-is-bad-egg 0) (goal allied-with-player-7 0)))))
@@ -23774,15 +23982,15 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal allied-with-player-7 1)
 )
 (defrule
-    (not (and (goal allied-with-player-7 1) (players-stance 7 enemy)))
+    (not (and (goal allied-with-player-7 1) (not (players-stance 7 ally))))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 13)
 )
 (defrule
     (true)
 =>
     (set-goal 252 0)
-    (generate-random-number 4)
+    (generate-random-number 6)
 )
 (defrule
     (random-number == 1)
@@ -23809,6 +24017,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 252 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 252 0)
+=>
+    (set-goal 252 5)
+)
+(defrule
+    (random-number == 6)
+    (goal 252 0)
+=>
+    (set-goal 252 6)
+)
+(defrule
     (goal 252 1)
 =>
     (chat-to-player 7 "Really?")
@@ -23826,11 +24046,20 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 252 4)
 =>
-    (chat-to-player 7 "You backstabbing so-and-so!")
+    (chat-to-player 7 "You backstabbing-!")
 )
 (defrule
-    (goal allied-with-player-7 1)
-    (players-stance 7 enemy)
+    (goal 252 5)
+=>
+    (chat-to-player 7 "What gives?")
+)
+(defrule
+    (goal 252 6)
+=>
+    (chat-to-player 7 "Alright.")
+)
+(defrule
+    (and (goal allied-with-player-7 1) (not (players-stance 7 ally)))
 =>
     (chat-local-to-self "betrayed by player 7")
     (set-goal player-7-is-bad-egg 1)
@@ -23839,15 +24068,14 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 )
 (defrule
     (and (goal threat-player 7) (not (stance-toward 7 enemy)))
-    (not (goal allied-with-player-7 1))
-    (players-stance 7 enemy)
+    (not (and (goal allied-with-player-7 1) (not (players-stance 7 ally))))
 =>
     (set-stance 7 enemy)
 )
 (defrule
     (not (goal 231 8))
 =>
-    (up-jump-rule 32)
+    (up-jump-rule 36)
 )
 (defrule
     (not (and (or (stance-toward 8 enemy) (stance-toward 8 neutral)) (and (players-stance 8 ally) (and (goal player-8-is-bad-egg 0) (goal allied-with-player-8 0)))))
@@ -23966,15 +24194,15 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal allied-with-player-8 1)
 )
 (defrule
-    (not (and (goal allied-with-player-8 1) (players-stance 8 enemy)))
+    (not (and (goal allied-with-player-8 1) (not (players-stance 8 ally))))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 13)
 )
 (defrule
     (true)
 =>
     (set-goal 255 0)
-    (generate-random-number 4)
+    (generate-random-number 6)
 )
 (defrule
     (random-number == 1)
@@ -24001,6 +24229,18 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 255 4)
 )
 (defrule
+    (random-number == 5)
+    (goal 255 0)
+=>
+    (set-goal 255 5)
+)
+(defrule
+    (random-number == 6)
+    (goal 255 0)
+=>
+    (set-goal 255 6)
+)
+(defrule
     (goal 255 1)
 =>
     (chat-to-player 8 "Really?")
@@ -24018,11 +24258,20 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 255 4)
 =>
-    (chat-to-player 8 "You backstabbing so-and-so!")
+    (chat-to-player 8 "You backstabbing-!")
 )
 (defrule
-    (goal allied-with-player-8 1)
-    (players-stance 8 enemy)
+    (goal 255 5)
+=>
+    (chat-to-player 8 "What gives?")
+)
+(defrule
+    (goal 255 6)
+=>
+    (chat-to-player 8 "Alright.")
+)
+(defrule
+    (and (goal allied-with-player-8 1) (not (players-stance 8 ally)))
 =>
     (chat-local-to-self "betrayed by player 8")
     (set-goal player-8-is-bad-egg 1)
@@ -24031,8 +24280,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 )
 (defrule
     (and (goal threat-player 8) (not (stance-toward 8 enemy)))
-    (not (goal allied-with-player-8 1))
-    (players-stance 8 enemy)
+    (not (and (goal allied-with-player-8 1) (not (players-stance 8 ally))))
 =>
     (set-stance 8 enemy)
 )
@@ -24684,42 +24932,42 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (buy-commodity food)
 )
 (defrule
-    (or (commodity-buying-price wood <= good-wood-price) (town-under-attack))
+    (or (commodity-buying-price wood <= good-wood-price) (and (town-under-attack) (goal attacking 0)))
 =>
     (set-goal can-buy-wood 1)
 )
 (defrule
-    (not (or (commodity-buying-price wood <= good-wood-price) (town-under-attack)))
+    (not (or (commodity-buying-price wood <= good-wood-price) (and (town-under-attack) (goal attacking 0))))
 =>
     (set-goal can-buy-wood 0)
 )
 (defrule
-    (or (commodity-buying-price food <= good-food-price) (town-under-attack))
+    (or (commodity-buying-price food <= good-food-price) (and (town-under-attack) (goal attacking 0)))
 =>
     (set-goal can-buy-food 1)
 )
 (defrule
-    (not (or (commodity-buying-price food <= good-food-price) (town-under-attack)))
+    (not (or (commodity-buying-price food <= good-food-price) (and (town-under-attack) (goal attacking 0))))
 =>
     (set-goal can-buy-food 0)
 )
 (defrule
-    (or (commodity-selling-price wood >= good-wood-sell-price) (town-under-attack))
+    (or (commodity-selling-price wood >= good-wood-sell-price) (and (town-under-attack) (goal attacking 0)))
 =>
     (set-goal can-sell-wood 1)
 )
 (defrule
-    (not (or (commodity-selling-price wood >= good-wood-sell-price) (town-under-attack)))
+    (not (or (commodity-selling-price wood >= good-wood-sell-price) (and (town-under-attack) (goal attacking 0))))
 =>
     (set-goal can-sell-wood 0)
 )
 (defrule
-    (or (commodity-selling-price food >= good-food-sell-price) (town-under-attack))
+    (or (commodity-selling-price food >= good-food-sell-price) (and (town-under-attack) (goal attacking 0)))
 =>
     (set-goal can-sell-food 1)
 )
 (defrule
-    (not (or (commodity-selling-price food >= good-food-sell-price) (town-under-attack)))
+    (not (or (commodity-selling-price food >= good-food-sell-price) (and (town-under-attack) (goal attacking 0))))
 =>
     (set-goal can-sell-food 0)
 )

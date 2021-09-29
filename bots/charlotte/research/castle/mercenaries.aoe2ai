@@ -2,7 +2,7 @@
   load "../castle/prerequisites.aoe2ai"
   //load "../town_center/castle_age.aoe2ai"
 
-  #if research-available ri-mercenaries
+  #if research-available ri-mercenaries and building-type-count castle >= 1
     #if up-research-status c: ri-mercenaries < research-pending
       goal attempted-researches += 1
     #end if
