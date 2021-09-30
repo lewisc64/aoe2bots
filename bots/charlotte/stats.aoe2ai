@@ -464,3 +464,8 @@ insert add-to-player-count(player=8)
 #else if stance-toward my-player-number enemy
   goal enemy-players-count -= 1
 #end if
+
+goal neutral-or-enemy-players-count = 0
+@up-modify-goal neutral-or-enemy-players-count g:+ enemy-players-count
+@up-modify-goal neutral-or-enemy-players-count g:+ neutral-players-count
+

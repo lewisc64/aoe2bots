@@ -262,17 +262,21 @@
 
 #template say-request-alliance-line
   #select random
-    chat to {player} "Friends?"
-  #randor
     chat to {player} "Let's be allies."
   #randor
     chat to {player} "Want to work together?"
   #randor
-    chat to {player} "Ally?"
-  #randor
     chat to {player} "Want to team up?"
+  #end select
+#end template
+
+#template say-request-alliance-timeout-line
+  #select random
+    chat to {player} "Fine, have it your way."
   #randor
-    chat to {player} "Want to be friends?"
+    chat to {player} "Would've been nice."
+  #randor
+    chat to {player} "Whatever."
   #end select
 #end template
 
@@ -281,8 +285,6 @@
     chat to {player} "Let's do this. Together."
   #randor
     chat to {player} "Nice to have you with me."
-  #randor
-    chat to {player} "Thanks."
   #randor
     chat to {player} "Unstoppable team!"
   #end select
@@ -294,13 +296,9 @@
   #randor
     chat to {player} "I thought we were friends."
   #randor
-    chat to {player} "You asked for it."
-  #randor
     chat to {player} "You backstabbing-!"
   #randor
     chat to {player} "What gives?"
-  #randor
-    chat to {player} "Alright."
   #end select
 #end template
 
@@ -310,10 +308,6 @@
   #randor
     chat to {player} "I've had enough of you."
   #randor
-    chat to {player} "You're next."
-  #randor
     chat to {player} "You aren't needed anymore."
-  #randor
-    chat to {player} "Alright, the fun's over."
   #end select
 #end template

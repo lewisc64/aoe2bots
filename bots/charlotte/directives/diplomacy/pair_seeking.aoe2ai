@@ -1,9 +1,9 @@
 #do once
-  chat to self "Being nice."
+  chat to self "Being pair-seeking."
   @set-stance every-enemy neutral
 #end do
 
-#if up-compare-goal neutral-or-enemy-players-count c:>= 2
+#if up-compare-goal ally-players-count c:< 2
   goal want-alliance = 1
   chat to self "want alliance"
 #else if goal neutral-or-enemy-players-count 0
