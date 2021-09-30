@@ -7,9 +7,9 @@ goal conniving-produce = 0
 goal conniving-was-outboomed = 0
 
 // keep a defense force
-#if goal conniving-produce 0 and up-compare-goal largest-enemy-military-percentage c:< 50
+#if goal conniving-produce 0 and up-compare-goal target-military-percentage c:< 50
   goal conniving-produce = 1
-  chat to self "not enough military! could be sideswiped."
+  chat to self "not enough military!"
 #end if
 
 // muster up military if the enemy is going for a big boom

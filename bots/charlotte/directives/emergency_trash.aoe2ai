@@ -24,7 +24,7 @@
   goal produce-mangonels = 0
   goal produce-scorpions = 0
   goal produce-monks = 0
-  #if goal unique-unit-cavalry-trash 1
+  #if goal unique-unit-cavalry-trash 0
     goal produce-unique-units = 0
   #end if
   
@@ -67,4 +67,9 @@
     goal produce-scouts = 0
     goal produce-unique-unit = 1
   #end if
+  
+  #if goal produce-unique-units 0 and goal produce-scouts 0 and goal produce-skirmishers 0 and goal produce-spearmen 0
+    goal produce-skirmishers = 1
+  #end if
+  
 #end if

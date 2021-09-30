@@ -192,16 +192,17 @@ const gold-unit-threshold = 0
 load "chat_pack.aoe2ai"
 load "stats.aoe2ai"
 
-#if players-stance any-ally ally and stance-toward any-ally ally
-  goal team-game = 1
-#else
+#do once
   goal team-game = 0
+  goal free-for-all = 0
+#end do
+
+#if goal free-for-all 0 and players-stance any-ally ally and stance-toward any-ally ally
+  goal team-game = 1
 #end if
 
 #if goal team-game 0 and player-valid 1 and player-valid 2 and player-valid 3
   goal free-for-all = 1
-#else
-  goal free-for-all = 0
 #end if
 
 #if wood-amount >= wood-unit-threshold

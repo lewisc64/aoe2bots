@@ -65,7 +65,7 @@
 #end template
 
 #template ally-if-neutral
-  #if players-stance {player} neutral and not stance-toward {player} ally
+  #if stance-toward {player} neutral or players-stance {player} neutral
     @set-stance {player} ally
     insert say-request-alliance-line(player={player})
   #end if
@@ -74,7 +74,23 @@
 load "nice.aoe2ai"
 
 #if goal want-alliance 1
-  @set-stance any-neutral ally
+  #select random
+    insert ally-if-neutral(player=1)
+  #randor
+    insert ally-if-neutral(player=2)
+  #randor
+    insert ally-if-neutral(player=3)
+  #randor
+    insert ally-if-neutral(player=4)
+  #randor
+    insert ally-if-neutral(player=5)
+  #randor
+    insert ally-if-neutral(player=6)
+  #randor
+    insert ally-if-neutral(player=7)
+  #randor
+    insert ally-if-neutral(player=8)
+  #end select
 #end if
 
 #if goal enemy-players-count 0

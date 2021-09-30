@@ -47,7 +47,8 @@ load "../units/all_switched.aoe2ai"
   load "unit_selection/mandatory_siege.aoe2ai"
   
   load "attack_decision/aggressive.aoe2ai"
-  load "pacing/conniving.aoe2ai"
+  // load "pacing/conniving.aoe2ai"
+  load "pacing/balanced.aoe2ai"
   
   load "targetting.aoe2ai"
   load "town_size_attack.aoe2ai"
