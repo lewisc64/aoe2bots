@@ -12,11 +12,10 @@ load "templates/fast_castle.aoe2ai"
   #do once  
     sn-free-siege-targeting = 1
     distribute villagers 30 40 10 20
-    sn-maximum-town-size = 30
-    sn-minimum-town-size = 30
-    sn-safe-town-size = 30
     assign 16 builders to castle
   #end do
+  
+  auto expand town size to 30
   
   build lumber camps
   #when
@@ -67,7 +66,9 @@ load "templates/fast_castle.aoe2ai"
       #when
         attack with 30 units
       #then
-        chat to all "Bring the thunder."
+        #do once
+          chat to all "Bring the thunder."
+        #end do
       #end when
     #end repeat
   
