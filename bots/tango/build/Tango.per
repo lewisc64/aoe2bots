@@ -275,66 +275,114 @@
 (defrule
     (random-number == 1)
     (not (player-in-game any-enemy))
-    (not (stance-toward 1 enemy))
-    (stance-toward 1 ally)
+    (not (player-in-game any-neutral))
 =>
     (set-stance 1 enemy)
 )
 (defrule
     (random-number == 2)
     (not (player-in-game any-enemy))
-    (not (stance-toward 2 enemy))
-    (stance-toward 2 ally)
+    (not (player-in-game any-neutral))
 =>
     (set-stance 2 enemy)
 )
 (defrule
     (random-number == 3)
     (not (player-in-game any-enemy))
-    (not (stance-toward 3 enemy))
-    (stance-toward 3 ally)
+    (not (player-in-game any-neutral))
 =>
     (set-stance 3 enemy)
 )
 (defrule
     (random-number == 4)
     (not (player-in-game any-enemy))
-    (not (stance-toward 4 enemy))
-    (stance-toward 4 ally)
+    (not (player-in-game any-neutral))
 =>
     (set-stance 4 enemy)
 )
 (defrule
     (random-number == 5)
     (not (player-in-game any-enemy))
-    (not (stance-toward 5 enemy))
-    (stance-toward 5 ally)
+    (not (player-in-game any-neutral))
 =>
     (set-stance 5 enemy)
 )
 (defrule
     (random-number == 6)
     (not (player-in-game any-enemy))
-    (not (stance-toward 6 enemy))
-    (stance-toward 6 ally)
+    (not (player-in-game any-neutral))
 =>
     (set-stance 6 enemy)
 )
 (defrule
     (random-number == 7)
     (not (player-in-game any-enemy))
-    (not (stance-toward 7 enemy))
-    (stance-toward 7 ally)
+    (not (player-in-game any-neutral))
 =>
     (set-stance 7 enemy)
 )
 (defrule
     (random-number == 8)
     (not (player-in-game any-enemy))
-    (not (stance-toward 8 enemy))
-    (stance-toward 8 ally)
+    (not (player-in-game any-neutral))
 =>
     (set-stance 8 enemy)
+)
+(defrule
+    (player-in-game any-enemy)
+    (players-stance 1 ally)
+    (stance-toward 1 neutral)
+=>
+    (set-stance 1 ally)
+)
+(defrule
+    (player-in-game any-enemy)
+    (players-stance 2 ally)
+    (stance-toward 2 neutral)
+=>
+    (set-stance 2 ally)
+)
+(defrule
+    (player-in-game any-enemy)
+    (players-stance 3 ally)
+    (stance-toward 3 neutral)
+=>
+    (set-stance 3 ally)
+)
+(defrule
+    (player-in-game any-enemy)
+    (players-stance 4 ally)
+    (stance-toward 4 neutral)
+=>
+    (set-stance 4 ally)
+)
+(defrule
+    (player-in-game any-enemy)
+    (players-stance 5 ally)
+    (stance-toward 5 neutral)
+=>
+    (set-stance 5 ally)
+)
+(defrule
+    (player-in-game any-enemy)
+    (players-stance 6 ally)
+    (stance-toward 6 neutral)
+=>
+    (set-stance 6 ally)
+)
+(defrule
+    (player-in-game any-enemy)
+    (players-stance 7 ally)
+    (stance-toward 7 neutral)
+=>
+    (set-stance 7 ally)
+)
+(defrule
+    (player-in-game any-enemy)
+    (players-stance 8 ally)
+    (stance-toward 8 neutral)
+=>
+    (set-stance 8 ally)
 )
 (defrule
     (random-number == 1)
@@ -468,62 +516,6 @@
     (random-number == 8)
     (not (player-in-game any-ally))
     (players-stance any-neutral neutral)
-    (stance-toward 8 neutral)
-=>
-    (set-stance 8 ally)
-)
-(defrule
-    (player-in-game any-enemy)
-    (players-stance 1 ally)
-    (stance-toward 1 neutral)
-=>
-    (set-stance 1 ally)
-)
-(defrule
-    (player-in-game any-enemy)
-    (players-stance 2 ally)
-    (stance-toward 2 neutral)
-=>
-    (set-stance 2 ally)
-)
-(defrule
-    (player-in-game any-enemy)
-    (players-stance 3 ally)
-    (stance-toward 3 neutral)
-=>
-    (set-stance 3 ally)
-)
-(defrule
-    (player-in-game any-enemy)
-    (players-stance 4 ally)
-    (stance-toward 4 neutral)
-=>
-    (set-stance 4 ally)
-)
-(defrule
-    (player-in-game any-enemy)
-    (players-stance 5 ally)
-    (stance-toward 5 neutral)
-=>
-    (set-stance 5 ally)
-)
-(defrule
-    (player-in-game any-enemy)
-    (players-stance 6 ally)
-    (stance-toward 6 neutral)
-=>
-    (set-stance 6 ally)
-)
-(defrule
-    (player-in-game any-enemy)
-    (players-stance 7 ally)
-    (stance-toward 7 neutral)
-=>
-    (set-stance 7 ally)
-)
-(defrule
-    (player-in-game any-enemy)
-    (players-stance 8 ally)
     (stance-toward 8 neutral)
 =>
     (set-stance 8 ally)
