@@ -17,7 +17,11 @@ do basic diplomacy
   buy stone when gold > 1500
   
   build 3 town-center
-  build forward castle near town-center
+  #if up-pending-objects c: castle == 0
+    build forward castle near town-center
+  #else
+    build castle
+  #end if
   build houses
   build farms
   build lumber camps
