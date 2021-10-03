@@ -1,6 +1,7 @@
 #do once
   chat to self "Being introverted."
-  @set-stance every-enemy neutral
+  goal team-game = 0
+  goal free-for-all = 1
 #end do
 
 #if goal neutral-or-enemy-players-count 0

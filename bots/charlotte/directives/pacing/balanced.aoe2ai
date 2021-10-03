@@ -3,12 +3,19 @@
   goal balanced-aggressive = 1
 #end do
 
+goal aggressive-override = 0
+
 #repeat every 5 minutes
   @up-modify-goal balanced-aggressive c:+ 1
   @up-modify-goal balanced-aggressive c:mod 2
 #end repeat
 
-#if goal balanced-aggressive 1
+#if up-compare-goal target-military-percentage c:> 100 and up-compare-goal target-military-percentage c:<= 150 and goal attacking 1
+  goal aggressive-override = 1
+  chat to self "make military lead bigger"
+#end if
+
+#if goal balanced-aggressive 1 or goal aggressive-override 1
   load "reckless.aoe2ai"
 #else
   load "thoughtful.aoe2ai"

@@ -1,6 +1,7 @@
 #do once
-  chat to self "Being nice."
-  @set-stance every-enemy neutral
+  chat to self "Being backstabbing."
+  goal team-game = 0
+  goal free-for-all = 1
 #end do
 
 #if up-compare-goal neutral-or-enemy-players-count c:>= 2

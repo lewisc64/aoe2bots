@@ -47,7 +47,6 @@ load "../units/all_switched.aoe2ai"
   load "unit_selection/mandatory_siege.aoe2ai"
   
   load "attack_decision/aggressive.aoe2ai"
-  // load "pacing/conniving.aoe2ai"
   load "pacing/balanced.aoe2ai"
   
   load "targetting.aoe2ai"
@@ -57,10 +56,14 @@ load "../units/all_switched.aoe2ai"
   goal produce-units = 0
 #end if
 
-load "help_allies.aoe2ai"
-#if goal team-game 1 or goal free-for-all 1
+#if goal resign 0 and goal locked-teams 0 and (goal team-game 1 or goal free-for-all 1)
   load "diplomacy/diplomacy.aoe2ai"
+#else if goal resign 1
+  @set-stance every-enemy ally
+  @set-stance every-neutral ally
 #end if
+
+load "help_allies.aoe2ai"
 load "resigning.aoe2ai"
 
 #do once

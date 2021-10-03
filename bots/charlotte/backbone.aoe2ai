@@ -182,6 +182,8 @@ const gold-unit-threshold = 0
   
   assign 8 builders to castle
   assign 4 builders to town-center-foundation
+  
+  goal temp = 0
 #end do
 
 #do once
@@ -195,14 +197,20 @@ load "stats.aoe2ai"
 #do once
   goal team-game = 0
   goal free-for-all = 0
+  goal locked-teams = 0
 #end do
 
 #if goal free-for-all 0 and players-stance any-ally ally and stance-toward any-ally ally
-  goal team-game = 1
+  #do once
+    goal team-game = 1
+    goal locked-teams = 1
+  #end do
 #end if
 
 #if goal team-game 0 and player-valid 1 and player-valid 2 and player-valid 3
-  goal free-for-all = 1
+  #do once
+    goal free-for-all = 1
+  #end do
 #end if
 
 #if wood-amount >= wood-unit-threshold
