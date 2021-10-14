@@ -1,3 +1,8 @@
+const max-castle-age-rams = 5
+const max-imperial-age-rams = 10
+const max-trebs = 4
+const max-defensive-mangonels = 4
+
 #if goal attacking 0 and town-under-attack and not enemy-buildings-in-town
   goal produce-battering-rams = 0
   goal produce-trebuchets = 0

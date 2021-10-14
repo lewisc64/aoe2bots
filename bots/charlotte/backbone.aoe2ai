@@ -28,9 +28,6 @@ const infantry-unit-class = 906
 const cavalry-unit-class = 912
 
 const max-town-centers = 3
-const max-castle-age-rams = 5
-const max-imperial-age-rams = 10
-const max-trebs = 3
 const min-detection-units = 5
 
 const extortionate-tech-villagers = 100
@@ -197,13 +194,20 @@ load "stats.aoe2ai"
 #do once
   goal team-game = 0
   goal free-for-all = 0
-  goal locked-teams = 0
+  goal locked-teams = 1
+  @set-stance my-player-number enemy
 #end do
+
+#if stance-toward my-player-number enemy
+  #do once
+    goal locked-teams = 0
+    @set-stance my-player-number ally
+  #end do
+#end if
 
 #if goal free-for-all 0 and players-stance any-ally ally and stance-toward any-ally ally
   #do once
     goal team-game = 1
-    goal locked-teams = 1
   #end do
 #end if
 
@@ -231,7 +235,7 @@ load "stats.aoe2ai"
   goal enough-gold-for-units = 0
 #end if
 
-#if goal attacking 0 and town-under-attack// or current-age == feudal-age
+#if goal attacking 0 and town-under-attack
   goal enough-wood-for-units = 1
   goal enough-food-for-units = 1
   goal enough-gold-for-units = 1
