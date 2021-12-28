@@ -135,6 +135,7 @@
 (defconst ri-double-crossbow 623)
 (defconst ri-mercenaries 514)
 (defconst ri-farimba 577)
+(defconst live-sheep 958)
 (defconst sea-fish 905)
 (defconst tc-arrow 54)
 (defconst watch-tower-arrow 786)
@@ -1672,6 +1673,29 @@
     (build town-center)
 )
 (defrule
+    (and (game-time < 60) (unit-type-count-total live-sheep == 0))
+=>
+    (set-strategic-number sn-percent-civilian-explorers 100)
+    (set-strategic-number sn-cap-civilian-explorers 200)
+    (set-strategic-number sn-total-number-explorers 200)
+    (set-strategic-number sn-number-explore-groups 200)
+)
+(defrule
+    (not (and (game-time < 60) (unit-type-count-total live-sheep == 0)))
+=>
+    (set-strategic-number sn-cap-civilian-explorers 1)
+    (set-strategic-number sn-total-number-explorers 1)
+    (set-strategic-number sn-number-explore-groups 1)
+)
+(defrule
+    (or (military-population >= 1) (game-time >= 400))
+    (not (and (game-time < 60) (unit-type-count-total live-sheep == 0)))
+=>
+    (set-strategic-number sn-percent-civilian-explorers 0)
+    (set-strategic-number sn-cap-civilian-explorers 0)
+    (disable-self)
+)
+(defrule
     (true)
 =>
     (set-strategic-number sn-enable-boar-hunting 2)
@@ -1936,6 +1960,16 @@
 =>
     (set-strategic-number sn-wood-gatherer-percentage 25)
     (set-strategic-number sn-food-gatherer-percentage 75)
+    (set-strategic-number sn-gold-gatherer-percentage 0)
+    (set-strategic-number sn-stone-gatherer-percentage 0)
+    (disable-self)
+)
+(defrule
+    (civilian-population >= 18)
+    (current-age == dark-age)
+=>
+    (set-strategic-number sn-wood-gatherer-percentage 40)
+    (set-strategic-number sn-food-gatherer-percentage 60)
     (set-strategic-number sn-gold-gatherer-percentage 0)
     (set-strategic-number sn-stone-gatherer-percentage 0)
     (disable-self)
@@ -20891,7 +20925,7 @@ watch-tower-arrow > 0))))
     (set-goal produce-battering-rams 0)
 )
 (defrule
-    (unit-type-count-total trebuchet-set < max-trebs)
+    (and (unit-type-count-total trebuchet-set < max-trebs) (up-pending-objects c: trebuchet-set == 0))
     (current-age == imperial-age)
     (not (goal full-water-map 1))
     (not (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1))))
@@ -20900,7 +20934,7 @@ watch-tower-arrow > 0))))
     (set-goal produce-trebuchets 1)
 )
 (defrule
-    (not (unit-type-count-total trebuchet-set < max-trebs))
+    (not (and (unit-type-count-total trebuchet-set < max-trebs) (up-pending-objects c: trebuchet-set == 0)))
     (current-age == imperial-age)
     (not (goal full-water-map 1))
     (not (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1))))

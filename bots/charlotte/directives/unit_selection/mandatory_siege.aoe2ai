@@ -27,7 +27,7 @@ const max-defensive-mangonels = 4
     goal produce-trebuchets = 0
   #else if current-age == imperial-age
     goal produce-battering-rams = 0
-    #if unit-type-count-total trebuchet-set < max-trebs
+    #if unit-type-count-total trebuchet-set < max-trebs and up-pending-objects c: trebuchet-set == 0
       goal produce-trebuchets = 1
     #else
       goal produce-trebuchets = 0
