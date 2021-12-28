@@ -135,6 +135,7 @@
 (defconst ri-double-crossbow 623)
 (defconst ri-mercenaries 514)
 (defconst ri-farimba 577)
+(defconst ri-chatras 628)
 (defconst live-sheep 958)
 (defconst sea-fish 905)
 (defconst tc-arrow 54)
@@ -2133,7 +2134,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 3422)
+    (up-jump-rule 3427)
 )
 (defrule
     (true)
@@ -11467,7 +11468,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-battle-elephants 1) (unit-available battle-elephant-line)))
 =>
-    (up-jump-rule 115)
+    (up-jump-rule 120)
 )
 (defrule
     (not (building-type-count-total stable == 0))
@@ -11556,6 +11557,39 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-tusk-swords))
 =>
     (research ri-tusk-swords)
+)
+(defrule
+    (not (and (current-age >= castle-age) (unit-available battle-elephant-line)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-chatras)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-chatras < research-pending)
+    (and (research-available ri-chatras) (building-type-count castle >= 1))
+    (not (research-completed ri-chatras))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-chatras)
+    (goal do-research 1)
+    (and (research-available ri-chatras) (building-type-count castle >= 1))
+    (not (research-completed ri-chatras))
+=>
+    (research ri-chatras)
 )
 (defrule
     (not (and (current-age == imperial-age) (unit-available battle-elephant-line)))
