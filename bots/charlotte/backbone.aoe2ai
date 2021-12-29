@@ -170,10 +170,9 @@ const gold-unit-threshold = 0
   @up-get-fact population-cap 0 pop-cap-goal
   @up-modify-goal desired-villagers g:* pop-cap-goal
   @up-modify-goal desired-villagers c:/ 200
-  @up-modify-goal desired-trade-carts g:* pop-cap-goal
-  @up-modify-goal desired-trade-carts c:/ 200
   @up-modify-goal desired-fishing-ships g:* pop-cap-goal
   @up-modify-goal desired-fishing-ships c:/ 200
+  goal desired-trade-carts = 0
   
   goal produce-units = 1
   goal do-research = 1
@@ -184,6 +183,10 @@ const gold-unit-threshold = 0
   
   goal temp = 0
 #end do
+
+@up-modify-goal desired-trade-carts g:= desired-villagers
+@up-modify-goal desired-trade-carts s:* sn-gold-gatherer-percentage
+@up-modify-goal desired-trade-carts c:/ 100
 
 #do once
   insert clear-units

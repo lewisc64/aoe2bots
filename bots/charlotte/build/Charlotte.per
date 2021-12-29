@@ -464,10 +464,9 @@
     (up-get-fact population-cap 0 pop-cap-goal)
     (up-modify-goal desired-villagers g:* pop-cap-goal)
     (up-modify-goal desired-villagers c:/ 200)
-    (up-modify-goal desired-trade-carts g:* pop-cap-goal)
-    (up-modify-goal desired-trade-carts c:/ 200)
     (up-modify-goal desired-fishing-ships g:* pop-cap-goal)
     (up-modify-goal desired-fishing-ships c:/ 200)
+    (set-goal desired-trade-carts 0)
     (set-goal produce-units 1)
     (set-goal do-research 1)
     (set-goal attacking 0)
@@ -475,6 +474,13 @@
     (up-assign-builders c: town-center-foundation c: 4)
     (set-goal temp 0)
     (disable-self)
+)
+(defrule
+    (true)
+=>
+    (up-modify-goal desired-trade-carts g:= desired-villagers)
+    (up-modify-goal desired-trade-carts s:* sn-gold-gatherer-percentage)
+    (up-modify-goal desired-trade-carts c:/ 100)
 )
 (defrule
     (true)
@@ -2134,7 +2140,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 3427)
+    (up-jump-rule 3428)
 )
 (defrule
     (true)
@@ -3441,7 +3447,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (goal produce-trade-carts 1))
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (can-build market)
@@ -3485,6 +3491,14 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-caravan))
 =>
     (research ri-caravan)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 2)
+    (unit-available trade-cart)
+=>
+    (build market)
 )
 (defrule
     (can-train trade-cart)
