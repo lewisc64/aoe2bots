@@ -47,7 +47,7 @@
     research feudal-age
   #end if
   
-  train villager
+  train 40 villager
   research ri-loom
   
   #if civilian-population >= 25
