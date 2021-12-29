@@ -9,13 +9,16 @@
 
 lure boars
 
+#if goal douche-done 1
+  build 3 town-center
+#end if
+
 #if building-type-count town-center >= 1
   build mills
   build lumber camps
   build 1 university
   build 1 blacksmith
   build 2 archery-range
-  build 3 town-center
   build 3 castle
   build 1 siege-workshop
 
@@ -140,9 +143,5 @@ train 120 villager with 30 trade
     escrow 0 wood
     distribute villagers 25 75 0 0
     take boar and deer
-  #end if
-  #if goal do-douche 1 and goal douche-done 0
-    delete building lumber-camp
-    delete building mill
   #end if
 #end if
