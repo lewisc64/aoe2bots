@@ -32,13 +32,12 @@ research castle-age
 research imperial-age
 
 research ri-loom
+research ri-murder-holes
 research ri-masonry
 research ri-architecture
 research blacksmith ranged upgrades
 research ri-elite-skirmisher
 research ri-imperial-skirmisher
-research ri-crossbow
-research ri-arbalest
 research ri-thumb-ring
 research ri-ballistics
 research ri-capped-ram
@@ -55,7 +54,7 @@ research ri-siege-ram
 #else
   
   #do once
-    distribute villagers 30 50 12 8
+    distribute villagers 50 35 10 5
   #end do
   
   auto balance wood and food and gold
@@ -65,44 +64,13 @@ research ri-siege-ram
   build 1 barracks
   build houses with 15 headroom
   
-  #if wood-amount >= 200
-    #respond to knight-line
-      research ri-pikeman
-      research ri-scale-mail
-      research ri-chain-mail
-      train spearman-line
-    #end respond
-    
-    #respond to 2 scout-cavalry-line
-      research ri-pikeman
-      research ri-scale-mail
-      research ri-chain-mail
-      train spearman-line
-    #end respond
-    
-    #respond to camel-line
-      research ri-pikeman
-      research ri-scale-mail
-      research ri-chain-mail
-      train spearman-line
-    #end respond
-    
-    #respond to mangonel-line
-      research ri-pikeman
-      research ri-scale-mail
-      research ri-chain-mail
-      train spearman-line
-    #end respond
-    
-    train 5 battering-ram-line
-    
-    #if gold-amount >= 75
-      train skirmisher-line => train archer-line
-    #else
-      train skirmisher-line
-    #end if
-    train 2 trebuchet
-  #end if
+  train 1 mangonel-line
+  train 5 battering-ram-line
+  
+  respond to 2 scout-cavalry-line with spearman-line
+  
+  train skirmisher-line
+  train 2 trebuchet
 
 #end if
 
