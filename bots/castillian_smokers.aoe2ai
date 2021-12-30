@@ -18,8 +18,6 @@ load "templates/fast_castle.aoe2ai"
     distribute villagers 35 40 10 15
   #end do
   
-  research ri-fervor with gold escrow
-  
   research ri-padded-archer-armor with food and gold escrow
   research ri-leather-archer-armor with food and gold escrow
   research ri-ring-archer-armor with food and gold escrow
@@ -89,8 +87,11 @@ load "templates/fast_castle.aoe2ai"
     build farms
   #end if
   
-  train 120 villager with 30 trade
-
+  #if current-age >= imperial-age
+    train 120 villager with 30 trade
+  #else
+    train 120 villager
+  #end if
 #end if
 
 #if up-research-status c: imperial-age >= research-pending
@@ -109,17 +110,19 @@ load "templates/fast_castle.aoe2ai"
   
   auto balance wood and food and gold
   
-  research monastery upgrades
-  research ri-chemistry
+  research ri-chemistry with food and gold escrow
   research ri-conscription
   
-  research my-unique-unit-upgrade
+  research my-unique-unit-upgrade with food and gold escrow
   research my-unique-research
   
-  build 1 siege-workshop
+  build 3 siege-workshop
   build 1 university
   
-  train 10 missionary
-  train bombard-cannon
-  train my-unique-unit-line
+  train 1 missionary
+  #if unit-available bombard-cannon and unit-type-count-total bombard-cannon < 5
+    train bombard-cannon
+  #else
+    train my-unique-unit-line
+  #end if
 #end if
