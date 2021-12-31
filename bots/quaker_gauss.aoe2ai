@@ -61,16 +61,15 @@ load "templates/fast_castle.aoe2ai"
     train trebuchet
   #end when
   
-  
-    #repeat every 30 seconds
-      #when
-        attack with 30 units
-      #then
-        #do once
-          chat to all "Bring the thunder."
-        #end do
-      #end when
-    #end repeat
+  #repeat every 30 seconds
+    #when
+      attack with 30 units
+    #then
+      #do once
+        chat to all "Bring the thunder."
+      #end do
+    #end when
+  #end repeat
   
   #if current-age >= imperial-age
     train 120 villager with 30 trade
