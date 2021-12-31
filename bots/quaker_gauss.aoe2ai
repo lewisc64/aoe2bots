@@ -4,7 +4,11 @@ const ri-warwolf = 461
   chat to all "D'ya hear that? The rumbling."
 #end do
 
-do basic diplomacy
+#select random persistant
+  do basic diplomacy
+#randor
+  do basic diplomacy without backstabbing
+#end select
 
 load "templates/fast_castle.aoe2ai"
 

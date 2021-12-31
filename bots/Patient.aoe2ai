@@ -11,7 +11,11 @@
   #end delay
 #end do once
 
-do basic diplomacy
+#select random persistant
+  do basic diplomacy
+#randor
+  do basic diplomacy without backstabbing
+#end select
 
 research feudal-age
 research castle-age

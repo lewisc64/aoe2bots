@@ -10,7 +10,11 @@ const max-wood = 1500
 const max-food = 1500
 const max-gold = 1500
 
-do basic diplomacy
+#select random persistant
+  do basic diplomacy
+#randor
+  do basic diplomacy without backstabbing
+#end select
 
 load "templates/fast_castle.aoe2ai"
 

@@ -23,7 +23,7 @@ const town-size = 30
   chat to all "21I look forward to you joining my side."
 #end do once
 
-do basic diplomacy
+do basic diplomacy without backstabbing
 
 build 1 town-center
 build houses

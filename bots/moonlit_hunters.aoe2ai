@@ -1,6 +1,10 @@
 load "templates/fast_castle.aoe2ai"
 
-do basic diplomacy
+#select random persistant
+  do basic diplomacy
+#randor
+  do basic diplomacy without backstabbing
+#end select
 
 #if up-research-status c: castle-age >= research-pending
   #do once

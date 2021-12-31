@@ -9,7 +9,11 @@
   sn-special-attack-type2 = villager
 #end do
 
-do basic diplomacy
+#select random persistant
+  do basic diplomacy
+#randor
+  do basic diplomacy without backstabbing
+#end select
 
 #when
   research feudal-age with food escrow

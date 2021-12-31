@@ -34,7 +34,11 @@ const ri-obsidian-arrows = 485
   
 #end do
 
-do basic diplomacy
+#select random persistant
+  do basic diplomacy
+#randor
+  do basic diplomacy without backstabbing
+#end select
 
 build 1 town-center
 

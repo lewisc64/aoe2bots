@@ -5,7 +5,11 @@ const minimum-army = 12
 load "charlotte/stats.aoe2ai"
 load "templates/fast_castle.aoe2ai"
 
-do basic diplomacy
+#select random persistant
+  do basic diplomacy
+#randor
+  do basic diplomacy without backstabbing
+#end select
 
 #template escrow-resources
   #if escrow-amount food < 1300

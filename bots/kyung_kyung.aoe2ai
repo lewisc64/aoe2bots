@@ -4,7 +4,11 @@
   chat to all "Kyung know war."
 #end do
 
-do basic diplomacy
+#select random persistant
+  do basic diplomacy
+#randor
+  do basic diplomacy without backstabbing
+#end select
 
 load "templates/fast_castle.aoe2ai"
 

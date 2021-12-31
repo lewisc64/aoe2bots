@@ -10,7 +10,11 @@ load "templates/fast_castle.aoe2ai"
   #end delay
 #end do
 
-do basic diplomacy
+#select random persistant
+  do basic diplomacy
+#randor
+  do basic diplomacy without backstabbing
+#end select
 
 #if town-under-attack and current-age <= feudal-age and enemy-buildings-in-town
   sell stone when stone > 0

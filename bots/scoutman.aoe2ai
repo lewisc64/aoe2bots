@@ -9,7 +9,11 @@
   assign 8 builders to castle
 #end do
 
-do basic diplomacy
+#select random persistant
+  do basic diplomacy
+#randor
+  do basic diplomacy without backstabbing
+#end select
 
 research ri-loom
 research feudal-age
