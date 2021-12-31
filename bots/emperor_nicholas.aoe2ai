@@ -11,6 +11,10 @@ load "templates/fast_castle.aoe2ai"
   do basic diplomacy without backstabbing
 #end select
 
+#if current-age == feudal-age
+  build stone mining camps
+#end if
+
 #if up-research-status c: castle-age >= research-pending
   #do once
     distribute villagers 40 40 10 10
@@ -55,8 +59,8 @@ load "templates/fast_castle.aoe2ai"
   build lumber camps
   build houses with 15 headroom
   #when
-    build stone mining camps
     build gold mining camps
+    build stone mining camps
   #then
     sn-camp-max-distance += 8
   #end when
@@ -96,10 +100,7 @@ load "templates/fast_castle.aoe2ai"
   #end respond
   
   #if current-age >= imperial-age
-    train 130 villager with 40 trade
-    #if players-building-type-count any-ally market >= 1
-      build 2 market
-    #end if
+    train 130 villager with 35 trade
   #else
     train 130 villager
   #end if
@@ -107,9 +108,7 @@ load "templates/fast_castle.aoe2ai"
   train 1 monk
   
   #if current-age == castle-age
-    #if town-under-attack
-      train 15 my-unique-unit
-    #end if
+    train 15 my-unique-unit
   #else
     #if unit-type-count-total trebuchet-set < 2 and (not town-under-attack or goal threat-source castle)
       train trebuchet
@@ -139,5 +138,4 @@ load "templates/fast_castle.aoe2ai"
   #else
     @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
   #end if
-
 #end if
