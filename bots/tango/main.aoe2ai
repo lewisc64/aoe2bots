@@ -55,7 +55,11 @@ goal attacking = 0
   goal stone-modifier-percentage = 0
 #end do
 
-do basic diplomacy
+#select random persistant
+  do basic diplomacy
+#randor
+  do basic diplomacy without backstabbing
+#end select
 
 @up-modify-sn sn-wood-gatherer-percentage g:- wood-modifier-percentage
 @up-modify-sn sn-food-gatherer-percentage g:- food-modifier-percentage
