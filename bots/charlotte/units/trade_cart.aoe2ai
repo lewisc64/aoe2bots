@@ -4,8 +4,6 @@ load "../research/market/prerequisites.aoe2ai"
   
   load "../research/market/caravan.aoe2ai"
 
-  build 2 market
-
   #if up-compare-goal total-trade-carts g:< desired-trade-carts
     train trade-cart
   #end if

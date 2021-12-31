@@ -2140,7 +2140,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 3429)
+    (up-jump-rule 3428)
 )
 (defrule
     (true)
@@ -3447,7 +3447,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (goal produce-trade-carts 1))
 =>
-    (up-jump-rule 8)
+    (up-jump-rule 7)
 )
 (defrule
     (can-build market)
@@ -3491,14 +3491,6 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-caravan))
 =>
     (research ri-caravan)
-)
-(defrule
-    (can-build market)
-    (up-pending-objects c: market < 5)
-    (building-type-count-total market < 2)
-    (unit-available trade-cart)
-=>
-    (build market)
 )
 (defrule
     (can-train trade-cart)
