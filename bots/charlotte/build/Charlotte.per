@@ -2140,7 +2140,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 3435)
+    (up-jump-rule 3429)
 )
 (defrule
     (true)
@@ -20715,7 +20715,6 @@ watch-tower-arrow > 0))))
     (goal attack-ready 1)
 =>
     (set-goal be-smart 0)
-    (chat-local-to-self "smart brain disabled")
 )
 (defrule
     (not (and (not (goal emergency-trash 1)) (goal attack-ready 1)))
@@ -20805,7 +20804,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (not (goal emergency-trash 1)) (goal attack-ready 1)))
 =>
-    (up-jump-rule 20)
+    (up-jump-rule 14)
 )
 (defrule
     (players-unit-type-count target-player skirmisher-line >= min-detection-units)
@@ -20916,52 +20915,6 @@ watch-tower-arrow > 0))))
     (and (current-age == feudal-age) (goal produce-spearmen 0))
 =>
     (train spearman-line)
-)
-(defrule
-    (players-unit-type-count target-player archer-line >= min-detection-units)
-    (and (current-age == castle-age) (goal produce-mangonels 0))
-=>
-    (chat-local-to-self "LIGHT COUNTER ARCHERS WITH MANGONELS")
-)
-(defrule
-    (can-build siege-workshop)
-    (up-pending-objects c: siege-workshop < 5)
-    (building-type-count-total siege-workshop < 1)
-    (players-unit-type-count target-player archer-line >= min-detection-units)
-    (and (current-age == castle-age) (goal produce-mangonels 0))
-=>
-    (build siege-workshop)
-)
-(defrule
-    (can-train mangonel-line)
-    (unit-type-count-total mangonel-line < 3)
-    (players-unit-type-count target-player archer-line >= min-detection-units)
-    (and (current-age == castle-age) (goal produce-mangonels 0))
-=>
-    (train mangonel-line)
-)
-(defrule
-    (players-unit-type-count target-player skirmisher-line >= min-detection-units)
-    (and (current-age == castle-age) (goal produce-mangonels 0))
-=>
-    (chat-local-to-self "LIGHT COUNTER SKIRMISHERS WITH MANGONELS")
-)
-(defrule
-    (can-build siege-workshop)
-    (up-pending-objects c: siege-workshop < 5)
-    (building-type-count-total siege-workshop < 1)
-    (players-unit-type-count target-player skirmisher-line >= min-detection-units)
-    (and (current-age == castle-age) (goal produce-mangonels 0))
-=>
-    (build siege-workshop)
-)
-(defrule
-    (can-train mangonel-line)
-    (unit-type-count-total mangonel-line < 3)
-    (players-unit-type-count target-player skirmisher-line >= min-detection-units)
-    (and (current-age == castle-age) (goal produce-mangonels 0))
-=>
-    (train mangonel-line)
 )
 (defrule
     (not (goal attack-ready 1))
