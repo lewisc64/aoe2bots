@@ -1,5 +1,6 @@
 // with this loaded, skirmishers and spearmen are considered counter units, and will be turned off if decided upon by other means.
 
+// make skirmishers?
 #if goal partial-ranged-blacksmith-investment 1
   #if players-unit-type-count target-player skirmisher-line >= min-detection-units
     goal produce-skirmishers = 1
@@ -20,6 +21,7 @@
   goal produce-skirmishers = 0
 #end if
 
+// make spearmen?
 #if goal partial-infantry-blacksmith-investment 1 and (current-age == feudal-age or research-available ri-pikeman or research-completed ri-pikeman)
   #if players-unit-type-count target-player scout-cavalry-line >= min-detection-units
     chat to self "COUNTER SCOUTS WITH SPEARMEN"
@@ -41,7 +43,11 @@
 #end if
 
 // light counters, do not go through full flow
-#if current-age == feudal-age and players-unit-type-count target-player scout-cavalry-line >= 2
-  chat to self "LIGHT COUNTER SCOUTS WITH SPEARMEN"
-  train 4 spearman-line
+
+// make light spearmen?
+#if current-age == feudal-age and goal produce-spearmen 0
+  #if players-unit-type-count target-player scout-cavalry-line >= 2
+    chat to self "LIGHT COUNTER SCOUTS WITH SPEARMEN"
+    train 4 spearman-line
+  #end if
 #end if

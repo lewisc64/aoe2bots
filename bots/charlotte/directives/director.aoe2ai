@@ -39,6 +39,7 @@ load "../units/all_switched.aoe2ai"
     #end if
     #delay by 2 minutes
       goal be-smart = 0
+      chat to self "smart brain disabled"
     #end delay
     
     load "unit_selection/being_countered_system.aoe2ai"

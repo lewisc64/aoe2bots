@@ -28,6 +28,9 @@
   #respond to min-detection-units archer
     goal produce-militia = 0
     goal produce-hand-cannoneers = 0
+    #if goal unique-unit-is-infantry 1 and not (civ-selected gothic or civ-selected malay or civ-selected celtic)
+      goal produce-unique-units = 0
+    #end if
   #end respond
   
   #respond to min-detection-units spearman-line

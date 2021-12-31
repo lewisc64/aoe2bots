@@ -49,7 +49,7 @@ insert get-unique-unit-information(prefix="enemy-",player="target-player")
   goal produce-spearmen = 0
   goal produce-eagles = 0
   #if goal unique-unit-is-infantry 1
-    goal produce-unique-units = 1
+    goal produce-unique-units = 0
   #end if
 #end if
 

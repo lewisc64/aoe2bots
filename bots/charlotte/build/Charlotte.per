@@ -2140,7 +2140,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 3428)
+    (up-jump-rule 3435)
 )
 (defrule
     (true)
@@ -20579,7 +20579,7 @@ watch-tower-arrow > 0))))
     (goal unique-unit-is-infantry 1)
     (goal enemy-good-hand-cannoneers 1)
 =>
-    (set-goal produce-unique-units 1)
+    (set-goal produce-unique-units 0)
 )
 (defrule
     (goal enemy-good-knights 1)
@@ -20715,11 +20715,12 @@ watch-tower-arrow > 0))))
     (goal attack-ready 1)
 =>
     (set-goal be-smart 0)
+    (chat-local-to-self "smart brain disabled")
 )
 (defrule
     (not (and (not (goal emergency-trash 1)) (goal attack-ready 1)))
 =>
-    (up-jump-rule 11)
+    (up-jump-rule 12)
 )
 (defrule
     (players-unit-type-count any-enemy monk-set >= min-detection-units)
@@ -20756,6 +20757,13 @@ watch-tower-arrow > 0))))
 =>
     (set-goal produce-militia 0)
     (set-goal produce-hand-cannoneers 0)
+)
+(defrule
+    (and (goal unique-unit-is-infantry 1) (not (or (civ-selected gothic) (or (civ-selected malay) (civ-selected celtic)))))
+    (players-unit-type-count any-enemy archer >= min-detection-units)
+    (goal desired-units 1)
+=>
+    (set-goal produce-unique-units 0)
 )
 (defrule
     (players-unit-type-count any-enemy spearman-line >= min-detection-units)
@@ -20797,7 +20805,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (not (goal emergency-trash 1)) (goal attack-ready 1)))
 =>
-    (up-jump-rule 14)
+    (up-jump-rule 20)
 )
 (defrule
     (players-unit-type-count target-player skirmisher-line >= min-detection-units)
@@ -20896,16 +20904,64 @@ watch-tower-arrow > 0))))
     (set-goal produce-spearmen 0)
 )
 (defrule
-    (and (current-age == feudal-age) (players-unit-type-count target-player scout-cavalry-line >= 2))
+    (players-unit-type-count target-player scout-cavalry-line >= 2)
+    (and (current-age == feudal-age) (goal produce-spearmen 0))
 =>
     (chat-local-to-self "LIGHT COUNTER SCOUTS WITH SPEARMEN")
 )
 (defrule
     (can-train spearman-line)
     (unit-type-count-total spearman-line < 4)
-    (and (current-age == feudal-age) (players-unit-type-count target-player scout-cavalry-line >= 2))
+    (players-unit-type-count target-player scout-cavalry-line >= 2)
+    (and (current-age == feudal-age) (goal produce-spearmen 0))
 =>
     (train spearman-line)
+)
+(defrule
+    (players-unit-type-count target-player archer-line >= min-detection-units)
+    (and (current-age == castle-age) (goal produce-mangonels 0))
+=>
+    (chat-local-to-self "LIGHT COUNTER ARCHERS WITH MANGONELS")
+)
+(defrule
+    (can-build siege-workshop)
+    (up-pending-objects c: siege-workshop < 5)
+    (building-type-count-total siege-workshop < 1)
+    (players-unit-type-count target-player archer-line >= min-detection-units)
+    (and (current-age == castle-age) (goal produce-mangonels 0))
+=>
+    (build siege-workshop)
+)
+(defrule
+    (can-train mangonel-line)
+    (unit-type-count-total mangonel-line < 3)
+    (players-unit-type-count target-player archer-line >= min-detection-units)
+    (and (current-age == castle-age) (goal produce-mangonels 0))
+=>
+    (train mangonel-line)
+)
+(defrule
+    (players-unit-type-count target-player skirmisher-line >= min-detection-units)
+    (and (current-age == castle-age) (goal produce-mangonels 0))
+=>
+    (chat-local-to-self "LIGHT COUNTER SKIRMISHERS WITH MANGONELS")
+)
+(defrule
+    (can-build siege-workshop)
+    (up-pending-objects c: siege-workshop < 5)
+    (building-type-count-total siege-workshop < 1)
+    (players-unit-type-count target-player skirmisher-line >= min-detection-units)
+    (and (current-age == castle-age) (goal produce-mangonels 0))
+=>
+    (build siege-workshop)
+)
+(defrule
+    (can-train mangonel-line)
+    (unit-type-count-total mangonel-line < 3)
+    (players-unit-type-count target-player skirmisher-line >= min-detection-units)
+    (and (current-age == castle-age) (goal produce-mangonels 0))
+=>
+    (train mangonel-line)
 )
 (defrule
     (not (goal attack-ready 1))
