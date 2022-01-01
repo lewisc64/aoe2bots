@@ -2140,7 +2140,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 3428)
+    (up-jump-rule 3430)
 )
 (defrule
     (true)
@@ -20796,7 +20796,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (not (goal emergency-trash 1)) (goal attack-ready 1)))
 =>
-    (up-jump-rule 14)
+    (up-jump-rule 16)
 )
 (defrule
     (players-unit-type-count target-player skirmisher-line >= min-detection-units)
@@ -20833,10 +20833,22 @@ watch-tower-arrow > 0))))
     (chat-local-to-self "COUNTER SPEARMEN WITH SKIRMS")
 )
 (defrule
+    (players-unit-type-count target-player war-wagon-line >= min-detection-units)
     (not (players-unit-type-count target-player cavalry-archer-line >= min-detection-units))
     (not (players-unit-type-count target-player skirmisher-line >= min-detection-units))
     (not (players-unit-type-count target-player archer-line >= min-detection-units))
     (not (players-unit-type-count target-player spearman-line >= min-detection-units))
+    (goal partial-ranged-blacksmith-investment 1)
+=>
+    (set-goal produce-skirmishers 1)
+    (chat-local-to-self "COUNTER WAR WAGONS WITH SKIRMS")
+)
+(defrule
+    (not (players-unit-type-count target-player spearman-line >= min-detection-units))
+    (not (players-unit-type-count target-player archer-line >= min-detection-units))
+    (not (players-unit-type-count target-player skirmisher-line >= min-detection-units))
+    (not (players-unit-type-count target-player cavalry-archer-line >= min-detection-units))
+    (not (players-unit-type-count target-player war-wagon-line >= min-detection-units))
     (goal partial-ranged-blacksmith-investment 1)
 =>
     (set-goal produce-skirmishers 0)
@@ -20881,10 +20893,22 @@ watch-tower-arrow > 0))))
     (set-goal produce-spearmen 1)
 )
 (defrule
+    (and (players-unit-type-count target-player war-elephant-line >= min-detection-units) (goal produce-monks 0))
     (not (and (players-unit-type-count target-player battle-elephant-line >= min-detection-units) (goal produce-monks 0)))
     (not (players-unit-type-count target-player scout-cavalry-line >= min-detection-units))
     (not (and (players-unit-type-count target-player knight-line >= min-detection-units) (goal produce-monks 0)))
     (not (and (players-unit-type-count target-player camel-line >= min-detection-units) (goal produce-monks 0)))
+    (and (goal partial-infantry-blacksmith-investment 1) (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman))))
+=>
+    (chat-local-to-self "COUNTER WAR ELEPHANTS WITH SPEARMEN")
+    (set-goal produce-spearmen 1)
+)
+(defrule
+    (not (and (players-unit-type-count target-player camel-line >= min-detection-units) (goal produce-monks 0)))
+    (not (and (players-unit-type-count target-player knight-line >= min-detection-units) (goal produce-monks 0)))
+    (not (players-unit-type-count target-player scout-cavalry-line >= min-detection-units))
+    (not (and (players-unit-type-count target-player battle-elephant-line >= min-detection-units) (goal produce-monks 0)))
+    (not (and (players-unit-type-count target-player war-elephant-line >= min-detection-units) (goal produce-monks 0)))
     (and (goal partial-infantry-blacksmith-investment 1) (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman))))
 =>
     (set-goal produce-spearmen 0)
