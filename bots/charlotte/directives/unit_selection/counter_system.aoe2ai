@@ -16,7 +16,7 @@
     chat to self "COUNTER SPEARMEN WITH SKIRMS"
   #else if players-unit-type-count target-player war-wagon-line >= min-detection-units
     goal produce-skirmishers = 1
-    chat to self "COUNTER WAR WAGONS WITH SKIRMS"    
+    chat to self "COUNTER WAR WAGONS WITH SKIRMS"
   #else
     goal produce-skirmishers = 0
   #end if
