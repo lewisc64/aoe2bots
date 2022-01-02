@@ -21,7 +21,7 @@ load "templates/fast_castle.aoe2ai"
     assign 2 builders to barracks
     assign 2 builders to archery-range
     
-    distribute villagers 45 40 15 0
+    distribute villagers 43 38 13 6
     
     escrow 10 wood
     escrow 10 food
@@ -64,18 +64,20 @@ load "templates/fast_castle.aoe2ai"
   build 1 market
   build 1 university
   build 1 monastery
-  build forward 5 castle
+  build castle
   
   #if current-age >= imperial-age
     train 120 villager with 30 trade using escrow for caravan
   #else
     train 120 villager
   #end if
-  train cavalry-archer-line
-  train petard
-  #if unit-type-count-total monk-set < 1
-    train monk
+  
+  #if not town-under-attack and unit-type-count-total trebuchet-set < 2
+    train trebuchet
+  #else
+    train cavalry-archer-line
   #end if
+  train 1 monk
   
   #if gold-amount < 1500
     sell wood when wood > 1500
@@ -90,6 +92,7 @@ load "templates/fast_castle.aoe2ai"
   build lumber camps maintaining 2 tiles
   #when
     build gold mining camps
+    build stone mining camps
   #then
     sn-camp-max-distance += 15
   #end when
