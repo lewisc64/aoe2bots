@@ -1,3 +1,4 @@
+// nomad TC
 #if game-time < 60
   build 1 town-center with wood and stone escrow
 #end if
@@ -20,6 +21,7 @@
   #end if
 #end if
 
+// lure boars
 lure boars
 
 // stop clogging everything!
@@ -49,13 +51,9 @@ lure boars
   goal produce-fishing-ships = 0
 #end if
 
-// do we gather relics?
-#select random persistant
-  build 1 monastery
-  train 1 monk
-#randor
-  // do not gather relics
-#end select
+// gather relics
+build 1 monastery
+train 1 monk
 
 // build houses with two vills at the start of the game
 #if building-type-count house == 0
@@ -69,12 +67,15 @@ lure boars
 #end if
 
 build houses with 5 headroom
+
+// lumber camps
 #when
   build lumber camps
 #then
   sn-camp-max-distance += 1
 #end when
 
+// town centers
 #if up-compare-goal town-center-count g:< desired-town-centers
   #if current-age >= castle-age
     build 1 market
@@ -96,6 +97,7 @@ build houses with 5 headroom
   #end select
 #end if
 
+// mining camps
 #when
   #if strategic-number sn-gold-gatherer-percentage > 0
     build gold mining camps
