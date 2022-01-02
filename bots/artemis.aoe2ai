@@ -27,12 +27,7 @@ const cavalry-unit-class = 912
 
 do basic diplomacy
 
-#if current-age == castle-age
-  #do once
-    sn-maximum-town-size += 4
-    sn-minimum-town-size += 4
-  #end do
-#end if
+auto expand town size
 
 #if not player-in-game target-player
   target closest enemy
