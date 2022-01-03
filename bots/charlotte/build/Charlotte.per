@@ -145,6 +145,7 @@
 (defconst ri-mercenaries 514)
 (defconst ri-farimba 577)
 (defconst ri-chatras 628)
+(defconst ri-recurve-bow 515)
 (defconst live-sheep 958)
 (defconst sea-fish 905)
 (defconst tc-arrow 54)
@@ -2139,7 +2140,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 3430)
+    (up-jump-rule 3435)
 )
 (defrule
     (true)
@@ -5787,7 +5788,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-cavalry-archers 1) (unit-available cavalry-archer-line)))
 =>
-    (up-jump-rule 119)
+    (up-jump-rule 124)
 )
 (defrule
     (not (and (up-research-status c: feudal-age >= research-pending) (building-type-count-total archery-range == 0)))
@@ -5857,6 +5858,39 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-heavy-cavalry-archer))
 =>
     (research ri-heavy-cavalry-archer)
+)
+(defrule
+    (not (and (current-age == imperial-age) (unit-available cavalry-archer-line)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-recurve-bow)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-recurve-bow < research-pending)
+    (and (research-available ri-recurve-bow) (building-type-count castle >= 1))
+    (not (research-completed ri-recurve-bow))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-recurve-bow)
+    (goal do-research 1)
+    (and (research-available ri-recurve-bow) (building-type-count castle >= 1))
+    (not (research-completed ri-recurve-bow))
+=>
+    (research ri-recurve-bow)
 )
 (defrule
     (not (unit-available cavalry-archer-line))
@@ -26552,7 +26586,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 320 8)
 =>
-    (chat-to-all "If I win this battle, it's all over.")
+    (chat-to-all "It'll all be over soon.")
     (disable-self)
 )
 (defrule
