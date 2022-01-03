@@ -20,11 +20,10 @@
 
   build 1 town-center
   build houses
-  #when
-    build lumber camps
-  #then always
+  build lumber camps
+  #if building-type-count-total lumber-camp >= 1
     build mills
-  #end when
+  #end if
   build 1 market
   build 1 blacksmith
   
