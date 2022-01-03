@@ -2140,7 +2140,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 3435)
+    (up-jump-rule 3436)
 )
 (defrule
     (true)
@@ -20357,7 +20357,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal be-smart 1) (and (not (goal emergency-trash 1)) (goal attack-ready 1))))
 =>
-    (up-jump-rule 63)
+    (up-jump-rule 64)
 )
 (defrule
     (true)
@@ -20535,6 +20535,12 @@ watch-tower-arrow > 0))))
     (players-civ target-player viking)
 =>
     (set-goal enemy-unique-unit-is-infantry 1)
+)
+(defrule
+    (goal full-water-map 0)
+=>
+    (set-goal produce-fire-ships 0)
+    (set-goal produce-galleys 0)
 )
 (defrule
     (or (goal enemy-good-archers 1) (goal enemy-unique-unit-is-ranged 1))
