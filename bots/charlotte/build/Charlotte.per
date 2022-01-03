@@ -21,10 +21,10 @@
 (defconst excellent-food-price 50)
 (defconst excellent-wood-sell-price 200)
 (defconst excellent-food-sell-price 200)
-(defconst can-buy-wood 297)
-(defconst can-buy-food 298)
-(defconst can-sell-wood 299)
-(defconst can-sell-food 300)
+(defconst can-buy-wood 306)
+(defconst can-buy-food 307)
+(defconst can-sell-wood 308)
+(defconst can-sell-food 309)
 (defconst attack-ready 137)
 (defconst do-backstep 138)
 (defconst emergency-trash 139)
@@ -88,31 +88,40 @@
 (defconst balanced-aggressive 196)
 (defconst next-retarget 200)
 (defconst retarget-interval 300)
-(defconst no-enemies-stamp 226)
-(defconst player-8-is-bad-egg 223)
-(defconst player-8-alliance-request-time-stamp 224)
-(defconst allied-with-player-8 225)
-(defconst player-7-is-bad-egg 220)
-(defconst player-7-alliance-request-time-stamp 221)
-(defconst allied-with-player-7 222)
-(defconst player-6-is-bad-egg 217)
-(defconst player-6-alliance-request-time-stamp 218)
-(defconst allied-with-player-6 219)
-(defconst player-5-is-bad-egg 214)
-(defconst player-5-alliance-request-time-stamp 215)
-(defconst allied-with-player-5 216)
-(defconst player-4-is-bad-egg 211)
-(defconst player-4-alliance-request-time-stamp 212)
-(defconst allied-with-player-4 213)
-(defconst player-3-is-bad-egg 208)
-(defconst player-3-alliance-request-time-stamp 209)
-(defconst allied-with-player-3 210)
-(defconst player-2-is-bad-egg 205)
-(defconst player-2-alliance-request-time-stamp 206)
-(defconst allied-with-player-2 207)
-(defconst player-1-is-bad-egg 202)
-(defconst player-1-alliance-request-time-stamp 203)
-(defconst allied-with-player-1 204)
+(defconst no-enemies-stamp 235)
+(defconst player-8-is-bad-egg 231)
+(defconst player-8-alliance-request-time-stamp 232)
+(defconst allied-with-8 233)
+(defconst tried-alliance-with-8 234)
+(defconst player-7-is-bad-egg 227)
+(defconst player-7-alliance-request-time-stamp 228)
+(defconst allied-with-7 229)
+(defconst tried-alliance-with-7 230)
+(defconst player-6-is-bad-egg 223)
+(defconst player-6-alliance-request-time-stamp 224)
+(defconst allied-with-6 225)
+(defconst tried-alliance-with-6 226)
+(defconst player-5-is-bad-egg 219)
+(defconst player-5-alliance-request-time-stamp 220)
+(defconst allied-with-5 221)
+(defconst tried-alliance-with-5 222)
+(defconst player-4-is-bad-egg 215)
+(defconst player-4-alliance-request-time-stamp 216)
+(defconst allied-with-4 217)
+(defconst tried-alliance-with-4 218)
+(defconst player-3-is-bad-egg 211)
+(defconst player-3-alliance-request-time-stamp 212)
+(defconst allied-with-3 213)
+(defconst tried-alliance-with-3 214)
+(defconst player-2-is-bad-egg 207)
+(defconst player-2-alliance-request-time-stamp 208)
+(defconst allied-with-2 209)
+(defconst tried-alliance-with-2 210)
+(defconst player-1-is-bad-egg 203)
+(defconst player-1-alliance-request-time-stamp 204)
+(defconst allied-with-1 205)
+(defconst tried-alliance-with-1 206)
+(defconst accept-alliance-requests 202)
 (defconst want-alliance 201)
 (defconst allied-victory-timeout 120)
 (defconst alliance-request-timeout 60)
@@ -466,7 +475,6 @@
     (up-modify-goal desired-villagers c:/ 200)
     (up-modify-goal desired-fishing-ships g:* pop-cap-goal)
     (up-modify-goal desired-fishing-ships c:/ 200)
-    (set-goal desired-trade-carts 0)
     (set-goal produce-units 1)
     (set-goal do-research 1)
     (set-goal attacking 0)
@@ -2131,7 +2139,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 3431)
+    (up-jump-rule 3430)
 )
 (defrule
     (true)
@@ -19479,7 +19487,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player aztec)
+    (players-civ any-enemy aztec)
 =>
     (set-goal enemy-good-eagles 1)
     (set-goal enemy-good-monks 1)
@@ -19488,7 +19496,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player berbers)
+    (players-civ any-enemy berbers)
 =>
     (set-goal enemy-good-unique-units 0)
     (set-goal enemy-good-hand-cannoneers 1)
@@ -19501,7 +19509,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player briton)
+    (players-civ any-enemy briton)
 =>
     (set-goal enemy-good-archers 1)
     (set-goal enemy-good-skirmishers 1)
@@ -19513,7 +19521,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player burmese)
+    (players-civ any-enemy burmese)
 =>
     (set-goal enemy-good-scouts 1)
     (set-goal enemy-good-militia 1)
@@ -19525,7 +19533,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player byzantine)
+    (players-civ any-enemy byzantine)
 =>
     (set-goal enemy-good-speamen 1)
     (set-goal enemy-good-archers 1)
@@ -19539,7 +19547,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player celtic)
+    (players-civ any-enemy celtic)
 =>
     (set-goal enemy-good-battering-rams 1)
     (set-goal enemy-good-scorpions 1)
@@ -19550,7 +19558,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player chinese)
+    (players-civ any-enemy chinese)
 =>
     (set-goal enemy-good-archers 1)
     (set-goal enemy-good-skirmishers 1)
@@ -19563,7 +19571,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player ethiopian)
+    (players-civ any-enemy ethiopian)
 =>
     (set-goal enemy-good-archers 1)
     (set-goal enemy-good-skirmishers 1)
@@ -19572,7 +19580,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player frankish)
+    (players-civ any-enemy frankish)
 =>
     (set-goal enemy-good-militia 1)
     (set-goal enemy-good-spearmen 1)
@@ -19583,7 +19591,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player gothic)
+    (players-civ any-enemy gothic)
 =>
     (set-goal enemy-good-militia 1)
     (set-goal enemy-good-spearmen 1)
@@ -19594,7 +19602,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player hun)
+    (players-civ any-enemy hun)
 =>
     (set-goal enemy-good-cavalry-archers 1)
     (set-goal enemy-good-battering-rams 1)
@@ -19604,7 +19612,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player incan)
+    (players-civ any-enemy incan)
 =>
     (set-goal enemy-good-eagles 1)
     (set-goal enemy-good-militia 1)
@@ -19618,7 +19626,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player indian)
+    (players-civ any-enemy indian)
 =>
     (set-goal enemy-good-skirmishers 1)
     (set-goal enemy-good-hand-cannoneers 1)
@@ -19629,7 +19637,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player italian)
+    (players-civ any-enemy italian)
 =>
     (set-goal enemy-good-archers 1)
     (set-goal enemy-good-skirmishers 1)
@@ -19641,7 +19649,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player japanese)
+    (players-civ any-enemy japanese)
 =>
     (set-goal enemy-good-archers 1)
     (set-goal enemy-good-skirmishers 1)
@@ -19655,7 +19663,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player khmer)
+    (players-civ any-enemy khmer)
 =>
     (set-goal enemy-good-spearmen 1)
     (set-goal enemy-good-battle-elephants 1)
@@ -19666,7 +19674,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player korean)
+    (players-civ any-enemy korean)
 =>
     (set-goal enemy-good-archers 1)
     (set-goal enemy-good-skirmishers 1)
@@ -19676,7 +19684,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player magyar)
+    (players-civ any-enemy magyar)
 =>
     (set-goal enemy-good-archers 1)
     (set-goal enemy-good-skirmishers 1)
@@ -19688,7 +19696,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player malay)
+    (players-civ any-enemy malay)
 =>
     (set-goal enemy-good-archers 1)
     (set-goal enemy-good-skirmishers 1)
@@ -19700,7 +19708,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player malian)
+    (players-civ any-enemy malian)
 =>
     (set-goal enemy-good-mangonels 1)
     (set-goal enemy-good-militia 1)
@@ -19710,7 +19718,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player mayan)
+    (players-civ any-enemy mayan)
 =>
     (set-goal enemy-good-archers 1)
     (set-goal enemy-good-skirmishers 1)
@@ -19722,7 +19730,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player mongol)
+    (players-civ any-enemy mongol)
 =>
     (set-goal enemy-good-cavalry-archers 1)
     (set-goal enemy-good-scouts 1)
@@ -19735,7 +19743,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player persian)
+    (players-civ any-enemy persian)
 =>
     (set-goal enemy-good-scouts 1)
     (set-goal enemy-good-knights 1)
@@ -19748,7 +19756,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player portuguese)
+    (players-civ any-enemy portuguese)
 =>
     (set-goal enemy-good-archers 1)
     (set-goal enemy-good-skirmishers 1)
@@ -19760,7 +19768,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player saracen)
+    (players-civ any-enemy saracen)
 =>
     (set-goal enemy-good-archers 1)
     (set-goal enemy-good-skirmishers 1)
@@ -19776,7 +19784,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player slavic)
+    (players-civ any-enemy slavic)
 =>
     (set-goal enemy-good-militia 1)
     (set-goal enemy-good-spearmen 1)
@@ -19790,7 +19798,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player spanish)
+    (players-civ any-enemy spanish)
 =>
     (set-goal enemy-good-skirmishers 1)
     (set-goal enemy-good-hand-cannoneers 1)
@@ -19805,7 +19813,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player teutonic)
+    (players-civ any-enemy teutonic)
 =>
     (set-goal enemy-good-hand-cannoneers 1)
     (set-goal enemy-good-militia 1)
@@ -19818,7 +19826,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player turkish)
+    (players-civ any-enemy turkish)
 =>
     (set-goal enemy-good-hand-cannoneers 1)
     (set-goal enemy-good-cavalry-archers 1)
@@ -19830,7 +19838,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player vietnamese)
+    (players-civ any-enemy vietnamese)
 =>
     (set-goal enemy-good-archers 1)
     (set-goal enemy-good-skirmishers 1)
@@ -19839,7 +19847,7 @@ watch-tower-arrow > 0))))
     (disable-self)
 )
 (defrule
-    (players-civ target-player viking)
+    (players-civ any-enemy viking)
 =>
     (set-goal enemy-good-archers 1)
     (set-goal enemy-good-skirmishers 1)
@@ -21199,82 +21207,86 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (and (goal resign 0) (and (goal locked-teams 0) (or (goal team-game 1) (goal free-for-all 1)))))
 =>
-    (up-jump-rule 567)
+    (up-jump-rule 566)
 )
 (defrule
     (true)
 =>
     (set-goal want-alliance 0)
+    (set-goal accept-alliance-requests 1)
     (set-goal player-1-is-bad-egg 0)
     (set-goal player-1-alliance-request-time-stamp 0)
-    (set-goal allied-with-player-1 0)
+    (set-goal allied-with-1 0)
+    (set-goal tried-alliance-with-1 0)
     (set-goal player-2-is-bad-egg 0)
     (set-goal player-2-alliance-request-time-stamp 0)
-    (set-goal allied-with-player-2 0)
+    (set-goal allied-with-2 0)
+    (set-goal tried-alliance-with-2 0)
     (set-goal player-3-is-bad-egg 0)
     (set-goal player-3-alliance-request-time-stamp 0)
-    (set-goal allied-with-player-3 0)
+    (set-goal allied-with-3 0)
+    (set-goal tried-alliance-with-3 0)
     (set-goal player-4-is-bad-egg 0)
     (set-goal player-4-alliance-request-time-stamp 0)
-    (set-goal allied-with-player-4 0)
+    (set-goal allied-with-4 0)
+    (set-goal tried-alliance-with-4 0)
     (set-goal player-5-is-bad-egg 0)
     (set-goal player-5-alliance-request-time-stamp 0)
-    (set-goal allied-with-player-5 0)
+    (set-goal allied-with-5 0)
+    (set-goal tried-alliance-with-5 0)
     (set-goal player-6-is-bad-egg 0)
     (set-goal player-6-alliance-request-time-stamp 0)
-    (set-goal allied-with-player-6 0)
-    (set-goal player-7-is-bad-egg 0)
-    (set-goal player-7-alliance-request-time-stamp 0)
-    (set-goal allied-with-player-7 0)
-    (set-goal player-8-is-bad-egg 0)
-    (set-goal player-8-alliance-request-time-stamp 0)
-    (set-goal allied-with-player-8 0)
-    (set-stance every-enemy neutral)
-    (set-goal no-enemies-stamp 0)
+    (set-goal allied-with-6 0)
+    (set-goal tried-alliance-with-6 0)
     (disable-self)
-)
-(defrule
-    (not (stance-toward my-player-number ally))
-=>
-    (set-stance my-player-number ally)
 )
 (defrule
     (true)
 =>
-    (set-goal 227 0)
+    (set-goal player-7-is-bad-egg 0)
+    (set-goal player-7-alliance-request-time-stamp 0)
+    (set-goal allied-with-7 0)
+    (set-goal tried-alliance-with-7 0)
+    (set-goal player-8-is-bad-egg 0)
+    (set-goal player-8-alliance-request-time-stamp 0)
+    (set-goal allied-with-8 0)
+    (set-goal tried-alliance-with-8 0)
+    (set-stance every-enemy neutral)
+    (set-goal no-enemies-stamp 0)
+    (set-goal 236 0)
     (disable-self)
     (generate-random-number 4)
 )
 (defrule
     (random-number == 1)
-    (goal 227 0)
+    (goal 236 0)
 =>
-    (set-goal 227 1)
+    (set-goal 236 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 227 0)
+    (goal 236 0)
 =>
-    (set-goal 227 2)
+    (set-goal 236 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 227 0)
+    (goal 236 0)
 =>
-    (set-goal 227 3)
+    (set-goal 236 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 227 0)
+    (goal 236 0)
 =>
-    (set-goal 227 4)
+    (set-goal 236 4)
     (disable-self)
 )
 (defrule
-    (not (goal 227 1))
+    (not (goal 236 1))
 =>
     (up-jump-rule 4)
 )
@@ -21284,6 +21296,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-local-to-self "Being pragmatic.")
     (set-goal team-game 0)
     (set-goal free-for-all 1)
+    (set-goal accept-alliance-requests 0)
     (disable-self)
 )
 (defrule
@@ -21306,7 +21319,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal want-alliance 0)
 )
 (defrule
-    (not (goal 227 2))
+    (not (goal 236 2))
 =>
     (up-jump-rule 4)
 )
@@ -21316,6 +21329,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-local-to-self "Being backstabbing.")
     (set-goal team-game 0)
     (set-goal free-for-all 1)
+    (set-goal accept-alliance-requests 1)
     (disable-self)
 )
 (defrule
@@ -21338,7 +21352,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal want-alliance 0)
 )
 (defrule
-    (not (goal 227 3))
+    (not (goal 236 3))
 =>
     (up-jump-rule 3)
 )
@@ -21348,6 +21362,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-local-to-self "Being pair-seeking.")
     (set-goal team-game 1)
     (set-goal free-for-all 0)
+    (set-goal accept-alliance-requests 0)
     (disable-self)
 )
 (defrule
@@ -21362,7 +21377,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal want-alliance 0)
 )
 (defrule
-    (not (goal 227 4))
+    (not (goal 236 4))
 =>
     (up-jump-rule 3)
 )
@@ -21372,6 +21387,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-local-to-self "Being introverted.")
     (set-goal team-game 0)
     (set-goal free-for-all 1)
+    (set-goal accept-alliance-requests 1)
     (disable-self)
 )
 (defrule
@@ -21404,45 +21420,45 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 228 0)
+    (set-goal 237 0)
     (generate-random-number 3)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 228 0)
+    (goal 237 0)
 =>
-    (set-goal 228 1)
+    (set-goal 237 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 228 0)
+    (goal 237 0)
 =>
-    (set-goal 228 2)
+    (set-goal 237 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 228 0)
+    (goal 237 0)
 =>
-    (set-goal 228 3)
+    (set-goal 237 3)
     (disable-self)
 )
 (defrule
-    (goal 228 1)
+    (goal 237 1)
 =>
     (chat-to-all "We aren't winning togther, then? What a shame.")
     (disable-self)
 )
 (defrule
-    (goal 228 2)
+    (goal 237 2)
 =>
     (chat-to-all "I suppose now we should fight.")
     (disable-self)
 )
 (defrule
-    (goal 228 3)
+    (goal 237 3)
 =>
     (chat-to-all "We did it, but the game is not over. This is just the beginning.")
     (disable-self)
@@ -21467,716 +21483,128 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal want-alliance 1)
 =>
-    (set-goal 229 0)
-    (generate-random-number 8)
-)
-(defrule
-    (random-number == 1)
-    (goal 229 0)
-    (goal want-alliance 1)
-=>
-    (set-goal 229 1)
-)
-(defrule
-    (random-number == 2)
-    (goal 229 0)
-    (goal want-alliance 1)
-=>
-    (set-goal 229 2)
-)
-(defrule
-    (random-number == 3)
-    (goal 229 0)
-    (goal want-alliance 1)
-=>
-    (set-goal 229 3)
-)
-(defrule
-    (random-number == 4)
-    (goal 229 0)
-    (goal want-alliance 1)
-=>
-    (set-goal 229 4)
-)
-(defrule
-    (random-number == 5)
-    (goal 229 0)
-    (goal want-alliance 1)
-=>
-    (set-goal 229 5)
-)
-(defrule
-    (random-number == 6)
-    (goal 229 0)
-    (goal want-alliance 1)
-=>
-    (set-goal 229 6)
-)
-(defrule
-    (random-number == 7)
-    (goal 229 0)
-    (goal want-alliance 1)
-=>
-    (set-goal 229 7)
-)
-(defrule
-    (random-number == 8)
-    (goal 229 0)
-    (goal want-alliance 1)
-=>
-    (set-goal 229 8)
-)
-(defrule
-    (not (and (goal 229 1) (goal want-alliance 1)))
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (not (and (player-in-game 1) (and (goal player-1-is-bad-egg 0) (not (stance-toward 1 ally)))))
-=>
-    (up-jump-rule 7)
-)
-(defrule
-    (true)
-=>
-    (set-goal 230 0)
-    (generate-random-number 3)
-)
-(defrule
-    (random-number == 1)
-    (goal 230 0)
-=>
-    (set-goal 230 1)
-)
-(defrule
-    (random-number == 2)
-    (goal 230 0)
-=>
-    (set-goal 230 2)
-)
-(defrule
-    (random-number == 3)
-    (goal 230 0)
-=>
-    (set-goal 230 3)
-)
-(defrule
-    (goal 230 1)
-=>
-    (chat-to-player 1 "Let's be allies.")
-)
-(defrule
-    (goal 230 2)
-=>
-    (chat-to-player 1 "Want to work together?")
-)
-(defrule
-    (goal 230 3)
-=>
-    (chat-to-player 1 "Want to team up?")
-)
-(defrule
-    (and (player-in-game 1) (and (goal player-1-is-bad-egg 0) (not (stance-toward 1 ally))))
-=>
-    (set-stance 1 ally)
-    (up-modify-goal player-1-alliance-request-time-stamp g:= game-time-goal)
-)
-(defrule
-    (not (and (goal 229 2) (goal want-alliance 1)))
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (not (and (player-in-game 2) (and (goal player-2-is-bad-egg 0) (not (stance-toward 2 ally)))))
-=>
-    (up-jump-rule 7)
-)
-(defrule
-    (true)
-=>
-    (set-goal 231 0)
-    (generate-random-number 3)
-)
-(defrule
-    (random-number == 1)
-    (goal 231 0)
-=>
-    (set-goal 231 1)
-)
-(defrule
-    (random-number == 2)
-    (goal 231 0)
-=>
-    (set-goal 231 2)
-)
-(defrule
-    (random-number == 3)
-    (goal 231 0)
-=>
-    (set-goal 231 3)
-)
-(defrule
-    (goal 231 1)
-=>
-    (chat-to-player 2 "Let's be allies.")
-)
-(defrule
-    (goal 231 2)
-=>
-    (chat-to-player 2 "Want to work together?")
-)
-(defrule
-    (goal 231 3)
-=>
-    (chat-to-player 2 "Want to team up?")
-)
-(defrule
-    (and (player-in-game 2) (and (goal player-2-is-bad-egg 0) (not (stance-toward 2 ally))))
-=>
-    (set-stance 2 ally)
-    (up-modify-goal player-2-alliance-request-time-stamp g:= game-time-goal)
-)
-(defrule
-    (not (and (goal 229 3) (goal want-alliance 1)))
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (not (and (player-in-game 3) (and (goal player-3-is-bad-egg 0) (not (stance-toward 3 ally)))))
-=>
-    (up-jump-rule 7)
-)
-(defrule
-    (true)
-=>
-    (set-goal 232 0)
-    (generate-random-number 3)
-)
-(defrule
-    (random-number == 1)
-    (goal 232 0)
-=>
-    (set-goal 232 1)
-)
-(defrule
-    (random-number == 2)
-    (goal 232 0)
-=>
-    (set-goal 232 2)
-)
-(defrule
-    (random-number == 3)
-    (goal 232 0)
-=>
-    (set-goal 232 3)
-)
-(defrule
-    (goal 232 1)
-=>
-    (chat-to-player 3 "Let's be allies.")
-)
-(defrule
-    (goal 232 2)
-=>
-    (chat-to-player 3 "Want to work together?")
-)
-(defrule
-    (goal 232 3)
-=>
-    (chat-to-player 3 "Want to team up?")
-)
-(defrule
-    (and (player-in-game 3) (and (goal player-3-is-bad-egg 0) (not (stance-toward 3 ally))))
-=>
-    (set-stance 3 ally)
-    (up-modify-goal player-3-alliance-request-time-stamp g:= game-time-goal)
-)
-(defrule
-    (not (and (goal 229 4) (goal want-alliance 1)))
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (not (and (player-in-game 4) (and (goal player-4-is-bad-egg 0) (not (stance-toward 4 ally)))))
-=>
-    (up-jump-rule 7)
-)
-(defrule
-    (true)
-=>
-    (set-goal 233 0)
-    (generate-random-number 3)
-)
-(defrule
-    (random-number == 1)
-    (goal 233 0)
-=>
-    (set-goal 233 1)
-)
-(defrule
-    (random-number == 2)
-    (goal 233 0)
-=>
-    (set-goal 233 2)
-)
-(defrule
-    (random-number == 3)
-    (goal 233 0)
-=>
-    (set-goal 233 3)
-)
-(defrule
-    (goal 233 1)
-=>
-    (chat-to-player 4 "Let's be allies.")
-)
-(defrule
-    (goal 233 2)
-=>
-    (chat-to-player 4 "Want to work together?")
-)
-(defrule
-    (goal 233 3)
-=>
-    (chat-to-player 4 "Want to team up?")
-)
-(defrule
-    (and (player-in-game 4) (and (goal player-4-is-bad-egg 0) (not (stance-toward 4 ally))))
-=>
-    (set-stance 4 ally)
-    (up-modify-goal player-4-alliance-request-time-stamp g:= game-time-goal)
-)
-(defrule
-    (not (and (goal 229 5) (goal want-alliance 1)))
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (not (and (player-in-game 5) (and (goal player-5-is-bad-egg 0) (not (stance-toward 5 ally)))))
-=>
-    (up-jump-rule 7)
-)
-(defrule
-    (true)
-=>
-    (set-goal 234 0)
-    (generate-random-number 3)
-)
-(defrule
-    (random-number == 1)
-    (goal 234 0)
-=>
-    (set-goal 234 1)
-)
-(defrule
-    (random-number == 2)
-    (goal 234 0)
-=>
-    (set-goal 234 2)
-)
-(defrule
-    (random-number == 3)
-    (goal 234 0)
-=>
-    (set-goal 234 3)
-)
-(defrule
-    (goal 234 1)
-=>
-    (chat-to-player 5 "Let's be allies.")
-)
-(defrule
-    (goal 234 2)
-=>
-    (chat-to-player 5 "Want to work together?")
-)
-(defrule
-    (goal 234 3)
-=>
-    (chat-to-player 5 "Want to team up?")
-)
-(defrule
-    (and (player-in-game 5) (and (goal player-5-is-bad-egg 0) (not (stance-toward 5 ally))))
-=>
-    (set-stance 5 ally)
-    (up-modify-goal player-5-alliance-request-time-stamp g:= game-time-goal)
-)
-(defrule
-    (not (and (goal 229 6) (goal want-alliance 1)))
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (not (and (player-in-game 6) (and (goal player-6-is-bad-egg 0) (not (stance-toward 6 ally)))))
-=>
-    (up-jump-rule 7)
-)
-(defrule
-    (true)
-=>
-    (set-goal 235 0)
-    (generate-random-number 3)
-)
-(defrule
-    (random-number == 1)
-    (goal 235 0)
-=>
-    (set-goal 235 1)
-)
-(defrule
-    (random-number == 2)
-    (goal 235 0)
-=>
-    (set-goal 235 2)
-)
-(defrule
-    (random-number == 3)
-    (goal 235 0)
-=>
-    (set-goal 235 3)
-)
-(defrule
-    (goal 235 1)
-=>
-    (chat-to-player 6 "Let's be allies.")
-)
-(defrule
-    (goal 235 2)
-=>
-    (chat-to-player 6 "Want to work together?")
-)
-(defrule
-    (goal 235 3)
-=>
-    (chat-to-player 6 "Want to team up?")
-)
-(defrule
-    (and (player-in-game 6) (and (goal player-6-is-bad-egg 0) (not (stance-toward 6 ally))))
-=>
-    (set-stance 6 ally)
-    (up-modify-goal player-6-alliance-request-time-stamp g:= game-time-goal)
-)
-(defrule
-    (not (and (goal 229 7) (goal want-alliance 1)))
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (not (and (player-in-game 7) (and (goal player-7-is-bad-egg 0) (not (stance-toward 7 ally)))))
-=>
-    (up-jump-rule 7)
-)
-(defrule
-    (true)
-=>
-    (set-goal 236 0)
-    (generate-random-number 3)
-)
-(defrule
-    (random-number == 1)
-    (goal 236 0)
-=>
-    (set-goal 236 1)
-)
-(defrule
-    (random-number == 2)
-    (goal 236 0)
-=>
-    (set-goal 236 2)
-)
-(defrule
-    (random-number == 3)
-    (goal 236 0)
-=>
-    (set-goal 236 3)
-)
-(defrule
-    (goal 236 1)
-=>
-    (chat-to-player 7 "Let's be allies.")
-)
-(defrule
-    (goal 236 2)
-=>
-    (chat-to-player 7 "Want to work together?")
-)
-(defrule
-    (goal 236 3)
-=>
-    (chat-to-player 7 "Want to team up?")
-)
-(defrule
-    (and (player-in-game 7) (and (goal player-7-is-bad-egg 0) (not (stance-toward 7 ally))))
-=>
-    (set-stance 7 ally)
-    (up-modify-goal player-7-alliance-request-time-stamp g:= game-time-goal)
-)
-(defrule
-    (not (and (goal 229 8) (goal want-alliance 1)))
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (not (and (player-in-game 8) (and (goal player-8-is-bad-egg 0) (not (stance-toward 8 ally)))))
-=>
-    (up-jump-rule 7)
-)
-(defrule
-    (true)
-=>
-    (set-goal 237 0)
-    (generate-random-number 3)
-)
-(defrule
-    (random-number == 1)
-    (goal 237 0)
-=>
-    (set-goal 237 1)
-)
-(defrule
-    (random-number == 2)
-    (goal 237 0)
-=>
-    (set-goal 237 2)
-)
-(defrule
-    (random-number == 3)
-    (goal 237 0)
-=>
-    (set-goal 237 3)
-)
-(defrule
-    (goal 237 1)
-=>
-    (chat-to-player 8 "Let's be allies.")
-)
-(defrule
-    (goal 237 2)
-=>
-    (chat-to-player 8 "Want to work together?")
-)
-(defrule
-    (goal 237 3)
-=>
-    (chat-to-player 8 "Want to team up?")
-)
-(defrule
-    (and (player-in-game 8) (and (goal player-8-is-bad-egg 0) (not (stance-toward 8 ally))))
-=>
-    (set-stance 8 ally)
-    (up-modify-goal player-8-alliance-request-time-stamp g:= game-time-goal)
-)
-(defrule
-    (and (goal enemy-players-count 0) (goal want-alliance 0))
-=>
     (set-goal 238 0)
     (generate-random-number 8)
 )
 (defrule
     (random-number == 1)
     (goal 238 0)
-    (and (goal enemy-players-count 0) (goal want-alliance 0))
+    (goal want-alliance 1)
 =>
     (set-goal 238 1)
 )
 (defrule
     (random-number == 2)
     (goal 238 0)
-    (and (goal enemy-players-count 0) (goal want-alliance 0))
+    (goal want-alliance 1)
 =>
     (set-goal 238 2)
 )
 (defrule
     (random-number == 3)
     (goal 238 0)
-    (and (goal enemy-players-count 0) (goal want-alliance 0))
+    (goal want-alliance 1)
 =>
     (set-goal 238 3)
 )
 (defrule
     (random-number == 4)
     (goal 238 0)
-    (and (goal enemy-players-count 0) (goal want-alliance 0))
+    (goal want-alliance 1)
 =>
     (set-goal 238 4)
 )
 (defrule
     (random-number == 5)
     (goal 238 0)
-    (and (goal enemy-players-count 0) (goal want-alliance 0))
+    (goal want-alliance 1)
 =>
     (set-goal 238 5)
 )
 (defrule
     (random-number == 6)
     (goal 238 0)
-    (and (goal enemy-players-count 0) (goal want-alliance 0))
+    (goal want-alliance 1)
 =>
     (set-goal 238 6)
 )
 (defrule
     (random-number == 7)
     (goal 238 0)
-    (and (goal enemy-players-count 0) (goal want-alliance 0))
+    (goal want-alliance 1)
 =>
     (set-goal 238 7)
 )
 (defrule
     (random-number == 8)
     (goal 238 0)
-    (and (goal enemy-players-count 0) (goal want-alliance 0))
+    (goal want-alliance 1)
 =>
     (set-goal 238 8)
 )
 (defrule
-    (not (and (goal 238 1) (and (goal enemy-players-count 0) (goal want-alliance 0))))
+    (not (and (goal 238 1) (goal want-alliance 1)))
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 9)
 )
 (defrule
-    (and (player-in-game 1) (stance-toward 1 neutral))
+    (not (and (player-in-game 1) (and (goal player-1-is-bad-egg 0) (and (not (stance-toward 1 ally)) (goal tried-alliance-with-1 0)))))
 =>
-    (set-stance 1 enemy)
+    (up-jump-rule 7)
 )
 (defrule
-    (not (and (goal 238 2) (and (goal enemy-players-count 0) (goal want-alliance 0))))
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (and (player-in-game 2) (stance-toward 2 neutral))
-=>
-    (set-stance 2 enemy)
-)
-(defrule
-    (not (and (goal 238 3) (and (goal enemy-players-count 0) (goal want-alliance 0))))
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (and (player-in-game 3) (stance-toward 3 neutral))
-=>
-    (set-stance 3 enemy)
-)
-(defrule
-    (not (and (goal 238 4) (and (goal enemy-players-count 0) (goal want-alliance 0))))
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (and (player-in-game 4) (stance-toward 4 neutral))
-=>
-    (set-stance 4 enemy)
-)
-(defrule
-    (not (and (goal 238 5) (and (goal enemy-players-count 0) (goal want-alliance 0))))
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (and (player-in-game 5) (stance-toward 5 neutral))
-=>
-    (set-stance 5 enemy)
-)
-(defrule
-    (not (and (goal 238 6) (and (goal enemy-players-count 0) (goal want-alliance 0))))
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (and (player-in-game 6) (stance-toward 6 neutral))
-=>
-    (set-stance 6 enemy)
-)
-(defrule
-    (not (and (goal 238 7) (and (goal enemy-players-count 0) (goal want-alliance 0))))
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (and (player-in-game 7) (stance-toward 7 neutral))
-=>
-    (set-stance 7 enemy)
-)
-(defrule
-    (not (and (goal 238 8) (and (goal enemy-players-count 0) (goal want-alliance 0))))
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (and (player-in-game 8) (stance-toward 8 neutral))
-=>
-    (set-stance 8 enemy)
-)
-(defrule
-    (goal want-alliance -1)
+    (true)
 =>
     (set-goal 239 0)
-    (generate-random-number 8)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
     (goal 239 0)
-    (goal want-alliance -1)
 =>
     (set-goal 239 1)
 )
 (defrule
     (random-number == 2)
     (goal 239 0)
-    (goal want-alliance -1)
 =>
     (set-goal 239 2)
 )
 (defrule
     (random-number == 3)
     (goal 239 0)
-    (goal want-alliance -1)
 =>
     (set-goal 239 3)
 )
 (defrule
-    (random-number == 4)
-    (goal 239 0)
-    (goal want-alliance -1)
+    (goal 239 1)
 =>
-    (set-goal 239 4)
+    (chat-to-player 1 "Let's be allies.")
 )
 (defrule
-    (random-number == 5)
-    (goal 239 0)
-    (goal want-alliance -1)
+    (goal 239 2)
 =>
-    (set-goal 239 5)
+    (chat-to-player 1 "Want to work together?")
 )
 (defrule
-    (random-number == 6)
-    (goal 239 0)
-    (goal want-alliance -1)
+    (goal 239 3)
 =>
-    (set-goal 239 6)
+    (chat-to-player 1 "Want to team up?")
 )
 (defrule
-    (random-number == 7)
-    (goal 239 0)
-    (goal want-alliance -1)
+    (and (player-in-game 1) (and (goal player-1-is-bad-egg 0) (and (not (stance-toward 1 ally)) (goal tried-alliance-with-1 0))))
 =>
-    (set-goal 239 7)
+    (chat-local-to-self "requesting alliance from player 1")
+    (set-stance 1 ally)
+    (up-modify-goal player-1-alliance-request-time-stamp g:= game-time-goal)
 )
 (defrule
-    (random-number == 8)
-    (goal 239 0)
-    (goal want-alliance -1)
-=>
-    (set-goal 239 8)
-)
-(defrule
-    (not (and (goal 239 1) (goal want-alliance -1)))
+    (not (and (goal 238 2) (goal want-alliance 1)))
 =>
     (up-jump-rule 9)
 )
 (defrule
-    (not (and (player-in-game 1) (goal allied-with-player-1 1)))
+    (not (and (player-in-game 2) (and (goal player-2-is-bad-egg 0) (and (not (stance-toward 2 ally)) (goal tried-alliance-with-2 0)))))
 =>
     (up-jump-rule 7)
 )
@@ -22207,32 +21635,32 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 240 1)
 =>
-    (chat-to-player 1 "It could never have worked between us.")
+    (chat-to-player 2 "Let's be allies.")
 )
 (defrule
     (goal 240 2)
 =>
-    (chat-to-player 1 "I've had enough of you.")
+    (chat-to-player 2 "Want to work together?")
 )
 (defrule
     (goal 240 3)
 =>
-    (chat-to-player 1 "You aren't needed anymore.")
+    (chat-to-player 2 "Want to team up?")
 )
 (defrule
-    (and (player-in-game 1) (goal allied-with-player-1 1))
+    (and (player-in-game 2) (and (goal player-2-is-bad-egg 0) (and (not (stance-toward 2 ally)) (goal tried-alliance-with-2 0))))
 =>
-    (set-stance 1 enemy)
-    (set-goal player-1-is-bad-egg 1)
-    (set-goal allied-with-player-1 0)
+    (chat-local-to-self "requesting alliance from player 2")
+    (set-stance 2 ally)
+    (up-modify-goal player-2-alliance-request-time-stamp g:= game-time-goal)
 )
 (defrule
-    (not (and (goal 239 2) (goal want-alliance -1)))
+    (not (and (goal 238 3) (goal want-alliance 1)))
 =>
     (up-jump-rule 9)
 )
 (defrule
-    (not (and (player-in-game 2) (goal allied-with-player-2 1)))
+    (not (and (player-in-game 3) (and (goal player-3-is-bad-egg 0) (and (not (stance-toward 3 ally)) (goal tried-alliance-with-3 0)))))
 =>
     (up-jump-rule 7)
 )
@@ -22263,32 +21691,32 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 241 1)
 =>
-    (chat-to-player 2 "It could never have worked between us.")
+    (chat-to-player 3 "Let's be allies.")
 )
 (defrule
     (goal 241 2)
 =>
-    (chat-to-player 2 "I've had enough of you.")
+    (chat-to-player 3 "Want to work together?")
 )
 (defrule
     (goal 241 3)
 =>
-    (chat-to-player 2 "You aren't needed anymore.")
+    (chat-to-player 3 "Want to team up?")
 )
 (defrule
-    (and (player-in-game 2) (goal allied-with-player-2 1))
+    (and (player-in-game 3) (and (goal player-3-is-bad-egg 0) (and (not (stance-toward 3 ally)) (goal tried-alliance-with-3 0))))
 =>
-    (set-stance 2 enemy)
-    (set-goal player-2-is-bad-egg 1)
-    (set-goal allied-with-player-2 0)
+    (chat-local-to-self "requesting alliance from player 3")
+    (set-stance 3 ally)
+    (up-modify-goal player-3-alliance-request-time-stamp g:= game-time-goal)
 )
 (defrule
-    (not (and (goal 239 3) (goal want-alliance -1)))
+    (not (and (goal 238 4) (goal want-alliance 1)))
 =>
     (up-jump-rule 9)
 )
 (defrule
-    (not (and (player-in-game 3) (goal allied-with-player-3 1)))
+    (not (and (player-in-game 4) (and (goal player-4-is-bad-egg 0) (and (not (stance-toward 4 ally)) (goal tried-alliance-with-4 0)))))
 =>
     (up-jump-rule 7)
 )
@@ -22319,32 +21747,32 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 242 1)
 =>
-    (chat-to-player 3 "It could never have worked between us.")
+    (chat-to-player 4 "Let's be allies.")
 )
 (defrule
     (goal 242 2)
 =>
-    (chat-to-player 3 "I've had enough of you.")
+    (chat-to-player 4 "Want to work together?")
 )
 (defrule
     (goal 242 3)
 =>
-    (chat-to-player 3 "You aren't needed anymore.")
+    (chat-to-player 4 "Want to team up?")
 )
 (defrule
-    (and (player-in-game 3) (goal allied-with-player-3 1))
+    (and (player-in-game 4) (and (goal player-4-is-bad-egg 0) (and (not (stance-toward 4 ally)) (goal tried-alliance-with-4 0))))
 =>
-    (set-stance 3 enemy)
-    (set-goal player-3-is-bad-egg 1)
-    (set-goal allied-with-player-3 0)
+    (chat-local-to-self "requesting alliance from player 4")
+    (set-stance 4 ally)
+    (up-modify-goal player-4-alliance-request-time-stamp g:= game-time-goal)
 )
 (defrule
-    (not (and (goal 239 4) (goal want-alliance -1)))
+    (not (and (goal 238 5) (goal want-alliance 1)))
 =>
     (up-jump-rule 9)
 )
 (defrule
-    (not (and (player-in-game 4) (goal allied-with-player-4 1)))
+    (not (and (player-in-game 5) (and (goal player-5-is-bad-egg 0) (and (not (stance-toward 5 ally)) (goal tried-alliance-with-5 0)))))
 =>
     (up-jump-rule 7)
 )
@@ -22375,32 +21803,32 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 243 1)
 =>
-    (chat-to-player 4 "It could never have worked between us.")
+    (chat-to-player 5 "Let's be allies.")
 )
 (defrule
     (goal 243 2)
 =>
-    (chat-to-player 4 "I've had enough of you.")
+    (chat-to-player 5 "Want to work together?")
 )
 (defrule
     (goal 243 3)
 =>
-    (chat-to-player 4 "You aren't needed anymore.")
+    (chat-to-player 5 "Want to team up?")
 )
 (defrule
-    (and (player-in-game 4) (goal allied-with-player-4 1))
+    (and (player-in-game 5) (and (goal player-5-is-bad-egg 0) (and (not (stance-toward 5 ally)) (goal tried-alliance-with-5 0))))
 =>
-    (set-stance 4 enemy)
-    (set-goal player-4-is-bad-egg 1)
-    (set-goal allied-with-player-4 0)
+    (chat-local-to-self "requesting alliance from player 5")
+    (set-stance 5 ally)
+    (up-modify-goal player-5-alliance-request-time-stamp g:= game-time-goal)
 )
 (defrule
-    (not (and (goal 239 5) (goal want-alliance -1)))
+    (not (and (goal 238 6) (goal want-alliance 1)))
 =>
     (up-jump-rule 9)
 )
 (defrule
-    (not (and (player-in-game 5) (goal allied-with-player-5 1)))
+    (not (and (player-in-game 6) (and (goal player-6-is-bad-egg 0) (and (not (stance-toward 6 ally)) (goal tried-alliance-with-6 0)))))
 =>
     (up-jump-rule 7)
 )
@@ -22431,32 +21859,32 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 244 1)
 =>
-    (chat-to-player 5 "It could never have worked between us.")
+    (chat-to-player 6 "Let's be allies.")
 )
 (defrule
     (goal 244 2)
 =>
-    (chat-to-player 5 "I've had enough of you.")
+    (chat-to-player 6 "Want to work together?")
 )
 (defrule
     (goal 244 3)
 =>
-    (chat-to-player 5 "You aren't needed anymore.")
+    (chat-to-player 6 "Want to team up?")
 )
 (defrule
-    (and (player-in-game 5) (goal allied-with-player-5 1))
+    (and (player-in-game 6) (and (goal player-6-is-bad-egg 0) (and (not (stance-toward 6 ally)) (goal tried-alliance-with-6 0))))
 =>
-    (set-stance 5 enemy)
-    (set-goal player-5-is-bad-egg 1)
-    (set-goal allied-with-player-5 0)
+    (chat-local-to-self "requesting alliance from player 6")
+    (set-stance 6 ally)
+    (up-modify-goal player-6-alliance-request-time-stamp g:= game-time-goal)
 )
 (defrule
-    (not (and (goal 239 6) (goal want-alliance -1)))
+    (not (and (goal 238 7) (goal want-alliance 1)))
 =>
     (up-jump-rule 9)
 )
 (defrule
-    (not (and (player-in-game 6) (goal allied-with-player-6 1)))
+    (not (and (player-in-game 7) (and (goal player-7-is-bad-egg 0) (and (not (stance-toward 7 ally)) (goal tried-alliance-with-7 0)))))
 =>
     (up-jump-rule 7)
 )
@@ -22487,32 +21915,32 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 245 1)
 =>
-    (chat-to-player 6 "It could never have worked between us.")
+    (chat-to-player 7 "Let's be allies.")
 )
 (defrule
     (goal 245 2)
 =>
-    (chat-to-player 6 "I've had enough of you.")
+    (chat-to-player 7 "Want to work together?")
 )
 (defrule
     (goal 245 3)
 =>
-    (chat-to-player 6 "You aren't needed anymore.")
+    (chat-to-player 7 "Want to team up?")
 )
 (defrule
-    (and (player-in-game 6) (goal allied-with-player-6 1))
+    (and (player-in-game 7) (and (goal player-7-is-bad-egg 0) (and (not (stance-toward 7 ally)) (goal tried-alliance-with-7 0))))
 =>
-    (set-stance 6 enemy)
-    (set-goal player-6-is-bad-egg 1)
-    (set-goal allied-with-player-6 0)
+    (chat-local-to-self "requesting alliance from player 7")
+    (set-stance 7 ally)
+    (up-modify-goal player-7-alliance-request-time-stamp g:= game-time-goal)
 )
 (defrule
-    (not (and (goal 239 7) (goal want-alliance -1)))
+    (not (and (goal 238 8) (goal want-alliance 1)))
 =>
     (up-jump-rule 9)
 )
 (defrule
-    (not (and (player-in-game 7) (goal allied-with-player-7 1)))
+    (not (and (player-in-game 8) (and (goal player-8-is-bad-egg 0) (and (not (stance-toward 8 ally)) (goal tried-alliance-with-8 0)))))
 =>
     (up-jump-rule 7)
 )
@@ -22543,136 +21971,236 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 246 1)
 =>
-    (chat-to-player 7 "It could never have worked between us.")
+    (chat-to-player 8 "Let's be allies.")
 )
 (defrule
     (goal 246 2)
 =>
-    (chat-to-player 7 "I've had enough of you.")
+    (chat-to-player 8 "Want to work together?")
 )
 (defrule
     (goal 246 3)
 =>
-    (chat-to-player 7 "You aren't needed anymore.")
+    (chat-to-player 8 "Want to team up?")
 )
 (defrule
-    (and (player-in-game 7) (goal allied-with-player-7 1))
+    (and (player-in-game 8) (and (goal player-8-is-bad-egg 0) (and (not (stance-toward 8 ally)) (goal tried-alliance-with-8 0))))
 =>
-    (set-stance 7 enemy)
-    (set-goal player-7-is-bad-egg 1)
-    (set-goal allied-with-player-7 0)
+    (chat-local-to-self "requesting alliance from player 8")
+    (set-stance 8 ally)
+    (up-modify-goal player-8-alliance-request-time-stamp g:= game-time-goal)
 )
 (defrule
-    (not (and (goal 239 8) (goal want-alliance -1)))
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (not (and (player-in-game 8) (goal allied-with-player-8 1)))
-=>
-    (up-jump-rule 7)
-)
-(defrule
-    (true)
+    (and (goal enemy-players-count 0) (goal want-alliance 0))
 =>
     (set-goal 247 0)
-    (generate-random-number 3)
+    (generate-random-number 8)
 )
 (defrule
     (random-number == 1)
     (goal 247 0)
+    (and (goal enemy-players-count 0) (goal want-alliance 0))
 =>
     (set-goal 247 1)
 )
 (defrule
     (random-number == 2)
     (goal 247 0)
+    (and (goal enemy-players-count 0) (goal want-alliance 0))
 =>
     (set-goal 247 2)
 )
 (defrule
     (random-number == 3)
     (goal 247 0)
+    (and (goal enemy-players-count 0) (goal want-alliance 0))
 =>
     (set-goal 247 3)
 )
 (defrule
-    (goal 247 1)
+    (random-number == 4)
+    (goal 247 0)
+    (and (goal enemy-players-count 0) (goal want-alliance 0))
 =>
-    (chat-to-player 8 "It could never have worked between us.")
+    (set-goal 247 4)
 )
 (defrule
-    (goal 247 2)
+    (random-number == 5)
+    (goal 247 0)
+    (and (goal enemy-players-count 0) (goal want-alliance 0))
 =>
-    (chat-to-player 8 "I've had enough of you.")
+    (set-goal 247 5)
 )
 (defrule
-    (goal 247 3)
+    (random-number == 6)
+    (goal 247 0)
+    (and (goal enemy-players-count 0) (goal want-alliance 0))
 =>
-    (chat-to-player 8 "You aren't needed anymore.")
+    (set-goal 247 6)
 )
 (defrule
-    (and (player-in-game 8) (goal allied-with-player-8 1))
+    (random-number == 7)
+    (goal 247 0)
+    (and (goal enemy-players-count 0) (goal want-alliance 0))
+=>
+    (set-goal 247 7)
+)
+(defrule
+    (random-number == 8)
+    (goal 247 0)
+    (and (goal enemy-players-count 0) (goal want-alliance 0))
+=>
+    (set-goal 247 8)
+)
+(defrule
+    (not (and (goal 247 1) (and (goal enemy-players-count 0) (goal want-alliance 0))))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (and (player-in-game 1) (stance-toward 1 neutral))
+=>
+    (set-stance 1 enemy)
+)
+(defrule
+    (not (and (goal 247 2) (and (goal enemy-players-count 0) (goal want-alliance 0))))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (and (player-in-game 2) (stance-toward 2 neutral))
+=>
+    (set-stance 2 enemy)
+)
+(defrule
+    (not (and (goal 247 3) (and (goal enemy-players-count 0) (goal want-alliance 0))))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (and (player-in-game 3) (stance-toward 3 neutral))
+=>
+    (set-stance 3 enemy)
+)
+(defrule
+    (not (and (goal 247 4) (and (goal enemy-players-count 0) (goal want-alliance 0))))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (and (player-in-game 4) (stance-toward 4 neutral))
+=>
+    (set-stance 4 enemy)
+)
+(defrule
+    (not (and (goal 247 5) (and (goal enemy-players-count 0) (goal want-alliance 0))))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (and (player-in-game 5) (stance-toward 5 neutral))
+=>
+    (set-stance 5 enemy)
+)
+(defrule
+    (not (and (goal 247 6) (and (goal enemy-players-count 0) (goal want-alliance 0))))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (and (player-in-game 6) (stance-toward 6 neutral))
+=>
+    (set-stance 6 enemy)
+)
+(defrule
+    (not (and (goal 247 7) (and (goal enemy-players-count 0) (goal want-alliance 0))))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (and (player-in-game 7) (stance-toward 7 neutral))
+=>
+    (set-stance 7 enemy)
+)
+(defrule
+    (not (and (goal 247 8) (and (goal enemy-players-count 0) (goal want-alliance 0))))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (and (player-in-game 8) (stance-toward 8 neutral))
 =>
     (set-stance 8 enemy)
-    (set-goal player-8-is-bad-egg 1)
-    (set-goal allied-with-player-8 0)
 )
 (defrule
-    (not (and (or (stance-toward 1 enemy) (stance-toward 1 neutral)) (and (players-stance 1 ally) (and (and (goal player-1-is-bad-egg 0) (goal allied-with-player-1 0)) (player-in-game 1)))))
-=>
-    (up-jump-rule 7)
-)
-(defrule
-    (true)
+    (goal want-alliance -1)
 =>
     (set-goal 248 0)
-    (generate-random-number 3)
+    (generate-random-number 8)
 )
 (defrule
     (random-number == 1)
     (goal 248 0)
+    (goal want-alliance -1)
 =>
     (set-goal 248 1)
 )
 (defrule
     (random-number == 2)
     (goal 248 0)
+    (goal want-alliance -1)
 =>
     (set-goal 248 2)
 )
 (defrule
     (random-number == 3)
     (goal 248 0)
+    (goal want-alliance -1)
 =>
     (set-goal 248 3)
 )
 (defrule
-    (goal 248 1)
+    (random-number == 4)
+    (goal 248 0)
+    (goal want-alliance -1)
 =>
-    (chat-to-player 1 "Good idea.")
+    (set-goal 248 4)
 )
 (defrule
-    (goal 248 2)
+    (random-number == 5)
+    (goal 248 0)
+    (goal want-alliance -1)
 =>
-    (chat-to-player 1 "I was hoping you'd do that!")
+    (set-goal 248 5)
 )
 (defrule
-    (goal 248 3)
+    (random-number == 6)
+    (goal 248 0)
+    (goal want-alliance -1)
 =>
-    (chat-to-player 1 "I agree, let's be friends.")
+    (set-goal 248 6)
 )
 (defrule
-    (or (stance-toward 1 enemy) (stance-toward 1 neutral))
-    (players-stance 1 ally)
-    (and (goal player-1-is-bad-egg 0) (goal allied-with-player-1 0))
-    (player-in-game 1)
+    (random-number == 7)
+    (goal 248 0)
+    (goal want-alliance -1)
 =>
-    (set-stance 1 ally)
-    (set-goal allied-with-player-1 1)
+    (set-goal 248 7)
 )
 (defrule
-    (not (and (not (or (stance-toward 1 enemy) (stance-toward 1 neutral))) (and (players-stance 1 ally) (and (and (goal player-1-is-bad-egg 0) (goal allied-with-player-1 0)) (player-in-game 1)))))
+    (random-number == 8)
+    (goal 248 0)
+    (goal want-alliance -1)
+=>
+    (set-goal 248 8)
+)
+(defrule
+    (not (and (goal 248 1) (goal want-alliance -1)))
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (not (and (player-in-game 1) (goal allied-with-1 1)))
 =>
     (up-jump-rule 7)
 )
@@ -22703,36 +22231,40 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 249 1)
 =>
-    (chat-to-player 1 "Let's do this. Together.")
+    (chat-to-player 1 "It could never have worked between us.")
 )
 (defrule
     (goal 249 2)
 =>
-    (chat-to-player 1 "Nice to have you with me.")
+    (chat-to-player 1 "I've had enough of you.")
 )
 (defrule
     (goal 249 3)
 =>
-    (chat-to-player 1 "Unstoppable team!")
+    (chat-to-player 1 "You aren't needed anymore.")
 )
 (defrule
-    (not (or (stance-toward 1 enemy) (stance-toward 1 neutral)))
-    (players-stance 1 ally)
-    (and (goal player-1-is-bad-egg 0) (goal allied-with-player-1 0))
-    (player-in-game 1)
+    (and (player-in-game 1) (goal allied-with-1 1))
 =>
-    (set-goal allied-with-player-1 1)
+    (set-stance 1 enemy)
+    (set-goal player-1-is-bad-egg 1)
+    (set-goal allied-with-1 0)
 )
 (defrule
-    (not (and (and (goal allied-with-player-1 1) (not (players-stance 1 ally))) (player-in-game 1)))
+    (not (and (goal 248 2) (goal want-alliance -1)))
 =>
     (up-jump-rule 9)
+)
+(defrule
+    (not (and (player-in-game 2) (goal allied-with-2 1)))
+=>
+    (up-jump-rule 7)
 )
 (defrule
     (true)
 =>
     (set-goal 250 0)
-    (generate-random-number 4)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -22753,54 +22285,34 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 250 3)
 )
 (defrule
-    (random-number == 4)
-    (goal 250 0)
-=>
-    (set-goal 250 4)
-)
-(defrule
     (goal 250 1)
 =>
-    (chat-to-player 1 "Really?")
+    (chat-to-player 2 "It could never have worked between us.")
 )
 (defrule
     (goal 250 2)
 =>
-    (chat-to-player 1 "I thought we were friends.")
+    (chat-to-player 2 "I've had enough of you.")
 )
 (defrule
     (goal 250 3)
 =>
-    (chat-to-player 1 "You backstabbing-!")
+    (chat-to-player 2 "You aren't needed anymore.")
 )
 (defrule
-    (goal 250 4)
+    (and (player-in-game 2) (goal allied-with-2 1))
 =>
-    (chat-to-player 1 "What gives?")
+    (set-stance 2 enemy)
+    (set-goal player-2-is-bad-egg 1)
+    (set-goal allied-with-2 0)
 )
 (defrule
-    (and (goal allied-with-player-1 1) (not (players-stance 1 ally)))
-    (player-in-game 1)
+    (not (and (goal 248 3) (goal want-alliance -1)))
 =>
-    (set-goal player-1-is-bad-egg 1)
-    (set-goal allied-with-player-1 0)
-    (set-stance 1 enemy)
+    (up-jump-rule 9)
 )
 (defrule
-    (and (goal threat-player 1) (not (stance-toward 1 enemy)))
-    (player-in-game 1)
-=>
-    (set-stance 1 enemy)
-)
-(defrule
-    (and (goal allied-with-player-1 0) (and (stance-toward 1 ally) (goal player-1-is-bad-egg 0)))
-    (player-in-game 1)
-=>
-    (up-modify-goal temp g:= game-time-goal)
-    (up-modify-goal temp g:- player-1-alliance-request-time-stamp)
-)
-(defrule
-    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-player-1 0) (and (stance-toward 1 ally) (goal player-1-is-bad-egg 0))) (player-in-game 1))))
+    (not (and (player-in-game 3) (goal allied-with-3 1)))
 =>
     (up-jump-rule 7)
 )
@@ -22831,34 +22343,32 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 251 1)
 =>
-    (chat-to-player 1 "Fine, have it your way.")
+    (chat-to-player 3 "It could never have worked between us.")
 )
 (defrule
     (goal 251 2)
 =>
-    (chat-to-player 1 "Would've been nice.")
+    (chat-to-player 3 "I've had enough of you.")
 )
 (defrule
     (goal 251 3)
 =>
-    (chat-to-player 1 "Whatever.")
+    (chat-to-player 3 "You aren't needed anymore.")
 )
 (defrule
-    (up-compare-goal temp c:>= alliance-request-timeout)
-    (and (goal allied-with-player-1 0) (and (stance-toward 1 ally) (goal player-1-is-bad-egg 0)))
-    (player-in-game 1)
+    (and (player-in-game 3) (goal allied-with-3 1))
 =>
-    (set-goal player-1-is-bad-egg 1)
-    (set-stance 1 neutral)
+    (set-stance 3 enemy)
+    (set-goal player-3-is-bad-egg 1)
+    (set-goal allied-with-3 0)
 )
 (defrule
-    (and (players-stance 1 ally) (not (stance-toward 1 ally)))
-    (not (player-in-game 1))
+    (not (and (goal 248 4) (goal want-alliance -1)))
 =>
-    (set-stance 1 ally)
+    (up-jump-rule 9)
 )
 (defrule
-    (not (and (or (stance-toward 2 enemy) (stance-toward 2 neutral)) (and (players-stance 2 ally) (and (and (goal player-2-is-bad-egg 0) (goal allied-with-player-2 0)) (player-in-game 2)))))
+    (not (and (player-in-game 4) (goal allied-with-4 1)))
 =>
     (up-jump-rule 7)
 )
@@ -22889,29 +22399,32 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 252 1)
 =>
-    (chat-to-player 2 "Good idea.")
+    (chat-to-player 4 "It could never have worked between us.")
 )
 (defrule
     (goal 252 2)
 =>
-    (chat-to-player 2 "I was hoping you'd do that!")
+    (chat-to-player 4 "I've had enough of you.")
 )
 (defrule
     (goal 252 3)
 =>
-    (chat-to-player 2 "I agree, let's be friends.")
+    (chat-to-player 4 "You aren't needed anymore.")
 )
 (defrule
-    (or (stance-toward 2 enemy) (stance-toward 2 neutral))
-    (players-stance 2 ally)
-    (and (goal player-2-is-bad-egg 0) (goal allied-with-player-2 0))
-    (player-in-game 2)
+    (and (player-in-game 4) (goal allied-with-4 1))
 =>
-    (set-stance 2 ally)
-    (set-goal allied-with-player-2 1)
+    (set-stance 4 enemy)
+    (set-goal player-4-is-bad-egg 1)
+    (set-goal allied-with-4 0)
 )
 (defrule
-    (not (and (not (or (stance-toward 2 enemy) (stance-toward 2 neutral))) (and (players-stance 2 ally) (and (and (goal player-2-is-bad-egg 0) (goal allied-with-player-2 0)) (player-in-game 2)))))
+    (not (and (goal 248 5) (goal want-alliance -1)))
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (not (and (player-in-game 5) (goal allied-with-5 1)))
 =>
     (up-jump-rule 7)
 )
@@ -22942,36 +22455,40 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 253 1)
 =>
-    (chat-to-player 2 "Let's do this. Together.")
+    (chat-to-player 5 "It could never have worked between us.")
 )
 (defrule
     (goal 253 2)
 =>
-    (chat-to-player 2 "Nice to have you with me.")
+    (chat-to-player 5 "I've had enough of you.")
 )
 (defrule
     (goal 253 3)
 =>
-    (chat-to-player 2 "Unstoppable team!")
+    (chat-to-player 5 "You aren't needed anymore.")
 )
 (defrule
-    (not (or (stance-toward 2 enemy) (stance-toward 2 neutral)))
-    (players-stance 2 ally)
-    (and (goal player-2-is-bad-egg 0) (goal allied-with-player-2 0))
-    (player-in-game 2)
+    (and (player-in-game 5) (goal allied-with-5 1))
 =>
-    (set-goal allied-with-player-2 1)
+    (set-stance 5 enemy)
+    (set-goal player-5-is-bad-egg 1)
+    (set-goal allied-with-5 0)
 )
 (defrule
-    (not (and (and (goal allied-with-player-2 1) (not (players-stance 2 ally))) (player-in-game 2)))
+    (not (and (goal 248 6) (goal want-alliance -1)))
 =>
     (up-jump-rule 9)
+)
+(defrule
+    (not (and (player-in-game 6) (goal allied-with-6 1)))
+=>
+    (up-jump-rule 7)
 )
 (defrule
     (true)
 =>
     (set-goal 254 0)
-    (generate-random-number 4)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -22992,54 +22509,34 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 254 3)
 )
 (defrule
-    (random-number == 4)
-    (goal 254 0)
-=>
-    (set-goal 254 4)
-)
-(defrule
     (goal 254 1)
 =>
-    (chat-to-player 2 "Really?")
+    (chat-to-player 6 "It could never have worked between us.")
 )
 (defrule
     (goal 254 2)
 =>
-    (chat-to-player 2 "I thought we were friends.")
+    (chat-to-player 6 "I've had enough of you.")
 )
 (defrule
     (goal 254 3)
 =>
-    (chat-to-player 2 "You backstabbing-!")
+    (chat-to-player 6 "You aren't needed anymore.")
 )
 (defrule
-    (goal 254 4)
+    (and (player-in-game 6) (goal allied-with-6 1))
 =>
-    (chat-to-player 2 "What gives?")
+    (set-stance 6 enemy)
+    (set-goal player-6-is-bad-egg 1)
+    (set-goal allied-with-6 0)
 )
 (defrule
-    (and (goal allied-with-player-2 1) (not (players-stance 2 ally)))
-    (player-in-game 2)
+    (not (and (goal 248 7) (goal want-alliance -1)))
 =>
-    (set-goal player-2-is-bad-egg 1)
-    (set-goal allied-with-player-2 0)
-    (set-stance 2 enemy)
+    (up-jump-rule 9)
 )
 (defrule
-    (and (goal threat-player 2) (not (stance-toward 2 enemy)))
-    (player-in-game 2)
-=>
-    (set-stance 2 enemy)
-)
-(defrule
-    (and (goal allied-with-player-2 0) (and (stance-toward 2 ally) (goal player-2-is-bad-egg 0)))
-    (player-in-game 2)
-=>
-    (up-modify-goal temp g:= game-time-goal)
-    (up-modify-goal temp g:- player-2-alliance-request-time-stamp)
-)
-(defrule
-    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-player-2 0) (and (stance-toward 2 ally) (goal player-2-is-bad-egg 0))) (player-in-game 2))))
+    (not (and (player-in-game 7) (goal allied-with-7 1)))
 =>
     (up-jump-rule 7)
 )
@@ -23070,34 +22567,32 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 255 1)
 =>
-    (chat-to-player 2 "Fine, have it your way.")
+    (chat-to-player 7 "It could never have worked between us.")
 )
 (defrule
     (goal 255 2)
 =>
-    (chat-to-player 2 "Would've been nice.")
+    (chat-to-player 7 "I've had enough of you.")
 )
 (defrule
     (goal 255 3)
 =>
-    (chat-to-player 2 "Whatever.")
+    (chat-to-player 7 "You aren't needed anymore.")
 )
 (defrule
-    (up-compare-goal temp c:>= alliance-request-timeout)
-    (and (goal allied-with-player-2 0) (and (stance-toward 2 ally) (goal player-2-is-bad-egg 0)))
-    (player-in-game 2)
+    (and (player-in-game 7) (goal allied-with-7 1))
 =>
-    (set-goal player-2-is-bad-egg 1)
-    (set-stance 2 neutral)
+    (set-stance 7 enemy)
+    (set-goal player-7-is-bad-egg 1)
+    (set-goal allied-with-7 0)
 )
 (defrule
-    (and (players-stance 2 ally) (not (stance-toward 2 ally)))
-    (not (player-in-game 2))
+    (not (and (goal 248 8) (goal want-alliance -1)))
 =>
-    (set-stance 2 ally)
+    (up-jump-rule 9)
 )
 (defrule
-    (not (and (or (stance-toward 3 enemy) (stance-toward 3 neutral)) (and (players-stance 3 ally) (and (and (goal player-3-is-bad-egg 0) (goal allied-with-player-3 0)) (player-in-game 3)))))
+    (not (and (player-in-game 8) (goal allied-with-8 1)))
 =>
     (up-jump-rule 7)
 )
@@ -23128,29 +22623,27 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 256 1)
 =>
-    (chat-to-player 3 "Good idea.")
+    (chat-to-player 8 "It could never have worked between us.")
 )
 (defrule
     (goal 256 2)
 =>
-    (chat-to-player 3 "I was hoping you'd do that!")
+    (chat-to-player 8 "I've had enough of you.")
 )
 (defrule
     (goal 256 3)
 =>
-    (chat-to-player 3 "I agree, let's be friends.")
+    (chat-to-player 8 "You aren't needed anymore.")
 )
 (defrule
-    (or (stance-toward 3 enemy) (stance-toward 3 neutral))
-    (players-stance 3 ally)
-    (and (goal player-3-is-bad-egg 0) (goal allied-with-player-3 0))
-    (player-in-game 3)
+    (and (player-in-game 8) (goal allied-with-8 1))
 =>
-    (set-stance 3 ally)
-    (set-goal allied-with-player-3 1)
+    (set-stance 8 enemy)
+    (set-goal player-8-is-bad-egg 1)
+    (set-goal allied-with-8 0)
 )
 (defrule
-    (not (and (not (or (stance-toward 3 enemy) (stance-toward 3 neutral))) (and (players-stance 3 ally) (and (and (goal player-3-is-bad-egg 0) (goal allied-with-player-3 0)) (player-in-game 3)))))
+    (not (and (goal accept-alliance-requests 1) (and (or (stance-toward 1 enemy) (stance-toward 1 neutral)) (and (players-stance 1 ally) (and (and (goal player-1-is-bad-egg 0) (goal allied-with-1 0)) (player-in-game 1))))))
 =>
     (up-jump-rule 7)
 )
@@ -23181,36 +22674,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 257 1)
 =>
-    (chat-to-player 3 "Let's do this. Together.")
+    (chat-to-player 1 "Good idea.")
 )
 (defrule
     (goal 257 2)
 =>
-    (chat-to-player 3 "Nice to have you with me.")
+    (chat-to-player 1 "I was hoping you'd do that!")
 )
 (defrule
     (goal 257 3)
 =>
-    (chat-to-player 3 "Unstoppable team!")
+    (chat-to-player 1 "I agree, let's be friends.")
 )
 (defrule
-    (not (or (stance-toward 3 enemy) (stance-toward 3 neutral)))
-    (players-stance 3 ally)
-    (and (goal player-3-is-bad-egg 0) (goal allied-with-player-3 0))
-    (player-in-game 3)
+    (goal accept-alliance-requests 1)
+    (or (stance-toward 1 enemy) (stance-toward 1 neutral))
+    (players-stance 1 ally)
+    (and (goal player-1-is-bad-egg 0) (goal allied-with-1 0))
+    (player-in-game 1)
 =>
-    (set-goal allied-with-player-3 1)
+    (chat-local-to-self "accepting alliance request from player 1")
+    (set-stance 1 ally)
+    (set-goal allied-with-1 1)
 )
 (defrule
-    (not (and (and (goal allied-with-player-3 1) (not (players-stance 3 ally))) (player-in-game 3)))
+    (not (and (not (or (stance-toward 1 enemy) (stance-toward 1 neutral))) (and (players-stance 1 ally) (and (and (goal player-1-is-bad-egg 0) (goal allied-with-1 0)) (player-in-game 1)))))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 7)
 )
 (defrule
     (true)
 =>
     (set-goal 258 0)
-    (generate-random-number 4)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -23231,62 +22727,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 258 3)
 )
 (defrule
-    (random-number == 4)
-    (goal 258 0)
-=>
-    (set-goal 258 4)
-)
-(defrule
     (goal 258 1)
 =>
-    (chat-to-player 3 "Really?")
+    (chat-to-player 1 "Let's do this. Together.")
 )
 (defrule
     (goal 258 2)
 =>
-    (chat-to-player 3 "I thought we were friends.")
+    (chat-to-player 1 "Nice to have you with me.")
 )
 (defrule
     (goal 258 3)
 =>
-    (chat-to-player 3 "You backstabbing-!")
+    (chat-to-player 1 "Unstoppable team!")
 )
 (defrule
-    (goal 258 4)
+    (not (or (stance-toward 1 enemy) (stance-toward 1 neutral)))
+    (players-stance 1 ally)
+    (and (goal player-1-is-bad-egg 0) (goal allied-with-1 0))
+    (player-in-game 1)
 =>
-    (chat-to-player 3 "What gives?")
+    (chat-local-to-self "player 1 accepted our alliance request")
+    (set-goal allied-with-1 1)
 )
 (defrule
-    (and (goal allied-with-player-3 1) (not (players-stance 3 ally)))
-    (player-in-game 3)
+    (not (and (and (goal allied-with-1 1) (not (players-stance 1 ally))) (player-in-game 1)))
 =>
-    (set-goal player-3-is-bad-egg 1)
-    (set-goal allied-with-player-3 0)
-    (set-stance 3 enemy)
-)
-(defrule
-    (and (goal threat-player 3) (not (stance-toward 3 enemy)))
-    (player-in-game 3)
-=>
-    (set-stance 3 enemy)
-)
-(defrule
-    (and (goal allied-with-player-3 0) (and (stance-toward 3 ally) (goal player-3-is-bad-egg 0)))
-    (player-in-game 3)
-=>
-    (up-modify-goal temp g:= game-time-goal)
-    (up-modify-goal temp g:- player-3-alliance-request-time-stamp)
-)
-(defrule
-    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-player-3 0) (and (stance-toward 3 ally) (goal player-3-is-bad-egg 0))) (player-in-game 3))))
-=>
-    (up-jump-rule 7)
+    (up-jump-rule 9)
 )
 (defrule
     (true)
 =>
     (set-goal 259 0)
-    (generate-random-number 3)
+    (generate-random-number 4)
 )
 (defrule
     (random-number == 1)
@@ -23307,36 +22780,55 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 259 3)
 )
 (defrule
+    (random-number == 4)
+    (goal 259 0)
+=>
+    (set-goal 259 4)
+)
+(defrule
     (goal 259 1)
 =>
-    (chat-to-player 3 "Fine, have it your way.")
+    (chat-to-player 1 "Really?")
 )
 (defrule
     (goal 259 2)
 =>
-    (chat-to-player 3 "Would've been nice.")
+    (chat-to-player 1 "I thought we were friends.")
 )
 (defrule
     (goal 259 3)
 =>
-    (chat-to-player 3 "Whatever.")
+    (chat-to-player 1 "You backstabbing-!")
 )
 (defrule
-    (up-compare-goal temp c:>= alliance-request-timeout)
-    (and (goal allied-with-player-3 0) (and (stance-toward 3 ally) (goal player-3-is-bad-egg 0)))
-    (player-in-game 3)
+    (goal 259 4)
 =>
-    (set-goal player-3-is-bad-egg 1)
-    (set-stance 3 neutral)
+    (chat-to-player 1 "What gives?")
 )
 (defrule
-    (and (players-stance 3 ally) (not (stance-toward 3 ally)))
-    (not (player-in-game 3))
+    (and (goal allied-with-1 1) (not (players-stance 1 ally)))
+    (player-in-game 1)
 =>
-    (set-stance 3 ally)
+    (set-goal player-1-is-bad-egg 1)
+    (set-goal allied-with-1 0)
+    (set-stance 1 enemy)
 )
 (defrule
-    (not (and (or (stance-toward 4 enemy) (stance-toward 4 neutral)) (and (players-stance 4 ally) (and (and (goal player-4-is-bad-egg 0) (goal allied-with-player-4 0)) (player-in-game 4)))))
+    (and (goal threat-player 1) (not (stance-toward 1 enemy)))
+    (player-in-game 1)
+=>
+    (set-goal allied-with-1 0)
+    (set-stance 1 enemy)
+)
+(defrule
+    (and (goal allied-with-1 0) (and (stance-toward 1 ally) (goal player-1-is-bad-egg 0)))
+    (player-in-game 1)
+=>
+    (up-modify-goal temp g:= game-time-goal)
+    (up-modify-goal temp g:- player-1-alliance-request-time-stamp)
+)
+(defrule
+    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-1 0) (and (stance-toward 1 ally) (goal player-1-is-bad-egg 0))) (player-in-game 1))))
 =>
     (up-jump-rule 7)
 )
@@ -23367,29 +22859,35 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 260 1)
 =>
-    (chat-to-player 4 "Good idea.")
+    (chat-to-player 1 "Fine, have it your way.")
 )
 (defrule
     (goal 260 2)
 =>
-    (chat-to-player 4 "I was hoping you'd do that!")
+    (chat-to-player 1 "Would've been nice.")
 )
 (defrule
     (goal 260 3)
 =>
-    (chat-to-player 4 "I agree, let's be friends.")
+    (chat-to-player 1 "Whatever.")
 )
 (defrule
-    (or (stance-toward 4 enemy) (stance-toward 4 neutral))
-    (players-stance 4 ally)
-    (and (goal player-4-is-bad-egg 0) (goal allied-with-player-4 0))
-    (player-in-game 4)
+    (up-compare-goal temp c:>= alliance-request-timeout)
+    (and (goal allied-with-1 0) (and (stance-toward 1 ally) (goal player-1-is-bad-egg 0)))
+    (player-in-game 1)
 =>
-    (set-stance 4 ally)
-    (set-goal allied-with-player-4 1)
+    (chat-local-to-self "alliance request to player 1 timed out")
+    (set-stance 1 neutral)
+    (set-goal tried-alliance-with-1 1)
 )
 (defrule
-    (not (and (not (or (stance-toward 4 enemy) (stance-toward 4 neutral))) (and (players-stance 4 ally) (and (and (goal player-4-is-bad-egg 0) (goal allied-with-player-4 0)) (player-in-game 4)))))
+    (and (players-stance 1 ally) (not (stance-toward 1 ally)))
+    (not (player-in-game 1))
+=>
+    (set-stance 1 ally)
+)
+(defrule
+    (not (and (goal accept-alliance-requests 1) (and (or (stance-toward 2 enemy) (stance-toward 2 neutral)) (and (players-stance 2 ally) (and (and (goal player-2-is-bad-egg 0) (goal allied-with-2 0)) (player-in-game 2))))))
 =>
     (up-jump-rule 7)
 )
@@ -23420,36 +22918,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 261 1)
 =>
-    (chat-to-player 4 "Let's do this. Together.")
+    (chat-to-player 2 "Good idea.")
 )
 (defrule
     (goal 261 2)
 =>
-    (chat-to-player 4 "Nice to have you with me.")
+    (chat-to-player 2 "I was hoping you'd do that!")
 )
 (defrule
     (goal 261 3)
 =>
-    (chat-to-player 4 "Unstoppable team!")
+    (chat-to-player 2 "I agree, let's be friends.")
 )
 (defrule
-    (not (or (stance-toward 4 enemy) (stance-toward 4 neutral)))
-    (players-stance 4 ally)
-    (and (goal player-4-is-bad-egg 0) (goal allied-with-player-4 0))
-    (player-in-game 4)
+    (goal accept-alliance-requests 1)
+    (or (stance-toward 2 enemy) (stance-toward 2 neutral))
+    (players-stance 2 ally)
+    (and (goal player-2-is-bad-egg 0) (goal allied-with-2 0))
+    (player-in-game 2)
 =>
-    (set-goal allied-with-player-4 1)
+    (chat-local-to-self "accepting alliance request from player 2")
+    (set-stance 2 ally)
+    (set-goal allied-with-2 1)
 )
 (defrule
-    (not (and (and (goal allied-with-player-4 1) (not (players-stance 4 ally))) (player-in-game 4)))
+    (not (and (not (or (stance-toward 2 enemy) (stance-toward 2 neutral))) (and (players-stance 2 ally) (and (and (goal player-2-is-bad-egg 0) (goal allied-with-2 0)) (player-in-game 2)))))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 7)
 )
 (defrule
     (true)
 =>
     (set-goal 262 0)
-    (generate-random-number 4)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -23470,62 +22971,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 262 3)
 )
 (defrule
-    (random-number == 4)
-    (goal 262 0)
-=>
-    (set-goal 262 4)
-)
-(defrule
     (goal 262 1)
 =>
-    (chat-to-player 4 "Really?")
+    (chat-to-player 2 "Let's do this. Together.")
 )
 (defrule
     (goal 262 2)
 =>
-    (chat-to-player 4 "I thought we were friends.")
+    (chat-to-player 2 "Nice to have you with me.")
 )
 (defrule
     (goal 262 3)
 =>
-    (chat-to-player 4 "You backstabbing-!")
+    (chat-to-player 2 "Unstoppable team!")
 )
 (defrule
-    (goal 262 4)
+    (not (or (stance-toward 2 enemy) (stance-toward 2 neutral)))
+    (players-stance 2 ally)
+    (and (goal player-2-is-bad-egg 0) (goal allied-with-2 0))
+    (player-in-game 2)
 =>
-    (chat-to-player 4 "What gives?")
+    (chat-local-to-self "player 2 accepted our alliance request")
+    (set-goal allied-with-2 1)
 )
 (defrule
-    (and (goal allied-with-player-4 1) (not (players-stance 4 ally)))
-    (player-in-game 4)
+    (not (and (and (goal allied-with-2 1) (not (players-stance 2 ally))) (player-in-game 2)))
 =>
-    (set-goal player-4-is-bad-egg 1)
-    (set-goal allied-with-player-4 0)
-    (set-stance 4 enemy)
-)
-(defrule
-    (and (goal threat-player 4) (not (stance-toward 4 enemy)))
-    (player-in-game 4)
-=>
-    (set-stance 4 enemy)
-)
-(defrule
-    (and (goal allied-with-player-4 0) (and (stance-toward 4 ally) (goal player-4-is-bad-egg 0)))
-    (player-in-game 4)
-=>
-    (up-modify-goal temp g:= game-time-goal)
-    (up-modify-goal temp g:- player-4-alliance-request-time-stamp)
-)
-(defrule
-    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-player-4 0) (and (stance-toward 4 ally) (goal player-4-is-bad-egg 0))) (player-in-game 4))))
-=>
-    (up-jump-rule 7)
+    (up-jump-rule 9)
 )
 (defrule
     (true)
 =>
     (set-goal 263 0)
-    (generate-random-number 3)
+    (generate-random-number 4)
 )
 (defrule
     (random-number == 1)
@@ -23546,36 +23024,55 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 263 3)
 )
 (defrule
+    (random-number == 4)
+    (goal 263 0)
+=>
+    (set-goal 263 4)
+)
+(defrule
     (goal 263 1)
 =>
-    (chat-to-player 4 "Fine, have it your way.")
+    (chat-to-player 2 "Really?")
 )
 (defrule
     (goal 263 2)
 =>
-    (chat-to-player 4 "Would've been nice.")
+    (chat-to-player 2 "I thought we were friends.")
 )
 (defrule
     (goal 263 3)
 =>
-    (chat-to-player 4 "Whatever.")
+    (chat-to-player 2 "You backstabbing-!")
 )
 (defrule
-    (up-compare-goal temp c:>= alliance-request-timeout)
-    (and (goal allied-with-player-4 0) (and (stance-toward 4 ally) (goal player-4-is-bad-egg 0)))
-    (player-in-game 4)
+    (goal 263 4)
 =>
-    (set-goal player-4-is-bad-egg 1)
-    (set-stance 4 neutral)
+    (chat-to-player 2 "What gives?")
 )
 (defrule
-    (and (players-stance 4 ally) (not (stance-toward 4 ally)))
-    (not (player-in-game 4))
+    (and (goal allied-with-2 1) (not (players-stance 2 ally)))
+    (player-in-game 2)
 =>
-    (set-stance 4 ally)
+    (set-goal player-2-is-bad-egg 1)
+    (set-goal allied-with-2 0)
+    (set-stance 2 enemy)
 )
 (defrule
-    (not (and (or (stance-toward 5 enemy) (stance-toward 5 neutral)) (and (players-stance 5 ally) (and (and (goal player-5-is-bad-egg 0) (goal allied-with-player-5 0)) (player-in-game 5)))))
+    (and (goal threat-player 2) (not (stance-toward 2 enemy)))
+    (player-in-game 2)
+=>
+    (set-goal allied-with-2 0)
+    (set-stance 2 enemy)
+)
+(defrule
+    (and (goal allied-with-2 0) (and (stance-toward 2 ally) (goal player-2-is-bad-egg 0)))
+    (player-in-game 2)
+=>
+    (up-modify-goal temp g:= game-time-goal)
+    (up-modify-goal temp g:- player-2-alliance-request-time-stamp)
+)
+(defrule
+    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-2 0) (and (stance-toward 2 ally) (goal player-2-is-bad-egg 0))) (player-in-game 2))))
 =>
     (up-jump-rule 7)
 )
@@ -23606,29 +23103,35 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 264 1)
 =>
-    (chat-to-player 5 "Good idea.")
+    (chat-to-player 2 "Fine, have it your way.")
 )
 (defrule
     (goal 264 2)
 =>
-    (chat-to-player 5 "I was hoping you'd do that!")
+    (chat-to-player 2 "Would've been nice.")
 )
 (defrule
     (goal 264 3)
 =>
-    (chat-to-player 5 "I agree, let's be friends.")
+    (chat-to-player 2 "Whatever.")
 )
 (defrule
-    (or (stance-toward 5 enemy) (stance-toward 5 neutral))
-    (players-stance 5 ally)
-    (and (goal player-5-is-bad-egg 0) (goal allied-with-player-5 0))
-    (player-in-game 5)
+    (up-compare-goal temp c:>= alliance-request-timeout)
+    (and (goal allied-with-2 0) (and (stance-toward 2 ally) (goal player-2-is-bad-egg 0)))
+    (player-in-game 2)
 =>
-    (set-stance 5 ally)
-    (set-goal allied-with-player-5 1)
+    (chat-local-to-self "alliance request to player 2 timed out")
+    (set-stance 2 neutral)
+    (set-goal tried-alliance-with-2 1)
 )
 (defrule
-    (not (and (not (or (stance-toward 5 enemy) (stance-toward 5 neutral))) (and (players-stance 5 ally) (and (and (goal player-5-is-bad-egg 0) (goal allied-with-player-5 0)) (player-in-game 5)))))
+    (and (players-stance 2 ally) (not (stance-toward 2 ally)))
+    (not (player-in-game 2))
+=>
+    (set-stance 2 ally)
+)
+(defrule
+    (not (and (goal accept-alliance-requests 1) (and (or (stance-toward 3 enemy) (stance-toward 3 neutral)) (and (players-stance 3 ally) (and (and (goal player-3-is-bad-egg 0) (goal allied-with-3 0)) (player-in-game 3))))))
 =>
     (up-jump-rule 7)
 )
@@ -23659,36 +23162,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 265 1)
 =>
-    (chat-to-player 5 "Let's do this. Together.")
+    (chat-to-player 3 "Good idea.")
 )
 (defrule
     (goal 265 2)
 =>
-    (chat-to-player 5 "Nice to have you with me.")
+    (chat-to-player 3 "I was hoping you'd do that!")
 )
 (defrule
     (goal 265 3)
 =>
-    (chat-to-player 5 "Unstoppable team!")
+    (chat-to-player 3 "I agree, let's be friends.")
 )
 (defrule
-    (not (or (stance-toward 5 enemy) (stance-toward 5 neutral)))
-    (players-stance 5 ally)
-    (and (goal player-5-is-bad-egg 0) (goal allied-with-player-5 0))
-    (player-in-game 5)
+    (goal accept-alliance-requests 1)
+    (or (stance-toward 3 enemy) (stance-toward 3 neutral))
+    (players-stance 3 ally)
+    (and (goal player-3-is-bad-egg 0) (goal allied-with-3 0))
+    (player-in-game 3)
 =>
-    (set-goal allied-with-player-5 1)
+    (chat-local-to-self "accepting alliance request from player 3")
+    (set-stance 3 ally)
+    (set-goal allied-with-3 1)
 )
 (defrule
-    (not (and (and (goal allied-with-player-5 1) (not (players-stance 5 ally))) (player-in-game 5)))
+    (not (and (not (or (stance-toward 3 enemy) (stance-toward 3 neutral))) (and (players-stance 3 ally) (and (and (goal player-3-is-bad-egg 0) (goal allied-with-3 0)) (player-in-game 3)))))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 7)
 )
 (defrule
     (true)
 =>
     (set-goal 266 0)
-    (generate-random-number 4)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -23709,62 +23215,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 266 3)
 )
 (defrule
-    (random-number == 4)
-    (goal 266 0)
-=>
-    (set-goal 266 4)
-)
-(defrule
     (goal 266 1)
 =>
-    (chat-to-player 5 "Really?")
+    (chat-to-player 3 "Let's do this. Together.")
 )
 (defrule
     (goal 266 2)
 =>
-    (chat-to-player 5 "I thought we were friends.")
+    (chat-to-player 3 "Nice to have you with me.")
 )
 (defrule
     (goal 266 3)
 =>
-    (chat-to-player 5 "You backstabbing-!")
+    (chat-to-player 3 "Unstoppable team!")
 )
 (defrule
-    (goal 266 4)
+    (not (or (stance-toward 3 enemy) (stance-toward 3 neutral)))
+    (players-stance 3 ally)
+    (and (goal player-3-is-bad-egg 0) (goal allied-with-3 0))
+    (player-in-game 3)
 =>
-    (chat-to-player 5 "What gives?")
+    (chat-local-to-self "player 3 accepted our alliance request")
+    (set-goal allied-with-3 1)
 )
 (defrule
-    (and (goal allied-with-player-5 1) (not (players-stance 5 ally)))
-    (player-in-game 5)
+    (not (and (and (goal allied-with-3 1) (not (players-stance 3 ally))) (player-in-game 3)))
 =>
-    (set-goal player-5-is-bad-egg 1)
-    (set-goal allied-with-player-5 0)
-    (set-stance 5 enemy)
-)
-(defrule
-    (and (goal threat-player 5) (not (stance-toward 5 enemy)))
-    (player-in-game 5)
-=>
-    (set-stance 5 enemy)
-)
-(defrule
-    (and (goal allied-with-player-5 0) (and (stance-toward 5 ally) (goal player-5-is-bad-egg 0)))
-    (player-in-game 5)
-=>
-    (up-modify-goal temp g:= game-time-goal)
-    (up-modify-goal temp g:- player-5-alliance-request-time-stamp)
-)
-(defrule
-    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-player-5 0) (and (stance-toward 5 ally) (goal player-5-is-bad-egg 0))) (player-in-game 5))))
-=>
-    (up-jump-rule 7)
+    (up-jump-rule 9)
 )
 (defrule
     (true)
 =>
     (set-goal 267 0)
-    (generate-random-number 3)
+    (generate-random-number 4)
 )
 (defrule
     (random-number == 1)
@@ -23785,36 +23268,55 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 267 3)
 )
 (defrule
+    (random-number == 4)
+    (goal 267 0)
+=>
+    (set-goal 267 4)
+)
+(defrule
     (goal 267 1)
 =>
-    (chat-to-player 5 "Fine, have it your way.")
+    (chat-to-player 3 "Really?")
 )
 (defrule
     (goal 267 2)
 =>
-    (chat-to-player 5 "Would've been nice.")
+    (chat-to-player 3 "I thought we were friends.")
 )
 (defrule
     (goal 267 3)
 =>
-    (chat-to-player 5 "Whatever.")
+    (chat-to-player 3 "You backstabbing-!")
 )
 (defrule
-    (up-compare-goal temp c:>= alliance-request-timeout)
-    (and (goal allied-with-player-5 0) (and (stance-toward 5 ally) (goal player-5-is-bad-egg 0)))
-    (player-in-game 5)
+    (goal 267 4)
 =>
-    (set-goal player-5-is-bad-egg 1)
-    (set-stance 5 neutral)
+    (chat-to-player 3 "What gives?")
 )
 (defrule
-    (and (players-stance 5 ally) (not (stance-toward 5 ally)))
-    (not (player-in-game 5))
+    (and (goal allied-with-3 1) (not (players-stance 3 ally)))
+    (player-in-game 3)
 =>
-    (set-stance 5 ally)
+    (set-goal player-3-is-bad-egg 1)
+    (set-goal allied-with-3 0)
+    (set-stance 3 enemy)
 )
 (defrule
-    (not (and (or (stance-toward 6 enemy) (stance-toward 6 neutral)) (and (players-stance 6 ally) (and (and (goal player-6-is-bad-egg 0) (goal allied-with-player-6 0)) (player-in-game 6)))))
+    (and (goal threat-player 3) (not (stance-toward 3 enemy)))
+    (player-in-game 3)
+=>
+    (set-goal allied-with-3 0)
+    (set-stance 3 enemy)
+)
+(defrule
+    (and (goal allied-with-3 0) (and (stance-toward 3 ally) (goal player-3-is-bad-egg 0)))
+    (player-in-game 3)
+=>
+    (up-modify-goal temp g:= game-time-goal)
+    (up-modify-goal temp g:- player-3-alliance-request-time-stamp)
+)
+(defrule
+    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-3 0) (and (stance-toward 3 ally) (goal player-3-is-bad-egg 0))) (player-in-game 3))))
 =>
     (up-jump-rule 7)
 )
@@ -23845,29 +23347,35 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 268 1)
 =>
-    (chat-to-player 6 "Good idea.")
+    (chat-to-player 3 "Fine, have it your way.")
 )
 (defrule
     (goal 268 2)
 =>
-    (chat-to-player 6 "I was hoping you'd do that!")
+    (chat-to-player 3 "Would've been nice.")
 )
 (defrule
     (goal 268 3)
 =>
-    (chat-to-player 6 "I agree, let's be friends.")
+    (chat-to-player 3 "Whatever.")
 )
 (defrule
-    (or (stance-toward 6 enemy) (stance-toward 6 neutral))
-    (players-stance 6 ally)
-    (and (goal player-6-is-bad-egg 0) (goal allied-with-player-6 0))
-    (player-in-game 6)
+    (up-compare-goal temp c:>= alliance-request-timeout)
+    (and (goal allied-with-3 0) (and (stance-toward 3 ally) (goal player-3-is-bad-egg 0)))
+    (player-in-game 3)
 =>
-    (set-stance 6 ally)
-    (set-goal allied-with-player-6 1)
+    (chat-local-to-self "alliance request to player 3 timed out")
+    (set-stance 3 neutral)
+    (set-goal tried-alliance-with-3 1)
 )
 (defrule
-    (not (and (not (or (stance-toward 6 enemy) (stance-toward 6 neutral))) (and (players-stance 6 ally) (and (and (goal player-6-is-bad-egg 0) (goal allied-with-player-6 0)) (player-in-game 6)))))
+    (and (players-stance 3 ally) (not (stance-toward 3 ally)))
+    (not (player-in-game 3))
+=>
+    (set-stance 3 ally)
+)
+(defrule
+    (not (and (goal accept-alliance-requests 1) (and (or (stance-toward 4 enemy) (stance-toward 4 neutral)) (and (players-stance 4 ally) (and (and (goal player-4-is-bad-egg 0) (goal allied-with-4 0)) (player-in-game 4))))))
 =>
     (up-jump-rule 7)
 )
@@ -23898,36 +23406,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 269 1)
 =>
-    (chat-to-player 6 "Let's do this. Together.")
+    (chat-to-player 4 "Good idea.")
 )
 (defrule
     (goal 269 2)
 =>
-    (chat-to-player 6 "Nice to have you with me.")
+    (chat-to-player 4 "I was hoping you'd do that!")
 )
 (defrule
     (goal 269 3)
 =>
-    (chat-to-player 6 "Unstoppable team!")
+    (chat-to-player 4 "I agree, let's be friends.")
 )
 (defrule
-    (not (or (stance-toward 6 enemy) (stance-toward 6 neutral)))
-    (players-stance 6 ally)
-    (and (goal player-6-is-bad-egg 0) (goal allied-with-player-6 0))
-    (player-in-game 6)
+    (goal accept-alliance-requests 1)
+    (or (stance-toward 4 enemy) (stance-toward 4 neutral))
+    (players-stance 4 ally)
+    (and (goal player-4-is-bad-egg 0) (goal allied-with-4 0))
+    (player-in-game 4)
 =>
-    (set-goal allied-with-player-6 1)
+    (chat-local-to-self "accepting alliance request from player 4")
+    (set-stance 4 ally)
+    (set-goal allied-with-4 1)
 )
 (defrule
-    (not (and (and (goal allied-with-player-6 1) (not (players-stance 6 ally))) (player-in-game 6)))
+    (not (and (not (or (stance-toward 4 enemy) (stance-toward 4 neutral))) (and (players-stance 4 ally) (and (and (goal player-4-is-bad-egg 0) (goal allied-with-4 0)) (player-in-game 4)))))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 7)
 )
 (defrule
     (true)
 =>
     (set-goal 270 0)
-    (generate-random-number 4)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -23948,62 +23459,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 270 3)
 )
 (defrule
-    (random-number == 4)
-    (goal 270 0)
-=>
-    (set-goal 270 4)
-)
-(defrule
     (goal 270 1)
 =>
-    (chat-to-player 6 "Really?")
+    (chat-to-player 4 "Let's do this. Together.")
 )
 (defrule
     (goal 270 2)
 =>
-    (chat-to-player 6 "I thought we were friends.")
+    (chat-to-player 4 "Nice to have you with me.")
 )
 (defrule
     (goal 270 3)
 =>
-    (chat-to-player 6 "You backstabbing-!")
+    (chat-to-player 4 "Unstoppable team!")
 )
 (defrule
-    (goal 270 4)
+    (not (or (stance-toward 4 enemy) (stance-toward 4 neutral)))
+    (players-stance 4 ally)
+    (and (goal player-4-is-bad-egg 0) (goal allied-with-4 0))
+    (player-in-game 4)
 =>
-    (chat-to-player 6 "What gives?")
+    (chat-local-to-self "player 4 accepted our alliance request")
+    (set-goal allied-with-4 1)
 )
 (defrule
-    (and (goal allied-with-player-6 1) (not (players-stance 6 ally)))
-    (player-in-game 6)
+    (not (and (and (goal allied-with-4 1) (not (players-stance 4 ally))) (player-in-game 4)))
 =>
-    (set-goal player-6-is-bad-egg 1)
-    (set-goal allied-with-player-6 0)
-    (set-stance 6 enemy)
-)
-(defrule
-    (and (goal threat-player 6) (not (stance-toward 6 enemy)))
-    (player-in-game 6)
-=>
-    (set-stance 6 enemy)
-)
-(defrule
-    (and (goal allied-with-player-6 0) (and (stance-toward 6 ally) (goal player-6-is-bad-egg 0)))
-    (player-in-game 6)
-=>
-    (up-modify-goal temp g:= game-time-goal)
-    (up-modify-goal temp g:- player-6-alliance-request-time-stamp)
-)
-(defrule
-    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-player-6 0) (and (stance-toward 6 ally) (goal player-6-is-bad-egg 0))) (player-in-game 6))))
-=>
-    (up-jump-rule 7)
+    (up-jump-rule 9)
 )
 (defrule
     (true)
 =>
     (set-goal 271 0)
-    (generate-random-number 3)
+    (generate-random-number 4)
 )
 (defrule
     (random-number == 1)
@@ -24024,36 +23512,55 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 271 3)
 )
 (defrule
+    (random-number == 4)
+    (goal 271 0)
+=>
+    (set-goal 271 4)
+)
+(defrule
     (goal 271 1)
 =>
-    (chat-to-player 6 "Fine, have it your way.")
+    (chat-to-player 4 "Really?")
 )
 (defrule
     (goal 271 2)
 =>
-    (chat-to-player 6 "Would've been nice.")
+    (chat-to-player 4 "I thought we were friends.")
 )
 (defrule
     (goal 271 3)
 =>
-    (chat-to-player 6 "Whatever.")
+    (chat-to-player 4 "You backstabbing-!")
 )
 (defrule
-    (up-compare-goal temp c:>= alliance-request-timeout)
-    (and (goal allied-with-player-6 0) (and (stance-toward 6 ally) (goal player-6-is-bad-egg 0)))
-    (player-in-game 6)
+    (goal 271 4)
 =>
-    (set-goal player-6-is-bad-egg 1)
-    (set-stance 6 neutral)
+    (chat-to-player 4 "What gives?")
 )
 (defrule
-    (and (players-stance 6 ally) (not (stance-toward 6 ally)))
-    (not (player-in-game 6))
+    (and (goal allied-with-4 1) (not (players-stance 4 ally)))
+    (player-in-game 4)
 =>
-    (set-stance 6 ally)
+    (set-goal player-4-is-bad-egg 1)
+    (set-goal allied-with-4 0)
+    (set-stance 4 enemy)
 )
 (defrule
-    (not (and (or (stance-toward 7 enemy) (stance-toward 7 neutral)) (and (players-stance 7 ally) (and (and (goal player-7-is-bad-egg 0) (goal allied-with-player-7 0)) (player-in-game 7)))))
+    (and (goal threat-player 4) (not (stance-toward 4 enemy)))
+    (player-in-game 4)
+=>
+    (set-goal allied-with-4 0)
+    (set-stance 4 enemy)
+)
+(defrule
+    (and (goal allied-with-4 0) (and (stance-toward 4 ally) (goal player-4-is-bad-egg 0)))
+    (player-in-game 4)
+=>
+    (up-modify-goal temp g:= game-time-goal)
+    (up-modify-goal temp g:- player-4-alliance-request-time-stamp)
+)
+(defrule
+    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-4 0) (and (stance-toward 4 ally) (goal player-4-is-bad-egg 0))) (player-in-game 4))))
 =>
     (up-jump-rule 7)
 )
@@ -24084,29 +23591,35 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 272 1)
 =>
-    (chat-to-player 7 "Good idea.")
+    (chat-to-player 4 "Fine, have it your way.")
 )
 (defrule
     (goal 272 2)
 =>
-    (chat-to-player 7 "I was hoping you'd do that!")
+    (chat-to-player 4 "Would've been nice.")
 )
 (defrule
     (goal 272 3)
 =>
-    (chat-to-player 7 "I agree, let's be friends.")
+    (chat-to-player 4 "Whatever.")
 )
 (defrule
-    (or (stance-toward 7 enemy) (stance-toward 7 neutral))
-    (players-stance 7 ally)
-    (and (goal player-7-is-bad-egg 0) (goal allied-with-player-7 0))
-    (player-in-game 7)
+    (up-compare-goal temp c:>= alliance-request-timeout)
+    (and (goal allied-with-4 0) (and (stance-toward 4 ally) (goal player-4-is-bad-egg 0)))
+    (player-in-game 4)
 =>
-    (set-stance 7 ally)
-    (set-goal allied-with-player-7 1)
+    (chat-local-to-self "alliance request to player 4 timed out")
+    (set-stance 4 neutral)
+    (set-goal tried-alliance-with-4 1)
 )
 (defrule
-    (not (and (not (or (stance-toward 7 enemy) (stance-toward 7 neutral))) (and (players-stance 7 ally) (and (and (goal player-7-is-bad-egg 0) (goal allied-with-player-7 0)) (player-in-game 7)))))
+    (and (players-stance 4 ally) (not (stance-toward 4 ally)))
+    (not (player-in-game 4))
+=>
+    (set-stance 4 ally)
+)
+(defrule
+    (not (and (goal accept-alliance-requests 1) (and (or (stance-toward 5 enemy) (stance-toward 5 neutral)) (and (players-stance 5 ally) (and (and (goal player-5-is-bad-egg 0) (goal allied-with-5 0)) (player-in-game 5))))))
 =>
     (up-jump-rule 7)
 )
@@ -24137,36 +23650,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 273 1)
 =>
-    (chat-to-player 7 "Let's do this. Together.")
+    (chat-to-player 5 "Good idea.")
 )
 (defrule
     (goal 273 2)
 =>
-    (chat-to-player 7 "Nice to have you with me.")
+    (chat-to-player 5 "I was hoping you'd do that!")
 )
 (defrule
     (goal 273 3)
 =>
-    (chat-to-player 7 "Unstoppable team!")
+    (chat-to-player 5 "I agree, let's be friends.")
 )
 (defrule
-    (not (or (stance-toward 7 enemy) (stance-toward 7 neutral)))
-    (players-stance 7 ally)
-    (and (goal player-7-is-bad-egg 0) (goal allied-with-player-7 0))
-    (player-in-game 7)
+    (goal accept-alliance-requests 1)
+    (or (stance-toward 5 enemy) (stance-toward 5 neutral))
+    (players-stance 5 ally)
+    (and (goal player-5-is-bad-egg 0) (goal allied-with-5 0))
+    (player-in-game 5)
 =>
-    (set-goal allied-with-player-7 1)
+    (chat-local-to-self "accepting alliance request from player 5")
+    (set-stance 5 ally)
+    (set-goal allied-with-5 1)
 )
 (defrule
-    (not (and (and (goal allied-with-player-7 1) (not (players-stance 7 ally))) (player-in-game 7)))
+    (not (and (not (or (stance-toward 5 enemy) (stance-toward 5 neutral))) (and (players-stance 5 ally) (and (and (goal player-5-is-bad-egg 0) (goal allied-with-5 0)) (player-in-game 5)))))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 7)
 )
 (defrule
     (true)
 =>
     (set-goal 274 0)
-    (generate-random-number 4)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -24187,62 +23703,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 274 3)
 )
 (defrule
-    (random-number == 4)
-    (goal 274 0)
-=>
-    (set-goal 274 4)
-)
-(defrule
     (goal 274 1)
 =>
-    (chat-to-player 7 "Really?")
+    (chat-to-player 5 "Let's do this. Together.")
 )
 (defrule
     (goal 274 2)
 =>
-    (chat-to-player 7 "I thought we were friends.")
+    (chat-to-player 5 "Nice to have you with me.")
 )
 (defrule
     (goal 274 3)
 =>
-    (chat-to-player 7 "You backstabbing-!")
+    (chat-to-player 5 "Unstoppable team!")
 )
 (defrule
-    (goal 274 4)
+    (not (or (stance-toward 5 enemy) (stance-toward 5 neutral)))
+    (players-stance 5 ally)
+    (and (goal player-5-is-bad-egg 0) (goal allied-with-5 0))
+    (player-in-game 5)
 =>
-    (chat-to-player 7 "What gives?")
+    (chat-local-to-self "player 5 accepted our alliance request")
+    (set-goal allied-with-5 1)
 )
 (defrule
-    (and (goal allied-with-player-7 1) (not (players-stance 7 ally)))
-    (player-in-game 7)
+    (not (and (and (goal allied-with-5 1) (not (players-stance 5 ally))) (player-in-game 5)))
 =>
-    (set-goal player-7-is-bad-egg 1)
-    (set-goal allied-with-player-7 0)
-    (set-stance 7 enemy)
-)
-(defrule
-    (and (goal threat-player 7) (not (stance-toward 7 enemy)))
-    (player-in-game 7)
-=>
-    (set-stance 7 enemy)
-)
-(defrule
-    (and (goal allied-with-player-7 0) (and (stance-toward 7 ally) (goal player-7-is-bad-egg 0)))
-    (player-in-game 7)
-=>
-    (up-modify-goal temp g:= game-time-goal)
-    (up-modify-goal temp g:- player-7-alliance-request-time-stamp)
-)
-(defrule
-    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-player-7 0) (and (stance-toward 7 ally) (goal player-7-is-bad-egg 0))) (player-in-game 7))))
-=>
-    (up-jump-rule 7)
+    (up-jump-rule 9)
 )
 (defrule
     (true)
 =>
     (set-goal 275 0)
-    (generate-random-number 3)
+    (generate-random-number 4)
 )
 (defrule
     (random-number == 1)
@@ -24263,36 +23756,55 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 275 3)
 )
 (defrule
+    (random-number == 4)
+    (goal 275 0)
+=>
+    (set-goal 275 4)
+)
+(defrule
     (goal 275 1)
 =>
-    (chat-to-player 7 "Fine, have it your way.")
+    (chat-to-player 5 "Really?")
 )
 (defrule
     (goal 275 2)
 =>
-    (chat-to-player 7 "Would've been nice.")
+    (chat-to-player 5 "I thought we were friends.")
 )
 (defrule
     (goal 275 3)
 =>
-    (chat-to-player 7 "Whatever.")
+    (chat-to-player 5 "You backstabbing-!")
 )
 (defrule
-    (up-compare-goal temp c:>= alliance-request-timeout)
-    (and (goal allied-with-player-7 0) (and (stance-toward 7 ally) (goal player-7-is-bad-egg 0)))
-    (player-in-game 7)
+    (goal 275 4)
 =>
-    (set-goal player-7-is-bad-egg 1)
-    (set-stance 7 neutral)
+    (chat-to-player 5 "What gives?")
 )
 (defrule
-    (and (players-stance 7 ally) (not (stance-toward 7 ally)))
-    (not (player-in-game 7))
+    (and (goal allied-with-5 1) (not (players-stance 5 ally)))
+    (player-in-game 5)
 =>
-    (set-stance 7 ally)
+    (set-goal player-5-is-bad-egg 1)
+    (set-goal allied-with-5 0)
+    (set-stance 5 enemy)
 )
 (defrule
-    (not (and (or (stance-toward 8 enemy) (stance-toward 8 neutral)) (and (players-stance 8 ally) (and (and (goal player-8-is-bad-egg 0) (goal allied-with-player-8 0)) (player-in-game 8)))))
+    (and (goal threat-player 5) (not (stance-toward 5 enemy)))
+    (player-in-game 5)
+=>
+    (set-goal allied-with-5 0)
+    (set-stance 5 enemy)
+)
+(defrule
+    (and (goal allied-with-5 0) (and (stance-toward 5 ally) (goal player-5-is-bad-egg 0)))
+    (player-in-game 5)
+=>
+    (up-modify-goal temp g:= game-time-goal)
+    (up-modify-goal temp g:- player-5-alliance-request-time-stamp)
+)
+(defrule
+    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-5 0) (and (stance-toward 5 ally) (goal player-5-is-bad-egg 0))) (player-in-game 5))))
 =>
     (up-jump-rule 7)
 )
@@ -24323,29 +23835,35 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 276 1)
 =>
-    (chat-to-player 8 "Good idea.")
+    (chat-to-player 5 "Fine, have it your way.")
 )
 (defrule
     (goal 276 2)
 =>
-    (chat-to-player 8 "I was hoping you'd do that!")
+    (chat-to-player 5 "Would've been nice.")
 )
 (defrule
     (goal 276 3)
 =>
-    (chat-to-player 8 "I agree, let's be friends.")
+    (chat-to-player 5 "Whatever.")
 )
 (defrule
-    (or (stance-toward 8 enemy) (stance-toward 8 neutral))
-    (players-stance 8 ally)
-    (and (goal player-8-is-bad-egg 0) (goal allied-with-player-8 0))
-    (player-in-game 8)
+    (up-compare-goal temp c:>= alliance-request-timeout)
+    (and (goal allied-with-5 0) (and (stance-toward 5 ally) (goal player-5-is-bad-egg 0)))
+    (player-in-game 5)
 =>
-    (set-stance 8 ally)
-    (set-goal allied-with-player-8 1)
+    (chat-local-to-self "alliance request to player 5 timed out")
+    (set-stance 5 neutral)
+    (set-goal tried-alliance-with-5 1)
 )
 (defrule
-    (not (and (not (or (stance-toward 8 enemy) (stance-toward 8 neutral))) (and (players-stance 8 ally) (and (and (goal player-8-is-bad-egg 0) (goal allied-with-player-8 0)) (player-in-game 8)))))
+    (and (players-stance 5 ally) (not (stance-toward 5 ally)))
+    (not (player-in-game 5))
+=>
+    (set-stance 5 ally)
+)
+(defrule
+    (not (and (goal accept-alliance-requests 1) (and (or (stance-toward 6 enemy) (stance-toward 6 neutral)) (and (players-stance 6 ally) (and (and (goal player-6-is-bad-egg 0) (goal allied-with-6 0)) (player-in-game 6))))))
 =>
     (up-jump-rule 7)
 )
@@ -24376,36 +23894,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (goal 277 1)
 =>
-    (chat-to-player 8 "Let's do this. Together.")
+    (chat-to-player 6 "Good idea.")
 )
 (defrule
     (goal 277 2)
 =>
-    (chat-to-player 8 "Nice to have you with me.")
+    (chat-to-player 6 "I was hoping you'd do that!")
 )
 (defrule
     (goal 277 3)
 =>
-    (chat-to-player 8 "Unstoppable team!")
+    (chat-to-player 6 "I agree, let's be friends.")
 )
 (defrule
-    (not (or (stance-toward 8 enemy) (stance-toward 8 neutral)))
-    (players-stance 8 ally)
-    (and (goal player-8-is-bad-egg 0) (goal allied-with-player-8 0))
-    (player-in-game 8)
+    (goal accept-alliance-requests 1)
+    (or (stance-toward 6 enemy) (stance-toward 6 neutral))
+    (players-stance 6 ally)
+    (and (goal player-6-is-bad-egg 0) (goal allied-with-6 0))
+    (player-in-game 6)
 =>
-    (set-goal allied-with-player-8 1)
+    (chat-local-to-self "accepting alliance request from player 6")
+    (set-stance 6 ally)
+    (set-goal allied-with-6 1)
 )
 (defrule
-    (not (and (and (goal allied-with-player-8 1) (not (players-stance 8 ally))) (player-in-game 8)))
+    (not (and (not (or (stance-toward 6 enemy) (stance-toward 6 neutral))) (and (players-stance 6 ally) (and (and (goal player-6-is-bad-egg 0) (goal allied-with-6 0)) (player-in-game 6)))))
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 7)
 )
 (defrule
     (true)
 =>
     (set-goal 278 0)
-    (generate-random-number 4)
+    (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
@@ -24426,62 +23947,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 278 3)
 )
 (defrule
-    (random-number == 4)
-    (goal 278 0)
-=>
-    (set-goal 278 4)
-)
-(defrule
     (goal 278 1)
 =>
-    (chat-to-player 8 "Really?")
+    (chat-to-player 6 "Let's do this. Together.")
 )
 (defrule
     (goal 278 2)
 =>
-    (chat-to-player 8 "I thought we were friends.")
+    (chat-to-player 6 "Nice to have you with me.")
 )
 (defrule
     (goal 278 3)
 =>
-    (chat-to-player 8 "You backstabbing-!")
+    (chat-to-player 6 "Unstoppable team!")
 )
 (defrule
-    (goal 278 4)
+    (not (or (stance-toward 6 enemy) (stance-toward 6 neutral)))
+    (players-stance 6 ally)
+    (and (goal player-6-is-bad-egg 0) (goal allied-with-6 0))
+    (player-in-game 6)
 =>
-    (chat-to-player 8 "What gives?")
+    (chat-local-to-self "player 6 accepted our alliance request")
+    (set-goal allied-with-6 1)
 )
 (defrule
-    (and (goal allied-with-player-8 1) (not (players-stance 8 ally)))
-    (player-in-game 8)
+    (not (and (and (goal allied-with-6 1) (not (players-stance 6 ally))) (player-in-game 6)))
 =>
-    (set-goal player-8-is-bad-egg 1)
-    (set-goal allied-with-player-8 0)
-    (set-stance 8 enemy)
-)
-(defrule
-    (and (goal threat-player 8) (not (stance-toward 8 enemy)))
-    (player-in-game 8)
-=>
-    (set-stance 8 enemy)
-)
-(defrule
-    (and (goal allied-with-player-8 0) (and (stance-toward 8 ally) (goal player-8-is-bad-egg 0)))
-    (player-in-game 8)
-=>
-    (up-modify-goal temp g:= game-time-goal)
-    (up-modify-goal temp g:- player-8-alliance-request-time-stamp)
-)
-(defrule
-    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-player-8 0) (and (stance-toward 8 ally) (goal player-8-is-bad-egg 0))) (player-in-game 8))))
-=>
-    (up-jump-rule 7)
+    (up-jump-rule 9)
 )
 (defrule
     (true)
 =>
     (set-goal 279 0)
-    (generate-random-number 3)
+    (generate-random-number 4)
 )
 (defrule
     (random-number == 1)
@@ -24502,27 +24000,593 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal 279 3)
 )
 (defrule
+    (random-number == 4)
+    (goal 279 0)
+=>
+    (set-goal 279 4)
+)
+(defrule
     (goal 279 1)
 =>
-    (chat-to-player 8 "Fine, have it your way.")
+    (chat-to-player 6 "Really?")
 )
 (defrule
     (goal 279 2)
 =>
-    (chat-to-player 8 "Would've been nice.")
+    (chat-to-player 6 "I thought we were friends.")
 )
 (defrule
     (goal 279 3)
+=>
+    (chat-to-player 6 "You backstabbing-!")
+)
+(defrule
+    (goal 279 4)
+=>
+    (chat-to-player 6 "What gives?")
+)
+(defrule
+    (and (goal allied-with-6 1) (not (players-stance 6 ally)))
+    (player-in-game 6)
+=>
+    (set-goal player-6-is-bad-egg 1)
+    (set-goal allied-with-6 0)
+    (set-stance 6 enemy)
+)
+(defrule
+    (and (goal threat-player 6) (not (stance-toward 6 enemy)))
+    (player-in-game 6)
+=>
+    (set-goal allied-with-6 0)
+    (set-stance 6 enemy)
+)
+(defrule
+    (and (goal allied-with-6 0) (and (stance-toward 6 ally) (goal player-6-is-bad-egg 0)))
+    (player-in-game 6)
+=>
+    (up-modify-goal temp g:= game-time-goal)
+    (up-modify-goal temp g:- player-6-alliance-request-time-stamp)
+)
+(defrule
+    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-6 0) (and (stance-toward 6 ally) (goal player-6-is-bad-egg 0))) (player-in-game 6))))
+=>
+    (up-jump-rule 7)
+)
+(defrule
+    (true)
+=>
+    (set-goal 280 0)
+    (generate-random-number 3)
+)
+(defrule
+    (random-number == 1)
+    (goal 280 0)
+=>
+    (set-goal 280 1)
+)
+(defrule
+    (random-number == 2)
+    (goal 280 0)
+=>
+    (set-goal 280 2)
+)
+(defrule
+    (random-number == 3)
+    (goal 280 0)
+=>
+    (set-goal 280 3)
+)
+(defrule
+    (goal 280 1)
+=>
+    (chat-to-player 6 "Fine, have it your way.")
+)
+(defrule
+    (goal 280 2)
+=>
+    (chat-to-player 6 "Would've been nice.")
+)
+(defrule
+    (goal 280 3)
+=>
+    (chat-to-player 6 "Whatever.")
+)
+(defrule
+    (up-compare-goal temp c:>= alliance-request-timeout)
+    (and (goal allied-with-6 0) (and (stance-toward 6 ally) (goal player-6-is-bad-egg 0)))
+    (player-in-game 6)
+=>
+    (chat-local-to-self "alliance request to player 6 timed out")
+    (set-stance 6 neutral)
+    (set-goal tried-alliance-with-6 1)
+)
+(defrule
+    (and (players-stance 6 ally) (not (stance-toward 6 ally)))
+    (not (player-in-game 6))
+=>
+    (set-stance 6 ally)
+)
+(defrule
+    (not (and (goal accept-alliance-requests 1) (and (or (stance-toward 7 enemy) (stance-toward 7 neutral)) (and (players-stance 7 ally) (and (and (goal player-7-is-bad-egg 0) (goal allied-with-7 0)) (player-in-game 7))))))
+=>
+    (up-jump-rule 7)
+)
+(defrule
+    (true)
+=>
+    (set-goal 281 0)
+    (generate-random-number 3)
+)
+(defrule
+    (random-number == 1)
+    (goal 281 0)
+=>
+    (set-goal 281 1)
+)
+(defrule
+    (random-number == 2)
+    (goal 281 0)
+=>
+    (set-goal 281 2)
+)
+(defrule
+    (random-number == 3)
+    (goal 281 0)
+=>
+    (set-goal 281 3)
+)
+(defrule
+    (goal 281 1)
+=>
+    (chat-to-player 7 "Good idea.")
+)
+(defrule
+    (goal 281 2)
+=>
+    (chat-to-player 7 "I was hoping you'd do that!")
+)
+(defrule
+    (goal 281 3)
+=>
+    (chat-to-player 7 "I agree, let's be friends.")
+)
+(defrule
+    (goal accept-alliance-requests 1)
+    (or (stance-toward 7 enemy) (stance-toward 7 neutral))
+    (players-stance 7 ally)
+    (and (goal player-7-is-bad-egg 0) (goal allied-with-7 0))
+    (player-in-game 7)
+=>
+    (chat-local-to-self "accepting alliance request from player 7")
+    (set-stance 7 ally)
+    (set-goal allied-with-7 1)
+)
+(defrule
+    (not (and (not (or (stance-toward 7 enemy) (stance-toward 7 neutral))) (and (players-stance 7 ally) (and (and (goal player-7-is-bad-egg 0) (goal allied-with-7 0)) (player-in-game 7)))))
+=>
+    (up-jump-rule 7)
+)
+(defrule
+    (true)
+=>
+    (set-goal 282 0)
+    (generate-random-number 3)
+)
+(defrule
+    (random-number == 1)
+    (goal 282 0)
+=>
+    (set-goal 282 1)
+)
+(defrule
+    (random-number == 2)
+    (goal 282 0)
+=>
+    (set-goal 282 2)
+)
+(defrule
+    (random-number == 3)
+    (goal 282 0)
+=>
+    (set-goal 282 3)
+)
+(defrule
+    (goal 282 1)
+=>
+    (chat-to-player 7 "Let's do this. Together.")
+)
+(defrule
+    (goal 282 2)
+=>
+    (chat-to-player 7 "Nice to have you with me.")
+)
+(defrule
+    (goal 282 3)
+=>
+    (chat-to-player 7 "Unstoppable team!")
+)
+(defrule
+    (not (or (stance-toward 7 enemy) (stance-toward 7 neutral)))
+    (players-stance 7 ally)
+    (and (goal player-7-is-bad-egg 0) (goal allied-with-7 0))
+    (player-in-game 7)
+=>
+    (chat-local-to-self "player 7 accepted our alliance request")
+    (set-goal allied-with-7 1)
+)
+(defrule
+    (not (and (and (goal allied-with-7 1) (not (players-stance 7 ally))) (player-in-game 7)))
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (true)
+=>
+    (set-goal 283 0)
+    (generate-random-number 4)
+)
+(defrule
+    (random-number == 1)
+    (goal 283 0)
+=>
+    (set-goal 283 1)
+)
+(defrule
+    (random-number == 2)
+    (goal 283 0)
+=>
+    (set-goal 283 2)
+)
+(defrule
+    (random-number == 3)
+    (goal 283 0)
+=>
+    (set-goal 283 3)
+)
+(defrule
+    (random-number == 4)
+    (goal 283 0)
+=>
+    (set-goal 283 4)
+)
+(defrule
+    (goal 283 1)
+=>
+    (chat-to-player 7 "Really?")
+)
+(defrule
+    (goal 283 2)
+=>
+    (chat-to-player 7 "I thought we were friends.")
+)
+(defrule
+    (goal 283 3)
+=>
+    (chat-to-player 7 "You backstabbing-!")
+)
+(defrule
+    (goal 283 4)
+=>
+    (chat-to-player 7 "What gives?")
+)
+(defrule
+    (and (goal allied-with-7 1) (not (players-stance 7 ally)))
+    (player-in-game 7)
+=>
+    (set-goal player-7-is-bad-egg 1)
+    (set-goal allied-with-7 0)
+    (set-stance 7 enemy)
+)
+(defrule
+    (and (goal threat-player 7) (not (stance-toward 7 enemy)))
+    (player-in-game 7)
+=>
+    (set-goal allied-with-7 0)
+    (set-stance 7 enemy)
+)
+(defrule
+    (and (goal allied-with-7 0) (and (stance-toward 7 ally) (goal player-7-is-bad-egg 0)))
+    (player-in-game 7)
+=>
+    (up-modify-goal temp g:= game-time-goal)
+    (up-modify-goal temp g:- player-7-alliance-request-time-stamp)
+)
+(defrule
+    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-7 0) (and (stance-toward 7 ally) (goal player-7-is-bad-egg 0))) (player-in-game 7))))
+=>
+    (up-jump-rule 7)
+)
+(defrule
+    (true)
+=>
+    (set-goal 284 0)
+    (generate-random-number 3)
+)
+(defrule
+    (random-number == 1)
+    (goal 284 0)
+=>
+    (set-goal 284 1)
+)
+(defrule
+    (random-number == 2)
+    (goal 284 0)
+=>
+    (set-goal 284 2)
+)
+(defrule
+    (random-number == 3)
+    (goal 284 0)
+=>
+    (set-goal 284 3)
+)
+(defrule
+    (goal 284 1)
+=>
+    (chat-to-player 7 "Fine, have it your way.")
+)
+(defrule
+    (goal 284 2)
+=>
+    (chat-to-player 7 "Would've been nice.")
+)
+(defrule
+    (goal 284 3)
+=>
+    (chat-to-player 7 "Whatever.")
+)
+(defrule
+    (up-compare-goal temp c:>= alliance-request-timeout)
+    (and (goal allied-with-7 0) (and (stance-toward 7 ally) (goal player-7-is-bad-egg 0)))
+    (player-in-game 7)
+=>
+    (chat-local-to-self "alliance request to player 7 timed out")
+    (set-stance 7 neutral)
+    (set-goal tried-alliance-with-7 1)
+)
+(defrule
+    (and (players-stance 7 ally) (not (stance-toward 7 ally)))
+    (not (player-in-game 7))
+=>
+    (set-stance 7 ally)
+)
+(defrule
+    (not (and (goal accept-alliance-requests 1) (and (or (stance-toward 8 enemy) (stance-toward 8 neutral)) (and (players-stance 8 ally) (and (and (goal player-8-is-bad-egg 0) (goal allied-with-8 0)) (player-in-game 8))))))
+=>
+    (up-jump-rule 7)
+)
+(defrule
+    (true)
+=>
+    (set-goal 285 0)
+    (generate-random-number 3)
+)
+(defrule
+    (random-number == 1)
+    (goal 285 0)
+=>
+    (set-goal 285 1)
+)
+(defrule
+    (random-number == 2)
+    (goal 285 0)
+=>
+    (set-goal 285 2)
+)
+(defrule
+    (random-number == 3)
+    (goal 285 0)
+=>
+    (set-goal 285 3)
+)
+(defrule
+    (goal 285 1)
+=>
+    (chat-to-player 8 "Good idea.")
+)
+(defrule
+    (goal 285 2)
+=>
+    (chat-to-player 8 "I was hoping you'd do that!")
+)
+(defrule
+    (goal 285 3)
+=>
+    (chat-to-player 8 "I agree, let's be friends.")
+)
+(defrule
+    (goal accept-alliance-requests 1)
+    (or (stance-toward 8 enemy) (stance-toward 8 neutral))
+    (players-stance 8 ally)
+    (and (goal player-8-is-bad-egg 0) (goal allied-with-8 0))
+    (player-in-game 8)
+=>
+    (chat-local-to-self "accepting alliance request from player 8")
+    (set-stance 8 ally)
+    (set-goal allied-with-8 1)
+)
+(defrule
+    (not (and (not (or (stance-toward 8 enemy) (stance-toward 8 neutral))) (and (players-stance 8 ally) (and (and (goal player-8-is-bad-egg 0) (goal allied-with-8 0)) (player-in-game 8)))))
+=>
+    (up-jump-rule 7)
+)
+(defrule
+    (true)
+=>
+    (set-goal 286 0)
+    (generate-random-number 3)
+)
+(defrule
+    (random-number == 1)
+    (goal 286 0)
+=>
+    (set-goal 286 1)
+)
+(defrule
+    (random-number == 2)
+    (goal 286 0)
+=>
+    (set-goal 286 2)
+)
+(defrule
+    (random-number == 3)
+    (goal 286 0)
+=>
+    (set-goal 286 3)
+)
+(defrule
+    (goal 286 1)
+=>
+    (chat-to-player 8 "Let's do this. Together.")
+)
+(defrule
+    (goal 286 2)
+=>
+    (chat-to-player 8 "Nice to have you with me.")
+)
+(defrule
+    (goal 286 3)
+=>
+    (chat-to-player 8 "Unstoppable team!")
+)
+(defrule
+    (not (or (stance-toward 8 enemy) (stance-toward 8 neutral)))
+    (players-stance 8 ally)
+    (and (goal player-8-is-bad-egg 0) (goal allied-with-8 0))
+    (player-in-game 8)
+=>
+    (chat-local-to-self "player 8 accepted our alliance request")
+    (set-goal allied-with-8 1)
+)
+(defrule
+    (not (and (and (goal allied-with-8 1) (not (players-stance 8 ally))) (player-in-game 8)))
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (true)
+=>
+    (set-goal 287 0)
+    (generate-random-number 4)
+)
+(defrule
+    (random-number == 1)
+    (goal 287 0)
+=>
+    (set-goal 287 1)
+)
+(defrule
+    (random-number == 2)
+    (goal 287 0)
+=>
+    (set-goal 287 2)
+)
+(defrule
+    (random-number == 3)
+    (goal 287 0)
+=>
+    (set-goal 287 3)
+)
+(defrule
+    (random-number == 4)
+    (goal 287 0)
+=>
+    (set-goal 287 4)
+)
+(defrule
+    (goal 287 1)
+=>
+    (chat-to-player 8 "Really?")
+)
+(defrule
+    (goal 287 2)
+=>
+    (chat-to-player 8 "I thought we were friends.")
+)
+(defrule
+    (goal 287 3)
+=>
+    (chat-to-player 8 "You backstabbing-!")
+)
+(defrule
+    (goal 287 4)
+=>
+    (chat-to-player 8 "What gives?")
+)
+(defrule
+    (and (goal allied-with-8 1) (not (players-stance 8 ally)))
+    (player-in-game 8)
+=>
+    (set-goal player-8-is-bad-egg 1)
+    (set-goal allied-with-8 0)
+    (set-stance 8 enemy)
+)
+(defrule
+    (and (goal threat-player 8) (not (stance-toward 8 enemy)))
+    (player-in-game 8)
+=>
+    (set-goal allied-with-8 0)
+    (set-stance 8 enemy)
+)
+(defrule
+    (and (goal allied-with-8 0) (and (stance-toward 8 ally) (goal player-8-is-bad-egg 0)))
+    (player-in-game 8)
+=>
+    (up-modify-goal temp g:= game-time-goal)
+    (up-modify-goal temp g:- player-8-alliance-request-time-stamp)
+)
+(defrule
+    (not (and (up-compare-goal temp c:>= alliance-request-timeout) (and (and (goal allied-with-8 0) (and (stance-toward 8 ally) (goal player-8-is-bad-egg 0))) (player-in-game 8))))
+=>
+    (up-jump-rule 7)
+)
+(defrule
+    (true)
+=>
+    (set-goal 288 0)
+    (generate-random-number 3)
+)
+(defrule
+    (random-number == 1)
+    (goal 288 0)
+=>
+    (set-goal 288 1)
+)
+(defrule
+    (random-number == 2)
+    (goal 288 0)
+=>
+    (set-goal 288 2)
+)
+(defrule
+    (random-number == 3)
+    (goal 288 0)
+=>
+    (set-goal 288 3)
+)
+(defrule
+    (goal 288 1)
+=>
+    (chat-to-player 8 "Fine, have it your way.")
+)
+(defrule
+    (goal 288 2)
+=>
+    (chat-to-player 8 "Would've been nice.")
+)
+(defrule
+    (goal 288 3)
 =>
     (chat-to-player 8 "Whatever.")
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (and (goal allied-with-player-8 0) (and (stance-toward 8 ally) (goal player-8-is-bad-egg 0)))
+    (and (goal allied-with-8 0) (and (stance-toward 8 ally) (goal player-8-is-bad-egg 0)))
     (player-in-game 8)
 =>
-    (set-goal player-8-is-bad-egg 1)
+    (chat-local-to-self "alliance request to player 8 timed out")
     (set-stance 8 neutral)
+    (set-goal tried-alliance-with-8 1)
 )
 (defrule
     (and (players-stance 8 ally) (not (stance-toward 8 ally)))
@@ -24557,39 +24621,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 280 0)
+    (set-goal 289 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 280 0)
+    (goal 289 0)
 =>
-    (set-goal 280 1)
+    (set-goal 289 1)
 )
 (defrule
     (random-number == 2)
-    (goal 280 0)
+    (goal 289 0)
 =>
-    (set-goal 280 2)
+    (set-goal 289 2)
 )
 (defrule
     (random-number == 3)
-    (goal 280 0)
+    (goal 289 0)
 =>
-    (set-goal 280 3)
+    (set-goal 289 3)
 )
 (defrule
-    (goal 280 1)
+    (goal 289 1)
 =>
     (chat-to-player every-ally "1Sure.")
 )
 (defrule
-    (goal 280 2)
+    (goal 289 2)
 =>
     (chat-to-player every-ally "1Of course.")
 )
 (defrule
-    (goal 280 3)
+    (goal 289 3)
 =>
     (chat-to-player every-ally "1Okay.")
 )
@@ -24613,39 +24677,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 281 0)
+    (set-goal 290 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 281 0)
+    (goal 290 0)
 =>
-    (set-goal 281 1)
+    (set-goal 290 1)
 )
 (defrule
     (random-number == 2)
-    (goal 281 0)
+    (goal 290 0)
 =>
-    (set-goal 281 2)
+    (set-goal 290 2)
 )
 (defrule
     (random-number == 3)
-    (goal 281 0)
+    (goal 290 0)
 =>
-    (set-goal 281 3)
+    (set-goal 290 3)
 )
 (defrule
-    (goal 281 1)
+    (goal 290 1)
 =>
     (chat-to-player every-ally "1Sure.")
 )
 (defrule
-    (goal 281 2)
+    (goal 290 2)
 =>
     (chat-to-player every-ally "1Of course.")
 )
 (defrule
-    (goal 281 3)
+    (goal 290 3)
 =>
     (chat-to-player every-ally "1Okay.")
 )
@@ -24657,39 +24721,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 282 0)
+    (set-goal 291 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 282 0)
+    (goal 291 0)
 =>
-    (set-goal 282 1)
+    (set-goal 291 1)
 )
 (defrule
     (random-number == 2)
-    (goal 282 0)
+    (goal 291 0)
 =>
-    (set-goal 282 2)
+    (set-goal 291 2)
 )
 (defrule
     (random-number == 3)
-    (goal 282 0)
+    (goal 291 0)
 =>
-    (set-goal 282 3)
+    (set-goal 291 3)
 )
 (defrule
-    (goal 282 1)
+    (goal 291 1)
 =>
     (chat-to-player every-ally "2Sorry, no.")
 )
 (defrule
-    (goal 282 2)
+    (goal 291 2)
 =>
     (chat-to-player every-ally "2Not right now, sorry.")
 )
 (defrule
-    (goal 282 3)
+    (goal 291 3)
 =>
     (chat-to-player every-ally "2Sorry, no can do!")
 )
@@ -24709,7 +24773,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (set-goal resign 1)
 )
 (defrule
-    (and (population < 10) (and (building-type-count-total town-center == 0) (game-time >= 1200)))
+    (and (population < 10) (game-time >= 1200))
 =>
     (set-goal resign 1)
 )
@@ -24897,39 +24961,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 283 0)
+    (set-goal 292 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 283 0)
+    (goal 292 0)
 =>
-    (set-goal 283 1)
+    (set-goal 292 1)
 )
 (defrule
     (random-number == 2)
-    (goal 283 0)
+    (goal 292 0)
 =>
-    (set-goal 283 2)
+    (set-goal 292 2)
 )
 (defrule
     (random-number == 3)
-    (goal 283 0)
+    (goal 292 0)
 =>
-    (set-goal 283 3)
+    (set-goal 292 3)
 )
 (defrule
-    (goal 283 1)
+    (goal 292 1)
 =>
     (chat-to-player every-ally "1Sure.")
 )
 (defrule
-    (goal 283 2)
+    (goal 292 2)
 =>
     (chat-to-player every-ally "1Of course.")
 )
 (defrule
-    (goal 283 3)
+    (goal 292 3)
 =>
     (chat-to-player every-ally "1Okay.")
 )
@@ -24941,39 +25005,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 284 0)
+    (set-goal 293 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 284 0)
+    (goal 293 0)
 =>
-    (set-goal 284 1)
+    (set-goal 293 1)
 )
 (defrule
     (random-number == 2)
-    (goal 284 0)
+    (goal 293 0)
 =>
-    (set-goal 284 2)
+    (set-goal 293 2)
 )
 (defrule
     (random-number == 3)
-    (goal 284 0)
+    (goal 293 0)
 =>
-    (set-goal 284 3)
+    (set-goal 293 3)
 )
 (defrule
-    (goal 284 1)
+    (goal 293 1)
 =>
     (chat-to-player every-ally "2Sorry, no.")
 )
 (defrule
-    (goal 284 2)
+    (goal 293 2)
 =>
     (chat-to-player every-ally "2Not right now, sorry.")
 )
 (defrule
-    (goal 284 3)
+    (goal 293 3)
 =>
     (chat-to-player every-ally "2Sorry, no can do!")
 )
@@ -25001,39 +25065,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 285 0)
+    (set-goal 294 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 285 0)
+    (goal 294 0)
 =>
-    (set-goal 285 1)
+    (set-goal 294 1)
 )
 (defrule
     (random-number == 2)
-    (goal 285 0)
+    (goal 294 0)
 =>
-    (set-goal 285 2)
+    (set-goal 294 2)
 )
 (defrule
     (random-number == 3)
-    (goal 285 0)
+    (goal 294 0)
 =>
-    (set-goal 285 3)
+    (set-goal 294 3)
 )
 (defrule
-    (goal 285 1)
+    (goal 294 1)
 =>
     (chat-to-player every-ally "1Sure.")
 )
 (defrule
-    (goal 285 2)
+    (goal 294 2)
 =>
     (chat-to-player every-ally "1Of course.")
 )
 (defrule
-    (goal 285 3)
+    (goal 294 3)
 =>
     (chat-to-player every-ally "1Okay.")
 )
@@ -25045,39 +25109,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 286 0)
+    (set-goal 295 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 286 0)
+    (goal 295 0)
 =>
-    (set-goal 286 1)
+    (set-goal 295 1)
 )
 (defrule
     (random-number == 2)
-    (goal 286 0)
+    (goal 295 0)
 =>
-    (set-goal 286 2)
+    (set-goal 295 2)
 )
 (defrule
     (random-number == 3)
-    (goal 286 0)
+    (goal 295 0)
 =>
-    (set-goal 286 3)
+    (set-goal 295 3)
 )
 (defrule
-    (goal 286 1)
+    (goal 295 1)
 =>
     (chat-to-player every-ally "2Sorry, no.")
 )
 (defrule
-    (goal 286 2)
+    (goal 295 2)
 =>
     (chat-to-player every-ally "2Not right now, sorry.")
 )
 (defrule
-    (goal 286 3)
+    (goal 295 3)
 =>
     (chat-to-player every-ally "2Sorry, no can do!")
 )
@@ -25105,39 +25169,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 287 0)
+    (set-goal 296 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 287 0)
+    (goal 296 0)
 =>
-    (set-goal 287 1)
+    (set-goal 296 1)
 )
 (defrule
     (random-number == 2)
-    (goal 287 0)
+    (goal 296 0)
 =>
-    (set-goal 287 2)
+    (set-goal 296 2)
 )
 (defrule
     (random-number == 3)
-    (goal 287 0)
+    (goal 296 0)
 =>
-    (set-goal 287 3)
+    (set-goal 296 3)
 )
 (defrule
-    (goal 287 1)
+    (goal 296 1)
 =>
     (chat-to-player every-ally "1Sure.")
 )
 (defrule
-    (goal 287 2)
+    (goal 296 2)
 =>
     (chat-to-player every-ally "1Of course.")
 )
 (defrule
-    (goal 287 3)
+    (goal 296 3)
 =>
     (chat-to-player every-ally "1Okay.")
 )
@@ -25149,39 +25213,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 288 0)
+    (set-goal 297 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 288 0)
+    (goal 297 0)
 =>
-    (set-goal 288 1)
+    (set-goal 297 1)
 )
 (defrule
     (random-number == 2)
-    (goal 288 0)
+    (goal 297 0)
 =>
-    (set-goal 288 2)
+    (set-goal 297 2)
 )
 (defrule
     (random-number == 3)
-    (goal 288 0)
+    (goal 297 0)
 =>
-    (set-goal 288 3)
+    (set-goal 297 3)
 )
 (defrule
-    (goal 288 1)
+    (goal 297 1)
 =>
     (chat-to-player every-ally "2Sorry, no.")
 )
 (defrule
-    (goal 288 2)
+    (goal 297 2)
 =>
     (chat-to-player every-ally "2Not right now, sorry.")
 )
 (defrule
-    (goal 288 3)
+    (goal 297 3)
 =>
     (chat-to-player every-ally "2Sorry, no can do!")
 )
@@ -25209,39 +25273,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 289 0)
+    (set-goal 298 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 289 0)
+    (goal 298 0)
 =>
-    (set-goal 289 1)
+    (set-goal 298 1)
 )
 (defrule
     (random-number == 2)
-    (goal 289 0)
+    (goal 298 0)
 =>
-    (set-goal 289 2)
+    (set-goal 298 2)
 )
 (defrule
     (random-number == 3)
-    (goal 289 0)
+    (goal 298 0)
 =>
-    (set-goal 289 3)
+    (set-goal 298 3)
 )
 (defrule
-    (goal 289 1)
+    (goal 298 1)
 =>
     (chat-to-player every-ally "1Sure.")
 )
 (defrule
-    (goal 289 2)
+    (goal 298 2)
 =>
     (chat-to-player every-ally "1Of course.")
 )
 (defrule
-    (goal 289 3)
+    (goal 298 3)
 =>
     (chat-to-player every-ally "1Okay.")
 )
@@ -25253,39 +25317,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 290 0)
+    (set-goal 299 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 290 0)
+    (goal 299 0)
 =>
-    (set-goal 290 1)
+    (set-goal 299 1)
 )
 (defrule
     (random-number == 2)
-    (goal 290 0)
+    (goal 299 0)
 =>
-    (set-goal 290 2)
+    (set-goal 299 2)
 )
 (defrule
     (random-number == 3)
-    (goal 290 0)
+    (goal 299 0)
 =>
-    (set-goal 290 3)
+    (set-goal 299 3)
 )
 (defrule
-    (goal 290 1)
+    (goal 299 1)
 =>
     (chat-to-player every-ally "2Sorry, no.")
 )
 (defrule
-    (goal 290 2)
+    (goal 299 2)
 =>
     (chat-to-player every-ally "2Not right now, sorry.")
 )
 (defrule
-    (goal 290 3)
+    (goal 299 3)
 =>
     (chat-to-player every-ally "2Sorry, no can do!")
 )
@@ -25297,43 +25361,43 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (goal team-game 1))
 =>
-    (up-get-fact resource-amount wood 291)
-    (up-get-fact escrow-amount wood 292)
-    (up-modify-goal 291 g:- 292)
-    (up-get-fact resource-amount food 293)
-    (up-get-fact escrow-amount food 294)
-    (up-modify-goal 293 g:- 294)
-    (up-get-fact resource-amount gold 295)
-    (up-get-fact escrow-amount gold 296)
-    (up-modify-goal 295 g:- 296)
+    (up-get-fact resource-amount wood 300)
+    (up-get-fact escrow-amount wood 301)
+    (up-modify-goal 300 g:- 301)
+    (up-get-fact resource-amount food 302)
+    (up-get-fact escrow-amount food 303)
+    (up-modify-goal 302 g:- 303)
+    (up-get-fact resource-amount gold 304)
+    (up-get-fact escrow-amount gold 305)
+    (up-modify-goal 304 g:- 305)
 )
 (defrule
-    (up-compare-goal 291 c:> max-gold)
+    (up-compare-goal 300 c:> max-gold)
     (can-sell-commodity wood)
-    (up-compare-goal 295 c:< max-gold)
+    (up-compare-goal 304 c:< max-gold)
     (not (goal team-game 1))
 =>
     (sell-commodity wood)
 )
 (defrule
-    (up-compare-goal 293 c:> max-gold)
+    (up-compare-goal 302 c:> max-gold)
     (can-sell-commodity food)
-    (up-compare-goal 295 c:< max-gold)
+    (up-compare-goal 304 c:< max-gold)
     (not (goal team-game 1))
 =>
     (sell-commodity food)
 )
 (defrule
-    (up-compare-goal 291 c:< max-gold)
-    (up-compare-goal 295 c:> max-gold)
+    (up-compare-goal 300 c:< max-gold)
+    (up-compare-goal 304 c:> max-gold)
     (can-buy-commodity wood)
     (not (goal team-game 1))
 =>
     (buy-commodity wood)
 )
 (defrule
-    (up-compare-goal 293 c:< max-gold)
-    (up-compare-goal 295 c:> max-gold)
+    (up-compare-goal 302 c:< max-gold)
+    (up-compare-goal 304 c:> max-gold)
     (can-buy-commodity food)
     (not (goal team-game 1))
 =>
@@ -25676,39 +25740,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 301 0)
+    (set-goal 310 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 301 0)
+    (goal 310 0)
 =>
-    (set-goal 301 1)
+    (set-goal 310 1)
 )
 (defrule
     (random-number == 2)
-    (goal 301 0)
+    (goal 310 0)
 =>
-    (set-goal 301 2)
+    (set-goal 310 2)
 )
 (defrule
     (random-number == 3)
-    (goal 301 0)
+    (goal 310 0)
 =>
-    (set-goal 301 3)
+    (set-goal 310 3)
 )
 (defrule
-    (goal 301 1)
+    (goal 310 1)
 =>
     (chat-to-all "2Absolutely not.")
 )
 (defrule
-    (goal 301 2)
+    (goal 310 2)
 =>
     (chat-to-all "2Are you out of your mind?")
 )
 (defrule
-    (goal 301 3)
+    (goal 310 3)
 =>
     (chat-to-all "2As if!")
 )
@@ -25725,39 +25789,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 302 0)
+    (set-goal 311 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 302 0)
+    (goal 311 0)
 =>
-    (set-goal 302 1)
+    (set-goal 311 1)
 )
 (defrule
     (random-number == 2)
-    (goal 302 0)
+    (goal 311 0)
 =>
-    (set-goal 302 2)
+    (set-goal 311 2)
 )
 (defrule
     (random-number == 3)
-    (goal 302 0)
+    (goal 311 0)
 =>
-    (set-goal 302 3)
+    (set-goal 311 3)
 )
 (defrule
-    (goal 302 1)
+    (goal 311 1)
 =>
     (chat-to-all "2Absolutely not.")
 )
 (defrule
-    (goal 302 2)
+    (goal 311 2)
 =>
     (chat-to-all "2Are you out of your mind?")
 )
 (defrule
-    (goal 302 3)
+    (goal 311 3)
 =>
     (chat-to-all "2As if!")
 )
@@ -25774,39 +25838,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 303 0)
+    (set-goal 312 0)
     (generate-random-number 3)
 )
 (defrule
     (random-number == 1)
-    (goal 303 0)
+    (goal 312 0)
 =>
-    (set-goal 303 1)
+    (set-goal 312 1)
 )
 (defrule
     (random-number == 2)
-    (goal 303 0)
+    (goal 312 0)
 =>
-    (set-goal 303 2)
+    (set-goal 312 2)
 )
 (defrule
     (random-number == 3)
-    (goal 303 0)
+    (goal 312 0)
 =>
-    (set-goal 303 3)
+    (set-goal 312 3)
 )
 (defrule
-    (goal 303 1)
+    (goal 312 1)
 =>
     (chat-to-all "2Absolutely not.")
 )
 (defrule
-    (goal 303 2)
+    (goal 312 2)
 =>
     (chat-to-all "2Are you out of your mind?")
 )
 (defrule
-    (goal 303 3)
+    (goal 312 3)
 =>
     (chat-to-all "2As if!")
 )
@@ -25823,44 +25887,44 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (or (goal free-for-all 1) (goal team-game 1))
 =>
-    (set-goal 304 0)
+    (set-goal 313 0)
     (generate-random-number 4)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 304 0)
+    (goal 313 0)
     (or (goal free-for-all 1) (goal team-game 1))
 =>
-    (set-goal 304 1)
+    (set-goal 313 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 304 0)
+    (goal 313 0)
     (or (goal free-for-all 1) (goal team-game 1))
 =>
-    (set-goal 304 2)
+    (set-goal 313 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 304 0)
+    (goal 313 0)
     (or (goal free-for-all 1) (goal team-game 1))
 =>
-    (set-goal 304 3)
+    (set-goal 313 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 304 0)
+    (goal 313 0)
     (or (goal free-for-all 1) (goal team-game 1))
 =>
-    (set-goal 304 4)
+    (set-goal 313 4)
     (disable-self)
 )
 (defrule
-    (goal 304 1)
+    (goal 313 1)
     (or (goal free-for-all 1) (goal team-game 1))
 =>
     (chat-to-all "Good luck and have fun everyone!")
@@ -25868,7 +25932,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 )
 (defrule
     (goal free-for-all 1)
-    (goal 304 2)
+    (goal 313 2)
     (or (goal free-for-all 1) (goal team-game 1))
 =>
     (chat-to-all "May the best ruler win!")
@@ -25876,21 +25940,21 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 )
 (defrule
     (not (goal free-for-all 1))
-    (goal 304 2)
+    (goal 313 2)
     (or (goal free-for-all 1) (goal team-game 1))
 =>
     (chat-to-all "May the best team win!")
     (disable-self)
 )
 (defrule
-    (goal 304 3)
+    (goal 313 3)
     (or (goal free-for-all 1) (goal team-game 1))
 =>
     (chat-to-all "GL everyone!!!")
     (disable-self)
 )
 (defrule
-    (goal 304 4)
+    (goal 313 4)
     (or (goal free-for-all 1) (goal team-game 1))
 =>
     (chat-to-all "Let's do this!")
@@ -25899,110 +25963,110 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (set-goal 305 0)
+    (set-goal 314 0)
     (generate-random-number 7)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 305 0)
+    (goal 314 0)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (set-goal 305 1)
+    (set-goal 314 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 305 0)
+    (goal 314 0)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (set-goal 305 2)
+    (set-goal 314 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 305 0)
+    (goal 314 0)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (set-goal 305 3)
+    (set-goal 314 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 305 0)
+    (goal 314 0)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (set-goal 305 4)
+    (set-goal 314 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 305 0)
+    (goal 314 0)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (set-goal 305 5)
+    (set-goal 314 5)
     (disable-self)
 )
 (defrule
     (random-number == 6)
-    (goal 305 0)
+    (goal 314 0)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (set-goal 305 6)
+    (set-goal 314 6)
     (disable-self)
 )
 (defrule
     (random-number == 7)
-    (goal 305 0)
+    (goal 314 0)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
-    (set-goal 305 7)
+    (set-goal 314 7)
     (disable-self)
 )
 (defrule
-    (goal 305 1)
+    (goal 314 1)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
     (chat-to-all "Hi! Go easy on me, okay?")
     (disable-self)
 )
 (defrule
-    (goal 305 2)
+    (goal 314 2)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
     (chat-to-all "Looking forward to this. Let's go.")
     (disable-self)
 )
 (defrule
-    (goal 305 3)
+    (goal 314 3)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
     (chat-to-all "Good luck, have fun!")
     (disable-self)
 )
 (defrule
-    (goal 305 4)
+    (goal 314 4)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
     (chat-to-all "GL!")
     (disable-self)
 )
 (defrule
-    (goal 305 5)
+    (goal 314 5)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
     (chat-to-all "HF!")
     (disable-self)
 )
 (defrule
-    (goal 305 6)
+    (goal 314 6)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
     (chat-to-all "Good luck!")
     (disable-self)
 )
 (defrule
-    (goal 305 7)
+    (goal 314 7)
     (not (or (goal free-for-all 1) (goal team-game 1)))
 =>
     (chat-to-all "Have fun!")
@@ -26022,45 +26086,45 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 306 0)
+    (set-goal 315 0)
     (generate-random-number 3)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 306 0)
+    (goal 315 0)
 =>
-    (set-goal 306 1)
+    (set-goal 315 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 306 0)
+    (goal 315 0)
 =>
-    (set-goal 306 2)
+    (set-goal 315 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 306 0)
+    (goal 315 0)
 =>
-    (set-goal 306 3)
+    (set-goal 315 3)
     (disable-self)
 )
 (defrule
-    (goal 306 1)
+    (goal 315 1)
 =>
     (chat-to-all "I'm having some trouble with this one.")
     (disable-self)
 )
 (defrule
-    (goal 306 2)
+    (goal 315 2)
 =>
     (chat-to-all "This is a tough game.")
     (disable-self)
 )
 (defrule
-    (goal 306 3)
+    (goal 315 3)
 =>
     (chat-to-all "I don't like my chances here.")
     (disable-self)
@@ -26073,45 +26137,45 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 307 0)
+    (set-goal 316 0)
     (generate-random-number 3)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 307 0)
+    (goal 316 0)
 =>
-    (set-goal 307 1)
+    (set-goal 316 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 307 0)
+    (goal 316 0)
 =>
-    (set-goal 307 2)
+    (set-goal 316 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 307 0)
+    (goal 316 0)
 =>
-    (set-goal 307 3)
+    (set-goal 316 3)
     (disable-self)
 )
 (defrule
-    (goal 307 1)
+    (goal 316 1)
 =>
     (chat-to-all "We may need a different strategy...")
     (disable-self)
 )
 (defrule
-    (goal 307 2)
+    (goal 316 2)
 =>
     (chat-to-all "I'm crumbling... Hopefully we still have a shot?")
     (disable-self)
 )
 (defrule
-    (goal 307 3)
+    (goal 316 3)
 =>
     (chat-to-all "This is hard.")
     (disable-self)
@@ -26124,71 +26188,71 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 308 0)
+    (set-goal 317 0)
     (generate-random-number 5)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 308 0)
+    (goal 317 0)
 =>
-    (set-goal 308 1)
+    (set-goal 317 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 308 0)
+    (goal 317 0)
 =>
-    (set-goal 308 2)
+    (set-goal 317 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 308 0)
+    (goal 317 0)
 =>
-    (set-goal 308 3)
+    (set-goal 317 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 308 0)
+    (goal 317 0)
 =>
-    (set-goal 308 4)
+    (set-goal 317 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 308 0)
+    (goal 317 0)
 =>
-    (set-goal 308 5)
+    (set-goal 317 5)
     (disable-self)
 )
 (defrule
-    (goal 308 1)
+    (goal 317 1)
 =>
     (chat-to-all "I feel vastly outpaced, you're playing a good game.")
     (disable-self)
 )
 (defrule
-    (goal 308 2)
+    (goal 317 2)
 =>
     (chat-to-all "I'm not doing very well...")
     (disable-self)
 )
 (defrule
-    (goal 308 3)
+    (goal 317 3)
 =>
     (chat-to-all "This could have gone better, oh well.")
     (disable-self)
 )
 (defrule
-    (goal 308 4)
+    (goal 317 4)
 =>
     (chat-to-all "You're playing quite well.")
     (disable-self)
 )
 (defrule
-    (goal 308 5)
+    (goal 317 5)
 =>
     (chat-to-all "I'm not sure I can best you.")
     (disable-self)
@@ -26201,32 +26265,32 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 309 0)
+    (set-goal 318 0)
     (generate-random-number 2)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 309 0)
+    (goal 318 0)
 =>
-    (set-goal 309 1)
+    (set-goal 318 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 309 0)
+    (goal 318 0)
 =>
-    (set-goal 309 2)
+    (set-goal 318 2)
     (disable-self)
 )
 (defrule
-    (goal 309 1)
+    (goal 318 1)
 =>
     (chat-to-all "I'm pretty sure I've got this game.")
     (disable-self)
 )
 (defrule
-    (goal 309 2)
+    (goal 318 2)
 =>
     (chat-to-all "It was tough, but I got there in the end.")
     (disable-self)
@@ -26261,92 +26325,92 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 310 0)
+    (set-goal 319 0)
     (generate-random-number 6)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 310 0)
+    (goal 319 0)
 =>
-    (set-goal 310 1)
+    (set-goal 319 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 310 0)
+    (goal 319 0)
 =>
-    (set-goal 310 2)
+    (set-goal 319 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 310 0)
+    (goal 319 0)
 =>
-    (set-goal 310 3)
+    (set-goal 319 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 310 0)
+    (goal 319 0)
 =>
-    (set-goal 310 4)
+    (set-goal 319 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 310 0)
+    (goal 319 0)
 =>
-    (set-goal 310 5)
+    (set-goal 319 5)
     (disable-self)
 )
 (defrule
     (random-number == 6)
-    (goal 310 0)
+    (goal 319 0)
 =>
-    (set-goal 310 6)
+    (set-goal 319 6)
     (disable-self)
 )
 (defrule
-    (goal 310 1)
+    (goal 319 1)
 =>
     (chat-to-all "I don't like this...")
     (disable-self)
 )
 (defrule
-    (goal 310 2)
+    (goal 319 2)
 =>
     (chat-to-all "Dicey.")
     (disable-self)
 )
 (defrule
-    (goal 310 3)
+    (goal 319 3)
 =>
     (chat-to-all "I'd better step on the pedal a bit, sheesh.")
     (disable-self)
 )
 (defrule
-    (goal 310 4)
+    (goal 319 4)
 =>
     (chat-to-all "...please don't hurt me!")
     (disable-self)
 )
 (defrule
     (or (goal team-game 1) (goal free-for-all 1))
-    (goal 310 5)
+    (goal 319 5)
 =>
     (chat-to-all "It's looking scary out there...")
     (disable-self)
 )
 (defrule
     (not (or (goal team-game 1) (goal free-for-all 1)))
-    (goal 310 5)
+    (goal 319 5)
 =>
     (chat-to-all "You're looking scary...")
     (disable-self)
 )
 (defrule
-    (goal 310 6)
+    (goal 319 6)
 =>
     (chat-to-all "That's a lot of stuff.")
     (disable-self)
@@ -26359,134 +26423,134 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 311 0)
+    (set-goal 320 0)
     (generate-random-number 8)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 311 0)
+    (goal 320 0)
 =>
-    (set-goal 311 1)
+    (set-goal 320 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 311 0)
+    (goal 320 0)
 =>
-    (set-goal 311 2)
+    (set-goal 320 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 311 0)
+    (goal 320 0)
 =>
-    (set-goal 311 3)
+    (set-goal 320 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 311 0)
+    (goal 320 0)
 =>
-    (set-goal 311 4)
+    (set-goal 320 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 311 0)
+    (goal 320 0)
 =>
-    (set-goal 311 5)
+    (set-goal 320 5)
     (disable-self)
 )
 (defrule
     (random-number == 6)
-    (goal 311 0)
+    (goal 320 0)
 =>
-    (set-goal 311 6)
+    (set-goal 320 6)
     (disable-self)
 )
 (defrule
     (random-number == 7)
-    (goal 311 0)
+    (goal 320 0)
 =>
-    (set-goal 311 7)
+    (set-goal 320 7)
     (disable-self)
 )
 (defrule
     (random-number == 8)
-    (goal 311 0)
+    (goal 320 0)
 =>
-    (set-goal 311 8)
+    (set-goal 320 8)
     (disable-self)
 )
 (defrule
     (or (goal team-game 1) (goal free-for-all 1))
-    (goal 311 1)
+    (goal 320 1)
 =>
     (chat-to-all "Let's crush 'em!")
     (disable-self)
 )
 (defrule
     (not (or (goal team-game 1) (goal free-for-all 1)))
-    (goal 311 1)
+    (goal 320 1)
 =>
     (chat-to-all "It's time for some violence!")
     (disable-self)
 )
 (defrule
-    (goal 311 2)
+    (goal 320 2)
 =>
     (chat-to-all "Oh yeah, this is good.")
     (disable-self)
 )
 (defrule
     (or (goal team-game 1) (goal free-for-all 1))
-    (goal 311 3)
+    (goal 320 3)
 =>
     (chat-to-all "You lot aren't prepared for this.")
     (disable-self)
 )
 (defrule
     (not (or (goal team-game 1) (goal free-for-all 1)))
-    (goal 311 3)
+    (goal 320 3)
 =>
     (chat-to-all "You aren't prepared for this.")
     (disable-self)
 )
 (defrule
-    (goal 311 4)
+    (goal 320 4)
 =>
     (chat-to-all "[cracks knuckles]")
     (disable-self)
 )
 (defrule
-    (goal 311 5)
+    (goal 320 5)
 =>
     (chat-to-all "I'm pumped! Let's go!!!")
     (disable-self)
 )
 (defrule
-    (goal 311 6)
+    (goal 320 6)
 =>
     (chat-to-all "Allow me to show you some numbers.")
     (disable-self)
 )
 (defrule
     (goal team-game 1)
-    (goal 311 7)
+    (goal 320 7)
 =>
     (chat-to-all "We're bringing the pain.")
     (disable-self)
 )
 (defrule
     (not (goal team-game 1))
-    (goal 311 7)
+    (goal 320 7)
 =>
     (chat-to-all "I'm bringing the pain.")
     (disable-self)
 )
 (defrule
-    (goal 311 8)
+    (goal 320 8)
 =>
     (chat-to-all "If I win this battle, it's all over.")
     (disable-self)
@@ -26500,79 +26564,79 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 312 0)
+    (set-goal 321 0)
     (generate-random-number 5)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 312 0)
+    (goal 321 0)
 =>
-    (set-goal 312 1)
+    (set-goal 321 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 312 0)
+    (goal 321 0)
 =>
-    (set-goal 312 2)
+    (set-goal 321 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 312 0)
+    (goal 321 0)
 =>
-    (set-goal 312 3)
+    (set-goal 321 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 312 0)
+    (goal 321 0)
 =>
-    (set-goal 312 4)
+    (set-goal 321 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 312 0)
+    (goal 321 0)
 =>
-    (set-goal 312 5)
+    (set-goal 321 5)
     (disable-self)
 )
 (defrule
     (or (goal team-game 1) (goal free-for-all 1))
-    (goal 312 1)
+    (goal 321 1)
 =>
     (chat-to-all "Come at me.")
     (disable-self)
 )
 (defrule
     (not (or (goal team-game 1) (goal free-for-all 1)))
-    (goal 312 1)
+    (goal 321 1)
 =>
     (chat-to-all "I'm ready for what you've got.")
     (disable-self)
 )
 (defrule
-    (goal 312 2)
+    (goal 321 2)
 =>
     (chat-to-all "Feeling confident.")
     (disable-self)
 )
 (defrule
-    (goal 312 3)
+    (goal 321 3)
 =>
     (chat-to-all "Feeling good.")
     (disable-self)
 )
 (defrule
-    (goal 312 4)
+    (goal 321 4)
 =>
     (chat-to-all "I am prepared.")
     (disable-self)
 )
 (defrule
-    (goal 312 5)
+    (goal 321 5)
 =>
     (chat-to-all "Are you ready?")
     (disable-self)
@@ -26585,58 +26649,58 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 313 0)
+    (set-goal 322 0)
     (generate-random-number 4)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 313 0)
+    (goal 322 0)
 =>
-    (set-goal 313 1)
+    (set-goal 322 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 313 0)
+    (goal 322 0)
 =>
-    (set-goal 313 2)
+    (set-goal 322 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 313 0)
+    (goal 322 0)
 =>
-    (set-goal 313 3)
+    (set-goal 322 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 313 0)
+    (goal 322 0)
 =>
-    (set-goal 313 4)
+    (set-goal 322 4)
     (disable-self)
 )
 (defrule
-    (goal 313 1)
+    (goal 322 1)
 =>
     (chat-to-all "My heart's not really in this anymore, sorry.")
     (disable-self)
 )
 (defrule
-    (goal 313 2)
+    (goal 322 2)
 =>
     (chat-to-all "It was a good game, I think I'm out though.")
     (disable-self)
 )
 (defrule
-    (goal 313 3)
+    (goal 322 3)
 =>
     (chat-to-all "Good game, well played.")
     (disable-self)
 )
 (defrule
-    (goal 313 4)
+    (goal 322 4)
 =>
     (chat-to-all "I'm done.")
     (disable-self)
@@ -26649,45 +26713,45 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 314 0)
+    (set-goal 323 0)
     (generate-random-number 3)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 314 0)
+    (goal 323 0)
 =>
-    (set-goal 314 1)
+    (set-goal 323 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 314 0)
+    (goal 323 0)
 =>
-    (set-goal 314 2)
+    (set-goal 323 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 314 0)
+    (goal 323 0)
 =>
-    (set-goal 314 3)
+    (set-goal 323 3)
     (disable-self)
 )
 (defrule
-    (goal 314 1)
+    (goal 323 1)
 =>
     (chat-to-allies "On my way up.")
     (disable-self)
 )
 (defrule
-    (goal 314 2)
+    (goal 323 2)
 =>
     (chat-to-allies "I've clicked up.")
     (disable-self)
 )
 (defrule
-    (goal 314 3)
+    (goal 323 3)
 =>
     (chat-to-allies "Going castle.")
     (disable-self)
@@ -26700,79 +26764,79 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (true)
 =>
-    (set-goal 315 0)
+    (set-goal 324 0)
     (generate-random-number 5)
     (disable-self)
 )
 (defrule
     (random-number == 1)
-    (goal 315 0)
+    (goal 324 0)
 =>
-    (set-goal 315 1)
+    (set-goal 324 1)
     (disable-self)
 )
 (defrule
     (random-number == 2)
-    (goal 315 0)
+    (goal 324 0)
 =>
-    (set-goal 315 2)
+    (set-goal 324 2)
     (disable-self)
 )
 (defrule
     (random-number == 3)
-    (goal 315 0)
+    (goal 324 0)
 =>
-    (set-goal 315 3)
+    (set-goal 324 3)
     (disable-self)
 )
 (defrule
     (random-number == 4)
-    (goal 315 0)
+    (goal 324 0)
 =>
-    (set-goal 315 4)
+    (set-goal 324 4)
     (disable-self)
 )
 (defrule
     (random-number == 5)
-    (goal 315 0)
+    (goal 324 0)
 =>
-    (set-goal 315 5)
+    (set-goal 324 5)
     (disable-self)
 )
 (defrule
-    (goal 315 1)
+    (goal 324 1)
 =>
     (chat-to-all "Why must you do this?")
     (disable-self)
 )
 (defrule
     (goal team-game 1)
-    (goal 315 2)
+    (goal 324 2)
 =>
     (chat-to-all "Your teammate is a real piece of work.")
     (disable-self)
 )
 (defrule
     (not (goal team-game 1))
-    (goal 315 2)
+    (goal 324 2)
 =>
     (chat-to-all "I don't think I like you very much...")
     (disable-self)
 )
 (defrule
-    (goal 315 3)
+    (goal 324 3)
 =>
     (chat-to-all "[sigh]")
     (disable-self)
 )
 (defrule
-    (goal 315 4)
+    (goal 324 4)
 =>
     (chat-to-all "Why can't we just have fun?")
     (disable-self)
 )
 (defrule
-    (goal 315 5)
+    (goal 324 5)
 =>
     (chat-to-all "You know I can't deal with this. It's unfair.")
     (disable-self)

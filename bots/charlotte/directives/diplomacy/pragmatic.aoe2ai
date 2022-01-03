@@ -2,6 +2,7 @@
   chat to self "Being pragmatic."
   goal team-game = 0
   goal free-for-all = 1
+  goal accept-alliance-requests = 0
 #end do
 
 #if up-compare-goal neutral-or-enemy-players-count g:> ally-players-count

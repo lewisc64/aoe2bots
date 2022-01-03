@@ -286,5 +286,5 @@
 
 #do once
   insert get-good-units(prefix="",player="my-player-number")
-  insert get-good-units(prefix="enemy-",player="target-player")
+  insert get-good-units(prefix="enemy-",player="any-enemy")
 #end do

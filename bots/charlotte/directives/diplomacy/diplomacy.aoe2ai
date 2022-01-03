@@ -4,48 +4,52 @@ const allied-victory-timeout = 120
 #template diplo-set-up-player-goals
   goal player-{player}-is-bad-egg = 0
   goal player-{player}-alliance-request-time-stamp = 0
-  goal allied-with-player-{player} = 0
+  goal allied-with-{player} = 0
+  goal tried-alliance-with-{player} = 0
 #end template
 
 #template handle-stance-changes
   #if player-in-game {player}
   
-    #if goal player-{player}-is-bad-egg 0 and goal allied-with-player-{player} 0
+    #if goal player-{player}-is-bad-egg 0 and goal allied-with-{player} 0
       #if players-stance {player} ally
         #if stance-toward {player} enemy or stance-toward {player} neutral
-          insert say-accept-alliance-line(player={player})
-          // chat to self "accepting alliance request from player {player}"
-          @set-stance {player} ally
-          goal allied-with-player-{player} = 1
+          #if goal accept-alliance-requests 1
+            insert say-accept-alliance-line(player={player})
+            chat to self "accepting alliance request from player {player}"
+            @set-stance {player} ally
+            goal allied-with-{player} = 1
+          #end if
         #else
           insert say-alliance-begin-line(player={player})
-          // chat to self "player {player} accepted our alliance request"
-          goal allied-with-player-{player} = 1
+          chat to self "player {player} accepted our alliance request"
+          goal allied-with-{player} = 1
         #end if
       #end if
     #end if
     
-    #if goal allied-with-player-{player} 1 and not players-stance {player} ally
+    #if goal allied-with-{player} 1 and not players-stance {player} ally
       insert say-alliance-betrayal-line(player={player})
-      // chat to self "betrayed by player {player}"
+      //chat to self "betrayed by player {player}"
       goal player-{player}-is-bad-egg = 1
-      goal allied-with-player-{player} = 0
+      goal allied-with-{player} = 0
       @set-stance {player} enemy
     #end if
     
     #if goal threat-player {player} and not stance-toward {player} enemy
-      // chat to self "attacked by player {player}"
+      //chat to self "attacked by player {player}"
+      goal allied-with-{player} = 0
       @set-stance {player} enemy
     #end if
     
-    #if goal allied-with-player-{player} 0 and stance-toward {player} ally and goal player-{player}-is-bad-egg 0
+    #if goal allied-with-{player} 0 and stance-toward {player} ally and goal player-{player}-is-bad-egg 0
       @up-modify-goal temp g:= game-time-goal
       @up-modify-goal temp g:- player-{player}-alliance-request-time-stamp
       #if up-compare-goal temp c:>= alliance-request-timeout
         insert say-request-alliance-timeout-line(player={player})
-        // chat to self "alliance request to player {player} timed out"
-        goal player-{player}-is-bad-egg = 1
+        chat to self "alliance request to player {player} timed out"
         @set-stance {player} neutral
+        goal tried-alliance-with-{player} = 1
       #end if
     #end if
     
@@ -55,26 +59,26 @@ const allied-victory-timeout = 120
 #end template
 
 #template betray-ally
-  #if player-in-game {player} and goal allied-with-player-{player} 1
+  #if player-in-game {player} and goal allied-with-{player} 1
     insert say-do-betrayal-line(player={player})
-    // chat to self "betraying player {player}"
+    //chat to self "betraying player {player}"
     @set-stance {player} enemy
     goal player-{player}-is-bad-egg = 1
-    goal allied-with-player-{player} = 0
+    goal allied-with-{player} = 0
   #end if
 #end template
 
 #template enemy-if-neutral
   #if player-in-game {player} and stance-toward {player} neutral
-    // chat to self "making neutral player {player} our enemy"
+    //chat to self "making neutral player {player} our enemy"
     @set-stance {player} enemy
   #end if
 #end template
 
 #template ally-if-not-bad-egg
-  #if player-in-game {player} and goal player-{player}-is-bad-egg 0 and not stance-toward {player} ally
+  #if player-in-game {player} and goal player-{player}-is-bad-egg 0 and not stance-toward {player} ally and goal tried-alliance-with-{player} 0
     insert say-request-alliance-line(player={player})
-    // chat to self "requesting alliance from player {player}"
+    chat to self "requesting alliance from player {player}"
     @set-stance {player} ally
     @up-modify-goal player-{player}-alliance-request-time-stamp g:= game-time-goal
   #end if
@@ -82,6 +86,7 @@ const allied-victory-timeout = 120
 
 #do once
   goal want-alliance = 0
+  goal accept-alliance-requests = 1
   insert diplo-set-up-player-goals(player=1)
   insert diplo-set-up-player-goals(player=2)
   insert diplo-set-up-player-goals(player=3)
@@ -93,10 +98,6 @@ const allied-victory-timeout = 120
   @set-stance every-enemy neutral
   goal no-enemies-stamp = 0
 #end do
-
-#if not stance-toward my-player-number ally
-  @set-stance my-player-number ally
-#end if
 
 #select random persistant
   load "pragmatic.aoe2ai"

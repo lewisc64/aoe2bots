@@ -2,6 +2,7 @@
   chat to self "Being pair-seeking."
   goal team-game = 1
   goal free-for-all = 0
+  goal accept-alliance-requests = 0
 #end do
 
 #if up-compare-goal ally-players-count c:== 0

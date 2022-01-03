@@ -2,6 +2,7 @@
   chat to self "Being backstabbing."
   goal team-game = 0
   goal free-for-all = 1
+  goal accept-alliance-requests = 1
 #end do
 
 #if up-compare-goal neutral-or-enemy-players-count c:>= 2
