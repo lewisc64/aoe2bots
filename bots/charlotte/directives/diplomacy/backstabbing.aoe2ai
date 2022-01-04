@@ -5,12 +5,16 @@
   goal accept-alliance-requests = 1
 #end do
 
-#if up-compare-goal neutral-or-enemy-players-count c:>= 2
-  goal want-alliance = 1
-  chat to self "want alliance"
-#else if goal neutral-or-enemy-players-count 0
-  goal want-alliance = -1
-  chat to self "want betrayal"
+#if military-population < 30
+  #if up-compare-goal neutral-or-enemy-players-count c:> 0
+    goal want-alliance = 1
+  #end if
 #else
-  goal want-alliance = 0
+  #if up-compare-goal neutral-or-enemy-players-count c:>= 2
+    goal want-alliance = 1
+  #else if goal neutral-or-enemy-players-count 0
+    goal want-alliance = -1
+  #else
+    goal want-alliance = 0
+  #end if
 #end if

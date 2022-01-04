@@ -7,7 +7,6 @@
 
 #if up-compare-goal ally-players-count c:== 0
   goal want-alliance = 1
-  chat to self "want alliance"
 #else
   goal want-alliance = 0
 #end if

@@ -15,11 +15,6 @@ goal aggressive-override = 0
   chat to self "make military lead bigger"
 #end if
 
-#if military-population < 15
-  goal aggressive-override = 1
-  chat to self "military too small"
-#end if
-
 #if goal balanced-aggressive 1 or goal aggressive-override 1
   load "reckless.aoe2ai"
 #else

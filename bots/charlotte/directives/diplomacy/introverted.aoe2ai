@@ -7,7 +7,6 @@
 
 #if goal neutral-or-enemy-players-count 0
   goal want-alliance = -1
-  chat to self "want betrayal"
 #else
   goal want-alliance = 0
 #end if

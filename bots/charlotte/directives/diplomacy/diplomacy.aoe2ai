@@ -115,7 +115,7 @@ const allied-victory-timeout = 120
 
 @up-modify-goal temp g:= game-time-goal
 @up-modify-goal temp g:- no-enemies-stamp
-#if up-compare-goal temp c:>= allied-victory-timeout // the final betrayal.
+#if up-compare-goal temp c:>= allied-victory-timeout and game-time >= 2400 // the final betrayal.
   #do once
     insert say-no-allied-victory-line
     goal player-1-is-bad-egg = 1

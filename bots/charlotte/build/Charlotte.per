@@ -2140,7 +2140,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 3436)
+    (up-jump-rule 3440)
 )
 (defrule
     (true)
@@ -20750,7 +20750,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (not (goal emergency-trash 1)) (goal attack-ready 1)))
 =>
-    (up-jump-rule 12)
+    (up-jump-rule 15)
 )
 (defrule
     (players-unit-type-count any-enemy monk-set >= min-detection-units)
@@ -20764,6 +20764,11 @@ watch-tower-arrow > 0))))
     (players-unit-type-count any-enemy monk-set >= min-detection-units)
 =>
     (set-goal produce-unique-units 0)
+)
+(defrule
+    (players-unit-type-count any-enemy monk-set >= min-detection-units)
+=>
+    (set-goal produce-mangonels 0)
 )
 (defrule
     (players-unit-type-count any-enemy archer >= min-detection-units)
@@ -20780,6 +20785,26 @@ watch-tower-arrow > 0))))
 =>
     (set-goal produce-scorpions 0)
     (set-goal produce-skirmishers 0)
+)
+(defrule
+    (players-unit-type-count any-enemy trebuchet-set >= 15)
+=>
+    (set-goal produce-scorpions 0)
+)
+(defrule
+    (players-unit-type-count any-enemy knight-line >= min-detection-units)
+=>
+    (set-goal produce-mangonels 0)
+)
+(defrule
+    (players-unit-type-count any-enemy scout-cavalry-line >= min-detection-units)
+=>
+    (set-goal produce-mangonels 0)
+)
+(defrule
+    (players-unit-type-count any-enemy camel-line >= min-detection-units)
+=>
+    (set-goal produce-mangonels 0)
 )
 (defrule
     (players-unit-type-count any-enemy archer >= min-detection-units)
@@ -20819,18 +20844,6 @@ watch-tower-arrow > 0))))
     (set-goal produce-militia 0)
     (set-goal produce-spearmen 0)
     (set-goal produce-eagles 0)
-)
-(defrule
-    (players-unit-type-count any-enemy knight-line >= min-detection-units)
-    (goal desired-units 1)
-=>
-    (set-goal produce-mangonels 0)
-)
-(defrule
-    (players-unit-type-count any-enemy scout-cavalry-line >= min-detection-units)
-    (goal desired-units 1)
-=>
-    (set-goal produce-mangonels 0)
 )
 (defrule
     (not (and (not (goal emergency-trash 1)) (goal attack-ready 1)))
@@ -20899,7 +20912,7 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (players-unit-type-count target-player scout-cavalry-line >= min-detection-units)
-    (and (goal partial-infantry-blacksmith-investment 1) (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman))))
+    (and (goal partial-infantry-blacksmith-investment 1) (and (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman))) (goal produce-camels 0)))
 =>
     (chat-local-to-self "COUNTER SCOUTS WITH SPEARMEN")
     (set-goal produce-spearmen 1)
@@ -20907,7 +20920,7 @@ watch-tower-arrow > 0))))
 (defrule
     (and (players-unit-type-count target-player knight-line >= min-detection-units) (goal produce-monks 0))
     (not (players-unit-type-count target-player scout-cavalry-line >= min-detection-units))
-    (and (goal partial-infantry-blacksmith-investment 1) (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman))))
+    (and (goal partial-infantry-blacksmith-investment 1) (and (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman))) (goal produce-camels 0)))
 =>
     (chat-local-to-self "COUNTER KNIGHTS WITH SPEARMEN")
     (set-goal produce-spearmen 1)
@@ -20916,9 +20929,9 @@ watch-tower-arrow > 0))))
     (and (players-unit-type-count target-player battle-elephant-line >= min-detection-units) (goal produce-monks 0))
     (not (players-unit-type-count target-player scout-cavalry-line >= min-detection-units))
     (not (and (players-unit-type-count target-player knight-line >= min-detection-units) (goal produce-monks 0)))
-    (and (goal partial-infantry-blacksmith-investment 1) (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman))))
+    (and (goal partial-infantry-blacksmith-investment 1) (and (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman))) (goal produce-camels 0)))
 =>
-    (chat-local-to-self "COUNTER ELES WITH SPEARMEN")
+    (chat-local-to-self "COUNTER BATTLE ELEPHANTS WITH SPEARMEN")
     (set-goal produce-spearmen 1)
 )
 (defrule
@@ -20926,7 +20939,7 @@ watch-tower-arrow > 0))))
     (not (and (players-unit-type-count target-player knight-line >= min-detection-units) (goal produce-monks 0)))
     (not (players-unit-type-count target-player scout-cavalry-line >= min-detection-units))
     (not (and (players-unit-type-count target-player battle-elephant-line >= min-detection-units) (goal produce-monks 0)))
-    (and (goal partial-infantry-blacksmith-investment 1) (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman))))
+    (and (goal partial-infantry-blacksmith-investment 1) (and (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman))) (goal produce-camels 0)))
 =>
     (chat-local-to-self "COUNTER CAMELS WITH SPEARMEN")
     (set-goal produce-spearmen 1)
@@ -20937,7 +20950,7 @@ watch-tower-arrow > 0))))
     (not (players-unit-type-count target-player scout-cavalry-line >= min-detection-units))
     (not (and (players-unit-type-count target-player knight-line >= min-detection-units) (goal produce-monks 0)))
     (not (and (players-unit-type-count target-player camel-line >= min-detection-units) (goal produce-monks 0)))
-    (and (goal partial-infantry-blacksmith-investment 1) (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman))))
+    (and (goal partial-infantry-blacksmith-investment 1) (and (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman))) (goal produce-camels 0)))
 =>
     (chat-local-to-self "COUNTER WAR ELEPHANTS WITH SPEARMEN")
     (set-goal produce-spearmen 1)
@@ -20948,12 +20961,12 @@ watch-tower-arrow > 0))))
     (not (players-unit-type-count target-player scout-cavalry-line >= min-detection-units))
     (not (and (players-unit-type-count target-player battle-elephant-line >= min-detection-units) (goal produce-monks 0)))
     (not (and (players-unit-type-count target-player war-elephant-line >= min-detection-units) (goal produce-monks 0)))
-    (and (goal partial-infantry-blacksmith-investment 1) (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman))))
+    (and (goal partial-infantry-blacksmith-investment 1) (and (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman))) (goal produce-camels 0)))
 =>
     (set-goal produce-spearmen 0)
 )
 (defrule
-    (not (and (goal partial-infantry-blacksmith-investment 1) (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman)))))
+    (not (and (goal partial-infantry-blacksmith-investment 1) (and (or (current-age == feudal-age) (or (research-available ri-pikeman) (research-completed ri-pikeman))) (goal produce-camels 0))))
 =>
     (set-goal produce-spearmen 0)
 )
@@ -21081,7 +21094,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (goal attack-ready 1))
 =>
-    (up-jump-rule 15)
+    (up-jump-rule 14)
 )
 (defrule
     (true)
@@ -21114,12 +21127,6 @@ watch-tower-arrow > 0))))
 =>
     (set-goal aggressive-override 1)
     (chat-local-to-self "make military lead bigger")
-)
-(defrule
-    (military-population < 15)
-=>
-    (set-goal aggressive-override 1)
-    (chat-local-to-self "military too small")
 )
 (defrule
     (not (or (goal balanced-aggressive 1) (goal aggressive-override 1)))
@@ -21247,7 +21254,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (and (goal resign 0) (and (goal locked-teams 0) (or (goal team-game 1) (goal free-for-all 1)))))
 =>
-    (up-jump-rule 566)
+    (up-jump-rule 568)
 )
 (defrule
     (true)
@@ -21328,7 +21335,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (goal 236 1))
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 5)
 )
 (defrule
     (true)
@@ -21336,32 +21343,41 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (chat-local-to-self "Being pragmatic.")
     (set-goal team-game 0)
     (set-goal free-for-all 1)
-    (set-goal accept-alliance-requests 0)
     (disable-self)
 )
 (defrule
     (up-compare-goal neutral-or-enemy-players-count g:> ally-players-count)
 =>
+    (set-goal accept-alliance-requests 1)
     (set-goal want-alliance 1)
-    (chat-local-to-self "want alliance")
+)
+(defrule
+    (up-compare-goal neutral-or-enemy-players-count c:> 2)
+    (not (up-compare-goal neutral-or-enemy-players-count g:> ally-players-count))
+=>
+    (set-goal accept-alliance-requests 1)
+    (set-goal want-alliance 0)
 )
 (defrule
     (goal neutral-or-enemy-players-count 0)
     (not (up-compare-goal neutral-or-enemy-players-count g:> ally-players-count))
+    (not (up-compare-goal neutral-or-enemy-players-count c:> 2))
 =>
+    (set-goal accept-alliance-requests 0)
     (set-goal want-alliance -1)
-    (chat-local-to-self "want betrayal")
 )
 (defrule
+    (not (up-compare-goal neutral-or-enemy-players-count c:> 2))
     (not (up-compare-goal neutral-or-enemy-players-count g:> ally-players-count))
     (not (goal neutral-or-enemy-players-count 0))
 =>
+    (set-goal accept-alliance-requests 0)
     (set-goal want-alliance 0)
 )
 (defrule
     (not (goal 236 2))
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 5)
 )
 (defrule
     (true)
@@ -21373,21 +21389,28 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (disable-self)
 )
 (defrule
-    (up-compare-goal neutral-or-enemy-players-count c:>= 2)
+    (up-compare-goal neutral-or-enemy-players-count c:> 0)
+    (military-population < 30)
 =>
     (set-goal want-alliance 1)
-    (chat-local-to-self "want alliance")
+)
+(defrule
+    (up-compare-goal neutral-or-enemy-players-count c:>= 2)
+    (not (military-population < 30))
+=>
+    (set-goal want-alliance 1)
 )
 (defrule
     (goal neutral-or-enemy-players-count 0)
     (not (up-compare-goal neutral-or-enemy-players-count c:>= 2))
+    (not (military-population < 30))
 =>
     (set-goal want-alliance -1)
-    (chat-local-to-self "want betrayal")
 )
 (defrule
     (not (up-compare-goal neutral-or-enemy-players-count c:>= 2))
     (not (goal neutral-or-enemy-players-count 0))
+    (not (military-population < 30))
 =>
     (set-goal want-alliance 0)
 )
@@ -21409,7 +21432,6 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (up-compare-goal ally-players-count c:== 0)
 =>
     (set-goal want-alliance 1)
-    (chat-local-to-self "want alliance")
 )
 (defrule
     (not (up-compare-goal ally-players-count c:== 0))
@@ -21434,7 +21456,6 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (goal neutral-or-enemy-players-count 0)
 =>
     (set-goal want-alliance -1)
-    (chat-local-to-self "want betrayal")
 )
 (defrule
     (not (goal neutral-or-enemy-players-count 0))
@@ -21453,7 +21474,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (up-modify-goal temp g:- no-enemies-stamp)
 )
 (defrule
-    (not (up-compare-goal temp c:>= allied-victory-timeout))
+    (not (and (up-compare-goal temp c:>= allied-victory-timeout) (game-time >= 2400)))
 =>
     (up-jump-rule 7)
 )
@@ -21504,7 +21525,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (disable-self)
 )
 (defrule
-    (up-compare-goal temp c:>= allied-victory-timeout)
+    (and (up-compare-goal temp c:>= allied-victory-timeout) (game-time >= 2400))
 =>
     (set-goal player-1-is-bad-egg 1)
     (set-goal player-2-is-bad-egg 1)

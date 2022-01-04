@@ -2,15 +2,18 @@
   chat to self "Being pragmatic."
   goal team-game = 0
   goal free-for-all = 1
-  goal accept-alliance-requests = 0
 #end do
 
 #if up-compare-goal neutral-or-enemy-players-count g:> ally-players-count
+  goal accept-alliance-requests = 1
   goal want-alliance = 1
-  chat to self "want alliance"
+#else if up-compare-goal neutral-or-enemy-players-count c:> 2
+  goal accept-alliance-requests = 1
+  goal want-alliance = 0
 #else if goal neutral-or-enemy-players-count 0
+  goal accept-alliance-requests = 0
   goal want-alliance = -1
-  chat to self "want betrayal"
 #else
+  goal accept-alliance-requests = 0
   goal want-alliance = 0
 #end if
