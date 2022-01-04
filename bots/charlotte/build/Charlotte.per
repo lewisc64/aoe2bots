@@ -175,7 +175,7 @@
 (defconst desired-units 11)
 (defconst pop-cap-goal 12)
 (defconst produce-units 13)
-(defconst produce-navy 14)
+(defconst allow-navy 14)
 (defconst do-research 15)
 (defconst attacking 16)
 (defconst temp 17)
@@ -490,13 +490,13 @@
 (defrule
     (or (goal full-water-map 1) (goal partial-water-map 1))
 =>
-    (set-goal produce-navy 1)
+    (set-goal allow-navy 1)
     (disable-self)
 )
 (defrule
     (not (or (goal full-water-map 1) (goal partial-water-map 1)))
 =>
-    (set-goal produce-navy 0)
+    (set-goal allow-navy 0)
     (disable-self)
 )
 (defrule
@@ -3882,7 +3882,7 @@ watch-tower-arrow > 0))))
     (up-modify-goal total-type-production g:+ produce-trebuchets)
 )
 (defrule
-    (not (and (goal produce-navy 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1))))
+    (not (and (goal allow-navy 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1))))
 =>
     (up-jump-rule 1)
 )
@@ -3892,7 +3892,7 @@ watch-tower-arrow > 0))))
     (up-modify-goal total-type-production g:+ produce-galleys)
 )
 (defrule
-    (not (and (goal produce-navy 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1))))
+    (not (and (goal allow-navy 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1))))
 =>
     (up-jump-rule 1)
 )
@@ -3902,7 +3902,7 @@ watch-tower-arrow > 0))))
     (up-modify-goal total-type-production g:+ produce-fire-ships)
 )
 (defrule
-    (not (and (goal produce-navy 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1))))
+    (not (and (goal allow-navy 1) (and (goal enough-wood-for-units 1) (goal enough-gold-for-units 1))))
 =>
     (up-jump-rule 1)
 )
@@ -17627,7 +17627,7 @@ watch-tower-arrow > 0))))
     (up-modify-goal produce-units g:= old-produce-units)
 )
 (defrule
-    (not (goal produce-navy 1))
+    (not (goal allow-navy 1))
 =>
     (up-jump-rule 80)
 )
@@ -18160,7 +18160,7 @@ watch-tower-arrow > 0))))
     (up-modify-goal produce-units g:= old-produce-units)
 )
 (defrule
-    (not (goal produce-navy 1))
+    (not (goal allow-navy 1))
 =>
     (up-jump-rule 50)
 )
@@ -18489,7 +18489,7 @@ watch-tower-arrow > 0))))
     (up-modify-goal produce-units g:= old-produce-units)
 )
 (defrule
-    (not (goal produce-navy 1))
+    (not (goal allow-navy 1))
 =>
     (up-jump-rule 35)
 )
@@ -21355,7 +21355,7 @@ watch-tower-arrow > 0))))
 (defrule
     (true)
 =>
-    (set-goal produce-navy 1)
+    (set-goal allow-navy 1)
 )
 (defrule
     (not (goal full-water-map 1))
@@ -21391,12 +21391,12 @@ watch-tower-arrow > 0))))
 (defrule
     (or (players-unit-type-count any-enemy fishing-ship > 0) (or (players-unit-type-count any-enemy dock > 0) (up-compare-goal largest-enemy-warboat-count c:> 0)))
 =>
-    (set-goal produce-navy 1)
+    (set-goal allow-navy 1)
 )
 (defrule
     (not (or (players-unit-type-count any-enemy fishing-ship > 0) (or (players-unit-type-count any-enemy dock > 0) (up-compare-goal largest-enemy-warboat-count c:> 0))))
 =>
-    (set-goal produce-navy 0)
+    (set-goal allow-navy 0)
 )
 (defrule
     (not (and (goal 205 2) (and (not (goal full-water-map 1)) (goal attack-ready 1))))
@@ -21406,12 +21406,12 @@ watch-tower-arrow > 0))))
 (defrule
     (up-compare-goal largest-enemy-warboat-count c:> 0)
 =>
-    (set-goal produce-navy 1)
+    (set-goal allow-navy 1)
 )
 (defrule
     (not (up-compare-goal largest-enemy-warboat-count c:> 0))
 =>
-    (set-goal produce-navy 0)
+    (set-goal allow-navy 0)
 )
 (defrule
     (not (goal attack-ready 1))

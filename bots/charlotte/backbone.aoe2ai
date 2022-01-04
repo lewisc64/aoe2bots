@@ -177,9 +177,9 @@ const gold-unit-threshold = 0
   
   goal produce-units = 1
   #if goal full-water-map 1 or goal partial-water-map 1
-    goal produce-navy = 1
+    goal allow-navy = 1
   #else
-    goal produce-navy = 0
+    goal allow-navy = 0
   #end if
   goal do-research = 1
   goal attacking = 0

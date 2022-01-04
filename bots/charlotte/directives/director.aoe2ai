@@ -49,12 +49,12 @@ load "../units/all_switched.aoe2ai"
   load "attack_decision/aggressive.aoe2ai"
   load "pacing/balanced.aoe2ai"
   #if goal full-water-map 1
-    load "water_pacing/hyper_aggressive.aoe2ai"
+    load "water_control/hyper_aggressive.aoe2ai"
   #else
     #select random persistant
-      load "water_pacing/aggressive.aoe2ai"
+      load "water_control/aggressive.aoe2ai"
     #randor
-      load "water_pacing/defensive.aoe2ai"
+      load "water_control/defensive.aoe2ai"
     #end select
   #end if
   
