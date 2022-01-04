@@ -1,5 +1,7 @@
 load "templates/fast_castle.aoe2ai"
 
+load "charlotte/stats.aoe2ai"
+
 #select random persistant
   do basic diplomacy
 #randor
@@ -72,7 +74,7 @@ load "templates/fast_castle.aoe2ai"
     train 120 villager
   #end if
   
-  #if not town-under-attack and unit-type-count-total trebuchet-set < 2
+  #if (not town-under-attack or goal threat-source castle) and unit-type-count-total trebuchet-set < 2 and current-age == imperial-age
     train trebuchet
   #else
     train cavalry-archer-line
