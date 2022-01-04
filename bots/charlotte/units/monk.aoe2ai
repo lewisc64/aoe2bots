@@ -11,6 +11,8 @@ load "../research/monastery/prerequisites.aoe2ai"
   load "../research/monastery/sanctity.aoe2ai"
   load "../research/monastery/fervor.aoe2ai"
   
+  load "../research/castle/inquisition.aoe2ai"
+  
   #do once
     goal monastery-count = 0
   #end do

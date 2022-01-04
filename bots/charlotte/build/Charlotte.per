@@ -146,6 +146,7 @@
 (defconst ri-farimba 577)
 (defconst ri-chatras 628)
 (defconst ri-recurve-bow 515)
+(defconst ri-inquisition 492)
 (defconst live-sheep 958)
 (defconst sea-fish 905)
 (defconst tc-arrow 54)
@@ -2197,7 +2198,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 3454)
+    (up-jump-rule 3459)
 )
 (defrule
     (true)
@@ -17320,7 +17321,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (goal produce-monks 1) (unit-available monk-set)))
 =>
-    (up-jump-rule 40)
+    (up-jump-rule 45)
 )
 (defrule
     (can-build monastery)
@@ -17560,6 +17561,39 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-fervor))
 =>
     (research ri-fervor)
+)
+(defrule
+    (not (unit-available monk))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-inquisition)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-inquisition < research-pending)
+    (and (research-available ri-inquisition) (building-type-count castle >= 1))
+    (not (research-completed ri-inquisition))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-inquisition)
+    (goal do-research 1)
+    (and (research-available ri-inquisition) (building-type-count castle >= 1))
+    (not (research-completed ri-inquisition))
+=>
+    (research ri-inquisition)
 )
 (defrule
     (unit-available monk)
