@@ -123,32 +123,33 @@ goal target-player-score-delta = 0
 
 #template get-enemy-population-stats
   #do once
-    goal my-{type}-population = 0
-    goal target-{type}-population = 0
+    goal my-{fact} = 0
+    goal target-{fact} = 0
     goal target-{type}-percentage = 0
-    goal largest-enemy-{type}-population = 0
-    goal largest-neutral-{type}-population = 0 // consider neutrals as enemies
+    goal largest-enemy-{fact} = 0
+    goal largest-neutral-{fact} = 0 // consider neutrals as enemies
     goal largest-enemy-{type}-percentage = 0
   #end do
 
-  @up-get-fact {type}-population 0 my-{type}-population
+  @up-get-fact {fact} 0 my-{fact}
 
-  @up-get-target-fact {type}-population 0 target-{type}-population
-  @up-get-fact-max any-enemy {type}-population 0 largest-enemy-{type}-population
-  @up-get-fact-max any-neutral {type}-population 0 largest-neutral-{type}-population
-  @up-modify-goal target-{type}-percentage g:= my-{type}-population
+  @up-get-target-fact {fact} 0 target-{fact}
+  @up-get-fact-max any-enemy {fact} 0 largest-enemy-{fact}
+  @up-get-fact-max any-neutral {fact} 0 largest-neutral-{fact}
+  @up-modify-goal target-{type}-percentage g:= my-{fact}
   @up-modify-goal target-{type}-percentage c:* 100
   @up-modify-goal largest-enemy-{type}-percentage g:= target-{type}-percentage
-  @up-modify-goal target-{type}-percentage g:/ target-{type}-population
-  #if up-compare-goal largest-neutral-{type}-population g:> largest-enemy-{type}-population
-    @up-modify-goal largest-enemy-{type}-percentage g:/ largest-neutral-{type}-population
+  @up-modify-goal target-{type}-percentage g:/ target-{fact}
+  #if up-compare-goal largest-neutral-{fact} g:> largest-enemy-{fact}
+    @up-modify-goal largest-enemy-{type}-percentage g:/ largest-neutral-{fact}
   #else
-    @up-modify-goal largest-enemy-{type}-percentage g:/ largest-enemy-{type}-population
+    @up-modify-goal largest-enemy-{type}-percentage g:/ largest-enemy-{fact}
   #end if
 #end template
 
-insert get-enemy-population-stats(type="military")
-insert get-enemy-population-stats(type="civilian")
+insert get-enemy-population-stats(type="military",fact="military-population")
+insert get-enemy-population-stats(type="civilian",fact="civilian-population")
+insert get-enemy-population-stats(type="warboat",fact="warboat-count")
 
 // threat data
 

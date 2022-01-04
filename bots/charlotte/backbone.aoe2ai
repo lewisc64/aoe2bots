@@ -175,6 +175,11 @@ const gold-unit-threshold = 0
   @up-modify-goal desired-fishing-ships c:/ 200
   
   goal produce-units = 1
+  #if goal full-water-map 1 or goal partial-water-map 1
+    goal produce-navy = 1
+  #else
+    goal produce-navy = 0
+  #end if
   goal do-research = 1
   goal attacking = 0
   
