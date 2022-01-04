@@ -17469,39 +17469,6 @@ watch-tower-arrow > 0))))
     (up-jump-rule 4)
 )
 (defrule
-    (not (not (research-completed ri-atonement)))
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build monastery)
-    (up-pending-objects c: monastery < 5)
-    (building-type-count-total monastery < 1)
-    (building-type-count-total monastery == 0)
-=>
-    (build monastery)
-)
-(defrule
-    (up-research-status c: ri-atonement < research-pending)
-    (research-available ri-atonement)
-    (not (research-completed ri-atonement))
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-atonement)
-    (goal do-research 1)
-    (research-available ri-atonement)
-    (not (research-completed ri-atonement))
-=>
-    (research ri-atonement)
-)
-(defrule
-    (not (unit-available monk))
-=>
-    (up-jump-rule 4)
-)
-(defrule
     (not (not (research-completed ri-sanctity)))
 =>
     (up-jump-rule 1)
@@ -17561,6 +17528,39 @@ watch-tower-arrow > 0))))
     (not (research-completed ri-fervor))
 =>
     (research ri-fervor)
+)
+(defrule
+    (not (and (players-unit-type-count any-enemy monk >= 2) (unit-available monk)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-atonement)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build monastery)
+    (up-pending-objects c: monastery < 5)
+    (building-type-count-total monastery < 1)
+    (building-type-count-total monastery == 0)
+=>
+    (build monastery)
+)
+(defrule
+    (up-research-status c: ri-atonement < research-pending)
+    (research-available ri-atonement)
+    (not (research-completed ri-atonement))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-atonement)
+    (goal do-research 1)
+    (research-available ri-atonement)
+    (not (research-completed ri-atonement))
+=>
+    (research ri-atonement)
 )
 (defrule
     (not (unit-available monk))

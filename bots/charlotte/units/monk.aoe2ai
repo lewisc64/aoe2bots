@@ -7,9 +7,12 @@ load "../research/monastery/prerequisites.aoe2ai"
   load "../research/monastery/block_printing.aoe2ai"
   
   load "../research/monastery/redemption.aoe2ai"
-  load "../research/monastery/atonement.aoe2ai"
   load "../research/monastery/sanctity.aoe2ai"
   load "../research/monastery/fervor.aoe2ai"
+  
+  #respond to 2 monk
+    load "../research/monastery/atonement.aoe2ai"
+  #end respond
   
   load "../research/castle/inquisition.aoe2ai"
   
