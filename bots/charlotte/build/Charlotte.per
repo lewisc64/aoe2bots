@@ -2198,7 +2198,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 3459)
+    (up-jump-rule 3471)
 )
 (defrule
     (true)
@@ -20856,7 +20856,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (and (not (goal emergency-trash 1)) (goal attack-ready 1)))
 =>
-    (up-jump-rule 15)
+    (up-jump-rule 26)
 )
 (defrule
     (players-unit-type-count any-enemy monk-set >= min-detection-units)
@@ -20913,16 +20913,87 @@ watch-tower-arrow > 0))))
     (set-goal produce-mangonels 0)
 )
 (defrule
-    (players-unit-type-count any-enemy archer >= min-detection-units)
-    (goal desired-units 1)
+    (not (and (players-unit-type-count any-enemy archer >= min-detection-units) (goal desired-units 1)))
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (true)
 =>
     (set-goal produce-militia 0)
     (set-goal produce-hand-cannoneers 0)
+    (set-goal produce-monks 0)
 )
 (defrule
     (and (goal unique-unit-is-infantry 1) (not (or (civ-selected gothic) (or (civ-selected malay) (civ-selected celtic)))))
-    (players-unit-type-count any-enemy archer >= min-detection-units)
-    (goal desired-units 1)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (not (and (players-unit-type-count any-enemy chu-ko-nu-line >= min-detection-units) (goal desired-units 1)))
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-militia 0)
+    (set-goal produce-hand-cannoneers 0)
+    (set-goal produce-monks 0)
+)
+(defrule
+    (and (goal unique-unit-is-infantry 1) (not (or (civ-selected gothic) (or (civ-selected malay) (civ-selected celtic)))))
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (not (and (players-unit-type-count any-enemy plumed-archer-line >= min-detection-units) (goal desired-units 1)))
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-militia 0)
+    (set-goal produce-hand-cannoneers 0)
+    (set-goal produce-monks 0)
+)
+(defrule
+    (and (goal unique-unit-is-infantry 1) (not (or (civ-selected gothic) (or (civ-selected malay) (civ-selected celtic)))))
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (not (and (players-unit-type-count any-enemy hand-cannoneer >= min-detection-units) (goal desired-units 1)))
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-militia 0)
+    (set-goal produce-hand-cannoneers 0)
+    (set-goal produce-monks 0)
+)
+(defrule
+    (and (goal unique-unit-is-infantry 1) (not (or (civ-selected gothic) (or (civ-selected malay) (civ-selected celtic)))))
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (not (and (players-unit-type-count any-enemy jaguar-man-line >= min-detection-units) (goal desired-units 1)))
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-militia 0)
+    (set-goal produce-hand-cannoneers 0)
+    (set-goal produce-monks 0)
+)
+(defrule
+    (and (goal unique-unit-is-infantry 1) (not (or (civ-selected gothic) (or (civ-selected malay) (civ-selected celtic)))))
 =>
     (set-goal produce-unique-units 0)
 )
@@ -20934,22 +21005,6 @@ watch-tower-arrow > 0))))
     (set-goal produce-scouts 0)
     (set-goal produce-battle-elephants 0)
     (set-goal produce-camels 0)
-)
-(defrule
-    (players-unit-type-count any-enemy hand-cannoneer >= min-detection-units)
-    (goal desired-units 1)
-=>
-    (set-goal produce-militia 0)
-    (set-goal produce-spearmen 0)
-    (set-goal produce-eagles 0)
-)
-(defrule
-    (players-unit-type-count any-enemy jaguar-man-line >= min-detection-units)
-    (goal desired-units 1)
-=>
-    (set-goal produce-militia 0)
-    (set-goal produce-spearmen 0)
-    (set-goal produce-eagles 0)
 )
 (defrule
     (not (and (not (goal emergency-trash 1)) (goal attack-ready 1)))
@@ -21200,7 +21255,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (goal attack-ready 1))
 =>
-    (up-jump-rule 14)
+    (up-jump-rule 15)
 )
 (defrule
     (true)
@@ -21233,6 +21288,12 @@ watch-tower-arrow > 0))))
 =>
     (set-goal aggressive-override 1)
     (chat-local-to-self "make military lead bigger")
+)
+(defrule
+    (military-population < 10)
+=>
+    (set-goal aggressive-override 1)
+    (chat-local-to-self "not enough units")
 )
 (defrule
     (not (or (goal balanced-aggressive 1) (goal aggressive-override 1)))

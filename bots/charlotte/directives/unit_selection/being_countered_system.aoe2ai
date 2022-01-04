@@ -42,12 +42,42 @@
 
 #if goal desired-units 1
   
-  #respond to min-detection-units archer
+  #template turn-off-for-archers
     goal produce-militia = 0
     goal produce-hand-cannoneers = 0
+    goal produce-monks = 0
     #if goal unique-unit-is-infantry 1 and not (civ-selected gothic or civ-selected malay or civ-selected celtic)
       goal produce-unique-units = 0
     #end if
+  #end template
+  
+  #template turn-off-for-anti-infantry
+    goal produce-militia = 0
+    goal produce-hand-cannoneers = 0
+    goal produce-monks = 0
+    #if goal unique-unit-is-infantry 1 and not (civ-selected gothic or civ-selected malay or civ-selected celtic)
+      goal produce-unique-units = 0
+    #end if
+  #end template
+  
+  #respond to min-detection-units archer
+    insert turn-off-for-archers
+  #end respond
+  
+  #respond to min-detection-units chu-ko-nu-line
+    insert turn-off-for-archers
+  #end respond
+  
+  #respond to min-detection-units plumed-archer-line
+    insert turn-off-for-archers
+  #end respond
+  
+  #respond to min-detection-units hand-cannoneer
+    insert turn-off-for-anti-infantry
+  #end respond
+  
+  #respond to min-detection-units jaguar-man-line
+    insert turn-off-for-anti-infantry
   #end respond
   
   #respond to min-detection-units spearman-line
@@ -55,18 +85,6 @@
     goal produce-scouts = 0
     goal produce-battle-elephants = 0
     goal produce-camels = 0
-  #end respond
-  
-  #respond to min-detection-units hand-cannoneer
-    goal produce-militia = 0
-    goal produce-spearmen = 0
-    goal produce-eagles = 0
-  #end respond
-  
-  #respond to min-detection-units jaguar-man-line
-    goal produce-militia = 0
-    goal produce-spearmen = 0
-    goal produce-eagles = 0
   #end respond
   
 #end if
