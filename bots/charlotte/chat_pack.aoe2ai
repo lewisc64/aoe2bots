@@ -290,25 +290,47 @@
   #end select
 #end template
 
-#template say-alliance-betrayal-line
+#template say-alliance-betrayal-line-to-all
   #select random
-    chat to {player} "Really?"
+    @up-chat-data-to-all "Really %d?" g: {goal}
   #randor
-    chat to {player} "I thought we were friends."
+    @up-chat-data-to-all "I thought we were friends player %d." g: {goal}
   #randor
-    chat to {player} "You backstabbing-!"
+    @up-chat-data-to-all "Player %d! You backstabber!" g: {goal}
   #randor
-    chat to {player} "What gives?"
+    @up-chat-data-to-all "Player %d? What gives?!" g: {goal}
+  #randor
+    @up-chat-data-to-all "I knew you were a bad egg, player %d" g: {goal}
+  #randor
+    @up-chat-data-to-all "Player %d? But why?" g: {goal}
+  #randor
+    @up-chat-data-to-all "Alright, player %d, bring it on!!" g: {goal}
+  #randor
+    @up-chat-data-to-all "Don't bite off more than you can chew, player %d..." g: {goal}
+  #randor
+    @up-chat-data-to-all "Why me, player %d?" g: {goal}
+  #randor
+    @up-chat-data-to-all "Why now, player %d?" g: {goal}
+  #randor
+    @up-chat-data-to-all "Shame. We could've been best frends, player %d." g: {goal}
   #end select
 #end template
 
-#template say-do-betrayal-line
+#template say-do-betrayal-line-to-all
   #select random
-    chat to {player} "It could never have worked between us."
+    @up-chat-data-to-all "It could never have worked between us, player %d." g: {goal}
   #randor
-    chat to {player} "I've had enough of you."
+    @up-chat-data-to-all "I've had enough of you, player %d." g: {goal}
   #randor
-    chat to {player} "You aren't needed anymore."
+    @up-chat-data-to-all "You aren't needed anymore player %d." g: {goal}
+  #randor
+    @up-chat-data-to-all "Time to die, player %d!" g: {goal}
+  #randor
+    @up-chat-data-to-all "Player %d, we're done." g: {goal}
+  #randor
+    @up-chat-data-to-all "Your days are numbered, player %d!" g: {goal}
+  #randor
+    @up-chat-data-to-all "I'm sorry about this, player %d." g: {goal}
   #end select
 #end template
 
