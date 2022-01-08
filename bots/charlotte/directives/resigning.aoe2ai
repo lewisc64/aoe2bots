@@ -2,15 +2,13 @@
   resign
 #end if
 
-#if up-compare-goal target-military-percentage c:<= 50 and up-compare-goal score-percentage c:<= 70 and civilian-population <= 30 and game-time >= 1200 and goal team-game 0
-  goal resign = 1
+#if game-time >= 1200
+  #if population < 10
+    goal resign = 1
+  #end if
 #end if
 
-#if population < 10 and game-time >= 1200
-  goal resign = 1
-#end if
-
-#if goal resign 1 and goal team-game 0 and stance-toward any-enemy enemy
+#if goal resign 1 and goal team-game 0
   delete building castle
   delete building town-center
 #end if
