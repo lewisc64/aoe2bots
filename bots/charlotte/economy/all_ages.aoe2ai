@@ -34,13 +34,16 @@ lure boars
   #end if
 #end repeat
 
-// how late do we trade?
+// trade carts?
 #if goal team-game 1 and current-age >= castle-age and (goal full-water-map 0 or map-type team-islands)
   build 1 market
   #if players-building-type-count any-ally market >= 1 and current-age >= imperial-age
     goal produce-trade-carts = 1
   #else
     goal produce-trade-carts = 0
+    #if up-compare-goal population-space-remaining c:< 5
+      delete unit trade-cart
+    #end if
   #end if
 #end if
 

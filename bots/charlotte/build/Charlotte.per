@@ -1854,6 +1854,13 @@
     (set-goal produce-trade-carts 0)
 )
 (defrule
+    (up-compare-goal population-space-remaining c:< 5)
+    (not (and (players-building-type-count any-ally market >= 1) (current-age >= imperial-age)))
+    (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
+=>
+    (delete-unit trade-cart)
+)
+(defrule
     (and (or (goal produce-galleys 1) (or (goal produce-fire-ships 1) (goal full-water-map 1))) (cc-players-unit-type-count 0 sea-fish > 0))
 =>
     (set-goal produce-fishing-ships 1)
