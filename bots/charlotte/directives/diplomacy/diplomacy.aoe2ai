@@ -99,17 +99,11 @@ const allied-victory-timeout = 120
   goal no-enemies-stamp = 0
 #end do
 
-#select random persistant
-  load "pragmatic.aoe2ai"
-#randor
-  load "backstabbing.aoe2ai"
-#randor
-  load "pair_seeking.aoe2ai"
-#randor
-  load "introverted.aoe2ai"
-#end select
+goal suppress-final-betrayal = 0
 
-#if not (goal enemy-players-count 0 and goal neutral-players-count 0)
+load "backstabbing.aoe2ai"
+
+#if not (goal enemy-players-count 0 and goal neutral-players-count 0) or goal suppress-final-betrayal 1
   @up-modify-goal no-enemies-stamp g:= game-time-goal
 #end if
 

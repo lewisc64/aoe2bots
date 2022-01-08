@@ -45,10 +45,13 @@ lure boars
 #end if
 
 // fish?
-#if goal produce-galleys 1 or goal produce-fire-ships 1 or goal full-water-map 1
+#if (goal produce-galleys 1 or goal produce-fire-ships 1 or goal full-water-map 1) and cc-players-unit-type-count 0 sea-fish > 0
   goal produce-fishing-ships = 1
 #else
   goal produce-fishing-ships = 0
+  #if up-compare-goal population-space-remaining c:< 5
+    delete unit fishing-ship
+  #end if
 #end if
 
 // gather relics
@@ -112,7 +115,7 @@ build houses with 5 headroom
 #if current-age == dark-age
 
   #do once
-    distribute villagers 25 75 0 0
+    distribute villagers 20 80 0 0
     #if civilian-population >= 18
       distribute villagers 40 60 0 0
     #end if
@@ -129,8 +132,6 @@ build houses with 5 headroom
     drop off food
   #end if
 
-#else if current-age == feudal-age
-  
 #end if
 
 #if up-research-status c: feudal-age >= research-pending

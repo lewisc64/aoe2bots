@@ -33,6 +33,7 @@ const excellent-food-sell-price = 200
 #template send-excess-to-ally
   #if up-allied-resource-amount any-ally {resource} < {resource}-threshold and up-compare-goal non-escrowed-{resource} c:> max-{resource}
     tribute 100 {resource} to this-any-ally
+    goal did-tribute = 1
     chat to self "sending {resource} to ally"
   #end if
 #end template
@@ -41,12 +42,15 @@ const excellent-food-sell-price = 200
   #reply to ally taunt {taunt}
     #if up-compare-goal non-escrowed-{resource} c:> {resource}-threshold and building-type-count market >= 1
       tribute 100 {resource} to this-any-ally
+      goal did-tribute = 1
       insert say-yes-friendly(player="every-ally")
     #else
       insert say-no-friendly(player="every-ally")
     #end if
   #end reply
 #end template
+
+goal did-tribute = 0
 
 #if goal team-game 1
   insert send-excess-to-ally(resource="wood")
@@ -58,7 +62,9 @@ const excellent-food-sell-price = 200
   insert handle-ally-resource-request(taunt=4,resource="wood")
   insert handle-ally-resource-request(taunt=5,resource="gold")
   insert handle-ally-resource-request(taunt=6,resource="stone")
-#else
+#end if
+
+#if goal team-game 0 or goal did-tribute 0
   trade excess wood and food and gold at max-gold
 #end if
 

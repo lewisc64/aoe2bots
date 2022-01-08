@@ -9,6 +9,7 @@
   #if up-compare-goal neutral-or-enemy-players-count c:> 0
     goal want-alliance = 1
   #end if
+  goal suppress-final-betrayal = 1
 #else
   #if up-compare-goal neutral-or-enemy-players-count c:>= 2
     goal want-alliance = 1

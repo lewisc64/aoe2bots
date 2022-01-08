@@ -2,12 +2,6 @@
 
 insert get-unique-unit-information(prefix="enemy-",player="target-player")
 
-// prevent selection of ships while trying to be smart
-#if goal full-water-map 0
-  goal produce-fire-ships = 0
-  goal produce-galleys = 0
-#end if
-
 #if goal enemy-good-archers 1 or goal enemy-unique-unit-is-ranged 1 // archers will counter low pierce armor units
   goal produce-hand-cannoneers = 0
   goal produce-militia = 0

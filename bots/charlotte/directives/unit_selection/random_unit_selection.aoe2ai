@@ -15,14 +15,35 @@
   @up-modify-goal total-units-selected g:+ produce-scorpions
   @up-modify-goal total-units-selected g:+ produce-monks
   @up-modify-goal total-units-selected g:+ produce-unique-units
-  @up-modify-goal total-units-selected g:+ produce-galleys
-  @up-modify-goal total-units-selected g:+ produce-fire-ships
+  // ships do not count towards unit total.
 #end template
 
 insert count-units-selected
 
-#if up-compare-goal total-units-selected g:< desired-units
-  #if goal full-water-map 0
+#do once
+  #select random persistant
+    goal do-partial-navy = 1
+  #randor
+    goal do-partial-navy = 0
+  #end select
+#end do
+
+#if goal full-water-map 1 or (goal partial-water-map 1 and goal do-partial-navy 1)
+  #if goal produce-fire-ships 0 and goal produce-galleys 0
+    #select random
+      #if goal produce-galleys 0
+        @up-modify-goal produce-galleys g:= good-galleys
+      #end if
+    #randor
+      #if goal produce-fire-ships 0
+        @up-modify-goal produce-fire-ships g:= good-fire-ships
+      #end if
+    #end select
+  #end if
+#end if
+
+#if goal full-water-map 0
+  #if up-compare-goal total-units-selected g:< desired-units
     #select random
       #if goal produce-cavalry-archers 0
         @up-modify-goal produce-archers g:= good-archers
@@ -85,23 +106,7 @@ insert count-units-selected
     
     #randor
       @up-modify-goal produce-unique-units g:= good-unique-units
-    
-    #randor
-      #if goal water-map 1 and not goal total-units-selected 0
-        @up-modify-goal produce-galleys g:= good-galleys
-      #end if
-    
-    #randor
-      #if goal water-map 1 and not goal total-units-selected 0
-        @up-modify-goal produce-fire-ships g:= good-fire-ships
-      #end if
       
-    #end select
-  #else
-    #select random
-      @up-modify-goal produce-galleys g:= good-galleys
-    #randor
-      @up-modify-goal produce-fire-ships g:= good-fire-ships
     #end select
   #end if
 #end if
