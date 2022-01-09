@@ -37,6 +37,8 @@ const allied-victory-timeout = 120
     
     #if goal threat-player {player} and not stance-toward {player} enemy
       chat to self "attacked by player {player}"
+      goal chat-betrayed-by-player = {player}
+      goal player-{player}-is-bad-egg = 1
       goal allied-with-{player} = 0
       @set-stance {player} enemy
     #end if
@@ -102,7 +104,15 @@ const allied-victory-timeout = 120
 
 goal suppress-final-betrayal = 0
 
-load "backstabbing.aoe2ai"
+#select random persistant
+  load "backstabbing.aoe2ai"
+#randor
+  load "introverted.aoe2ai"
+#randor
+  load "pragmatic.aoe2ai"
+#randor
+  load "pair_seeking.aoe2ai"
+#end select
 
 #if not (goal enemy-players-count 0 and goal neutral-players-count 0) or goal suppress-final-betrayal 1
   @up-modify-goal no-enemies-stamp g:= game-time-goal
