@@ -1797,6 +1797,7 @@
 =>
     (set-strategic-number sn-percent-civilian-explorers 0)
     (set-strategic-number sn-cap-civilian-explorers 0)
+    (up-reset-unit c: -1)
     (disable-self)
 )
 (defrule
@@ -2223,7 +2224,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 968)
+    (up-jump-rule 967)
 )
 (defrule
     (true)
@@ -2795,7 +2796,7 @@
 )
 (defrule
     (and (or (goal threat-source town-center) (goal threat-source castle)) (up-compare-goal threat-target c:!= battering-ram-line))
-    (and (unit-type-count battering-ram-line == 0) (and (unit-type-count trebuchet-set == 0) (unit-type-count bombard-cannon == 0)))
+    (and (unit-type-count battering-ram-line == 0) (and (unit-type-count trebuchet-set == 0) (and (unit-type-count bombard-cannon == 0) (unit-type-count cannon-galleon-line == 0))))
     (or (cc-players-unit-type-count target-player tc-arrow > 0) (or (cc-players-unit-type-count target-player castle-arrow > 0) (or (cc-players-unit-type-count target-player castle-arrow-chemistry > 0) (cc-players-unit-type-count target-player
 watch-tower-arrow > 0))))
     (goal attacking 1)
@@ -5424,7 +5425,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (goal attack-ready 1))
 =>
-    (up-jump-rule 15)
+    (up-jump-rule 14)
 )
 (defrule
     (true)
@@ -5457,12 +5458,6 @@ watch-tower-arrow > 0))))
 =>
     (set-goal aggressive-override 1)
     (chat-local-to-self "make military lead bigger")
-)
-(defrule
-    (military-population < 10)
-=>
-    (set-goal aggressive-override 1)
-    (chat-local-to-self "not enough units")
 )
 (defrule
     (not (or (goal balanced-aggressive 1) (goal aggressive-override 1)))
