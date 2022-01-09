@@ -6,6 +6,10 @@
   #if population < 10
     goal resign = 1
   #end if
+  
+  #if goal full-water-map 1 and warboat-count == 0 and building-type-count dock == 0
+    goal resign = 1
+  #end if
 #end if
 
 #if goal resign 1 and goal team-game 0

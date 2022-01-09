@@ -74,6 +74,7 @@ const gold-unit-threshold = 0
   goal produce-galleys = 0
   goal produce-fire-ships = 0
   goal produce-cannon-galleons = 0
+  goal produce-transport-ships = 0
 #end template
 
 #template clear-good-units
@@ -123,6 +124,9 @@ const gold-unit-threshold = 0
   take boar
   target walls
   
+  enable walls on perimeter 1
+  enable walls on perimeter 2
+  
   goal resign = 0
   
   sn-maximum-gold-drop-distance = 8
@@ -136,10 +140,12 @@ const gold-unit-threshold = 0
   goal full-water-map = 0
   goal partial-water-map = 0
   
-  #if map-type islands or map-type team-islands or map-type migration or map-type archipelago
-    goal full-water-map = 1
-  #else if map-type coastal or map-type rivers or map-type baltic or cc-players-unit-type-count 0 sea-fish >= 5
-    goal partial-water-map = 1
+  #if cc-players-unit-type-count 0 sea-fish >= 5
+    #if building-type-count stone-wall-line == 0 and building-type-count palisade-wall == 0 and wall-completed-percentage 2 == 100
+      goal full-water-map = 1
+    #else
+      goal partial-water-map = 1
+    #end if
   #end if
   
   #if goal full-water-map 1 or goal partial-water-map 1

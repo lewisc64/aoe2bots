@@ -24,39 +24,41 @@
     insert say-opening-line
   #end if
   
-  // score trackers
-  #delay by 30 minutes
-    #if up-compare-goal score-percentage c:<= 70
-      #if goal free-for-all 1
-        insert complain-score-free-for-all
-      #else if goal team-game 1
-        insert complain-score-team-game
-      #else
-        insert complain-score-duel
-      #end if
-    #else if up-compare-goal score-percentage c:>= 140
+  // gloating and complaining to all - only in locked teams
+  #if goal locked-teams 1
+    #delay by 30 minutes
+      // score trackers
+      #if up-compare-goal score-percentage c:<= 70
         #if goal free-for-all 1
-          insert gloat-score-free-for-all
+          insert complain-score-free-for-all
         #else if goal team-game 1
-          insert gloat-score-team-game
+          insert complain-score-team-game
         #else
-          insert gloat-score-duel
+          insert complain-score-duel
         #end if
-    #end if
-    
-    //military trackers
-    #if military-population >= 20
-      #if up-compare-goal largest-enemy-military-percentage c:<= 50 and goal attacking 0
-        insert complain-military
-      #else if up-compare-goal largest-enemy-military-percentage c:>= 170
-        #if goal attacking 1
-          insert gloat-military-attacking
-        #else
-          insert gloat-military-defensive
+      #else if up-compare-goal score-percentage c:>= 140
+          #if goal free-for-all 1
+            insert gloat-score-free-for-all
+          #else if goal team-game 1
+            insert gloat-score-team-game
+          #else
+            insert gloat-score-duel
+          #end if
+      #end if
+      //military trackers
+      #if military-population >= 20
+        #if up-compare-goal largest-enemy-military-percentage c:<= 50 and goal attacking 0
+          insert complain-military
+        #else if up-compare-goal largest-enemy-military-percentage c:>= 170
+          #if goal attacking 1
+            insert gloat-military-attacking
+          #else
+            insert gloat-military-defensive
+          #end if
         #end if
       #end if
-    #end if
-  #end delay
+    #end delay
+  #end if
   
   // resigning
   #if goal resign 1

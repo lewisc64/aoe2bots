@@ -6,6 +6,8 @@ load "economy/all_ages.aoe2ai"
   load "directives/director.aoe2ai"
 #end if
 
+load "units/all_switched.aoe2ai"
+
 #if current-age >= feudal-age
   load "economy/adaptive_balance.aoe2ai"
 #end if

@@ -1,0 +1,7 @@
+#if goal full-water-map 1 and soldier-count > 5
+  #if unit-type-count-total transport-ship < 4
+    goal produce-transport-ships = 1
+  #else
+    goal produce-transport-ships = 0
+  #end if
+#end if

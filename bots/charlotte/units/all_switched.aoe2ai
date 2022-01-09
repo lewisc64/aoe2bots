@@ -1,4 +1,5 @@
 load "villager.aoe2ai"
+
 #if goal produce-trade-carts 1
   load "trade_cart.aoe2ai"
 #end if
@@ -30,6 +31,7 @@ goal total-type-production = 0
   insert add-to-total-type-production(unit="bombard-cannon",goal="produce-bombard-cannons")
   insert add-to-total-type-production(unit="trebuchet",goal="produce-trebuchets")
   #if goal allow-navy 1
+    insert add-to-total-type-production(unit="transport-ship",goal="produce-transport-ships")
     insert add-to-total-type-production(unit="galley-line",goal="produce-galleys")
     insert add-to-total-type-production(unit="fire-ship-line",goal="produce-fire-ships")
     insert add-to-total-type-production(unit="cannon-galleon-line",goal="produce-cannon-galleons")
@@ -109,6 +111,7 @@ insert load-unit(production_goal="produce-unique-units",unit="my-unique-unit-lin
 insert load-unit(production_goal="produce-monks",unit="monk-set",unit_path="monk.aoe2ai")
 
 #if goal allow-navy 1
+  insert load-unit(production_goal="produce-transport-ships",unit="transport-ship",unit_path="transport_ship.aoe2ai")
   insert load-unit(production_goal="produce-galleys",unit="galley-line",unit_path="galley.aoe2ai")
   insert load-unit(production_goal="produce-fire-ships",unit="fire-ship-line",unit_path="fire_ship.aoe2ai")
   insert load-unit(production_goal="produce-cannon-galleons",unit="cannon-galleon-line",unit_path="cannon_galleon.aoe2ai")

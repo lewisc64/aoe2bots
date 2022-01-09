@@ -294,13 +294,13 @@
   #select random
     @up-chat-data-to-all "Really %d?" g: {goal}
   #randor
-    @up-chat-data-to-all "I thought we were friends player %d." g: {goal}
+    @up-chat-data-to-all "I thought we were friends, player %d!" g: {goal}
   #randor
     @up-chat-data-to-all "Player %d! You backstabber!" g: {goal}
   #randor
     @up-chat-data-to-all "Player %d? What gives?!" g: {goal}
   #randor
-    @up-chat-data-to-all "I knew you were a bad egg, player %d" g: {goal}
+    @up-chat-data-to-all "I knew you were a bad egg, player %d." g: {goal}
   #randor
     @up-chat-data-to-all "Player %d? But why?" g: {goal}
   #randor

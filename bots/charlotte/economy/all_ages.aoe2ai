@@ -34,29 +34,6 @@ lure boars
   #end if
 #end repeat
 
-// trade carts?
-#if goal team-game 1 and current-age >= castle-age and (goal full-water-map 0 or map-type team-islands)
-  build 1 market
-  #if players-building-type-count any-ally market >= 1 and current-age >= imperial-age
-    goal produce-trade-carts = 1
-  #else
-    goal produce-trade-carts = 0
-    #if up-compare-goal population-space-remaining c:< 5
-      delete unit trade-cart
-    #end if
-  #end if
-#end if
-
-// fish?
-#if (goal produce-galleys 1 or goal produce-fire-ships 1 or goal full-water-map 1) and cc-players-unit-type-count 0 sea-fish > 0
-  goal produce-fishing-ships = 1
-#else
-  goal produce-fishing-ships = 0
-  #if up-compare-goal population-space-remaining c:< 5
-    delete unit fishing-ship
-  #end if
-#end if
-
 // gather relics
 build 1 monastery
 train 1 monk
@@ -119,8 +96,17 @@ build houses with 5 headroom
 
   #do once
     distribute villagers 20 80 0 0
+    #if civilian-population >= 10
+      distribute villagers 25 75 0 0
+    #end if
+    #if civilian-population >= 15
+      distribute villagers 30 70 0 0
+    #end if
     #if civilian-population >= 18
       distribute villagers 40 60 0 0
+    #end if
+    #if civilian-population >= 25
+      distribute villagers 50 50 0 0
     #end if
   #end do
 

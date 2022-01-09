@@ -1,0 +1,12 @@
+#if goal attacking 1
+  #repeat every 60 seconds
+    attack
+  #end repeat
+#else
+  @up-reset-unit c: -1
+#end if
+
+#if goal do-backstep 1
+  // backstep cannot be done
+  goal do-backstep = 0
+#end if
