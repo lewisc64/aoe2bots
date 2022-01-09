@@ -3,25 +3,6 @@
   build 1 town-center with wood and stone escrow
 #end if
 
-// find sheep
-#if game-time < 60 and unit-type-count-total live-sheep == 0
-  sn-percent-civilian-explorers = 100
-  sn-cap-civilian-explorers = 200
-  sn-total-number-explorers = 200
-  sn-number-explore-groups = 200
-#else
-  sn-cap-civilian-explorers = 1
-  sn-total-number-explorers = 1
-  sn-number-explore-groups = 1
-  #if military-population >= 1 or game-time >= 400
-    #do once
-      sn-percent-civilian-explorers = 0
-      sn-cap-civilian-explorers = 0
-      @up-reset-unit c: -1
-    #end do
-  #end if
-#end if
-
 // lure boars
 lure boars
 

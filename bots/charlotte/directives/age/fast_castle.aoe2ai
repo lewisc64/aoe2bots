@@ -1,4 +1,4 @@
-#if civilian-population >= 27 or death-match-game or population-cap < 100
+#if civilian-population >= 27 or current-age >= feudal-age or death-match-game or population-cap < 75
   load "../../research/town_center/imperial_age.aoe2ai"
 #end if
 

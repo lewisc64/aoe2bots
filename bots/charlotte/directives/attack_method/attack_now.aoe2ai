@@ -1,3 +1,8 @@
+// reset town size if switching off TSA
+#if strategic-number sn-maximum-town-size == 255
+  @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
+#end if
+
 #if goal attacking 1
   #repeat every 60 seconds
     attack

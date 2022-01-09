@@ -6,7 +6,11 @@
   goal be-smart = 1
 #end do
 
-load "age/feudal_rush.aoe2ai"
+#if starting-age == dark-age
+  load "age/feudal_rush.aoe2ai"
+#else
+  load "age/fast_castle.aoe2ai"
+#end if
 load "do_misc_research.aoe2ai"
 load "mad_strats.aoe2ai"
 

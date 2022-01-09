@@ -4,4 +4,6 @@
   #else
     goal produce-transport-ships = 0
   #end if
+#else
+  goal produce-transport-ships = 0
 #end if

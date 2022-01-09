@@ -389,14 +389,14 @@
 )
 (defrule
     (and (building-type-count stone-wall-line == 0) (and (building-type-count palisade-wall == 0) (wall-completed-percentage 2 == 100)))
-    (cc-players-unit-type-count 0 sea-fish >= 5)
+    (and (cc-players-unit-type-count 0 sea-fish >= 5) (game-time < 5))
 =>
     (set-goal full-water-map 1)
     (disable-self)
 )
 (defrule
     (not (and (building-type-count stone-wall-line == 0) (and (building-type-count palisade-wall == 0) (wall-completed-percentage 2 == 100))))
-    (cc-players-unit-type-count 0 sea-fish >= 5)
+    (and (cc-players-unit-type-count 0 sea-fish >= 5) (game-time < 5))
 =>
     (set-goal partial-water-map 1)
     (disable-self)
@@ -1777,30 +1777,6 @@
     (build town-center)
 )
 (defrule
-    (and (game-time < 60) (unit-type-count-total live-sheep == 0))
-=>
-    (set-strategic-number sn-percent-civilian-explorers 100)
-    (set-strategic-number sn-cap-civilian-explorers 200)
-    (set-strategic-number sn-total-number-explorers 200)
-    (set-strategic-number sn-number-explore-groups 200)
-)
-(defrule
-    (not (and (game-time < 60) (unit-type-count-total live-sheep == 0)))
-=>
-    (set-strategic-number sn-cap-civilian-explorers 1)
-    (set-strategic-number sn-total-number-explorers 1)
-    (set-strategic-number sn-number-explore-groups 1)
-)
-(defrule
-    (or (military-population >= 1) (game-time >= 400))
-    (not (and (game-time < 60) (unit-type-count-total live-sheep == 0)))
-=>
-    (set-strategic-number sn-percent-civilian-explorers 0)
-    (set-strategic-number sn-cap-civilian-explorers 0)
-    (up-reset-unit c: -1)
-    (disable-self)
-)
-(defrule
     (true)
 =>
     (set-strategic-number sn-enable-boar-hunting 2)
@@ -2224,7 +2200,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 967)
+    (up-jump-rule 1007)
 )
 (defrule
     (true)
@@ -2237,7 +2213,12 @@
     (disable-self)
 )
 (defrule
-    (not (or (civilian-population >= 25) (or (death-match-game) (population-cap < 200))))
+    (not (starting-age == dark-age))
+=>
+    (up-jump-rule 63)
+)
+(defrule
+    (not (or (civilian-population >= 25) (or (death-match-game) (population-cap < 75))))
 =>
     (up-jump-rule 8)
 )
@@ -2659,6 +2640,256 @@
     (up-research-status c: feudal-age >= research-pending)
 =>
     (set-goal attack-ready 1)
+)
+(defrule
+    (not (not (starting-age == dark-age)))
+=>
+    (up-jump-rule 36)
+)
+(defrule
+    (not (or (civilian-population >= 27) (or (current-age >= feudal-age) (or (death-match-game) (population-cap < 75)))))
+=>
+    (up-jump-rule 31)
+)
+(defrule
+    (not (not (research-completed imperial-age)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build town-center)
+    (up-pending-objects c: town-center < 5)
+    (building-type-count-total town-center < 1)
+    (and (building-type-count-total town-center == 0) (building-type-count-total town-center-foundation == 0))
+=>
+    (build town-center)
+)
+(defrule
+    (not (not (research-completed imperial-age)))
+=>
+    (up-jump-rule 20)
+)
+(defrule
+    (not (not (research-completed castle-age)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build town-center)
+    (up-pending-objects c: town-center < 5)
+    (building-type-count-total town-center < 1)
+    (and (building-type-count-total town-center == 0) (building-type-count-total town-center-foundation == 0))
+=>
+    (build town-center)
+)
+(defrule
+    (not (not (research-completed castle-age)))
+=>
+    (up-jump-rule 8)
+)
+(defrule
+    (not (not (research-completed feudal-age)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build town-center)
+    (up-pending-objects c: town-center < 5)
+    (building-type-count-total town-center < 1)
+    (and (building-type-count-total town-center == 0) (building-type-count-total town-center-foundation == 0))
+=>
+    (build town-center)
+)
+(defrule
+    (not (not (research-completed feudal-age)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build lumber-camp)
+    (up-pending-objects c: lumber-camp < 5)
+    (building-type-count-total lumber-camp < 1)
+    (building-type-count-total lumber-camp == 0)
+=>
+    (build lumber-camp)
+)
+(defrule
+    (not (not (research-completed feudal-age)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build mill)
+    (up-pending-objects c: mill < 5)
+    (building-type-count-total mill < 1)
+    (building-type-count-total mill == 0)
+=>
+    (build mill)
+)
+(defrule
+    (up-research-status c: feudal-age < research-pending)
+    (research-available feudal-age)
+    (not (research-completed feudal-age))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research feudal-age)
+    (goal do-research 1)
+    (research-available feudal-age)
+    (not (research-completed feudal-age))
+=>
+    (research feudal-age)
+)
+(defrule
+    (not (not (research-completed castle-age)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (not (and (and (building-type-count archery-range == 0) (building-type-count stable == 0)) (not (research-completed castle-age))))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+)
+(defrule
+    (gold-amount > 400)
+    (can-buy-commodity food)
+    (food-amount < 800)
+    (not (research-completed castle-age))
+=>
+    (buy-commodity food)
+)
+(defrule
+    (food-amount > 900)
+    (can-sell-commodity food)
+    (gold-amount < 200)
+    (not (research-completed castle-age))
+=>
+    (sell-commodity food)
+)
+(defrule
+    (wood-amount > 400)
+    (can-sell-commodity wood)
+    (gold-amount < 200)
+    (not (research-completed castle-age))
+=>
+    (sell-commodity wood)
+)
+(defrule
+    (up-research-status c: castle-age < research-pending)
+    (research-available castle-age)
+    (not (research-completed castle-age))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research castle-age)
+    (goal do-research 1)
+    (research-available castle-age)
+    (not (research-completed castle-age))
+=>
+    (research castle-age)
+)
+(defrule
+    (not (and (or (building-type-count monastery == 0) (building-type-count university == 0)) (and (strategic-number sn-stone-gatherer-percentage > 0) (not (research-completed imperial-age)))))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (not (and (not (strategic-number sn-stone-gatherer-percentage > 0)) (not (research-completed imperial-age))))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build monastery)
+    (up-pending-objects c: monastery < 5)
+    (building-type-count-total monastery < 1)
+    (building-type-count-total monastery == 0)
+=>
+    (build monastery)
+)
+(defrule
+    (not (and (not (strategic-number sn-stone-gatherer-percentage > 0)) (not (research-completed imperial-age))))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build university)
+    (up-pending-objects c: university < 5)
+    (building-type-count-total university < 1)
+    (building-type-count-total university == 0)
+=>
+    (build university)
+)
+(defrule
+    (up-research-status c: imperial-age < research-pending)
+    (research-available imperial-age)
+    (not (research-completed imperial-age))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research imperial-age)
+    (goal do-research 1)
+    (research-available imperial-age)
+    (not (research-completed imperial-age))
+=>
+    (research imperial-age)
+)
+(defrule
+    (up-research-status c: castle-age >= research-pending)
+=>
+    (set-goal attack-ready 1)
+)
+(defrule
+    (gold-amount >= 300)
+    (can-buy-commodity food)
+    (food-amount < 800)
+    (not (up-research-status c: castle-age >= research-pending))
+=>
+    (buy-commodity food)
+)
+(defrule
+    (wood-amount >= 200)
+    (can-sell-commodity wood)
+    (gold-amount < 200)
+    (not (up-research-status c: castle-age >= research-pending))
+=>
+    (sell-commodity wood)
+)
+(defrule
+    (food-amount >= 900)
+    (can-sell-commodity food)
+    (gold-amount < 200)
+    (not (up-research-status c: castle-age >= research-pending))
+=>
+    (sell-commodity food)
 )
 (defrule
     (not (and (current-age >= imperial-age) (building-type-count castle >= 1)))
@@ -4114,7 +4345,7 @@ watch-tower-arrow > 0))))
     (up-jump-rule 17)
 )
 (defrule
-    (and (gold-amount < 3000) (and (up-compare-goal no-gold-mining-time c:>= 120) (and (resource-found gold) (and (goal produce-trade-carts 0) (game-time >= 1800)))))
+    (and (goal full-water-map 0) (and (gold-amount < 3000) (and (up-compare-goal no-gold-mining-time c:>= 120) (and (resource-found gold) (and (goal produce-trade-carts 0) (game-time >= 1800))))))
 =>
     (set-goal emergency-trash 1)
 )
@@ -5333,7 +5564,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (goal attack-ready 1))
 =>
-    (up-jump-rule 2)
+    (up-jump-rule 3)
 )
 (defrule
     (unit-type-count-total transport-ship < 4)
@@ -5344,6 +5575,11 @@ watch-tower-arrow > 0))))
 (defrule
     (not (unit-type-count-total transport-ship < 4))
     (and (goal full-water-map 1) (soldier-count > 5))
+=>
+    (set-goal produce-transport-ships 0)
+)
+(defrule
+    (not (and (goal full-water-map 1) (soldier-count > 5)))
 =>
     (set-goal produce-transport-ships 0)
 )
@@ -5632,7 +5868,12 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (and (unit-type-count transport-ship > 0) (goal attack-ready 1)))
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 5)
+)
+(defrule
+    (strategic-number sn-maximum-town-size == 255)
+=>
+    (up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size)
 )
 (defrule
     (goal attacking 1)
