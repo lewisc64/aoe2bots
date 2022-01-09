@@ -216,8 +216,8 @@ build lumber camps
   #respond to 5 skirmisher-line from target-player
     research ri-onager with food and gold escrow
     build 2 siege-workshop
-    train 5 mangonel
-    #if unit-type-count-total mangonel < 5
+    train 5 mangonel-line
+    #if unit-type-count-total mangonel-line < 5
       goal stop-normal-prod = 1
     #end if
   #end respond
@@ -225,8 +225,8 @@ build lumber camps
   #respond to 5 scorpion-line from target-player
     research ri-onager with food and gold escrow
     build 2 siege-workshop
-    train 5 mangonel
-    #if unit-type-count-total mangonel < 5
+    train 5 mangonel-line
+    #if unit-type-count-total mangonel-line < 5
       goal stop-normal-prod = 1
     #end if
   #end respond
