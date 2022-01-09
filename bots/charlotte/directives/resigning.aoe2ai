@@ -3,11 +3,11 @@
 #end if
 
 #if game-time >= 1200
-  #if population < 10
+  #if population < 10 and population-cap >= 75
     goal resign = 1
   #end if
   
-  #if goal full-water-map 1 and warboat-count == 0 and building-type-count dock == 0
+  #if goal full-water-map 1 and warboat-count == 0 and unit-type-count fishing-ship == 0
     goal resign = 1
   #end if
 #end if

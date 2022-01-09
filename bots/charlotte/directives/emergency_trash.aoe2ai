@@ -1,4 +1,4 @@
-#if up-compare-goal no-gold-mining-time c:>= 120 and resource-found gold and goal produce-trade-carts 0 and game-time >= 1800
+#if gold-amount < 3000 and up-compare-goal no-gold-mining-time c:>= 120 and resource-found gold and goal produce-trade-carts 0 and game-time >= 1800
   goal emergency-trash = 1
 #end if
 

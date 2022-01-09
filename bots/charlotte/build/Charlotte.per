@@ -2067,6 +2067,15 @@
 )
 (defrule
     (can-build mill)
+    (up-pending-objects c: mill < 5)
+    (building-type-count-total mill < 1)
+    (building-type-count-total lumber-camp >= 1)
+    (current-age == dark-age)
+=>
+    (build mill)
+)
+(defrule
+    (can-build mill)
     (building-type-count-total mill == 0)
     (game-time >= 360)
     (current-age == dark-age)
@@ -4104,7 +4113,7 @@ watch-tower-arrow > 0))))
     (up-jump-rule 17)
 )
 (defrule
-    (and (up-compare-goal no-gold-mining-time c:>= 120) (and (resource-found gold) (and (goal produce-trade-carts 0) (game-time >= 1800))))
+    (and (gold-amount < 3000) (and (up-compare-goal no-gold-mining-time c:>= 120) (and (resource-found gold) (and (goal produce-trade-carts 0) (game-time >= 1800)))))
 =>
     (set-goal emergency-trash 1)
 )
@@ -8618,13 +8627,13 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (resign)
 )
 (defrule
-    (population < 10)
+    (and (population < 10) (population-cap >= 75))
     (game-time >= 1200)
 =>
     (set-goal resign 1)
 )
 (defrule
-    (and (goal full-water-map 1) (and (warboat-count == 0) (building-type-count dock == 0)))
+    (and (goal full-water-map 1) (and (warboat-count == 0) (unit-type-count fishing-ship == 0)))
     (game-time >= 1200)
 =>
     (set-goal resign 1)

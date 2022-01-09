@@ -111,6 +111,9 @@ build houses with 5 headroom
   #end do
 
   build mills
+  #if building-type-count-total lumber-camp >= 1
+    build 1 mill
+  #end if
   build safety mill
   
   #if wood-amount >= 100 and up-pending-objects c: farm == 0
