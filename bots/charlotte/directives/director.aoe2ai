@@ -12,7 +12,7 @@
   load "age/fast_castle.aoe2ai"
 #end if
 load "do_misc_research.aoe2ai"
-load "mad_strats.aoe2ai"
+load "misc_strats.aoe2ai"
 
 #select random persistant
   load "fortification/full.aoe2ai"
@@ -27,7 +27,7 @@ load "mad_strats.aoe2ai"
   
   load "civ_decisions.aoe2ai"
   
-  #if up-compare-goal no-gold-mining-time c:>= 120 and resource-found gold and goal produce-trade-carts 0 and game-time >= 1800
+  #if goal full-water-map 0 and gold-amount < 3000 and up-compare-goal no-gold-mining-time c:>= 120 and resource-found gold and goal produce-trade-carts 0 and game-time >= 1800
     goal emergency-trash = 1
   #end if
   
@@ -46,6 +46,7 @@ load "mad_strats.aoe2ai"
     load "unit_selection/being_countered_system.aoe2ai"
     load "unit_selection/counter_system.aoe2ai"
   #end if
+  
   load "unit_selection/mandatory_siege.aoe2ai"
   load "unit_selection/transporting.aoe2ai"
   load "unit_selection/fishing.aoe2ai"

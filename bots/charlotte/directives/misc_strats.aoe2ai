@@ -14,10 +14,58 @@
   delete building farm
 #end if
 
-// increase production
+// increase production over time
 #if up-compare-goal population-space-remaining > 10 and up-compare-goal desired-military-buildings-per-type c:< 8 and wood-amount >= 1000 and food-amount >= 1000 and gold-amount >= 1000
   #repeat every 10 minutes
     goal desired-military-buildings-per-type += 1
     goal desired-town-centers += 1
   #end repeat
+#end if
+
+// help stuck units
+#if game-time >= 2400
+  #repeat every 10 minutes
+    @up-reset-unit c: -1
+  #end repeat
+#end if
+
+// build houses with two vills at the start of the game
+#if building-type-count house == 0
+  #do once
+    assign 2 builders to house
+  #end do
+#else
+  #do once
+    assign 1 builder to house
+  #end do
+#end if
+
+// stop clogging everything!
+#if strategic-number sn-task-ungrouped-soldiers == 1
+  sn-task-ungrouped-soldiers = 0
+#end if
+#repeat every 30 seconds
+  #if goal attacking 0
+    sn-task-ungrouped-soldiers = 1
+  #end if
+#end repeat
+
+// walls are bad
+#if current-age >= castle-age
+  delete walls
+#end if
+
+// force drop off food
+#if current-age == dark-age and food-amount < 50 and up-pending-objects c: villager <= 1
+  drop off food
+#end if
+
+// do not scout when under attack
+#if town-under-attack and sn-number-explore-groups >= 1
+  sn-number-explore-groups = 0
+  sn-total-number-explorers = 0
+  @up-reset-unit c: -1
+#else if strategic-number sn-number-explore-groups == 0
+  sn-number-explore-groups = 1
+  sn-total-number-explorers = 1
 #end if

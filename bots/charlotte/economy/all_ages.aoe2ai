@@ -6,30 +6,9 @@
 // lure boars
 lure boars
 
-// stop clogging everything!
-#if strategic-number sn-task-ungrouped-soldiers == 1
-  sn-task-ungrouped-soldiers = 0
-#end if
-#repeat every 30 seconds
-  #if goal attacking 0
-    sn-task-ungrouped-soldiers = 1
-  #end if
-#end repeat
-
 // gather relics
 build 1 monastery
 train 1 monk
-
-// build houses with two vills at the start of the game
-#if building-type-count house == 0
-  #do once
-    assign 2 builders to house
-  #end do
-#else
-  #do once
-    assign 1 builder to house
-  #end do
-#end if
 
 build houses with 5 headroom
 
@@ -101,15 +80,10 @@ build houses with 5 headroom
   #if wood-amount >= 100 and up-pending-objects c: farm == 0
     build farms
   #end if
-  
-  #if food-amount < 50 and up-pending-objects c: villager <= 1
-    drop off food
-  #end if
 
 #end if
 
 #if up-research-status c: feudal-age >= research-pending
-
   #if goal produce-unique-units 1
     #do once
       distribute villagers 37 37 18 8
@@ -138,9 +112,4 @@ build houses with 5 headroom
       //build fish traps
     #end if
   #end if
-  
-#end if
-
-#if current-age >= castle-age
-  delete walls
 #end if

@@ -1,75 +1,70 @@
-#if goal full-water-map 0 and gold-amount < 3000 and up-compare-goal no-gold-mining-time c:>= 120 and resource-found gold and goal produce-trade-carts 0 and game-time >= 1800
-  goal emergency-trash = 1
+#do once
+  goal desired-military-buildings-per-type += 3
+#end do
+
+build 2 blacksmith
+
+#if civ-selected magyar and research-completed ri-mercenaries
+  goal unique-unit-cavalry-trash = 1
+#else
+  goal unique-unit-cavalry-trash = 0
 #end if
 
-#if goal emergency-trash 1
-  #do once
-    goal desired-military-buildings-per-type += 3
-  #end do
+goal produce-archers = 0
+goal produce-hand-cannoneers = 0
+goal produce-cavalry-archers = 0
+goal produce-militia = 0
+goal produce-eagles = 0
+goal produce-knights = 0
+goal produce-camels = 0
+goal produce-battle-elephants = 0
+goal produce-mangonels = 0
+goal produce-scorpions = 0
+goal produce-monks = 0
+#if goal unique-unit-cavalry-trash 0
+  goal produce-unique-units = 0
+#end if
 
-  #if civ-selected magyar and research-completed ri-mercenaries
-    goal unique-unit-cavalry-trash = 1
+#respond to min-detection-units scout-cavalry-line
+  goal produce-spearmen = 1
+#end respond
+
+#respond to min-detection-units knight-line
+  goal produce-spearmen = 1
+#end respond
+
+#respond to min-detection-units camel-line
+  goal produce-spearmen = 1
+#end respond
+
+#respond to min-detection-units battle-elephant-line
+  goal produce-spearmen = 1
+#end respond
+
+#respond to min-detection-units skirmisher-line
+  goal produce-spearmen = 0
+  #if goal good-scouts 1
+    goal produce-scouts = 1
+    goal produce-skirmishers = 0
   #else
-    goal unique-unit-cavalry-trash = 0
+    goal produce-skirmishers = 1
   #end if
+#end respond
 
-  goal produce-archers = 0
-  goal produce-hand-cannoneers = 0
-  goal produce-cavalry-archers = 0
-  goal produce-militia = 0
-  goal produce-eagles = 0
-  goal produce-knights = 0
-  goal produce-camels = 0
-  goal produce-battle-elephants = 0
-  goal produce-mangonels = 0
-  goal produce-scorpions = 0
-  goal produce-monks = 0
-  #if goal unique-unit-cavalry-trash 0
-    goal produce-unique-units = 0
-  #end if
-  
-  #respond to min-detection-units scout-cavalry-line
-    goal produce-spearmen = 1
-  #end respond
-  
-  #respond to min-detection-units knight-line
-    goal produce-spearmen = 1
-  #end respond
-  
-  #respond to min-detection-units camel-line
-    goal produce-spearmen = 1
-  #end respond
-  
-  #respond to min-detection-units battle-elephant-line
-    goal produce-spearmen = 1
-  #end respond
-  
-  #respond to min-detection-units skirmisher-line
-    goal produce-spearmen = 0
-    #if goal good-scouts 1
-      goal produce-scouts = 1
-      goal produce-skirmishers = 0
-    #else
-      goal produce-skirmishers = 1
-    #end if
-  #end respond
-  
-  #respond to min-detection-units archer-line
-    goal produce-spearmen = 0
-    goal produce-skirmishers = 1
-  #end respond
-  
-  #respond to min-detection-units spearman-line
-    goal produce-skirmishers = 1
-  #end respond
-  
-  #if goal produce-scouts 1 and goal unique-unit-cavalry-trash 1
-    goal produce-scouts = 0
-    goal produce-unique-unit = 1
-  #end if
-  
-  #if goal produce-unique-units 0 and goal produce-scouts 0 and goal produce-skirmishers 0 and goal produce-spearmen 0
-    goal produce-skirmishers = 1
-  #end if
-  
+#respond to min-detection-units archer-line
+  goal produce-spearmen = 0
+  goal produce-skirmishers = 1
+#end respond
+
+#respond to min-detection-units spearman-line
+  goal produce-skirmishers = 1
+#end respond
+
+#if goal produce-scouts 1 and goal unique-unit-cavalry-trash 1
+  goal produce-scouts = 0
+  goal produce-unique-unit = 1
+#end if
+
+#if goal produce-unique-units 0 and goal produce-scouts 0 and goal produce-skirmishers 0 and goal produce-spearmen 0
+  goal produce-skirmishers = 1
 #end if
