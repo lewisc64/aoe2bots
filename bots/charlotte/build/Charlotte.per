@@ -2149,7 +2149,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 1055)
+    (up-jump-rule 1056)
 )
 (defrule
     (true)
@@ -5686,7 +5686,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (goal attack-ready 1))
 =>
-    (up-jump-rule 14)
+    (up-jump-rule 15)
 )
 (defrule
     (true)
@@ -5719,6 +5719,12 @@ watch-tower-arrow > 0))))
 =>
     (set-goal aggressive-override 1)
     (chat-local-to-self "make military lead bigger")
+)
+(defrule
+    (military-population < 10)
+=>
+    (set-goal aggressive-override 1)
+    (chat-local-to-self "not enough military")
 )
 (defrule
     (not (or (goal balanced-aggressive 1) (goal aggressive-override 1)))
