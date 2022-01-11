@@ -14,7 +14,7 @@ const max-defensive-mangonels = 4
     #else
       goal produce-cannon-galleons = 0
     #end if
-  #else if current-age == castle-age or building-type-count-total castle == 0 or goal good-battering-rams 1
+  #else if current-age == castle-age or building-type-count castle == 0 or goal good-battering-rams 1
     #if military-population >= 20 or enemy-buildings-in-town or goal threat-source castle
       #if unit-type-count-total battering-ram-line < max-castle-age-rams and current-age == castle-age or unit-type-count-total battering-ram-line < max-imperial-age-rams and current-age == imperial-age
         goal produce-battering-rams = 1

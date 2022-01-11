@@ -3067,15 +3067,14 @@ watch-tower-arrow > 0))))
     (up-drop-resources boar-food c: 10)
 )
 (defrule
-    (and (town-under-attack) (sn-number-explore-groups >= 1))
+    (and (town-under-attack) (strategic-number sn-number-explore-groups >= 1))
 =>
     (set-strategic-number sn-number-explore-groups 0)
     (set-strategic-number sn-total-number-explorers 0)
-    (up-reset-unit c: -1)
 )
 (defrule
     (strategic-number sn-number-explore-groups == 0)
-    (not (and (town-under-attack) (sn-number-explore-groups >= 1)))
+    (not (and (town-under-attack) (strategic-number sn-number-explore-groups >= 1)))
 =>
     (set-strategic-number sn-number-explore-groups 1)
     (set-strategic-number sn-total-number-explorers 1)
@@ -5519,7 +5518,7 @@ watch-tower-arrow > 0))))
 (defrule
     (or (and (unit-type-count-total battering-ram-line < max-castle-age-rams) (current-age == castle-age)) (and (unit-type-count-total battering-ram-line < max-imperial-age-rams) (current-age == imperial-age)))
     (or (military-population >= 20) (or (enemy-buildings-in-town) (goal threat-source castle)))
-    (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1)))
+    (or (current-age == castle-age) (or (building-type-count castle == 0) (goal good-battering-rams 1)))
     (not (goal full-water-map 1))
     (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
 =>
@@ -5528,7 +5527,7 @@ watch-tower-arrow > 0))))
 (defrule
     (not (or (and (unit-type-count-total battering-ram-line < max-castle-age-rams) (current-age == castle-age)) (and (unit-type-count-total battering-ram-line < max-imperial-age-rams) (current-age == imperial-age))))
     (or (military-population >= 20) (or (enemy-buildings-in-town) (goal threat-source castle)))
-    (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1)))
+    (or (current-age == castle-age) (or (building-type-count castle == 0) (goal good-battering-rams 1)))
     (not (goal full-water-map 1))
     (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
 =>
@@ -5536,14 +5535,14 @@ watch-tower-arrow > 0))))
 )
 (defrule
     (not (or (military-population >= 20) (or (enemy-buildings-in-town) (goal threat-source castle))))
-    (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1)))
+    (or (current-age == castle-age) (or (building-type-count castle == 0) (goal good-battering-rams 1)))
     (not (goal full-water-map 1))
     (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
 =>
     (set-goal produce-battering-rams 0)
 )
 (defrule
-    (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1)))
+    (or (current-age == castle-age) (or (building-type-count castle == 0) (goal good-battering-rams 1)))
     (not (goal full-water-map 1))
     (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
 =>
@@ -5552,7 +5551,7 @@ watch-tower-arrow > 0))))
 (defrule
     (current-age == imperial-age)
     (not (goal full-water-map 1))
-    (not (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1))))
+    (not (or (current-age == castle-age) (or (building-type-count castle == 0) (goal good-battering-rams 1))))
     (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
 =>
     (set-goal produce-battering-rams 0)
@@ -5561,7 +5560,7 @@ watch-tower-arrow > 0))))
     (and (unit-type-count-total trebuchet-set < max-trebs) (up-pending-objects c: trebuchet-set == 0))
     (current-age == imperial-age)
     (not (goal full-water-map 1))
-    (not (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1))))
+    (not (or (current-age == castle-age) (or (building-type-count castle == 0) (goal good-battering-rams 1))))
     (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
 =>
     (set-goal produce-trebuchets 1)
@@ -5570,7 +5569,7 @@ watch-tower-arrow > 0))))
     (not (and (unit-type-count-total trebuchet-set < max-trebs) (up-pending-objects c: trebuchet-set == 0)))
     (current-age == imperial-age)
     (not (goal full-water-map 1))
-    (not (or (current-age == castle-age) (or (building-type-count-total castle == 0) (goal good-battering-rams 1))))
+    (not (or (current-age == castle-age) (or (building-type-count castle == 0) (goal good-battering-rams 1))))
     (not (and (goal attacking 0) (and (town-under-attack) (not (enemy-buildings-in-town)))))
 =>
     (set-goal produce-trebuchets 0)
