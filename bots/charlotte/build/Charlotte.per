@@ -160,6 +160,8 @@
 (defconst ranged-unit-class 900)
 (defconst infantry-unit-class 906)
 (defconst cavalry-unit-class 912)
+(defconst dead-trade-cart 178)
+(defconst dead-trade-cart-loaded 205)
 (defconst max-town-centers 3)
 (defconst min-detection-units 5)
 (defconst extortionate-tech-villagers 100)
@@ -2147,7 +2149,7 @@
 (defrule
     (not (game-time >= 8))
 =>
-    (up-jump-rule 1054)
+    (up-jump-rule 1055)
 )
 (defrule
     (true)
@@ -3067,14 +3069,16 @@ watch-tower-arrow > 0))))
     (up-drop-resources boar-food c: 10)
 )
 (defrule
-    (and (town-under-attack) (strategic-number sn-number-explore-groups >= 1))
+    (strategic-number sn-number-explore-groups >= 1)
+    (town-under-attack)
 =>
     (set-strategic-number sn-number-explore-groups 0)
     (set-strategic-number sn-total-number-explorers 0)
+    (up-reset-unit c: -1)
 )
 (defrule
     (strategic-number sn-number-explore-groups == 0)
-    (not (and (town-under-attack) (strategic-number sn-number-explore-groups >= 1)))
+    (not (town-under-attack))
 =>
     (set-strategic-number sn-number-explore-groups 1)
     (set-strategic-number sn-total-number-explorers 1)
@@ -5620,21 +5624,29 @@ watch-tower-arrow > 0))))
 (defrule
     (not (goal attack-ready 1))
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 5)
 )
 (defrule
     (can-build market)
     (up-pending-objects c: market < 5)
-    (building-type-count-total market < 1)
+    (building-type-count-total market < 2)
     (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
 =>
     (build market)
 )
 (defrule
+    (and (unit-type-count dead-trade-cart == 0) (unit-type-count dead-trade-cart-loaded == 0))
     (and (players-building-type-count any-ally market >= 1) (current-age >= imperial-age))
     (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
 =>
     (set-goal produce-trade-carts 1)
+)
+(defrule
+    (not (and (unit-type-count dead-trade-cart == 0) (unit-type-count dead-trade-cart-loaded == 0)))
+    (and (players-building-type-count any-ally market >= 1) (current-age >= imperial-age))
+    (and (goal team-game 1) (and (current-age >= castle-age) (or (goal full-water-map 0) (map-type team-islands))))
+=>
+    (set-goal produce-trade-carts 0)
 )
 (defrule
     (not (and (players-building-type-count any-ally market >= 1) (current-age >= imperial-age)))
@@ -20243,7 +20255,7 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
 (defrule
     (not (and (goal produce-unique-units 1) (unit-available my-unique-unit-line)))
 =>
-    (up-jump-rule 521)
+    (up-jump-rule 526)
 )
 (defrule
     (true)
@@ -23244,6 +23256,39 @@ threat-target archery-range) (or (goal threat-target stable) (goal threat-target
     (not (research-completed ri-ballistics))
 =>
     (research ri-ballistics)
+)
+(defrule
+    (not (and (civ-selected khmer) (unit-available my-unique-unit-line)))
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (not (not (research-completed ri-chemistry)))
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build university)
+    (up-pending-objects c: university < 5)
+    (building-type-count-total university < 1)
+    (building-type-count-total university == 0)
+=>
+    (build university)
+)
+(defrule
+    (up-research-status c: ri-chemistry < research-pending)
+    (research-available ri-chemistry)
+    (not (research-completed ri-chemistry))
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-chemistry)
+    (goal do-research 1)
+    (research-available ri-chemistry)
+    (not (research-completed ri-chemistry))
+=>
+    (research ri-chemistry)
 )
 (defrule
     (not (and (civ-selected khmer) (unit-available my-unique-unit-line)))

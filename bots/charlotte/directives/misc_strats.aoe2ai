@@ -61,9 +61,12 @@
 #end if
 
 // do not scout when under attack
-#if town-under-attack and strategic-number sn-number-explore-groups >= 1
-  sn-number-explore-groups = 0
-  sn-total-number-explorers = 0
+#if town-under-attack
+  #if strategic-number sn-number-explore-groups >= 1
+    sn-number-explore-groups = 0
+    sn-total-number-explorers = 0
+    @up-reset-unit c: -1
+  #end if
 #else if strategic-number sn-number-explore-groups == 0
   sn-number-explore-groups = 1
   sn-total-number-explorers = 1
