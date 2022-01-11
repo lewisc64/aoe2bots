@@ -10,7 +10,7 @@
 #else if up-compare-goal neutral-or-enemy-players-count c:> 2
   goal accept-alliance-requests = 1
   goal want-alliance = 0
-#else if goal neutral-or-enemy-players-count 0
+#else if goal neutral-or-enemy-players-count 0 and military-population >= 30
   goal accept-alliance-requests = 0
   goal want-alliance = -1
 #else

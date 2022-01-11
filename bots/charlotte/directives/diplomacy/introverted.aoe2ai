@@ -5,7 +5,7 @@
   goal accept-alliance-requests = 1
 #end do
 
-#if goal neutral-or-enemy-players-count 0
+#if goal neutral-or-enemy-players-count 0 and military-population >= 30
   goal want-alliance = -1
 #else
   goal want-alliance = 0
