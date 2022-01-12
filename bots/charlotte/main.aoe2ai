@@ -1,15 +1,8 @@
 load "backbone.aoe2ai"
-
 load "economy/all_ages.aoe2ai"
-
-#if game-time >= 8
-  load "directives/director.aoe2ai"
-#end if
-
+load "directives/director.aoe2ai"
 load "units/all_switched.aoe2ai"
-
 #if current-age >= feudal-age
   load "economy/adaptive_balance.aoe2ai"
 #end if
-
 load "chat.aoe2ai"

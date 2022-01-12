@@ -151,6 +151,7 @@
 (defconst ri-chatras 628)
 (defconst ri-recurve-bow 515)
 (defconst ri-inquisition 492)
+(defconst ri-atlatl 460)
 (defconst live-sheep 958)
 (defconst sea-fish 905)
 (defconst tc-arrow 54)
@@ -1963,7 +1964,13 @@
 )
 (defrule
     (strategic-number sn-minimum-number-hunters == 8)
-    (and (dropsite-min-distance live-boar > 4) (or (dropsite-min-distance boar-food > 4) (dropsite-min-distance boar-food == -1)))
+    (and
+      (dropsite-min-distance live-boar > 4)
+      (or
+        (dropsite-min-distance boar-food > 4)
+        (dropsite-min-distance boar-food == -1)
+      )
+    )
 =>
     (set-strategic-number sn-minimum-number-hunters 1)
     (up-retask-gatherers food c: 255)
@@ -2296,13 +2303,6 @@
     (up-research-status c: feudal-age >= research-pending)
 =>
     (build farm)
-)
-(defrule
-    (not
-      (game-time >= 8)
-    )
-=>
-    (up-jump-rule 877)
 )
 (defrule
     (true)
@@ -6746,14 +6746,41 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 5)
+    (up-jump-rule 6)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (and
+      (or
+        (goal team-game 1)
+        (goal locked-teams 0)
+      )
+      (and
+        (current-age >= castle-age)
+        (or
+          (goal full-water-map 0)
+          (map-type team-islands)
+        )
+      )
+    )
+=>
+    (build market)
 )
 (defrule
     (can-build market)
     (up-pending-objects c: market < 5)
     (building-type-count-total market < 2)
     (and
-      (goal team-game 1)
+      (players-building-type-count any-ally market >= 1)
+      (current-age >= imperial-age)
+    )
+    (and
+      (or
+        (goal team-game 1)
+        (goal locked-teams 0)
+      )
       (and
         (current-age >= castle-age)
         (or
@@ -6775,7 +6802,10 @@
       (current-age >= imperial-age)
     )
     (and
-      (goal team-game 1)
+      (or
+        (goal team-game 1)
+        (goal locked-teams 0)
+      )
       (and
         (current-age >= castle-age)
         (or
@@ -6799,7 +6829,10 @@
       (current-age >= imperial-age)
     )
     (and
-      (goal team-game 1)
+      (or
+        (goal team-game 1)
+        (goal locked-teams 0)
+      )
       (and
         (current-age >= castle-age)
         (or
@@ -6819,7 +6852,10 @@
       )
     )
     (and
-      (goal team-game 1)
+      (or
+        (goal team-game 1)
+        (goal locked-teams 0)
+      )
       (and
         (current-age >= castle-age)
         (or
@@ -6840,7 +6876,10 @@
       )
     )
     (and
-      (goal team-game 1)
+      (or
+        (goal team-game 1)
+        (goal locked-teams 0)
+      )
       (and
         (current-age >= castle-age)
         (or
@@ -14063,7 +14102,7 @@
       )
     )
 =>
-    (up-jump-rule 107)
+    (up-jump-rule 112)
 )
 (defrule
     (not
@@ -14274,6 +14313,54 @@
     )
 =>
     (research ri-imperial-skirmisher)
+)
+(defrule
+    (not
+      (and
+        (current-age >= castle-age)
+        (unit-available skirmisher-line)
+      )
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-atlatl)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-atlatl < research-pending)
+    (and
+      (research-available ri-atlatl)
+      (building-type-count castle >= 1)
+    )
+    (not
+      (research-completed ri-atlatl)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-atlatl)
+    (goal do-research 1)
+    (and
+      (research-available ri-atlatl)
+      (building-type-count castle >= 1)
+    )
+    (not
+      (research-completed ri-atlatl)
+    )
+=>
+    (research ri-atlatl)
 )
 (defrule
     (not
