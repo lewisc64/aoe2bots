@@ -4,7 +4,7 @@ load "../research/market/prerequisites.aoe2ai"
   
   load "../research/market/caravan.aoe2ai"
 
-  #if up-compare-goal total-trade-carts g:< desired-trade-carts
+  #if up-compare-goal total-trade-carts g:< desired-trade-carts and unit-type-count dead-trade-cart == 0 and unit-type-count dead-trade-cart-loaded == 0
     train trade-cart
   #end if
 #end if

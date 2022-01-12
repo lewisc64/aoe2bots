@@ -3514,7 +3514,18 @@
 =>
     (delete-building stone-wall-line)
     (delete-building palisade-wall)
-    (delete-building gate)
+    (delete-building 789)
+    (delete-building 793)
+    (delete-building 797)
+    (delete-building 801)
+    (delete-building 64)
+    (delete-building 88)
+    (delete-building 659)
+    (delete-building 667)
+    (delete-building 63)
+    (delete-building 85)
+    (delete-building 660)
+    (delete-building 668)
 )
 (defrule
     (and
@@ -6746,7 +6757,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 6)
+    (up-jump-rule 5)
 )
 (defrule
     (can-build market)
@@ -6794,10 +6805,6 @@
 )
 (defrule
     (and
-      (unit-type-count dead-trade-cart == 0)
-      (unit-type-count dead-trade-cart-loaded == 0)
-    )
-    (and
       (players-building-type-count any-ally market >= 1)
       (current-age >= imperial-age)
     )
@@ -6816,33 +6823,6 @@
     )
 =>
     (set-goal produce-trade-carts 1)
-)
-(defrule
-    (not
-      (and
-        (unit-type-count dead-trade-cart == 0)
-        (unit-type-count dead-trade-cart-loaded == 0)
-      )
-    )
-    (and
-      (players-building-type-count any-ally market >= 1)
-      (current-age >= imperial-age)
-    )
-    (and
-      (or
-        (goal team-game 1)
-        (goal locked-teams 0)
-      )
-      (and
-        (current-age >= castle-age)
-        (or
-          (goal full-water-map 0)
-          (map-type team-islands)
-        )
-      )
-    )
-=>
-    (set-goal produce-trade-carts 0)
 )
 (defrule
     (not
@@ -12076,7 +12056,13 @@
 )
 (defrule
     (can-train trade-cart)
-    (up-compare-goal total-trade-carts g:< desired-trade-carts)
+    (and
+      (up-compare-goal total-trade-carts g:< desired-trade-carts)
+      (and
+        (unit-type-count dead-trade-cart == 0)
+        (unit-type-count dead-trade-cart-loaded == 0)
+      )
+    )
     (unit-available trade-cart)
 =>
     (train trade-cart)
