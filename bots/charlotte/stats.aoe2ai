@@ -298,6 +298,7 @@ insert decide-blacksmith-investment(type="infantry")
   #end if
   #if players-civ {player} byzantine
     goal {prefix}unique-unit-is-cavalry = 1
+    goal {prefix}unique-unit-counters-infantry = 1
   #end if
   #if players-civ {player} celtic
     goal {prefix}unique-unit-is-infantry = 1

@@ -85,6 +85,9 @@
     goal produce-scouts = 0
     goal produce-battle-elephants = 0
     goal produce-camels = 0
+    #if goal unique-unit-is-cavalry 1 and goal unique-unit-counters-infantry 0
+      goal produce-unique-unit = 0
+    #end if
   #end respond
   
 #end if

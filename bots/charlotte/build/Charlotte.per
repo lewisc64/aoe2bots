@@ -1219,6 +1219,7 @@
     (players-civ my-player-number byzantine)
 =>
     (set-goal unique-unit-is-cavalry 1)
+    (set-goal unique-unit-counters-infantry 1)
     (disable-self)
 )
 (defrule
@@ -5385,6 +5386,7 @@
     (players-civ target-player byzantine)
 =>
     (set-goal enemy-unique-unit-is-cavalry 1)
+    (set-goal enemy-unique-unit-counters-infantry 1)
 )
 (defrule
     (players-civ target-player celtic)
@@ -5774,7 +5776,7 @@
       )
     )
 =>
-    (up-jump-rule 26)
+    (up-jump-rule 27)
 )
 (defrule
     (players-unit-type-count any-enemy monk-set >= min-detection-units)
@@ -6003,6 +6005,16 @@
     (set-goal produce-scouts 0)
     (set-goal produce-battle-elephants 0)
     (set-goal produce-camels 0)
+)
+(defrule
+    (and
+      (goal unique-unit-is-cavalry 1)
+      (goal unique-unit-counters-infantry 0)
+    )
+    (players-unit-type-count any-enemy spearman-line >= min-detection-units)
+    (goal desired-units 1)
+=>
+    (set-goal produce-unique-unit 0)
 )
 (defrule
     (not
