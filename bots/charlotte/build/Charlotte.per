@@ -6026,7 +6026,7 @@
       )
     )
 =>
-    (up-jump-rule 16)
+    (up-jump-rule 17)
 )
 (defrule
     (players-unit-type-count target-player skirmisher-line >= min-detection-units)
@@ -6276,6 +6276,10 @@
     (set-goal produce-spearmen 1)
 )
 (defrule
+    (and
+      (players-unit-type-count target-player cataphract-line >= min-detection-units)
+      (goal produce-monks 0)
+    )
     (not
       (and
         (players-unit-type-count target-player camel-line >= min-detection-units)
@@ -6300,6 +6304,57 @@
     (not
       (and
         (players-unit-type-count target-player war-elephant-line >= min-detection-units)
+        (goal produce-monks 0)
+      )
+    )
+    (and
+      (goal partial-infantry-blacksmith-investment 1)
+      (and
+        (or
+          (current-age == feudal-age)
+          (or
+            (research-available ri-pikeman)
+            (research-completed ri-pikeman)
+          )
+        )
+        (goal produce-camels 0)
+      )
+    )
+=>
+    (chat-local-to-self "COUNTER CATAPHRACT WITH SPEARMEN")
+    (set-goal produce-spearmen 1)
+)
+(defrule
+    (not
+      (and
+        (players-unit-type-count target-player war-elephant-line >= min-detection-units)
+        (goal produce-monks 0)
+      )
+    )
+    (not
+      (and
+        (players-unit-type-count target-player battle-elephant-line >= min-detection-units)
+        (goal produce-monks 0)
+      )
+    )
+    (not
+      (players-unit-type-count target-player scout-cavalry-line >= min-detection-units)
+    )
+    (not
+      (and
+        (players-unit-type-count target-player knight-line >= min-detection-units)
+        (goal produce-monks 0)
+      )
+    )
+    (not
+      (and
+        (players-unit-type-count target-player camel-line >= min-detection-units)
+        (goal produce-monks 0)
+      )
+    )
+    (not
+      (and
+        (players-unit-type-count target-player cataphract-line >= min-detection-units)
         (goal produce-monks 0)
       )
     )
