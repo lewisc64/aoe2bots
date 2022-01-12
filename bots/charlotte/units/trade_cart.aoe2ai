@@ -3,6 +3,8 @@ load "../research/market/prerequisites.aoe2ai"
 #if unit-available trade-cart
   
   load "../research/market/caravan.aoe2ai"
+  
+  build 2 market
 
   #if up-compare-goal total-trade-carts g:< desired-trade-carts and unit-type-count dead-trade-cart == 0 and unit-type-count dead-trade-cart-loaded == 0
     train trade-cart

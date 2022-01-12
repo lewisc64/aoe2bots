@@ -6824,51 +6824,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 5)
-)
-(defrule
-    (can-build market)
-    (up-pending-objects c: market < 5)
-    (building-type-count-total market < 1)
-    (and
-      (or
-        (goal team-game 1)
-        (goal locked-teams 0)
-      )
-      (and
-        (current-age >= castle-age)
-        (or
-          (goal full-water-map 0)
-          (map-type team-islands)
-        )
-      )
-    )
-=>
-    (build market)
-)
-(defrule
-    (can-build market)
-    (up-pending-objects c: market < 5)
-    (building-type-count-total market < 2)
-    (and
-      (players-building-type-count any-ally market >= 1)
-      (current-age >= imperial-age)
-    )
-    (and
-      (or
-        (goal team-game 1)
-        (goal locked-teams 0)
-      )
-      (and
-        (current-age >= castle-age)
-        (or
-          (goal full-water-map 0)
-          (map-type team-islands)
-        )
-      )
-    )
-=>
-    (build market)
+    (up-jump-rule 3)
 )
 (defrule
     (and
@@ -6876,16 +6832,10 @@
       (current-age >= imperial-age)
     )
     (and
+      (current-age >= castle-age)
       (or
-        (goal team-game 1)
-        (goal locked-teams 0)
-      )
-      (and
-        (current-age >= castle-age)
-        (or
-          (goal full-water-map 0)
-          (map-type team-islands)
-        )
+        (goal full-water-map 0)
+        (map-type team-islands)
       )
     )
 =>
@@ -6899,16 +6849,10 @@
       )
     )
     (and
+      (current-age >= castle-age)
       (or
-        (goal team-game 1)
-        (goal locked-teams 0)
-      )
-      (and
-        (current-age >= castle-age)
-        (or
-          (goal full-water-map 0)
-          (map-type team-islands)
-        )
+        (goal full-water-map 0)
+        (map-type team-islands)
       )
     )
 =>
@@ -6923,16 +6867,10 @@
       )
     )
     (and
+      (current-age >= castle-age)
       (or
-        (goal team-game 1)
-        (goal locked-teams 0)
-      )
-      (and
-        (current-age >= castle-age)
-        (or
-          (goal full-water-map 0)
-          (map-type team-islands)
-        )
+        (goal full-water-map 0)
+        (map-type team-islands)
       )
     )
 =>
@@ -12070,7 +12008,7 @@
       (goal produce-trade-carts 1)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (can-build market)
@@ -12120,6 +12058,14 @@
     )
 =>
     (research ri-caravan)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 2)
+    (unit-available trade-cart)
+=>
+    (build market)
 )
 (defrule
     (can-train trade-cart)

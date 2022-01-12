@@ -1,7 +1,5 @@
-#if (goal team-game 1 or goal locked-teams 0) and current-age >= castle-age and (goal full-water-map 0 or map-type team-islands)
-  build 1 market
+#if current-age >= castle-age and (goal full-water-map 0 or map-type team-islands)
   #if players-building-type-count any-ally market >= 1 and current-age >= imperial-age
-    build 2 market
     goal produce-trade-carts = 1
   #else
     goal produce-trade-carts = 0
