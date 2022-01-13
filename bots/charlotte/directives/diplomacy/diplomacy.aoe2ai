@@ -41,6 +41,8 @@ const allied-victory-timeout = 120
         goal chat-betrayed-by-player = {player}
         goal allied-with-{player} = 0
         goal player-{player}-is-bad-egg = 1
+      #else if stance-toward {player} ally
+        goal player-{player}-is-bad-egg = 1
       #end if
       @set-stance {player} enemy
     #end if

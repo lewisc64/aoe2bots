@@ -29,7 +29,7 @@
 
 #if unit-available my-unique-unit-line
 
-  #if current-age == imperial-age and (not civ-selected byzantine or civilian-population >= extortionate-tech-villagers) and civilian-population >= expensive-tech-villagers
+  #if current-age == imperial-age
     load "../research/castle/my_unique_unit_upgrade.aoe2ai"
   #end if
   
@@ -52,11 +52,11 @@
     load "types/cavalry.aoe2ai"
   #end if
   
-  #if civ-selected briton and current-age >= castle-age and civilian-population >= expensive-tech-villagers
+  #if civ-selected briton and current-age >= castle-age
     load "../research/castle/yeomen.aoe2ai"
   #end if
   
-  #if (civ-selected viking or civ-selected byzantine) and current-age >= imperial-age and civilian-population >= expensive-tech-villagers
+  #if (civ-selected viking or civ-selected byzantine) and current-age >= imperial-age
     load "../research/castle/beserkergang.aoe2ai"
     load "../research/castle/logistica.aoe2ai"
   #end if
@@ -65,11 +65,11 @@
     load "../research/castle/mahouts.aoe2ai"
   #end if
   
-  #if civ-selected chinese and civilian-population >= expensive-tech-villagers
+  #if civ-selected chinese
     load "../research/castle/rocketry.aoe2ai"
   #end if
   
-  #if civ-selected frankish and civilian-population >= expensive-tech-villagers
+  #if civ-selected frankish
     load "../research/castle/bearded_axe.aoe2ai"
   #end if
   

@@ -1,0 +1,34 @@
+#do once
+  chat to self "being reckless and thoughtful, chaotically!"
+  #select random
+    goal balanced-aggressive = 1
+  #randor
+    goal balanced-aggressive = 0
+  #end select
+#end do
+
+goal aggressive-override = 0
+
+#repeat every 5 minutes
+  #select random
+    goal balanced-aggressive = 1
+  #randor
+    goal balanced-aggressive = 0
+  #end select
+#end repeat
+
+#if up-compare-goal target-military-percentage c:> 100 and up-compare-goal target-military-percentage c:<= 150 and goal attacking 1
+  goal aggressive-override = 1
+  chat to self "make military lead bigger"
+#end if
+
+#if military-population < 10
+  goal aggressive-override = 1
+  chat to self "not enough military"
+#end if
+
+#if goal balanced-aggressive 1 or goal aggressive-override 1
+  load "reckless.aoe2ai"
+#else
+  load "thoughtful.aoe2ai"
+#end if

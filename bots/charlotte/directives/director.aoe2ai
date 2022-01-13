@@ -14,6 +14,8 @@
 load "do_misc_research.aoe2ai"
 load "misc_strats.aoe2ai"
 
+load "../units/all_switched.aoe2ai" // this must remain below age researches, but above pacing.
+
 #select random persistant
   load "fortification/full.aoe2ai"
 #randor
@@ -53,7 +55,7 @@ load "misc_strats.aoe2ai"
   load "unit_selection/trading.aoe2ai"
   
   load "attack_decision/aggressive.aoe2ai"
-  load "pacing/conniving.aoe2ai"
+  load "pacing/balanced_random.aoe2ai"
   
   #if goal full-water-map 1
     load "water_control/hyper_aggressive.aoe2ai"

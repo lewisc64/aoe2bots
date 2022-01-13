@@ -8,7 +8,7 @@ load "../research/archery_range/prerequisites.aoe2ai"
     load "../research/archery_range/arbalest.aoe2ai"
   #end if
   
-  #if current-age >= castle-age and civilian-population >= expensive-tech-villagers
+  #if current-age >= castle-age
     load "../research/castle/yeomen.aoe2ai"
   #end if
   

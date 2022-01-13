@@ -4,18 +4,14 @@
   load "../../research/blacksmith/chain_mail.aoe2ai"
 #else if current-age == imperial-age
   load "../../research/blacksmith/plate_mail.aoe2ai"
-  #if civilian-population >= expensive-tech-villagers
-    load "../../research/castle/perfusion.aoe2ai"
-  #end if
+  load "../../research/castle/perfusion.aoe2ai"
 #end if
 
 #if current-age >= castle-age
   load "../../research/barracks/tracking.aoe2ai"
   load "../../research/barracks/squires.aoe2ai"
   load "../../research/barracks/arson.aoe2ai"
-  #if civilian-population >= expensive-tech-villagers
-    load "../../research/castle/garland_wars.aoe2ai"
-  #end if
+  load "../../research/castle/garland_wars.aoe2ai"
 #end if
 
 load "infantry_cavalry.aoe2ai"

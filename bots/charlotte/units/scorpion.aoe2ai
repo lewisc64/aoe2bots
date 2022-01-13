@@ -3,12 +3,8 @@ load "../research/siege_workshop/prerequisites.aoe2ai"
 
 #if unit-available scorpion-line
   #if current-age == imperial-age
-    #if civilian-population >= extortionate-tech-villagers
-      load "../research/siege_workshop/heavy_scorpion.aoe2ai"
-    #end if
-    #if civilian-population >= expensive-tech-villagers
-      load "../research/castle/rocketry.aoe2ai"
-    #end if
+    load "../research/siege_workshop/heavy_scorpion.aoe2ai"
+    load "../research/castle/rocketry.aoe2ai"
     load "../research/castle/double_crossbow.aoe2ai"
   #end if
   

@@ -2,12 +2,8 @@
   load "../../research/dock/careening.aoe2ai"
 #else if current-age == imperial-age
   load "../../research/university/chemistry.aoe2ai"
-  #if civilian-population >= expensive-tech-villagers
-    load "../../research/dock/dry_dock.aoe2ai"
-  #end if
-  #if civilian-population >= extortionate-tech-villagers
-    load "../../research/dock/shipwright.aoe2ai"
-  #end if
+  load "../../research/dock/dry_dock.aoe2ai"
+  load "../../research/dock/shipwright.aoe2ai"
 #end if
 
 #do once
