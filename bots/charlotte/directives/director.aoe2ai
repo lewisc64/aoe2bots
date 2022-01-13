@@ -53,7 +53,7 @@ load "misc_strats.aoe2ai"
   load "unit_selection/trading.aoe2ai"
   
   load "attack_decision/aggressive.aoe2ai"
-  load "pacing/balanced.aoe2ai"
+  load "pacing/conniving.aoe2ai"
   
   #if goal full-water-map 1
     load "water_control/hyper_aggressive.aoe2ai"

@@ -81,6 +81,10 @@
     load "../research/castle/mercenaries.aoe2ai"
   #end if
   
+  #if civ-selected burmese and current-age >= imperial-age
+    load "../research/castle/manipur_cavalry.aoe2ai"
+  #end if
+  
   @up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type
   
   #if civ-selected portuguese

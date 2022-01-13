@@ -5,7 +5,7 @@
 goal conniving-produce = 0
 
 // keep a defense force
-#if goal conniving-produce 0 and up-compare-goal largest-enemy-military-percentage c:< 50
+#if goal conniving-produce 0 and military-population < 10
   goal conniving-produce = 1
   chat to self "not enough military!"
 #end if
