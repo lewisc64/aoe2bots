@@ -26,11 +26,11 @@ load "templates/fast_castle.aoe2ai"
 
 #if up-research-status c: castle-age >= research-pending
 
-  #if unit-type-count-total knight < 10 or up-research-status c: ri-paladin >= research-pending
+  #if unit-type-count-total knight-line < 10 or up-research-status c: ri-paladin >= research-pending
     insert escrow-resources(percentage=0)
-  #else if unit-type-count-total knight < 20
+  #else if unit-type-count-total knight-line < 20
     insert escrow-resources(percentage=10)
-  #else if unit-type-count-total knight < 30
+  #else if unit-type-count-total knight-line < 30
     insert escrow-resources(percentage=20)
   #else
     insert escrow-resources(percentage=40)
@@ -200,9 +200,11 @@ load "templates/fast_castle.aoe2ai"
 
 #do once
 
-  chat to all "It is fate that we have met here, of all places."
-  #delay by 15 seconds
-    chat to all "Let us weave tales of grandeur."
+  #delay by 10 seconds
+    chat to all "It is fate that we have met here, of all places."
+    #delay by 10 seconds
+      chat to all "Let us weave tales of grandeur."
+    #end delay
   #end delay
 
   #if research-completed ri-husbandry
@@ -255,25 +257,33 @@ load "templates/fast_castle.aoe2ai"
           #end delay
         #end delay
       #end delay
+    #randor
+      chat to all "Singing my praises, we made a toast."
+      #delay by 7 seconds
+        chat to all "So cheerful. So fun."
+        #delay by 5 seconds
+          chat to all "Not worth it."
+        #end delay
+      #end delay
     #end select
   #end if
   
   #if research-completed ri-cavalier
     #select random persistant
       chat to all "As tears pooled up in his eyes, I grit my teeth."
-      #delay by 14 seconds
+      #delay by 8 seconds
         chat to all "He asked what it was all for. What it all meant."
-        #delay by 10 seconds
+        #delay by 7 seconds
           chat to all "I looked him in the eye, and severed him in twain."
         #end delay
       #end delay
     #randor
       chat to all "My head under a boot, I hear a scratchy voice worming into my thoughts:"
-      #delay by 16 seconds
+      #delay by 10 seconds
         chat to all "'Hurts, doesn't it?'"
         #delay by 7 seconds
           chat to all "'Feeling your skin bubble and your blood jet through your pores...'"
-          #delay by 16 seconds
+          #delay by 10 seconds
             chat to all "It did not hurt."
             #delay by 5 seconds
               chat to all "Not for me."
@@ -289,6 +299,20 @@ load "templates/fast_castle.aoe2ai"
           chat to all "They claimed to see them all around me."
           #delay by 5 seconds
             chat to all "Perhaps their noses obscured their vision."
+          #end delay
+        #end delay
+      #end delay
+    #randor
+      chat to all "Why do they read such fairytales?"
+      #delay by 6 seconds
+        chat to all "The whims of some doddery fool?"
+        #delay by 6 seconds
+          chat to all "Clinging to phantasms, casting aside the material."
+          #delay by 8 seconds
+            chat to all "Ending worthless lives with unremarkable deaths."
+            #delay by 8 seconds
+              chat to all "Time will forget them."
+            #end delay
           #end delay
         #end delay
       #end delay
@@ -320,6 +344,17 @@ load "templates/fast_castle.aoe2ai"
           chat to all "Were they beautiful?"
           #delay by 8 seconds
             chat to all "All she saw was fire."
+          #end delay
+        #end delay
+      #end delay
+    #randor
+      chat to all "And for what? For the sake of the people?"
+      #delay by 8 seconds
+        chat to all "A thin guise."
+        #delay by 6 seconds
+          chat to all "Look around you. Don't you see?"
+          #delay by 8 seconds
+            chat to all "You are a foul monster."
           #end delay
         #end delay
       #end delay
