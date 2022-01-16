@@ -75,6 +75,8 @@ load "../units/all_switched.aoe2ai" // this must remain below age researches, bu
   
   #if unit-type-count transport-ship > 0
     load "attack_method/attack_now.aoe2ai"
+  #else if warboat-count > 0
+    load "attack_method/attack_groups.aoe2ai"
   #else
     load "attack_method/town_size_attack.aoe2ai"
   #end if

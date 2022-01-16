@@ -35,6 +35,10 @@ const dead-trade-cart = 178
 const dead-trade-cart-loaded = 205
 
 const max-town-centers = 3
+const dark-age-military-buildings = 1
+const feudal-age-military-buildings = 3
+const castle-age-military-buildings = 4
+const imperial-age-military-buildings = 5
 const min-detection-units = 5
 
 const wood-unit-threshold = 0
@@ -258,14 +262,14 @@ load "stats.aoe2ai"
   goal enough-gold-for-units = 1
 #end if
 
-#if current-age == dark-age
-  goal desired-military-buildings-per-type = 1
-#else if current-age == feudal-age
-  goal desired-military-buildings-per-type = 2
-#else if current-age == castle-age
-  goal desired-military-buildings-per-type = 3
-#else if current-age == imperial-age
-  goal desired-military-buildings-per-type = 5
+#if current-age == dark-age and up-compare-goal desired-military-buildings-per-type c:< dark-age-military-buildings
+  goal desired-military-buildings-per-type = dark-age-military-buildings
+#else if current-age == feudal-age and up-compare-goal desired-military-buildings-per-type c:< feudal-age-military-buildings
+  goal desired-military-buildings-per-type = feudal-age-military-buildings
+#else if current-age == castle-age and up-compare-goal desired-military-buildings-per-type c:< castle-age-military-buildings
+  goal desired-military-buildings-per-type = castle-age-military-buildings
+#else if current-age == imperial-age and up-compare-goal desired-military-buildings-per-type c:< imperial-age-military-buildings
+  goal desired-military-buildings-per-type = imperial-age-military-buildings
 #end if
 
 auto expand town size to 30

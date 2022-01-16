@@ -164,6 +164,10 @@
 (defconst dead-trade-cart 178)
 (defconst dead-trade-cart-loaded 205)
 (defconst max-town-centers 3)
+(defconst dark-age-military-buildings 1)
+(defconst feudal-age-military-buildings 3)
+(defconst castle-age-military-buildings 4)
+(defconst imperial-age-military-buildings 5)
 (defconst min-detection-units 5)
 (defconst wood-unit-threshold 0)
 (defconst food-unit-threshold 0)
@@ -1725,42 +1729,72 @@
     (set-goal enough-gold-for-units 1)
 )
 (defrule
-    (current-age == dark-age)
-=>
-    (set-goal desired-military-buildings-per-type 1)
-)
-(defrule
-    (current-age == feudal-age)
-    (not
+    (and
       (current-age == dark-age)
+      (up-compare-goal desired-military-buildings-per-type c:< dark-age-military-buildings)
     )
 =>
-    (set-goal desired-military-buildings-per-type 2)
+    (set-goal desired-military-buildings-per-type dark-age-military-buildings)
 )
 (defrule
-    (current-age == castle-age)
-    (not
-      (current-age == dark-age)
-    )
-    (not
+    (and
       (current-age == feudal-age)
+      (up-compare-goal desired-military-buildings-per-type c:< feudal-age-military-buildings)
+    )
+    (not
+      (and
+        (current-age == dark-age)
+        (up-compare-goal desired-military-buildings-per-type c:< dark-age-military-buildings)
+      )
     )
 =>
-    (set-goal desired-military-buildings-per-type 3)
+    (set-goal desired-military-buildings-per-type feudal-age-military-buildings)
 )
 (defrule
-    (current-age == imperial-age)
-    (not
-      (current-age == feudal-age)
-    )
-    (not
-      (current-age == dark-age)
-    )
-    (not
+    (and
       (current-age == castle-age)
+      (up-compare-goal desired-military-buildings-per-type c:< castle-age-military-buildings)
+    )
+    (not
+      (and
+        (current-age == dark-age)
+        (up-compare-goal desired-military-buildings-per-type c:< dark-age-military-buildings)
+      )
+    )
+    (not
+      (and
+        (current-age == feudal-age)
+        (up-compare-goal desired-military-buildings-per-type c:< feudal-age-military-buildings)
+      )
     )
 =>
-    (set-goal desired-military-buildings-per-type 5)
+    (set-goal desired-military-buildings-per-type castle-age-military-buildings)
+)
+(defrule
+    (and
+      (current-age == imperial-age)
+      (up-compare-goal desired-military-buildings-per-type c:< imperial-age-military-buildings)
+    )
+    (not
+      (and
+        (current-age == feudal-age)
+        (up-compare-goal desired-military-buildings-per-type c:< feudal-age-military-buildings)
+      )
+    )
+    (not
+      (and
+        (current-age == dark-age)
+        (up-compare-goal desired-military-buildings-per-type c:< dark-age-military-buildings)
+      )
+    )
+    (not
+      (and
+        (current-age == castle-age)
+        (up-compare-goal desired-military-buildings-per-type c:< castle-age-military-buildings)
+      )
+    )
+=>
+    (set-goal desired-military-buildings-per-type imperial-age-military-buildings)
 )
 (defrule
     (true)
@@ -28824,10 +28858,53 @@
 (defrule
     (not
       (and
+        (warboat-count > 0)
+        (and
+          (not
+            (unit-type-count transport-ship > 0)
+          )
+          (goal attack-ready 1)
+        )
+      )
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (strategic-number sn-maximum-town-size == 255)
+=>
+    (up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size)
+)
+(defrule
+    (goal attacking 1)
+=>
+    (set-strategic-number sn-number-attack-groups 200)
+)
+(defrule
+    (strategic-number sn-number-attack-groups == 200)
+    (not
+      (goal attacking 1)
+    )
+=>
+    (set-strategic-number sn-number-attack-groups 0)
+)
+(defrule
+    (goal do-backstep 1)
+=>
+    (set-goal do-backstep 0)
+)
+(defrule
+    (not
+      (and
         (not
           (unit-type-count transport-ship > 0)
         )
-        (goal attack-ready 1)
+        (and
+          (not
+            (warboat-count > 0)
+          )
+          (goal attack-ready 1)
+        )
       )
     )
 =>
