@@ -317,6 +317,7 @@ insert decide-blacksmith-investment(type="infantry")
   #end if
   #if players-civ {player} hun
     goal {prefix}unique-unit-is-cavalry = 1
+    goal {prefix}unique-unit-is-expensive = 1
   #end if
   #if players-civ {player} incan
     goal {prefix}unique-unit-is-infantry = 1

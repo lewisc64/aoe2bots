@@ -59,47 +59,48 @@
 (defconst max-trebs 4)
 (defconst max-imperial-age-rams 10)
 (defconst max-castle-age-rams 5)
+(defconst passive-override 230)
 (defconst aggressive-override 229)
 (defconst balanced-aggressive 228)
-(defconst next-retarget 234)
+(defconst next-retarget 235)
 (defconst retarget-interval 300)
-(defconst chat-betrayed-by-player 271)
-(defconst chat-betray-player 270)
-(defconst no-enemies-stamp 269)
-(defconst player-8-is-bad-egg 265)
-(defconst player-8-alliance-request-time-stamp 266)
-(defconst allied-with-8 267)
-(defconst tried-alliance-with-8 268)
-(defconst player-7-is-bad-egg 261)
-(defconst player-7-alliance-request-time-stamp 262)
-(defconst allied-with-7 263)
-(defconst tried-alliance-with-7 264)
-(defconst player-6-is-bad-egg 257)
-(defconst player-6-alliance-request-time-stamp 258)
-(defconst allied-with-6 259)
-(defconst tried-alliance-with-6 260)
-(defconst player-5-is-bad-egg 253)
-(defconst player-5-alliance-request-time-stamp 254)
-(defconst allied-with-5 255)
-(defconst tried-alliance-with-5 256)
-(defconst player-4-is-bad-egg 249)
-(defconst player-4-alliance-request-time-stamp 250)
-(defconst allied-with-4 251)
-(defconst tried-alliance-with-4 252)
-(defconst player-3-is-bad-egg 245)
-(defconst player-3-alliance-request-time-stamp 246)
-(defconst allied-with-3 247)
-(defconst tried-alliance-with-3 248)
-(defconst player-2-is-bad-egg 241)
-(defconst player-2-alliance-request-time-stamp 242)
-(defconst allied-with-2 243)
-(defconst tried-alliance-with-2 244)
-(defconst player-1-is-bad-egg 237)
-(defconst player-1-alliance-request-time-stamp 238)
-(defconst allied-with-1 239)
-(defconst tried-alliance-with-1 240)
-(defconst accept-alliance-requests 236)
-(defconst want-alliance 235)
+(defconst chat-betrayed-by-player 272)
+(defconst chat-betray-player 271)
+(defconst no-enemies-stamp 270)
+(defconst player-8-is-bad-egg 266)
+(defconst player-8-alliance-request-time-stamp 267)
+(defconst allied-with-8 268)
+(defconst tried-alliance-with-8 269)
+(defconst player-7-is-bad-egg 262)
+(defconst player-7-alliance-request-time-stamp 263)
+(defconst allied-with-7 264)
+(defconst tried-alliance-with-7 265)
+(defconst player-6-is-bad-egg 258)
+(defconst player-6-alliance-request-time-stamp 259)
+(defconst allied-with-6 260)
+(defconst tried-alliance-with-6 261)
+(defconst player-5-is-bad-egg 254)
+(defconst player-5-alliance-request-time-stamp 255)
+(defconst allied-with-5 256)
+(defconst tried-alliance-with-5 257)
+(defconst player-4-is-bad-egg 250)
+(defconst player-4-alliance-request-time-stamp 251)
+(defconst allied-with-4 252)
+(defconst tried-alliance-with-4 253)
+(defconst player-3-is-bad-egg 246)
+(defconst player-3-alliance-request-time-stamp 247)
+(defconst allied-with-3 248)
+(defconst tried-alliance-with-3 249)
+(defconst player-2-is-bad-egg 242)
+(defconst player-2-alliance-request-time-stamp 243)
+(defconst allied-with-2 244)
+(defconst tried-alliance-with-2 245)
+(defconst player-1-is-bad-egg 238)
+(defconst player-1-alliance-request-time-stamp 239)
+(defconst allied-with-1 240)
+(defconst tried-alliance-with-1 241)
+(defconst accept-alliance-requests 237)
+(defconst want-alliance 236)
 (defconst allied-victory-timeout 120)
 (defconst alliance-request-timeout 60)
 (defconst max-wood 1600)
@@ -1258,6 +1259,7 @@
     (players-civ my-player-number hun)
 =>
     (set-goal unique-unit-is-cavalry 1)
+    (set-goal unique-unit-is-expensive 1)
     (disable-self)
 )
 (defrule
@@ -26939,6 +26941,7 @@
     (players-civ target-player hun)
 =>
     (set-goal enemy-unique-unit-is-cavalry 1)
+    (set-goal enemy-unique-unit-is-expensive 1)
 )
 (defrule
     (players-civ target-player incan)
@@ -28459,7 +28462,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 20)
+    (up-jump-rule 21)
 )
 (defrule
     (true)
@@ -28486,6 +28489,7 @@
     (true)
 =>
     (set-goal aggressive-override 0)
+    (set-goal passive-override 0)
 )
 (defrule
     (true)
@@ -28496,18 +28500,18 @@
 (defrule
     (timer-triggered 7)
 =>
-    (set-goal 230 0)
+    (set-goal 231 0)
     (generate-random-number 2)
-    (up-get-fact random-number 0 230)
+    (up-get-fact random-number 0 231)
 )
 (defrule
-    (goal 230 1)
+    (goal 231 1)
     (timer-triggered 7)
 =>
     (set-goal balanced-aggressive 1)
 )
 (defrule
-    (goal 230 2)
+    (goal 231 2)
     (timer-triggered 7)
 =>
     (set-goal balanced-aggressive 0)
@@ -28537,10 +28541,27 @@
     (chat-local-to-self "not enough military")
 )
 (defrule
+    (and
+      (up-compare-goal target-military-percentage c:>= 200)
+      (and
+        (military-population >= 30)
+        (not
+          (goal attempted-researches 0)
+        )
+      )
+    )
+=>
+    (set-goal passive-override 1)
+    (chat-local-to-self "massive lead, do techs.")
+)
+(defrule
     (not
-      (or
-        (goal balanced-aggressive 1)
-        (goal aggressive-override 1)
+      (and
+        (or
+          (goal balanced-aggressive 1)
+          (goal aggressive-override 1)
+        )
+        (goal passive-override 0)
       )
     )
 =>
@@ -28559,9 +28580,12 @@
     (set-goal do-research 1)
 )
 (defrule
-    (or
-      (goal balanced-aggressive 1)
-      (goal aggressive-override 1)
+    (and
+      (or
+        (goal balanced-aggressive 1)
+        (goal aggressive-override 1)
+      )
+      (goal passive-override 0)
     )
 =>
     (up-jump-rule 5)
@@ -28646,15 +28670,15 @@
     )
     (goal attack-ready 1)
 =>
-    (set-goal 231 0)
+    (set-goal 232 0)
     (generate-random-number 2)
-    (up-get-fact random-number 0 231)
+    (up-get-fact random-number 0 232)
     (disable-self)
 )
 (defrule
     (not
       (and
-        (goal 231 1)
+        (goal 232 1)
         (and
           (goal produce-fishing-ships 1)
           (and
@@ -28696,7 +28720,7 @@
 (defrule
     (not
       (and
-        (goal 231 2)
+        (goal 232 2)
         (and
           (goal produce-fishing-ships 1)
           (and
@@ -28744,9 +28768,9 @@
 (defrule
     (true)
 =>
-    (up-find-player enemy find-closest 232)
-    (up-modify-sn sn-target-player-number g:= 232)
-    (up-modify-sn sn-focus-player-number g:= 232)
+    (up-find-player enemy find-closest 233)
+    (up-modify-sn sn-target-player-number g:= 233)
+    (up-modify-sn sn-focus-player-number g:= 233)
     (up-send-scout group-type-land-explore scout-enemy)
     (disable-self)
 )
@@ -28760,9 +28784,9 @@
       )
     )
 =>
-    (up-find-player enemy find-closest 233)
-    (up-modify-sn sn-target-player-number g:= 233)
-    (up-modify-sn sn-focus-player-number g:= 233)
+    (up-find-player enemy find-closest 234)
+    (up-modify-sn sn-target-player-number g:= 234)
+    (up-modify-sn sn-focus-player-number g:= 234)
     (up-send-scout group-type-land-explore scout-enemy)
     (up-chat-data-to-self "Retargeting to player %d" g: target-player)
 )
@@ -28817,7 +28841,10 @@
 (defrule
     (not
       (and
-        (unit-type-count transport-ship > 0)
+        (or
+          (unit-type-count transport-ship > 0)
+          (goal full-water-map 1)
+        )
         (goal attack-ready 1)
       )
     )
@@ -28858,53 +28885,13 @@
 (defrule
     (not
       (and
-        (warboat-count > 0)
-        (and
-          (not
-            (unit-type-count transport-ship > 0)
-          )
-          (goal attack-ready 1)
-        )
-      )
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (strategic-number sn-maximum-town-size == 255)
-=>
-    (up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size)
-)
-(defrule
-    (goal attacking 1)
-=>
-    (set-strategic-number sn-number-attack-groups 200)
-)
-(defrule
-    (strategic-number sn-number-attack-groups == 200)
-    (not
-      (goal attacking 1)
-    )
-=>
-    (set-strategic-number sn-number-attack-groups 0)
-)
-(defrule
-    (goal do-backstep 1)
-=>
-    (set-goal do-backstep 0)
-)
-(defrule
-    (not
-      (and
         (not
-          (unit-type-count transport-ship > 0)
-        )
-        (and
-          (not
-            (warboat-count > 0)
+          (or
+            (unit-type-count transport-ship > 0)
+            (goal full-water-map 1)
           )
-          (goal attack-ready 1)
         )
+        (goal attack-ready 1)
       )
     )
 =>
@@ -29000,14 +28987,14 @@
     (set-goal no-enemies-stamp 0)
     (set-goal chat-betray-player -1)
     (set-goal chat-betrayed-by-player -1)
-    (set-goal 272 0)
+    (set-goal 273 0)
     (generate-random-number 4)
-    (up-get-fact random-number 0 272)
+    (up-get-fact random-number 0 273)
     (disable-self)
 )
 (defrule
     (not
-      (goal 272 1)
+      (goal 273 1)
     )
 =>
     (up-jump-rule 5)
@@ -29061,7 +29048,7 @@
 )
 (defrule
     (not
-      (goal 272 2)
+      (goal 273 2)
     )
 =>
     (up-jump-rule 3)
@@ -29095,7 +29082,7 @@
 )
 (defrule
     (not
-      (goal 272 3)
+      (goal 273 3)
     )
 =>
     (up-jump-rule 5)
@@ -29157,7 +29144,7 @@
 )
 (defrule
     (not
-      (goal 272 4)
+      (goal 273 4)
     )
 =>
     (up-jump-rule 5)
@@ -29255,25 +29242,25 @@
 (defrule
     (true)
 =>
-    (set-goal 273 0)
+    (set-goal 274 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 273)
+    (up-get-fact random-number 0 274)
     (disable-self)
 )
 (defrule
-    (goal 273 1)
+    (goal 274 1)
 =>
     (chat-to-all "We aren't winning togther, then? What a shame.")
     (disable-self)
 )
 (defrule
-    (goal 273 2)
+    (goal 274 2)
 =>
     (chat-to-all "I suppose now we should fight.")
     (disable-self)
 )
 (defrule
-    (goal 273 3)
+    (goal 274 3)
 =>
     (chat-to-all "We did it, but the game is not over. This is just the beginning.")
     (disable-self)
@@ -29301,14 +29288,14 @@
 (defrule
     (goal want-alliance 1)
 =>
-    (set-goal 274 0)
+    (set-goal 275 0)
     (generate-random-number 8)
-    (up-get-fact random-number 0 274)
+    (up-get-fact random-number 0 275)
 )
 (defrule
     (not
       (and
-        (goal 274 1)
+        (goal 275 1)
         (goal want-alliance 1)
       )
     )
@@ -29336,22 +29323,22 @@
 (defrule
     (true)
 =>
-    (set-goal 275 0)
+    (set-goal 276 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 275)
+    (up-get-fact random-number 0 276)
 )
 (defrule
-    (goal 275 1)
+    (goal 276 1)
 =>
     (chat-to-player 1 "Let's be allies.")
 )
 (defrule
-    (goal 275 2)
+    (goal 276 2)
 =>
     (chat-to-player 1 "Want to work together?")
 )
 (defrule
-    (goal 275 3)
+    (goal 276 3)
 =>
     (chat-to-player 1 "Want to team up?")
 )
@@ -29376,7 +29363,7 @@
 (defrule
     (not
       (and
-        (goal 274 2)
+        (goal 275 2)
         (goal want-alliance 1)
       )
     )
@@ -29404,22 +29391,22 @@
 (defrule
     (true)
 =>
-    (set-goal 276 0)
+    (set-goal 277 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 276)
+    (up-get-fact random-number 0 277)
 )
 (defrule
-    (goal 276 1)
+    (goal 277 1)
 =>
     (chat-to-player 2 "Let's be allies.")
 )
 (defrule
-    (goal 276 2)
+    (goal 277 2)
 =>
     (chat-to-player 2 "Want to work together?")
 )
 (defrule
-    (goal 276 3)
+    (goal 277 3)
 =>
     (chat-to-player 2 "Want to team up?")
 )
@@ -29444,7 +29431,7 @@
 (defrule
     (not
       (and
-        (goal 274 3)
+        (goal 275 3)
         (goal want-alliance 1)
       )
     )
@@ -29472,22 +29459,22 @@
 (defrule
     (true)
 =>
-    (set-goal 277 0)
+    (set-goal 278 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 277)
+    (up-get-fact random-number 0 278)
 )
 (defrule
-    (goal 277 1)
+    (goal 278 1)
 =>
     (chat-to-player 3 "Let's be allies.")
 )
 (defrule
-    (goal 277 2)
+    (goal 278 2)
 =>
     (chat-to-player 3 "Want to work together?")
 )
 (defrule
-    (goal 277 3)
+    (goal 278 3)
 =>
     (chat-to-player 3 "Want to team up?")
 )
@@ -29512,7 +29499,7 @@
 (defrule
     (not
       (and
-        (goal 274 4)
+        (goal 275 4)
         (goal want-alliance 1)
       )
     )
@@ -29540,22 +29527,22 @@
 (defrule
     (true)
 =>
-    (set-goal 278 0)
+    (set-goal 279 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 278)
+    (up-get-fact random-number 0 279)
 )
 (defrule
-    (goal 278 1)
+    (goal 279 1)
 =>
     (chat-to-player 4 "Let's be allies.")
 )
 (defrule
-    (goal 278 2)
+    (goal 279 2)
 =>
     (chat-to-player 4 "Want to work together?")
 )
 (defrule
-    (goal 278 3)
+    (goal 279 3)
 =>
     (chat-to-player 4 "Want to team up?")
 )
@@ -29580,7 +29567,7 @@
 (defrule
     (not
       (and
-        (goal 274 5)
+        (goal 275 5)
         (goal want-alliance 1)
       )
     )
@@ -29608,22 +29595,22 @@
 (defrule
     (true)
 =>
-    (set-goal 279 0)
+    (set-goal 280 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 279)
+    (up-get-fact random-number 0 280)
 )
 (defrule
-    (goal 279 1)
+    (goal 280 1)
 =>
     (chat-to-player 5 "Let's be allies.")
 )
 (defrule
-    (goal 279 2)
+    (goal 280 2)
 =>
     (chat-to-player 5 "Want to work together?")
 )
 (defrule
-    (goal 279 3)
+    (goal 280 3)
 =>
     (chat-to-player 5 "Want to team up?")
 )
@@ -29648,7 +29635,7 @@
 (defrule
     (not
       (and
-        (goal 274 6)
+        (goal 275 6)
         (goal want-alliance 1)
       )
     )
@@ -29676,22 +29663,22 @@
 (defrule
     (true)
 =>
-    (set-goal 280 0)
+    (set-goal 281 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 280)
+    (up-get-fact random-number 0 281)
 )
 (defrule
-    (goal 280 1)
+    (goal 281 1)
 =>
     (chat-to-player 6 "Let's be allies.")
 )
 (defrule
-    (goal 280 2)
+    (goal 281 2)
 =>
     (chat-to-player 6 "Want to work together?")
 )
 (defrule
-    (goal 280 3)
+    (goal 281 3)
 =>
     (chat-to-player 6 "Want to team up?")
 )
@@ -29716,7 +29703,7 @@
 (defrule
     (not
       (and
-        (goal 274 7)
+        (goal 275 7)
         (goal want-alliance 1)
       )
     )
@@ -29744,22 +29731,22 @@
 (defrule
     (true)
 =>
-    (set-goal 281 0)
+    (set-goal 282 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 281)
+    (up-get-fact random-number 0 282)
 )
 (defrule
-    (goal 281 1)
+    (goal 282 1)
 =>
     (chat-to-player 7 "Let's be allies.")
 )
 (defrule
-    (goal 281 2)
+    (goal 282 2)
 =>
     (chat-to-player 7 "Want to work together?")
 )
 (defrule
-    (goal 281 3)
+    (goal 282 3)
 =>
     (chat-to-player 7 "Want to team up?")
 )
@@ -29784,7 +29771,7 @@
 (defrule
     (not
       (and
-        (goal 274 8)
+        (goal 275 8)
         (goal want-alliance 1)
       )
     )
@@ -29812,22 +29799,22 @@
 (defrule
     (true)
 =>
-    (set-goal 282 0)
+    (set-goal 283 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 282)
+    (up-get-fact random-number 0 283)
 )
 (defrule
-    (goal 282 1)
+    (goal 283 1)
 =>
     (chat-to-player 8 "Let's be allies.")
 )
 (defrule
-    (goal 282 2)
+    (goal 283 2)
 =>
     (chat-to-player 8 "Want to work together?")
 )
 (defrule
-    (goal 282 3)
+    (goal 283 3)
 =>
     (chat-to-player 8 "Want to team up?")
 )
@@ -29855,14 +29842,14 @@
       (goal want-alliance 0)
     )
 =>
-    (set-goal 283 0)
+    (set-goal 284 0)
     (generate-random-number 8)
-    (up-get-fact random-number 0 283)
+    (up-get-fact random-number 0 284)
 )
 (defrule
     (not
       (and
-        (goal 283 1)
+        (goal 284 1)
         (and
           (goal enemy-players-count 0)
           (goal want-alliance 0)
@@ -29884,7 +29871,7 @@
 (defrule
     (not
       (and
-        (goal 283 2)
+        (goal 284 2)
         (and
           (goal enemy-players-count 0)
           (goal want-alliance 0)
@@ -29906,7 +29893,7 @@
 (defrule
     (not
       (and
-        (goal 283 3)
+        (goal 284 3)
         (and
           (goal enemy-players-count 0)
           (goal want-alliance 0)
@@ -29928,7 +29915,7 @@
 (defrule
     (not
       (and
-        (goal 283 4)
+        (goal 284 4)
         (and
           (goal enemy-players-count 0)
           (goal want-alliance 0)
@@ -29950,7 +29937,7 @@
 (defrule
     (not
       (and
-        (goal 283 5)
+        (goal 284 5)
         (and
           (goal enemy-players-count 0)
           (goal want-alliance 0)
@@ -29972,7 +29959,7 @@
 (defrule
     (not
       (and
-        (goal 283 6)
+        (goal 284 6)
         (and
           (goal enemy-players-count 0)
           (goal want-alliance 0)
@@ -29994,7 +29981,7 @@
 (defrule
     (not
       (and
-        (goal 283 7)
+        (goal 284 7)
         (and
           (goal enemy-players-count 0)
           (goal want-alliance 0)
@@ -30016,7 +30003,7 @@
 (defrule
     (not
       (and
-        (goal 283 8)
+        (goal 284 8)
         (and
           (goal enemy-players-count 0)
           (goal want-alliance 0)
@@ -30038,14 +30025,14 @@
 (defrule
     (goal want-alliance -1)
 =>
-    (set-goal 284 0)
+    (set-goal 285 0)
     (generate-random-number 8)
-    (up-get-fact random-number 0 284)
+    (up-get-fact random-number 0 285)
 )
 (defrule
     (not
       (and
-        (goal 284 1)
+        (goal 285 1)
         (goal want-alliance -1)
       )
     )
@@ -30066,7 +30053,7 @@
 (defrule
     (not
       (and
-        (goal 284 2)
+        (goal 285 2)
         (goal want-alliance -1)
       )
     )
@@ -30087,7 +30074,7 @@
 (defrule
     (not
       (and
-        (goal 284 3)
+        (goal 285 3)
         (goal want-alliance -1)
       )
     )
@@ -30108,7 +30095,7 @@
 (defrule
     (not
       (and
-        (goal 284 4)
+        (goal 285 4)
         (goal want-alliance -1)
       )
     )
@@ -30129,7 +30116,7 @@
 (defrule
     (not
       (and
-        (goal 284 5)
+        (goal 285 5)
         (goal want-alliance -1)
       )
     )
@@ -30150,7 +30137,7 @@
 (defrule
     (not
       (and
-        (goal 284 6)
+        (goal 285 6)
         (goal want-alliance -1)
       )
     )
@@ -30171,7 +30158,7 @@
 (defrule
     (not
       (and
-        (goal 284 7)
+        (goal 285 7)
         (goal want-alliance -1)
       )
     )
@@ -30192,7 +30179,7 @@
 (defrule
     (not
       (and
-        (goal 284 8)
+        (goal 285 8)
         (goal want-alliance -1)
       )
     )
@@ -30238,22 +30225,22 @@
 (defrule
     (true)
 =>
-    (set-goal 285 0)
+    (set-goal 286 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 285)
+    (up-get-fact random-number 0 286)
 )
 (defrule
-    (goal 285 1)
+    (goal 286 1)
 =>
     (chat-to-player 1 "Good idea.")
 )
 (defrule
-    (goal 285 2)
+    (goal 286 2)
 =>
     (chat-to-player 1 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 285 3)
+    (goal 286 3)
 =>
     (chat-to-player 1 "I agree, let's be friends.")
 )
@@ -30301,22 +30288,22 @@
 (defrule
     (true)
 =>
-    (set-goal 286 0)
+    (set-goal 287 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 286)
+    (up-get-fact random-number 0 287)
 )
 (defrule
-    (goal 286 1)
+    (goal 287 1)
 =>
     (chat-to-player 1 "Let's do this. Together.")
 )
 (defrule
-    (goal 286 2)
+    (goal 287 2)
 =>
     (chat-to-player 1 "Nice to have you with me.")
 )
 (defrule
-    (goal 286 3)
+    (goal 287 3)
 =>
     (chat-to-player 1 "Unstoppable team!")
 )
@@ -30437,22 +30424,22 @@
 (defrule
     (true)
 =>
-    (set-goal 287 0)
+    (set-goal 288 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 287)
+    (up-get-fact random-number 0 288)
 )
 (defrule
-    (goal 287 1)
+    (goal 288 1)
 =>
     (chat-to-player 1 "Fine, have it your way.")
 )
 (defrule
-    (goal 287 2)
+    (goal 288 2)
 =>
     (chat-to-player 1 "Would've been nice.")
 )
 (defrule
-    (goal 287 3)
+    (goal 288 3)
 =>
     (chat-to-player 1 "Whatever.")
 )
@@ -30512,22 +30499,22 @@
 (defrule
     (true)
 =>
-    (set-goal 288 0)
+    (set-goal 289 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 288)
+    (up-get-fact random-number 0 289)
 )
 (defrule
-    (goal 288 1)
+    (goal 289 1)
 =>
     (chat-to-player 2 "Good idea.")
 )
 (defrule
-    (goal 288 2)
+    (goal 289 2)
 =>
     (chat-to-player 2 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 288 3)
+    (goal 289 3)
 =>
     (chat-to-player 2 "I agree, let's be friends.")
 )
@@ -30575,22 +30562,22 @@
 (defrule
     (true)
 =>
-    (set-goal 289 0)
+    (set-goal 290 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 289)
+    (up-get-fact random-number 0 290)
 )
 (defrule
-    (goal 289 1)
+    (goal 290 1)
 =>
     (chat-to-player 2 "Let's do this. Together.")
 )
 (defrule
-    (goal 289 2)
+    (goal 290 2)
 =>
     (chat-to-player 2 "Nice to have you with me.")
 )
 (defrule
-    (goal 289 3)
+    (goal 290 3)
 =>
     (chat-to-player 2 "Unstoppable team!")
 )
@@ -30711,22 +30698,22 @@
 (defrule
     (true)
 =>
-    (set-goal 290 0)
+    (set-goal 291 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 290)
+    (up-get-fact random-number 0 291)
 )
 (defrule
-    (goal 290 1)
+    (goal 291 1)
 =>
     (chat-to-player 2 "Fine, have it your way.")
 )
 (defrule
-    (goal 290 2)
+    (goal 291 2)
 =>
     (chat-to-player 2 "Would've been nice.")
 )
 (defrule
-    (goal 290 3)
+    (goal 291 3)
 =>
     (chat-to-player 2 "Whatever.")
 )
@@ -30786,22 +30773,22 @@
 (defrule
     (true)
 =>
-    (set-goal 291 0)
+    (set-goal 292 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 291)
+    (up-get-fact random-number 0 292)
 )
 (defrule
-    (goal 291 1)
+    (goal 292 1)
 =>
     (chat-to-player 3 "Good idea.")
 )
 (defrule
-    (goal 291 2)
+    (goal 292 2)
 =>
     (chat-to-player 3 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 291 3)
+    (goal 292 3)
 =>
     (chat-to-player 3 "I agree, let's be friends.")
 )
@@ -30849,22 +30836,22 @@
 (defrule
     (true)
 =>
-    (set-goal 292 0)
+    (set-goal 293 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 292)
+    (up-get-fact random-number 0 293)
 )
 (defrule
-    (goal 292 1)
+    (goal 293 1)
 =>
     (chat-to-player 3 "Let's do this. Together.")
 )
 (defrule
-    (goal 292 2)
+    (goal 293 2)
 =>
     (chat-to-player 3 "Nice to have you with me.")
 )
 (defrule
-    (goal 292 3)
+    (goal 293 3)
 =>
     (chat-to-player 3 "Unstoppable team!")
 )
@@ -30985,22 +30972,22 @@
 (defrule
     (true)
 =>
-    (set-goal 293 0)
+    (set-goal 294 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 293)
+    (up-get-fact random-number 0 294)
 )
 (defrule
-    (goal 293 1)
+    (goal 294 1)
 =>
     (chat-to-player 3 "Fine, have it your way.")
 )
 (defrule
-    (goal 293 2)
+    (goal 294 2)
 =>
     (chat-to-player 3 "Would've been nice.")
 )
 (defrule
-    (goal 293 3)
+    (goal 294 3)
 =>
     (chat-to-player 3 "Whatever.")
 )
@@ -31060,22 +31047,22 @@
 (defrule
     (true)
 =>
-    (set-goal 294 0)
+    (set-goal 295 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 294)
+    (up-get-fact random-number 0 295)
 )
 (defrule
-    (goal 294 1)
+    (goal 295 1)
 =>
     (chat-to-player 4 "Good idea.")
 )
 (defrule
-    (goal 294 2)
+    (goal 295 2)
 =>
     (chat-to-player 4 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 294 3)
+    (goal 295 3)
 =>
     (chat-to-player 4 "I agree, let's be friends.")
 )
@@ -31123,22 +31110,22 @@
 (defrule
     (true)
 =>
-    (set-goal 295 0)
+    (set-goal 296 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 295)
+    (up-get-fact random-number 0 296)
 )
 (defrule
-    (goal 295 1)
+    (goal 296 1)
 =>
     (chat-to-player 4 "Let's do this. Together.")
 )
 (defrule
-    (goal 295 2)
+    (goal 296 2)
 =>
     (chat-to-player 4 "Nice to have you with me.")
 )
 (defrule
-    (goal 295 3)
+    (goal 296 3)
 =>
     (chat-to-player 4 "Unstoppable team!")
 )
@@ -31259,22 +31246,22 @@
 (defrule
     (true)
 =>
-    (set-goal 296 0)
+    (set-goal 297 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 296)
+    (up-get-fact random-number 0 297)
 )
 (defrule
-    (goal 296 1)
+    (goal 297 1)
 =>
     (chat-to-player 4 "Fine, have it your way.")
 )
 (defrule
-    (goal 296 2)
+    (goal 297 2)
 =>
     (chat-to-player 4 "Would've been nice.")
 )
 (defrule
-    (goal 296 3)
+    (goal 297 3)
 =>
     (chat-to-player 4 "Whatever.")
 )
@@ -31334,22 +31321,22 @@
 (defrule
     (true)
 =>
-    (set-goal 297 0)
+    (set-goal 298 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 297)
+    (up-get-fact random-number 0 298)
 )
 (defrule
-    (goal 297 1)
+    (goal 298 1)
 =>
     (chat-to-player 5 "Good idea.")
 )
 (defrule
-    (goal 297 2)
+    (goal 298 2)
 =>
     (chat-to-player 5 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 297 3)
+    (goal 298 3)
 =>
     (chat-to-player 5 "I agree, let's be friends.")
 )
@@ -31397,22 +31384,22 @@
 (defrule
     (true)
 =>
-    (set-goal 298 0)
+    (set-goal 299 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 298)
+    (up-get-fact random-number 0 299)
 )
 (defrule
-    (goal 298 1)
+    (goal 299 1)
 =>
     (chat-to-player 5 "Let's do this. Together.")
 )
 (defrule
-    (goal 298 2)
+    (goal 299 2)
 =>
     (chat-to-player 5 "Nice to have you with me.")
 )
 (defrule
-    (goal 298 3)
+    (goal 299 3)
 =>
     (chat-to-player 5 "Unstoppable team!")
 )
@@ -31533,22 +31520,22 @@
 (defrule
     (true)
 =>
-    (set-goal 299 0)
+    (set-goal 300 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 299)
+    (up-get-fact random-number 0 300)
 )
 (defrule
-    (goal 299 1)
+    (goal 300 1)
 =>
     (chat-to-player 5 "Fine, have it your way.")
 )
 (defrule
-    (goal 299 2)
+    (goal 300 2)
 =>
     (chat-to-player 5 "Would've been nice.")
 )
 (defrule
-    (goal 299 3)
+    (goal 300 3)
 =>
     (chat-to-player 5 "Whatever.")
 )
@@ -31608,22 +31595,22 @@
 (defrule
     (true)
 =>
-    (set-goal 300 0)
+    (set-goal 301 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 300)
+    (up-get-fact random-number 0 301)
 )
 (defrule
-    (goal 300 1)
+    (goal 301 1)
 =>
     (chat-to-player 6 "Good idea.")
 )
 (defrule
-    (goal 300 2)
+    (goal 301 2)
 =>
     (chat-to-player 6 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 300 3)
+    (goal 301 3)
 =>
     (chat-to-player 6 "I agree, let's be friends.")
 )
@@ -31671,22 +31658,22 @@
 (defrule
     (true)
 =>
-    (set-goal 301 0)
+    (set-goal 302 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 301)
+    (up-get-fact random-number 0 302)
 )
 (defrule
-    (goal 301 1)
+    (goal 302 1)
 =>
     (chat-to-player 6 "Let's do this. Together.")
 )
 (defrule
-    (goal 301 2)
+    (goal 302 2)
 =>
     (chat-to-player 6 "Nice to have you with me.")
 )
 (defrule
-    (goal 301 3)
+    (goal 302 3)
 =>
     (chat-to-player 6 "Unstoppable team!")
 )
@@ -31807,22 +31794,22 @@
 (defrule
     (true)
 =>
-    (set-goal 302 0)
+    (set-goal 303 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 302)
+    (up-get-fact random-number 0 303)
 )
 (defrule
-    (goal 302 1)
+    (goal 303 1)
 =>
     (chat-to-player 6 "Fine, have it your way.")
 )
 (defrule
-    (goal 302 2)
+    (goal 303 2)
 =>
     (chat-to-player 6 "Would've been nice.")
 )
 (defrule
-    (goal 302 3)
+    (goal 303 3)
 =>
     (chat-to-player 6 "Whatever.")
 )
@@ -31882,22 +31869,22 @@
 (defrule
     (true)
 =>
-    (set-goal 303 0)
+    (set-goal 304 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 303)
+    (up-get-fact random-number 0 304)
 )
 (defrule
-    (goal 303 1)
+    (goal 304 1)
 =>
     (chat-to-player 7 "Good idea.")
 )
 (defrule
-    (goal 303 2)
+    (goal 304 2)
 =>
     (chat-to-player 7 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 303 3)
+    (goal 304 3)
 =>
     (chat-to-player 7 "I agree, let's be friends.")
 )
@@ -31945,22 +31932,22 @@
 (defrule
     (true)
 =>
-    (set-goal 304 0)
+    (set-goal 305 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 304)
+    (up-get-fact random-number 0 305)
 )
 (defrule
-    (goal 304 1)
+    (goal 305 1)
 =>
     (chat-to-player 7 "Let's do this. Together.")
 )
 (defrule
-    (goal 304 2)
+    (goal 305 2)
 =>
     (chat-to-player 7 "Nice to have you with me.")
 )
 (defrule
-    (goal 304 3)
+    (goal 305 3)
 =>
     (chat-to-player 7 "Unstoppable team!")
 )
@@ -32081,22 +32068,22 @@
 (defrule
     (true)
 =>
-    (set-goal 305 0)
+    (set-goal 306 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 305)
+    (up-get-fact random-number 0 306)
 )
 (defrule
-    (goal 305 1)
+    (goal 306 1)
 =>
     (chat-to-player 7 "Fine, have it your way.")
 )
 (defrule
-    (goal 305 2)
+    (goal 306 2)
 =>
     (chat-to-player 7 "Would've been nice.")
 )
 (defrule
-    (goal 305 3)
+    (goal 306 3)
 =>
     (chat-to-player 7 "Whatever.")
 )
@@ -32156,22 +32143,22 @@
 (defrule
     (true)
 =>
-    (set-goal 306 0)
+    (set-goal 307 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 306)
+    (up-get-fact random-number 0 307)
 )
 (defrule
-    (goal 306 1)
+    (goal 307 1)
 =>
     (chat-to-player 8 "Good idea.")
 )
 (defrule
-    (goal 306 2)
+    (goal 307 2)
 =>
     (chat-to-player 8 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 306 3)
+    (goal 307 3)
 =>
     (chat-to-player 8 "I agree, let's be friends.")
 )
@@ -32219,22 +32206,22 @@
 (defrule
     (true)
 =>
-    (set-goal 307 0)
+    (set-goal 308 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 307)
+    (up-get-fact random-number 0 308)
 )
 (defrule
-    (goal 307 1)
+    (goal 308 1)
 =>
     (chat-to-player 8 "Let's do this. Together.")
 )
 (defrule
-    (goal 307 2)
+    (goal 308 2)
 =>
     (chat-to-player 8 "Nice to have you with me.")
 )
 (defrule
-    (goal 307 3)
+    (goal 308 3)
 =>
     (chat-to-player 8 "Unstoppable team!")
 )
@@ -32355,22 +32342,22 @@
 (defrule
     (true)
 =>
-    (set-goal 308 0)
+    (set-goal 309 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 308)
+    (up-get-fact random-number 0 309)
 )
 (defrule
-    (goal 308 1)
+    (goal 309 1)
 =>
     (chat-to-player 8 "Fine, have it your way.")
 )
 (defrule
-    (goal 308 2)
+    (goal 309 2)
 =>
     (chat-to-player 8 "Would've been nice.")
 )
 (defrule
-    (goal 308 3)
+    (goal 309 3)
 =>
     (chat-to-player 8 "Whatever.")
 )
@@ -32410,62 +32397,62 @@
 (defrule
     (true)
 =>
-    (set-goal 309 0)
+    (set-goal 310 0)
     (generate-random-number 11)
-    (up-get-fact random-number 0 309)
+    (up-get-fact random-number 0 310)
 )
 (defrule
-    (goal 309 1)
+    (goal 310 1)
 =>
     (up-chat-data-to-all "Really %d?" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 309 2)
+    (goal 310 2)
 =>
     (up-chat-data-to-all "I thought we were friends, player %d!" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 309 3)
+    (goal 310 3)
 =>
     (up-chat-data-to-all "Player %d! You backstabber!" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 309 4)
+    (goal 310 4)
 =>
     (up-chat-data-to-all "Player %d? What gives?!" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 309 5)
+    (goal 310 5)
 =>
     (up-chat-data-to-all "I knew you were a bad egg, player %d." g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 309 6)
+    (goal 310 6)
 =>
     (up-chat-data-to-all "Player %d? But why?" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 309 7)
+    (goal 310 7)
 =>
     (up-chat-data-to-all "Alright, player %d, bring it on!!" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 309 8)
+    (goal 310 8)
 =>
     (up-chat-data-to-all "Don't bite off more than you can chew, player %d..." g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 309 9)
+    (goal 310 9)
 =>
     (up-chat-data-to-all "Why me, player %d?" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 309 10)
+    (goal 310 10)
 =>
     (up-chat-data-to-all "Why now, player %d?" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 309 11)
+    (goal 310 11)
 =>
     (up-chat-data-to-all "Shame. We could've been best frends, player %d." g: chat-betrayed-by-player)
 )
@@ -32484,42 +32471,42 @@
 (defrule
     (true)
 =>
-    (set-goal 310 0)
+    (set-goal 311 0)
     (generate-random-number 7)
-    (up-get-fact random-number 0 310)
+    (up-get-fact random-number 0 311)
 )
 (defrule
-    (goal 310 1)
+    (goal 311 1)
 =>
     (up-chat-data-to-all "It could never have worked between us, player %d." g: chat-betray-player)
 )
 (defrule
-    (goal 310 2)
+    (goal 311 2)
 =>
     (up-chat-data-to-all "I've had enough of you, player %d." g: chat-betray-player)
 )
 (defrule
-    (goal 310 3)
+    (goal 311 3)
 =>
     (up-chat-data-to-all "You aren't needed anymore player %d." g: chat-betray-player)
 )
 (defrule
-    (goal 310 4)
+    (goal 311 4)
 =>
     (up-chat-data-to-all "Time to die, player %d!" g: chat-betray-player)
 )
 (defrule
-    (goal 310 5)
+    (goal 311 5)
 =>
     (up-chat-data-to-all "Player %d, we're done." g: chat-betray-player)
 )
 (defrule
-    (goal 310 6)
+    (goal 311 6)
 =>
     (up-chat-data-to-all "Your days are numbered, player %d!" g: chat-betray-player)
 )
 (defrule
-    (goal 310 7)
+    (goal 311 7)
 =>
     (up-chat-data-to-all "I'm sorry about this, player %d." g: chat-betray-player)
 )
@@ -32572,22 +32559,22 @@
 (defrule
     (true)
 =>
-    (set-goal 311 0)
+    (set-goal 312 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 311)
+    (up-get-fact random-number 0 312)
 )
 (defrule
-    (goal 311 1)
+    (goal 312 1)
 =>
     (chat-to-player every-ally "1Sure.")
 )
 (defrule
-    (goal 311 2)
+    (goal 312 2)
 =>
     (chat-to-player every-ally "1Of course.")
 )
 (defrule
-    (goal 311 3)
+    (goal 312 3)
 =>
     (chat-to-player every-ally "1Okay.")
 )
@@ -32616,22 +32603,22 @@
 (defrule
     (true)
 =>
-    (set-goal 312 0)
+    (set-goal 313 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 312)
+    (up-get-fact random-number 0 313)
 )
 (defrule
-    (goal 312 1)
+    (goal 313 1)
 =>
     (chat-to-player every-ally "1Sure.")
 )
 (defrule
-    (goal 312 2)
+    (goal 313 2)
 =>
     (chat-to-player every-ally "1Of course.")
 )
 (defrule
-    (goal 312 3)
+    (goal 313 3)
 =>
     (chat-to-player every-ally "1Okay.")
 )
@@ -32650,22 +32637,22 @@
 (defrule
     (true)
 =>
-    (set-goal 313 0)
+    (set-goal 314 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 313)
+    (up-get-fact random-number 0 314)
 )
 (defrule
-    (goal 313 1)
+    (goal 314 1)
 =>
     (chat-to-player every-ally "2Sorry, no.")
 )
 (defrule
-    (goal 313 2)
+    (goal 314 2)
 =>
     (chat-to-player every-ally "2Not right now, sorry.")
 )
 (defrule
-    (goal 313 3)
+    (goal 314 3)
 =>
     (chat-to-player every-ally "2Sorry, no can do!")
 )
@@ -32690,22 +32677,19 @@
 )
 (defrule
     (and
-      (population < 10)
+      (unit-type-count villager < 10)
       (population-cap >= 75)
     )
-    (game-time >= 1200)
+    (game-time >= 1800)
 =>
     (set-goal resign 1)
 )
 (defrule
     (and
       (goal full-water-map 1)
-      (and
-        (warboat-count == 0)
-        (unit-type-count fishing-ship == 0)
-      )
+      (warboat-count == 0)
     )
-    (game-time >= 1200)
+    (game-time >= 1800)
 =>
     (set-goal resign 1)
 )
@@ -32942,43 +32926,6 @@
 (defrule
     (true)
 =>
-    (set-goal 314 0)
-    (generate-random-number 3)
-    (up-get-fact random-number 0 314)
-)
-(defrule
-    (goal 314 1)
-=>
-    (chat-to-all "2Absolutely not.")
-)
-(defrule
-    (goal 314 2)
-=>
-    (chat-to-all "2Are you out of your mind?")
-)
-(defrule
-    (goal 314 3)
-=>
-    (chat-to-all "2As if!")
-)
-(defrule
-    (taunt-detected any-enemy 34)
-=>
-    (acknowledge-taunt this-any-enemy 34)
-)
-(defrule
-    (not
-      (and
-        (goal full-water-map 1)
-        (taunt-detected any-enemy 35)
-      )
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (true)
-=>
     (set-goal 315 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 315)
@@ -32999,13 +32946,16 @@
     (chat-to-all "2As if!")
 )
 (defrule
-    (taunt-detected any-enemy 35)
+    (taunt-detected any-enemy 34)
 =>
-    (acknowledge-taunt this-any-enemy 35)
+    (acknowledge-taunt this-any-enemy 34)
 )
 (defrule
     (not
-      (taunt-detected any-enemy 38)
+      (and
+        (goal full-water-map 1)
+        (taunt-detected any-enemy 35)
+      )
     )
 =>
     (up-jump-rule 4)
@@ -33033,6 +32983,40 @@
     (chat-to-all "2As if!")
 )
 (defrule
+    (taunt-detected any-enemy 35)
+=>
+    (acknowledge-taunt this-any-enemy 35)
+)
+(defrule
+    (not
+      (taunt-detected any-enemy 38)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (true)
+=>
+    (set-goal 317 0)
+    (generate-random-number 3)
+    (up-get-fact random-number 0 317)
+)
+(defrule
+    (goal 317 1)
+=>
+    (chat-to-all "2Absolutely not.")
+)
+(defrule
+    (goal 317 2)
+=>
+    (chat-to-all "2Are you out of your mind?")
+)
+(defrule
+    (goal 317 3)
+=>
+    (chat-to-all "2As if!")
+)
+(defrule
     (taunt-detected any-enemy 38)
 =>
     (acknowledge-taunt this-any-enemy 38)
@@ -33050,13 +33034,13 @@
       (goal team-game 1)
     )
 =>
-    (set-goal 317 0)
+    (set-goal 318 0)
     (generate-random-number 4)
-    (up-get-fact random-number 0 317)
+    (up-get-fact random-number 0 318)
     (disable-self)
 )
 (defrule
-    (goal 317 1)
+    (goal 318 1)
     (or
       (goal free-for-all 1)
       (goal team-game 1)
@@ -33067,7 +33051,7 @@
 )
 (defrule
     (goal free-for-all 1)
-    (goal 317 2)
+    (goal 318 2)
     (or
       (goal free-for-all 1)
       (goal team-game 1)
@@ -33080,7 +33064,7 @@
     (not
       (goal free-for-all 1)
     )
-    (goal 317 2)
+    (goal 318 2)
     (or
       (goal free-for-all 1)
       (goal team-game 1)
@@ -33090,7 +33074,7 @@
     (disable-self)
 )
 (defrule
-    (goal 317 3)
+    (goal 318 3)
     (or
       (goal free-for-all 1)
       (goal team-game 1)
@@ -33100,7 +33084,7 @@
     (disable-self)
 )
 (defrule
-    (goal 317 4)
+    (goal 318 4)
     (or
       (goal free-for-all 1)
       (goal team-game 1)
@@ -33117,13 +33101,13 @@
       )
     )
 =>
-    (set-goal 318 0)
+    (set-goal 319 0)
     (generate-random-number 7)
-    (up-get-fact random-number 0 318)
+    (up-get-fact random-number 0 319)
     (disable-self)
 )
 (defrule
-    (goal 318 1)
+    (goal 319 1)
     (not
       (or
         (goal free-for-all 1)
@@ -33135,7 +33119,7 @@
     (disable-self)
 )
 (defrule
-    (goal 318 2)
+    (goal 319 2)
     (not
       (or
         (goal free-for-all 1)
@@ -33147,7 +33131,7 @@
     (disable-self)
 )
 (defrule
-    (goal 318 3)
+    (goal 319 3)
     (not
       (or
         (goal free-for-all 1)
@@ -33159,7 +33143,7 @@
     (disable-self)
 )
 (defrule
-    (goal 318 4)
+    (goal 319 4)
     (not
       (or
         (goal free-for-all 1)
@@ -33171,7 +33155,7 @@
     (disable-self)
 )
 (defrule
-    (goal 318 5)
+    (goal 319 5)
     (not
       (or
         (goal free-for-all 1)
@@ -33183,7 +33167,7 @@
     (disable-self)
 )
 (defrule
-    (goal 318 6)
+    (goal 319 6)
     (not
       (or
         (goal free-for-all 1)
@@ -33195,7 +33179,7 @@
     (disable-self)
 )
 (defrule
-    (goal 318 7)
+    (goal 319 7)
     (not
       (or
         (goal free-for-all 1)
@@ -33231,25 +33215,25 @@
 (defrule
     (true)
 =>
-    (set-goal 319 0)
+    (set-goal 320 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 319)
+    (up-get-fact random-number 0 320)
     (disable-self)
 )
 (defrule
-    (goal 319 1)
+    (goal 320 1)
 =>
     (chat-to-all "I'm having some trouble with this one.")
     (disable-self)
 )
 (defrule
-    (goal 319 2)
+    (goal 320 2)
 =>
     (chat-to-all "This is a tough game.")
     (disable-self)
 )
 (defrule
-    (goal 319 3)
+    (goal 320 3)
 =>
     (chat-to-all "I don't like my chances here.")
     (disable-self)
@@ -33278,25 +33262,25 @@
 (defrule
     (true)
 =>
-    (set-goal 320 0)
+    (set-goal 321 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 320)
+    (up-get-fact random-number 0 321)
     (disable-self)
 )
 (defrule
-    (goal 320 1)
+    (goal 321 1)
 =>
     (chat-to-all "We may need a different strategy...")
     (disable-self)
 )
 (defrule
-    (goal 320 2)
+    (goal 321 2)
 =>
     (chat-to-all "I'm crumbling... Hopefully we still have a shot?")
     (disable-self)
 )
 (defrule
-    (goal 320 3)
+    (goal 321 3)
 =>
     (chat-to-all "This is hard.")
     (disable-self)
@@ -33327,37 +33311,37 @@
 (defrule
     (true)
 =>
-    (set-goal 321 0)
+    (set-goal 322 0)
     (generate-random-number 5)
-    (up-get-fact random-number 0 321)
+    (up-get-fact random-number 0 322)
     (disable-self)
 )
 (defrule
-    (goal 321 1)
+    (goal 322 1)
 =>
     (chat-to-all "I feel vastly outpaced, you're playing a good game.")
     (disable-self)
 )
 (defrule
-    (goal 321 2)
+    (goal 322 2)
 =>
     (chat-to-all "I'm not doing very well...")
     (disable-self)
 )
 (defrule
-    (goal 321 3)
+    (goal 322 3)
 =>
     (chat-to-all "This could have gone better, oh well.")
     (disable-self)
 )
 (defrule
-    (goal 321 4)
+    (goal 322 4)
 =>
     (chat-to-all "You're playing quite well.")
     (disable-self)
 )
 (defrule
-    (goal 321 5)
+    (goal 322 5)
 =>
     (chat-to-all "I'm not sure I can best you.")
     (disable-self)
@@ -33386,19 +33370,19 @@
 (defrule
     (true)
 =>
-    (set-goal 322 0)
+    (set-goal 323 0)
     (generate-random-number 2)
-    (up-get-fact random-number 0 322)
+    (up-get-fact random-number 0 323)
     (disable-self)
 )
 (defrule
-    (goal 322 1)
+    (goal 323 1)
 =>
     (chat-to-all "I'm pretty sure I've got this game.")
     (disable-self)
 )
 (defrule
-    (goal 322 2)
+    (goal 323 2)
 =>
     (chat-to-all "It was tough, but I got there in the end.")
     (disable-self)
@@ -33491,31 +33475,31 @@
 (defrule
     (true)
 =>
-    (set-goal 323 0)
+    (set-goal 324 0)
     (generate-random-number 6)
-    (up-get-fact random-number 0 323)
+    (up-get-fact random-number 0 324)
     (disable-self)
 )
 (defrule
-    (goal 323 1)
+    (goal 324 1)
 =>
     (chat-to-all "I don't like this...")
     (disable-self)
 )
 (defrule
-    (goal 323 2)
+    (goal 324 2)
 =>
     (chat-to-all "Dicey.")
     (disable-self)
 )
 (defrule
-    (goal 323 3)
+    (goal 324 3)
 =>
     (chat-to-all "I'd better step on the pedal a bit, sheesh.")
     (disable-self)
 )
 (defrule
-    (goal 323 4)
+    (goal 324 4)
 =>
     (chat-to-all "...please don't hurt me!")
     (disable-self)
@@ -33525,7 +33509,7 @@
       (goal team-game 1)
       (goal free-for-all 1)
     )
-    (goal 323 5)
+    (goal 324 5)
 =>
     (chat-to-all "It's looking scary out there...")
     (disable-self)
@@ -33537,13 +33521,13 @@
         (goal free-for-all 1)
       )
     )
-    (goal 323 5)
+    (goal 324 5)
 =>
     (chat-to-all "You're looking scary...")
     (disable-self)
 )
 (defrule
-    (goal 323 6)
+    (goal 324 6)
 =>
     (chat-to-all "That's a lot of stuff.")
     (disable-self)
@@ -33578,9 +33562,9 @@
 (defrule
     (true)
 =>
-    (set-goal 324 0)
+    (set-goal 325 0)
     (generate-random-number 8)
-    (up-get-fact random-number 0 324)
+    (up-get-fact random-number 0 325)
     (disable-self)
 )
 (defrule
@@ -33588,7 +33572,7 @@
       (goal team-game 1)
       (goal free-for-all 1)
     )
-    (goal 324 1)
+    (goal 325 1)
 =>
     (chat-to-all "Let's crush 'em!")
     (disable-self)
@@ -33600,13 +33584,13 @@
         (goal free-for-all 1)
       )
     )
-    (goal 324 1)
+    (goal 325 1)
 =>
     (chat-to-all "It's time for some violence!")
     (disable-self)
 )
 (defrule
-    (goal 324 2)
+    (goal 325 2)
 =>
     (chat-to-all "Oh yeah, this is good.")
     (disable-self)
@@ -33616,7 +33600,7 @@
       (goal team-game 1)
       (goal free-for-all 1)
     )
-    (goal 324 3)
+    (goal 325 3)
 =>
     (chat-to-all "You lot aren't prepared for this.")
     (disable-self)
@@ -33628,32 +33612,32 @@
         (goal free-for-all 1)
       )
     )
-    (goal 324 3)
+    (goal 325 3)
 =>
     (chat-to-all "You aren't prepared for this.")
     (disable-self)
 )
 (defrule
-    (goal 324 4)
+    (goal 325 4)
 =>
     (chat-to-all "[cracks knuckles]")
     (disable-self)
 )
 (defrule
-    (goal 324 5)
+    (goal 325 5)
 =>
     (chat-to-all "I'm pumped! Let's go!!!")
     (disable-self)
 )
 (defrule
-    (goal 324 6)
+    (goal 325 6)
 =>
     (chat-to-all "Allow me to show you some numbers.")
     (disable-self)
 )
 (defrule
     (goal team-game 1)
-    (goal 324 7)
+    (goal 325 7)
 =>
     (chat-to-all "We're bringing the pain.")
     (disable-self)
@@ -33662,13 +33646,13 @@
     (not
       (goal team-game 1)
     )
-    (goal 324 7)
+    (goal 325 7)
 =>
     (chat-to-all "I'm bringing the pain.")
     (disable-self)
 )
 (defrule
-    (goal 324 8)
+    (goal 325 8)
 =>
     (chat-to-all "It'll all be over soon.")
     (disable-self)
@@ -33705,9 +33689,9 @@
 (defrule
     (true)
 =>
-    (set-goal 325 0)
+    (set-goal 326 0)
     (generate-random-number 5)
-    (up-get-fact random-number 0 325)
+    (up-get-fact random-number 0 326)
     (disable-self)
 )
 (defrule
@@ -33715,7 +33699,7 @@
       (goal team-game 1)
       (goal free-for-all 1)
     )
-    (goal 325 1)
+    (goal 326 1)
 =>
     (chat-to-all "Come at me.")
     (disable-self)
@@ -33727,31 +33711,31 @@
         (goal free-for-all 1)
       )
     )
-    (goal 325 1)
+    (goal 326 1)
 =>
     (chat-to-all "I'm ready for what you've got.")
     (disable-self)
 )
 (defrule
-    (goal 325 2)
+    (goal 326 2)
 =>
     (chat-to-all "Feeling confident.")
     (disable-self)
 )
 (defrule
-    (goal 325 3)
+    (goal 326 3)
 =>
     (chat-to-all "Feeling good.")
     (disable-self)
 )
 (defrule
-    (goal 325 4)
+    (goal 326 4)
 =>
     (chat-to-all "I am prepared.")
     (disable-self)
 )
 (defrule
-    (goal 325 5)
+    (goal 326 5)
 =>
     (chat-to-all "Are you ready?")
     (disable-self)
@@ -33766,31 +33750,31 @@
 (defrule
     (true)
 =>
-    (set-goal 326 0)
+    (set-goal 327 0)
     (generate-random-number 4)
-    (up-get-fact random-number 0 326)
+    (up-get-fact random-number 0 327)
     (disable-self)
 )
 (defrule
-    (goal 326 1)
+    (goal 327 1)
 =>
     (chat-to-all "My heart's not really in this anymore, sorry.")
     (disable-self)
 )
 (defrule
-    (goal 326 2)
+    (goal 327 2)
 =>
     (chat-to-all "It was a good game, I think I'm out though.")
     (disable-self)
 )
 (defrule
-    (goal 326 3)
+    (goal 327 3)
 =>
     (chat-to-all "Good game, well played.")
     (disable-self)
 )
 (defrule
-    (goal 326 4)
+    (goal 327 4)
 =>
     (chat-to-all "I'm done.")
     (disable-self)
@@ -33805,25 +33789,25 @@
 (defrule
     (true)
 =>
-    (set-goal 327 0)
+    (set-goal 328 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 327)
+    (up-get-fact random-number 0 328)
     (disable-self)
 )
 (defrule
-    (goal 327 1)
+    (goal 328 1)
 =>
     (chat-to-allies "On my way up.")
     (disable-self)
 )
 (defrule
-    (goal 327 2)
+    (goal 328 2)
 =>
     (chat-to-allies "I've clicked up.")
     (disable-self)
 )
 (defrule
-    (goal 327 3)
+    (goal 328 3)
 =>
     (chat-to-allies "Going castle.")
     (disable-self)
@@ -33847,20 +33831,20 @@
 (defrule
     (true)
 =>
-    (set-goal 328 0)
+    (set-goal 329 0)
     (generate-random-number 5)
-    (up-get-fact random-number 0 328)
+    (up-get-fact random-number 0 329)
     (disable-self)
 )
 (defrule
-    (goal 328 1)
+    (goal 329 1)
 =>
     (chat-to-all "Why must you do this?")
     (disable-self)
 )
 (defrule
     (goal team-game 1)
-    (goal 328 2)
+    (goal 329 2)
 =>
     (chat-to-all "Your teammate is a real piece of work.")
     (disable-self)
@@ -33869,25 +33853,25 @@
     (not
       (goal team-game 1)
     )
-    (goal 328 2)
+    (goal 329 2)
 =>
     (chat-to-all "I don't think I like you very much...")
     (disable-self)
 )
 (defrule
-    (goal 328 3)
+    (goal 329 3)
 =>
     (chat-to-all "[sigh]")
     (disable-self)
 )
 (defrule
-    (goal 328 4)
+    (goal 329 4)
 =>
     (chat-to-all "Why can't we just have fun?")
     (disable-self)
 )
 (defrule
-    (goal 328 5)
+    (goal 329 5)
 =>
     (chat-to-all "You know I can't deal with this. It's unfair.")
     (disable-self)
