@@ -1,3 +1,10 @@
+// enable training queue if there's no research
+#if goal attempted-researches 0
+  sn-enable-training-queue = 1
+#else
+  sn-enable-training-queue = 0
+#end if
+
 // tower and castle dodging
 #if goal attacking 1
   #if cc-players-unit-type-count target-player tc-arrow > 0 or cc-players-unit-type-count target-player castle-arrow > 0 or cc-players-unit-type-count target-player castle-arrow-chemistry > 0 or cc-players-unit-type-count target-player watch-tower-arrow > 0

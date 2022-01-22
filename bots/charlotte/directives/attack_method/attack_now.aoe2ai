@@ -7,8 +7,10 @@
   #repeat every 60 seconds
     attack
   #end repeat
-#else
+  goal did-reset = 0
+#else if goal did-reset 0
   @up-reset-unit c: -1
+  goal did-reset = 1
 #end if
 
 #if goal do-backstep 1

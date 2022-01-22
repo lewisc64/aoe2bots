@@ -1,5 +1,0 @@
-#if up-compare-goal largest-enemy-warboat-count c:> 0
-  goal allow-navy = 1
-#else
-  goal allow-navy = 0
-#end if

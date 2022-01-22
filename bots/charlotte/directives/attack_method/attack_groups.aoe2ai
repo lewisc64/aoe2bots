@@ -7,6 +7,7 @@
   sn-number-attack-groups = 200
 #else if strategic-number sn-number-attack-groups == 200
   sn-number-attack-groups = 0
+  @up-reset-unit c: -1
 #end if
 
 #if goal do-backstep 1

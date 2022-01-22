@@ -1,6 +1,7 @@
 const max-castle-age-rams = 5
 const max-imperial-age-rams = 10
 const max-trebs = 4
+const max-cannon-galleons = 8
 const max-defensive-mangonels = 4
 
 #if goal attacking 0 and town-under-attack and not enemy-buildings-in-town
@@ -8,13 +9,16 @@ const max-defensive-mangonels = 4
   goal produce-trebuchets = 0
   goal produce-cannon-galleons = 0
 #else
-  #if goal full-water-map 1
-    #if current-age == imperial-age and unit-type-count-total cannon-galleon-line < max-trebs and (research-available ri-cannon-galleon or unit-available cannon-galleon-line)
-      goal produce-cannon-galleons = 1
-    #else
-      goal produce-cannon-galleons = 0
-    #end if
-  #else if current-age == castle-age or building-type-count castle == 0 or goal good-battering-rams 1
+  
+  // cannon galleons
+  #if current-age == imperial-age and unit-type-count-total cannon-galleon-line < max-cannon-galleons and (research-available ri-cannon-galleon or unit-available cannon-galleon-line)
+    goal produce-cannon-galleons = 1
+  #else
+    goal produce-cannon-galleons = 0
+  #end if
+  
+  // trebs and rams
+  #if current-age == castle-age or building-type-count castle == 0 or goal good-battering-rams 1
     #if military-population >= 20 or enemy-buildings-in-town or goal threat-source castle
       #if unit-type-count-total battering-ram-line < max-castle-age-rams and current-age == castle-age or unit-type-count-total battering-ram-line < max-imperial-age-rams and current-age == imperial-age
         goal produce-battering-rams = 1

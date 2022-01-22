@@ -1,0 +1,5 @@
+#if players-unit-type-count any-enemy fishing-ship > 0 or players-unit-type-count any-enemy dock > 0 or players-unit-type-count any-enemy galley-line > 0 or players-unit-type-count any-enemy fire-ship-line > 0
+  goal allow-naval-units = 1
+#else
+  goal allow-naval-units = 0
+#end if

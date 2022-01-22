@@ -331,6 +331,10 @@
     @up-chat-data-to-all "Your days are numbered, player %d!" g: {goal}
   #randor
     @up-chat-data-to-all "I'm sorry about this, player %d." g: {goal}
+  #randor
+    chat to all "Love can be fleeting."
+  #randor
+    chat to all "Whoops, wrong button."
   #end select
 #end template
 

@@ -23,14 +23,16 @@ goal total-type-production = 0
 #end template
 
 #if goal enough-wood-for-units 1 and goal enough-gold-for-units 1
-  insert add-to-total-type-production(unit="archer-line",goal="produce-archers")
-  insert add-to-total-type-production(unit="cavalry-archer-line",goal="produce-cavalry-archers")
-  insert add-to-total-type-production(unit="battering-ram-line",goal="produce-battering-rams")
-  insert add-to-total-type-production(unit="mangonel-line",goal="produce-mangonels")
-  insert add-to-total-type-production(unit="scorpion-line",goal="produce-scorpions")
-  insert add-to-total-type-production(unit="bombard-cannon",goal="produce-bombard-cannons")
-  insert add-to-total-type-production(unit="trebuchet",goal="produce-trebuchets")
-  #if goal allow-navy 1
+  #if goal allow-land-units 1
+    insert add-to-total-type-production(unit="archer-line",goal="produce-archers")
+    insert add-to-total-type-production(unit="cavalry-archer-line",goal="produce-cavalry-archers")
+    insert add-to-total-type-production(unit="battering-ram-line",goal="produce-battering-rams")
+    insert add-to-total-type-production(unit="mangonel-line",goal="produce-mangonels")
+    insert add-to-total-type-production(unit="scorpion-line",goal="produce-scorpions")
+    insert add-to-total-type-production(unit="bombard-cannon",goal="produce-bombard-cannons")
+    insert add-to-total-type-production(unit="trebuchet",goal="produce-trebuchets")
+  #end if
+  #if goal allow-naval-units 1
     insert add-to-total-type-production(unit="transport-ship",goal="produce-transport-ships")
     insert add-to-total-type-production(unit="galley-line",goal="produce-galleys")
     insert add-to-total-type-production(unit="fire-ship-line",goal="produce-fire-ships")
@@ -39,29 +41,39 @@ goal total-type-production = 0
 #end if
 
 #if goal enough-food-for-units 1 and goal enough-gold-for-units 1
-  insert add-to-total-type-production(unit="hand-cannoneer",goal="produce-hand-cannoneers")
-  insert add-to-total-type-production(unit="militiaman-line",goal="produce-militia")
-  insert add-to-total-type-production(unit="eagle-warrior-line",goal="produce-eagles")
-  insert add-to-total-type-production(unit="knight-line",goal="produce-knights")
-  insert add-to-total-type-production(unit="camel-line",goal="produce-camels")
-  insert add-to-total-type-production(unit="battle-elephant-line",goal="produce-battle-elephants")
+  #if goal allow-land-units 1
+    insert add-to-total-type-production(unit="hand-cannoneer",goal="produce-hand-cannoneers")
+    insert add-to-total-type-production(unit="militiaman-line",goal="produce-militia")
+    insert add-to-total-type-production(unit="eagle-warrior-line",goal="produce-eagles")
+    insert add-to-total-type-production(unit="knight-line",goal="produce-knights")
+    insert add-to-total-type-production(unit="camel-line",goal="produce-camels")
+    insert add-to-total-type-production(unit="battle-elephant-line",goal="produce-battle-elephants")
+  #end if
 #end if
 
 #if goal enough-food-for-units 1
-  insert add-to-total-type-production(unit="scout-cavalry-line",goal="produce-scouts")
+  #if goal allow-land-units 1
+    insert add-to-total-type-production(unit="scout-cavalry-line",goal="produce-scouts")
+  #end if
 #end if
 
 #if goal enough-wood-for-units 1 and goal enough-food-for-units 1
-  insert add-to-total-type-production(unit="skirmisher-line",goal="produce-skirmishers")
-  insert add-to-total-type-production(unit="spearman-line",goal="produce-spearmen")
+  #if goal allow-land-units 1
+    insert add-to-total-type-production(unit="skirmisher-line",goal="produce-skirmishers")
+    insert add-to-total-type-production(unit="spearman-line",goal="produce-spearmen")
+  #end if
 #end if
 
 #if goal enough-wood-for-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1
-  insert add-to-total-type-production(unit="my-unique-unit-line",goal="produce-unique-units")
+  #if goal allow-land-units 1
+    insert add-to-total-type-production(unit="my-unique-unit-line",goal="produce-unique-units")
+  #end if
 #end if
 
 #if goal enough-gold-for-units 1
-  insert add-to-total-type-production(unit="monk",goal="produce-monks")
+  #if goal allow-land-units 1
+    insert add-to-total-type-production(unit="monk",goal="produce-monks")
+  #end if
 #end if
 
 @up-get-fact military-population 0 expected-units-per-type
@@ -86,31 +98,33 @@ load "prerequisites.aoe2ai"
   #end if
 #end template
 
-insert load-unit(production_goal="produce-archers",unit="archer-line",unit_path="archer.aoe2ai")
-insert load-unit(production_goal="produce-hand-cannoneers",unit="hand-cannoneer",unit_path="hand_cannoneer.aoe2ai")
-insert load-unit(production_goal="produce-skirmishers",unit="skirmisher-line",unit_path="skirmisher.aoe2ai")
-insert load-unit(production_goal="produce-cavalry-archers",unit="cavalry-archer-line",unit_path="cavalry_archer.aoe2ai")
+#if goal allow-land-units 1
+  insert load-unit(production_goal="produce-archers",unit="archer-line",unit_path="archer.aoe2ai")
+  insert load-unit(production_goal="produce-hand-cannoneers",unit="hand-cannoneer",unit_path="hand_cannoneer.aoe2ai")
+  insert load-unit(production_goal="produce-skirmishers",unit="skirmisher-line",unit_path="skirmisher.aoe2ai")
+  insert load-unit(production_goal="produce-cavalry-archers",unit="cavalry-archer-line",unit_path="cavalry_archer.aoe2ai")
 
-insert load-unit(production_goal="produce-militia",unit="militiaman-line",unit_path="militia.aoe2ai")
-insert load-unit(production_goal="produce-spearmen",unit="spearman-line",unit_path="spearman.aoe2ai")
-insert load-unit(production_goal="produce-eagles",unit="eagle-warrior-line",unit_path="eagle_warrior.aoe2ai")
+  insert load-unit(production_goal="produce-militia",unit="militiaman-line",unit_path="militia.aoe2ai")
+  insert load-unit(production_goal="produce-spearmen",unit="spearman-line",unit_path="spearman.aoe2ai")
+  insert load-unit(production_goal="produce-eagles",unit="eagle-warrior-line",unit_path="eagle_warrior.aoe2ai")
 
-insert load-unit(production_goal="produce-scouts",unit="scout-cavalry-line",unit_path="scout_cavalry.aoe2ai")
-insert load-unit(production_goal="produce-knights",unit="knight-line",unit_path="knight.aoe2ai")
-insert load-unit(production_goal="produce-camels",unit="camel-line",unit_path="camel.aoe2ai")
-insert load-unit(production_goal="produce-battle-elephants",unit="battle-elephant-line",unit_path="battle_elephant.aoe2ai")
+  insert load-unit(production_goal="produce-scouts",unit="scout-cavalry-line",unit_path="scout_cavalry.aoe2ai")
+  insert load-unit(production_goal="produce-knights",unit="knight-line",unit_path="knight.aoe2ai")
+  insert load-unit(production_goal="produce-camels",unit="camel-line",unit_path="camel.aoe2ai")
+  insert load-unit(production_goal="produce-battle-elephants",unit="battle-elephant-line",unit_path="battle_elephant.aoe2ai")
 
-insert load-unit(production_goal="produce-battering-rams",unit="battering-ram-line",unit_path="battering_ram.aoe2ai")
-insert load-unit(production_goal="produce-mangonels",unit="mangonel-line",unit_path="mangonel.aoe2ai")
-insert load-unit(production_goal="produce-scorpions",unit="scorpion-line",unit_path="scorpion.aoe2ai")
-insert load-unit(production_goal="produce-bombard-cannons",unit="bombard-cannon",unit_path="bombard_cannon.aoe2ai")
+  insert load-unit(production_goal="produce-battering-rams",unit="battering-ram-line",unit_path="battering_ram.aoe2ai")
+  insert load-unit(production_goal="produce-mangonels",unit="mangonel-line",unit_path="mangonel.aoe2ai")
+  insert load-unit(production_goal="produce-scorpions",unit="scorpion-line",unit_path="scorpion.aoe2ai")
+  insert load-unit(production_goal="produce-bombard-cannons",unit="bombard-cannon",unit_path="bombard_cannon.aoe2ai")
 
-insert load-unit(production_goal="produce-trebuchets",unit="trebuchet-set",unit_path="trebuchet.aoe2ai")
-insert load-unit(production_goal="produce-unique-units",unit="my-unique-unit-line",unit_path="unique_unit.aoe2ai")
+  insert load-unit(production_goal="produce-trebuchets",unit="trebuchet-set",unit_path="trebuchet.aoe2ai")
+  insert load-unit(production_goal="produce-unique-units",unit="my-unique-unit-line",unit_path="unique_unit.aoe2ai")
 
-insert load-unit(production_goal="produce-monks",unit="monk-set",unit_path="monk.aoe2ai")
+  insert load-unit(production_goal="produce-monks",unit="monk-set",unit_path="monk.aoe2ai")
+#end if
 
-#if goal allow-navy 1
+#if goal allow-naval-units 1
   insert load-unit(production_goal="produce-transport-ships",unit="transport-ship",unit_path="transport_ship.aoe2ai")
   insert load-unit(production_goal="produce-galleys",unit="galley-line",unit_path="galley.aoe2ai")
   insert load-unit(production_goal="produce-fire-ships",unit="fire-ship-line",unit_path="fire_ship.aoe2ai")
