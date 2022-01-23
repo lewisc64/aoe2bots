@@ -3,9 +3,3 @@
 #else if strategic-number sn-maximum-town-size == 255
   @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
 #end if
-
-#if goal do-backstep 1
-  @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
-  retreat
-  goal do-backstep = 0
-#end if

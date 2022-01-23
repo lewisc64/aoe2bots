@@ -1,5 +1,9 @@
-#if (goal produce-galleys 1 or goal produce-fire-ships 1 or goal full-water-map 1) and cc-players-unit-type-count 0 sea-fish > 0
-  goal produce-fishing-ships = 1
+#if (goal produce-galleys 1 or goal produce-fire-ships 1 or goal full-water-map 1) and cc-players-unit-type-count 0 sea-fish > 0 and not town-under-attack
+  #if goal full-water-map 0 or warboat-count >= 10
+    goal produce-fishing-ships = 1
+  #else
+    goal produce-fishing-ships = 0
+  #end if
 #else
   goal produce-fishing-ships = 0
   #if up-compare-goal population-space-remaining c:< 5

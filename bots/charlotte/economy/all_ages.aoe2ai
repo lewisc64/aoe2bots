@@ -53,7 +53,7 @@ build houses with 5 headroom
   sn-camp-max-distance += 4
 #end when
 
-#if current-age == dark-age
+#if up-research-status c: feudal-age < research-pending
 
   #do once
     distribute villagers 20 80 0 0
@@ -77,7 +77,7 @@ build houses with 5 headroom
   #end if
   build safety mill
   
-  #if wood-amount >= 100 and up-pending-objects c: farm == 0
+  #if wood-amount >= 100 and up-pending-objects c: farm == 0 and food-amount < 300
     build farms
   #end if
 
@@ -106,7 +106,7 @@ build houses with 5 headroom
   
   build houses with 20 headroom
   
-  #if wood-amount >= 200
+  #if wood-amount >= 200 and research-completed ri-horse-collar and up-research-status c: ri-heavy-plow != research-pending and up-research-status c: ri-crop-rotation != research-pending
     build farms
     #if (dropsite-min-distance sea-fish > 10 or dropsite-min-distance sea-fish == -1) and unit-type-count-total fishing-ship > 0
       //build fish traps

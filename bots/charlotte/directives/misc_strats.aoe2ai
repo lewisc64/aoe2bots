@@ -5,17 +5,6 @@
   sn-enable-training-queue = 0
 #end if
 
-// tower and castle dodging
-#if goal attacking 1
-  #if cc-players-unit-type-count target-player tc-arrow > 0 or cc-players-unit-type-count target-player castle-arrow > 0 or cc-players-unit-type-count target-player castle-arrow-chemistry > 0 or cc-players-unit-type-count target-player watch-tower-arrow > 0
-    #if unit-type-count battering-ram-line == 0 and unit-type-count trebuchet-set == 0 and unit-type-count bombard-cannon == 0 and unit-type-count cannon-galleon-line == 0
-      #if (goal threat-source town-center or goal threat-source castle) and up-compare-goal threat-target c:!= battering-ram-line
-        goal do-backstep = 1
-      #end if
-    #end if
-  #end if
-#end if
-
 // delete farms that may be miles away
 #if building-type-count town-center-foundation >= 1 and building-type-count town-center == 0
   delete building farm
@@ -31,7 +20,7 @@
 
 // help stuck units
 #if game-time >= 2400
-  #repeat every 10 minutes
+  #repeat every 30 minutes
     @up-reset-unit c: -1
   #end repeat
 #end if

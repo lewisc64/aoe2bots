@@ -25,6 +25,11 @@ goal produce-monks = 0
   goal produce-unique-units = 0
 #end if
 
+#if goal full-water-map 0
+  goal produce-galleys = 0
+  goal produce-fire-ships = 0
+#end if
+
 #respond to min-detection-units scout-cavalry-line
   goal produce-spearmen = 1
 #end respond

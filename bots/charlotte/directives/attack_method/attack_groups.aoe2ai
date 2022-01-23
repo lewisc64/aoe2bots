@@ -9,8 +9,3 @@
   sn-number-attack-groups = 0
   @up-reset-unit c: -1
 #end if
-
-#if goal do-backstep 1
-  // backstep cannot be done
-  goal do-backstep = 0
-#end if
