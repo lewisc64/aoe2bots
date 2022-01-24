@@ -106,7 +106,7 @@ build houses with 5 headroom
   
   build houses with 20 headroom
   
-  #if wood-amount >= 200 and research-completed ri-horse-collar and up-research-status c: ri-heavy-plow != research-pending and up-research-status c: ri-crop-rotation != research-pending
+  #if wood-amount >= 200 and (research-completed ri-horse-collar or food-amount < 75) and up-research-status c: ri-heavy-plow != research-pending and up-research-status c: ri-crop-rotation != research-pending
     build farms
     #if (dropsite-min-distance sea-fish > 10 or dropsite-min-distance sea-fish == -1) and unit-type-count-total fishing-ship > 0
       //build fish traps

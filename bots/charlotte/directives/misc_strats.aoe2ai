@@ -67,3 +67,13 @@
   sn-number-explore-groups = 1
   sn-total-number-explorers = 1
 #end if
+
+#if civ-selected portuguese
+  #select random persistant
+    // do nothing
+  #randor
+    build 1 feitoria
+  #randor
+    build 2 feitoria
+  #end select
+#end if
