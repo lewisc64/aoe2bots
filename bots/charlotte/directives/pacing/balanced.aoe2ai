@@ -12,12 +12,16 @@ goal aggressive-override = 0
 
 #if up-compare-goal target-military-percentage c:> 100 and up-compare-goal target-military-percentage c:<= 150 and goal attacking 1
   goal aggressive-override = 1
-  chat to self "make military lead bigger"
+  #repeat every 30 seconds
+    chat to self "make military lead bigger"
+  #end repeat
 #end if
 
 #if military-population < 10
   goal aggressive-override = 1
-  chat to self "not enough military"
+  #repeat every 30 seconds
+    chat to self "not enough military"
+  #end repeat
 #end if
 
 #if goal balanced-aggressive 1 or goal aggressive-override 1

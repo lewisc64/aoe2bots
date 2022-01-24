@@ -26906,14 +26906,13 @@
       )
     )
 =>
-    (up-jump-rule 17)
+    (up-jump-rule 16)
 )
 (defrule
     (players-unit-type-count target-player skirmisher-line >= min-detection-units)
     (goal partial-ranged-blacksmith-investment 1)
 =>
     (set-goal produce-skirmishers 1)
-    (chat-local-to-self "COUNTER SKIRMS WITH SKIRMS")
 )
 (defrule
     (players-unit-type-count target-player archer-line >= min-detection-units)
@@ -26923,7 +26922,6 @@
     (goal partial-ranged-blacksmith-investment 1)
 =>
     (set-goal produce-skirmishers 1)
-    (chat-local-to-self "COUNTER ARCHERS WITH SKIRMS")
 )
 (defrule
     (players-unit-type-count target-player cavalry-archer-line >= min-detection-units)
@@ -26936,7 +26934,6 @@
     (goal partial-ranged-blacksmith-investment 1)
 =>
     (set-goal produce-skirmishers 1)
-    (chat-local-to-self "COUNTER CAV ARCHERS WITH SKIRMS")
 )
 (defrule
     (players-unit-type-count target-player spearman-line >= min-detection-units)
@@ -26952,7 +26949,6 @@
     (goal partial-ranged-blacksmith-investment 1)
 =>
     (set-goal produce-skirmishers 1)
-    (chat-local-to-self "COUNTER SPEARMEN WITH SKIRMS")
 )
 (defrule
     (players-unit-type-count target-player war-wagon-line >= min-detection-units)
@@ -26971,7 +26967,6 @@
     (goal partial-ranged-blacksmith-investment 1)
 =>
     (set-goal produce-skirmishers 1)
-    (chat-local-to-self "COUNTER WAR WAGONS WITH SKIRMS")
 )
 (defrule
     (not
@@ -27012,7 +27007,6 @@
     )
     (goal produce-camels 0)
 =>
-    (chat-local-to-self "COUNTER SCOUTS WITH SPEARMEN")
     (set-goal produce-spearmen 1)
 )
 (defrule
@@ -27031,7 +27025,6 @@
     )
     (goal produce-camels 0)
 =>
-    (chat-local-to-self "COUNTER KNIGHTS WITH SPEARMEN")
     (set-goal produce-spearmen 1)
 )
 (defrule
@@ -27056,7 +27049,6 @@
     )
     (goal produce-camels 0)
 =>
-    (chat-local-to-self "COUNTER BATTLE ELEPHANTS WITH SPEARMEN")
     (set-goal produce-spearmen 1)
 )
 (defrule
@@ -27087,7 +27079,6 @@
     )
     (goal produce-camels 0)
 =>
-    (chat-local-to-self "COUNTER CAMELS WITH SPEARMEN")
     (set-goal produce-spearmen 1)
 )
 (defrule
@@ -27124,7 +27115,6 @@
     )
     (goal produce-camels 0)
 =>
-    (chat-local-to-self "COUNTER WAR ELEPHANTS WITH SPEARMEN")
     (set-goal produce-spearmen 1)
 )
 (defrule
@@ -27167,7 +27157,6 @@
     )
     (goal produce-camels 0)
 =>
-    (chat-local-to-self "COUNTER CATAPHRACT WITH SPEARMEN")
     (set-goal produce-spearmen 1)
 )
 (defrule
@@ -27234,13 +27223,6 @@
     )
 =>
     (set-goal produce-spearmen 0)
-)
-(defrule
-    (players-unit-type-count target-player scout-cavalry-line >= 2)
-    (current-age == feudal-age)
-    (goal produce-spearmen 0)
-=>
-    (chat-local-to-self "LIGHT COUNTER SCOUTS WITH SPEARMEN")
 )
 (defrule
     (can-train spearman-line)
@@ -27722,7 +27704,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 21)
+    (up-jump-rule 27)
 )
 (defrule
     (true)
@@ -27788,13 +27770,43 @@
     (goal attacking 1)
 =>
     (set-goal aggressive-override 1)
+)
+(defrule
+    (up-compare-goal target-military-percentage c:> 100)
+    (up-compare-goal target-military-percentage c:<= 150)
+    (goal attacking 1)
+=>
+    (enable-timer 7 30)
+    (disable-self)
+)
+(defrule
+    (timer-triggered 7)
+    (up-compare-goal target-military-percentage c:> 100)
+    (up-compare-goal target-military-percentage c:<= 150)
+    (goal attacking 1)
+=>
     (chat-local-to-self "make military lead bigger")
+    (disable-timer 7)
+    (enable-timer 7 30)
 )
 (defrule
     (military-population < 10)
 =>
     (set-goal aggressive-override 1)
+)
+(defrule
+    (military-population < 10)
+=>
+    (enable-timer 8 30)
+    (disable-self)
+)
+(defrule
+    (timer-triggered 8)
+    (military-population < 10)
+=>
     (chat-local-to-self "not enough military")
+    (disable-timer 8)
+    (enable-timer 8 30)
 )
 (defrule
     (up-compare-goal target-military-percentage c:>= 200)
@@ -27804,7 +27816,28 @@
     )
 =>
     (set-goal passive-override 1)
+)
+(defrule
+    (up-compare-goal target-military-percentage c:>= 200)
+    (military-population >= 30)
+    (not
+      (goal attempted-researches 0)
+    )
+=>
+    (enable-timer 9 30)
+    (disable-self)
+)
+(defrule
+    (timer-triggered 9)
+    (up-compare-goal target-military-percentage c:>= 200)
+    (military-population >= 30)
+    (not
+      (goal attempted-researches 0)
+    )
+=>
     (chat-local-to-self "massive lead, do techs.")
+    (disable-timer 9)
+    (enable-timer 9 30)
 )
 (defrule
     (not
@@ -27999,7 +28032,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 6)
+    (up-jump-rule 7)
 )
 (defrule
     (true)
@@ -28024,7 +28057,19 @@
     (up-modify-sn sn-target-player-number g:= 233)
     (up-modify-sn sn-focus-player-number g:= 233)
     (up-send-scout group-type-land-explore scout-enemy)
-    (up-chat-data-to-self "Retargeting to player %d" g: target-player)
+)
+(defrule
+    (strategic-number sn-target-player-number != -1)
+    (or
+      (not
+        (player-in-game target-player)
+      )
+      (not
+        (stance-toward target-player enemy)
+      )
+    )
+=>
+    (up-chat-data-to-self "Retargeting to player %d" s: sn-target-player-number)
 )
 (defrule
     (true)
@@ -28133,16 +28178,16 @@
 (defrule
     (goal attacking 1)
 =>
-    (enable-timer 7 60)
+    (enable-timer 10 60)
     (disable-self)
 )
 (defrule
-    (timer-triggered 7)
+    (timer-triggered 10)
     (goal attacking 1)
 =>
     (attack-now)
-    (disable-timer 7)
-    (enable-timer 7 60)
+    (disable-timer 10)
+    (enable-timer 10 60)
 )
 (defrule
     (goal attacking 1)
@@ -32185,7 +32230,7 @@
 (defrule
     (goal locked-teams 1)
 =>
-    (enable-timer 8 1800)
+    (enable-timer 11 1800)
     (disable-self)
 )
 (defrule
@@ -32195,7 +32240,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 8)
+            (timer-triggered 11)
             (goal locked-teams 1)
           )
         )
@@ -32241,7 +32286,7 @@
           (and
             (up-compare-goal score-percentage c:<= 70)
             (and
-              (timer-triggered 8)
+              (timer-triggered 11)
               (goal locked-teams 1)
             )
           )
@@ -32290,7 +32335,7 @@
           (and
             (up-compare-goal score-percentage c:<= 70)
             (and
-              (timer-triggered 8)
+              (timer-triggered 11)
               (goal locked-teams 1)
             )
           )
@@ -32349,7 +32394,7 @@
               (up-compare-goal score-percentage c:<= 70)
             )
             (and
-              (timer-triggered 8)
+              (timer-triggered 11)
               (goal locked-teams 1)
             )
           )
@@ -32394,7 +32439,7 @@
                 (up-compare-goal score-percentage c:<= 70)
               )
               (and
-                (timer-triggered 8)
+                (timer-triggered 11)
                 (goal locked-teams 1)
               )
             )
@@ -32428,7 +32473,7 @@
                 (up-compare-goal score-percentage c:<= 70)
               )
               (and
-                (timer-triggered 8)
+                (timer-triggered 11)
                 (goal locked-teams 1)
               )
             )
@@ -32455,7 +32500,7 @@
         (and
           (military-population >= 20)
           (and
-            (timer-triggered 8)
+            (timer-triggered 11)
             (goal locked-teams 1)
           )
         )
@@ -32540,7 +32585,7 @@
             (and
               (military-population >= 20)
               (and
-                (timer-triggered 8)
+                (timer-triggered 11)
                 (goal locked-teams 1)
               )
             )
@@ -32667,7 +32712,7 @@
             (and
               (military-population >= 20)
               (and
-                (timer-triggered 8)
+                (timer-triggered 11)
                 (goal locked-teams 1)
               )
             )
