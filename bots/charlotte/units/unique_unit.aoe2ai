@@ -52,6 +52,8 @@
     load "types/cavalry.aoe2ai"
   #end if
   
+  @up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type
+  
   #if civ-selected briton and current-age >= castle-age
     load "../research/castle/yeomen.aoe2ai"
   #end if
@@ -61,15 +63,15 @@
     load "../research/castle/logistica.aoe2ai"
   #end if
   
-  #if civ-selected persian
+  #if civ-selected persian and current-age == imperial-age
     load "../research/castle/mahouts.aoe2ai"
   #end if
   
-  #if civ-selected chinese
+  #if civ-selected chinese and current-age == imperial-age
     load "../research/castle/rocketry.aoe2ai"
   #end if
   
-  #if civ-selected frankish
+  #if civ-selected frankish and current-age == imperial-age
     load "../research/castle/bearded_axe.aoe2ai"
   #end if
   
@@ -85,26 +87,40 @@
     load "../research/castle/manipur_cavalry.aoe2ai"
   #end if
   
-  @up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type
+  #if civ-selected portuguese and current-age == imperial-age
+    load "../research/university/siege_engineers.aoe2ai"
+  #end if
   
-  #if civ-selected portuguese
-    load "../research/university/siege_engineers.aoe2ai"
-  #end if
   #if civ-selected khmer
-    load "../research/university/siege_engineers.aoe2ai"
+    #if current-age >= imperial-age
+      load "../research/university/siege_engineers.aoe2ai"
+      load "../research/university/chemistry.aoe2ai"
+      load "../research/blacksmith/plate_barding.aoe2ai"
+    #else
+      load "../research/blacksmith/chain_barding.aoe2ai"
+    #end if
     load "../research/university/ballistics.aoe2ai"
-    load "../research/university/chemistry.aoe2ai"
     load "../research/stable/husbandry.aoe2ai"
     load "../research/stable/bloodlines.aoe2ai"
-    load "../research/blacksmith/plate_barding.aoe2ai"
+    
   #end if
+  
   #if civ-selected spanish
-    load "../research/blacksmith/ring_archer_armor.aoe2ai"
+    #if current-age == imperial-age
+      load "../research/blacksmith/ring_archer_armor.aoe2ai"
+    #else
+      load "../research/blacksmith/leather_archer_armor.aoe2ai"
+    #end if
     load "../research/stable/husbandry.aoe2ai"
     load "../research/stable/bloodlines.aoe2ai"
   #end if
+  
   #if civ-selected turkish
-    load "../research/blacksmith/ring_archer_armor.aoe2ai"
+    #if current-age == imperial-age
+      load "../research/blacksmith/ring_archer_armor.aoe2ai"
+    #else
+      load "../research/blacksmith/leather_archer_armor.aoe2ai"
+    #end if
   #end if
   
   #if goal produce-units 1 and goal enough-wood-for-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1

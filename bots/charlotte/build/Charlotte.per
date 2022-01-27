@@ -17942,7 +17942,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 535)
+    (up-jump-rule 565)
 )
 (defrule
     (goal produce-unique-units 1)
@@ -17966,7 +17966,7 @@
       )
     )
 =>
-    (up-jump-rule 531)
+    (up-jump-rule 561)
 )
 (defrule
     (true)
@@ -21257,6 +21257,11 @@
     (build stable)
 )
 (defrule
+    (unit-available my-unique-unit-line)
+=>
+    (up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type)
+)
+(defrule
     (not
       (and
         (and
@@ -21406,7 +21411,10 @@
 (defrule
     (not
       (and
-        (civ-selected persian)
+        (and
+          (civ-selected persian)
+          (current-age == imperial-age)
+        )
         (unit-available my-unique-unit-line)
       )
     )
@@ -21450,7 +21458,10 @@
 (defrule
     (not
       (and
-        (civ-selected chinese)
+        (and
+          (civ-selected chinese)
+          (current-age == imperial-age)
+        )
         (unit-available my-unique-unit-line)
       )
     )
@@ -21494,7 +21505,10 @@
 (defrule
     (not
       (and
-        (civ-selected frankish)
+        (and
+          (civ-selected frankish)
+          (current-age == imperial-age)
+        )
         (unit-available my-unique-unit-line)
       )
     )
@@ -21674,14 +21688,12 @@
     (research ri-manipur-cavalry)
 )
 (defrule
-    (unit-available my-unique-unit-line)
-=>
-    (up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type)
-)
-(defrule
     (not
       (and
-        (civ-selected portuguese)
+        (and
+          (civ-selected portuguese)
+          (current-age == imperial-age)
+        )
         (unit-available my-unique-unit-line)
       )
     )
@@ -21723,8 +21735,11 @@
 (defrule
     (not
       (and
-        (civ-selected khmer)
-        (unit-available my-unique-unit-line)
+        (current-age >= imperial-age)
+        (and
+          (civ-selected khmer)
+          (unit-available my-unique-unit-line)
+        )
       )
     )
 =>
@@ -21765,50 +21780,11 @@
 (defrule
     (not
       (and
-        (civ-selected khmer)
-        (unit-available my-unique-unit-line)
-      )
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-ballistics)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build university)
-    (up-pending-objects c: university < 5)
-    (building-type-count-total university < 1)
-    (building-type-count-total university == 0)
-=>
-    (build university)
-)
-(defrule
-    (up-research-status c: ri-ballistics < research-pending)
-    (research-available ri-ballistics)
-    (not
-      (research-completed ri-ballistics)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-ballistics)
-    (goal do-research 1)
-    (research-available ri-ballistics)
-    (not
-      (research-completed ri-ballistics)
-    )
-=>
-    (research ri-ballistics)
-)
-(defrule
-    (not
-      (and
-        (civ-selected khmer)
-        (unit-available my-unique-unit-line)
+        (current-age >= imperial-age)
+        (and
+          (civ-selected khmer)
+          (unit-available my-unique-unit-line)
+        )
       )
     )
 =>
@@ -21849,124 +21825,11 @@
 (defrule
     (not
       (and
-        (civ-selected khmer)
-        (unit-available my-unique-unit-line)
-      )
-    )
-=>
-    (up-jump-rule 6)
-)
-(defrule
-    (research-completed ri-husbandry)
-=>
-    (up-jump-rule 3)
-)
-(defrule
-    (not
-      (building-type-count-total stable == 0)
-    )
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build barracks)
-    (up-pending-objects c: barracks < 5)
-    (building-type-count-total barracks < 1)
-    (building-type-count-total barracks == 0)
-=>
-    (build barracks)
-)
-(defrule
-    (can-build stable)
-    (up-pending-objects c: stable < 5)
-    (building-type-count-total stable < 1)
-    (building-type-count barracks >= 1)
-    (building-type-count-total stable == 0)
-=>
-    (build stable)
-)
-(defrule
-    (up-research-status c: ri-husbandry < research-pending)
-    (research-available ri-husbandry)
-    (not
-      (research-completed ri-husbandry)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-husbandry)
-    (goal do-research 1)
-    (research-available ri-husbandry)
-    (not
-      (research-completed ri-husbandry)
-    )
-=>
-    (research ri-husbandry)
-)
-(defrule
-    (not
-      (and
-        (civ-selected khmer)
-        (unit-available my-unique-unit-line)
-      )
-    )
-=>
-    (up-jump-rule 6)
-)
-(defrule
-    (research-completed ri-bloodlines)
-=>
-    (up-jump-rule 3)
-)
-(defrule
-    (not
-      (building-type-count-total stable == 0)
-    )
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build barracks)
-    (up-pending-objects c: barracks < 5)
-    (building-type-count-total barracks < 1)
-    (building-type-count-total barracks == 0)
-=>
-    (build barracks)
-)
-(defrule
-    (can-build stable)
-    (up-pending-objects c: stable < 5)
-    (building-type-count-total stable < 1)
-    (building-type-count barracks >= 1)
-    (building-type-count-total stable == 0)
-=>
-    (build stable)
-)
-(defrule
-    (up-research-status c: ri-bloodlines < research-pending)
-    (research-available ri-bloodlines)
-    (not
-      (research-completed ri-bloodlines)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-bloodlines)
-    (goal do-research 1)
-    (research-available ri-bloodlines)
-    (not
-      (research-completed ri-bloodlines)
-    )
-=>
-    (research ri-bloodlines)
-)
-(defrule
-    (not
-      (and
-        (civ-selected khmer)
-        (unit-available my-unique-unit-line)
+        (current-age >= imperial-age)
+        (and
+          (civ-selected khmer)
+          (unit-available my-unique-unit-line)
+        )
       )
     )
 =>
@@ -22084,8 +21947,255 @@
 (defrule
     (not
       (and
-        (civ-selected spanish)
+        (not
+          (current-age >= imperial-age)
+        )
+        (and
+          (civ-selected khmer)
+          (unit-available my-unique-unit-line)
+        )
+      )
+    )
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-chain-barding)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-chain-barding)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-scale-barding)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (up-research-status c: ri-scale-barding < research-pending)
+    (research-available ri-scale-barding)
+    (not
+      (research-completed ri-scale-barding)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-scale-barding)
+    (goal do-research 1)
+    (research-available ri-scale-barding)
+    (not
+      (research-completed ri-scale-barding)
+    )
+=>
+    (research ri-scale-barding)
+)
+(defrule
+    (up-research-status c: ri-chain-barding < research-pending)
+    (research-available ri-chain-barding)
+    (not
+      (research-completed ri-chain-barding)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-chain-barding)
+    (goal do-research 1)
+    (research-available ri-chain-barding)
+    (not
+      (research-completed ri-chain-barding)
+    )
+=>
+    (research ri-chain-barding)
+)
+(defrule
+    (not
+      (and
+        (civ-selected khmer)
         (unit-available my-unique-unit-line)
+      )
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-ballistics)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build university)
+    (up-pending-objects c: university < 5)
+    (building-type-count-total university < 1)
+    (building-type-count-total university == 0)
+=>
+    (build university)
+)
+(defrule
+    (up-research-status c: ri-ballistics < research-pending)
+    (research-available ri-ballistics)
+    (not
+      (research-completed ri-ballistics)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-ballistics)
+    (goal do-research 1)
+    (research-available ri-ballistics)
+    (not
+      (research-completed ri-ballistics)
+    )
+=>
+    (research ri-ballistics)
+)
+(defrule
+    (not
+      (and
+        (civ-selected khmer)
+        (unit-available my-unique-unit-line)
+      )
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (research-completed ri-husbandry)
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (not
+      (building-type-count-total stable == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+    (building-type-count-total barracks == 0)
+=>
+    (build barracks)
+)
+(defrule
+    (can-build stable)
+    (up-pending-objects c: stable < 5)
+    (building-type-count-total stable < 1)
+    (building-type-count barracks >= 1)
+    (building-type-count-total stable == 0)
+=>
+    (build stable)
+)
+(defrule
+    (up-research-status c: ri-husbandry < research-pending)
+    (research-available ri-husbandry)
+    (not
+      (research-completed ri-husbandry)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-husbandry)
+    (goal do-research 1)
+    (research-available ri-husbandry)
+    (not
+      (research-completed ri-husbandry)
+    )
+=>
+    (research ri-husbandry)
+)
+(defrule
+    (not
+      (and
+        (civ-selected khmer)
+        (unit-available my-unique-unit-line)
+      )
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (research-completed ri-bloodlines)
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (not
+      (building-type-count-total stable == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+    (building-type-count-total barracks == 0)
+=>
+    (build barracks)
+)
+(defrule
+    (can-build stable)
+    (up-pending-objects c: stable < 5)
+    (building-type-count-total stable < 1)
+    (building-type-count barracks >= 1)
+    (building-type-count-total stable == 0)
+=>
+    (build stable)
+)
+(defrule
+    (up-research-status c: ri-bloodlines < research-pending)
+    (research-available ri-bloodlines)
+    (not
+      (research-completed ri-bloodlines)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-bloodlines)
+    (goal do-research 1)
+    (research-available ri-bloodlines)
+    (not
+      (research-completed ri-bloodlines)
+    )
+=>
+    (research ri-bloodlines)
+)
+(defrule
+    (not
+      (and
+        (current-age == imperial-age)
+        (and
+          (civ-selected spanish)
+          (unit-available my-unique-unit-line)
+        )
       )
     )
 =>
@@ -22199,6 +22309,92 @@
     )
 =>
     (research ri-ring-archer-armor)
+)
+(defrule
+    (not
+      (and
+        (not
+          (current-age == imperial-age)
+        )
+        (and
+          (civ-selected spanish)
+          (unit-available my-unique-unit-line)
+        )
+      )
+    )
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-leather-archer-armor)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-leather-archer-armor)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-padded-archer-armor)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (up-research-status c: ri-padded-archer-armor < research-pending)
+    (research-available ri-padded-archer-armor)
+    (not
+      (research-completed ri-padded-archer-armor)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-padded-archer-armor)
+    (goal do-research 1)
+    (research-available ri-padded-archer-armor)
+    (not
+      (research-completed ri-padded-archer-armor)
+    )
+=>
+    (research ri-padded-archer-armor)
+)
+(defrule
+    (up-research-status c: ri-leather-archer-armor < research-pending)
+    (research-available ri-leather-archer-armor)
+    (not
+      (research-completed ri-leather-archer-armor)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-leather-archer-armor)
+    (goal do-research 1)
+    (research-available ri-leather-archer-armor)
+    (not
+      (research-completed ri-leather-archer-armor)
+    )
+=>
+    (research ri-leather-archer-armor)
 )
 (defrule
     (not
@@ -22319,8 +22515,11 @@
 (defrule
     (not
       (and
-        (civ-selected turkish)
-        (unit-available my-unique-unit-line)
+        (current-age == imperial-age)
+        (and
+          (civ-selected turkish)
+          (unit-available my-unique-unit-line)
+        )
       )
     )
 =>
@@ -22434,6 +22633,92 @@
     )
 =>
     (research ri-ring-archer-armor)
+)
+(defrule
+    (not
+      (and
+        (not
+          (current-age == imperial-age)
+        )
+        (and
+          (civ-selected turkish)
+          (unit-available my-unique-unit-line)
+        )
+      )
+    )
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-leather-archer-armor)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-leather-archer-armor)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-padded-archer-armor)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (up-research-status c: ri-padded-archer-armor < research-pending)
+    (research-available ri-padded-archer-armor)
+    (not
+      (research-completed ri-padded-archer-armor)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-padded-archer-armor)
+    (goal do-research 1)
+    (research-available ri-padded-archer-armor)
+    (not
+      (research-completed ri-padded-archer-armor)
+    )
+=>
+    (research ri-padded-archer-armor)
+)
+(defrule
+    (up-research-status c: ri-leather-archer-armor < research-pending)
+    (research-available ri-leather-archer-armor)
+    (not
+      (research-completed ri-leather-archer-armor)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-leather-archer-armor)
+    (goal do-research 1)
+    (research-available ri-leather-archer-armor)
+    (not
+      (research-completed ri-leather-archer-armor)
+    )
+=>
+    (research ri-leather-archer-armor)
 )
 (defrule
     (can-train my-unique-unit-line)
