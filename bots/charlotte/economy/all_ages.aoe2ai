@@ -77,7 +77,7 @@ build houses with 5 headroom
   #end if
   build safety mill
   
-  #if wood-amount >= 100 and up-pending-objects c: farm == 0 and food-amount < 300
+  #if wood-amount >= 100 and up-pending-objects c: farm == 0
     build farms
   #end if
 

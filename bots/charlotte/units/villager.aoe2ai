@@ -51,7 +51,7 @@ load "../research/town_center/prerequisites.aoe2ai"
     delete unit villager
   #end if
   
-  #if game-time >= 60 and up-pending-objects c: villager == 0
+  #if (game-time >= 60 or civ-selected mayan or civ-selected chinese) and up-pending-objects c: villager == 0
     load "../research/town_center/loom.aoe2ai"
   #end if
 #end if

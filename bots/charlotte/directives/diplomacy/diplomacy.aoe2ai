@@ -218,3 +218,5 @@ insert handle-stance-changes(player=8)
   insert say-do-betrayal-line-to-all(goal="chat-betray-player")
   goal chat-betray-player = -1
 #end if
+
+@set-stance my-player-number ally
