@@ -11,7 +11,7 @@ const max-defensive-mangonels = 4
 #else
   
   // cannon galleons
-  #if current-age == imperial-age and unit-type-count-total cannon-galleon-line < max-cannon-galleons and (research-available ri-cannon-galleon or unit-available cannon-galleon-line)
+  #if goal water-map 1 and current-age == imperial-age and unit-type-count-total cannon-galleon-line < max-cannon-galleons and (research-available ri-cannon-galleon or unit-available cannon-galleon-line)
     goal produce-cannon-galleons = 1
   #else
     goal produce-cannon-galleons = 0

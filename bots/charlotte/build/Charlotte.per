@@ -27541,6 +27541,7 @@
     (set-goal produce-cannon-galleons 0)
 )
 (defrule
+    (goal water-map 1)
     (current-age == imperial-age)
     (unit-type-count-total cannon-galleon-line < max-cannon-galleons)
     (or
@@ -27564,12 +27565,15 @@
 (defrule
     (not
       (and
-        (current-age == imperial-age)
+        (goal water-map 1)
         (and
-          (unit-type-count-total cannon-galleon-line < max-cannon-galleons)
-          (or
-            (research-available ri-cannon-galleon)
-            (unit-available cannon-galleon-line)
+          (current-age == imperial-age)
+          (and
+            (unit-type-count-total cannon-galleon-line < max-cannon-galleons)
+            (or
+              (research-available ri-cannon-galleon)
+              (unit-available cannon-galleon-line)
+            )
           )
         )
       )
