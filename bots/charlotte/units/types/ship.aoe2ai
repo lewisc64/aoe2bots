@@ -6,6 +6,10 @@
   load "../../research/dock/shipwright.aoe2ai"
 #end if
 
+#if current-age >= castle-age
+  load "../../research/castle/thalassocracy.aoe2ai"
+#end if
+
 #do once
   goal dock-count = 0
 #end do
