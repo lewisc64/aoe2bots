@@ -156,6 +156,7 @@
 (defconst ri-recurve-bow 515)
 (defconst ri-inquisition 492)
 (defconst ri-atlatl 460)
+(defconst ri-greek-fire 464)
 (defconst ri-elite-cannon-galleon 376)
 (defconst live-sheep 958)
 (defconst sea-fish 905)
@@ -24142,7 +24143,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 50)
+    (up-jump-rule 55)
 )
 (defrule
     (goal produce-fire-ships 1)
@@ -24166,7 +24167,7 @@
       )
     )
 =>
-    (up-jump-rule 46)
+    (up-jump-rule 51)
 )
 (defrule
     (can-build dock)
@@ -24301,6 +24302,50 @@
     )
 =>
     (research ri-fast-fire-ship)
+)
+(defrule
+    (not
+      (and
+        (current-age >= castle-age)
+        (unit-available fire-ship-line)
+      )
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-greek-fire)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-greek-fire < research-pending)
+    (research-available ri-greek-fire)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-greek-fire)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-greek-fire)
+    (goal do-research 1)
+    (research-available ri-greek-fire)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-greek-fire)
+    )
+=>
+    (research ri-greek-fire)
 )
 (defrule
     (not
