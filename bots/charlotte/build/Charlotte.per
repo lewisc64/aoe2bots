@@ -162,6 +162,7 @@
 (defconst ri-pavise 494)
 (defconst ri-silk-road 499)
 (defconst ri-thalassocracy 624)
+(defconst ri-carrack 572)
 (defconst live-sheep 958)
 (defconst sea-fish 905)
 (defconst tc-arrow 54)
@@ -5398,7 +5399,7 @@
       (goal produce-fishing-ships 1)
     )
 =>
-    (up-jump-rule 41)
+    (up-jump-rule 46)
 )
 (defrule
     (can-build dock)
@@ -5455,7 +5456,7 @@
       (unit-available fishing-ship)
     )
 =>
-    (up-jump-rule 33)
+    (up-jump-rule 38)
 )
 (defrule
     (not
@@ -5705,6 +5706,47 @@
     )
 =>
     (research ri-thalassocracy)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-carrack)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-carrack < research-pending)
+    (research-available ri-carrack)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-carrack)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-carrack)
+    (goal do-research 1)
+    (research-available ri-carrack)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-carrack)
+    )
+=>
+    (research ri-carrack)
 )
 (defrule
     (true)
@@ -23387,7 +23429,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 40)
+    (up-jump-rule 45)
 )
 (defrule
     (goal produce-transport-ships 1)
@@ -23411,7 +23453,7 @@
       )
     )
 =>
-    (up-jump-rule 36)
+    (up-jump-rule 41)
 )
 (defrule
     (can-build dock)
@@ -23426,7 +23468,7 @@
       (unit-available transport-ship)
     )
 =>
-    (up-jump-rule 33)
+    (up-jump-rule 38)
 )
 (defrule
     (not
@@ -23678,6 +23720,47 @@
     (research ri-thalassocracy)
 )
 (defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-carrack)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-carrack < research-pending)
+    (research-available ri-carrack)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-carrack)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-carrack)
+    (goal do-research 1)
+    (research-available ri-carrack)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-carrack)
+    )
+=>
+    (research ri-carrack)
+)
+(defrule
     (true)
 =>
     (set-goal dock-count 0)
@@ -23716,7 +23799,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 90)
+    (up-jump-rule 95)
 )
 (defrule
     (goal produce-galleys 1)
@@ -23740,7 +23823,7 @@
       )
     )
 =>
-    (up-jump-rule 86)
+    (up-jump-rule 91)
 )
 (defrule
     (can-build dock)
@@ -24191,7 +24274,7 @@
       (unit-available galley-line)
     )
 =>
-    (up-jump-rule 33)
+    (up-jump-rule 38)
 )
 (defrule
     (not
@@ -24443,6 +24526,47 @@
     (research ri-thalassocracy)
 )
 (defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-carrack)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-carrack < research-pending)
+    (research-available ri-carrack)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-carrack)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-carrack)
+    (goal do-research 1)
+    (research-available ri-carrack)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-carrack)
+    )
+=>
+    (research ri-carrack)
+)
+(defrule
     (true)
 =>
     (set-goal dock-count 0)
@@ -24481,7 +24605,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 60)
+    (up-jump-rule 65)
 )
 (defrule
     (goal produce-fire-ships 1)
@@ -24505,7 +24629,7 @@
       )
     )
 =>
-    (up-jump-rule 56)
+    (up-jump-rule 61)
 )
 (defrule
     (can-build dock)
@@ -24690,7 +24814,7 @@
       (unit-available fire-ship-line)
     )
 =>
-    (up-jump-rule 33)
+    (up-jump-rule 38)
 )
 (defrule
     (not
@@ -24940,6 +25064,47 @@
     )
 =>
     (research ri-thalassocracy)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-carrack)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-carrack < research-pending)
+    (research-available ri-carrack)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-carrack)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-carrack)
+    (goal do-research 1)
+    (research-available ri-carrack)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-carrack)
+    )
+=>
+    (research ri-carrack)
 )
 (defrule
     (true)
@@ -24980,7 +25145,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 40)
+    (up-jump-rule 45)
 )
 (defrule
     (goal produce-cannon-galleons 1)
@@ -25004,7 +25169,7 @@
       )
     )
 =>
-    (up-jump-rule 36)
+    (up-jump-rule 41)
 )
 (defrule
     (can-build dock)
@@ -25019,7 +25184,7 @@
       (unit-available cannon-galleon-line)
     )
 =>
-    (up-jump-rule 33)
+    (up-jump-rule 38)
 )
 (defrule
     (not
@@ -25269,6 +25434,47 @@
     )
 =>
     (research ri-thalassocracy)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-carrack)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-carrack < research-pending)
+    (research-available ri-carrack)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-carrack)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-carrack)
+    (goal do-research 1)
+    (research-available ri-carrack)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-carrack)
+    )
+=>
+    (research ri-carrack)
 )
 (defrule
     (true)

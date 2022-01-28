@@ -8,6 +8,7 @@
 
 #if current-age >= castle-age
   load "../../research/castle/thalassocracy.aoe2ai"
+  load "../../research/castle/carrack.aoe2ai"
 #end if
 
 #do once
