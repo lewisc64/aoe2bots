@@ -2,7 +2,13 @@ load "../research/market/prerequisites.aoe2ai"
 
 #if unit-available trade-cart
   
-  load "../research/market/caravan.aoe2ai"
+  #if current-age >= castle-age
+    load "../research/market/caravan.aoe2ai"
+  #end if
+  
+  #if current-age == imperial-age
+    load "../research/castle/silk_road.aoe2ai"
+  #end if
   
   build 2 market
 

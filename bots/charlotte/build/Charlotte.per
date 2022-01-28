@@ -159,6 +159,8 @@
 (defconst ri-greek-fire 464)
 (defconst ri-andean-sling 516)
 (defconst ri-sultans 506)
+(defconst ri-pavise 494)
+(defconst ri-silk-road 499)
 (defconst ri-elite-cannon-galleon 376)
 (defconst live-sheep 958)
 (defconst sea-fish 905)
@@ -5276,7 +5278,7 @@
       (goal produce-trade-carts 1)
     )
 =>
-    (up-jump-rule 8)
+    (up-jump-rule 13)
 )
 (defrule
     (can-build market)
@@ -5289,7 +5291,10 @@
 )
 (defrule
     (not
-      (unit-available trade-cart)
+      (and
+        (current-age >= castle-age)
+        (unit-available trade-cart)
+      )
     )
 =>
     (up-jump-rule 4)
@@ -5326,6 +5331,50 @@
     )
 =>
     (research ri-caravan)
+)
+(defrule
+    (not
+      (and
+        (current-age == imperial-age)
+        (unit-available trade-cart)
+      )
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-silk-road)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-silk-road < research-pending)
+    (research-available ri-silk-road)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-silk-road)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-silk-road)
+    (goal do-research 1)
+    (research-available ri-silk-road)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-silk-road)
+    )
+=>
+    (research ri-silk-road)
 )
 (defrule
     (can-build market)
@@ -6178,7 +6227,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 116)
+    (up-jump-rule 121)
 )
 (defrule
     (goal produce-archers 1)
@@ -6202,7 +6251,7 @@
       )
     )
 =>
-    (up-jump-rule 112)
+    (up-jump-rule 117)
 )
 (defrule
     (not
@@ -6457,6 +6506,50 @@
     )
 =>
     (research ri-yeomen)
+)
+(defrule
+    (not
+      (and
+        (current-age >= castle-age)
+        (unit-available archer-line)
+      )
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-pavise)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-pavise < research-pending)
+    (research-available ri-pavise)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-pavise)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-pavise)
+    (goal do-research 1)
+    (research-available ri-pavise)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-pavise)
+    )
+=>
+    (research ri-pavise)
 )
 (defrule
     (not
@@ -18030,7 +18123,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 565)
+    (up-jump-rule 570)
 )
 (defrule
     (goal produce-unique-units 1)
@@ -18054,7 +18147,7 @@
       )
     )
 =>
-    (up-jump-rule 561)
+    (up-jump-rule 566)
 )
 (defrule
     (true)
@@ -21352,10 +21445,7 @@
 (defrule
     (not
       (and
-        (and
-          (civ-selected briton)
-          (current-age >= castle-age)
-        )
+        (civ-selected briton)
         (unit-available my-unique-unit-line)
       )
     )
@@ -21395,294 +21485,6 @@
     )
 =>
     (research ri-yeomen)
-)
-(defrule
-    (not
-      (and
-        (and
-          (or
-            (civ-selected viking)
-            (civ-selected byzantine)
-          )
-          (current-age >= imperial-age)
-        )
-        (unit-available my-unique-unit-line)
-      )
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-beserkergang)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build castle)
-    (up-pending-objects c: castle < 5)
-    (building-type-count-total castle < 1)
-    (building-type-count-total castle == 0)
-=>
-    (build castle)
-)
-(defrule
-    (up-research-status c: ri-beserkergang < research-pending)
-    (research-available ri-beserkergang)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-beserkergang)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-beserkergang)
-    (goal do-research 1)
-    (research-available ri-beserkergang)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-beserkergang)
-    )
-=>
-    (research ri-beserkergang)
-)
-(defrule
-    (not
-      (and
-        (and
-          (or
-            (civ-selected viking)
-            (civ-selected byzantine)
-          )
-          (current-age >= imperial-age)
-        )
-        (unit-available my-unique-unit-line)
-      )
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-logistica)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build castle)
-    (up-pending-objects c: castle < 5)
-    (building-type-count-total castle < 1)
-    (building-type-count-total castle == 0)
-=>
-    (build castle)
-)
-(defrule
-    (up-research-status c: ri-logistica < research-pending)
-    (research-available ri-logistica)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-logistica)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-logistica)
-    (goal do-research 1)
-    (research-available ri-logistica)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-logistica)
-    )
-=>
-    (research ri-logistica)
-)
-(defrule
-    (not
-      (and
-        (and
-          (civ-selected persian)
-          (current-age == imperial-age)
-        )
-        (unit-available my-unique-unit-line)
-      )
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-mahouts)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build castle)
-    (up-pending-objects c: castle < 5)
-    (building-type-count-total castle < 1)
-    (building-type-count-total castle == 0)
-=>
-    (build castle)
-)
-(defrule
-    (up-research-status c: ri-mahouts < research-pending)
-    (research-available ri-mahouts)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-mahouts)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-mahouts)
-    (goal do-research 1)
-    (research-available ri-mahouts)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-mahouts)
-    )
-=>
-    (research ri-mahouts)
-)
-(defrule
-    (not
-      (and
-        (and
-          (civ-selected chinese)
-          (current-age == imperial-age)
-        )
-        (unit-available my-unique-unit-line)
-      )
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-rocketry)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build castle)
-    (up-pending-objects c: castle < 5)
-    (building-type-count-total castle < 1)
-    (building-type-count-total castle == 0)
-=>
-    (build castle)
-)
-(defrule
-    (up-research-status c: ri-rocketry < research-pending)
-    (research-available ri-rocketry)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-rocketry)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-rocketry)
-    (goal do-research 1)
-    (research-available ri-rocketry)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-rocketry)
-    )
-=>
-    (research ri-rocketry)
-)
-(defrule
-    (not
-      (and
-        (and
-          (civ-selected frankish)
-          (current-age == imperial-age)
-        )
-        (unit-available my-unique-unit-line)
-      )
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-bearded-axe)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build castle)
-    (up-pending-objects c: castle < 5)
-    (building-type-count-total castle < 1)
-    (building-type-count-total castle == 0)
-=>
-    (build castle)
-)
-(defrule
-    (up-research-status c: ri-bearded-axe < research-pending)
-    (research-available ri-bearded-axe)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-bearded-axe)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-bearded-axe)
-    (goal do-research 1)
-    (research-available ri-bearded-axe)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-bearded-axe)
-    )
-=>
-    (research ri-bearded-axe)
-)
-(defrule
-    (not
-      (and
-        (and
-          (civ-selected khmer)
-          (current-age == imperial-age)
-        )
-        (unit-available my-unique-unit-line)
-      )
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-double-crossbow)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build castle)
-    (up-pending-objects c: castle < 5)
-    (building-type-count-total castle < 1)
-    (building-type-count-total castle == 0)
-=>
-    (build castle)
-)
-(defrule
-    (up-research-status c: ri-double-crossbow < research-pending)
-    (research-available ri-double-crossbow)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-double-crossbow)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-double-crossbow)
-    (goal do-research 1)
-    (research-available ri-double-crossbow)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-double-crossbow)
-    )
-=>
-    (research ri-double-crossbow)
 )
 (defrule
     (not
@@ -21731,11 +21533,337 @@
 (defrule
     (not
       (and
-        (and
-          (civ-selected burmese)
-          (current-age >= imperial-age)
-        )
+        (civ-selected italian)
         (unit-available my-unique-unit-line)
+      )
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-pavise)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-pavise < research-pending)
+    (research-available ri-pavise)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-pavise)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-pavise)
+    (goal do-research 1)
+    (research-available ri-pavise)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-pavise)
+    )
+=>
+    (research ri-pavise)
+)
+(defrule
+    (not
+      (and
+        (civ-selected viking)
+        (and
+          (current-age == imperial-age)
+          (unit-available my-unique-unit-line)
+        )
+      )
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-beserkergang)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-beserkergang < research-pending)
+    (research-available ri-beserkergang)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-beserkergang)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-beserkergang)
+    (goal do-research 1)
+    (research-available ri-beserkergang)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-beserkergang)
+    )
+=>
+    (research ri-beserkergang)
+)
+(defrule
+    (not
+      (and
+        (civ-selected byzantine)
+        (and
+          (current-age == imperial-age)
+          (unit-available my-unique-unit-line)
+        )
+      )
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-logistica)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-logistica < research-pending)
+    (research-available ri-logistica)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-logistica)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-logistica)
+    (goal do-research 1)
+    (research-available ri-logistica)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-logistica)
+    )
+=>
+    (research ri-logistica)
+)
+(defrule
+    (not
+      (and
+        (civ-selected persian)
+        (and
+          (current-age == imperial-age)
+          (unit-available my-unique-unit-line)
+        )
+      )
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-mahouts)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-mahouts < research-pending)
+    (research-available ri-mahouts)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-mahouts)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-mahouts)
+    (goal do-research 1)
+    (research-available ri-mahouts)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-mahouts)
+    )
+=>
+    (research ri-mahouts)
+)
+(defrule
+    (not
+      (and
+        (civ-selected chinese)
+        (and
+          (current-age == imperial-age)
+          (unit-available my-unique-unit-line)
+        )
+      )
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-rocketry)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-rocketry < research-pending)
+    (research-available ri-rocketry)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-rocketry)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-rocketry)
+    (goal do-research 1)
+    (research-available ri-rocketry)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-rocketry)
+    )
+=>
+    (research ri-rocketry)
+)
+(defrule
+    (not
+      (and
+        (civ-selected frankish)
+        (and
+          (current-age == imperial-age)
+          (unit-available my-unique-unit-line)
+        )
+      )
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-bearded-axe)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-bearded-axe < research-pending)
+    (research-available ri-bearded-axe)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-bearded-axe)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-bearded-axe)
+    (goal do-research 1)
+    (research-available ri-bearded-axe)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-bearded-axe)
+    )
+=>
+    (research ri-bearded-axe)
+)
+(defrule
+    (not
+      (and
+        (civ-selected khmer)
+        (and
+          (current-age == imperial-age)
+          (unit-available my-unique-unit-line)
+        )
+      )
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-double-crossbow)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-double-crossbow < research-pending)
+    (research-available ri-double-crossbow)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-double-crossbow)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-double-crossbow)
+    (goal do-research 1)
+    (research-available ri-double-crossbow)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-double-crossbow)
+    )
+=>
+    (research ri-double-crossbow)
+)
+(defrule
+    (not
+      (and
+        (civ-selected burmese)
+        (and
+          (current-age == imperial-age)
+          (unit-available my-unique-unit-line)
+        )
       )
     )
 =>
@@ -21778,11 +21906,11 @@
 (defrule
     (not
       (and
+        (civ-selected portuguese)
         (and
-          (civ-selected portuguese)
           (current-age == imperial-age)
+          (unit-available my-unique-unit-line)
         )
-        (unit-available my-unique-unit-line)
       )
     )
 =>
@@ -21823,7 +21951,7 @@
 (defrule
     (not
       (and
-        (current-age >= imperial-age)
+        (current-age == imperial-age)
         (and
           (civ-selected khmer)
           (unit-available my-unique-unit-line)
@@ -21868,7 +21996,7 @@
 (defrule
     (not
       (and
-        (current-age >= imperial-age)
+        (current-age == imperial-age)
         (and
           (civ-selected khmer)
           (unit-available my-unique-unit-line)
@@ -21913,7 +22041,7 @@
 (defrule
     (not
       (and
-        (current-age >= imperial-age)
+        (current-age == imperial-age)
         (and
           (civ-selected khmer)
           (unit-available my-unique-unit-line)
@@ -22036,7 +22164,7 @@
     (not
       (and
         (not
-          (current-age >= imperial-age)
+          (current-age == imperial-age)
         )
         (and
           (civ-selected khmer)

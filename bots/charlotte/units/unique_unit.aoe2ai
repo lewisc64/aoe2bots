@@ -54,45 +54,54 @@
   
   @up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type
   
-  #if civ-selected briton and current-age >= castle-age
+  #if civ-selected briton
     load "../research/castle/yeomen.aoe2ai"
-  #end if
-  
-  #if (civ-selected viking or civ-selected byzantine) and current-age >= imperial-age
-    load "../research/castle/beserkergang.aoe2ai"
-    load "../research/castle/logistica.aoe2ai"
-  #end if
-  
-  #if civ-selected persian and current-age == imperial-age
-    load "../research/castle/mahouts.aoe2ai"
-  #end if
-  
-  #if civ-selected chinese and current-age == imperial-age
-    load "../research/castle/rocketry.aoe2ai"
-  #end if
-  
-  #if civ-selected frankish and current-age == imperial-age
-    load "../research/castle/bearded_axe.aoe2ai"
-  #end if
-  
-  #if civ-selected khmer and current-age == imperial-age
-    load "../research/castle/double_crossbow.aoe2ai"
   #end if
   
   #if civ-selected magyar
     load "../research/castle/mercenaries.aoe2ai"
   #end if
   
-  #if civ-selected burmese and current-age >= imperial-age
-    load "../research/castle/manipur_cavalry.aoe2ai"
+  #if civ-selected italian
+    load "../research/castle/pavise.aoe2ai"
   #end if
   
-  #if civ-selected portuguese and current-age == imperial-age
-    load "../research/university/siege_engineers.aoe2ai"
+  #if current-age == imperial-age
+    #if civ-selected viking
+      load "../research/castle/beserkergang.aoe2ai"
+    #end if
+    
+    #if civ-selected byzantine
+      load "../research/castle/logistica.aoe2ai"
+    #end if
+    
+    #if civ-selected persian
+      load "../research/castle/mahouts.aoe2ai"
+    #end if
+    
+    #if civ-selected chinese
+      load "../research/castle/rocketry.aoe2ai"
+    #end if
+    
+    #if civ-selected frankish
+      load "../research/castle/bearded_axe.aoe2ai"
+    #end if
+    
+    #if civ-selected khmer
+      load "../research/castle/double_crossbow.aoe2ai"
+    #end if
+    
+    #if civ-selected burmese
+      load "../research/castle/manipur_cavalry.aoe2ai"
+    #end if
+    
+    #if civ-selected portuguese
+      load "../research/university/siege_engineers.aoe2ai"
+    #end if
   #end if
   
   #if civ-selected khmer
-    #if current-age >= imperial-age
+    #if current-age == imperial-age
       load "../research/university/siege_engineers.aoe2ai"
       load "../research/university/chemistry.aoe2ai"
       load "../research/blacksmith/plate_barding.aoe2ai"
