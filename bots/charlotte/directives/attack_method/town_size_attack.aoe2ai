@@ -1,5 +1,12 @@
 #if goal attacking 1
-  sn-maximum-town-size = 255
-#else if strategic-number sn-maximum-town-size == 255
+  #if strategic-number sn-maximum-town-size <= 30
+    sn-maximum-town-size = 50
+  #end if
+  #if enemy-buildings-in-town
+    sn-maximum-town-size -= 1
+  #else
+    sn-maximum-town-size += 5
+  #end if
+#else if strategic-number sn-maximum-town-size > 30
   @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
 #end if

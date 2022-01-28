@@ -1956,7 +1956,7 @@
     (goal 140 2)
     (up-pending-objects c: castle == 0)
 =>
-    (up-set-placement-data any-enemy town-center c: 0)
+    (up-set-placement-data any-enemy town-center c: 4)
     (up-build place-forward 0 c: castle)
 )
 (defrule
@@ -27997,7 +27997,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 21)
+    (up-jump-rule 24)
 )
 (defrule
     (true)
@@ -28058,7 +28058,26 @@
     (enable-timer 6 300)
 )
 (defrule
-    (up-compare-goal target-military-percentage c:>= 200)
+    (up-compare-goal largest-enemy-military-percentage c:< 20)
+=>
+    (set-goal aggressive-override 1)
+)
+(defrule
+    (up-compare-goal largest-enemy-military-percentage c:< 20)
+=>
+    (enable-timer 7 30)
+    (disable-self)
+)
+(defrule
+    (timer-triggered 7)
+    (up-compare-goal largest-enemy-military-percentage c:< 20)
+=>
+    (chat-local-to-self "not enough military!")
+    (disable-timer 7)
+    (enable-timer 7 30)
+)
+(defrule
+    (up-compare-goal largest-enemy-military-percentage c:>= 200)
     (military-population >= 30)
     (not
       (goal attempted-researches 0)
@@ -28067,26 +28086,26 @@
     (set-goal passive-override 1)
 )
 (defrule
-    (up-compare-goal target-military-percentage c:>= 200)
+    (up-compare-goal largest-enemy-military-percentage c:>= 200)
     (military-population >= 30)
     (not
       (goal attempted-researches 0)
     )
 =>
-    (enable-timer 7 30)
+    (enable-timer 8 30)
     (disable-self)
 )
 (defrule
-    (timer-triggered 7)
-    (up-compare-goal target-military-percentage c:>= 200)
+    (timer-triggered 8)
+    (up-compare-goal largest-enemy-military-percentage c:>= 200)
     (military-population >= 30)
     (not
       (goal attempted-researches 0)
     )
 =>
     (chat-local-to-self "massive lead, do techs.")
-    (disable-timer 7)
-    (enable-timer 7 30)
+    (disable-timer 8)
+    (enable-timer 8 30)
 )
 (defrule
     (not
@@ -28427,16 +28446,16 @@
 (defrule
     (goal attacking 1)
 =>
-    (enable-timer 8 60)
+    (enable-timer 9 60)
     (disable-self)
 )
 (defrule
-    (timer-triggered 8)
+    (timer-triggered 9)
     (goal attacking 1)
 =>
     (attack-now)
-    (disable-timer 8)
-    (enable-timer 8 60)
+    (disable-timer 9)
+    (enable-timer 9 60)
 )
 (defrule
     (goal attacking 1)
@@ -28470,15 +28489,30 @@
       )
     )
 =>
-    (up-jump-rule 2)
+    (up-jump-rule 4)
 )
 (defrule
+    (strategic-number sn-maximum-town-size <= 30)
     (goal attacking 1)
 =>
-    (set-strategic-number sn-maximum-town-size 255)
+    (set-strategic-number sn-maximum-town-size 50)
 )
 (defrule
-    (strategic-number sn-maximum-town-size == 255)
+    (enemy-buildings-in-town)
+    (goal attacking 1)
+=>
+    (up-modify-sn sn-maximum-town-size c:- 1)
+)
+(defrule
+    (not
+      (enemy-buildings-in-town)
+    )
+    (goal attacking 1)
+=>
+    (up-modify-sn sn-maximum-town-size c:+ 5)
+)
+(defrule
+    (strategic-number sn-maximum-town-size > 30)
     (not
       (goal attacking 1)
     )
@@ -32484,7 +32518,7 @@
 (defrule
     (goal locked-teams 1)
 =>
-    (enable-timer 9 1800)
+    (enable-timer 10 1800)
     (disable-self)
 )
 (defrule
@@ -32494,7 +32528,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 9)
+            (timer-triggered 10)
             (goal locked-teams 1)
           )
         )
@@ -32540,7 +32574,7 @@
           (and
             (up-compare-goal score-percentage c:<= 70)
             (and
-              (timer-triggered 9)
+              (timer-triggered 10)
               (goal locked-teams 1)
             )
           )
@@ -32589,7 +32623,7 @@
           (and
             (up-compare-goal score-percentage c:<= 70)
             (and
-              (timer-triggered 9)
+              (timer-triggered 10)
               (goal locked-teams 1)
             )
           )
@@ -32648,7 +32682,7 @@
               (up-compare-goal score-percentage c:<= 70)
             )
             (and
-              (timer-triggered 9)
+              (timer-triggered 10)
               (goal locked-teams 1)
             )
           )
@@ -32693,7 +32727,7 @@
                 (up-compare-goal score-percentage c:<= 70)
               )
               (and
-                (timer-triggered 9)
+                (timer-triggered 10)
                 (goal locked-teams 1)
               )
             )
@@ -32727,7 +32761,7 @@
                 (up-compare-goal score-percentage c:<= 70)
               )
               (and
-                (timer-triggered 9)
+                (timer-triggered 10)
                 (goal locked-teams 1)
               )
             )
@@ -32754,7 +32788,7 @@
         (and
           (military-population >= 20)
           (and
-            (timer-triggered 9)
+            (timer-triggered 10)
             (goal locked-teams 1)
           )
         )
@@ -32839,7 +32873,7 @@
             (and
               (military-population >= 20)
               (and
-                (timer-triggered 9)
+                (timer-triggered 10)
                 (goal locked-teams 1)
               )
             )
@@ -32966,7 +33000,7 @@
             (and
               (military-population >= 20)
               (and
-                (timer-triggered 9)
+                (timer-triggered 10)
                 (goal locked-teams 1)
               )
             )
