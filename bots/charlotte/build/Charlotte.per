@@ -157,6 +157,7 @@
 (defconst ri-inquisition 492)
 (defconst ri-atlatl 460)
 (defconst ri-greek-fire 464)
+(defconst ri-andean-sling 516)
 (defconst ri-elite-cannon-galleon 376)
 (defconst live-sheep 958)
 (defconst sea-fish 905)
@@ -7332,7 +7333,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 116)
+    (up-jump-rule 121)
 )
 (defrule
     (goal produce-skirmishers 1)
@@ -7356,7 +7357,7 @@
       )
     )
 =>
-    (up-jump-rule 112)
+    (up-jump-rule 117)
 )
 (defrule
     (not
@@ -7611,6 +7612,50 @@
     )
 =>
     (research ri-atlatl)
+)
+(defrule
+    (not
+      (and
+        (current-age >= castle-age)
+        (unit-available skirmisher-line)
+      )
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-andean-sling)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-andean-sling < research-pending)
+    (research-available ri-andean-sling)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-andean-sling)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-andean-sling)
+    (goal do-research 1)
+    (research-available ri-andean-sling)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-andean-sling)
+    )
+=>
+    (research ri-andean-sling)
 )
 (defrule
     (not
