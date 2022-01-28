@@ -1,0 +1,13 @@
+#if not research-completed ri-sultans
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
+
+  #if research-available ri-sultans and building-type-count castle >= 1
+    #if up-research-status c: ri-sultans < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-sultans
+    #end if
+  #end if
+#end if

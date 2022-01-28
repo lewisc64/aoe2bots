@@ -158,6 +158,7 @@
 (defconst ri-atlatl 460)
 (defconst ri-greek-fire 464)
 (defconst ri-andean-sling 516)
+(defconst ri-sultans 506)
 (defconst ri-elite-cannon-galleon 376)
 (defconst live-sheep 958)
 (defconst sea-fish 905)
@@ -4146,6 +4147,47 @@
     )
 =>
     (research ri-banking)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-sultans)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+)
+(defrule
+    (up-research-status c: ri-sultans < research-pending)
+    (research-available ri-sultans)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-sultans)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-sultans)
+    (goal do-research 1)
+    (research-available ri-sultans)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-sultans)
+    )
+=>
+    (research ri-sultans)
 )
 (defrule
     (goal attempted-researches 0)

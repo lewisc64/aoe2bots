@@ -9,3 +9,7 @@
 #if current-age == imperial-age and goal team-game 1
   load "../research/market/banking.aoe2ai"
 #end if
+
+#if current-age >= castle-age
+  load "../research/castle/sultans.aoe2ai"
+#end if
