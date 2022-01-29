@@ -95,9 +95,6 @@ build lumber camps
   #end when
   
   build houses with 5 headroom
-  #if building-type-count lumber-camp >= 1
-    build safety mill
-  #end if
   build farms
   
   #if food-amount < 50 and up-pending-objects c: villager <= 1

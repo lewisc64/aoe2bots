@@ -154,7 +154,6 @@ load "templates/fast_castle.aoe2ai"
   #end if
 
   build mills
-  build safety mill
   build lumber camps
   #if up-compare-goal non-escrowed-wood >= 200
     build 1 blacksmith
