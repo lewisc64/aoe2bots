@@ -995,6 +995,11 @@
     (set-stance 8 enemy)
 )
 (defrule
+    (goal 6 1)
+=>
+    (set-stance my-player-number ally)
+)
+(defrule
     (goal 6 2)
 =>
     (set-stance every-enemy neutral)
@@ -1680,6 +1685,11 @@
     (set-stance 8 enemy)
 )
 (defrule
+    (goal 6 2)
+=>
+    (set-stance my-player-number ally)
+)
+(defrule
     (true)
 =>
     (up-modify-sn sn-wood-gatherer-percentage g:- wood-modifier-percentage)
@@ -1880,6 +1890,11 @@
     (set-strategic-number sn-target-evaluation-range 0)
     (set-strategic-number sn-target-evaluation-rof 0)
     (set-strategic-number sn-target-evaluation-siege-weapon 500)
+    (disable-self)
+)
+(defrule
+    (true)
+=>
     (set-strategic-number sn-target-evaluation-time-kill-ratio 0)
     (set-strategic-number sn-ttkfactor-scalar 500)
     (disable-self)
@@ -2679,9 +2694,16 @@
     (disable-self)
 )
 (defrule
-    (dropsite-min-distance wood > 2)
-    (dropsite-min-distance wood != -1)
-    (resource-found wood)
+    (or
+      (and
+        (dropsite-min-distance wood > 2)
+        (resource-found wood)
+      )
+      (and
+        (game-time >= 360)
+        (building-type-count-total lumber-camp == 0)
+      )
+    )
     (up-pending-objects c: lumber-camp == 0)
     (can-build lumber-camp)
 =>
@@ -2699,9 +2721,16 @@
     (set-goal 55 0)
 )
 (defrule
-    (dropsite-min-distance food > 3)
-    (dropsite-min-distance food != -1)
-    (resource-found food)
+    (or
+      (and
+        (dropsite-min-distance food > 3)
+        (resource-found food)
+      )
+      (and
+        (game-time >= 360)
+        (building-type-count-total mill == 0)
+      )
+    )
     (up-pending-objects c: mill == 0)
     (can-build mill)
 =>
@@ -2956,7 +2985,6 @@
 )
 (defrule
     (dropsite-min-distance stone > 3)
-    (dropsite-min-distance stone != -1)
     (resource-found stone)
     (up-pending-objects c: mining-camp == 0)
     (can-build mining-camp)
@@ -3223,7 +3251,6 @@
         )
       )
     )
-    (dropsite-min-distance gold != -1)
     (resource-found gold)
     (up-pending-objects c: mining-camp == 0)
     (can-build mining-camp)

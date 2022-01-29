@@ -1890,9 +1890,16 @@
     (disable-self)
 )
 (defrule
-    (dropsite-min-distance wood > 2)
-    (dropsite-min-distance wood != -1)
-    (resource-found wood)
+    (or
+      (and
+        (dropsite-min-distance wood > 2)
+        (resource-found wood)
+      )
+      (and
+        (game-time >= 360)
+        (building-type-count-total lumber-camp == 0)
+      )
+    )
     (up-pending-objects c: lumber-camp == 0)
     (can-build lumber-camp)
 =>
@@ -1976,7 +1983,6 @@
         )
       )
     )
-    (dropsite-min-distance gold != -1)
     (resource-found gold)
     (up-pending-objects c: mining-camp == 0)
     (can-build mining-camp)
@@ -1987,7 +1993,6 @@
 )
 (defrule
     (dropsite-min-distance stone > 3)
-    (dropsite-min-distance stone != -1)
     (resource-found stone)
     (up-pending-objects c: mining-camp == 0)
     (can-build mining-camp)
@@ -2056,9 +2061,16 @@
     (disable-self)
 )
 (defrule
-    (dropsite-min-distance food > 3)
-    (dropsite-min-distance food != -1)
-    (resource-found food)
+    (or
+      (and
+        (dropsite-min-distance food > 3)
+        (resource-found food)
+      )
+      (and
+        (game-time >= 360)
+        (building-type-count-total mill == 0)
+      )
+    )
     (up-pending-objects c: mill == 0)
     (can-build mill)
     (up-research-status c: feudal-age < research-pending)
@@ -2070,14 +2082,6 @@
     (up-pending-objects c: mill < 5)
     (building-type-count-total mill < 1)
     (building-type-count-total lumber-camp >= 1)
-    (up-research-status c: feudal-age < research-pending)
-=>
-    (build mill)
-)
-(defrule
-    (can-build mill)
-    (building-type-count-total mill == 0)
-    (game-time >= 360)
     (up-research-status c: feudal-age < research-pending)
 =>
     (build mill)
