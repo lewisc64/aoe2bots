@@ -22,7 +22,6 @@ load "templates/fast_castle.aoe2ai"
     assign 4 builders to town-center-foundation
     
     sn-percent-building-cancellation = 0
-    goal make-trash = 0
   #end do
   
   #if dropsite-min-distance stone == -1
@@ -50,10 +49,6 @@ load "templates/fast_castle.aoe2ai"
     escrow 20 gold
   #else
     escrow 0 gold
-  #end if
-  
-  #if players-building-type-count any-ally market == 0 and up-compare-goal no-gold-mining-time c:> 60
-    goal make-trash = 1
   #end if
 
   build lumber camps
@@ -118,11 +113,13 @@ load "templates/fast_castle.aoe2ai"
         train 5 trebuchet
       #end if
       train my-unique-unit
-      #if goal make-trash 1
+      #if up-compare-goal no-gold-mining-time c:>= 60
         build 6 stable
         research ri-light-cavalry with food and gold escrow
         research ri-hussar with food and gold escrow
-        train scout-cavalry-line
+        #if gold-amount < 300
+          train scout-cavalry-line
+        #end if
       #end if
     #end if
   #end if
