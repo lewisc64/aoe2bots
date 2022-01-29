@@ -59,7 +59,6 @@
   
   #if building-type-count-total lumber-camp >= 1
     build farms
-    build safety mill
   #end if
   
 #else if up-research-status c: castle-age < research-pending
