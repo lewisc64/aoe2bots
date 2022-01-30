@@ -16,10 +16,12 @@ const retarget-interval = 300
   goal next-retarget = 0
 #end do
 
-#if goal threat-target castle or goal threat-target town-center or goal threat-target mining-camp or goal threat-target house or goal threat-target barracks or goal threat-target archery-range or goal threat-target stable or goal threat-target siege-workshop or goal threat-target dock
+goal threatening-important = 0
+#if goal threat-target castle or goal threat-target town-center or goal threat-target mining-camp or goal threat-target house
   goal threatening-important = 1
-#else
-  goal threatening-important = 0
+#end if
+#if goal threat-target barracks or goal threat-target archery-range or goal threat-target stable or goal threat-target siege-workshop or goal threat-target dock
+  goal threatening-important = 1
 #end if
 
 #if up-compare-goal game-time-goal g:>= next-retarget and goal threatening-important 1
