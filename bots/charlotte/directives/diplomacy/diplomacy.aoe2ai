@@ -47,7 +47,7 @@ const allied-victory-timeout = 120
       @set-stance {player} enemy
     #end if
     
-    #if goal allied-with-{player} 0 and stance-toward {player} ally and goal player-{player}-is-bad-egg 0
+    #if goal allied-with-{player} 0 and stance-toward {player} ally and goal player-{player}-is-bad-egg 0 and goal tried-alliance-with-{player} 0
       @up-modify-goal temp g:= game-time-goal
       @up-modify-goal temp g:- player-{player}-alliance-request-time-stamp
       #if up-compare-goal temp c:>= alliance-request-timeout

@@ -55,3 +55,10 @@
     train 4 spearman-line
   #end if
 #end if
+
+// make light mangonels?
+#if current-age == castle-age and goal produce-mangonels 0
+  #if players-unit-type-count target-player scorpion-line >= 1 or players-unit-type-count target-player skirmisher-line >= 1
+    train 2 mangonel-line
+  #end if
+#end if

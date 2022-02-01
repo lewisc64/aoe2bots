@@ -28041,7 +28041,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 16)
+    (up-jump-rule 17)
 )
 (defrule
     (goal partial-ranged-blacksmith-investment 1)
@@ -28212,6 +28212,18 @@
     (goal produce-spearmen 0)
 =>
     (train spearman-line)
+)
+(defrule
+    (can-train mangonel-line)
+    (unit-type-count-total mangonel-line < 2)
+    (or
+      (players-unit-type-count target-player scorpion-line >= 1)
+      (players-unit-type-count target-player skirmisher-line >= 1)
+    )
+    (current-age == castle-age)
+    (goal produce-mangonels 0)
+=>
+    (train mangonel-line)
 )
 (defrule
     (not
@@ -28442,7 +28454,6 @@
 (defrule
     (players-building-type-count any-ally market >= 1)
     (current-age >= imperial-age)
-    (player-in-game any-ally)
     (current-age >= castle-age)
     (or
       (goal full-water-map 0)
@@ -28456,7 +28467,6 @@
       (players-building-type-count any-ally market >= 1)
       (current-age >= imperial-age)
     )
-    (player-in-game any-ally)
     (current-age >= castle-age)
     (or
       (goal full-water-map 0)
@@ -28471,7 +28481,6 @@
       (players-building-type-count any-ally market >= 1)
       (current-age >= imperial-age)
     )
-    (player-in-game any-ally)
     (current-age >= castle-age)
     (or
       (goal full-water-map 0)
@@ -30298,6 +30307,7 @@
     (goal allied-with-1 0)
     (stance-toward 1 ally)
     (goal player-1-is-bad-egg 0)
+    (goal tried-alliance-with-1 0)
     (player-in-game 1)
 =>
     (up-modify-goal temp g:= game-time-goal)
@@ -30311,7 +30321,10 @@
           (goal allied-with-1 0)
           (and
             (stance-toward 1 ally)
-            (goal player-1-is-bad-egg 0)
+            (and
+              (goal player-1-is-bad-egg 0)
+              (goal tried-alliance-with-1 0)
+            )
           )
         )
         (player-in-game 1)
@@ -30347,6 +30360,7 @@
     (goal allied-with-1 0)
     (stance-toward 1 ally)
     (goal player-1-is-bad-egg 0)
+    (goal tried-alliance-with-1 0)
     (player-in-game 1)
 =>
     (chat-local-to-self "alliance request to player 1 timed out")
@@ -30544,6 +30558,7 @@
     (goal allied-with-2 0)
     (stance-toward 2 ally)
     (goal player-2-is-bad-egg 0)
+    (goal tried-alliance-with-2 0)
     (player-in-game 2)
 =>
     (up-modify-goal temp g:= game-time-goal)
@@ -30557,7 +30572,10 @@
           (goal allied-with-2 0)
           (and
             (stance-toward 2 ally)
-            (goal player-2-is-bad-egg 0)
+            (and
+              (goal player-2-is-bad-egg 0)
+              (goal tried-alliance-with-2 0)
+            )
           )
         )
         (player-in-game 2)
@@ -30593,6 +30611,7 @@
     (goal allied-with-2 0)
     (stance-toward 2 ally)
     (goal player-2-is-bad-egg 0)
+    (goal tried-alliance-with-2 0)
     (player-in-game 2)
 =>
     (chat-local-to-self "alliance request to player 2 timed out")
@@ -30790,6 +30809,7 @@
     (goal allied-with-3 0)
     (stance-toward 3 ally)
     (goal player-3-is-bad-egg 0)
+    (goal tried-alliance-with-3 0)
     (player-in-game 3)
 =>
     (up-modify-goal temp g:= game-time-goal)
@@ -30803,7 +30823,10 @@
           (goal allied-with-3 0)
           (and
             (stance-toward 3 ally)
-            (goal player-3-is-bad-egg 0)
+            (and
+              (goal player-3-is-bad-egg 0)
+              (goal tried-alliance-with-3 0)
+            )
           )
         )
         (player-in-game 3)
@@ -30839,6 +30862,7 @@
     (goal allied-with-3 0)
     (stance-toward 3 ally)
     (goal player-3-is-bad-egg 0)
+    (goal tried-alliance-with-3 0)
     (player-in-game 3)
 =>
     (chat-local-to-self "alliance request to player 3 timed out")
@@ -31036,6 +31060,7 @@
     (goal allied-with-4 0)
     (stance-toward 4 ally)
     (goal player-4-is-bad-egg 0)
+    (goal tried-alliance-with-4 0)
     (player-in-game 4)
 =>
     (up-modify-goal temp g:= game-time-goal)
@@ -31049,7 +31074,10 @@
           (goal allied-with-4 0)
           (and
             (stance-toward 4 ally)
-            (goal player-4-is-bad-egg 0)
+            (and
+              (goal player-4-is-bad-egg 0)
+              (goal tried-alliance-with-4 0)
+            )
           )
         )
         (player-in-game 4)
@@ -31085,6 +31113,7 @@
     (goal allied-with-4 0)
     (stance-toward 4 ally)
     (goal player-4-is-bad-egg 0)
+    (goal tried-alliance-with-4 0)
     (player-in-game 4)
 =>
     (chat-local-to-self "alliance request to player 4 timed out")
@@ -31282,6 +31311,7 @@
     (goal allied-with-5 0)
     (stance-toward 5 ally)
     (goal player-5-is-bad-egg 0)
+    (goal tried-alliance-with-5 0)
     (player-in-game 5)
 =>
     (up-modify-goal temp g:= game-time-goal)
@@ -31295,7 +31325,10 @@
           (goal allied-with-5 0)
           (and
             (stance-toward 5 ally)
-            (goal player-5-is-bad-egg 0)
+            (and
+              (goal player-5-is-bad-egg 0)
+              (goal tried-alliance-with-5 0)
+            )
           )
         )
         (player-in-game 5)
@@ -31331,6 +31364,7 @@
     (goal allied-with-5 0)
     (stance-toward 5 ally)
     (goal player-5-is-bad-egg 0)
+    (goal tried-alliance-with-5 0)
     (player-in-game 5)
 =>
     (chat-local-to-self "alliance request to player 5 timed out")
@@ -31528,6 +31562,7 @@
     (goal allied-with-6 0)
     (stance-toward 6 ally)
     (goal player-6-is-bad-egg 0)
+    (goal tried-alliance-with-6 0)
     (player-in-game 6)
 =>
     (up-modify-goal temp g:= game-time-goal)
@@ -31541,7 +31576,10 @@
           (goal allied-with-6 0)
           (and
             (stance-toward 6 ally)
-            (goal player-6-is-bad-egg 0)
+            (and
+              (goal player-6-is-bad-egg 0)
+              (goal tried-alliance-with-6 0)
+            )
           )
         )
         (player-in-game 6)
@@ -31577,6 +31615,7 @@
     (goal allied-with-6 0)
     (stance-toward 6 ally)
     (goal player-6-is-bad-egg 0)
+    (goal tried-alliance-with-6 0)
     (player-in-game 6)
 =>
     (chat-local-to-self "alliance request to player 6 timed out")
@@ -31774,6 +31813,7 @@
     (goal allied-with-7 0)
     (stance-toward 7 ally)
     (goal player-7-is-bad-egg 0)
+    (goal tried-alliance-with-7 0)
     (player-in-game 7)
 =>
     (up-modify-goal temp g:= game-time-goal)
@@ -31787,7 +31827,10 @@
           (goal allied-with-7 0)
           (and
             (stance-toward 7 ally)
-            (goal player-7-is-bad-egg 0)
+            (and
+              (goal player-7-is-bad-egg 0)
+              (goal tried-alliance-with-7 0)
+            )
           )
         )
         (player-in-game 7)
@@ -31823,6 +31866,7 @@
     (goal allied-with-7 0)
     (stance-toward 7 ally)
     (goal player-7-is-bad-egg 0)
+    (goal tried-alliance-with-7 0)
     (player-in-game 7)
 =>
     (chat-local-to-self "alliance request to player 7 timed out")
@@ -32020,6 +32064,7 @@
     (goal allied-with-8 0)
     (stance-toward 8 ally)
     (goal player-8-is-bad-egg 0)
+    (goal tried-alliance-with-8 0)
     (player-in-game 8)
 =>
     (up-modify-goal temp g:= game-time-goal)
@@ -32033,7 +32078,10 @@
           (goal allied-with-8 0)
           (and
             (stance-toward 8 ally)
-            (goal player-8-is-bad-egg 0)
+            (and
+              (goal player-8-is-bad-egg 0)
+              (goal tried-alliance-with-8 0)
+            )
           )
         )
         (player-in-game 8)
@@ -32069,6 +32117,7 @@
     (goal allied-with-8 0)
     (stance-toward 8 ally)
     (goal player-8-is-bad-egg 0)
+    (goal tried-alliance-with-8 0)
     (player-in-game 8)
 =>
     (chat-local-to-self "alliance request to player 8 timed out")
