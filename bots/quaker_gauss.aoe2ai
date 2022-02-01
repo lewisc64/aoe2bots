@@ -19,8 +19,6 @@ load "templates/fast_castle.aoe2ai"
     assign 16 builders to castle
   #end do
   
-  auto expand town size to 30
-  
   build lumber camps
   #when
     build gold mining camps
@@ -80,4 +78,6 @@ load "templates/fast_castle.aoe2ai"
   #else
     train 120 villager
   #end if
+  
+  auto expand town size to 30
 #end if

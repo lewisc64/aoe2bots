@@ -27,8 +27,6 @@ const cavalry-unit-class = 912
 
 do basic diplomacy
 
-auto expand town size
-
 #if not player-in-game target-player
   target closest enemy
 #end if
@@ -316,3 +314,5 @@ research ri-loom with gold escrow
 #else
   @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
 #end if
+
+auto expand town size

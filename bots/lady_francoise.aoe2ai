@@ -50,9 +50,6 @@ load "templates/fast_castle.aoe2ai"
     goal town-size-attack = 0
     
     #if current-age == imperial-age
-      sn-maximum-town-size += 7
-      sn-minimum-town-size += 7
-      sn-safe-town-size += 7
       goal town-size-attack = 1
       @up-reset-unit c: -1
     #end if
@@ -195,6 +192,8 @@ load "templates/fast_castle.aoe2ai"
       @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
     #end if
   #end if
+
+  auto expand town size
 
 #end if
 

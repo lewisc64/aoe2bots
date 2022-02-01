@@ -37,7 +37,6 @@ load "templates/fast_castle.aoe2ai"
   
   auto balance wood and food and gold
   trade excess wood and food and gold and stone at 2000
-  auto expand town size to 30
   
   #if escrow-amount food < 1600 and not research-completed ri-logistica
     escrow 20 food
@@ -133,7 +132,9 @@ load "templates/fast_castle.aoe2ai"
   
   #if military-population >= 30
     sn-maximum-town-size = 255
-  #else
+  #else if strategic-number sn-maximum-town-size == 255
     @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
+  #else
+    auto expand town size to 30
   #end if
 #end if

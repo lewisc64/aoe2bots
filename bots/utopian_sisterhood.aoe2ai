@@ -34,8 +34,6 @@ do basic diplomacy
     assign 8 builders to castle
   #end do
   
-  auto expand town size to 30
-  
   #if escrow-amount food <= 1000
     escrow 10 food
   #else
@@ -116,4 +114,5 @@ do basic diplomacy
   
   train 120 villager
   
+  auto expand town size to 30
 #end if
