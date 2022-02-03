@@ -32,6 +32,24 @@
   #end if
 #end template
 
+#template say-no-enemies-line
+  #if goal team-game 1
+    #select random
+      chat to all "Um, who exactly are we fighting?"
+    #randor
+      chat to all "I guess we win already?"
+    #end select
+  #else
+    #select random
+      chat to all "Hello? Is anyone there?"
+    #randor
+      chat to all "Lonely..."
+    #randor
+      chat to all "Nobody's here?"
+    #end select
+  #end if
+#end template
+
 #template say-resign-line
   #select random
     chat to all "My heart's not really in this anymore, sorry."
@@ -335,6 +353,8 @@
     chat to all "Love can be fleeting."
   #randor
     chat to all "Whoops, wrong button."
+  #randor
+    chat to all "I'm itching for a fight."
   #end select
 #end template
 

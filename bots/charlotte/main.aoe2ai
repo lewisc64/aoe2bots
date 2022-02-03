@@ -6,4 +6,6 @@ load "economy/all_ages.aoe2ai"
 load "directives/director.aoe2ai"
 load "chat.aoe2ai"
 
-auto expand town size to 30
+#if strategic-number sn-maximum-town-size <= 30
+  auto expand town size to 30
+#end if

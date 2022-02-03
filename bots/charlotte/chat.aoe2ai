@@ -24,6 +24,10 @@
     insert say-opening-line
   #end if
   
+  #if game-time >= 60 and goal neutral-or-enemy-players-count 0 and goal locked-teams 1
+    insert say-no-enemies-line
+  #end if
+  
   // gloating and complaining to all - only in locked teams
   #if goal locked-teams 1
     #delay by 30 minutes
