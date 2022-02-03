@@ -263,6 +263,17 @@ load "templates/fast_castle.aoe2ai"
           chat to all "Not worth it."
         #end delay
       #end delay
+    #randor
+      chat to all "A slug of metal crunched against my ribcage, blood filling the cavity."
+      #delay by 7 seconds
+        chat to all "I fell and hit the mud."
+        #delay by 7 seconds
+          chat to all "He watched me from afar, disappointment written across his face."
+          #delay by 5 seconds
+            chat to all "My one true love."
+          #end delay
+        #end delay
+      #end delay
     #end select
   #end if
   
@@ -307,9 +318,20 @@ load "templates/fast_castle.aoe2ai"
         #delay by 6 seconds
           chat to all "Clinging to phantasms, casting aside the material."
           #delay by 8 seconds
-            chat to all "Ending worthless lives with unremarkable deaths."
-            #delay by 8 seconds
-              chat to all "Time will forget them."
+            chat to all "Time will forget them."
+          #end delay
+        #end delay
+      #end delay
+    #randor
+      chat to all "Under dancing candlelight, my mother held me in her arms."
+      #delay by 8 seconds
+        chat to all "Her eyes were cold. Expressionless."
+        #delay by 5 seconds
+          chat to all "All that anger and pain, washed away by time."
+          #delay by 8 seconds
+            chat to all "Only her shadow stayed with me."
+            #delay by 5 seconds
+              chat to all "An unjudging echo of safety. It was perfect."
             #end delay
           #end delay
         #end delay
@@ -346,7 +368,7 @@ load "templates/fast_castle.aoe2ai"
         #end delay
       #end delay
     #randor
-      chat to all "And for what? For the sake of the people?"
+      chat to all "And for what? Altruistic virtues?"
       #delay by 8 seconds
         chat to all "A thin guise."
         #delay by 6 seconds
