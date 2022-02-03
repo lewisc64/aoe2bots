@@ -104,7 +104,7 @@ train 120 villager with 30 trade
     #end if
   #else if civilian-population >= 13
     #do once
-      scout enemy
+      scout opposite
     #end do
   #end if
   #if goal douche-done 1

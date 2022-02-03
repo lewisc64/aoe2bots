@@ -312,7 +312,5 @@ research ri-loom with gold escrow
   #end if
   sn-maximum-town-size = 255
 #else
-  @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
+  auto expand town size
 #end if
-
-auto expand town size

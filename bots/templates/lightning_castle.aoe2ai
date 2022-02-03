@@ -1,0 +1,65 @@
+#do once
+  set up basics
+#end do
+
+#if up-research-status c: feudal-age < research-pending
+  #do once
+    distribute villagers 30 70 0 0
+    sn-enable-training-queue = 1
+  #end do
+  
+  #if civilian-population >= 25
+    sn-enable-training-queue = 0
+  #end if
+  
+  lure boars
+  
+  build 1 town-center
+  build houses with 5 headroom
+  build lumber camps
+  build mills
+  
+  #if wood-amount >= 100
+    build farms
+  #end if
+  
+  research feudal-age
+  
+  train 27 villager
+  #if game-time >= 60 or civ-selected mayan or civ-selected chinese
+    research ri-loom
+  #end if
+  
+#else if up-research-status c: castle-age < research-pending
+  #do once
+    distribute villagers 40 40 20 0
+    assign 2 builders to market
+    assign 2 builders to blacksmith
+  #end do
+  
+  build houses with 5 headroom
+  build lumber camps
+  
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 8
+  #end when
+  
+  #when
+    build 1 market
+  #then always
+    build 1 blacksmith
+  #end when
+  build 6 farm
+  
+  buy food when gold >= 300
+  sell wood when wood >= 300
+  sell food when food >= 900
+  
+  research ri-loom
+  research castle-age
+  
+  train 29 villager
+  
+#end if

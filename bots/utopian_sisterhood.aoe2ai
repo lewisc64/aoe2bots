@@ -109,10 +109,9 @@ do basic diplomacy
     #end do
     sn-maximum-town-size = 255
   #else
-    @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
+    auto expand town size to 30
   #end if
   
   train 120 villager
   
-  auto expand town size to 30
 #end if

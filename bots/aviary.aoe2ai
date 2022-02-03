@@ -178,5 +178,7 @@ load "templates/fast_castle.aoe2ai"
   trade excess wood and food and gold at 1500
   auto balance wood and food and gold
   
-  auto expand town size to 30
+  #if strategic-number sn-maximum-town-size < 255
+    auto expand town size to 30
+  #end if
 #end if

@@ -132,8 +132,6 @@ load "templates/fast_castle.aoe2ai"
   
   #if military-population >= 30
     sn-maximum-town-size = 255
-  #else if strategic-number sn-maximum-town-size == 255
-    @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
   #else
     auto expand town size to 30
   #end if

@@ -185,15 +185,14 @@ load "templates/fast_castle.aoe2ai"
     #else
       sn-number-attack-groups = 0
     #end if
+    auto expand town size
   #else
     #if goal attacking 1
       sn-maximum-town-size = 255
     #else
-      @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
+      auto expand town size
     #end if
   #end if
-
-  auto expand town size
 
 #end if
 
