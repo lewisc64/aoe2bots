@@ -91,6 +91,9 @@ insert count-units-selected
     #if not goal total-units-selected 0
       @up-modify-goal produce-condottiero g:= good-condottiero
     #end if
+  
+  #randor
+    @up-modify-goal produce-missionaries g:= good-missionaries
     
   #end select
 #end if

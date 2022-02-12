@@ -1,0 +1,24 @@
+#if current-age >= castle-age
+  load "../../research/monastery/redemption.aoe2ai"
+  load "../../research/monastery/sanctity.aoe2ai"
+  load "../../research/monastery/fervor.aoe2ai"
+  load "../../research/castle/inquisition.aoe2ai"
+  
+  #respond to 2 monk
+    load "../../research/monastery/atonement.aoe2ai"
+  #end respond
+#end if
+
+#if current-age >= imperial-age
+  load "../../research/monastery/theocracy.aoe2ai"
+  load "../../research/monastery/illumination.aoe2ai"
+  load "../../research/monastery/block_printing.aoe2ai"
+#end if
+
+#do once
+  goal monastery-count = 0
+#end do
+@up-get-fact building-type-count-total monastery monastery-count
+#if up-compare-goal monastery-count g:< desired-military-buildings-per-type
+  build monastery
+#end if

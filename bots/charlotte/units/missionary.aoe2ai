@@ -1,10 +1,10 @@
 load "../research/monastery/prerequisites.aoe2ai"
 
-#if unit-available monk
+#if unit-available missionary
 
   load "types/holy.aoe2ai"
   
   #if goal produce-units 1 and goal enough-gold-for-units 1
-    train monk
+    train missionary
   #end if
 #end if
