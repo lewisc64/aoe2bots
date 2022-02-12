@@ -35347,8 +35347,11 @@
     (nand
       (game-time >= 60)
       (and
-        (goal neutral-or-enemy-players-count 0)
-        (goal locked-teams 1)
+        (game-time < 120)
+        (and
+          (goal neutral-or-enemy-players-count 0)
+          (goal locked-teams 1)
+        )
       )
     )
 =>
