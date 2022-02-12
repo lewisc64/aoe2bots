@@ -15,7 +15,6 @@
 #template turn-off-for-anti-infantry
   goal produce-militia = 0
   goal produce-condottiero = 0
-  goal produce-hand-cannoneers = 0
   #if goal unique-unit-is-infantry 1 and not (civ-selected gothic or civ-selected malay or civ-selected celtic)
     goal produce-unique-units = 0
   #end if
@@ -87,6 +86,10 @@
   #end respond
   
   #respond to min-detection-units jaguar-man-line
+    insert turn-off-for-anti-infantry
+  #end respond
+  
+  #respond to min-detection-units teutonic-knight-line
     insert turn-off-for-anti-infantry
   #end respond
   
