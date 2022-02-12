@@ -3,7 +3,6 @@
   goal attacking = 0
   goal do-backstep = 0
   goal emergency-trash = 0
-  goal be-smart = 1
 #end do
 
 #if starting-age == dark-age
@@ -37,14 +36,6 @@ load "../units/all_switched.aoe2ai" // this must remain below age researches, bu
     load "emergency_trash.aoe2ai"
   #else
     load "unit_selection/random_unit_selection.aoe2ai"
-    
-    #if goal be-smart 1
-      load "unit_selection/smart_brain.aoe2ai"
-    #end if
-    #delay by 2 minutes
-      goal be-smart = 0
-    #end delay
-    
     load "unit_selection/being_countered_system.aoe2ai"
     load "unit_selection/counter_system.aoe2ai"
   #end if
@@ -88,57 +79,3 @@ load "../units/all_switched.aoe2ai" // this must remain below age researches, bu
 
 load "help_allies.aoe2ai"
 load "resigning.aoe2ai"
-
-#do once
-  #if goal produce-archers 1
-    chat to self "produce-archers"
-  #end if
-  #if goal produce-hand-cannoneers 1
-    chat to self "produce-hand-cannoneers"
-  #end if
-  #if goal produce-skirmishers 1
-    chat to self "produce-skirmishers"
-  #end if
-  #if goal produce-cavalry-archers 1
-    chat to self "produce-cavalry-archers"
-  #end if
-  #if goal produce-militia 1
-    chat to self "produce-militia"
-  #end if
-  #if goal produce-spearmen 1
-    chat to self "produce-spearmen"
-  #end if
-  #if goal produce-eagles 1
-    chat to self "produce-eagles"
-  #end if
-  #if goal produce-scouts 1
-    chat to self "produce-scouts"
-  #end if
-  #if goal produce-knights 1
-    chat to self "produce-knights"
-  #end if
-  #if goal produce-camels 1
-    chat to self "produce-camels"
-  #end if
-  #if goal produce-battle-elephants 1
-    chat to self "produce-battle-elephants"
-  #end if
-  #if goal produce-mangonels 1
-    chat to self "produce-mangonels"
-  #end if
-  #if goal produce-scorpions 1
-    chat to self "produce-scorpions"
-  #end if
-  #if goal produce-monks 1
-    chat to self "produce-monks"
-  #end if
-  #if goal produce-unique-units 1
-    chat to self "produce-unique-units"
-  #end if
-  #if goal produce-galleys 1
-    chat to self "produce-galleys"
-  #end if
-  #if goal produce-fire-ships 1
-    chat to self "produce-fire-ships"
-  #end if
-#end do

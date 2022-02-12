@@ -29,6 +29,9 @@ const ri-silk-road = 499
 const ri-thalassocracy = 624
 const ri-carrack = 572
 
+const ri-elite-genitour = 599
+const genitour-line = 1079
+
 const live-sheep = 958
 const sea-fish = 905
 const tc-arrow = 54
@@ -82,6 +85,8 @@ const gold-unit-threshold = 0
   goal produce-trebuchets = 0
   goal produce-unique-units = 0
   goal produce-monks = 0
+  goal produce-genitours = 0
+  
   goal produce-galleys = 0
   goal produce-fire-ships = 0
   goal produce-cannon-galleons = 0
@@ -103,8 +108,10 @@ const gold-unit-threshold = 0
   goal {prefix}good-battering-rams = 0
   goal {prefix}good-mangonels = 0
   goal {prefix}good-scorpions = 0
-  goal {prefix}good-monks = 0
   goal {prefix}good-unique-units = 0
+  goal {prefix}good-monks = 0
+  goal {prefix}good-genitours = 0
+  
   goal {prefix}good-galleys = 0
   goal {prefix}good-fire-ships = 0
 #end template
@@ -126,6 +133,8 @@ const gold-unit-threshold = 0
   @up-modify-goal produce-scorpions g:= good-scorpions
   @up-modify-goal produce-unique-units g:= good-unique-units
   @up-modify-goal produce-monks g:= good-monks
+  @up-modify-goal produce-genitours g:= good-genitours
+  
   @up-modify-goal produce-galleys g:= good-galleys
   @up-modify-goal produce-fire-ships g:= good-fire-ships
 #end template

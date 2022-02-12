@@ -13,8 +13,8 @@
   @up-modify-goal total-units-selected g:+ produce-battle-elephants
   @up-modify-goal total-units-selected g:+ produce-mangonels
   @up-modify-goal total-units-selected g:+ produce-scorpions
-  @up-modify-goal total-units-selected g:+ produce-monks
   @up-modify-goal total-units-selected g:+ produce-unique-units
+  @up-modify-goal total-units-selected g:+ produce-monks
   // ships do not count towards unit total.
 #end template
 
@@ -79,10 +79,13 @@ insert count-units-selected
     @up-modify-goal produce-scorpions g:= good-scorpions
     
   #randor
+    @up-modify-goal produce-unique-units g:= good-unique-units
+    
+  #randor
     @up-modify-goal produce-monks g:= good-monks
   
   #randor
-    @up-modify-goal produce-unique-units g:= good-unique-units
+    @up-modify-goal produce-genitours g:= good-genitours
     
   #end select
 #end if

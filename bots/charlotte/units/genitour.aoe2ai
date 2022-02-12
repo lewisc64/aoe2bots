@@ -1,0 +1,14 @@
+//load "../research/town_center/feudal_age.aoe2ai"
+load "../research/archery_range/prerequisites.aoe2ai"
+
+#if unit-available genitour-line
+  #if current-age == imperial-age
+    load "../research/archery_range/elite_genitour.aoe2ai"
+  #end if
+  
+  load "types/cavalry_archer.aoe2ai"
+  
+  #if goal produce-units 1 and goal enough-wood-for-units 1 and goal enough-food-for-units 1
+    train genitour-line
+  #end if
+#end if

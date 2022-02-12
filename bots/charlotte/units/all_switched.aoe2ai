@@ -60,6 +60,7 @@ goal total-type-production = 0
 #if goal enough-wood-for-units 1 and goal enough-food-for-units 1
   #if goal allow-land-units 1
     insert add-to-total-type-production(unit="skirmisher-line",goal="produce-skirmishers")
+    insert add-to-total-type-production(unit="genitour-line",goal="produce-genitours")
     insert add-to-total-type-production(unit="spearman-line",goal="produce-spearmen")
   #end if
 #end if
@@ -102,6 +103,7 @@ load "prerequisites.aoe2ai"
   insert load-unit(production_goal="produce-archers",unit="archer-line",unit_path="archer.aoe2ai")
   insert load-unit(production_goal="produce-hand-cannoneers",unit="hand-cannoneer",unit_path="hand_cannoneer.aoe2ai")
   insert load-unit(production_goal="produce-skirmishers",unit="skirmisher-line",unit_path="skirmisher.aoe2ai")
+  insert load-unit(production_goal="produce-genitours",unit="genitour-line",unit_path="genitour.aoe2ai")
   insert load-unit(production_goal="produce-cavalry-archers",unit="cavalry-archer-line",unit_path="cavalry_archer.aoe2ai")
 
   insert load-unit(production_goal="produce-militia",unit="militiaman-line",unit_path="militia.aoe2ai")

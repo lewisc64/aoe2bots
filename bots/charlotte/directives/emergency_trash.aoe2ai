@@ -73,3 +73,8 @@ goal produce-monks = 0
 #if goal produce-unique-units 0 and goal produce-scouts 0 and goal produce-skirmishers 0 and goal produce-spearmen 0
   goal produce-skirmishers = 1
 #end if
+
+#if goal produce-skirmishers 1 and goal good-genitours 1
+  goal produce-skirmishers = 0
+  goal produce-genitours = 1
+#end if
