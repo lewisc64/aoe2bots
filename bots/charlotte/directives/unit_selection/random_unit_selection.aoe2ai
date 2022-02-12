@@ -15,6 +15,9 @@
   @up-modify-goal total-units-selected g:+ produce-scorpions
   @up-modify-goal total-units-selected g:+ produce-unique-units
   @up-modify-goal total-units-selected g:+ produce-monks
+  @up-modify-goal total-units-selected g:+ produce-genitours
+  @up-modify-goal total-units-selected g:+ produce-condottiero
+  @up-modify-goal total-units-selected g:+ produce-missionaries
   // ships do not count towards unit total.
 #end template
 

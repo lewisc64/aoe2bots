@@ -2,20 +2,20 @@
 (defconst attack-ready 172)
 (defconst do-backstep 173)
 (defconst emergency-trash 174)
-(defconst monastery-count 189)
-(defconst old-desired-military-buildings-per-type 188)
-(defconst castle-count 187)
-(defconst siege-workshop-count 186)
-(defconst stable-count 185)
-(defconst barracks-count 184)
-(defconst archery-range-count 183)
-(defconst total-type-production 182)
-(defconst expected-units-per-type 181)
-(defconst current-unit-amount 180)
-(defconst old-produce-units 179)
-(defconst dock-count 178)
-(defconst desired-villagers-with-subtractions 176)
-(defconst feitoria-pop-usage 177)
+(defconst monastery-count 188)
+(defconst old-desired-military-buildings-per-type 187)
+(defconst castle-count 186)
+(defconst siege-workshop-count 185)
+(defconst stable-count 184)
+(defconst barracks-count 183)
+(defconst archery-range-count 182)
+(defconst total-type-production 181)
+(defconst expected-units-per-type 180)
+(defconst current-unit-amount 179)
+(defconst old-produce-units 178)
+(defconst dock-count 177)
+(defconst desired-villagers-with-subtractions 175)
+(defconst feitoria-pop-usage 176)
 (defconst enemy-good-fire-ships 214)
 (defconst enemy-good-galleys 213)
 (defconst enemy-good-missionaries 212)
@@ -4125,172 +4125,6 @@
     )
 =>
     (research ri-sultans)
-)
-(defrule
-    (goal attempted-researches 0)
-=>
-    (set-strategic-number sn-enable-training-queue 1)
-)
-(defrule
-    (not
-      (goal attempted-researches 0)
-    )
-=>
-    (set-strategic-number sn-enable-training-queue 0)
-)
-(defrule
-    (building-type-count town-center-foundation >= 1)
-    (building-type-count town-center == 0)
-=>
-    (delete-building farm)
-)
-(defrule
-    (up-compare-goal population-space-remaining > 10)
-    (up-compare-goal desired-military-buildings-per-type c:< 8)
-    (wood-amount >= 1000)
-    (food-amount >= 1000)
-    (gold-amount >= 1000)
-=>
-    (enable-timer 2 600)
-    (disable-self)
-)
-(defrule
-    (timer-triggered 2)
-    (up-compare-goal population-space-remaining > 10)
-    (up-compare-goal desired-military-buildings-per-type c:< 8)
-    (wood-amount >= 1000)
-    (food-amount >= 1000)
-    (gold-amount >= 1000)
-=>
-    (up-modify-goal desired-military-buildings-per-type c:+ 1)
-    (up-modify-goal desired-town-centers c:+ 1)
-    (disable-timer 2)
-    (enable-timer 2 600)
-)
-(defrule
-    (game-time >= 2400)
-=>
-    (enable-timer 3 1800)
-    (disable-self)
-)
-(defrule
-    (timer-triggered 3)
-    (game-time >= 2400)
-=>
-    (up-reset-unit c: -1)
-    (disable-timer 3)
-    (enable-timer 3 1800)
-)
-(defrule
-    (building-type-count house == 0)
-=>
-    (up-assign-builders c: house c: 2)
-    (disable-self)
-)
-(defrule
-    (not
-      (building-type-count house == 0)
-    )
-=>
-    (up-assign-builders c: house c: 1)
-    (disable-self)
-)
-(defrule
-    (strategic-number sn-task-ungrouped-soldiers == 1)
-=>
-    (set-strategic-number sn-task-ungrouped-soldiers 0)
-)
-(defrule
-    (true)
-=>
-    (enable-timer 4 30)
-    (disable-self)
-)
-(defrule
-    (goal attacking 0)
-    (timer-triggered 4)
-=>
-    (set-strategic-number sn-task-ungrouped-soldiers 1)
-)
-(defrule
-    (timer-triggered 4)
-=>
-    (disable-timer 4)
-    (enable-timer 4 30)
-)
-(defrule
-    (current-age >= castle-age)
-=>
-    (delete-building stone-wall-line)
-    (delete-building palisade-wall)
-    (delete-building 789)
-    (delete-building 793)
-    (delete-building 797)
-    (delete-building 801)
-    (delete-building 64)
-    (delete-building 88)
-    (delete-building 659)
-    (delete-building 667)
-    (delete-building 63)
-    (delete-building 85)
-    (delete-building 660)
-    (delete-building 668)
-)
-(defrule
-    (current-age == dark-age)
-    (food-amount < 50)
-    (up-pending-objects c: villager <= 1)
-=>
-    (up-drop-resources sheep-food c: 5)
-    (up-drop-resources farm-food c: 5)
-    (up-drop-resources forage-food c: 5)
-    (up-drop-resources deer-food c: 20)
-    (up-drop-resources boar-food c: 10)
-)
-(defrule
-    (strategic-number sn-number-explore-groups >= 1)
-    (town-under-attack)
-=>
-    (set-strategic-number sn-number-explore-groups 0)
-    (set-strategic-number sn-total-number-explorers 0)
-    (up-reset-unit c: -1)
-)
-(defrule
-    (strategic-number sn-number-explore-groups == 0)
-    (not
-      (town-under-attack)
-    )
-=>
-    (set-strategic-number sn-number-explore-groups 1)
-    (set-strategic-number sn-total-number-explorers 1)
-)
-(defrule
-    (civ-selected portuguese)
-=>
-    (set-goal 175 0)
-    (generate-random-number 3)
-    (up-get-fact random-number 0 175)
-    (disable-self)
-)
-(defrule
-    (can-build feitoria)
-    (up-pending-objects c: feitoria < 5)
-    (building-type-count-total feitoria < 1)
-    (goal 175 2)
-    (civ-selected portuguese)
-=>
-    (build feitoria)
-    (set-goal 328 1)
-)
-(defrule
-    (can-build feitoria)
-    (up-pending-objects c: feitoria < 5)
-    (building-type-count-total feitoria < 2)
-    (goal 175 3)
-    (civ-selected portuguese)
-=>
-    (build feitoria)
-    (set-goal 328 1)
 )
 (defrule
     (can-build town-center)
@@ -28491,6 +28325,172 @@
     (up-modify-goal produce-units g:= old-produce-units)
 )
 (defrule
+    (goal attempted-researches 0)
+=>
+    (set-strategic-number sn-enable-training-queue 1)
+)
+(defrule
+    (not
+      (goal attempted-researches 0)
+    )
+=>
+    (set-strategic-number sn-enable-training-queue 0)
+)
+(defrule
+    (building-type-count town-center-foundation >= 1)
+    (building-type-count town-center == 0)
+=>
+    (delete-building farm)
+)
+(defrule
+    (up-compare-goal population-space-remaining > 10)
+    (up-compare-goal desired-military-buildings-per-type c:< 8)
+    (wood-amount >= 1000)
+    (food-amount >= 1000)
+    (gold-amount >= 1000)
+=>
+    (enable-timer 2 600)
+    (disable-self)
+)
+(defrule
+    (timer-triggered 2)
+    (up-compare-goal population-space-remaining > 10)
+    (up-compare-goal desired-military-buildings-per-type c:< 8)
+    (wood-amount >= 1000)
+    (food-amount >= 1000)
+    (gold-amount >= 1000)
+=>
+    (up-modify-goal desired-military-buildings-per-type c:+ 1)
+    (up-modify-goal desired-town-centers c:+ 1)
+    (disable-timer 2)
+    (enable-timer 2 600)
+)
+(defrule
+    (game-time >= 2400)
+=>
+    (enable-timer 3 1800)
+    (disable-self)
+)
+(defrule
+    (timer-triggered 3)
+    (game-time >= 2400)
+=>
+    (up-reset-unit c: -1)
+    (disable-timer 3)
+    (enable-timer 3 1800)
+)
+(defrule
+    (building-type-count house == 0)
+=>
+    (up-assign-builders c: house c: 2)
+    (disable-self)
+)
+(defrule
+    (not
+      (building-type-count house == 0)
+    )
+=>
+    (up-assign-builders c: house c: 1)
+    (disable-self)
+)
+(defrule
+    (strategic-number sn-task-ungrouped-soldiers == 1)
+=>
+    (set-strategic-number sn-task-ungrouped-soldiers 0)
+)
+(defrule
+    (true)
+=>
+    (enable-timer 4 30)
+    (disable-self)
+)
+(defrule
+    (goal attacking 0)
+    (timer-triggered 4)
+=>
+    (set-strategic-number sn-task-ungrouped-soldiers 1)
+)
+(defrule
+    (timer-triggered 4)
+=>
+    (disable-timer 4)
+    (enable-timer 4 30)
+)
+(defrule
+    (current-age >= castle-age)
+=>
+    (delete-building stone-wall-line)
+    (delete-building palisade-wall)
+    (delete-building 789)
+    (delete-building 793)
+    (delete-building 797)
+    (delete-building 801)
+    (delete-building 64)
+    (delete-building 88)
+    (delete-building 659)
+    (delete-building 667)
+    (delete-building 63)
+    (delete-building 85)
+    (delete-building 660)
+    (delete-building 668)
+)
+(defrule
+    (current-age == dark-age)
+    (food-amount < 50)
+    (up-pending-objects c: villager <= 1)
+=>
+    (up-drop-resources sheep-food c: 5)
+    (up-drop-resources farm-food c: 5)
+    (up-drop-resources forage-food c: 5)
+    (up-drop-resources deer-food c: 20)
+    (up-drop-resources boar-food c: 10)
+)
+(defrule
+    (strategic-number sn-number-explore-groups >= 1)
+    (town-under-attack)
+=>
+    (set-strategic-number sn-number-explore-groups 0)
+    (set-strategic-number sn-total-number-explorers 0)
+    (up-reset-unit c: -1)
+)
+(defrule
+    (strategic-number sn-number-explore-groups == 0)
+    (not
+      (town-under-attack)
+    )
+=>
+    (set-strategic-number sn-number-explore-groups 1)
+    (set-strategic-number sn-total-number-explorers 1)
+)
+(defrule
+    (civ-selected portuguese)
+=>
+    (set-goal 189 0)
+    (generate-random-number 3)
+    (up-get-fact random-number 0 189)
+    (disable-self)
+)
+(defrule
+    (can-build feitoria)
+    (up-pending-objects c: feitoria < 5)
+    (building-type-count-total feitoria < 1)
+    (goal 189 2)
+    (civ-selected portuguese)
+=>
+    (build feitoria)
+    (set-goal 328 1)
+)
+(defrule
+    (can-build feitoria)
+    (up-pending-objects c: feitoria < 5)
+    (building-type-count-total feitoria < 2)
+    (goal 189 3)
+    (civ-selected portuguese)
+=>
+    (build feitoria)
+    (set-goal 328 1)
+)
+(defrule
     (true)
 =>
     (set-goal 190 0)
@@ -30066,6 +30066,9 @@
     (up-modify-goal total-units-selected g:+ produce-scorpions)
     (up-modify-goal total-units-selected g:+ produce-unique-units)
     (up-modify-goal total-units-selected g:+ produce-monks)
+    (up-modify-goal total-units-selected g:+ produce-genitours)
+    (up-modify-goal total-units-selected g:+ produce-condottiero)
+    (up-modify-goal total-units-selected g:+ produce-missionaries)
 )
 (defrule
     (up-compare-goal total-units-selected g:< desired-units)
