@@ -8,7 +8,7 @@ load "../research/archery_range/prerequisites.aoe2ai"
   
   load "types/cavalry_archer.aoe2ai"
   
-  #if goal produce-units 1 and goal enough-wood-for-units 1 and goal enough-food-for-units 1
+  #if goal produce-units 1
     train genitour-line
   #end if
 #end if

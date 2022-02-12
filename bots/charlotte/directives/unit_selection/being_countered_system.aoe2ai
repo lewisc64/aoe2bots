@@ -67,7 +67,7 @@
   goal produce-mangonels = 0
 #end respond
 
-#if goal desired-units 1
+#if goal desired-units-per-type 1
   
   #respond to min-detection-units archer
     insert turn-off-for-archers

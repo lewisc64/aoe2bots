@@ -23,7 +23,7 @@
 
 insert count-units-selected
 
-#if up-compare-goal total-units-selected g:< desired-units
+#if up-compare-goal total-units-selected g:< desired-units-per-type
   #select random
     #if goal produce-cavalry-archers 0
       @up-modify-goal produce-archers g:= good-archers

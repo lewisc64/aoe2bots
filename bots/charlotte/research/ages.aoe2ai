@@ -1,0 +1,11 @@
+#if goal desired-age feudal-age
+  load "town_center/feudal_age.aoe2ai"
+#end if
+
+#if goal desired-age castle-age
+  load "town_center/castle_age.aoe2ai"
+#end if
+
+#if goal desired-age imperial-age
+  load "town_center/imperial_age.aoe2ai"
+#end if

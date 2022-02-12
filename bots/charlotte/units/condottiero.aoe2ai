@@ -4,7 +4,7 @@ load "../research/barracks/prerequisites.aoe2ai"
 #if unit-available condottiero
   load "types/infantry.aoe2ai"
   
-  #if goal produce-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1
+  #if goal produce-units 1
     train condottiero
   #end if
 #end if

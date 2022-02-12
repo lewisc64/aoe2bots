@@ -1,3 +1,5 @@
+// must be loaded after any research.
+
 #do once
   goal attack-ready = 0
   goal attacking = 0
@@ -5,13 +7,7 @@
   goal emergency-trash = 0
 #end do
 
-#if starting-age == dark-age
-  load "age/feudal_rush.aoe2ai"
-#else
-  load "age/fast_castle.aoe2ai"
-#end if
-load "do_misc_research.aoe2ai"
-load "../units/all_switched.aoe2ai" // this must remain below age researches, but above pacing.
+load "age/feudal_rush.aoe2ai"
 
 load "misc_strats.aoe2ai"
 

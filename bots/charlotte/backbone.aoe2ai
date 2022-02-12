@@ -53,10 +53,6 @@ const castle-age-military-buildings = 4
 const imperial-age-military-buildings = 5
 const min-detection-units = 5
 
-const wood-unit-threshold = 0
-const food-unit-threshold = 0
-const gold-unit-threshold = 0
-
 // @up-chat-data-to-all "town size: %d" s: sn-maximum-town-size
 
 #if strategic-number sn-food-gatherer-percentage == 0 and game-time >= 5 // gatherer percentage debugging
@@ -192,9 +188,9 @@ const gold-unit-threshold = 0
   goal desired-fishing-ships = 10
   
   #select random persistant
-    goal desired-units = 1
+    goal desired-units-per-type = 1
   #randor
-    goal desired-units = 2
+    goal desired-units-per-type = 2
   #end select
   
   // previous numbers assume pop cap of 200, normalise to actual pop cap.
@@ -204,6 +200,9 @@ const gold-unit-threshold = 0
   @up-modify-goal desired-villagers c:/ 200
   @up-modify-goal desired-fishing-ships g:* pop-cap-goal
   @up-modify-goal desired-fishing-ships c:/ 200
+  
+  goal desired-age = 0
+  @up-modify-goal desired-age c:= imperial-age
   
   goal produce-units = 1
   goal allow-land-units = 1
@@ -253,30 +252,6 @@ load "stats.aoe2ai"
   #do once
     goal free-for-all = 1
   #end do
-#end if
-
-#if wood-amount >= wood-unit-threshold
-  goal enough-wood-for-units = 1
-#else
-  goal enough-wood-for-units = 0
-#end if
-
-#if food-amount >= food-unit-threshold
-  goal enough-food-for-units = 1
-#else
-  goal enough-food-for-units = 0
-#end if
-
-#if gold-amount >= gold-unit-threshold
-  goal enough-gold-for-units = 1
-#else
-  goal enough-gold-for-units = 0
-#end if
-
-#if goal attacking 0 and town-under-attack
-  goal enough-wood-for-units = 1
-  goal enough-food-for-units = 1
-  goal enough-gold-for-units = 1
 #end if
 
 #if current-age == dark-age and up-compare-goal desired-military-buildings-per-type c:< dark-age-military-buildings

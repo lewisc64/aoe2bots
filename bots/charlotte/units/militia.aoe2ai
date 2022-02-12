@@ -12,7 +12,7 @@ load "../research/barracks/prerequisites.aoe2ai"
   
   load "types/infantry.aoe2ai"
   
-  #if goal produce-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1
+  #if goal produce-units 1
     train militiaman-line
   #end if
 #end if
