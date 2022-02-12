@@ -30510,7 +30510,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 24)
+    (up-jump-rule 27)
 )
 (defrule
     (true)
@@ -30629,7 +30629,7 @@
       (goal passive-override 0)
     )
 =>
-    (up-jump-rule 2)
+    (up-jump-rule 5)
 )
 (defrule
     (true)
@@ -30642,6 +30642,28 @@
 =>
     (set-goal produce-units 1)
     (set-goal do-research 1)
+)
+(defrule
+    (goal produce-militia 1)
+    (up-research-status c: ri-man-at-arms < research-pending)
+=>
+    (enable-timer 8 30)
+    (disable-self)
+)
+(defrule
+    (timer-triggered 8)
+    (goal produce-militia 1)
+    (up-research-status c: ri-man-at-arms < research-pending)
+=>
+    (chat-local-to-self "waiting for man at arms")
+    (disable-timer 8)
+    (enable-timer 8 30)
+)
+(defrule
+    (goal produce-militia 1)
+    (up-research-status c: ri-man-at-arms < research-pending)
+=>
+    (set-goal produce-units 0)
 )
 (defrule
     (or
@@ -30917,16 +30939,16 @@
 (defrule
     (goal attacking 1)
 =>
-    (enable-timer 8 60)
+    (enable-timer 9 60)
     (disable-self)
 )
 (defrule
-    (timer-triggered 8)
+    (timer-triggered 9)
     (goal attacking 1)
 =>
     (attack-now)
-    (disable-timer 8)
-    (enable-timer 8 60)
+    (disable-timer 9)
+    (enable-timer 9 60)
 )
 (defrule
     (goal attacking 1)
@@ -34886,7 +34908,7 @@
 (defrule
     (goal locked-teams 1)
 =>
-    (enable-timer 9 1800)
+    (enable-timer 10 1800)
     (disable-self)
 )
 (defrule
@@ -34895,7 +34917,7 @@
       (and
         (up-compare-goal score-percentage c:<= 70)
         (and
-          (timer-triggered 9)
+          (timer-triggered 10)
           (goal locked-teams 1)
         )
       )
@@ -34939,7 +34961,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 9)
+            (timer-triggered 10)
             (goal locked-teams 1)
           )
         )
@@ -34986,7 +35008,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 9)
+            (timer-triggered 10)
             (goal locked-teams 1)
           )
         )
@@ -35043,7 +35065,7 @@
             (up-compare-goal score-percentage c:<= 70)
           )
           (and
-            (timer-triggered 9)
+            (timer-triggered 10)
             (goal locked-teams 1)
           )
         )
@@ -35086,7 +35108,7 @@
               (up-compare-goal score-percentage c:<= 70)
             )
             (and
-              (timer-triggered 9)
+              (timer-triggered 10)
               (goal locked-teams 1)
             )
           )
@@ -35118,7 +35140,7 @@
               (up-compare-goal score-percentage c:<= 70)
             )
             (and
-              (timer-triggered 9)
+              (timer-triggered 10)
               (goal locked-teams 1)
             )
           )
@@ -35143,7 +35165,7 @@
       (and
         (military-population >= 20)
         (and
-          (timer-triggered 9)
+          (timer-triggered 10)
           (goal locked-teams 1)
         )
       )
@@ -35224,7 +35246,7 @@
           (and
             (military-population >= 20)
             (and
-              (timer-triggered 9)
+              (timer-triggered 10)
               (goal locked-teams 1)
             )
           )
@@ -35347,7 +35369,7 @@
           (and
             (military-population >= 20)
             (and
-              (timer-triggered 9)
+              (timer-triggered 10)
               (goal locked-teams 1)
             )
           )

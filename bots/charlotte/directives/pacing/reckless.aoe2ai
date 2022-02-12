@@ -3,3 +3,10 @@
 #end do
 goal produce-units = 1
 goal do-research = 1
+
+#if goal produce-militia 1 and up-research-status c: ri-man-at-arms < research-pending
+  #repeat every 30 seconds
+    chat to self "waiting for man at arms"
+  #end repeat
+  goal produce-units = 0
+#end if
