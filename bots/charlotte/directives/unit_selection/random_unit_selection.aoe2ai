@@ -87,6 +87,11 @@ insert count-units-selected
   #randor
     @up-modify-goal produce-genitours g:= good-genitours
     
+  #randor
+    #if not goal total-units-selected 0
+      @up-modify-goal produce-condottiero g:= good-condottiero
+    #end if
+    
   #end select
 #end if
 

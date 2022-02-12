@@ -124,6 +124,7 @@
     goal {prefix}good-militia = 1
     goal {prefix}good-scouts = 1
     goal {prefix}good-monks = 1
+    goal {prefix}good-condottiero = 1
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
@@ -294,6 +295,10 @@
   #if goal locked-teams 1
     #if goal good-cavalry-archers 1 and players-civ any-ally berbers
       goal good-genitours = 1
+    #end if
+    
+    #if (goal good-militia 1 or goal good-spearmen 1 or goal good-eagles 1) and players-civ any-ally italian
+      goal good-condottiero = 1
     #end if
   #end if
   

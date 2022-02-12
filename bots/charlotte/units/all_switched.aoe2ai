@@ -44,6 +44,7 @@ goal total-type-production = 0
   #if goal allow-land-units 1
     insert add-to-total-type-production(unit="hand-cannoneer",goal="produce-hand-cannoneers")
     insert add-to-total-type-production(unit="militiaman-line",goal="produce-militia")
+    insert add-to-total-type-production(unit="condottiero",goal="produce-condottiero")
     insert add-to-total-type-production(unit="eagle-warrior-line",goal="produce-eagles")
     insert add-to-total-type-production(unit="knight-line",goal="produce-knights")
     insert add-to-total-type-production(unit="camel-line",goal="produce-camels")
@@ -107,6 +108,7 @@ load "prerequisites.aoe2ai"
   insert load-unit(production_goal="produce-cavalry-archers",unit="cavalry-archer-line",unit_path="cavalry_archer.aoe2ai")
 
   insert load-unit(production_goal="produce-militia",unit="militiaman-line",unit_path="militia.aoe2ai")
+  insert load-unit(production_goal="produce-condottiero",unit="condottiero",unit_path="condottiero.aoe2ai")
   insert load-unit(production_goal="produce-spearmen",unit="spearman-line",unit_path="spearman.aoe2ai")
   insert load-unit(production_goal="produce-eagles",unit="eagle-warrior-line",unit_path="eagle_warrior.aoe2ai")
 

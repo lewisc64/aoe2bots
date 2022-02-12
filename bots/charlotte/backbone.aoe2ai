@@ -32,6 +32,8 @@ const ri-carrack = 572
 const ri-elite-genitour = 599
 const genitour-line = 1079
 
+const condottiero = 184
+
 const live-sheep = 958
 const sea-fish = 905
 const tc-arrow = 54
@@ -86,6 +88,7 @@ const gold-unit-threshold = 0
   goal produce-unique-units = 0
   goal produce-monks = 0
   goal produce-genitours = 0
+  goal produce-condottiero = 0
   
   goal produce-galleys = 0
   goal produce-fire-ships = 0
@@ -111,6 +114,7 @@ const gold-unit-threshold = 0
   goal {prefix}good-unique-units = 0
   goal {prefix}good-monks = 0
   goal {prefix}good-genitours = 0
+  goal {prefix}good-condottiero = 0
   
   goal {prefix}good-galleys = 0
   goal {prefix}good-fire-ships = 0
@@ -134,6 +138,7 @@ const gold-unit-threshold = 0
   @up-modify-goal produce-unique-units g:= good-unique-units
   @up-modify-goal produce-monks g:= good-monks
   @up-modify-goal produce-genitours g:= good-genitours
+  @up-modify-goal produce-condottiero g:= good-condottiero
   
   @up-modify-goal produce-galleys g:= good-galleys
   @up-modify-goal produce-fire-ships g:= good-fire-ships
