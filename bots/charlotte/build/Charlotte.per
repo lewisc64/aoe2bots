@@ -446,7 +446,7 @@
     (set-goal desired-trade-carts 30)
     (set-goal desired-fishing-ships 10)
     (set-goal 10 0)
-    (generate-random-number 5)
+    (generate-random-number 2)
     (up-get-fact random-number 0 10)
     (disable-self)
 )
@@ -459,25 +459,7 @@
 (defrule
     (goal 10 2)
 =>
-    (set-goal desired-units 1)
-    (disable-self)
-)
-(defrule
-    (goal 10 3)
-=>
     (set-goal desired-units 2)
-    (disable-self)
-)
-(defrule
-    (goal 10 4)
-=>
-    (set-goal desired-units 2)
-    (disable-self)
-)
-(defrule
-    (goal 10 5)
-=>
-    (set-goal desired-units 3)
     (disable-self)
 )
 (defrule
