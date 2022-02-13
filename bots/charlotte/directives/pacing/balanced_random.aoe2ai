@@ -18,13 +18,6 @@ goal passive-override = 0
   #end select
 #end repeat
 
-#if up-compare-goal largest-enemy-military-percentage c:< 20
-  goal aggressive-override = 1
-  #repeat every 30 seconds
-    chat to self "not enough military!"
-  #end repeat
-#end if
-
 #if up-compare-goal largest-enemy-military-percentage c:>= 200 and military-population >= 30 and not goal attempted-researches 0
   goal passive-override = 1
   #repeat every 30 seconds

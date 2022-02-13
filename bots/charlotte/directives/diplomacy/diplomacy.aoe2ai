@@ -35,7 +35,7 @@ const allied-victory-timeout = 120
       @set-stance {player} enemy
     #end if
     
-    #if goal threat-player {player} and not stance-toward {player} enemy
+    #if goal threat-player {player} and up-compare-goal threat-time c:< 1000 and not stance-toward {player} enemy
       chat to self "attacked by player {player}"
       #if goal allied-with-{player} 1
         goal chat-betrayed-by-player = {player}

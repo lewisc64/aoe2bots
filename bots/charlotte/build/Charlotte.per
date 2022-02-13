@@ -30496,7 +30496,7 @@
 )
 (defrule
     (or
-      (up-compare-goal target-military-percentage c:>= 100)
+      (up-compare-goal target-military-percentage c:>= 110)
       (up-compare-goal population-space-remaining c:<= 5)
     )
     (military-population >= 8)
@@ -30509,7 +30509,7 @@
     (goal attacking 1)
     (nand
       (or
-        (up-compare-goal target-military-percentage c:>= 100)
+        (up-compare-goal target-military-percentage c:>= 110)
         (up-compare-goal population-space-remaining c:<= 5)
       )
       (and
@@ -30525,7 +30525,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 27)
+    (up-jump-rule 24)
 )
 (defrule
     (true)
@@ -30586,25 +30586,6 @@
     (enable-timer 5 300)
 )
 (defrule
-    (up-compare-goal largest-enemy-military-percentage c:< 20)
-=>
-    (set-goal aggressive-override 1)
-)
-(defrule
-    (up-compare-goal largest-enemy-military-percentage c:< 20)
-=>
-    (enable-timer 6 30)
-    (disable-self)
-)
-(defrule
-    (timer-triggered 6)
-    (up-compare-goal largest-enemy-military-percentage c:< 20)
-=>
-    (chat-local-to-self "not enough military!")
-    (disable-timer 6)
-    (enable-timer 6 30)
-)
-(defrule
     (up-compare-goal largest-enemy-military-percentage c:>= 200)
     (military-population >= 30)
     (not
@@ -30620,11 +30601,11 @@
       (goal attempted-researches 0)
     )
 =>
-    (enable-timer 7 30)
+    (enable-timer 6 30)
     (disable-self)
 )
 (defrule
-    (timer-triggered 7)
+    (timer-triggered 6)
     (up-compare-goal largest-enemy-military-percentage c:>= 200)
     (military-population >= 30)
     (not
@@ -30632,8 +30613,8 @@
     )
 =>
     (chat-local-to-self "massive lead, do techs.")
-    (disable-timer 7)
-    (enable-timer 7 30)
+    (disable-timer 6)
+    (enable-timer 6 30)
 )
 (defrule
     (nand
@@ -30662,17 +30643,17 @@
     (goal produce-militia 1)
     (up-research-status c: ri-man-at-arms < research-pending)
 =>
-    (enable-timer 8 30)
+    (enable-timer 7 30)
     (disable-self)
 )
 (defrule
-    (timer-triggered 8)
+    (timer-triggered 7)
     (goal produce-militia 1)
     (up-research-status c: ri-man-at-arms < research-pending)
 =>
     (chat-local-to-self "waiting for man at arms")
-    (disable-timer 8)
-    (enable-timer 8 30)
+    (disable-timer 7)
+    (enable-timer 7 30)
 )
 (defrule
     (goal produce-militia 1)
@@ -30952,16 +30933,16 @@
 (defrule
     (goal attacking 1)
 =>
-    (enable-timer 9 60)
+    (enable-timer 8 60)
     (disable-self)
 )
 (defrule
-    (timer-triggered 9)
+    (timer-triggered 8)
     (goal attacking 1)
 =>
     (attack-now)
-    (disable-timer 9)
-    (enable-timer 9 60)
+    (disable-timer 8)
+    (enable-timer 8 60)
 )
 (defrule
     (goal attacking 1)
@@ -32274,6 +32255,7 @@
 )
 (defrule
     (goal threat-player 1)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 1 enemy)
     )
@@ -32284,6 +32266,7 @@
 (defrule
     (goal allied-with-1 1)
     (goal threat-player 1)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 1 enemy)
     )
@@ -32299,6 +32282,7 @@
       (goal allied-with-1 1)
     )
     (goal threat-player 1)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 1 enemy)
     )
@@ -32308,6 +32292,7 @@
 )
 (defrule
     (goal threat-player 1)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 1 enemy)
     )
@@ -32525,6 +32510,7 @@
 )
 (defrule
     (goal threat-player 2)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 2 enemy)
     )
@@ -32535,6 +32521,7 @@
 (defrule
     (goal allied-with-2 1)
     (goal threat-player 2)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 2 enemy)
     )
@@ -32550,6 +32537,7 @@
       (goal allied-with-2 1)
     )
     (goal threat-player 2)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 2 enemy)
     )
@@ -32559,6 +32547,7 @@
 )
 (defrule
     (goal threat-player 2)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 2 enemy)
     )
@@ -32776,6 +32765,7 @@
 )
 (defrule
     (goal threat-player 3)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 3 enemy)
     )
@@ -32786,6 +32776,7 @@
 (defrule
     (goal allied-with-3 1)
     (goal threat-player 3)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 3 enemy)
     )
@@ -32801,6 +32792,7 @@
       (goal allied-with-3 1)
     )
     (goal threat-player 3)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 3 enemy)
     )
@@ -32810,6 +32802,7 @@
 )
 (defrule
     (goal threat-player 3)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 3 enemy)
     )
@@ -33027,6 +33020,7 @@
 )
 (defrule
     (goal threat-player 4)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 4 enemy)
     )
@@ -33037,6 +33031,7 @@
 (defrule
     (goal allied-with-4 1)
     (goal threat-player 4)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 4 enemy)
     )
@@ -33052,6 +33047,7 @@
       (goal allied-with-4 1)
     )
     (goal threat-player 4)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 4 enemy)
     )
@@ -33061,6 +33057,7 @@
 )
 (defrule
     (goal threat-player 4)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 4 enemy)
     )
@@ -33278,6 +33275,7 @@
 )
 (defrule
     (goal threat-player 5)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 5 enemy)
     )
@@ -33288,6 +33286,7 @@
 (defrule
     (goal allied-with-5 1)
     (goal threat-player 5)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 5 enemy)
     )
@@ -33303,6 +33302,7 @@
       (goal allied-with-5 1)
     )
     (goal threat-player 5)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 5 enemy)
     )
@@ -33312,6 +33312,7 @@
 )
 (defrule
     (goal threat-player 5)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 5 enemy)
     )
@@ -33529,6 +33530,7 @@
 )
 (defrule
     (goal threat-player 6)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 6 enemy)
     )
@@ -33539,6 +33541,7 @@
 (defrule
     (goal allied-with-6 1)
     (goal threat-player 6)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 6 enemy)
     )
@@ -33554,6 +33557,7 @@
       (goal allied-with-6 1)
     )
     (goal threat-player 6)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 6 enemy)
     )
@@ -33563,6 +33567,7 @@
 )
 (defrule
     (goal threat-player 6)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 6 enemy)
     )
@@ -33780,6 +33785,7 @@
 )
 (defrule
     (goal threat-player 7)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 7 enemy)
     )
@@ -33790,6 +33796,7 @@
 (defrule
     (goal allied-with-7 1)
     (goal threat-player 7)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 7 enemy)
     )
@@ -33805,6 +33812,7 @@
       (goal allied-with-7 1)
     )
     (goal threat-player 7)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 7 enemy)
     )
@@ -33814,6 +33822,7 @@
 )
 (defrule
     (goal threat-player 7)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 7 enemy)
     )
@@ -34031,6 +34040,7 @@
 )
 (defrule
     (goal threat-player 8)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 8 enemy)
     )
@@ -34041,6 +34051,7 @@
 (defrule
     (goal allied-with-8 1)
     (goal threat-player 8)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 8 enemy)
     )
@@ -34056,6 +34067,7 @@
       (goal allied-with-8 1)
     )
     (goal threat-player 8)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 8 enemy)
     )
@@ -34065,6 +34077,7 @@
 )
 (defrule
     (goal threat-player 8)
+    (up-compare-goal threat-time c:< 1000)
     (not
       (stance-toward 8 enemy)
     )
@@ -34924,7 +34937,7 @@
 (defrule
     (goal locked-teams 1)
 =>
-    (enable-timer 10 1800)
+    (enable-timer 9 1800)
     (disable-self)
 )
 (defrule
@@ -34933,7 +34946,7 @@
       (and
         (up-compare-goal score-percentage c:<= 70)
         (and
-          (timer-triggered 10)
+          (timer-triggered 9)
           (goal locked-teams 1)
         )
       )
@@ -34977,7 +34990,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 10)
+            (timer-triggered 9)
             (goal locked-teams 1)
           )
         )
@@ -35024,7 +35037,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 10)
+            (timer-triggered 9)
             (goal locked-teams 1)
           )
         )
@@ -35081,7 +35094,7 @@
             (up-compare-goal score-percentage c:<= 70)
           )
           (and
-            (timer-triggered 10)
+            (timer-triggered 9)
             (goal locked-teams 1)
           )
         )
@@ -35124,7 +35137,7 @@
               (up-compare-goal score-percentage c:<= 70)
             )
             (and
-              (timer-triggered 10)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
@@ -35156,7 +35169,7 @@
               (up-compare-goal score-percentage c:<= 70)
             )
             (and
-              (timer-triggered 10)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
@@ -35181,7 +35194,7 @@
       (and
         (military-population >= 20)
         (and
-          (timer-triggered 10)
+          (timer-triggered 9)
           (goal locked-teams 1)
         )
       )
@@ -35262,7 +35275,7 @@
           (and
             (military-population >= 20)
             (and
-              (timer-triggered 10)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
@@ -35385,7 +35398,7 @@
           (and
             (military-population >= 20)
             (and
-              (timer-triggered 10)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
