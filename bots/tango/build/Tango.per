@@ -353,7 +353,9 @@
     (random-number == 1)
     (goal 9 0)
     (stance-toward 1 neutral)
-    (not (players-stance 1 ally))
+    (not
+      (players-stance 1 ally)
+    )
     (player-in-game 1)
     (goal 6 1)
 =>
@@ -364,7 +366,9 @@
     (random-number == 2)
     (goal 9 0)
     (stance-toward 2 neutral)
-    (not (players-stance 2 ally))
+    (not
+      (players-stance 2 ally)
+    )
     (player-in-game 2)
     (goal 6 1)
 =>
@@ -375,7 +379,9 @@
     (random-number == 3)
     (goal 9 0)
     (stance-toward 3 neutral)
-    (not (players-stance 3 ally))
+    (not
+      (players-stance 3 ally)
+    )
     (player-in-game 3)
     (goal 6 1)
 =>
@@ -386,7 +392,9 @@
     (random-number == 4)
     (goal 9 0)
     (stance-toward 4 neutral)
-    (not (players-stance 4 ally))
+    (not
+      (players-stance 4 ally)
+    )
     (player-in-game 4)
     (goal 6 1)
 =>
@@ -397,7 +405,9 @@
     (random-number == 5)
     (goal 9 0)
     (stance-toward 5 neutral)
-    (not (players-stance 5 ally))
+    (not
+      (players-stance 5 ally)
+    )
     (player-in-game 5)
     (goal 6 1)
 =>
@@ -408,7 +418,9 @@
     (random-number == 6)
     (goal 9 0)
     (stance-toward 6 neutral)
-    (not (players-stance 6 ally))
+    (not
+      (players-stance 6 ally)
+    )
     (player-in-game 6)
     (goal 6 1)
 =>
@@ -419,7 +431,9 @@
     (random-number == 7)
     (goal 9 0)
     (stance-toward 7 neutral)
-    (not (players-stance 7 ally))
+    (not
+      (players-stance 7 ally)
+    )
     (player-in-game 7)
     (goal 6 1)
 =>
@@ -430,7 +444,9 @@
     (random-number == 8)
     (goal 9 0)
     (stance-toward 8 neutral)
-    (not (players-stance 8 ally))
+    (not
+      (players-stance 8 ally)
+    )
     (player-in-game 8)
     (goal 6 1)
 =>
@@ -607,9 +623,13 @@
 )
 (defrule
     (random-number == 1)
-    (not (goal 9 0))
+    (not
+      (goal 9 0)
+    )
     (stance-toward 1 neutral)
-    (not (players-stance 1 enemy))
+    (not
+      (players-stance 1 enemy)
+    )
     (player-in-game 1)
     (goal 6 1)
 =>
@@ -618,9 +638,13 @@
 )
 (defrule
     (random-number == 2)
-    (not (goal 9 0))
+    (not
+      (goal 9 0)
+    )
     (stance-toward 2 neutral)
-    (not (players-stance 2 enemy))
+    (not
+      (players-stance 2 enemy)
+    )
     (player-in-game 2)
     (goal 6 1)
 =>
@@ -629,9 +653,13 @@
 )
 (defrule
     (random-number == 3)
-    (not (goal 9 0))
+    (not
+      (goal 9 0)
+    )
     (stance-toward 3 neutral)
-    (not (players-stance 3 enemy))
+    (not
+      (players-stance 3 enemy)
+    )
     (player-in-game 3)
     (goal 6 1)
 =>
@@ -640,9 +668,13 @@
 )
 (defrule
     (random-number == 4)
-    (not (goal 9 0))
+    (not
+      (goal 9 0)
+    )
     (stance-toward 4 neutral)
-    (not (players-stance 4 enemy))
+    (not
+      (players-stance 4 enemy)
+    )
     (player-in-game 4)
     (goal 6 1)
 =>
@@ -651,9 +683,13 @@
 )
 (defrule
     (random-number == 5)
-    (not (goal 9 0))
+    (not
+      (goal 9 0)
+    )
     (stance-toward 5 neutral)
-    (not (players-stance 5 enemy))
+    (not
+      (players-stance 5 enemy)
+    )
     (player-in-game 5)
     (goal 6 1)
 =>
@@ -662,9 +698,13 @@
 )
 (defrule
     (random-number == 6)
-    (not (goal 9 0))
+    (not
+      (goal 9 0)
+    )
     (stance-toward 6 neutral)
-    (not (players-stance 6 enemy))
+    (not
+      (players-stance 6 enemy)
+    )
     (player-in-game 6)
     (goal 6 1)
 =>
@@ -673,9 +713,13 @@
 )
 (defrule
     (random-number == 7)
-    (not (goal 9 0))
+    (not
+      (goal 9 0)
+    )
     (stance-toward 7 neutral)
-    (not (players-stance 7 enemy))
+    (not
+      (players-stance 7 enemy)
+    )
     (player-in-game 7)
     (goal 6 1)
 =>
@@ -684,9 +728,13 @@
 )
 (defrule
     (random-number == 8)
-    (not (goal 9 0))
+    (not
+      (goal 9 0)
+    )
     (stance-toward 8 neutral)
-    (not (players-stance 8 enemy))
+    (not
+      (players-stance 8 enemy)
+    )
     (player-in-game 8)
     (goal 6 1)
 =>
@@ -792,7 +840,9 @@
 (defrule
     (random-number == 1)
     (up-compare-goal 9 >= 2)
-    (not (stance-toward 1 ally))
+    (not
+      (stance-toward 1 ally)
+    )
     (players-stance 1 ally)
     (player-in-game 1)
     (goal 6 1)
@@ -803,7 +853,9 @@
 (defrule
     (random-number == 2)
     (up-compare-goal 9 >= 2)
-    (not (stance-toward 2 ally))
+    (not
+      (stance-toward 2 ally)
+    )
     (players-stance 2 ally)
     (player-in-game 2)
     (goal 6 1)
@@ -814,7 +866,9 @@
 (defrule
     (random-number == 3)
     (up-compare-goal 9 >= 2)
-    (not (stance-toward 3 ally))
+    (not
+      (stance-toward 3 ally)
+    )
     (players-stance 3 ally)
     (player-in-game 3)
     (goal 6 1)
@@ -825,7 +879,9 @@
 (defrule
     (random-number == 4)
     (up-compare-goal 9 >= 2)
-    (not (stance-toward 4 ally))
+    (not
+      (stance-toward 4 ally)
+    )
     (players-stance 4 ally)
     (player-in-game 4)
     (goal 6 1)
@@ -836,7 +892,9 @@
 (defrule
     (random-number == 5)
     (up-compare-goal 9 >= 2)
-    (not (stance-toward 5 ally))
+    (not
+      (stance-toward 5 ally)
+    )
     (players-stance 5 ally)
     (player-in-game 5)
     (goal 6 1)
@@ -847,7 +905,9 @@
 (defrule
     (random-number == 6)
     (up-compare-goal 9 >= 2)
-    (not (stance-toward 6 ally))
+    (not
+      (stance-toward 6 ally)
+    )
     (players-stance 6 ally)
     (player-in-game 6)
     (goal 6 1)
@@ -858,7 +918,9 @@
 (defrule
     (random-number == 7)
     (up-compare-goal 9 >= 2)
-    (not (stance-toward 7 ally))
+    (not
+      (stance-toward 7 ally)
+    )
     (players-stance 7 ally)
     (player-in-game 7)
     (goal 6 1)
@@ -869,7 +931,9 @@
 (defrule
     (random-number == 8)
     (up-compare-goal 9 >= 2)
-    (not (stance-toward 8 ally))
+    (not
+      (stance-toward 8 ally)
+    )
     (players-stance 8 ally)
     (player-in-game 8)
     (goal 6 1)
@@ -967,64 +1031,96 @@
 )
 (defrule
     (players-stance 1 ally)
-    (not (stance-toward 1 ally))
-    (not (player-in-game 1))
+    (not
+      (stance-toward 1 ally)
+    )
+    (not
+      (player-in-game 1)
+    )
     (goal 6 1)
 =>
     (set-stance 1 ally)
 )
 (defrule
     (players-stance 2 ally)
-    (not (stance-toward 2 ally))
-    (not (player-in-game 2))
+    (not
+      (stance-toward 2 ally)
+    )
+    (not
+      (player-in-game 2)
+    )
     (goal 6 1)
 =>
     (set-stance 2 ally)
 )
 (defrule
     (players-stance 3 ally)
-    (not (stance-toward 3 ally))
-    (not (player-in-game 3))
+    (not
+      (stance-toward 3 ally)
+    )
+    (not
+      (player-in-game 3)
+    )
     (goal 6 1)
 =>
     (set-stance 3 ally)
 )
 (defrule
     (players-stance 4 ally)
-    (not (stance-toward 4 ally))
-    (not (player-in-game 4))
+    (not
+      (stance-toward 4 ally)
+    )
+    (not
+      (player-in-game 4)
+    )
     (goal 6 1)
 =>
     (set-stance 4 ally)
 )
 (defrule
     (players-stance 5 ally)
-    (not (stance-toward 5 ally))
-    (not (player-in-game 5))
+    (not
+      (stance-toward 5 ally)
+    )
+    (not
+      (player-in-game 5)
+    )
     (goal 6 1)
 =>
     (set-stance 5 ally)
 )
 (defrule
     (players-stance 6 ally)
-    (not (stance-toward 6 ally))
-    (not (player-in-game 6))
+    (not
+      (stance-toward 6 ally)
+    )
+    (not
+      (player-in-game 6)
+    )
     (goal 6 1)
 =>
     (set-stance 6 ally)
 )
 (defrule
     (players-stance 7 ally)
-    (not (stance-toward 7 ally))
-    (not (player-in-game 7))
+    (not
+      (stance-toward 7 ally)
+    )
+    (not
+      (player-in-game 7)
+    )
     (goal 6 1)
 =>
     (set-stance 7 ally)
 )
 (defrule
     (players-stance 8 ally)
-    (not (stance-toward 8 ally))
-    (not (player-in-game 8))
+    (not
+      (stance-toward 8 ally)
+    )
+    (not
+      (player-in-game 8)
+    )
     (goal 6 1)
 =>
     (set-stance 8 ally)
@@ -1037,7 +1133,9 @@
 (defrule
     (goal 11 1)
     (up-compare-goal 10 c:< 1000)
-    (not (stance-toward 1 enemy))
+    (not
+      (stance-toward 1 enemy)
+    )
     (goal 6 1)
 =>
     (set-stance 1 enemy)
@@ -1045,7 +1143,9 @@
 (defrule
     (goal 11 2)
     (up-compare-goal 10 c:< 1000)
-    (not (stance-toward 2 enemy))
+    (not
+      (stance-toward 2 enemy)
+    )
     (goal 6 1)
 =>
     (set-stance 2 enemy)
@@ -1053,7 +1153,9 @@
 (defrule
     (goal 11 3)
     (up-compare-goal 10 c:< 1000)
-    (not (stance-toward 3 enemy))
+    (not
+      (stance-toward 3 enemy)
+    )
     (goal 6 1)
 =>
     (set-stance 3 enemy)
@@ -1061,7 +1163,9 @@
 (defrule
     (goal 11 4)
     (up-compare-goal 10 c:< 1000)
-    (not (stance-toward 4 enemy))
+    (not
+      (stance-toward 4 enemy)
+    )
     (goal 6 1)
 =>
     (set-stance 4 enemy)
@@ -1069,7 +1173,9 @@
 (defrule
     (goal 11 5)
     (up-compare-goal 10 c:< 1000)
-    (not (stance-toward 5 enemy))
+    (not
+      (stance-toward 5 enemy)
+    )
     (goal 6 1)
 =>
     (set-stance 5 enemy)
@@ -1077,7 +1183,9 @@
 (defrule
     (goal 11 6)
     (up-compare-goal 10 c:< 1000)
-    (not (stance-toward 6 enemy))
+    (not
+      (stance-toward 6 enemy)
+    )
     (goal 6 1)
 =>
     (set-stance 6 enemy)
@@ -1085,7 +1193,9 @@
 (defrule
     (goal 11 7)
     (up-compare-goal 10 c:< 1000)
-    (not (stance-toward 7 enemy))
+    (not
+      (stance-toward 7 enemy)
+    )
     (goal 6 1)
 =>
     (set-stance 7 enemy)
@@ -1093,7 +1203,9 @@
 (defrule
     (goal 11 8)
     (up-compare-goal 10 c:< 1000)
-    (not (stance-toward 8 enemy))
+    (not
+      (stance-toward 8 enemy)
+    )
     (goal 6 1)
 =>
     (set-stance 8 enemy)
@@ -1307,7 +1419,9 @@
     (random-number == 1)
     (goal 14 0)
     (stance-toward 1 neutral)
-    (not (players-stance 1 ally))
+    (not
+      (players-stance 1 ally)
+    )
     (player-in-game 1)
     (goal 6 2)
 =>
@@ -1318,7 +1432,9 @@
     (random-number == 2)
     (goal 14 0)
     (stance-toward 2 neutral)
-    (not (players-stance 2 ally))
+    (not
+      (players-stance 2 ally)
+    )
     (player-in-game 2)
     (goal 6 2)
 =>
@@ -1329,7 +1445,9 @@
     (random-number == 3)
     (goal 14 0)
     (stance-toward 3 neutral)
-    (not (players-stance 3 ally))
+    (not
+      (players-stance 3 ally)
+    )
     (player-in-game 3)
     (goal 6 2)
 =>
@@ -1340,7 +1458,9 @@
     (random-number == 4)
     (goal 14 0)
     (stance-toward 4 neutral)
-    (not (players-stance 4 ally))
+    (not
+      (players-stance 4 ally)
+    )
     (player-in-game 4)
     (goal 6 2)
 =>
@@ -1351,7 +1471,9 @@
     (random-number == 5)
     (goal 14 0)
     (stance-toward 5 neutral)
-    (not (players-stance 5 ally))
+    (not
+      (players-stance 5 ally)
+    )
     (player-in-game 5)
     (goal 6 2)
 =>
@@ -1362,7 +1484,9 @@
     (random-number == 6)
     (goal 14 0)
     (stance-toward 6 neutral)
-    (not (players-stance 6 ally))
+    (not
+      (players-stance 6 ally)
+    )
     (player-in-game 6)
     (goal 6 2)
 =>
@@ -1373,7 +1497,9 @@
     (random-number == 7)
     (goal 14 0)
     (stance-toward 7 neutral)
-    (not (players-stance 7 ally))
+    (not
+      (players-stance 7 ally)
+    )
     (player-in-game 7)
     (goal 6 2)
 =>
@@ -1384,7 +1510,9 @@
     (random-number == 8)
     (goal 14 0)
     (stance-toward 8 neutral)
-    (not (players-stance 8 ally))
+    (not
+      (players-stance 8 ally)
+    )
     (player-in-game 8)
     (goal 6 2)
 =>
@@ -1569,9 +1697,13 @@
 )
 (defrule
     (random-number == 1)
-    (not (goal 14 0))
+    (not
+      (goal 14 0)
+    )
     (stance-toward 1 neutral)
-    (not (players-stance 1 enemy))
+    (not
+      (players-stance 1 enemy)
+    )
     (player-in-game 1)
     (goal 6 2)
 =>
@@ -1580,9 +1712,13 @@
 )
 (defrule
     (random-number == 2)
-    (not (goal 14 0))
+    (not
+      (goal 14 0)
+    )
     (stance-toward 2 neutral)
-    (not (players-stance 2 enemy))
+    (not
+      (players-stance 2 enemy)
+    )
     (player-in-game 2)
     (goal 6 2)
 =>
@@ -1591,9 +1727,13 @@
 )
 (defrule
     (random-number == 3)
-    (not (goal 14 0))
+    (not
+      (goal 14 0)
+    )
     (stance-toward 3 neutral)
-    (not (players-stance 3 enemy))
+    (not
+      (players-stance 3 enemy)
+    )
     (player-in-game 3)
     (goal 6 2)
 =>
@@ -1602,9 +1742,13 @@
 )
 (defrule
     (random-number == 4)
-    (not (goal 14 0))
+    (not
+      (goal 14 0)
+    )
     (stance-toward 4 neutral)
-    (not (players-stance 4 enemy))
+    (not
+      (players-stance 4 enemy)
+    )
     (player-in-game 4)
     (goal 6 2)
 =>
@@ -1613,9 +1757,13 @@
 )
 (defrule
     (random-number == 5)
-    (not (goal 14 0))
+    (not
+      (goal 14 0)
+    )
     (stance-toward 5 neutral)
-    (not (players-stance 5 enemy))
+    (not
+      (players-stance 5 enemy)
+    )
     (player-in-game 5)
     (goal 6 2)
 =>
@@ -1624,9 +1772,13 @@
 )
 (defrule
     (random-number == 6)
-    (not (goal 14 0))
+    (not
+      (goal 14 0)
+    )
     (stance-toward 6 neutral)
-    (not (players-stance 6 enemy))
+    (not
+      (players-stance 6 enemy)
+    )
     (player-in-game 6)
     (goal 6 2)
 =>
@@ -1635,9 +1787,13 @@
 )
 (defrule
     (random-number == 7)
-    (not (goal 14 0))
+    (not
+      (goal 14 0)
+    )
     (stance-toward 7 neutral)
-    (not (players-stance 7 enemy))
+    (not
+      (players-stance 7 enemy)
+    )
     (player-in-game 7)
     (goal 6 2)
 =>
@@ -1646,9 +1802,13 @@
 )
 (defrule
     (random-number == 8)
-    (not (goal 14 0))
+    (not
+      (goal 14 0)
+    )
     (stance-toward 8 neutral)
-    (not (players-stance 8 enemy))
+    (not
+      (players-stance 8 enemy)
+    )
     (player-in-game 8)
     (goal 6 2)
 =>
@@ -1754,7 +1914,9 @@
 (defrule
     (random-number == 1)
     (up-compare-goal 14 >= 2)
-    (not (stance-toward 1 ally))
+    (not
+      (stance-toward 1 ally)
+    )
     (players-stance 1 ally)
     (player-in-game 1)
     (goal 6 2)
@@ -1765,7 +1927,9 @@
 (defrule
     (random-number == 2)
     (up-compare-goal 14 >= 2)
-    (not (stance-toward 2 ally))
+    (not
+      (stance-toward 2 ally)
+    )
     (players-stance 2 ally)
     (player-in-game 2)
     (goal 6 2)
@@ -1776,7 +1940,9 @@
 (defrule
     (random-number == 3)
     (up-compare-goal 14 >= 2)
-    (not (stance-toward 3 ally))
+    (not
+      (stance-toward 3 ally)
+    )
     (players-stance 3 ally)
     (player-in-game 3)
     (goal 6 2)
@@ -1787,7 +1953,9 @@
 (defrule
     (random-number == 4)
     (up-compare-goal 14 >= 2)
-    (not (stance-toward 4 ally))
+    (not
+      (stance-toward 4 ally)
+    )
     (players-stance 4 ally)
     (player-in-game 4)
     (goal 6 2)
@@ -1798,7 +1966,9 @@
 (defrule
     (random-number == 5)
     (up-compare-goal 14 >= 2)
-    (not (stance-toward 5 ally))
+    (not
+      (stance-toward 5 ally)
+    )
     (players-stance 5 ally)
     (player-in-game 5)
     (goal 6 2)
@@ -1809,7 +1979,9 @@
 (defrule
     (random-number == 6)
     (up-compare-goal 14 >= 2)
-    (not (stance-toward 6 ally))
+    (not
+      (stance-toward 6 ally)
+    )
     (players-stance 6 ally)
     (player-in-game 6)
     (goal 6 2)
@@ -1820,7 +1992,9 @@
 (defrule
     (random-number == 7)
     (up-compare-goal 14 >= 2)
-    (not (stance-toward 7 ally))
+    (not
+      (stance-toward 7 ally)
+    )
     (players-stance 7 ally)
     (player-in-game 7)
     (goal 6 2)
@@ -1831,7 +2005,9 @@
 (defrule
     (random-number == 8)
     (up-compare-goal 14 >= 2)
-    (not (stance-toward 8 ally))
+    (not
+      (stance-toward 8 ally)
+    )
     (players-stance 8 ally)
     (player-in-game 8)
     (goal 6 2)
@@ -1929,64 +2105,96 @@
 )
 (defrule
     (players-stance 1 ally)
-    (not (stance-toward 1 ally))
-    (not (player-in-game 1))
+    (not
+      (stance-toward 1 ally)
+    )
+    (not
+      (player-in-game 1)
+    )
     (goal 6 2)
 =>
     (set-stance 1 ally)
 )
 (defrule
     (players-stance 2 ally)
-    (not (stance-toward 2 ally))
-    (not (player-in-game 2))
+    (not
+      (stance-toward 2 ally)
+    )
+    (not
+      (player-in-game 2)
+    )
     (goal 6 2)
 =>
     (set-stance 2 ally)
 )
 (defrule
     (players-stance 3 ally)
-    (not (stance-toward 3 ally))
-    (not (player-in-game 3))
+    (not
+      (stance-toward 3 ally)
+    )
+    (not
+      (player-in-game 3)
+    )
     (goal 6 2)
 =>
     (set-stance 3 ally)
 )
 (defrule
     (players-stance 4 ally)
-    (not (stance-toward 4 ally))
-    (not (player-in-game 4))
+    (not
+      (stance-toward 4 ally)
+    )
+    (not
+      (player-in-game 4)
+    )
     (goal 6 2)
 =>
     (set-stance 4 ally)
 )
 (defrule
     (players-stance 5 ally)
-    (not (stance-toward 5 ally))
-    (not (player-in-game 5))
+    (not
+      (stance-toward 5 ally)
+    )
+    (not
+      (player-in-game 5)
+    )
     (goal 6 2)
 =>
     (set-stance 5 ally)
 )
 (defrule
     (players-stance 6 ally)
-    (not (stance-toward 6 ally))
-    (not (player-in-game 6))
+    (not
+      (stance-toward 6 ally)
+    )
+    (not
+      (player-in-game 6)
+    )
     (goal 6 2)
 =>
     (set-stance 6 ally)
 )
 (defrule
     (players-stance 7 ally)
-    (not (stance-toward 7 ally))
-    (not (player-in-game 7))
+    (not
+      (stance-toward 7 ally)
+    )
+    (not
+      (player-in-game 7)
+    )
     (goal 6 2)
 =>
     (set-stance 7 ally)
 )
 (defrule
     (players-stance 8 ally)
-    (not (stance-toward 8 ally))
-    (not (player-in-game 8))
+    (not
+      (stance-toward 8 ally)
+    )
+    (not
+      (player-in-game 8)
+    )
     (goal 6 2)
 =>
     (set-stance 8 ally)
@@ -1999,7 +2207,9 @@
 (defrule
     (goal 16 1)
     (up-compare-goal 15 c:< 1000)
-    (not (stance-toward 1 enemy))
+    (not
+      (stance-toward 1 enemy)
+    )
     (goal 6 2)
 =>
     (set-stance 1 enemy)
@@ -2007,7 +2217,9 @@
 (defrule
     (goal 16 2)
     (up-compare-goal 15 c:< 1000)
-    (not (stance-toward 2 enemy))
+    (not
+      (stance-toward 2 enemy)
+    )
     (goal 6 2)
 =>
     (set-stance 2 enemy)
@@ -2015,7 +2227,9 @@
 (defrule
     (goal 16 3)
     (up-compare-goal 15 c:< 1000)
-    (not (stance-toward 3 enemy))
+    (not
+      (stance-toward 3 enemy)
+    )
     (goal 6 2)
 =>
     (set-stance 3 enemy)
@@ -2023,7 +2237,9 @@
 (defrule
     (goal 16 4)
     (up-compare-goal 15 c:< 1000)
-    (not (stance-toward 4 enemy))
+    (not
+      (stance-toward 4 enemy)
+    )
     (goal 6 2)
 =>
     (set-stance 4 enemy)
@@ -2031,7 +2247,9 @@
 (defrule
     (goal 16 5)
     (up-compare-goal 15 c:< 1000)
-    (not (stance-toward 5 enemy))
+    (not
+      (stance-toward 5 enemy)
+    )
     (goal 6 2)
 =>
     (set-stance 5 enemy)
@@ -2039,7 +2257,9 @@
 (defrule
     (goal 16 6)
     (up-compare-goal 15 c:< 1000)
-    (not (stance-toward 6 enemy))
+    (not
+      (stance-toward 6 enemy)
+    )
     (goal 6 2)
 =>
     (set-stance 6 enemy)
@@ -2047,7 +2267,9 @@
 (defrule
     (goal 16 7)
     (up-compare-goal 15 c:< 1000)
-    (not (stance-toward 7 enemy))
+    (not
+      (stance-toward 7 enemy)
+    )
     (goal 6 2)
 =>
     (set-stance 7 enemy)
@@ -2055,7 +2277,9 @@
 (defrule
     (goal 16 8)
     (up-compare-goal 15 c:< 1000)
-    (not (stance-toward 8 enemy))
+    (not
+      (stance-toward 8 enemy)
+    )
     (goal 6 2)
 =>
     (set-stance 8 enemy)
