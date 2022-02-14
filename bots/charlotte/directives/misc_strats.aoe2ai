@@ -5,6 +5,23 @@
   sn-enable-training-queue = 0
 #end if
 
+// cancel buildings based on dead builders
+#do once
+  goal dead-builders = 0
+  goal dead-female-builders = 0
+#end do
+@up-get-fact unit-type-count dead-male-builder dead-builders
+@up-get-fact unit-type-count dead-female-builder dead-female-builders
+@up-modify-goal dead-builders g:+ dead-female-builders
+
+#if up-compare-goal dead-builders c:>= 8
+  sn-percent-building-cancellation = 100
+#else if up-compare-goal dead-builders c:>= 1
+  sn-percent-building-cancellation = 20
+#else
+  sn-percent-building-cancellation = 0
+#end if
+
 // delete farms that may be miles away
 #if building-type-count town-center-foundation >= 1 and building-type-count town-center == 0
   delete building farm
