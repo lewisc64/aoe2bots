@@ -51,10 +51,6 @@
   goal produce-skirmishers = 0
 #end respond
 
-#respond to 15 trebuchet-set
-  goal produce-scorpions = 0
-#end respond
-
 #respond to min-detection-units knight-line
   goal produce-mangonels = 0
 #end respond
@@ -82,6 +78,10 @@
   #end respond
   
   #respond to min-detection-units hand-cannoneer
+    insert turn-off-for-anti-infantry
+  #end respond
+  
+  #respond to min-detection-units scorpion-line
     insert turn-off-for-anti-infantry
   #end respond
   

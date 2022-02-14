@@ -29776,7 +29776,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 35)
+    (up-jump-rule 37)
 )
 (defrule
     (not
@@ -29841,11 +29841,6 @@
 =>
     (set-goal produce-scorpions 0)
     (set-goal produce-skirmishers 0)
-)
-(defrule
-    (players-unit-type-count any-enemy trebuchet-set >= 15)
-=>
-    (set-goal produce-scorpions 0)
 )
 (defrule
     (players-unit-type-count any-enemy knight-line >= min-detection-units)
@@ -29958,6 +29953,34 @@
 (defrule
     (nand
       (players-unit-type-count any-enemy hand-cannoneer >= min-detection-units)
+      (goal desired-units-per-type 1)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-militia 0)
+    (set-goal produce-condottiero 0)
+)
+(defrule
+    (goal unique-unit-is-infantry 1)
+    (not
+      (or
+        (civ-selected gothic)
+        (or
+          (civ-selected malay)
+          (civ-selected celtic)
+        )
+      )
+    )
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy scorpion-line >= min-detection-units)
       (goal desired-units-per-type 1)
     )
 =>
