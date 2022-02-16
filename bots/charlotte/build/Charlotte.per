@@ -1760,7 +1760,7 @@
         (resource-found wood)
       )
       (and
-        (game-time >= 360)
+        (game-time >= 60)
         (building-type-count-total lumber-camp == 0)
       )
     )
@@ -1934,7 +1934,7 @@
         (resource-found food)
       )
       (and
-        (game-time >= 360)
+        (game-time >= 60)
         (building-type-count-total mill == 0)
       )
     )
@@ -27797,7 +27797,7 @@
     (or
       (civilian-population >= 25)
       (or
-        (death-match-game)
+        (food-amount >= 2000)
         (population-cap < 75)
       )
     )
@@ -27809,7 +27809,7 @@
       (civilian-population >= 25)
     )
     (nor
-      (death-match-game)
+      (food-amount >= 2000)
       (population-cap < 75)
     )
 =>
@@ -30589,7 +30589,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 24)
+    (up-jump-rule 27)
 )
 (defrule
     (true)
@@ -30650,6 +30650,31 @@
     (enable-timer 5 300)
 )
 (defrule
+    (up-compare-goal target-military-percentage c:> 100)
+    (up-compare-goal target-military-percentage c:<= 150)
+    (goal attacking 1)
+=>
+    (set-goal aggressive-override 1)
+)
+(defrule
+    (up-compare-goal target-military-percentage c:> 100)
+    (up-compare-goal target-military-percentage c:<= 150)
+    (goal attacking 1)
+=>
+    (enable-timer 6 30)
+    (disable-self)
+)
+(defrule
+    (timer-triggered 6)
+    (up-compare-goal target-military-percentage c:> 100)
+    (up-compare-goal target-military-percentage c:<= 150)
+    (goal attacking 1)
+=>
+    (chat-local-to-self "make military lead bigger")
+    (disable-timer 6)
+    (enable-timer 6 30)
+)
+(defrule
     (up-compare-goal largest-enemy-military-percentage c:>= 200)
     (military-population >= 30)
     (not
@@ -30665,11 +30690,11 @@
       (goal attempted-researches 0)
     )
 =>
-    (enable-timer 6 30)
+    (enable-timer 7 30)
     (disable-self)
 )
 (defrule
-    (timer-triggered 6)
+    (timer-triggered 7)
     (up-compare-goal largest-enemy-military-percentage c:>= 200)
     (military-population >= 30)
     (not
@@ -30677,8 +30702,8 @@
     )
 =>
     (chat-local-to-self "massive lead, do techs.")
-    (disable-timer 6)
-    (enable-timer 6 30)
+    (disable-timer 7)
+    (enable-timer 7 30)
 )
 (defrule
     (nand
@@ -30707,17 +30732,17 @@
     (goal produce-militia 1)
     (up-research-status c: ri-man-at-arms < research-pending)
 =>
-    (enable-timer 7 30)
+    (enable-timer 8 30)
     (disable-self)
 )
 (defrule
-    (timer-triggered 7)
+    (timer-triggered 8)
     (goal produce-militia 1)
     (up-research-status c: ri-man-at-arms < research-pending)
 =>
     (chat-local-to-self "waiting for man at arms")
-    (disable-timer 7)
-    (enable-timer 7 30)
+    (disable-timer 8)
+    (enable-timer 8 30)
 )
 (defrule
     (goal produce-militia 1)
@@ -30997,16 +31022,16 @@
 (defrule
     (goal attacking 1)
 =>
-    (enable-timer 8 60)
+    (enable-timer 9 60)
     (disable-self)
 )
 (defrule
-    (timer-triggered 8)
+    (timer-triggered 9)
     (goal attacking 1)
 =>
     (attack-now)
-    (disable-timer 8)
-    (enable-timer 8 60)
+    (disable-timer 9)
+    (enable-timer 9 60)
 )
 (defrule
     (goal attacking 1)
@@ -35001,7 +35026,7 @@
 (defrule
     (goal locked-teams 1)
 =>
-    (enable-timer 9 1800)
+    (enable-timer 10 1800)
     (disable-self)
 )
 (defrule
@@ -35010,7 +35035,7 @@
       (and
         (up-compare-goal score-percentage c:<= 70)
         (and
-          (timer-triggered 9)
+          (timer-triggered 10)
           (goal locked-teams 1)
         )
       )
@@ -35054,7 +35079,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 9)
+            (timer-triggered 10)
             (goal locked-teams 1)
           )
         )
@@ -35101,7 +35126,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 9)
+            (timer-triggered 10)
             (goal locked-teams 1)
           )
         )
@@ -35158,7 +35183,7 @@
             (up-compare-goal score-percentage c:<= 70)
           )
           (and
-            (timer-triggered 9)
+            (timer-triggered 10)
             (goal locked-teams 1)
           )
         )
@@ -35201,7 +35226,7 @@
               (up-compare-goal score-percentage c:<= 70)
             )
             (and
-              (timer-triggered 9)
+              (timer-triggered 10)
               (goal locked-teams 1)
             )
           )
@@ -35233,7 +35258,7 @@
               (up-compare-goal score-percentage c:<= 70)
             )
             (and
-              (timer-triggered 9)
+              (timer-triggered 10)
               (goal locked-teams 1)
             )
           )
@@ -35258,7 +35283,7 @@
       (and
         (military-population >= 20)
         (and
-          (timer-triggered 9)
+          (timer-triggered 10)
           (goal locked-teams 1)
         )
       )
@@ -35339,7 +35364,7 @@
           (and
             (military-population >= 20)
             (and
-              (timer-triggered 9)
+              (timer-triggered 10)
               (goal locked-teams 1)
             )
           )
@@ -35462,7 +35487,7 @@
           (and
             (military-population >= 20)
             (and
-              (timer-triggered 9)
+              (timer-triggered 10)
               (goal locked-teams 1)
             )
           )
