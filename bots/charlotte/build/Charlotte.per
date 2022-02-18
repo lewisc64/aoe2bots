@@ -1690,7 +1690,7 @@
     (set-goal 328 1)
 )
 (defrule
-    (true)
+    (unit-type-count villager >= 8)
 =>
     (set-strategic-number sn-enable-boar-hunting 2)
     (set-strategic-number sn-minimum-number-hunters 1)
@@ -1702,6 +1702,7 @@
 (defrule
     (dropsite-min-distance live-boar < 4)
     (strategic-number sn-minimum-number-hunters != 8)
+    (unit-type-count villager >= 8)
 =>
     (set-strategic-number sn-minimum-number-hunters 8)
     (up-drop-resources c: sheep-food 0)
@@ -1710,6 +1711,7 @@
     (food-amount < 50)
     (up-pending-objects c: villager <= 1)
     (strategic-number sn-minimum-number-hunters == 8)
+    (unit-type-count villager >= 8)
 =>
     (up-drop-resources c: boar-food 10)
 )
@@ -1720,6 +1722,7 @@
       (dropsite-min-distance boar-food > 4)
       (dropsite-min-distance boar-food == -1)
     )
+    (unit-type-count villager >= 8)
 =>
     (set-strategic-number sn-minimum-number-hunters 1)
     (up-retask-gatherers food c: 255)
@@ -5444,9 +5447,12 @@
     (up-modify-goal expected-units-per-type g:/ total-type-production)
 )
 (defrule
-    (nor
-      (goal produce-bombard-cannons 1)
-      (goal produce-hand-cannoneers 1)
+    (nand
+      (or
+        (goal produce-bombard-cannons 1)
+        (goal produce-hand-cannoneers 1)
+      )
+      (goal allow-land-units 1)
     )
 =>
     (up-jump-rule 4)
@@ -5485,8 +5491,9 @@
     (research ri-chemistry)
 )
 (defrule
-    (not
+    (nand
       (goal produce-cannon-galleons 1)
+      (goal allow-naval-units 1)
     )
 =>
     (up-jump-rule 9)
@@ -30819,17 +30826,10 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 2)
+    (up-jump-rule 1)
 )
 (defrule
-    (up-compare-goal target-warboat-percentage c:>= 200)
-=>
-    (set-goal allow-land-units 1)
-)
-(defrule
-    (not
-      (up-compare-goal target-warboat-percentage c:>= 200)
-    )
+    (true)
 =>
     (set-goal allow-land-units 0)
 )

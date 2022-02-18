@@ -4,7 +4,9 @@
 #end if
 
 // lure boars
-lure boars
+#if unit-type-count villager >= 8
+  lure boars
+#end if
 
 // gather relics
 build 1 monastery

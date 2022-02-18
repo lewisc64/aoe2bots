@@ -45,7 +45,7 @@ load "misc_strats.aoe2ai"
   load "pacing/balanced_random.aoe2ai"
   
   #if goal full-water-map 1
-    load "land_control/after_water.aoe2ai"
+    load "land_control/passive.aoe2ai"
     load "water_control/aggressive.aoe2ai"
   #else
     load "land_control/aggressive.aoe2ai"

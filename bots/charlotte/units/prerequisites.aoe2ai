@@ -1,6 +1,11 @@
-#if goal produce-bombard-cannons 1 or goal produce-hand-cannoneers 1
-  load "../research/university/chemistry.aoe2ai"
+#if goal allow-land-units 1
+  #if goal produce-bombard-cannons 1 or goal produce-hand-cannoneers 1
+    load "../research/university/chemistry.aoe2ai"
+  #end if
 #end if
-#if goal produce-cannon-galleons 1
-  load "../research/dock/cannon_galleon.aoe2ai"
+
+#if goal allow-naval-units 1
+  #if goal produce-cannon-galleons 1
+    load "../research/dock/cannon_galleon.aoe2ai"
+  #end if
 #end if
