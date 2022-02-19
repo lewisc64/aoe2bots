@@ -1,0 +1,13 @@
+#if not research-completed ri-shatagni
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+
+  #if research-available ri-shatagni and building-type-count castle >= 1
+    #if up-research-status c: ri-shatagni < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-shatagni
+    #end if
+  #end if
+#end if

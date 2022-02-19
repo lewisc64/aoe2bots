@@ -150,6 +150,7 @@
 (defconst ri-silk-road 499)
 (defconst ri-thalassocracy 624)
 (defconst ri-carrack 572)
+(defconst ri-shatagni 507)
 (defconst ri-elite-genitour 599)
 (defconst genitour-line 1079)
 (defconst condottiero 184)
@@ -6589,7 +6590,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 28)
+    (up-jump-rule 33)
 )
 (defrule
     (goal produce-hand-cannoneers 1)
@@ -6611,34 +6612,77 @@
       (unit-available hand-cannoneer)
     )
 =>
-    (up-jump-rule 24)
+    (up-jump-rule 29)
 )
 (defrule
-    (not
-      (building-type-count-total siege-workshop == 0)
+    (nand
+      (up-research-status c: feudal-age >= research-pending)
+      (building-type-count-total archery-range == 0)
     )
 =>
     (up-jump-rule 1)
 )
 (defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+    (building-type-count-total barracks == 0)
 =>
-    (build blacksmith)
+    (build barracks)
     (set-goal 328 1)
 )
 (defrule
-    (can-build siege-workshop)
-    (up-pending-objects c: siege-workshop < 5)
-    (building-type-count-total siege-workshop < 1)
-    (building-type-count blacksmith >= 1)
-    (building-type-count-total siege-workshop == 0)
+    (can-build archery-range)
+    (up-pending-objects c: archery-range < 5)
+    (building-type-count-total archery-range < 1)
+    (building-type-count barracks >= 1)
+    (building-type-count-total archery-range == 0)
 =>
-    (build siege-workshop)
+    (build archery-range)
     (set-goal 328 1)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (unit-available hand-cannoneer)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-shatagni)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+    (building-type-count-total castle < 1)
+    (building-type-count-total castle == 0)
+=>
+    (build castle)
+    (set-goal 328 1)
+)
+(defrule
+    (up-research-status c: ri-shatagni < research-pending)
+    (research-available ri-shatagni)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-shatagni)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-shatagni)
+    (goal do-research 1)
+    (research-available ri-shatagni)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-shatagni)
+    )
+=>
+    (research ri-shatagni)
 )
 (defrule
     (not

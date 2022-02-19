@@ -1,7 +1,11 @@
 //load "../research/town_center/imperial_age.aoe2ai"
-load "../research/siege_workshop/prerequisites.aoe2ai"
+load "../research/archery_range/prerequisites.aoe2ai"
 
 #if unit-available hand-cannoneer
+  
+  #if current-age == imperial-age
+    load "../research/castle/shatagni.aoe2ai"
+  #end if
   
   load "../research/barracks/prerequisites.aoe2ai"
   #do once
