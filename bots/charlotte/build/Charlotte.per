@@ -373,10 +373,6 @@
 (defrule
     (true)
 =>
-    (set-strategic-number sn-enable-boar-hunting 2)
-    (set-strategic-number sn-minimum-number-hunters 3)
-    (set-strategic-number sn-minimum-boar-lure-group-size 3)
-    (set-strategic-number sn-minimum-boar-hunt-group-size 3)
     (set-strategic-number sn-wall-targeting-mode 1)
     (enable-wall-placement 1)
     (enable-wall-placement 2)
@@ -1968,64 +1964,80 @@
     (build farm)
 )
 (defrule
-    (goal produce-unique-units 1)
-    (up-research-status c: feudal-age >= research-pending)
-=>
-    (set-strategic-number sn-wood-gatherer-percentage 37)
-    (set-strategic-number sn-food-gatherer-percentage 37)
-    (set-strategic-number sn-gold-gatherer-percentage 18)
-    (set-strategic-number sn-stone-gatherer-percentage 8)
-    (disable-self)
-)
-(defrule
-    (not
-      (goal produce-unique-units 1)
-    )
-    (up-research-status c: feudal-age >= research-pending)
-=>
-    (set-goal 146 0)
-    (generate-random-number 3)
-    (up-get-fact random-number 0 146)
-    (disable-self)
-)
-(defrule
-    (goal 146 1)
-    (not
-      (goal produce-unique-units 1)
-    )
-    (up-research-status c: feudal-age >= research-pending)
-=>
-    (set-strategic-number sn-wood-gatherer-percentage 37)
-    (set-strategic-number sn-food-gatherer-percentage 37)
-    (set-strategic-number sn-gold-gatherer-percentage 18)
-    (set-strategic-number sn-stone-gatherer-percentage 8)
-    (disable-self)
-)
-(defrule
-    (goal 146 2)
-    (not
-      (goal produce-unique-units 1)
-    )
-    (up-research-status c: feudal-age >= research-pending)
-=>
-    (set-strategic-number sn-wood-gatherer-percentage 38)
-    (set-strategic-number sn-food-gatherer-percentage 38)
-    (set-strategic-number sn-gold-gatherer-percentage 20)
-    (set-strategic-number sn-stone-gatherer-percentage 4)
-    (disable-self)
-)
-(defrule
-    (goal 146 3)
-    (not
-      (goal produce-unique-units 1)
-    )
     (up-research-status c: feudal-age >= research-pending)
 =>
     (set-strategic-number sn-wood-gatherer-percentage 40)
     (set-strategic-number sn-food-gatherer-percentage 40)
     (set-strategic-number sn-gold-gatherer-percentage 20)
     (set-strategic-number sn-stone-gatherer-percentage 0)
+    (set-goal 146 0)
+    (generate-random-number 3)
+    (up-get-fact random-number 0 146)
     (disable-self)
+)
+(defrule
+    (nand
+      (goal 146 1)
+      (up-research-status c: feudal-age >= research-pending)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (strategic-number sn-wood-gatherer-percentage >= 1)
+    (strategic-number sn-stone-gatherer-percentage <= 99)
+    (strategic-number sn-stone-gatherer-percentage < 8)
+=>
+    (up-modify-sn sn-wood-gatherer-percentage c:- 1)
+    (up-modify-sn sn-stone-gatherer-percentage c:+ 1)
+)
+(defrule
+    (strategic-number sn-food-gatherer-percentage >= 1)
+    (strategic-number sn-stone-gatherer-percentage <= 99)
+    (strategic-number sn-stone-gatherer-percentage < 8)
+=>
+    (up-modify-sn sn-food-gatherer-percentage c:- 1)
+    (up-modify-sn sn-stone-gatherer-percentage c:+ 1)
+)
+(defrule
+    (strategic-number sn-gold-gatherer-percentage >= 1)
+    (strategic-number sn-stone-gatherer-percentage <= 99)
+    (strategic-number sn-stone-gatherer-percentage < 8)
+=>
+    (up-modify-sn sn-gold-gatherer-percentage c:- 1)
+    (up-modify-sn sn-stone-gatherer-percentage c:+ 1)
+)
+(defrule
+    (nand
+      (goal 146 2)
+      (up-research-status c: feudal-age >= research-pending)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (strategic-number sn-wood-gatherer-percentage >= 1)
+    (strategic-number sn-stone-gatherer-percentage <= 99)
+    (strategic-number sn-stone-gatherer-percentage < 4)
+=>
+    (up-modify-sn sn-wood-gatherer-percentage c:- 1)
+    (up-modify-sn sn-stone-gatherer-percentage c:+ 1)
+)
+(defrule
+    (strategic-number sn-food-gatherer-percentage >= 1)
+    (strategic-number sn-stone-gatherer-percentage <= 99)
+    (strategic-number sn-stone-gatherer-percentage < 4)
+=>
+    (up-modify-sn sn-food-gatherer-percentage c:- 1)
+    (up-modify-sn sn-stone-gatherer-percentage c:+ 1)
+)
+(defrule
+    (strategic-number sn-gold-gatherer-percentage >= 1)
+    (strategic-number sn-stone-gatherer-percentage <= 99)
+    (strategic-number sn-stone-gatherer-percentage < 4)
+=>
+    (up-modify-sn sn-gold-gatherer-percentage c:- 1)
+    (up-modify-sn sn-stone-gatherer-percentage c:+ 1)
 )
 (defrule
     (population-headroom != 0)
@@ -3211,7 +3223,7 @@
       (goal desired-age imperial-age)
     )
 =>
-    (up-jump-rule 31)
+    (up-jump-rule 34)
 )
 (defrule
     (research-completed imperial-age)
@@ -3414,7 +3426,7 @@
       )
     )
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -3424,6 +3436,35 @@
 =>
     (build castle)
     (set-goal 328 1)
+)
+(defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
 )
 (defrule
     (nand
@@ -3492,12 +3533,12 @@
       (building-type-count castle >= 1)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-conscription)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -3509,9 +3550,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-conscription < research-pending)
     (research-available ri-conscription)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-conscription)
     )
@@ -3522,7 +3591,6 @@
     (can-research ri-conscription)
     (goal do-research 1)
     (research-available ri-conscription)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-conscription)
     )
@@ -3695,12 +3763,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-sultans)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -3712,9 +3780,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-sultans < research-pending)
     (research-available ri-sultans)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-sultans)
     )
@@ -3725,7 +3821,6 @@
     (can-research ri-sultans)
     (goal do-research 1)
     (research-available ri-sultans)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-sultans)
     )
@@ -4637,7 +4732,7 @@
       (goal produce-trade-carts 1)
     )
 =>
-    (up-jump-rule 13)
+    (up-jump-rule 16)
 )
 (defrule
     (can-build market)
@@ -4697,12 +4792,12 @@
       (unit-available trade-cart)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-silk-road)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -4714,9 +4809,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-silk-road < research-pending)
     (research-available ri-silk-road)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-silk-road)
     )
@@ -4727,7 +4850,6 @@
     (can-research ri-silk-road)
     (goal do-research 1)
     (research-available ri-silk-road)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-silk-road)
     )
@@ -4757,7 +4879,7 @@
       (goal produce-fishing-ships 1)
     )
 =>
-    (up-jump-rule 46)
+    (up-jump-rule 52)
 )
 (defrule
     (can-build dock)
@@ -4812,7 +4934,7 @@
       (unit-available fishing-ship)
     )
 =>
-    (up-jump-rule 38)
+    (up-jump-rule 44)
 )
 (defrule
     (not
@@ -5022,12 +5144,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-thalassocracy)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -5039,9 +5161,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-thalassocracy < research-pending)
     (research-available ri-thalassocracy)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-thalassocracy)
     )
@@ -5052,7 +5202,6 @@
     (can-research ri-thalassocracy)
     (goal do-research 1)
     (research-available ri-thalassocracy)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-thalassocracy)
     )
@@ -5064,12 +5213,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-carrack)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -5081,9 +5230,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-carrack < research-pending)
     (research-available ri-carrack)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-carrack)
     )
@@ -5094,7 +5271,6 @@
     (can-research ri-carrack)
     (goal do-research 1)
     (research-available ri-carrack)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-carrack)
     )
@@ -5574,7 +5750,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 121)
+    (up-jump-rule 127)
 )
 (defrule
     (goal produce-archers 1)
@@ -5596,7 +5772,7 @@
       (unit-available archer-line)
     )
 =>
-    (up-jump-rule 117)
+    (up-jump-rule 123)
 )
 (defrule
     (nand
@@ -5810,12 +5986,12 @@
       (unit-available archer-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-yeomen)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -5827,9 +6003,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-yeomen < research-pending)
     (research-available ri-yeomen)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-yeomen)
     )
@@ -5840,7 +6044,6 @@
     (can-research ri-yeomen)
     (goal do-research 1)
     (research-available ri-yeomen)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-yeomen)
     )
@@ -5853,12 +6056,12 @@
       (unit-available archer-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-pavise)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -5870,9 +6073,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-pavise < research-pending)
     (research-available ri-pavise)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-pavise)
     )
@@ -5883,7 +6114,6 @@
     (can-research ri-pavise)
     (goal do-research 1)
     (research-available ri-pavise)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-pavise)
     )
@@ -6590,7 +6820,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 33)
+    (up-jump-rule 36)
 )
 (defrule
     (goal produce-hand-cannoneers 1)
@@ -6612,7 +6842,7 @@
       (unit-available hand-cannoneer)
     )
 =>
-    (up-jump-rule 29)
+    (up-jump-rule 32)
 )
 (defrule
     (nand
@@ -6647,12 +6877,12 @@
       (unit-available hand-cannoneer)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-shatagni)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -6664,9 +6894,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-shatagni < research-pending)
     (research-available ri-shatagni)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-shatagni)
     )
@@ -6677,7 +6935,6 @@
     (can-research ri-shatagni)
     (goal do-research 1)
     (research-available ri-shatagni)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-shatagni)
     )
@@ -6857,7 +7114,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 121)
+    (up-jump-rule 127)
 )
 (defrule
     (goal produce-skirmishers 1)
@@ -6879,7 +7136,7 @@
       (unit-available skirmisher-line)
     )
 =>
-    (up-jump-rule 117)
+    (up-jump-rule 123)
 )
 (defrule
     (nand
@@ -7093,12 +7350,12 @@
       (unit-available skirmisher-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-atlatl)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -7110,9 +7367,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-atlatl < research-pending)
     (research-available ri-atlatl)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-atlatl)
     )
@@ -7123,7 +7408,6 @@
     (can-research ri-atlatl)
     (goal do-research 1)
     (research-available ri-atlatl)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-atlatl)
     )
@@ -7136,12 +7420,12 @@
       (unit-available skirmisher-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-andean-sling)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -7153,9 +7437,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-andean-sling < research-pending)
     (research-available ri-andean-sling)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-andean-sling)
     )
@@ -7166,7 +7478,6 @@
     (can-research ri-andean-sling)
     (goal do-research 1)
     (research-available ri-andean-sling)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-andean-sling)
     )
@@ -7873,7 +8184,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 123)
+    (up-jump-rule 126)
 )
 (defrule
     (goal produce-genitours 1)
@@ -7895,7 +8206,7 @@
       (unit-available genitour-line)
     )
 =>
-    (up-jump-rule 119)
+    (up-jump-rule 122)
 )
 (defrule
     (nand
@@ -7988,7 +8299,7 @@
       (unit-available genitour-line)
     )
 =>
-    (up-jump-rule 107)
+    (up-jump-rule 110)
 )
 (defrule
     (not
@@ -8842,12 +9153,12 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-sipahi)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -8859,9 +9170,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-sipahi < research-pending)
     (research-available ri-sipahi)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-sipahi)
     )
@@ -8872,7 +9211,6 @@
     (can-research ri-sipahi)
     (goal do-research 1)
     (research-available ri-sipahi)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-sipahi)
     )
@@ -8897,7 +9235,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 128)
+    (up-jump-rule 134)
 )
 (defrule
     (goal produce-cavalry-archers 1)
@@ -8919,7 +9257,7 @@
       (unit-available cavalry-archer-line)
     )
 =>
-    (up-jump-rule 124)
+    (up-jump-rule 130)
 )
 (defrule
     (nand
@@ -9013,12 +9351,12 @@
       (unit-available cavalry-archer-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-recurve-bow)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -9030,9 +9368,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-recurve-bow < research-pending)
     (research-available ri-recurve-bow)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-recurve-bow)
     )
@@ -9043,7 +9409,6 @@
     (can-research ri-recurve-bow)
     (goal do-research 1)
     (research-available ri-recurve-bow)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-recurve-bow)
     )
@@ -9055,7 +9420,7 @@
       (unit-available cavalry-archer-line)
     )
 =>
-    (up-jump-rule 107)
+    (up-jump-rule 110)
 )
 (defrule
     (not
@@ -9909,12 +10274,12 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-sipahi)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -9926,9 +10291,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-sipahi < research-pending)
     (research-available ri-sipahi)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-sipahi)
     )
@@ -9939,7 +10332,6 @@
     (can-research ri-sipahi)
     (goal do-research 1)
     (research-available ri-sipahi)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-sipahi)
     )
@@ -9964,7 +10356,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 130)
+    (up-jump-rule 136)
 )
 (defrule
     (goal produce-militia 1)
@@ -9986,7 +10378,7 @@
       (unit-available militiaman-line)
     )
 =>
-    (up-jump-rule 126)
+    (up-jump-rule 132)
 )
 (defrule
     (can-build barracks)
@@ -10292,7 +10684,7 @@
       (unit-available militiaman-line)
     )
 =>
-    (up-jump-rule 88)
+    (up-jump-rule 94)
 )
 (defrule
     (not
@@ -10558,12 +10950,12 @@
       )
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-perfusion)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -10575,9 +10967,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-perfusion < research-pending)
     (research-available ri-perfusion)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-perfusion)
     )
@@ -10588,7 +11008,6 @@
     (can-research ri-perfusion)
     (goal do-research 1)
     (research-available ri-perfusion)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-perfusion)
     )
@@ -10720,12 +11139,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-garland-wars)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -10737,9 +11156,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-garland-wars < research-pending)
     (research-available ri-garland-wars)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-garland-wars)
     )
@@ -10750,7 +11197,6 @@
     (can-research ri-garland-wars)
     (goal do-research 1)
     (research-available ri-garland-wars)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-garland-wars)
     )
@@ -11045,7 +11491,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 95)
+    (up-jump-rule 101)
 )
 (defrule
     (goal produce-condottiero 1)
@@ -11067,7 +11513,7 @@
       (unit-available condottiero)
     )
 =>
-    (up-jump-rule 91)
+    (up-jump-rule 97)
 )
 (defrule
     (can-build barracks)
@@ -11083,7 +11529,7 @@
       (unit-available condottiero)
     )
 =>
-    (up-jump-rule 88)
+    (up-jump-rule 94)
 )
 (defrule
     (not
@@ -11349,12 +11795,12 @@
       )
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-perfusion)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -11366,9 +11812,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-perfusion < research-pending)
     (research-available ri-perfusion)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-perfusion)
     )
@@ -11379,7 +11853,6 @@
     (can-research ri-perfusion)
     (goal do-research 1)
     (research-available ri-perfusion)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-perfusion)
     )
@@ -11511,12 +11984,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-garland-wars)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -11528,9 +12001,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-garland-wars < research-pending)
     (research-available ri-garland-wars)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-garland-wars)
     )
@@ -11541,7 +12042,6 @@
     (can-research ri-garland-wars)
     (goal do-research 1)
     (research-available ri-garland-wars)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-garland-wars)
     )
@@ -11836,7 +12336,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 110)
+    (up-jump-rule 116)
 )
 (defrule
     (goal produce-spearmen 1)
@@ -11858,7 +12358,7 @@
       (unit-available spearman-line)
     )
 =>
-    (up-jump-rule 106)
+    (up-jump-rule 112)
 )
 (defrule
     (can-build barracks)
@@ -11999,7 +12499,7 @@
       (unit-available spearman-line)
     )
 =>
-    (up-jump-rule 88)
+    (up-jump-rule 94)
 )
 (defrule
     (not
@@ -12265,12 +12765,12 @@
       )
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-perfusion)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -12282,9 +12782,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-perfusion < research-pending)
     (research-available ri-perfusion)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-perfusion)
     )
@@ -12295,7 +12823,6 @@
     (can-research ri-perfusion)
     (goal do-research 1)
     (research-available ri-perfusion)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-perfusion)
     )
@@ -12427,12 +12954,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-garland-wars)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -12444,9 +12971,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-garland-wars < research-pending)
     (research-available ri-garland-wars)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-garland-wars)
     )
@@ -12457,7 +13012,6 @@
     (can-research ri-garland-wars)
     (goal do-research 1)
     (research-available ri-garland-wars)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-garland-wars)
     )
@@ -12752,7 +13306,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 120)
+    (up-jump-rule 132)
 )
 (defrule
     (goal produce-eagles 1)
@@ -12774,7 +13328,7 @@
       (unit-available eagle-warrior-line)
     )
 =>
-    (up-jump-rule 116)
+    (up-jump-rule 128)
 )
 (defrule
     (can-build barracks)
@@ -12921,12 +13475,12 @@
       )
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-couriers)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -12938,9 +13492,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-couriers < research-pending)
     (research-available ri-couriers)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-couriers)
     )
@@ -12951,7 +13533,6 @@
     (can-research ri-couriers)
     (goal do-research 1)
     (research-available ri-couriers)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-couriers)
     )
@@ -12969,12 +13550,12 @@
       )
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-el-dorado)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -12986,9 +13567,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-el-dorado < research-pending)
     (research-available ri-el-dorado)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-el-dorado)
     )
@@ -12999,7 +13608,6 @@
     (can-research ri-el-dorado)
     (goal do-research 1)
     (research-available ri-el-dorado)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-el-dorado)
     )
@@ -13011,7 +13619,7 @@
       (unit-available eagle-warrior-line)
     )
 =>
-    (up-jump-rule 88)
+    (up-jump-rule 94)
 )
 (defrule
     (not
@@ -13277,12 +13885,12 @@
       )
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-perfusion)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -13294,9 +13902,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-perfusion < research-pending)
     (research-available ri-perfusion)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-perfusion)
     )
@@ -13307,7 +13943,6 @@
     (can-research ri-perfusion)
     (goal do-research 1)
     (research-available ri-perfusion)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-perfusion)
     )
@@ -13439,12 +14074,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-garland-wars)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -13456,9 +14091,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-garland-wars < research-pending)
     (research-available ri-garland-wars)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-garland-wars)
     )
@@ -13469,7 +14132,6 @@
     (can-research ri-garland-wars)
     (goal do-research 1)
     (research-available ri-garland-wars)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-garland-wars)
     )
@@ -13764,7 +14426,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 123)
+    (up-jump-rule 132)
 )
 (defrule
     (goal produce-scouts 1)
@@ -13786,7 +14448,7 @@
       (unit-available scout-cavalry-line)
     )
 =>
-    (up-jump-rule 119)
+    (up-jump-rule 128)
 )
 (defrule
     (not
@@ -13995,7 +14657,7 @@
       (unit-available scout-cavalry-line)
     )
 =>
-    (up-jump-rule 93)
+    (up-jump-rule 102)
 )
 (defrule
     (not
@@ -14367,12 +15029,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-chivalry)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -14384,9 +15046,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-chivalry < research-pending)
     (research-available ri-chivalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-chivalry)
     )
@@ -14397,7 +15087,6 @@
     (can-research ri-chivalry)
     (goal do-research 1)
     (research-available ri-chivalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-chivalry)
     )
@@ -14409,12 +15098,12 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-manipur-cavalry)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -14426,9 +15115,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-manipur-cavalry < research-pending)
     (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-manipur-cavalry)
     )
@@ -14439,7 +15156,6 @@
     (can-research ri-manipur-cavalry)
     (goal do-research 1)
     (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-manipur-cavalry)
     )
@@ -14451,12 +15167,12 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-farimba)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -14468,9 +15184,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-farimba < research-pending)
     (research-available ri-farimba)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-farimba)
     )
@@ -14481,7 +15225,6 @@
     (can-research ri-farimba)
     (goal do-research 1)
     (research-available ri-farimba)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-farimba)
     )
@@ -14784,7 +15527,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 116)
+    (up-jump-rule 125)
 )
 (defrule
     (goal produce-knights 1)
@@ -14806,7 +15549,7 @@
       (unit-available knight-line)
     )
 =>
-    (up-jump-rule 112)
+    (up-jump-rule 121)
 )
 (defrule
     (not
@@ -14952,7 +15695,7 @@
       (unit-available knight-line)
     )
 =>
-    (up-jump-rule 93)
+    (up-jump-rule 102)
 )
 (defrule
     (not
@@ -15324,12 +16067,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-chivalry)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -15341,9 +16084,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-chivalry < research-pending)
     (research-available ri-chivalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-chivalry)
     )
@@ -15354,7 +16125,6 @@
     (can-research ri-chivalry)
     (goal do-research 1)
     (research-available ri-chivalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-chivalry)
     )
@@ -15366,12 +16136,12 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-manipur-cavalry)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -15383,9 +16153,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-manipur-cavalry < research-pending)
     (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-manipur-cavalry)
     )
@@ -15396,7 +16194,6 @@
     (can-research ri-manipur-cavalry)
     (goal do-research 1)
     (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-manipur-cavalry)
     )
@@ -15408,12 +16205,12 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-farimba)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -15425,9 +16222,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-farimba < research-pending)
     (research-available ri-farimba)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-farimba)
     )
@@ -15438,7 +16263,6 @@
     (can-research ri-farimba)
     (goal do-research 1)
     (research-available ri-farimba)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-farimba)
     )
@@ -15741,7 +16565,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 123)
+    (up-jump-rule 132)
 )
 (defrule
     (goal produce-camels 1)
@@ -15763,7 +16587,7 @@
       (unit-available camel-line)
     )
 =>
-    (up-jump-rule 119)
+    (up-jump-rule 128)
 )
 (defrule
     (not
@@ -15967,7 +16791,7 @@
       (unit-available camel-line)
     )
 =>
-    (up-jump-rule 93)
+    (up-jump-rule 102)
 )
 (defrule
     (not
@@ -16339,12 +17163,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-chivalry)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -16356,9 +17180,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-chivalry < research-pending)
     (research-available ri-chivalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-chivalry)
     )
@@ -16369,7 +17221,6 @@
     (can-research ri-chivalry)
     (goal do-research 1)
     (research-available ri-chivalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-chivalry)
     )
@@ -16381,12 +17232,12 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-manipur-cavalry)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -16398,9 +17249,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-manipur-cavalry < research-pending)
     (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-manipur-cavalry)
     )
@@ -16411,7 +17290,6 @@
     (can-research ri-manipur-cavalry)
     (goal do-research 1)
     (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-manipur-cavalry)
     )
@@ -16423,12 +17301,12 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-farimba)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -16440,9 +17318,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-farimba < research-pending)
     (research-available ri-farimba)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-farimba)
     )
@@ -16453,7 +17359,6 @@
     (can-research ri-farimba)
     (goal do-research 1)
     (research-available ri-farimba)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-farimba)
     )
@@ -16756,7 +17661,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 124)
+    (up-jump-rule 142)
 )
 (defrule
     (goal produce-battle-elephants 1)
@@ -16778,7 +17683,7 @@
       (unit-available battle-elephant-line)
     )
 =>
-    (up-jump-rule 120)
+    (up-jump-rule 138)
 )
 (defrule
     (not
@@ -16812,12 +17717,12 @@
       (unit-available battle-elephant-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-howdah)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -16829,9 +17734,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-howdah < research-pending)
     (research-available ri-howdah)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-howdah)
     )
@@ -16842,7 +17775,6 @@
     (can-research ri-howdah)
     (goal do-research 1)
     (research-available ri-howdah)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-howdah)
     )
@@ -16855,12 +17787,12 @@
       (unit-available battle-elephant-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-tusk-swords)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -16872,9 +17804,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-tusk-swords < research-pending)
     (research-available ri-tusk-swords)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-tusk-swords)
     )
@@ -16885,7 +17845,6 @@
     (can-research ri-tusk-swords)
     (goal do-research 1)
     (research-available ri-tusk-swords)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-tusk-swords)
     )
@@ -16898,12 +17857,12 @@
       (unit-available battle-elephant-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-chatras)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -16915,9 +17874,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-chatras < research-pending)
     (research-available ri-chatras)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-chatras)
     )
@@ -16928,7 +17915,6 @@
     (can-research ri-chatras)
     (goal do-research 1)
     (research-available ri-chatras)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-chatras)
     )
@@ -16998,7 +17984,7 @@
       (unit-available battle-elephant-line)
     )
 =>
-    (up-jump-rule 93)
+    (up-jump-rule 102)
 )
 (defrule
     (not
@@ -17370,12 +18356,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-chivalry)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -17387,9 +18373,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-chivalry < research-pending)
     (research-available ri-chivalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-chivalry)
     )
@@ -17400,7 +18414,6 @@
     (can-research ri-chivalry)
     (goal do-research 1)
     (research-available ri-chivalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-chivalry)
     )
@@ -17412,12 +18425,12 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-manipur-cavalry)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -17429,9 +18442,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-manipur-cavalry < research-pending)
     (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-manipur-cavalry)
     )
@@ -17442,7 +18483,6 @@
     (can-research ri-manipur-cavalry)
     (goal do-research 1)
     (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-manipur-cavalry)
     )
@@ -17454,12 +18494,12 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-farimba)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -17471,9 +18511,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-farimba < research-pending)
     (research-available ri-farimba)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-farimba)
     )
@@ -17484,7 +18552,6 @@
     (can-research ri-farimba)
     (goal do-research 1)
     (research-available ri-farimba)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-farimba)
     )
@@ -17787,7 +18854,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 44)
+    (up-jump-rule 47)
 )
 (defrule
     (goal produce-battering-rams 1)
@@ -17809,7 +18876,7 @@
       (unit-available battering-ram-line)
     )
 =>
-    (up-jump-rule 40)
+    (up-jump-rule 43)
 )
 (defrule
     (not
@@ -17958,7 +19025,7 @@
       (unit-available battering-ram-line)
     )
 =>
-    (up-jump-rule 21)
+    (up-jump-rule 24)
 )
 (defrule
     (not
@@ -18045,12 +19112,12 @@
       (current-age == imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-furor-celtica)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -18062,9 +19129,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-furor-celtica < research-pending)
     (research-available ri-furor-celtica)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-furor-celtica)
     )
@@ -18075,7 +19170,6 @@
     (can-research ri-furor-celtica)
     (goal do-research 1)
     (research-available ri-furor-celtica)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-furor-celtica)
     )
@@ -18146,7 +19240,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 49)
+    (up-jump-rule 55)
 )
 (defrule
     (goal produce-mangonels 1)
@@ -18168,7 +19262,7 @@
       (unit-available mangonel-line)
     )
 =>
-    (up-jump-rule 45)
+    (up-jump-rule 51)
 )
 (defrule
     (not
@@ -18318,12 +19412,12 @@
       (unit-available mangonel-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-shinkichon)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -18335,9 +19429,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-shinkichon < research-pending)
     (research-available ri-shinkichon)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-shinkichon)
     )
@@ -18348,7 +19470,6 @@
     (can-research ri-shinkichon)
     (goal do-research 1)
     (research-available ri-shinkichon)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-shinkichon)
     )
@@ -18360,7 +19481,7 @@
       (unit-available mangonel-line)
     )
 =>
-    (up-jump-rule 21)
+    (up-jump-rule 24)
 )
 (defrule
     (not
@@ -18447,12 +19568,12 @@
       (current-age == imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-furor-celtica)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -18464,9 +19585,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-furor-celtica < research-pending)
     (research-available ri-furor-celtica)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-furor-celtica)
     )
@@ -18477,7 +19626,6 @@
     (can-research ri-furor-celtica)
     (goal do-research 1)
     (research-available ri-furor-celtica)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-furor-celtica)
     )
@@ -18548,7 +19696,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 47)
+    (up-jump-rule 56)
 )
 (defrule
     (goal produce-scorpions 1)
@@ -18570,7 +19718,7 @@
       (unit-available scorpion-line)
     )
 =>
-    (up-jump-rule 43)
+    (up-jump-rule 52)
 )
 (defrule
     (not
@@ -18664,12 +19812,12 @@
       (unit-available scorpion-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-rocketry)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -18681,9 +19829,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-rocketry < research-pending)
     (research-available ri-rocketry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-rocketry)
     )
@@ -18694,7 +19870,6 @@
     (can-research ri-rocketry)
     (goal do-research 1)
     (research-available ri-rocketry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-rocketry)
     )
@@ -18707,12 +19882,12 @@
       (unit-available scorpion-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-double-crossbow)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -18724,9 +19899,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-double-crossbow < research-pending)
     (research-available ri-double-crossbow)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-double-crossbow)
     )
@@ -18737,7 +19940,6 @@
     (can-research ri-double-crossbow)
     (goal do-research 1)
     (research-available ri-double-crossbow)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-double-crossbow)
     )
@@ -18749,7 +19951,7 @@
       (unit-available scorpion-line)
     )
 =>
-    (up-jump-rule 21)
+    (up-jump-rule 24)
 )
 (defrule
     (not
@@ -18836,12 +20038,12 @@
       (current-age == imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-furor-celtica)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -18853,9 +20055,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-furor-celtica < research-pending)
     (research-available ri-furor-celtica)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-furor-celtica)
     )
@@ -18866,7 +20096,6 @@
     (can-research ri-furor-celtica)
     (goal do-research 1)
     (research-available ri-furor-celtica)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-furor-celtica)
     )
@@ -18937,7 +20166,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 30)
+    (up-jump-rule 33)
 )
 (defrule
     (goal produce-bombard-cannons 1)
@@ -18959,7 +20188,7 @@
       (unit-available bombard-cannon)
     )
 =>
-    (up-jump-rule 26)
+    (up-jump-rule 29)
 )
 (defrule
     (not
@@ -18993,7 +20222,7 @@
       (unit-available bombard-cannon)
     )
 =>
-    (up-jump-rule 21)
+    (up-jump-rule 24)
 )
 (defrule
     (not
@@ -19080,12 +20309,12 @@
       (current-age == imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-furor-celtica)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -19097,9 +20326,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-furor-celtica < research-pending)
     (research-available ri-furor-celtica)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-furor-celtica)
     )
@@ -19110,7 +20367,6 @@
     (can-research ri-furor-celtica)
     (goal do-research 1)
     (research-available ri-furor-celtica)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-furor-celtica)
     )
@@ -19181,7 +20437,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 28)
+    (up-jump-rule 34)
 )
 (defrule
     (goal produce-trebuchets 1)
@@ -19203,7 +20459,7 @@
       (unit-available trebuchet-set)
     )
 =>
-    (up-jump-rule 24)
+    (up-jump-rule 30)
 )
 (defrule
     (can-build castle)
@@ -19215,11 +20471,40 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (not
       (unit-available trebuchet)
     )
 =>
-    (up-jump-rule 21)
+    (up-jump-rule 24)
 )
 (defrule
     (not
@@ -19306,12 +20591,12 @@
       (current-age == imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-furor-celtica)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -19323,9 +20608,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-furor-celtica < research-pending)
     (research-available ri-furor-celtica)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-furor-celtica)
     )
@@ -19336,7 +20649,6 @@
     (can-research ri-furor-celtica)
     (goal do-research 1)
     (research-available ri-furor-celtica)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-furor-celtica)
     )
@@ -19407,7 +20719,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 659)
+    (up-jump-rule 717)
 )
 (defrule
     (goal produce-unique-units 1)
@@ -19429,7 +20741,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 655)
+    (up-jump-rule 713)
 )
 (defrule
     (true)
@@ -19497,11 +20809,17 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (up-compare-goal castle-count g:< desired-military-buildings-per-type)
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
     (strategic-number sn-wood-gatherer-percentage >= 1)
     (strategic-number sn-stone-gatherer-percentage <= 99)
     (strategic-number sn-stone-gatherer-percentage < 8)
-    (up-compare-goal castle-count g:< desired-military-buildings-per-type)
-    (current-age >= castle-age)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 1)
     (up-modify-sn sn-stone-gatherer-percentage c:+ 1)
@@ -19510,8 +20828,6 @@
     (strategic-number sn-food-gatherer-percentage >= 1)
     (strategic-number sn-stone-gatherer-percentage <= 99)
     (strategic-number sn-stone-gatherer-percentage < 8)
-    (up-compare-goal castle-count g:< desired-military-buildings-per-type)
-    (current-age >= castle-age)
 =>
     (up-modify-sn sn-food-gatherer-percentage c:- 1)
     (up-modify-sn sn-stone-gatherer-percentage c:+ 1)
@@ -19520,8 +20836,6 @@
     (strategic-number sn-gold-gatherer-percentage >= 1)
     (strategic-number sn-stone-gatherer-percentage <= 99)
     (strategic-number sn-stone-gatherer-percentage < 8)
-    (up-compare-goal castle-count g:< desired-military-buildings-per-type)
-    (current-age >= castle-age)
 =>
     (up-modify-sn sn-gold-gatherer-percentage c:- 1)
     (up-modify-sn sn-stone-gatherer-percentage c:+ 1)
@@ -19532,12 +20846,12 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed my-unique-unit-upgrade)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -19549,9 +20863,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: my-unique-unit-upgrade < research-pending)
     (research-available my-unique-unit-upgrade)
-    (building-type-count castle >= 1)
     (not
       (research-completed my-unique-unit-upgrade)
     )
@@ -19562,7 +20904,6 @@
     (can-research my-unique-unit-upgrade)
     (goal do-research 1)
     (research-available my-unique-unit-upgrade)
-    (building-type-count castle >= 1)
     (not
       (research-completed my-unique-unit-upgrade)
     )
@@ -19599,7 +20940,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 88)
+    (up-jump-rule 94)
 )
 (defrule
     (not
@@ -19865,12 +21206,12 @@
       )
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-perfusion)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -19882,9 +21223,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-perfusion < research-pending)
     (research-available ri-perfusion)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-perfusion)
     )
@@ -19895,7 +21264,6 @@
     (can-research ri-perfusion)
     (goal do-research 1)
     (research-available ri-perfusion)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-perfusion)
     )
@@ -20027,12 +21395,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-garland-wars)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -20044,9 +21412,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-garland-wars < research-pending)
     (research-available ri-garland-wars)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-garland-wars)
     )
@@ -20057,7 +21453,6 @@
     (can-research ri-garland-wars)
     (goal do-research 1)
     (research-available ri-garland-wars)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-garland-wars)
     )
@@ -20355,7 +21750,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 88)
+    (up-jump-rule 94)
 )
 (defrule
     (not
@@ -20621,12 +22016,12 @@
       )
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-perfusion)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -20638,9 +22033,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-perfusion < research-pending)
     (research-available ri-perfusion)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-perfusion)
     )
@@ -20651,7 +22074,6 @@
     (can-research ri-perfusion)
     (goal do-research 1)
     (research-available ri-perfusion)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-perfusion)
     )
@@ -20783,12 +22205,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-garland-wars)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -20800,9 +22222,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-garland-wars < research-pending)
     (research-available ri-garland-wars)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-garland-wars)
     )
@@ -20813,7 +22263,6 @@
     (can-research ri-garland-wars)
     (goal do-research 1)
     (research-available ri-garland-wars)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-garland-wars)
     )
@@ -21108,7 +22557,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 107)
+    (up-jump-rule 110)
 )
 (defrule
     (not
@@ -21962,12 +23411,12 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-sipahi)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -21979,9 +23428,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-sipahi < research-pending)
     (research-available ri-sipahi)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-sipahi)
     )
@@ -21992,7 +23469,6 @@
     (can-research ri-sipahi)
     (goal do-research 1)
     (research-available ri-sipahi)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-sipahi)
     )
@@ -22715,7 +24191,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 93)
+    (up-jump-rule 102)
 )
 (defrule
     (not
@@ -23087,12 +24563,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-chivalry)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -23104,9 +24580,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-chivalry < research-pending)
     (research-available ri-chivalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-chivalry)
     )
@@ -23117,7 +24621,6 @@
     (can-research ri-chivalry)
     (goal do-research 1)
     (research-available ri-chivalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-chivalry)
     )
@@ -23129,12 +24632,12 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-manipur-cavalry)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -23146,9 +24649,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-manipur-cavalry < research-pending)
     (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-manipur-cavalry)
     )
@@ -23159,7 +24690,6 @@
     (can-research ri-manipur-cavalry)
     (goal do-research 1)
     (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-manipur-cavalry)
     )
@@ -23171,12 +24701,12 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-farimba)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -23188,9 +24718,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-farimba < research-pending)
     (research-available ri-farimba)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-farimba)
     )
@@ -23201,7 +24759,6 @@
     (can-research ri-farimba)
     (goal do-research 1)
     (research-available ri-farimba)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-farimba)
     )
@@ -23497,12 +25054,12 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-yeomen)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -23514,9 +25071,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-yeomen < research-pending)
     (research-available ri-yeomen)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-yeomen)
     )
@@ -23527,7 +25112,6 @@
     (can-research ri-yeomen)
     (goal do-research 1)
     (research-available ri-yeomen)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-yeomen)
     )
@@ -23540,12 +25124,12 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-mercenaries)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -23557,9 +25141,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-mercenaries < research-pending)
     (research-available ri-mercenaries)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-mercenaries)
     )
@@ -23570,7 +25182,6 @@
     (can-research ri-mercenaries)
     (goal do-research 1)
     (research-available ri-mercenaries)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-mercenaries)
     )
@@ -23583,12 +25194,12 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-pavise)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -23600,9 +25211,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-pavise < research-pending)
     (research-available ri-pavise)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-pavise)
     )
@@ -23613,7 +25252,6 @@
     (can-research ri-pavise)
     (goal do-research 1)
     (research-available ri-pavise)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-pavise)
     )
@@ -23629,12 +25267,12 @@
       )
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-beserkergang)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -23646,9 +25284,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-beserkergang < research-pending)
     (research-available ri-beserkergang)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-beserkergang)
     )
@@ -23659,7 +25325,6 @@
     (can-research ri-beserkergang)
     (goal do-research 1)
     (research-available ri-beserkergang)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-beserkergang)
     )
@@ -23675,12 +25340,12 @@
       )
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-logistica)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -23692,9 +25357,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-logistica < research-pending)
     (research-available ri-logistica)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-logistica)
     )
@@ -23705,7 +25398,6 @@
     (can-research ri-logistica)
     (goal do-research 1)
     (research-available ri-logistica)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-logistica)
     )
@@ -23721,12 +25413,12 @@
       )
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-mahouts)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -23738,9 +25430,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-mahouts < research-pending)
     (research-available ri-mahouts)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-mahouts)
     )
@@ -23751,7 +25471,6 @@
     (can-research ri-mahouts)
     (goal do-research 1)
     (research-available ri-mahouts)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-mahouts)
     )
@@ -23767,12 +25486,12 @@
       )
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-rocketry)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -23784,9 +25503,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-rocketry < research-pending)
     (research-available ri-rocketry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-rocketry)
     )
@@ -23797,7 +25544,6 @@
     (can-research ri-rocketry)
     (goal do-research 1)
     (research-available ri-rocketry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-rocketry)
     )
@@ -23813,12 +25559,12 @@
       )
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-bearded-axe)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -23830,9 +25576,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-bearded-axe < research-pending)
     (research-available ri-bearded-axe)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-bearded-axe)
     )
@@ -23843,7 +25617,6 @@
     (can-research ri-bearded-axe)
     (goal do-research 1)
     (research-available ri-bearded-axe)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-bearded-axe)
     )
@@ -23859,12 +25632,12 @@
       )
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-double-crossbow)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -23876,9 +25649,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-double-crossbow < research-pending)
     (research-available ri-double-crossbow)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-double-crossbow)
     )
@@ -23889,7 +25690,6 @@
     (can-research ri-double-crossbow)
     (goal do-research 1)
     (research-available ri-double-crossbow)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-double-crossbow)
     )
@@ -23905,12 +25705,12 @@
       )
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-manipur-cavalry)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -23922,9 +25722,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-manipur-cavalry < research-pending)
     (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-manipur-cavalry)
     )
@@ -23935,7 +25763,6 @@
     (can-research ri-manipur-cavalry)
     (goal do-research 1)
     (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-manipur-cavalry)
     )
@@ -24992,7 +26819,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 50)
+    (up-jump-rule 53)
 )
 (defrule
     (goal produce-monks 1)
@@ -25014,7 +26841,7 @@
       (unit-available monk-set)
     )
 =>
-    (up-jump-rule 46)
+    (up-jump-rule 49)
 )
 (defrule
     (can-build monastery)
@@ -25030,7 +26857,7 @@
       (unit-available monk)
     )
 =>
-    (up-jump-rule 43)
+    (up-jump-rule 46)
 )
 (defrule
     (not
@@ -25157,12 +26984,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-inquisition)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -25174,9 +27001,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-inquisition < research-pending)
     (research-available ri-inquisition)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-inquisition)
     )
@@ -25187,7 +27042,6 @@
     (can-research ri-inquisition)
     (goal do-research 1)
     (research-available ri-inquisition)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-inquisition)
     )
@@ -25392,7 +27246,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 50)
+    (up-jump-rule 53)
 )
 (defrule
     (goal produce-missionaries 1)
@@ -25414,7 +27268,7 @@
       (unit-available missionary)
     )
 =>
-    (up-jump-rule 46)
+    (up-jump-rule 49)
 )
 (defrule
     (can-build monastery)
@@ -25430,7 +27284,7 @@
       (unit-available missionary)
     )
 =>
-    (up-jump-rule 43)
+    (up-jump-rule 46)
 )
 (defrule
     (not
@@ -25557,12 +27411,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-inquisition)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -25574,9 +27428,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-inquisition < research-pending)
     (research-available ri-inquisition)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-inquisition)
     )
@@ -25587,7 +27469,6 @@
     (can-research ri-inquisition)
     (goal do-research 1)
     (research-available ri-inquisition)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-inquisition)
     )
@@ -25792,7 +27673,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 45)
+    (up-jump-rule 51)
 )
 (defrule
     (goal produce-transport-ships 1)
@@ -25814,7 +27695,7 @@
       (unit-available transport-ship)
     )
 =>
-    (up-jump-rule 41)
+    (up-jump-rule 47)
 )
 (defrule
     (can-build dock)
@@ -25829,7 +27710,7 @@
       (unit-available transport-ship)
     )
 =>
-    (up-jump-rule 38)
+    (up-jump-rule 44)
 )
 (defrule
     (not
@@ -26039,12 +27920,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-thalassocracy)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -26056,9 +27937,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-thalassocracy < research-pending)
     (research-available ri-thalassocracy)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-thalassocracy)
     )
@@ -26069,7 +27978,6 @@
     (can-research ri-thalassocracy)
     (goal do-research 1)
     (research-available ri-thalassocracy)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-thalassocracy)
     )
@@ -26081,12 +27989,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-carrack)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -26098,9 +28006,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-carrack < research-pending)
     (research-available ri-carrack)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-carrack)
     )
@@ -26111,7 +28047,6 @@
     (can-research ri-carrack)
     (goal do-research 1)
     (research-available ri-carrack)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-carrack)
     )
@@ -26155,7 +28090,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 95)
+    (up-jump-rule 101)
 )
 (defrule
     (goal produce-galleys 1)
@@ -26177,7 +28112,7 @@
       (unit-available galley-line)
     )
 =>
-    (up-jump-rule 91)
+    (up-jump-rule 97)
 )
 (defrule
     (can-build dock)
@@ -26623,7 +28558,7 @@
       (unit-available galley-line)
     )
 =>
-    (up-jump-rule 38)
+    (up-jump-rule 44)
 )
 (defrule
     (not
@@ -26833,12 +28768,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-thalassocracy)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -26850,9 +28785,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-thalassocracy < research-pending)
     (research-available ri-thalassocracy)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-thalassocracy)
     )
@@ -26863,7 +28826,6 @@
     (can-research ri-thalassocracy)
     (goal do-research 1)
     (research-available ri-thalassocracy)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-thalassocracy)
     )
@@ -26875,12 +28837,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-carrack)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -26892,9 +28854,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-carrack < research-pending)
     (research-available ri-carrack)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-carrack)
     )
@@ -26905,7 +28895,6 @@
     (can-research ri-carrack)
     (goal do-research 1)
     (research-available ri-carrack)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-carrack)
     )
@@ -26949,7 +28938,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 65)
+    (up-jump-rule 74)
 )
 (defrule
     (goal produce-fire-ships 1)
@@ -26971,7 +28960,7 @@
       (unit-available fire-ship-line)
     )
 =>
-    (up-jump-rule 61)
+    (up-jump-rule 70)
 )
 (defrule
     (can-build dock)
@@ -27109,12 +29098,12 @@
       (unit-available fire-ship-line)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-greek-fire)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -27126,9 +29115,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-greek-fire < research-pending)
     (research-available ri-greek-fire)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-greek-fire)
     )
@@ -27139,7 +29156,6 @@
     (can-research ri-greek-fire)
     (goal do-research 1)
     (research-available ri-greek-fire)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-greek-fire)
     )
@@ -27151,7 +29167,7 @@
       (unit-available fire-ship-line)
     )
 =>
-    (up-jump-rule 38)
+    (up-jump-rule 44)
 )
 (defrule
     (not
@@ -27361,12 +29377,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-thalassocracy)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -27378,9 +29394,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-thalassocracy < research-pending)
     (research-available ri-thalassocracy)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-thalassocracy)
     )
@@ -27391,7 +29435,6 @@
     (can-research ri-thalassocracy)
     (goal do-research 1)
     (research-available ri-thalassocracy)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-thalassocracy)
     )
@@ -27403,12 +29446,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-carrack)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -27420,9 +29463,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-carrack < research-pending)
     (research-available ri-carrack)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-carrack)
     )
@@ -27433,7 +29504,6 @@
     (can-research ri-carrack)
     (goal do-research 1)
     (research-available ri-carrack)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-carrack)
     )
@@ -27477,7 +29547,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 45)
+    (up-jump-rule 51)
 )
 (defrule
     (goal produce-cannon-galleons 1)
@@ -27499,7 +29569,7 @@
       (unit-available cannon-galleon-line)
     )
 =>
-    (up-jump-rule 41)
+    (up-jump-rule 47)
 )
 (defrule
     (can-build dock)
@@ -27514,7 +29584,7 @@
       (unit-available cannon-galleon-line)
     )
 =>
-    (up-jump-rule 38)
+    (up-jump-rule 44)
 )
 (defrule
     (not
@@ -27724,12 +29794,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-thalassocracy)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -27741,9 +29811,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-thalassocracy < research-pending)
     (research-available ri-thalassocracy)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-thalassocracy)
     )
@@ -27754,7 +29852,6 @@
     (can-research ri-thalassocracy)
     (goal do-research 1)
     (research-available ri-thalassocracy)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-thalassocracy)
     )
@@ -27766,12 +29863,12 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-carrack)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -27783,9 +29880,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-carrack < research-pending)
     (research-available ri-carrack)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-carrack)
     )
@@ -27796,7 +29921,6 @@
     (can-research ri-carrack)
     (goal do-research 1)
     (research-available ri-carrack)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-carrack)
     )
@@ -28087,7 +30211,7 @@
       (goal 190 1)
     )
 =>
-    (up-jump-rule 59)
+    (up-jump-rule 62)
 )
 (defrule
     (nand
@@ -28095,12 +30219,12 @@
       (building-type-count castle >= 1)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 7)
 )
 (defrule
     (research-completed ri-hoardings)
 =>
-    (up-jump-rule 1)
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
@@ -28112,9 +30236,37 @@
     (set-goal 328 1)
 )
 (defrule
+    (nand
+      (and
+        (gold-amount >= 300)
+        (stone-amount < 650)
+      )
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (wood-amount >= 200)
+    (building-type-count-total market == 0)
+=>
+    (build market)
+    (set-goal 328 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (building-type-count-total castle == 0)
+=>
+    (buy-commodity stone)
+)
+(defrule
     (up-research-status c: ri-hoardings < research-pending)
     (research-available ri-hoardings)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-hoardings)
     )
@@ -28125,7 +30277,6 @@
     (can-research ri-hoardings)
     (goal do-research 1)
     (research-available ri-hoardings)
-    (building-type-count castle >= 1)
     (not
       (research-completed ri-hoardings)
     )

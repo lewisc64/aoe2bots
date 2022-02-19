@@ -14,17 +14,7 @@
   #end if
   build castle
   
-  #nomerge
-    #if strategic-number sn-stone-gatherer-percentage < 8
-      distribute 1 villagers from wood to stone
-    #end if
-    #if strategic-number sn-stone-gatherer-percentage < 8
-      distribute 1 villagers from food to stone
-    #end if
-    #if strategic-number sn-stone-gatherer-percentage < 8
-      distribute 1 villagers from gold to stone
-    #end if
-  #end nomerge
+  insert divert-to-stone(percent="8")
 #end if
 
 #if unit-available my-unique-unit-line

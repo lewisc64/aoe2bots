@@ -82,25 +82,16 @@ build houses with 5 headroom
 #end if
 
 #if up-research-status c: feudal-age >= research-pending
-  #if goal produce-unique-units 1
-    #do once
-      distribute villagers 37 37 18 8
-    #end do
-  #else
-    #select random persistant
-      #do once
-        distribute villagers 37 37 18 8
-      #end do
-    #randor
-      #do once
-        distribute villagers 38 38 20 4
-      #end do
-    #randor
-      #do once
-        distribute villagers 40 40 20 0
-      #end do
-    #end select
-  #end if
+  #do once
+    distribute villagers 40 40 20 0
+  #end do
+  #select random persistant
+    insert divert-to-stone(percent="8")
+  #randor
+    insert divert-to-stone(percent="4")
+  #randor
+    // do nothing
+  #end select
   
   build houses with 20 headroom
   

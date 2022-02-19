@@ -2,7 +2,7 @@
   load "../castle/prerequisites.aoe2ai"
   //load "../town_center/imperial_age.aoe2ai"
 
-  #if research-available ri-silk-road and building-type-count castle >= 1
+  #if research-available ri-silk-road
     #if up-research-status c: ri-silk-road < research-pending
       goal attempted-researches += 1
     #end if

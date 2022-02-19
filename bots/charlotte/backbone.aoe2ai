@@ -146,9 +146,22 @@ const min-detection-units = 5
   @up-modify-goal produce-fire-ships g:= good-fire-ships
 #end template
 
+#template divert-to-stone
+  #nomerge
+    #if strategic-number sn-stone-gatherer-percentage < {percent}
+      distribute 1 villagers from wood to stone
+    #end if
+    #if strategic-number sn-stone-gatherer-percentage < {percent}
+      distribute 1 villagers from food to stone
+    #end if
+    #if strategic-number sn-stone-gatherer-percentage < {percent}
+      distribute 1 villagers from gold to stone
+    #end if
+  #end nomerge
+#end template
+
 #do once
   set up basics
-  take boar
   target walls
   
   enable walls on perimeter 1
