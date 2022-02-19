@@ -24,7 +24,7 @@ load "misc_strats.aoe2ai"
   
   load "civ_decisions.aoe2ai"
   
-  #if goal full-water-map 0 and gold-amount < 3000 and up-compare-goal no-gold-mining-time c:>= 120 and resource-found gold and goal produce-trade-carts 0 and game-time >= 1800
+  #if goal full-water-map 0 and gold-amount < 3000 and up-compare-goal no-gold-mining-time c:>= 120 and resource-found gold and unit-type-count trade-cart < 10 and game-time >= 1800
     goal emergency-trash = 1
   #end if
   
