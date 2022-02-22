@@ -1,16 +1,16 @@
 load "backbone.aoe2ai"
 
-load "economy/all_ages.aoe2ai"
-#if current-age >= feudal-age
-  load "economy/adaptive_balance.aoe2ai"
-#end if
-
 load "research/ages.aoe2ai"
 load "research/misc.aoe2ai"
 load "units/all_switched.aoe2ai"
 
 load "directives/director.aoe2ai"
 load "chat.aoe2ai"
+
+load "economy/all_ages.aoe2ai"
+#if current-age >= feudal-age
+  load "economy/adaptive_balance.aoe2ai"
+#end if
 
 #if strategic-number sn-maximum-town-size <= 30
   auto expand town size to 30

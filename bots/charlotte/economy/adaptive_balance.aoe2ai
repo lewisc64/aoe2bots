@@ -1,3 +1,5 @@
+// should be loaded after the director
+
 const max-wood = 1600
 const max-food = 1600
 const max-gold = 1600
@@ -154,4 +156,14 @@ goal did-tribute = 0
 
 #if strategic-number sn-gold-gatherer-percentage < minimum-gold-gatherer-percentage
   distribute 2 villagers from wood and food to gold
+#end if
+
+#if goal do-stone-mining 1
+  #select random persistant
+    insert divert-to-stone(percent="8")
+  #randor
+    insert divert-to-stone(percent="4")
+  #end select
+#else
+  insert divert-all-from-stone
 #end if

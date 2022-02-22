@@ -1,14 +1,15 @@
-#if current-age == castle-age
-  load "../../research/dock/careening.aoe2ai"
-#else if current-age == imperial-age
-  load "../../research/university/chemistry.aoe2ai"
-  load "../../research/dock/dry_dock.aoe2ai"
-  load "../../research/dock/shipwright.aoe2ai"
-#end if
+#if building-type-count dock >= 1
+  #if current-age == castle-age
+    load "../../research/dock/careening.aoe2ai"
+  #else if current-age == imperial-age
+    load "../../research/dock/dry_dock.aoe2ai"
+    load "../../research/dock/shipwright.aoe2ai"
+  #end if
 
-#if current-age >= castle-age
-  load "../../research/castle/thalassocracy.aoe2ai"
-  load "../../research/castle/carrack.aoe2ai"
+  #if current-age >= castle-age
+    load "../../research/castle/thalassocracy.aoe2ai"
+    load "../../research/castle/carrack.aoe2ai"
+  #end if
 #end if
 
 #do once

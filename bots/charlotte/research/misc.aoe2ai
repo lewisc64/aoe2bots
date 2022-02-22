@@ -1,4 +1,4 @@
-#if current-age >= imperial-age and building-type-count castle >= 1
+#if current-age == imperial-age and building-type-count castle >= 1
   load "../research/castle/conscription.aoe2ai"
 #end if
 

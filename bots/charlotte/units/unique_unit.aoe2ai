@@ -1,20 +1,11 @@
 //load "../research/town_center/castle_age.aoe2ai"
 
-#do once
-  goal castle-count = 0
-#end do
-@up-get-fact building-type-count-total castle castle-count
-#if up-compare-goal castle-count g:< desired-military-buildings-per-type and current-age >= castle-age
-  load "../research/market/prerequisites.aoe2ai"
-  
-  #if building-type-count-total castle == 0
-    sell wood when wood >= 400
-    sell food when food >= 400
-    buy stone when stone < 650
-  #end if
-  build castle
-  
-  insert divert-to-stone(percent="8")
+#if current-age >= castle-age
+  #do once
+    goal castle-count = 0
+  #end do
+  @up-get-fact building-type-count-total castle castle-count
+  insert ensure-castles(condition="up-compare-goal castle-count g:< desired-military-buildings-per-type")
 #end if
 
 #if unit-available my-unique-unit-line

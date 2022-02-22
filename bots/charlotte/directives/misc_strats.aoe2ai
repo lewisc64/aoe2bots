@@ -95,3 +95,8 @@
     build 2 feitoria
   #end select
 #end if
+
+// mine stone in feudal age if unique units are selected
+#if goal produce-unique-units 1 and current-age == feudal-age
+  goal do-stone-mining = 1
+#end if

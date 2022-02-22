@@ -160,6 +160,33 @@ const min-detection-units = 5
   #end nomerge
 #end template
 
+#template divert-all-from-stone
+  #nomerge
+    #if strategic-number sn-stone-gatherer-percentage > 0
+      distribute 1 villagers from stone to wood
+    #end if
+    #if strategic-number sn-stone-gatherer-percentage > 0
+      distribute 1 villagers from stone to food
+    #end if
+    #if strategic-number sn-stone-gatherer-percentage > 0
+      distribute 1 villagers from stone to gold
+    #end if
+  #end nomerge
+#end template
+
+#template ensure-castles
+  #if {condition}
+    build castle
+  
+    goal do-stone-mining = 1
+    
+    #if gold-amount >= 300 and stone-amount < 650 and current-age >= castle-age
+      build 1 market
+      buy stone
+    #end if
+  #end if
+#end template
+
 #do once
   set up basics
   target walls
@@ -235,6 +262,12 @@ const min-detection-units = 5
 @up-modify-goal desired-trade-carts g:= desired-villagers
 @up-modify-goal desired-trade-carts s:* sn-gold-gatherer-percentage
 @up-modify-goal desired-trade-carts c:/ 100
+
+#select random persistant
+  goal do-stone-mining = 1
+#randor
+  goal do-stone-mining = 0
+#end select
 
 #do once
   insert clear-units

@@ -10,6 +10,7 @@ load "../research/dock/prerequisites.aoe2ai"
     load "../research/dock/war_galley.aoe2ai"
   #else if current-age == imperial-age
     load "../research/blacksmith/bracer.aoe2ai"
+    load "../research/university/chemistry.aoe2ai"
     load "../research/dock/galleon.aoe2ai"
   #end if
   
