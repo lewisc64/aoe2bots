@@ -2716,8 +2716,11 @@
 )
 (defrule
     (nand
-      (current-age == feudal-age)
-      (unit-available villager)
+      (resource-found gold)
+      (and
+        (current-age == feudal-age)
+        (unit-available villager)
+      )
     )
 =>
     (up-jump-rule 4)
@@ -3259,8 +3262,11 @@
 )
 (defrule
     (nand
-      (current-age >= castle-age)
-      (unit-available villager)
+      (resource-found gold)
+      (and
+        (current-age >= castle-age)
+        (unit-available villager)
+      )
     )
 =>
     (up-jump-rule 9)

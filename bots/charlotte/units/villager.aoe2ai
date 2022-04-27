@@ -9,7 +9,9 @@ load "../research/town_center/prerequisites.aoe2ai"
     load "../research/town_center/wheelbarrow.aoe2ai"
     load "../research/lumber_camp/double_bit_axe.aoe2ai"
     load "../research/mill/horse_collar.aoe2ai"
-    load "../research/mining_camp/gold_mining.aoe2ai"
+    #if resource-found gold
+      load "../research/mining_camp/gold_mining.aoe2ai"
+    #end if
   #else if current-age == castle-age
     load "../research/lumber_camp/bow_saw.aoe2ai"
     load "../research/mill/heavy_plow.aoe2ai"
@@ -20,7 +22,9 @@ load "../research/town_center/prerequisites.aoe2ai"
   #end if
   
   #if current-age >= castle-age
-    load "../research/mining_camp/gold_shaft_mining.aoe2ai"
+    #if resource-found gold
+      load "../research/mining_camp/gold_shaft_mining.aoe2ai"
+    #end if
   #end if
   
   #do once
