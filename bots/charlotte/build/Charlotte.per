@@ -29596,13 +29596,17 @@
     (set-goal good-eagles 1)
     (set-goal good-monks 1)
     (set-goal good-militia 1)
+    (set-goal good-battering-rams 1)
+    (set-goal good-mangonels 1)
     (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
     (disable-self)
 )
 (defrule
     (players-civ my-player-number berbers)
 =>
     (set-goal good-unique-units 0)
+    (set-goal good-skirmishers 1)
     (set-goal good-hand-cannoneers 1)
     (set-goal good-militia 1)
     (set-goal good-scouts 1)
@@ -29700,6 +29704,7 @@
 (defrule
     (players-civ my-player-number gothic)
 =>
+    (set-goal good-skirmishers 1)
     (set-goal good-militia 1)
     (set-goal good-spearmen 1)
     (set-goal good-scorpions 1)
@@ -29788,6 +29793,7 @@
     (set-goal good-archers 1)
     (set-goal good-skirmishers 1)
     (set-goal good-mangonels 1)
+    (set-goal good-hand-cannoneers 1)
     (set-goal good-fire-ships 1)
     (set-goal good-galleys 1)
     (disable-self)
@@ -30022,13 +30028,17 @@
     (set-goal enemy-good-eagles 1)
     (set-goal enemy-good-monks 1)
     (set-goal enemy-good-militia 1)
+    (set-goal enemy-good-battering-rams 1)
+    (set-goal enemy-good-mangonels 1)
     (set-goal enemy-good-fire-ships 1)
+    (set-goal enemy-good-galleys 1)
     (disable-self)
 )
 (defrule
     (players-civ any-enemy berbers)
 =>
     (set-goal enemy-good-unique-units 0)
+    (set-goal enemy-good-skirmishers 1)
     (set-goal enemy-good-hand-cannoneers 1)
     (set-goal enemy-good-militia 1)
     (set-goal enemy-good-scouts 1)
@@ -30126,6 +30136,7 @@
 (defrule
     (players-civ any-enemy gothic)
 =>
+    (set-goal enemy-good-skirmishers 1)
     (set-goal enemy-good-militia 1)
     (set-goal enemy-good-spearmen 1)
     (set-goal enemy-good-scorpions 1)
@@ -30214,6 +30225,7 @@
     (set-goal enemy-good-archers 1)
     (set-goal enemy-good-skirmishers 1)
     (set-goal enemy-good-mangonels 1)
+    (set-goal enemy-good-hand-cannoneers 1)
     (set-goal enemy-good-fire-ships 1)
     (set-goal enemy-good-galleys 1)
     (disable-self)

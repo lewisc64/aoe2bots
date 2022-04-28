@@ -89,6 +89,7 @@
     goal {prefix}good-galleys = 1
   #end if
   #if players-civ {player} gothic
+    goal {prefix}good-skirmishers = 1
     goal {prefix}good-militia = 1
     goal {prefix}good-spearmen = 1
     goal {prefix}good-scorpions = 1
@@ -156,6 +157,7 @@
     goal {prefix}good-archers = 1
     goal {prefix}good-skirmishers = 1
     goal {prefix}good-mangonels = 1
+    goal {prefix}good-hand-cannoneers = 1
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
