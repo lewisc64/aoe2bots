@@ -26,9 +26,6 @@ build feitorias feitoria
 
 lure boars
 
-build stone walls on perimeter 2
-build stone gates on perimeter 2
-
 #if up-research-status c: feudal-age < research-pending
   
   #do once
@@ -91,6 +88,8 @@ train 5 trebuchet
   auto balance wood and food and gold
 #end if
 
+trade excess at 3000
+
 #if building-type-count feitoria >= feitorias
   #do once
     chat to all "[...] (seems murderous)"
@@ -101,7 +100,10 @@ train 5 trebuchet
   #end if
   build castle
   sn-maximum-town-size = 255
+  delete walls
 #else
   train 60 villager
   auto expand town size to 40
+  build stone walls on perimeter 2
+  build stone gates on perimeter 2
 #end if
