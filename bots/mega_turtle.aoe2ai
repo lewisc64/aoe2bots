@@ -1,0 +1,107 @@
+// play as portuguese
+
+const feitorias = 5
+
+#do once
+  set up basics
+  sn-ignore-tower-elevation = 1
+  enable walls on perimeter 2
+  chat to all "[...] (seems friendly)"
+#end do
+
+do basic diplomacy
+
+build mills
+build lumber camps
+build 1 blacksmith
+build 1 market
+build 1 university
+build 1 castle
+build 4 watch-tower-line
+build feitorias feitoria
+
+#if wood-amount >= 100
+  build farms
+#end if
+
+lure boars
+
+build stone walls on perimeter 2
+build stone gates on perimeter 2
+
+#if up-research-status c: feudal-age < research-pending
+  
+  #do once
+    distribute villagers 20 80 0 0
+  #end do
+  
+  build houses with 5 headroom
+
+#else
+
+  #do once
+    distribute villagers 34 29 19 18
+  #end do
+
+  #when
+    build gold mining camps
+    build stone mining camps
+  #then
+    sn-camp-max-distance += 5
+  #end when
+  
+  build houses with 10 headroom
+  
+#end if
+
+research feudal-age
+research castle-age
+research imperial-age
+
+research my-unique-unit-upgrade
+
+research ri-fletching
+research ri-bodkin-arrow
+research ri-bracer
+research ri-chemistry
+research ri-siege-engineers
+research ri-guard-tower
+research ri-keep
+research ri-ballistics
+research ri-murder-holes
+research ri-masonry
+research ri-architecture
+research ri-fortified-wall
+
+train 5 trebuchet
+#if up-research-status c: imperial-age < research-pending
+  train 15 my-unique-unit-line
+#else
+  train my-unique-unit-line
+#end if
+
+#if strategic-number sn-task-ungrouped-soldiers == 1
+  sn-task-ungrouped-soldiers = 0
+#end if
+#repeat every 30 seconds
+  sn-task-ungrouped-soldiers = 1
+#end repeat
+
+#if current-age >= castle-age 
+  auto balance wood and food and gold
+#end if
+
+#if building-type-count feitoria >= feitorias
+  #do once
+    chat to all "[...] (seems murderous)"
+  #end do
+  train 30 villager
+  #if unit-type-count-total villager > 30
+    delete unit villager
+  #end if
+  build castle
+  sn-maximum-town-size = 255
+#else
+  train 60 villager
+  auto expand town size to 40
+#end if
