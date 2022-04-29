@@ -1,11 +1,13 @@
 // play as portuguese
 
-const feitorias = 5
+const feitorias = 6
 
 #do once
   set up basics
   sn-ignore-tower-elevation = 1
   enable walls on perimeter 2
+  assign 8 builders to feitoria
+  assign 8 builders to castle
   chat to all "[...] (seems friendly)"
 #end do
 
@@ -51,6 +53,8 @@ lure boars
   
 #end if
 
+research ri-loom
+
 research feudal-age
 research castle-age
 research imperial-age
@@ -77,13 +81,6 @@ train 5 trebuchet
   train my-unique-unit-line
 #end if
 
-#if strategic-number sn-task-ungrouped-soldiers == 1
-  sn-task-ungrouped-soldiers = 0
-#end if
-#repeat every 30 seconds
-  sn-task-ungrouped-soldiers = 1
-#end repeat
-
 #if current-age >= castle-age 
   auto balance wood and food and gold
 #end if
@@ -94,16 +91,23 @@ trade excess at 3000
   #do once
     chat to all "[...] (seems murderous)"
   #end do
-  train 30 villager
+  train 20 villager
   #if unit-type-count-total villager > 30
     delete unit villager
   #end if
   build castle
   sn-maximum-town-size = 255
   delete walls
+  sn-task-ungrouped-soldiers = 0
 #else
   train 60 villager
   auto expand town size to 40
   build stone walls on perimeter 2
   build stone gates on perimeter 2
+  #if strategic-number sn-task-ungrouped-soldiers == 1
+    sn-task-ungrouped-soldiers = 0
+  #end if
+  #repeat every 30 seconds
+    sn-task-ungrouped-soldiers = 1
+  #end repeat
 #end if
