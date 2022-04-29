@@ -1,0 +1,152 @@
+#do once
+  set up basics
+  sn-maximum-attack-group-size = 1
+  sn-minimum-attack-group-size = 1
+  sn-number-attack-groups = 500
+  sn-special-attack-type2 = villager
+  
+  assign 8 builders to castle
+  assign 4 builders to town-center-foundation
+#end do
+
+do basic diplomacy
+
+build 1 town-center
+#if building-type-count-total castle >= 1
+  build 3 town-center
+#end if
+build lumber camps
+#if current-age >= feudal-age
+  #when
+    build gold mining camps
+    build stone mining camps
+  #then
+    sn-camp-max-distance += 8
+  #end when
+#end if
+
+build mills
+#if current-age == dark-age and game-time < 900
+  build 3 farm
+#else
+  #if wood-amount >= 100
+    build farms
+  #end if
+#end if
+
+build castle
+#if building-type-count-total stable >= 1
+  build 1 blacksmith
+#end if
+build 2 siege-workshop
+
+#if up-research-status c: feudal-age >= research-pending
+  build 1 barracks
+#end if
+
+#if current-age == feudal-age
+  build 2 stable
+#else if current-age == castle-age
+  build 3 stable
+#else
+  build 8 stable
+#end if
+
+lure boars
+
+#if up-research-status c: feudal-age < research-pending
+  #do once
+    distribute villagers 40 60 0 0
+  #end do
+  #if civilian-population >= 18
+    #do once
+      distribute villagers 40 60 0 0
+    #end do
+  #end if
+#else
+  #do once
+    distribute villagers 37 47 8 8
+  #end do
+#end if
+
+#if current-age == dark-age
+  build houses with 5 headroom
+#else if current-age == feudal-age
+  build houses with 10 headroom
+#else
+  build houses with 20 headroom
+#end if
+
+research feudal-age
+research castle-age
+research imperial-age
+
+research ri-loom
+research ri-wheel-barrow
+research ri-hand-cart
+research mill upgrades
+research lumber camp upgrades
+research gold mining camp upgrades
+#if current-age >= castle-age
+  research ri-padded-archer-armor
+  research ri-leather-archer-armor
+  research ri-ring-archer-armor
+#end if
+
+research ri-bloodlines
+research ri-husbandry
+research cavalry blacksmith upgrades
+
+research my-unique-unit-upgrade
+
+research ri-capped-ram
+research ri-siege-ram
+
+// for civ safety
+research ri-light-cavalry
+research ri-hussar
+
+#if current-age == imperial-age
+  train 120 villagers with 30 trade
+#else
+  train 120 villager
+#end if
+
+#if current-age >= castle-age and unit-type-count-total battering-ram-line < 10 and not town-under-attack
+  train battering-ram-line
+#else
+  #do once
+    goal janissary-count-goal = 0
+    goal scout-count-goal = 0
+    goal count-required = 0
+  #end do
+
+  @up-get-fact military-population 0 count-required
+  #if building-type-count castle >= 1
+    goal count-required /= 2
+  #end if
+
+  @up-get-fact unit-type-count-total my-unique-unit-line janissary-count-goal
+  @up-get-fact unit-type-count-total scout-cavalry-line scout-count-goal
+
+  #if up-compare-goal scout-count-goal g:<= count-required
+    train my-unique-unit-line
+  #end if
+
+  #if up-compare-goal scout-count-goal g:<= count-required
+    train scout-cavalry-line
+  #end if
+#end if
+
+#do once
+  target closest enemy
+#end do
+#if not player-in-game target-player or not stance-toward target-player enemy
+  target closest enemy
+#end if
+
+trade excess wood and food and gold at 2000
+#if current-age >= feudal-age
+  auto balance wood and food and gold
+#end if
+auto expand town size to 30
