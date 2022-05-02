@@ -53,9 +53,9 @@ lure boars
 
 #if up-research-status c: feudal-age < research-pending
   #do once
-    distribute villagers 40 60 0 0
+    distribute villagers 20 80 0 0
   #end do
-  #if civilian-population >= 18
+  #if civilian-population >= 20
     #do once
       distribute villagers 40 60 0 0
     #end do
@@ -109,7 +109,7 @@ research ri-hussar
   train 120 villager
 #end if
 
-#if current-age >= castle-age and unit-type-count-total battering-ram-line < 10 and up-pending-objects c: battering-ram-line >= 1 and building-type-count siege-workshop >= 1 and not town-under-attack
+#if current-age >= castle-age and unit-type-count-total battering-ram-line < 10 and up-pending-objects c: battering-ram-line == 0 and building-type-count siege-workshop >= 1 and not town-under-attack
   train battering-ram-line
 #else
   #do once
