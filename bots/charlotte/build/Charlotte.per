@@ -31470,6 +31470,7 @@
 )
 (defrule
     (up-compare-goal population-space-remaining c:< 5)
+    (cc-players-unit-type-count 0 sea-fish == 0)
     (nand
       (cc-players-unit-type-count 0 sea-fish > 0)
       (not
@@ -31841,33 +31842,34 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 2)
+    (up-jump-rule 5)
+)
+(defrule
+    (true)
+=>
+    (set-goal allow-naval-units 0)
+)
+(defrule
+    (players-unit-type-count any-enemy fishing-ship > 0)
+=>
+    (set-goal allow-naval-units 1)
+)
+(defrule
+    (players-unit-type-count any-enemy dock > 0)
+=>
+    (set-goal allow-naval-units 1)
 )
 (defrule
     (or
-      (players-unit-type-count any-enemy fishing-ship > 0)
-      (or
-        (players-unit-type-count any-enemy dock > 0)
-        (or
-          (players-unit-type-count any-enemy galley-line > 0)
-          (players-unit-type-count any-enemy fire-ship-line > 0)
-        )
-      )
+      (players-unit-type-count any-enemy galley-line > 0)
+      (players-unit-type-count any-enemy fire-ship-line > 0)
     )
 =>
     (set-goal allow-naval-units 1)
 )
 (defrule
-    (not
-      (players-unit-type-count any-enemy fishing-ship > 0)
-    )
-    (nor
-      (players-unit-type-count any-enemy dock > 0)
-      (or
-        (players-unit-type-count any-enemy galley-line > 0)
-        (players-unit-type-count any-enemy fire-ship-line > 0)
-      )
-    )
+    (up-compare-goal largest-enemy-warboat-percentage c:>= 200)
+    (warboat-count >= 10)
 =>
     (set-goal allow-naval-units 0)
 )

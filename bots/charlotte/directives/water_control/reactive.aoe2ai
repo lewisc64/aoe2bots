@@ -1,5 +1,17 @@
-#if players-unit-type-count any-enemy fishing-ship > 0 or players-unit-type-count any-enemy dock > 0 or players-unit-type-count any-enemy galley-line > 0 or players-unit-type-count any-enemy fire-ship-line > 0
+goal allow-naval-units = 0
+
+#if players-unit-type-count any-enemy fishing-ship > 0
   goal allow-naval-units = 1
-#else
+#end if
+
+#if players-unit-type-count any-enemy dock > 0
+  goal allow-naval-units = 1
+#end if
+
+#if players-unit-type-count any-enemy galley-line > 0 or players-unit-type-count any-enemy fire-ship-line > 0
+  goal allow-naval-units = 1
+#end if
+
+#if up-compare-goal largest-enemy-warboat-percentage c:>= 200 and warboat-count >= 10
   goal allow-naval-units = 0
 #end if
