@@ -12,9 +12,6 @@
 do basic diplomacy
 
 build 1 town-center
-#if building-type-count-total castle >= 1
-  build 3 town-center
-#end if
 build lumber camps
 #if current-age >= feudal-age
   #when
@@ -38,7 +35,7 @@ build castle
 #if building-type-count-total stable >= 1
   build 1 blacksmith
 #end if
-build 2 siege-workshop
+build 1 siege-workshop
 
 #if up-research-status c: feudal-age >= research-pending
   build 1 barracks
@@ -112,7 +109,7 @@ research ri-hussar
   train 120 villager
 #end if
 
-#if current-age >= castle-age and unit-type-count-total battering-ram-line < 10 and not town-under-attack
+#if current-age >= castle-age and unit-type-count-total battering-ram-line < 10 and up-pending-objects c: battering-ram-line >= 1 and building-type-count siege-workshop >= 1 and not town-under-attack
   train battering-ram-line
 #else
   #do once
