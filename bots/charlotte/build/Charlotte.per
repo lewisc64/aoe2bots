@@ -36967,14 +36967,17 @@
     (set-goal 316 1)
 )
 (defrule
-    (wood-amount >= 200)
+    (up-research-status c: ri-horse-collar != research-pending)
+    (up-research-status c: ri-heavy-plow != research-pending)
+    (up-research-status c: ri-crop-rotation != research-pending)
+    (or
+      (wood-amount >= 200)
+      (building-type-count-total farm < 6)
+    )
     (or
       (research-completed ri-horse-collar)
       (food-amount < 75)
     )
-    (up-research-status c: ri-horse-collar != research-pending)
-    (up-research-status c: ri-heavy-plow != research-pending)
-    (up-research-status c: ri-crop-rotation != research-pending)
     (up-research-status c: feudal-age >= research-pending)
 =>
     (up-get-fact unit-type-count villager 200)
@@ -36985,14 +36988,17 @@
 (defrule
     (up-compare-goal 303 g:< 200)
     (can-build farm)
-    (wood-amount >= 200)
+    (up-research-status c: ri-horse-collar != research-pending)
+    (up-research-status c: ri-heavy-plow != research-pending)
+    (up-research-status c: ri-crop-rotation != research-pending)
+    (or
+      (wood-amount >= 200)
+      (building-type-count-total farm < 6)
+    )
     (or
       (research-completed ri-horse-collar)
       (food-amount < 75)
     )
-    (up-research-status c: ri-horse-collar != research-pending)
-    (up-research-status c: ri-heavy-plow != research-pending)
-    (up-research-status c: ri-crop-rotation != research-pending)
     (up-research-status c: feudal-age >= research-pending)
 =>
     (build farm)
