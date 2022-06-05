@@ -1,7 +1,7 @@
 #do once
   set up basics
-  sn-maximum-attack-group-size = 1
-  sn-minimum-attack-group-size = 1
+  sn-maximum-attack-group-size = 10
+  sn-minimum-attack-group-size = 10
   sn-number-attack-groups = 500
   sn-special-attack-type2 = villager
   
@@ -35,7 +35,6 @@ build castle
 #if building-type-count-total stable >= 1
   build 1 blacksmith
 #end if
-build 1 siege-workshop
 
 #if up-research-status c: feudal-age >= research-pending
   build 1 barracks
@@ -96,9 +95,6 @@ research cavalry blacksmith upgrades
 
 research my-unique-unit-upgrade
 
-research ri-capped-ram
-research ri-siege-ram
-
 // for civ safety
 research ri-light-cavalry
 research ri-hussar
@@ -109,8 +105,8 @@ research ri-hussar
   train 120 villager
 #end if
 
-#if current-age >= castle-age and unit-type-count-total battering-ram-line < 10 and up-pending-objects c: battering-ram-line == 0 and building-type-count siege-workshop >= 1 and not town-under-attack
-  train battering-ram-line
+#if building-type-count castle >= 1 and unit-type-count-total trebuchet-set < 10 and up-pending-objects c: trebuchet-set == 0 and not town-under-attack
+  train trebuchet
 #else
   #do once
     goal janissary-count-goal = 0
