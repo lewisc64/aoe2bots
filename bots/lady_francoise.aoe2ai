@@ -53,6 +53,10 @@ load "templates/fast_castle.aoe2ai"
       goal town-size-attack = 1
       @up-reset-unit c: -1
     #end if
+    
+    #if research-completed ri-paladin and research-completed ri-capped-ram
+      sn-enable-training-queue = 1
+    #end if
   #end do
 
   #if building-type-count-total stable >= 2
@@ -71,7 +75,6 @@ load "templates/fast_castle.aoe2ai"
       distribute villagers 40 50 10 0
     #end do
   #end if
-  
   
   build 1 barracks
   
