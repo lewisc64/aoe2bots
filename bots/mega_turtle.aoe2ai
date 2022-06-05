@@ -22,10 +22,6 @@ build 1 castle
 build 4 watch-tower-line
 build feitorias feitoria
 
-#if wood-amount >= 100
-  build farms
-#end if
-
 lure boars
 
 #if up-research-status c: feudal-age < research-pending
@@ -51,6 +47,10 @@ lure boars
   
   build houses with 10 headroom
   
+#end if
+
+#if wood-amount >= 100
+  build farms
 #end if
 
 research ri-loom
