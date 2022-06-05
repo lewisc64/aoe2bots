@@ -2398,14 +2398,14 @@
     (set-goal resign 0)
     (set-goal build-walls 0)
     (set-goal help-allies 1)
-    (set-strategic-number sn-enable-new-building-system 1)
-    (set-strategic-number sn-percent-building-cancellation 20)
-    (set-strategic-number sn-cap-civilian-builders 200)
     (disable-self)
 )
 (defrule
     (true)
 =>
+    (set-strategic-number sn-enable-new-building-system 1)
+    (set-strategic-number sn-percent-building-cancellation 20)
+    (set-strategic-number sn-cap-civilian-builders 200)
     (set-difficulty-parameter ability-to-maintain-distance 0)
     (set-difficulty-parameter ability-to-dodge-missiles 100)
     (set-strategic-number sn-percent-attack-soldiers 100)
@@ -2426,6 +2426,19 @@
     (set-strategic-number sn-max-skips-per-attempt 5)
     (set-strategic-number sn-dropsite-separation-distance 8)
     (set-strategic-number sn-wall-targeting-mode 1)
+    (disable-self)
+)
+(defrule
+    (true)
+=>
+    (set-strategic-number sn-maximum-gold-drop-distance 8)
+    (set-strategic-number sn-maximum-stone-drop-distance 8)
+    (set-strategic-number sn-maximum-wood-drop-distance -1)
+    (set-strategic-number sn-maximum-hunt-drop-distance 48)
+    (set-strategic-number sn-maximum-food-drop-distance 25)
+    (set-strategic-number sn-mill-max-distance 25)
+    (set-strategic-number sn-camp-max-distance 25)
+    (set-strategic-number sn-dropsite-separation-distance 5)
     (set-strategic-number sn-percent-civilian-explorers 0)
     (set-strategic-number sn-cap-civilian-explorers 0)
     (set-strategic-number sn-total-number-explorers 1)
@@ -3309,19 +3322,24 @@
     (true)
 =>
     (set-goal 50 0)
+    (set-goal 9 0)
+    (up-get-fact building-type-count-total town-center 7)
+    (up-modify-goal 7 c:* 9)
+    (up-modify-goal 9 g:+ 7)
+    (up-get-fact building-type-count-total mill 7)
+    (up-modify-goal 7 c:* 6)
+    (up-modify-goal 9 g:+ 7)
+    (up-get-fact building-type-count-total farm 7)
 )
 (defrule
     (or
-      (and
-        (dropsite-min-distance food > 3)
-        (resource-found food)
-      )
-      (and
-        (game-time >= 60)
-        (building-type-count-total mill == 0)
-      )
+      (building-type-count-total mill == 0)
+      (up-compare-goal 7 g:>= 9)
     )
-    (up-pending-objects c: mill == 0)
+    (or
+      (resource-found food)
+      (game-time >= 60)
+    )
     (can-build mill)
 =>
     (build mill)
