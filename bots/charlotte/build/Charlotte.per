@@ -314,15 +314,6 @@
 (defconst locked-teams 141)
 (defconst attempted-researches 142)
 (defrule
-    (strategic-number sn-food-gatherer-percentage == 0)
-    (game-time >= 5)
-=>
-    (up-chat-data-to-all "wood gatherers: %d" s: sn-wood-gatherer-percentage)
-    (up-chat-data-to-all "food gatherers: %d" s: sn-food-gatherer-percentage)
-    (up-chat-data-to-all "gold gatherers: %d" s: sn-gold-gatherer-percentage)
-    (up-chat-data-to-all "stone gatherers: %d" s: sn-stone-gatherer-percentage)
-)
-(defrule
     (true)
 =>
     (set-strategic-number sn-enable-new-building-system 1)
@@ -396,6 +387,7 @@
     (set-strategic-number sn-garrison-rams 0)
     (set-strategic-number sn-group-form-distance 30)
     (set-strategic-number sn-special-attack-type2 villager)
+    (set-strategic-number sn-minimum-water-body-size-for-dock 999)
     (set-goal full-water-map 0)
     (set-goal partial-water-map 0)
     (disable-self)
@@ -1706,6 +1698,14 @@
     (set-goal attempted-researches 0)
 )
 (defrule
+    (nor
+      (building-type-count town-center > 0)
+      (game-time >= 8)
+    )
+=>
+    (up-jump-rule 65)
+)
+(defrule
     (not
       (goal desired-age feudal-age)
     )
@@ -2252,6 +2252,14 @@
     (research imperial-age)
 )
 (defrule
+    (nor
+      (building-type-count town-center > 0)
+      (game-time >= 8)
+    )
+=>
+    (up-jump-rule 36)
+)
+(defrule
     (nand
       (current-age == imperial-age)
       (building-type-count castle >= 1)
@@ -2549,6 +2557,14 @@
     (civ-selected indian)
 =>
     (research ri-sultans)
+)
+(defrule
+    (nor
+      (building-type-count town-center > 0)
+      (game-time >= 8)
+    )
+=>
+    (up-jump-rule 3138)
 )
 (defrule
     (can-build town-center)
@@ -28736,6 +28752,14 @@
     (up-modify-goal produce-units g:= old-produce-units)
 )
 (defrule
+    (nor
+      (building-type-count town-center > 0)
+      (game-time >= 8)
+    )
+=>
+    (up-jump-rule 736)
+)
+(defrule
     (true)
 =>
     (set-goal attack-ready 0)
@@ -32034,6 +32058,48 @@
 )
 (defrule
     (nand
+      (warboat-count > 0)
+      (and
+        (and
+          (not
+            (unit-type-count transport-ship > 0)
+          )
+          (not
+            (goal full-water-map 1)
+          )
+        )
+        (and
+          (not
+            (goal enemy-players-count 0)
+          )
+          (goal attack-ready 1)
+        )
+      )
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (strategic-number sn-maximum-town-size == 255)
+=>
+    (up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size)
+)
+(defrule
+    (goal attacking 1)
+=>
+    (set-strategic-number sn-number-attack-groups 200)
+)
+(defrule
+    (strategic-number sn-number-attack-groups == 200)
+    (not
+      (goal attacking 1)
+    )
+=>
+    (set-strategic-number sn-number-attack-groups 0)
+    (up-reset-unit c: -1)
+)
+(defrule
+    (nand
       (and
         (not
           (unit-type-count transport-ship > 0)
@@ -32044,9 +32110,14 @@
       )
       (and
         (not
-          (goal enemy-players-count 0)
+          (warboat-count > 0)
         )
-        (goal attack-ready 1)
+        (and
+          (not
+            (goal enemy-players-count 0)
+          )
+          (goal attack-ready 1)
+        )
       )
     )
 =>
@@ -36671,10 +36742,21 @@
     (disable-self)
 )
 (defrule
+    (game-time < 60)
+    (building-type-count town-center == 0)
+=>
+    (set-strategic-number sn-wood-gatherer-percentage 100)
+    (set-strategic-number sn-food-gatherer-percentage 0)
+    (set-strategic-number sn-gold-gatherer-percentage 0)
+    (set-strategic-number sn-stone-gatherer-percentage 0)
+    (disable-self)
+)
+(defrule
     (can-build-with-escrow town-center)
     (up-pending-objects c: town-center < 5)
     (building-type-count-total town-center < 1)
     (game-time < 60)
+    (building-type-count town-center == 0)
 =>
     (release-escrow wood)
     (release-escrow stone)
@@ -36683,6 +36765,7 @@
 )
 (defrule
     (unit-type-count villager >= 8)
+    (building-type-count town-center > 0)
 =>
     (set-strategic-number sn-enable-boar-hunting 2)
     (set-strategic-number sn-minimum-number-hunters 1)
@@ -36695,6 +36778,7 @@
     (dropsite-min-distance live-boar < 4)
     (strategic-number sn-minimum-number-hunters != 8)
     (unit-type-count villager >= 8)
+    (building-type-count town-center > 0)
 =>
     (set-strategic-number sn-minimum-number-hunters 8)
     (up-drop-resources c: sheep-food 0)
@@ -36704,6 +36788,7 @@
     (up-pending-objects c: villager <= 1)
     (strategic-number sn-minimum-number-hunters == 8)
     (unit-type-count villager >= 8)
+    (building-type-count town-center > 0)
 =>
     (up-drop-resources c: boar-food 10)
 )
@@ -36715,6 +36800,7 @@
       (dropsite-min-distance boar-food == -1)
     )
     (unit-type-count villager >= 8)
+    (building-type-count town-center > 0)
 =>
     (set-strategic-number sn-minimum-number-hunters 1)
     (up-retask-gatherers food c: 255)
@@ -36723,6 +36809,7 @@
     (can-build monastery)
     (up-pending-objects c: monastery < 5)
     (building-type-count-total monastery < 1)
+    (building-type-count town-center > 0)
 =>
     (build monastery)
     (set-goal 316 1)
@@ -36730,6 +36817,7 @@
 (defrule
     (can-train monk)
     (unit-type-count-total monk-set < 1)
+    (building-type-count town-center > 0)
 =>
     (train monk)
 )
@@ -36738,6 +36826,7 @@
     (up-pending-objects c: house < 2)
     (can-build house)
     (housing-headroom < 5)
+    (building-type-count town-center > 0)
 =>
     (build house)
     (set-goal 316 1)
@@ -36761,12 +36850,14 @@
     )
     (up-pending-objects c: lumber-camp == 0)
     (can-build lumber-camp)
+    (building-type-count town-center > 0)
 =>
     (build lumber-camp)
     (set-goal 300 1)
 )
 (defrule
     (goal 300 1)
+    (building-type-count town-center > 0)
 =>
     (up-modify-sn sn-camp-max-distance c:+ 1)
 )
@@ -36781,6 +36872,7 @@
     (building-type-count-total market < 1)
     (current-age >= castle-age)
     (up-compare-goal town-center-count g:< desired-town-centers)
+    (building-type-count town-center > 0)
 =>
     (build market)
     (set-goal 316 1)
@@ -36791,6 +36883,7 @@
     (strategic-number sn-stone-gatherer-percentage == 0)
     (current-age >= castle-age)
     (up-compare-goal town-center-count g:< desired-town-centers)
+    (building-type-count town-center > 0)
 =>
     (buy-commodity stone)
 )
@@ -36798,12 +36891,14 @@
     (can-build town-center)
     (up-pending-objects c: town-center < 5)
     (up-compare-goal town-center-count g:< desired-town-centers)
+    (building-type-count town-center > 0)
 =>
     (build town-center)
     (set-goal 316 1)
 )
 (defrule
     (up-pending-objects c: castle == 0)
+    (building-type-count town-center > 0)
 =>
     (set-goal 301 0)
     (generate-random-number 2)
@@ -36814,6 +36909,7 @@
     (up-pending-objects c: castle < 5)
     (goal 301 1)
     (up-pending-objects c: castle == 0)
+    (building-type-count town-center > 0)
 =>
     (build castle)
     (set-goal 316 1)
@@ -36824,6 +36920,7 @@
     (goal attacking 1)
     (goal 301 2)
     (up-pending-objects c: castle == 0)
+    (building-type-count town-center > 0)
 =>
     (up-set-placement-data any-enemy town-center c: 4)
     (up-build place-forward 0 c: castle)
@@ -36849,6 +36946,7 @@
     (up-pending-objects c: mining-camp == 0)
     (can-build mining-camp)
     (strategic-number sn-gold-gatherer-percentage > 0)
+    (building-type-count town-center > 0)
 =>
     (build mining-camp)
     (set-goal 302 1)
@@ -36859,12 +36957,14 @@
     (up-pending-objects c: mining-camp == 0)
     (can-build mining-camp)
     (strategic-number sn-stone-gatherer-percentage > 0)
+    (building-type-count town-center > 0)
 =>
     (build mining-camp)
     (set-goal 302 1)
 )
 (defrule
     (goal 302 1)
+    (building-type-count town-center > 0)
 =>
     (up-modify-sn sn-camp-max-distance c:+ 4)
 )
@@ -36875,6 +36975,7 @@
 )
 (defrule
     (up-research-status c: feudal-age < research-pending)
+    (building-type-count town-center > 0)
 =>
     (set-strategic-number sn-wood-gatherer-percentage 20)
     (set-strategic-number sn-food-gatherer-percentage 80)
@@ -36885,6 +36986,7 @@
 (defrule
     (civilian-population >= 10)
     (up-research-status c: feudal-age < research-pending)
+    (building-type-count town-center > 0)
 =>
     (set-strategic-number sn-wood-gatherer-percentage 25)
     (set-strategic-number sn-food-gatherer-percentage 75)
@@ -36895,6 +36997,7 @@
 (defrule
     (civilian-population >= 15)
     (up-research-status c: feudal-age < research-pending)
+    (building-type-count town-center > 0)
 =>
     (set-strategic-number sn-wood-gatherer-percentage 30)
     (set-strategic-number sn-food-gatherer-percentage 70)
@@ -36905,6 +37008,7 @@
 (defrule
     (civilian-population >= 18)
     (up-research-status c: feudal-age < research-pending)
+    (building-type-count town-center > 0)
 =>
     (set-strategic-number sn-wood-gatherer-percentage 40)
     (set-strategic-number sn-food-gatherer-percentage 60)
@@ -36915,6 +37019,7 @@
 (defrule
     (civilian-population >= 25)
     (up-research-status c: feudal-age < research-pending)
+    (building-type-count town-center > 0)
 =>
     (set-strategic-number sn-wood-gatherer-percentage 50)
     (set-strategic-number sn-food-gatherer-percentage 50)
@@ -36924,6 +37029,7 @@
 )
 (defrule
     (up-research-status c: feudal-age < research-pending)
+    (building-type-count town-center > 0)
 =>
     (set-goal 200 0)
     (up-get-fact building-type-count-total town-center 303)
@@ -36945,6 +37051,7 @@
     )
     (can-build mill)
     (up-research-status c: feudal-age < research-pending)
+    (building-type-count town-center > 0)
 =>
     (build mill)
 )
@@ -36952,6 +37059,7 @@
     (wood-amount >= 100)
     (up-pending-objects c: farm == 0)
     (up-research-status c: feudal-age < research-pending)
+    (building-type-count town-center > 0)
 =>
     (up-get-fact unit-type-count villager 303)
     (up-modify-goal 303 s:* sn-food-gatherer-percentage)
@@ -36964,11 +37072,13 @@
     (wood-amount >= 100)
     (up-pending-objects c: farm == 0)
     (up-research-status c: feudal-age < research-pending)
+    (building-type-count town-center > 0)
 =>
     (build farm)
 )
 (defrule
     (up-research-status c: feudal-age >= research-pending)
+    (building-type-count town-center > 0)
 =>
     (set-strategic-number sn-wood-gatherer-percentage 40)
     (set-strategic-number sn-food-gatherer-percentage 40)
@@ -36982,6 +37092,7 @@
     (can-build house)
     (housing-headroom < 20)
     (up-research-status c: feudal-age >= research-pending)
+    (building-type-count town-center > 0)
 =>
     (build house)
     (set-goal 316 1)
@@ -36999,6 +37110,7 @@
       (food-amount < 75)
     )
     (up-research-status c: feudal-age >= research-pending)
+    (building-type-count town-center > 0)
 =>
     (up-get-fact unit-type-count villager 303)
     (up-modify-goal 303 s:* sn-food-gatherer-percentage)
@@ -37020,12 +37132,17 @@
       (food-amount < 75)
     )
     (up-research-status c: feudal-age >= research-pending)
+    (building-type-count town-center > 0)
 =>
     (build farm)
 )
 (defrule
-    (not
+    (nand
       (current-age >= feudal-age)
+      (or
+        (building-type-count town-center > 0)
+        (game-time >= 8)
+      )
     )
 =>
     (up-jump-rule 112)

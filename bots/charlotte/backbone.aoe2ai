@@ -56,15 +56,6 @@ const castle-age-military-buildings = 4
 const imperial-age-military-buildings = 5
 const min-detection-units = 5
 
-// @up-chat-data-to-all "town size: %d" s: sn-maximum-town-size
-
-#if strategic-number sn-food-gatherer-percentage == 0 and game-time >= 5 // gatherer percentage debugging
-  @up-chat-data-to-all "wood gatherers: %d" s: sn-wood-gatherer-percentage
-  @up-chat-data-to-all "food gatherers: %d" s: sn-food-gatherer-percentage
-  @up-chat-data-to-all "gold gatherers: %d" s: sn-gold-gatherer-percentage
-  @up-chat-data-to-all "stone gatherers: %d" s: sn-stone-gatherer-percentage
-#end if
-
 #template clear-units
   goal produce-trade-carts = 0
   goal produce-fishing-ships = 0
@@ -201,6 +192,7 @@ const min-detection-units = 5
   sn-garrison-rams = 0
 	sn-group-form-distance = 30
   sn-special-attack-type2 = villager
+  sn-minimum-water-body-size-for-dock = 999
   
   goal full-water-map = 0
   goal partial-water-map = 0
