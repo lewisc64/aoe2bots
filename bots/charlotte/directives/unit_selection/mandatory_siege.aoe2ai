@@ -3,22 +3,31 @@ const max-imperial-age-rams = 10
 const max-trebs = 4
 const max-cannon-galleons = 8
 const max-defensive-mangonels = 4
+const max-demolition-ships = 5
 
 #if goal attacking 0 and town-under-attack and not enemy-buildings-in-town
   goal produce-battering-rams = 0
   goal produce-trebuchets = 0
   goal produce-cannon-galleons = 0
+  goal produce-demolition-ships = 0
 #else
   
   goal produce-battering-rams = 0
   goal produce-trebuchets = 0
   goal produce-cannon-galleons = 0
+  goal produce-demolition-ships = 0
   
   // cannon galleons
-  #if goal water-map 1 and current-age == imperial-age and unit-type-count-total cannon-galleon-line < max-cannon-galleons and (research-available ri-cannon-galleon or unit-available cannon-galleon-line)
-    goal produce-cannon-galleons = 1
+  #if goal water-map 1
+    #if current-age == imperial-age and unit-type-count-total cannon-galleon-line < max-cannon-galleons and (research-available ri-cannon-galleon or unit-available cannon-galleon-line)
+      goal produce-cannon-galleons = 1
+    #end if
+
+    #if up-compare-goal target-warboat-percentage c:<= 100 and up-compare-goal target-warboat-count c:>= 8 and unit-type-count-total demolition-ship-line < max-demolition-ships
+      goal produce-demolition-ships = 1
+    #end if
   #end if
-  
+
   // trebs and rams
   #if current-age == castle-age or building-type-count castle == 0 or goal good-battering-rams 1
     #if military-population >= 20 or enemy-buildings-in-town or goal threat-source castle

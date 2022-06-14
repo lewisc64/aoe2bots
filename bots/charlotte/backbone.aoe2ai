@@ -84,10 +84,11 @@ const min-detection-units = 5
 
 #template all-naval-unit-goal-names
   {before}fishing-ships{after}
+  {before}transport-ships{after}
   {before}galleys{after}
   {before}fire-ships{after}
   {before}cannon-galleons{after}
-  {before}transport-ships{after}
+  {before}demolition-ships{after}
 #end template
 
 #template all-unit-goal-names

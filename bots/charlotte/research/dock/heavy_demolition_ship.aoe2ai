@@ -1,0 +1,13 @@
+#if not research-completed ri-heavy-demolition-ship
+  load "../dock/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+
+  #if research-available ri-heavy-demolition-ship
+    #if up-research-status c: ri-heavy-demolition-ship < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-heavy-demolition-ship
+    #end if
+  #end if
+#end if
