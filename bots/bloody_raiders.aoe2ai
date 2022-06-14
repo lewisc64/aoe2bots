@@ -1,8 +1,10 @@
+// play as slavs
+
 #do once
   set up basics
-  sn-maximum-attack-group-size = 10
-  sn-minimum-attack-group-size = 10
-  sn-number-attack-groups = 500
+  sn-maximum-attack-group-size = 1
+  sn-minimum-attack-group-size = 1
+  sn-number-attack-groups = 200
   sn-special-attack-type2 = villager
   
   assign 8 builders to castle
@@ -26,7 +28,7 @@ build mills
 #if current-age == dark-age and game-time < 900
   build 3 farm
 #else
-  #if wood-amount >= 100
+  #if wood-amount >= 200 or building-type-count-total farm < 8
     build farms
   #end if
 #end if
@@ -34,6 +36,7 @@ build mills
 build castle
 #if building-type-count-total stable >= 1
   build 1 blacksmith
+  build 1 university
 #end if
 
 #if up-research-status c: feudal-age >= research-pending
@@ -41,11 +44,13 @@ build castle
 #end if
 
 #if current-age == feudal-age
-  build 2 stable
+  build 4 stable
 #else if current-age == castle-age
-  build 3 stable
+  build 5 stable
+  build 2 siege-workshop
 #else
   build 8 stable
+  build 3 siege-workshop
 #end if
 
 lure boars
@@ -54,14 +59,14 @@ lure boars
   #do once
     distribute villagers 20 80 0 0
   #end do
-  #if civilian-population >= 20
+  #if civilian-population >= 18
     #do once
       distribute villagers 40 60 0 0
     #end do
   #end if
 #else
   #do once
-    distribute villagers 37 47 8 8
+    distribute villagers 37 47 12 4
   #end do
 #end if
 
@@ -83,21 +88,17 @@ research ri-hand-cart
 research mill upgrades
 research lumber camp upgrades
 research gold mining camp upgrades
-#if current-age >= castle-age
-  research ri-padded-archer-armor
-  research ri-leather-archer-armor
-  research ri-ring-archer-armor
-#end if
 
 research ri-bloodlines
 research ri-husbandry
 research cavalry blacksmith upgrades
-
-research my-unique-unit-upgrade
-
-// for civ safety
 research ri-light-cavalry
 research ri-hussar
+research my-unique-unit-upgrade
+
+research ri-siege-engineers
+research ri-onager
+research ri-siege-onager
 
 #if current-age == imperial-age
   train 120 villagers with 30 trade
@@ -105,28 +106,16 @@ research ri-hussar
   train 120 villager
 #end if
 
-#if building-type-count castle >= 1 and unit-type-count-total trebuchet-set < 10 and up-pending-objects c: trebuchet-set == 0 and not town-under-attack
+#if building-type-count castle >= 1 and current-age == imperial-age and unit-type-count-total trebuchet-set < 10 and up-pending-objects c: trebuchet-set == 0 and not town-under-attack
   train trebuchet
 #else
-  #do once
-    goal janissary-count-goal = 0
-    goal scout-count-goal = 0
-    goal count-required = 0
-  #end do
-
-  @up-get-fact military-population 0 count-required
-  #if building-type-count castle >= 1
-    goal count-required /= 2
-  #end if
-
-  @up-get-fact unit-type-count-total my-unique-unit-line janissary-count-goal
-  @up-get-fact unit-type-count-total scout-cavalry-line scout-count-goal
-
-  #if up-compare-goal scout-count-goal g:<= count-required
+  train 4 mangonel-line
+  
+  #if unit-type-count-total mangonel-line >= 4
     train my-unique-unit-line
   #end if
-
-  #if up-compare-goal scout-count-goal g:<= count-required
+  
+  #if game-time < 2400 or up-research-status c: castle-age >= research-pending or up-pending-objects c: scout-cavalry-line < 2 or town-under-attack
     train scout-cavalry-line
   #end if
 #end if
