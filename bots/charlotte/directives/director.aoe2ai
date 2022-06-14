@@ -55,7 +55,7 @@ load "misc_strats.aoe2ai"
   load "targetting.aoe2ai"
   
   #if not goal enemy-players-count 0
-    #if unit-type-count transport-ship > 0 or goal full-water-map 1
+    #if unit-type-count transport-ship > 0
       load "attack_method/attack_now.aoe2ai"
     #else if warboat-count > 0
       load "attack_method/attack_groups.aoe2ai"

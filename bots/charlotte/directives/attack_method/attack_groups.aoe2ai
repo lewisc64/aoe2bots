@@ -5,7 +5,9 @@
 
 #if goal attacking 1
   sn-number-attack-groups = 200
+  sn-number-boat-attack-groups = 200
 #else if strategic-number sn-number-attack-groups == 200
   sn-number-attack-groups = 0
+  sn-number-boat-attack-groups = 0
   @up-reset-unit c: -1
 #end if
