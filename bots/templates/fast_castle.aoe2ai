@@ -63,15 +63,15 @@
   
 #else if up-research-status c: castle-age < research-pending
   
-  #if wood-amount > 100
-    build farms
-  #end if
-  
   #when
     build gold mining camps
   #then
     sn-camp-max-distance += 3
   #end when
+  
+  #if wood-amount > 100
+    build farms
+  #end if
   
   #do once
     distribute villagers 50 40 10 0
