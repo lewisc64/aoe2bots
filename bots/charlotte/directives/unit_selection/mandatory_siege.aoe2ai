@@ -18,7 +18,7 @@ const max-demolition-ships = 5
   goal produce-demolition-ships = 0
   
   // cannon galleons
-  #if goal water-map 1
+  #if goal water-map 1 and building-type-count dock >= 1
     #if current-age == imperial-age and unit-type-count-total cannon-galleon-line < max-cannon-galleons and (research-available ri-cannon-galleon or unit-available cannon-galleon-line)
       goal produce-cannon-galleons = 1
     #end if

@@ -51,6 +51,10 @@
   goal produce-skirmishers = 0
 #end respond
 
+#respond to min-detection-units bombard-cannon
+  goal produce-scorpions = 0
+#end respond
+
 #respond to min-detection-units knight-line
   goal produce-mangonels = 0
 #end respond

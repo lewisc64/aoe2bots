@@ -29274,7 +29274,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 737)
+    (up-jump-rule 738)
 )
 (defrule
     (true)
@@ -31326,7 +31326,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 37)
+    (up-jump-rule 38)
 )
 (defrule
     (not
@@ -31391,6 +31391,11 @@
 =>
     (set-goal produce-scorpions 0)
     (set-goal produce-skirmishers 0)
+)
+(defrule
+    (players-unit-type-count any-enemy bombard-cannon >= min-detection-units)
+=>
+    (set-goal produce-scorpions 0)
 )
 (defrule
     (players-unit-type-count any-enemy knight-line >= min-detection-units)
@@ -31871,6 +31876,7 @@
       (unit-available cannon-galleon-line)
     )
     (goal water-map 1)
+    (building-type-count dock >= 1)
     (nand
       (goal attacking 0)
       (and
@@ -31888,6 +31894,7 @@
     (up-compare-goal target-warboat-count c:>= 8)
     (unit-type-count-total demolition-ship-line < max-demolition-ships)
     (goal water-map 1)
+    (building-type-count dock >= 1)
     (nand
       (goal attacking 0)
       (and
