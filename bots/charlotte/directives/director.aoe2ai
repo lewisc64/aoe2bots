@@ -17,6 +17,9 @@ load "misc_strats.aoe2ai"
   load "fortification/murder_holes_only.aoe2ai"
 #end select
 
+load "unit_selection/fishing.aoe2ai"
+load "unit_selection/trading.aoe2ai"
+
 #if goal attack-ready 1
   #do once
     chat to self "attack ready!"
@@ -38,8 +41,6 @@ load "misc_strats.aoe2ai"
   
   load "unit_selection/mandatory_siege.aoe2ai"
   load "unit_selection/transporting.aoe2ai"
-  load "unit_selection/fishing.aoe2ai"
-  load "unit_selection/trading.aoe2ai"
   
   load "attack_decision/aggressive.aoe2ai"
   load "pacing/balanced_random.aoe2ai"

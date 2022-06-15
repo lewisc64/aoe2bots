@@ -80,7 +80,7 @@
 
     build mills
     
-    #if wood-amount >= 100 and up-pending-objects c: farm == 0
+    #if wood-amount >= 150 and up-pending-objects c: farm == 0
       build farms
     #end if
 

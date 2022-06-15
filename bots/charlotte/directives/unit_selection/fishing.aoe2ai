@@ -1,5 +1,5 @@
-#if cc-players-unit-type-count 0 sea-fish > 0 and not town-under-attack
-  #if goal full-water-map 0 or warboat-count >= 10
+#if goal water-map 1 and cc-players-unit-type-count 0 sea-fish > 0 and not town-under-attack and game-time >= 60
+  #if goal full-water-map 0 or warboat-count >= 10 or current-age == dark-age
     goal produce-fishing-ships = 1
   #else
     goal produce-fishing-ships = 0

@@ -4055,7 +4055,6 @@
 (defrule
     (can-train fishing-ship)
     (up-compare-goal total-fishing-ships g:< desired-fishing-ships)
-    (wood-amount >= 200)
     (unit-available fishing-ship)
 =>
     (train fishing-ship)
@@ -29274,7 +29273,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 738)
+    (up-jump-rule 736)
 )
 (defrule
     (true)
@@ -30100,6 +30099,112 @@
     )
 =>
     (research ri-murder-holes)
+)
+(defrule
+    (or
+      (goal full-water-map 0)
+      (or
+        (warboat-count >= 10)
+        (current-age == dark-age)
+      )
+    )
+    (goal water-map 1)
+    (cc-players-unit-type-count 0 sea-fish > 0)
+    (not
+      (town-under-attack)
+    )
+    (game-time >= 60)
+=>
+    (set-goal produce-fishing-ships 1)
+)
+(defrule
+    (not
+      (goal full-water-map 0)
+    )
+    (nor
+      (warboat-count >= 10)
+      (current-age == dark-age)
+    )
+    (goal water-map 1)
+    (cc-players-unit-type-count 0 sea-fish > 0)
+    (not
+      (town-under-attack)
+    )
+    (game-time >= 60)
+=>
+    (set-goal produce-fishing-ships 0)
+)
+(defrule
+    (nand
+      (goal water-map 1)
+      (and
+        (cc-players-unit-type-count 0 sea-fish > 0)
+        (and
+          (not
+            (town-under-attack)
+          )
+          (game-time >= 60)
+        )
+      )
+    )
+=>
+    (set-goal produce-fishing-ships 0)
+)
+(defrule
+    (up-compare-goal population-space-remaining c:< 5)
+    (cc-players-unit-type-count 0 sea-fish == 0)
+    (nand
+      (goal water-map 1)
+      (and
+        (cc-players-unit-type-count 0 sea-fish > 0)
+        (and
+          (not
+            (town-under-attack)
+          )
+          (game-time >= 60)
+        )
+      )
+    )
+=>
+    (delete-unit fishing-ship)
+)
+(defrule
+    (players-building-type-count any-ally market >= 1)
+    (current-age >= imperial-age)
+    (current-age >= castle-age)
+    (or
+      (goal full-water-map 0)
+      (map-type team-islands)
+    )
+=>
+    (set-goal produce-trade-carts 1)
+)
+(defrule
+    (nand
+      (players-building-type-count any-ally market >= 1)
+      (current-age >= imperial-age)
+    )
+    (current-age >= castle-age)
+    (or
+      (goal full-water-map 0)
+      (map-type team-islands)
+    )
+=>
+    (set-goal produce-trade-carts 0)
+)
+(defrule
+    (up-compare-goal population-space-remaining c:< 5)
+    (nand
+      (players-building-type-count any-ally market >= 1)
+      (current-age >= imperial-age)
+    )
+    (current-age >= castle-age)
+    (or
+      (goal full-water-map 0)
+      (map-type team-islands)
+    )
+=>
+    (delete-unit trade-cart)
 )
 (defrule
     (goal attack-ready 1)
@@ -32018,106 +32123,6 @@
     )
 =>
     (set-goal produce-transport-ships 0)
-)
-(defrule
-    (not
-      (goal attack-ready 1)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (or
-      (goal full-water-map 0)
-      (warboat-count >= 10)
-    )
-    (cc-players-unit-type-count 0 sea-fish > 0)
-    (not
-      (town-under-attack)
-    )
-=>
-    (set-goal produce-fishing-ships 1)
-)
-(defrule
-    (not
-      (goal full-water-map 0)
-    )
-    (not
-      (warboat-count >= 10)
-    )
-    (cc-players-unit-type-count 0 sea-fish > 0)
-    (not
-      (town-under-attack)
-    )
-=>
-    (set-goal produce-fishing-ships 0)
-)
-(defrule
-    (nand
-      (cc-players-unit-type-count 0 sea-fish > 0)
-      (not
-        (town-under-attack)
-      )
-    )
-=>
-    (set-goal produce-fishing-ships 0)
-)
-(defrule
-    (up-compare-goal population-space-remaining c:< 5)
-    (cc-players-unit-type-count 0 sea-fish == 0)
-    (nand
-      (cc-players-unit-type-count 0 sea-fish > 0)
-      (not
-        (town-under-attack)
-      )
-    )
-=>
-    (delete-unit fishing-ship)
-)
-(defrule
-    (not
-      (goal attack-ready 1)
-    )
-=>
-    (up-jump-rule 3)
-)
-(defrule
-    (players-building-type-count any-ally market >= 1)
-    (current-age >= imperial-age)
-    (current-age >= castle-age)
-    (or
-      (goal full-water-map 0)
-      (map-type team-islands)
-    )
-=>
-    (set-goal produce-trade-carts 1)
-)
-(defrule
-    (nand
-      (players-building-type-count any-ally market >= 1)
-      (current-age >= imperial-age)
-    )
-    (current-age >= castle-age)
-    (or
-      (goal full-water-map 0)
-      (map-type team-islands)
-    )
-=>
-    (set-goal produce-trade-carts 0)
-)
-(defrule
-    (up-compare-goal population-space-remaining c:< 5)
-    (nand
-      (players-building-type-count any-ally market >= 1)
-      (current-age >= imperial-age)
-    )
-    (current-age >= castle-age)
-    (or
-      (goal full-water-map 0)
-      (map-type team-islands)
-    )
-=>
-    (delete-unit trade-cart)
 )
 (defrule
     (not
@@ -37604,7 +37609,7 @@
     (build mill)
 )
 (defrule
-    (wood-amount >= 100)
+    (wood-amount >= 150)
     (up-pending-objects c: farm == 0)
     (up-research-status c: feudal-age < research-pending)
     (building-type-count town-center > 0)
@@ -37617,7 +37622,7 @@
 (defrule
     (up-compare-goal 218 g:< 321)
     (can-build farm)
-    (wood-amount >= 100)
+    (wood-amount >= 150)
     (up-pending-objects c: farm == 0)
     (up-research-status c: feudal-age < research-pending)
     (building-type-count town-center > 0)
