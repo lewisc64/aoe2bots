@@ -36,7 +36,11 @@ load "templates/fast_castle.aoe2ai"
   #end if
   
   auto balance wood and food and gold
-  trade excess wood and food and gold and stone at 2000
+  #if town-under-attack
+    trade excess wood and food and gold and stone at 300
+  #else
+    trade excess wood and food and gold and stone at 2000
+  #end if
   
   #if escrow-amount food < 1600 and not research-completed ri-logistica
     escrow 20 food
