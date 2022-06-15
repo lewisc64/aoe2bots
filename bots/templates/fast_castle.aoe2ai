@@ -21,7 +21,7 @@
   build 1 town-center
   build houses
   build lumber camps
-  #if building-type-count-total lumber-camp >= 1
+  #if building-type-count lumber-camp >= 1
     build mills
   #end if
   build 1 market
