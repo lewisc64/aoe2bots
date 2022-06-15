@@ -37,6 +37,9 @@ build castle
 #if building-type-count-total stable >= 1
   build 1 blacksmith
   build 1 university
+  #if building-type-count-total blacksmith >= 1
+    build 1 market
+  #end if
 #end if
 
 #if up-research-status c: feudal-age >= research-pending
