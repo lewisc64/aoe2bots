@@ -87,6 +87,13 @@ train 5 trebuchet
 
 trade excess at 3000
 
+#do once
+  target closest enemy
+#end do
+#if not player-in-game target-player or not stance-toward target-player enemy
+  target closest enemy
+#end if
+
 #if building-type-count feitoria >= feitorias
   #do once
     chat to all "[...] (seems murderous)"
