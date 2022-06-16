@@ -3,28 +3,64 @@
   #do once
     distribute villagers 100 0 0 0
   #end do
-  build 1 town-center with wood and stone escrow
 #end if
+
+build 1 town-center with wood and stone escrow
 
 #if building-type-count town-center > 0
 
-  // lure boars
+  // gatherer numbers
+  #if up-research-status c: feudal-age < research-pending
+    #do once
+      distribute villagers 20 80 0 0
+      #if civilian-population >= 10
+        distribute villagers 25 75 0 0
+      #end if
+      #if civilian-population >= 15
+        distribute villagers 30 70 0 0
+      #end if
+      #if civilian-population >= 18
+        distribute villagers 40 60 0 0
+      #end if
+      #if civilian-population >= 25
+        distribute villagers 50 50 0 0
+      #end if
+    #end do
+  #else
+    #do once
+      distribute villagers 40 40 20 0
+    #end do
+  #end if
+
+  // boar luring
   #if unit-type-count villager >= 8
     lure boars
   #end if
 
-  // gather relics
+  // relic gathering
   build 1 monastery
   train 1 monk
 
-  build houses with 5 headroom
+  // houses
+  #if up-research-status c: feudal-age < research-pending
+    build houses with 5 headroom
+  #else
+    build houses with 20 headroom
+  #end if
 
   // lumber camps
-  #when
-    build lumber camps
-  #then
-    sn-camp-max-distance += 1
-  #end when
+  #if game-time > 30
+    #when
+      build lumber camps
+    #then
+      sn-camp-max-distance += 1
+    #end when
+  #end if
+  
+  // mills
+  #if building-type-count lumber-camp >= 1
+    build mills
+  #end if
 
   // town centers
   #if up-compare-goal town-center-count g:< desired-town-centers
@@ -37,7 +73,7 @@
     build town-center
   #end if
 
-  // castle forwards?
+  // castles
   #if up-pending-objects c: castle == 0
     #select random
       build castle
@@ -59,40 +95,13 @@
   #then
     sn-camp-max-distance += 4
   #end when
-
+  
+  // farms
   #if up-research-status c: feudal-age < research-pending
-
-    #do once
-      distribute villagers 20 80 0 0
-      #if civilian-population >= 10
-        distribute villagers 25 75 0 0
-      #end if
-      #if civilian-population >= 15
-        distribute villagers 30 70 0 0
-      #end if
-      #if civilian-population >= 18
-        distribute villagers 40 60 0 0
-      #end if
-      #if civilian-population >= 25
-        distribute villagers 50 50 0 0
-      #end if
-    #end do
-
-    build mills
-    
     #if wood-amount >= 150 and up-pending-objects c: farm == 0
       build farms
     #end if
-
-  #end if
-
-  #if up-research-status c: feudal-age >= research-pending
-    #do once
-      distribute villagers 40 40 20 0
-    #end do
-    
-    build houses with 20 headroom
-    
+  #else
     #if (wood-amount >= 200 or building-type-count-total farm < 6) and (research-completed ri-horse-collar or food-amount < 75)
       #if up-research-status c: ri-horse-collar != research-pending and up-research-status c: ri-heavy-plow != research-pending and up-research-status c: ri-crop-rotation != research-pending
         build farms

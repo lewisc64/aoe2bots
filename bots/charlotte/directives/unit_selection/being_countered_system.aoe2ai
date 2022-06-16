@@ -30,6 +30,21 @@
   goal produce-mangonels = 0
 #end template
 
+#template turn-off-for-cavalry
+  goal produce-scorpions = 0
+  goal produce-mangonels = 0
+#end template
+
+#template turn-off-for-anti-cavalry
+  goal produce-knights = 0
+  goal produce-scouts = 0
+  goal produce-battle-elephants = 0
+  goal produce-camels = 0
+  #if goal unique-unit-is-cavalry 1 and goal unique-unit-counters-infantry 0
+    goal produce-unique-unit = 0
+  #end if
+#end template
+
 #respond to min-detection-units monk-set
   insert turn-off-for-monks
 #end respond
@@ -56,15 +71,23 @@
 #end respond
 
 #respond to min-detection-units knight-line
-  goal produce-mangonels = 0
+  insert turn-off-for-cavalry
 #end respond
 
 #respond to min-detection-units scout-cavalry-line
-  goal produce-mangonels = 0
+  insert turn-off-for-cavalry
 #end respond
 
 #respond to min-detection-units camel-line
-  goal produce-mangonels = 0
+  insert turn-off-for-cavalry
+#end respond
+
+#respond to min-detection-units battle-elephant-line
+  insert turn-off-for-cavalry
+#end respond
+
+#respond to min-detection-units war-elephant-line
+  insert turn-off-for-cavalry
 #end respond
 
 #if goal desired-units-per-type 1
@@ -98,13 +121,7 @@
   #end respond
   
   #respond to min-detection-units spearman-line
-    goal produce-knights = 0
-    goal produce-scouts = 0
-    goal produce-battle-elephants = 0
-    goal produce-camels = 0
-    #if goal unique-unit-is-cavalry 1 and goal unique-unit-counters-infantry 0
-      goal produce-unique-unit = 0
-    #end if
+    insert turn-off-for-anti-cavalry
   #end respond
   
 #end if
