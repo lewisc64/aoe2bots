@@ -103,7 +103,7 @@ research ri-siege-engineers
 research ri-onager
 research ri-siege-onager
 
-#if current-age == imperial-age
+#if current-age >= castle-age
   train 120 villagers with 30 trade
 #else
   train 120 villager
