@@ -37,7 +37,7 @@ load "templates/fast_castle.aoe2ai"
   
   auto balance wood and food and gold
   #if town-under-attack
-    trade excess wood and food and gold and stone at 300
+    trade excess wood and food and gold at 300
   #else
     trade excess wood and food and gold and stone at 2000
   #end if
