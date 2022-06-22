@@ -18,7 +18,7 @@ load "../research/archery_range/prerequisites.aoe2ai"
   
   load "../research/blacksmith/ring_archer_armor.aoe2ai"
 
-  #if goal produce-units 1
+  #if goal produce-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1
     train hand-cannoneer
   #end if
 #end if

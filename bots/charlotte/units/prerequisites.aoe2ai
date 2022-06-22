@@ -5,7 +5,7 @@
 #end if
 
 #if goal allow-naval-units 1
-  #if goal produce-cannon-galleons 1
+  #if goal produce-cannon-galleons 1 and goal enough-wood-for-units 1 and goal enough-gold-for-units 1
     load "../research/dock/cannon_galleon.aoe2ai"
   #end if
 #end if

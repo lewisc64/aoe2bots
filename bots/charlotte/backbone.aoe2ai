@@ -56,6 +56,10 @@ const castle-age-military-buildings = 4
 const imperial-age-military-buildings = 5
 const min-detection-units = 5
 
+const wood-unit-threshold = 200
+const food-unit-threshold = 0
+const gold-unit-threshold = 0
+
 #template all-land-unit-goal-names
   {before}villagers{after}
   {before}trade-carts{after}
@@ -268,6 +272,30 @@ load "stats.aoe2ai"
   goal desired-military-buildings-per-type = castle-age-military-buildings
 #else if current-age == imperial-age and up-compare-goal desired-military-buildings-per-type c:< imperial-age-military-buildings
   goal desired-military-buildings-per-type = imperial-age-military-buildings
+#end if
+
+#if wood-amount >= wood-unit-threshold
+  goal enough-wood-for-units = 1
+#else
+  goal enough-wood-for-units = 0
+#end if
+
+#if food-amount >= food-unit-threshold
+  goal enough-food-for-units = 1
+#else
+  goal enough-food-for-units = 0
+#end if
+
+#if gold-amount >= gold-unit-threshold
+  goal enough-gold-for-units = 1
+#else
+  goal enough-gold-for-units = 0
+#end if
+
+#if goal attacking 0 and town-under-attack
+  goal enough-wood-for-units = 1
+  goal enough-food-for-units = 1
+  goal enough-gold-for-units = 1
 #end if
 
 goal attempted-researches = 0
