@@ -364,6 +364,7 @@
     (set-strategic-number sn-max-skips-per-attempt 5)
     (set-strategic-number sn-dropsite-separation-distance 8)
     (set-strategic-number sn-wall-targeting-mode 1)
+    (set-strategic-number sn-minimum-water-body-size-for-dock 999)
     (disable-self)
 )
 (defrule
@@ -414,7 +415,6 @@
     (set-strategic-number sn-garrison-rams 0)
     (set-strategic-number sn-group-form-distance 30)
     (set-strategic-number sn-special-attack-type2 villager)
-    (set-strategic-number sn-minimum-water-body-size-for-dock 999)
     (set-goal full-water-map 0)
     (set-goal partial-water-map 0)
     (disable-self)
@@ -2650,7 +2650,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 3197)
+    (up-jump-rule 3169)
 )
 (defrule
     (can-build town-center)
@@ -3713,7 +3713,7 @@
       (goal produce-fishing-ships 1)
     )
 =>
-    (up-jump-rule 47)
+    (up-jump-rule 19)
 )
 (defrule
     (can-build dock)
@@ -3768,174 +3768,7 @@
       (unit-available fishing-ship)
     )
 =>
-    (up-jump-rule 39)
-)
-(defrule
-    (nand
-      (current-age == castle-age)
-      (building-type-count dock >= 1)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-careening)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build dock)
-    (up-pending-objects c: dock < 5)
-    (building-type-count-total dock < 1)
-    (building-type-count-total dock == 0)
-=>
-    (build dock)
-)
-(defrule
-    (up-research-status c: ri-careening < research-pending)
-    (research-available ri-careening)
-    (not
-      (research-completed ri-careening)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-careening)
-    (goal do-research 1)
-    (research-available ri-careening)
-    (not
-      (research-completed ri-careening)
-    )
-=>
-    (research ri-careening)
-)
-(defrule
-    (nand
-      (current-age == imperial-age)
-      (and
-        (not
-          (current-age == castle-age)
-        )
-        (building-type-count dock >= 1)
-      )
-    )
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-dry-dock)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build dock)
-    (up-pending-objects c: dock < 5)
-    (building-type-count-total dock < 1)
-    (building-type-count-total dock == 0)
-=>
-    (build dock)
-)
-(defrule
-    (research-completed ri-dry-dock)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-careening)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build dock)
-    (up-pending-objects c: dock < 5)
-    (building-type-count-total dock < 1)
-    (building-type-count-total dock == 0)
-=>
-    (build dock)
-)
-(defrule
-    (up-research-status c: ri-careening < research-pending)
-    (research-available ri-careening)
-    (not
-      (research-completed ri-careening)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-careening)
-    (goal do-research 1)
-    (research-available ri-careening)
-    (not
-      (research-completed ri-careening)
-    )
-=>
-    (research ri-careening)
-)
-(defrule
-    (up-research-status c: ri-dry-dock < research-pending)
-    (research-available ri-dry-dock)
-    (not
-      (research-completed ri-dry-dock)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-dry-dock)
-    (goal do-research 1)
-    (research-available ri-dry-dock)
-    (not
-      (research-completed ri-dry-dock)
-    )
-=>
-    (research ri-dry-dock)
-)
-(defrule
-    (nand
-      (current-age == imperial-age)
-      (and
-        (not
-          (current-age == castle-age)
-        )
-        (building-type-count dock >= 1)
-      )
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-shipwright)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build dock)
-    (up-pending-objects c: dock < 5)
-    (building-type-count-total dock < 1)
-    (building-type-count-total dock == 0)
-=>
-    (build dock)
-)
-(defrule
-    (up-research-status c: ri-shipwright < research-pending)
-    (research-available ri-shipwright)
-    (not
-      (research-completed ri-shipwright)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-shipwright)
-    (goal do-research 1)
-    (research-available ri-shipwright)
-    (not
-      (research-completed ri-shipwright)
-    )
-=>
-    (research ri-shipwright)
+    (up-jump-rule 11)
 )
 (defrule
     (nand
@@ -4009,79 +3842,6 @@
     (civ-selected malay)
 =>
     (research ri-thalassocracy)
-)
-(defrule
-    (nand
-      (current-age >= castle-age)
-      (building-type-count dock >= 1)
-    )
-=>
-    (up-jump-rule 7)
-)
-(defrule
-    (nand
-      (not
-        (research-completed ri-carrack)
-      )
-      (civ-selected portuguese)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (can-build castle)
-    (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
-=>
-    (build castle)
-    (set-goal 337 1)
-)
-(defrule
-    (building-type-count-total castle == 0)
-=>
-    (set-goal do-stone-mining 1)
-)
-(defrule
-    (can-build market)
-    (up-pending-objects c: market < 5)
-    (building-type-count-total market < 1)
-    (gold-amount >= 300)
-    (stone-amount < 650)
-    (current-age >= castle-age)
-    (building-type-count-total castle == 0)
-=>
-    (build market)
-    (set-goal 337 1)
-)
-(defrule
-    (can-buy-commodity stone)
-    (gold-amount >= 300)
-    (stone-amount < 650)
-    (current-age >= castle-age)
-    (building-type-count-total castle == 0)
-=>
-    (buy-commodity stone)
-)
-(defrule
-    (up-research-status c: ri-carrack < research-pending)
-    (research-available ri-carrack)
-    (not
-      (research-completed ri-carrack)
-    )
-    (civ-selected portuguese)
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-carrack)
-    (goal do-research 1)
-    (research-available ri-carrack)
-    (not
-      (research-completed ri-carrack)
-    )
-    (civ-selected portuguese)
-=>
-    (research ri-carrack)
 )
 (defrule
     (true)
@@ -9551,6 +9311,47 @@
     (up-jump-rule 4)
 )
 (defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (not
+      (current-age == feudal-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
     (research-completed ri-scale-mail)
 =>
     (up-jump-rule 1)
@@ -9583,6 +9384,89 @@
     )
 =>
     (research ri-scale-mail)
+)
+(defrule
+    (nand
+      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
+    )
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
 )
 (defrule
     (nand
@@ -9666,6 +9550,133 @@
     )
 =>
     (research ri-chain-mail)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 14)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
+)
+(defrule
+    (up-research-status c: ri-blast-furnace < research-pending)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-blast-furnace)
+    (goal do-research 1)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (research ri-blast-furnace)
 )
 (defrule
     (nand
@@ -10065,257 +10076,6 @@
     (civ-selected aztec)
 =>
     (research ri-garland-wars)
-)
-(defrule
-    (not
-      (current-age == feudal-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (nand
-      (current-age == castle-age)
-      (not
-        (current-age == feudal-age)
-      )
-    )
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (nand
-      (current-age == imperial-age)
-      (and
-        (not
-          (current-age == feudal-age)
-        )
-        (not
-          (current-age == castle-age)
-        )
-      )
-    )
-=>
-    (up-jump-rule 14)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (up-research-status c: ri-blast-furnace < research-pending)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-blast-furnace)
-    (goal do-research 1)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (research ri-blast-furnace)
 )
 (defrule
     (true)
@@ -10404,6 +10164,47 @@
     (up-jump-rule 4)
 )
 (defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (not
+      (current-age == feudal-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
     (research-completed ri-scale-mail)
 =>
     (up-jump-rule 1)
@@ -10436,6 +10237,89 @@
     )
 =>
     (research ri-scale-mail)
+)
+(defrule
+    (nand
+      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
+    )
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
 )
 (defrule
     (nand
@@ -10519,6 +10403,133 @@
     )
 =>
     (research ri-chain-mail)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 14)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
+)
+(defrule
+    (up-research-status c: ri-blast-furnace < research-pending)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-blast-furnace)
+    (goal do-research 1)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (research ri-blast-furnace)
 )
 (defrule
     (nand
@@ -10918,257 +10929,6 @@
     (civ-selected aztec)
 =>
     (research ri-garland-wars)
-)
-(defrule
-    (not
-      (current-age == feudal-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (nand
-      (current-age == castle-age)
-      (not
-        (current-age == feudal-age)
-      )
-    )
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (nand
-      (current-age == imperial-age)
-      (and
-        (not
-          (current-age == feudal-age)
-        )
-        (not
-          (current-age == castle-age)
-        )
-      )
-    )
-=>
-    (up-jump-rule 14)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (up-research-status c: ri-blast-furnace < research-pending)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-blast-furnace)
-    (goal do-research 1)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (research ri-blast-furnace)
 )
 (defrule
     (true)
@@ -11382,6 +11142,47 @@
     (up-jump-rule 4)
 )
 (defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (not
+      (current-age == feudal-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
     (research-completed ri-scale-mail)
 =>
     (up-jump-rule 1)
@@ -11414,6 +11215,89 @@
     )
 =>
     (research ri-scale-mail)
+)
+(defrule
+    (nand
+      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
+    )
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
 )
 (defrule
     (nand
@@ -11497,6 +11381,133 @@
     )
 =>
     (research ri-chain-mail)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 14)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
+)
+(defrule
+    (up-research-status c: ri-blast-furnace < research-pending)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-blast-furnace)
+    (goal do-research 1)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (research ri-blast-furnace)
 )
 (defrule
     (nand
@@ -11896,257 +11907,6 @@
     (civ-selected aztec)
 =>
     (research ri-garland-wars)
-)
-(defrule
-    (not
-      (current-age == feudal-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (nand
-      (current-age == castle-age)
-      (not
-        (current-age == feudal-age)
-      )
-    )
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (nand
-      (current-age == imperial-age)
-      (and
-        (not
-          (current-age == feudal-age)
-        )
-        (not
-          (current-age == castle-age)
-        )
-      )
-    )
-=>
-    (up-jump-rule 14)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (up-research-status c: ri-blast-furnace < research-pending)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-blast-furnace)
-    (goal do-research 1)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (research ri-blast-furnace)
 )
 (defrule
     (true)
@@ -12516,6 +12276,47 @@
     (up-jump-rule 4)
 )
 (defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (not
+      (current-age == feudal-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
     (research-completed ri-scale-mail)
 =>
     (up-jump-rule 1)
@@ -12548,6 +12349,89 @@
     )
 =>
     (research ri-scale-mail)
+)
+(defrule
+    (nand
+      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
+    )
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
 )
 (defrule
     (nand
@@ -12631,6 +12515,133 @@
     )
 =>
     (research ri-chain-mail)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 14)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
+)
+(defrule
+    (up-research-status c: ri-blast-furnace < research-pending)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-blast-furnace)
+    (goal do-research 1)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (research ri-blast-furnace)
 )
 (defrule
     (nand
@@ -13032,257 +13043,6 @@
     (research ri-garland-wars)
 )
 (defrule
-    (not
-      (current-age == feudal-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (nand
-      (current-age == castle-age)
-      (not
-        (current-age == feudal-age)
-      )
-    )
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (nand
-      (current-age == imperial-age)
-      (and
-        (not
-          (current-age == feudal-age)
-        )
-        (not
-          (current-age == castle-age)
-        )
-      )
-    )
-=>
-    (up-jump-rule 14)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (up-research-status c: ri-blast-furnace < research-pending)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-blast-furnace)
-    (goal do-research 1)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (research ri-blast-furnace)
-)
-(defrule
     (true)
 =>
     (set-goal barracks-count 0)
@@ -13562,6 +13322,47 @@
     (up-jump-rule 4)
 )
 (defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (not
+      (current-age == feudal-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
     (research-completed ri-scale-barding)
 =>
     (up-jump-rule 1)
@@ -13594,6 +13395,89 @@
     )
 =>
     (research ri-scale-barding)
+)
+(defrule
+    (nand
+      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
+    )
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
 )
 (defrule
     (nand
@@ -13677,6 +13561,133 @@
     )
 =>
     (research ri-chain-barding)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 14)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
+)
+(defrule
+    (up-research-status c: ri-blast-furnace < research-pending)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-blast-furnace)
+    (goal do-research 1)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (research ri-blast-furnace)
 )
 (defrule
     (nand
@@ -14134,257 +14145,6 @@
     (civ-selected malian)
 =>
     (research ri-farimba)
-)
-(defrule
-    (not
-      (current-age == feudal-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (nand
-      (current-age == castle-age)
-      (not
-        (current-age == feudal-age)
-      )
-    )
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (nand
-      (current-age == imperial-age)
-      (and
-        (not
-          (current-age == feudal-age)
-        )
-        (not
-          (current-age == castle-age)
-        )
-      )
-    )
-=>
-    (up-jump-rule 14)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (up-research-status c: ri-blast-furnace < research-pending)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-blast-furnace)
-    (goal do-research 1)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (research ri-blast-furnace)
 )
 (defrule
     (can-build barracks)
@@ -14610,6 +14370,47 @@
     (up-jump-rule 4)
 )
 (defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (not
+      (current-age == feudal-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
     (research-completed ri-scale-barding)
 =>
     (up-jump-rule 1)
@@ -14642,6 +14443,89 @@
     )
 =>
     (research ri-scale-barding)
+)
+(defrule
+    (nand
+      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
+    )
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
 )
 (defrule
     (nand
@@ -14725,6 +14609,133 @@
     )
 =>
     (research ri-chain-barding)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 14)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
+)
+(defrule
+    (up-research-status c: ri-blast-furnace < research-pending)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-blast-furnace)
+    (goal do-research 1)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (research ri-blast-furnace)
 )
 (defrule
     (nand
@@ -15182,257 +15193,6 @@
     (civ-selected malian)
 =>
     (research ri-farimba)
-)
-(defrule
-    (not
-      (current-age == feudal-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (nand
-      (current-age == castle-age)
-      (not
-        (current-age == feudal-age)
-      )
-    )
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (nand
-      (current-age == imperial-age)
-      (and
-        (not
-          (current-age == feudal-age)
-        )
-        (not
-          (current-age == castle-age)
-        )
-      )
-    )
-=>
-    (up-jump-rule 14)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (up-research-status c: ri-blast-furnace < research-pending)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-blast-furnace)
-    (goal do-research 1)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (research ri-blast-furnace)
 )
 (defrule
     (can-build barracks)
@@ -15717,6 +15477,47 @@
     (up-jump-rule 4)
 )
 (defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (not
+      (current-age == feudal-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
     (research-completed ri-scale-barding)
 =>
     (up-jump-rule 1)
@@ -15749,6 +15550,89 @@
     )
 =>
     (research ri-scale-barding)
+)
+(defrule
+    (nand
+      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
+    )
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
 )
 (defrule
     (nand
@@ -15832,6 +15716,133 @@
     )
 =>
     (research ri-chain-barding)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 14)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
+)
+(defrule
+    (up-research-status c: ri-blast-furnace < research-pending)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-blast-furnace)
+    (goal do-research 1)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (research ri-blast-furnace)
 )
 (defrule
     (nand
@@ -16289,257 +16300,6 @@
     (civ-selected malian)
 =>
     (research ri-farimba)
-)
-(defrule
-    (not
-      (current-age == feudal-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (nand
-      (current-age == castle-age)
-      (not
-        (current-age == feudal-age)
-      )
-    )
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (nand
-      (current-age == imperial-age)
-      (and
-        (not
-          (current-age == feudal-age)
-        )
-        (not
-          (current-age == castle-age)
-        )
-      )
-    )
-=>
-    (up-jump-rule 14)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (up-research-status c: ri-blast-furnace < research-pending)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-blast-furnace)
-    (goal do-research 1)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (research ri-blast-furnace)
 )
 (defrule
     (can-build barracks)
@@ -16930,6 +16690,47 @@
     (up-jump-rule 4)
 )
 (defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (not
+      (current-age == feudal-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
     (research-completed ri-scale-barding)
 =>
     (up-jump-rule 1)
@@ -16962,6 +16763,89 @@
     )
 =>
     (research ri-scale-barding)
+)
+(defrule
+    (nand
+      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
+    )
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
 )
 (defrule
     (nand
@@ -17045,6 +16929,133 @@
     )
 =>
     (research ri-chain-barding)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 14)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
+)
+(defrule
+    (up-research-status c: ri-blast-furnace < research-pending)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-blast-furnace)
+    (goal do-research 1)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (research ri-blast-furnace)
 )
 (defrule
     (nand
@@ -17502,257 +17513,6 @@
     (civ-selected malian)
 =>
     (research ri-farimba)
-)
-(defrule
-    (not
-      (current-age == feudal-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (nand
-      (current-age == castle-age)
-      (not
-        (current-age == feudal-age)
-      )
-    )
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (nand
-      (current-age == imperial-age)
-      (and
-        (not
-          (current-age == feudal-age)
-        )
-        (not
-          (current-age == castle-age)
-        )
-      )
-    )
-=>
-    (up-jump-rule 14)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (up-research-status c: ri-blast-furnace < research-pending)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-blast-furnace)
-    (goal do-research 1)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (research ri-blast-furnace)
 )
 (defrule
     (can-build barracks)
@@ -19878,6 +19638,47 @@
     (up-jump-rule 4)
 )
 (defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (not
+      (current-age == feudal-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
     (research-completed ri-scale-mail)
 =>
     (up-jump-rule 1)
@@ -19910,6 +19711,89 @@
     )
 =>
     (research ri-scale-mail)
+)
+(defrule
+    (nand
+      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
+    )
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
 )
 (defrule
     (nand
@@ -19993,6 +19877,133 @@
     )
 =>
     (research ri-chain-mail)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 14)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
+)
+(defrule
+    (up-research-status c: ri-blast-furnace < research-pending)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-blast-furnace)
+    (goal do-research 1)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (research ri-blast-furnace)
 )
 (defrule
     (nand
@@ -20392,257 +20403,6 @@
     (civ-selected aztec)
 =>
     (research ri-garland-wars)
-)
-(defrule
-    (not
-      (current-age == feudal-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (nand
-      (current-age == castle-age)
-      (not
-        (current-age == feudal-age)
-      )
-    )
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (nand
-      (current-age == imperial-age)
-      (and
-        (not
-          (current-age == feudal-age)
-        )
-        (not
-          (current-age == castle-age)
-        )
-      )
-    )
-=>
-    (up-jump-rule 14)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (up-research-status c: ri-blast-furnace < research-pending)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-blast-furnace)
-    (goal do-research 1)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (research ri-blast-furnace)
 )
 (defrule
     (true)
@@ -20694,6 +20454,47 @@
     (up-jump-rule 4)
 )
 (defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (not
+      (current-age == feudal-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
     (research-completed ri-scale-mail)
 =>
     (up-jump-rule 1)
@@ -20726,6 +20527,89 @@
     )
 =>
     (research ri-scale-mail)
+)
+(defrule
+    (nand
+      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
+    )
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
 )
 (defrule
     (nand
@@ -20809,6 +20693,133 @@
     )
 =>
     (research ri-chain-mail)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 14)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
+)
+(defrule
+    (up-research-status c: ri-blast-furnace < research-pending)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-blast-furnace)
+    (goal do-research 1)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (research ri-blast-furnace)
 )
 (defrule
     (nand
@@ -21208,257 +21219,6 @@
     (civ-selected aztec)
 =>
     (research ri-garland-wars)
-)
-(defrule
-    (not
-      (current-age == feudal-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (nand
-      (current-age == castle-age)
-      (not
-        (current-age == feudal-age)
-      )
-    )
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (nand
-      (current-age == imperial-age)
-      (and
-        (not
-          (current-age == feudal-age)
-        )
-        (not
-          (current-age == castle-age)
-        )
-      )
-    )
-=>
-    (up-jump-rule 14)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (up-research-status c: ri-blast-furnace < research-pending)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-blast-furnace)
-    (goal do-research 1)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (research ri-blast-furnace)
 )
 (defrule
     (true)
@@ -23144,6 +22904,47 @@
     (up-jump-rule 4)
 )
 (defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (not
+      (current-age == feudal-age)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
     (research-completed ri-scale-barding)
 =>
     (up-jump-rule 1)
@@ -23176,6 +22977,89 @@
     )
 =>
     (research ri-scale-barding)
+)
+(defrule
+    (nand
+      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
+    )
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
 )
 (defrule
     (nand
@@ -23259,6 +23143,133 @@
     )
 =>
     (research ri-chain-barding)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 14)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+    (set-goal 337 1)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (research-available ri-forging)
+    (not
+      (research-completed ri-forging)
+    )
+=>
+    (research ri-forging)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (research-available ri-iron-casting)
+    (not
+      (research-completed ri-iron-casting)
+    )
+=>
+    (research ri-iron-casting)
+)
+(defrule
+    (up-research-status c: ri-blast-furnace < research-pending)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-blast-furnace)
+    (goal do-research 1)
+    (research-available ri-blast-furnace)
+    (not
+      (research-completed ri-blast-furnace)
+    )
+=>
+    (research ri-blast-furnace)
 )
 (defrule
     (nand
@@ -23716,257 +23727,6 @@
     (civ-selected malian)
 =>
     (research ri-farimba)
-)
-(defrule
-    (not
-      (current-age == feudal-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (nand
-      (current-age == castle-age)
-      (not
-        (current-age == feudal-age)
-      )
-    )
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (nand
-      (current-age == imperial-age)
-      (and
-        (not
-          (current-age == feudal-age)
-        )
-        (not
-          (current-age == castle-age)
-        )
-      )
-    )
-=>
-    (up-jump-rule 14)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-blast-furnace)
-=>
-    (up-jump-rule 9)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (research-completed ri-iron-casting)
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-forging)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build blacksmith)
-    (up-pending-objects c: blacksmith < 5)
-    (building-type-count-total blacksmith < 1)
-    (wood-amount >= 200)
-    (building-type-count-total blacksmith == 0)
-=>
-    (build blacksmith)
-    (set-goal 337 1)
-)
-(defrule
-    (up-research-status c: ri-forging < research-pending)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-forging)
-    (goal do-research 1)
-    (research-available ri-forging)
-    (not
-      (research-completed ri-forging)
-    )
-=>
-    (research ri-forging)
-)
-(defrule
-    (up-research-status c: ri-iron-casting < research-pending)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-iron-casting)
-    (goal do-research 1)
-    (research-available ri-iron-casting)
-    (not
-      (research-completed ri-iron-casting)
-    )
-=>
-    (research ri-iron-casting)
-)
-(defrule
-    (up-research-status c: ri-blast-furnace < research-pending)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-blast-furnace)
-    (goal do-research 1)
-    (research-available ri-blast-furnace)
-    (not
-      (research-completed ri-blast-furnace)
-    )
-=>
-    (research ri-blast-furnace)
 )
 (defrule
     (can-build barracks)

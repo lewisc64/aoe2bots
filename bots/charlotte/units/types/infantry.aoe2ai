@@ -1,8 +1,11 @@
 #if current-age == feudal-age
+  load "../../research/blacksmith/forging.aoe2ai"
   load "../../research/blacksmith/scale_mail.aoe2ai"
 #else if current-age == castle-age
+  load "../../research/blacksmith/iron_casting.aoe2ai"
   load "../../research/blacksmith/chain_mail.aoe2ai"
 #else if current-age == imperial-age
+  load "../../research/blacksmith/blast_furnace.aoe2ai"
   load "../../research/blacksmith/plate_mail.aoe2ai"
   load "../../research/castle/perfusion.aoe2ai"
 #end if
@@ -13,8 +16,6 @@
   load "../../research/barracks/arson.aoe2ai"
   load "../../research/castle/garland_wars.aoe2ai"
 #end if
-
-load "infantry_cavalry.aoe2ai"
 
 #do once
   goal barracks-count = 0

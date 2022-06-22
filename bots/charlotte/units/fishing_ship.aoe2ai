@@ -6,7 +6,7 @@ load "../research/dock/prerequisites.aoe2ai"
     load "../research/dock/gillnets.aoe2ai"
   #end if
   
-  load "types/ship.aoe2ai"
+  load "types/civilian_ship.aoe2ai"
   
   #if up-compare-goal total-fishing-ships g:< desired-fishing-ships
     train fishing-ship
