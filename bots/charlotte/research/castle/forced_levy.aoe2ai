@@ -1,0 +1,13 @@
+#if not research-completed ri-forced-levy and civ-selected malay
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+
+  #if research-available ri-forced-levy
+    #if up-research-status c: ri-forced-levy < research-pending
+      goal attempted-researches += 1
+    #end if
+    #if goal do-research 1
+      research ri-forced-levy
+    #end if
+  #end if
+#end if
