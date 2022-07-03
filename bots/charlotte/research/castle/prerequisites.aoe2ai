@@ -1,2 +1,4 @@
 //load "../town_center/castle_age.aoe2ai"
-insert ensure-castles(condition="building-type-count-total castle == 0")
+#if building-type-count-total castle == 0
+  insert build-castles
+#end if

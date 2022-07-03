@@ -1791,7 +1791,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 65)
+    (up-jump-rule 66)
 )
 (defrule
     (not
@@ -2039,7 +2039,7 @@
       (goal desired-age imperial-age)
     )
 =>
-    (up-jump-rule 34)
+    (up-jump-rule 35)
 )
 (defrule
     (research-completed imperial-age)
@@ -2242,18 +2242,24 @@
       )
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -2264,7 +2270,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -2274,7 +2279,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -2345,7 +2349,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 36)
+    (up-jump-rule 38)
 )
 (defrule
     (nand
@@ -2353,23 +2357,29 @@
       (building-type-count castle >= 1)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (research-completed ri-conscription)
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
 =>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -2380,7 +2390,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -2390,7 +2399,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -2579,7 +2587,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -2589,18 +2597,24 @@
       (civ-selected indian)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -2611,7 +2625,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -2621,7 +2634,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -2652,7 +2664,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 3177)
+    (up-jump-rule 3254)
 )
 (defrule
     (can-build town-center)
@@ -3565,7 +3577,7 @@
       (goal produce-trade-carts 1)
     )
 =>
-    (up-jump-rule 16)
+    (up-jump-rule 17)
 )
 (defrule
     (can-build market)
@@ -3625,7 +3637,7 @@
       (unit-available trade-cart)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -3635,18 +3647,24 @@
       (civ-selected italian)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -3657,7 +3675,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -3667,7 +3684,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -3715,7 +3731,7 @@
       (goal produce-fishing-ships 1)
     )
 =>
-    (up-jump-rule 19)
+    (up-jump-rule 20)
 )
 (defrule
     (can-build dock)
@@ -3770,7 +3786,7 @@
       (unit-available fishing-ship)
     )
 =>
-    (up-jump-rule 11)
+    (up-jump-rule 12)
 )
 (defrule
     (nand
@@ -3778,7 +3794,7 @@
       (building-type-count dock >= 1)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -3788,18 +3804,24 @@
       (civ-selected malay)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -3810,7 +3832,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -3820,7 +3841,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -4335,7 +4355,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 127)
+    (up-jump-rule 129)
 )
 (defrule
     (goal produce-archers 1)
@@ -4357,7 +4377,7 @@
       (unit-available archer-line)
     )
 =>
-    (up-jump-rule 123)
+    (up-jump-rule 125)
 )
 (defrule
     (nand
@@ -4571,7 +4591,7 @@
       (unit-available archer-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -4581,18 +4601,24 @@
       (civ-selected briton)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -4603,7 +4629,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -4613,7 +4638,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -4644,7 +4668,7 @@
       (unit-available archer-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -4654,18 +4678,24 @@
       (civ-selected italian)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -4676,7 +4706,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -4686,7 +4715,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -5413,7 +5441,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 36)
+    (up-jump-rule 37)
 )
 (defrule
     (goal produce-hand-cannoneers 1)
@@ -5435,7 +5463,7 @@
       (unit-available hand-cannoneer)
     )
 =>
-    (up-jump-rule 32)
+    (up-jump-rule 33)
 )
 (defrule
     (nand
@@ -5470,7 +5498,7 @@
       (unit-available hand-cannoneer)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -5480,18 +5508,24 @@
       (civ-selected indian)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -5502,7 +5536,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -5512,7 +5545,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -5712,7 +5744,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 127)
+    (up-jump-rule 129)
 )
 (defrule
     (goal produce-skirmishers 1)
@@ -5734,7 +5766,7 @@
       (unit-available skirmisher-line)
     )
 =>
-    (up-jump-rule 123)
+    (up-jump-rule 125)
 )
 (defrule
     (nand
@@ -5948,7 +5980,7 @@
       (unit-available skirmisher-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -5958,18 +5990,24 @@
       (civ-selected aztec)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -5980,7 +6018,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -5990,7 +6027,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -6021,7 +6057,7 @@
       (unit-available skirmisher-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -6031,18 +6067,24 @@
       (civ-selected incan)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -6053,7 +6095,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -6063,7 +6104,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -6790,7 +6830,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 126)
+    (up-jump-rule 127)
 )
 (defrule
     (goal produce-genitours 1)
@@ -6812,7 +6852,7 @@
       (unit-available genitour-line)
     )
 =>
-    (up-jump-rule 122)
+    (up-jump-rule 123)
 )
 (defrule
     (nand
@@ -6905,7 +6945,7 @@
       (unit-available genitour-line)
     )
 =>
-    (up-jump-rule 110)
+    (up-jump-rule 111)
 )
 (defrule
     (not
@@ -7701,7 +7741,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -7711,18 +7751,24 @@
       (civ-selected turkish)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -7733,7 +7779,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -7743,7 +7788,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -7846,7 +7890,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 134)
+    (up-jump-rule 136)
 )
 (defrule
     (goal produce-cavalry-archers 1)
@@ -7868,7 +7912,7 @@
       (unit-available cavalry-archer-line)
     )
 =>
-    (up-jump-rule 130)
+    (up-jump-rule 132)
 )
 (defrule
     (nand
@@ -7962,7 +8006,7 @@
       (unit-available cavalry-archer-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -7972,18 +8016,24 @@
       (civ-selected magyar)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -7994,7 +8044,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -8004,7 +8053,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -8034,7 +8082,7 @@
       (unit-available cavalry-archer-line)
     )
 =>
-    (up-jump-rule 110)
+    (up-jump-rule 111)
 )
 (defrule
     (not
@@ -8830,7 +8878,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -8840,18 +8888,24 @@
       (civ-selected turkish)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -8862,7 +8916,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -8872,7 +8925,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -8975,7 +9027,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 144)
+    (up-jump-rule 147)
 )
 (defrule
     (goal produce-militia 1)
@@ -8997,7 +9049,7 @@
       (unit-available militiaman-line)
     )
 =>
-    (up-jump-rule 140)
+    (up-jump-rule 143)
 )
 (defrule
     (can-build barracks)
@@ -9314,7 +9366,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -9324,18 +9376,24 @@
       (civ-selected malay)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -9346,7 +9404,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -9356,7 +9413,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -9386,7 +9442,7 @@
       (unit-available militiaman-line)
     )
 =>
-    (up-jump-rule 94)
+    (up-jump-rule 96)
 )
 (defrule
     (not
@@ -9903,7 +9959,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -9913,18 +9969,24 @@
       (civ-selected gothic)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -9935,7 +9997,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -9945,7 +10006,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -10095,7 +10155,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -10105,18 +10165,24 @@
       (civ-selected aztec)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -10127,7 +10193,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -10137,7 +10202,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -10201,7 +10265,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 101)
+    (up-jump-rule 103)
 )
 (defrule
     (goal produce-condottiero 1)
@@ -10223,7 +10287,7 @@
       (unit-available condottiero)
     )
 =>
-    (up-jump-rule 97)
+    (up-jump-rule 99)
 )
 (defrule
     (can-build barracks)
@@ -10239,7 +10303,7 @@
       (unit-available condottiero)
     )
 =>
-    (up-jump-rule 94)
+    (up-jump-rule 96)
 )
 (defrule
     (not
@@ -10756,7 +10820,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -10766,18 +10830,24 @@
       (civ-selected gothic)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -10788,7 +10858,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -10798,7 +10867,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -10948,7 +11016,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -10958,18 +11026,24 @@
       (civ-selected aztec)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -10980,7 +11054,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -10990,7 +11063,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -11054,7 +11126,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 116)
+    (up-jump-rule 118)
 )
 (defrule
     (goal produce-spearmen 1)
@@ -11076,7 +11148,7 @@
       (unit-available spearman-line)
     )
 =>
-    (up-jump-rule 112)
+    (up-jump-rule 114)
 )
 (defrule
     (can-build barracks)
@@ -11217,7 +11289,7 @@
       (unit-available spearman-line)
     )
 =>
-    (up-jump-rule 94)
+    (up-jump-rule 96)
 )
 (defrule
     (not
@@ -11734,7 +11806,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -11744,18 +11816,24 @@
       (civ-selected gothic)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -11766,7 +11844,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -11776,7 +11853,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -11926,7 +12002,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -11936,18 +12012,24 @@
       (civ-selected aztec)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -11958,7 +12040,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -11968,7 +12049,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -12032,7 +12112,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 132)
+    (up-jump-rule 136)
 )
 (defrule
     (goal produce-eagles 1)
@@ -12054,7 +12134,7 @@
       (unit-available eagle-warrior-line)
     )
 =>
-    (up-jump-rule 128)
+    (up-jump-rule 132)
 )
 (defrule
     (can-build barracks)
@@ -12201,7 +12281,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -12211,18 +12291,24 @@
       (civ-selected incan)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -12233,7 +12319,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -12243,7 +12328,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -12279,7 +12363,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -12289,18 +12373,24 @@
       (civ-selected mayan)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -12311,7 +12401,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -12321,7 +12410,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -12351,7 +12439,7 @@
       (unit-available eagle-warrior-line)
     )
 =>
-    (up-jump-rule 94)
+    (up-jump-rule 96)
 )
 (defrule
     (not
@@ -12868,7 +12956,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -12878,18 +12966,24 @@
       (civ-selected gothic)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -12900,7 +12994,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -12910,7 +13003,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -13060,7 +13152,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -13070,18 +13162,24 @@
       (civ-selected aztec)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -13092,7 +13190,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -13102,7 +13199,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -13166,7 +13262,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 132)
+    (up-jump-rule 135)
 )
 (defrule
     (goal produce-scouts 1)
@@ -13188,7 +13284,7 @@
       (unit-available scout-cavalry-line)
     )
 =>
-    (up-jump-rule 128)
+    (up-jump-rule 131)
 )
 (defrule
     (not
@@ -13397,7 +13493,7 @@
       (unit-available scout-cavalry-line)
     )
 =>
-    (up-jump-rule 102)
+    (up-jump-rule 105)
 )
 (defrule
     (not
@@ -14020,7 +14116,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -14030,18 +14126,24 @@
       (civ-selected frankish)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -14052,7 +14154,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -14062,7 +14163,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -14092,7 +14192,7 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -14102,18 +14202,24 @@
       (civ-selected burmese)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -14124,7 +14230,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -14134,7 +14239,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -14164,7 +14268,7 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -14174,18 +14278,24 @@
       (civ-selected malian)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -14196,7 +14306,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -14206,7 +14315,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -14277,7 +14385,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 125)
+    (up-jump-rule 128)
 )
 (defrule
     (goal produce-knights 1)
@@ -14299,7 +14407,7 @@
       (unit-available knight-line)
     )
 =>
-    (up-jump-rule 121)
+    (up-jump-rule 124)
 )
 (defrule
     (not
@@ -14445,7 +14553,7 @@
       (unit-available knight-line)
     )
 =>
-    (up-jump-rule 102)
+    (up-jump-rule 105)
 )
 (defrule
     (not
@@ -15068,7 +15176,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -15078,18 +15186,24 @@
       (civ-selected frankish)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -15100,7 +15214,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -15110,7 +15223,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -15140,7 +15252,7 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -15150,18 +15262,24 @@
       (civ-selected burmese)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -15172,7 +15290,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -15182,7 +15299,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -15212,7 +15328,7 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -15222,18 +15338,24 @@
       (civ-selected malian)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -15244,7 +15366,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -15254,7 +15375,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -15326,7 +15446,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 132)
+    (up-jump-rule 135)
 )
 (defrule
     (goal produce-camels 1)
@@ -15348,7 +15468,7 @@
       (unit-available camel-line)
     )
 =>
-    (up-jump-rule 128)
+    (up-jump-rule 131)
 )
 (defrule
     (not
@@ -15552,7 +15672,7 @@
       (unit-available camel-line)
     )
 =>
-    (up-jump-rule 102)
+    (up-jump-rule 105)
 )
 (defrule
     (not
@@ -16175,7 +16295,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -16185,18 +16305,24 @@
       (civ-selected frankish)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -16207,7 +16333,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -16217,7 +16342,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -16247,7 +16371,7 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -16257,18 +16381,24 @@
       (civ-selected burmese)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -16279,7 +16409,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -16289,7 +16418,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -16319,7 +16447,7 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -16329,18 +16457,24 @@
       (civ-selected malian)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -16351,7 +16485,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -16361,7 +16494,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -16433,7 +16565,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 142)
+    (up-jump-rule 148)
 )
 (defrule
     (goal produce-battle-elephants 1)
@@ -16455,7 +16587,7 @@
       (unit-available battle-elephant-line)
     )
 =>
-    (up-jump-rule 138)
+    (up-jump-rule 144)
 )
 (defrule
     (not
@@ -16489,7 +16621,7 @@
       (unit-available battle-elephant-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -16499,18 +16631,24 @@
       (civ-selected burmese)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -16521,7 +16659,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -16531,7 +16668,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -16562,7 +16698,7 @@
       (unit-available battle-elephant-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -16572,18 +16708,24 @@
       (civ-selected khmer)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -16594,7 +16736,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -16604,7 +16745,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -16635,7 +16775,7 @@
       (unit-available battle-elephant-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -16645,18 +16785,24 @@
       (civ-selected vietnamese)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -16667,7 +16813,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -16677,7 +16822,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -16765,7 +16909,7 @@
       (unit-available battle-elephant-line)
     )
 =>
-    (up-jump-rule 102)
+    (up-jump-rule 105)
 )
 (defrule
     (not
@@ -17388,7 +17532,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -17398,18 +17542,24 @@
       (civ-selected frankish)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -17420,7 +17570,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -17430,7 +17579,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -17460,7 +17608,7 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -17470,18 +17618,24 @@
       (civ-selected burmese)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -17492,7 +17646,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -17502,7 +17655,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -17532,7 +17684,7 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -17542,18 +17694,24 @@
       (civ-selected malian)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -17564,7 +17722,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -17574,7 +17731,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -17646,7 +17802,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 47)
+    (up-jump-rule 48)
 )
 (defrule
     (goal produce-battering-rams 1)
@@ -17668,7 +17824,7 @@
       (unit-available battering-ram-line)
     )
 =>
-    (up-jump-rule 43)
+    (up-jump-rule 44)
 )
 (defrule
     (not
@@ -17817,7 +17973,7 @@
       (unit-available battering-ram-line)
     )
 =>
-    (up-jump-rule 24)
+    (up-jump-rule 25)
 )
 (defrule
     (not
@@ -17904,7 +18060,7 @@
       (current-age == imperial-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -17914,18 +18070,24 @@
       (civ-selected celtic)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -17936,7 +18098,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -17946,7 +18107,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -18037,7 +18197,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 55)
+    (up-jump-rule 57)
 )
 (defrule
     (goal produce-mangonels 1)
@@ -18059,7 +18219,7 @@
       (unit-available mangonel-line)
     )
 =>
-    (up-jump-rule 51)
+    (up-jump-rule 53)
 )
 (defrule
     (not
@@ -18209,7 +18369,7 @@
       (unit-available mangonel-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -18219,18 +18379,24 @@
       (civ-selected korean)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -18241,7 +18407,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -18251,7 +18416,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -18281,7 +18445,7 @@
       (unit-available mangonel-line)
     )
 =>
-    (up-jump-rule 24)
+    (up-jump-rule 25)
 )
 (defrule
     (not
@@ -18368,7 +18532,7 @@
       (current-age == imperial-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -18378,18 +18542,24 @@
       (civ-selected celtic)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -18400,7 +18570,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -18410,7 +18579,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -18501,7 +18669,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 56)
+    (up-jump-rule 59)
 )
 (defrule
     (goal produce-scorpions 1)
@@ -18523,7 +18691,7 @@
       (unit-available scorpion-line)
     )
 =>
-    (up-jump-rule 52)
+    (up-jump-rule 55)
 )
 (defrule
     (not
@@ -18617,7 +18785,7 @@
       (unit-available scorpion-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -18627,18 +18795,24 @@
       (civ-selected chinese)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -18649,7 +18823,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -18659,7 +18832,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -18690,7 +18862,7 @@
       (unit-available scorpion-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -18700,18 +18872,24 @@
       (civ-selected khmer)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -18722,7 +18900,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -18732,7 +18909,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -18762,7 +18938,7 @@
       (unit-available scorpion-line)
     )
 =>
-    (up-jump-rule 24)
+    (up-jump-rule 25)
 )
 (defrule
     (not
@@ -18849,7 +19025,7 @@
       (current-age == imperial-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -18859,18 +19035,24 @@
       (civ-selected celtic)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -18881,7 +19063,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -18891,7 +19072,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -18982,7 +19162,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 33)
+    (up-jump-rule 34)
 )
 (defrule
     (goal produce-bombard-cannons 1)
@@ -19004,7 +19184,7 @@
       (unit-available bombard-cannon)
     )
 =>
-    (up-jump-rule 29)
+    (up-jump-rule 30)
 )
 (defrule
     (not
@@ -19038,7 +19218,7 @@
       (unit-available bombard-cannon)
     )
 =>
-    (up-jump-rule 24)
+    (up-jump-rule 25)
 )
 (defrule
     (not
@@ -19125,7 +19305,7 @@
       (current-age == imperial-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -19135,18 +19315,24 @@
       (civ-selected celtic)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -19157,7 +19343,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -19167,7 +19352,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -19258,7 +19442,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 34)
+    (up-jump-rule 36)
 )
 (defrule
     (goal produce-trebuchets 1)
@@ -19280,18 +19464,24 @@
       (unit-available trebuchet-set)
     )
 =>
-    (up-jump-rule 30)
+    (up-jump-rule 32)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -19302,7 +19492,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -19312,7 +19501,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -19321,7 +19509,7 @@
       (unit-available trebuchet)
     )
 =>
-    (up-jump-rule 24)
+    (up-jump-rule 25)
 )
 (defrule
     (not
@@ -19408,7 +19596,7 @@
       (current-age == imperial-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -19418,18 +19606,24 @@
       (civ-selected celtic)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -19440,7 +19634,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -19450,7 +19643,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -19541,7 +19733,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 712)
+    (up-jump-rule 731)
 )
 (defrule
     (goal produce-unique-units 1)
@@ -19563,7 +19755,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 708)
+    (up-jump-rule 727)
 )
 (defrule
     (current-age >= castle-age)
@@ -19577,7 +19769,8 @@
     (up-get-fact building-type-count-total castle castle-count)
 )
 (defrule
-    (not
+    (nand
+      (up-compare-goal castle-count g:< desired-military-buildings-per-type)
       (current-age >= castle-age)
     )
 =>
@@ -19586,13 +19779,12 @@
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (up-compare-goal castle-count g:< desired-military-buildings-per-type)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (up-compare-goal castle-count g:< desired-military-buildings-per-type)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -19603,7 +19795,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (up-compare-goal castle-count g:< desired-military-buildings-per-type)
 =>
     (build market)
     (set-goal 338 1)
@@ -19613,7 +19804,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (up-compare-goal castle-count g:< desired-military-buildings-per-type)
 =>
     (buy-commodity stone)
 )
@@ -19623,23 +19813,29 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (research-completed my-unique-unit-upgrade)
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
 =>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -19650,7 +19846,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -19660,7 +19855,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -19713,7 +19907,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 94)
+    (up-jump-rule 96)
 )
 (defrule
     (not
@@ -20230,7 +20424,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -20240,18 +20434,24 @@
       (civ-selected gothic)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -20262,7 +20462,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -20272,7 +20471,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -20422,7 +20620,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -20432,18 +20630,24 @@
       (civ-selected aztec)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -20454,7 +20658,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -20464,7 +20667,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -20529,7 +20731,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 94)
+    (up-jump-rule 96)
 )
 (defrule
     (not
@@ -21046,7 +21248,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -21056,18 +21258,24 @@
       (civ-selected gothic)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -21078,7 +21286,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -21088,7 +21295,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -21238,7 +21444,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -21248,18 +21454,24 @@
       (civ-selected aztec)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -21270,7 +21482,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -21280,7 +21491,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -21342,7 +21552,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 110)
+    (up-jump-rule 111)
 )
 (defrule
     (not
@@ -22138,7 +22348,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -22148,18 +22358,24 @@
       (civ-selected turkish)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -22170,7 +22386,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -22180,7 +22395,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -22979,7 +23193,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 102)
+    (up-jump-rule 105)
 )
 (defrule
     (not
@@ -23602,7 +23816,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -23612,18 +23826,24 @@
       (civ-selected frankish)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -23634,7 +23854,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -23644,7 +23863,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -23674,7 +23892,7 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -23684,18 +23902,24 @@
       (civ-selected burmese)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -23706,7 +23930,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -23716,7 +23939,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -23746,7 +23968,7 @@
       (current-age >= imperial-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -23756,18 +23978,24 @@
       (civ-selected malian)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -23778,7 +24006,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -23788,7 +24015,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -23851,7 +24077,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -23861,18 +24087,24 @@
       (civ-selected briton)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -23883,7 +24115,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -23893,7 +24124,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -23924,7 +24154,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -23934,18 +24164,24 @@
       (civ-selected magyar)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -23956,7 +24192,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -23966,7 +24201,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -23997,7 +24231,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -24007,18 +24241,24 @@
       (civ-selected italian)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -24029,7 +24269,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -24039,7 +24278,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -24073,7 +24311,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -24083,18 +24321,24 @@
       (civ-selected viking)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -24105,7 +24349,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -24115,7 +24358,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -24149,7 +24391,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -24159,18 +24401,24 @@
       (civ-selected byzantine)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -24181,7 +24429,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -24191,7 +24438,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -24225,7 +24471,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -24235,18 +24481,24 @@
       (civ-selected persian)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -24257,7 +24509,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -24267,7 +24518,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -24301,7 +24551,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -24311,18 +24561,24 @@
       (civ-selected chinese)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -24333,7 +24589,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -24343,7 +24598,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -24377,7 +24631,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -24387,18 +24641,24 @@
       (civ-selected frankish)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -24409,7 +24669,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -24419,7 +24678,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -24453,7 +24711,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -24463,18 +24721,24 @@
       (civ-selected khmer)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -24485,7 +24749,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -24495,7 +24758,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -24529,7 +24791,7 @@
       )
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -24539,18 +24801,24 @@
       (civ-selected burmese)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -24561,7 +24829,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -24571,7 +24838,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -25649,7 +25915,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 53)
+    (up-jump-rule 54)
 )
 (defrule
     (goal produce-monks 1)
@@ -25671,7 +25937,7 @@
       (unit-available monk-set)
     )
 =>
-    (up-jump-rule 49)
+    (up-jump-rule 50)
 )
 (defrule
     (can-build monastery)
@@ -25687,7 +25953,7 @@
       (unit-available monk)
     )
 =>
-    (up-jump-rule 46)
+    (up-jump-rule 47)
 )
 (defrule
     (not
@@ -25814,7 +26080,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -25824,18 +26090,24 @@
       (civ-selected spanish)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -25846,7 +26118,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -25856,7 +26127,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -26080,7 +26350,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 53)
+    (up-jump-rule 54)
 )
 (defrule
     (goal produce-missionaries 1)
@@ -26102,7 +26372,7 @@
       (unit-available missionary)
     )
 =>
-    (up-jump-rule 49)
+    (up-jump-rule 50)
 )
 (defrule
     (can-build monastery)
@@ -26118,7 +26388,7 @@
       (unit-available missionary)
     )
 =>
-    (up-jump-rule 46)
+    (up-jump-rule 47)
 )
 (defrule
     (not
@@ -26245,7 +26515,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -26255,18 +26525,24 @@
       (civ-selected spanish)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -26277,7 +26553,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -26287,7 +26562,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -26511,7 +26785,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 46)
+    (up-jump-rule 48)
 )
 (defrule
     (goal produce-transport-ships 1)
@@ -26533,7 +26807,7 @@
       (unit-available transport-ship)
     )
 =>
-    (up-jump-rule 42)
+    (up-jump-rule 44)
 )
 (defrule
     (can-build dock)
@@ -26548,7 +26822,7 @@
       (unit-available transport-ship)
     )
 =>
-    (up-jump-rule 39)
+    (up-jump-rule 41)
 )
 (defrule
     (nand
@@ -26723,7 +26997,7 @@
       (building-type-count dock >= 1)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -26733,18 +27007,24 @@
       (civ-selected malay)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -26755,7 +27035,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -26765,7 +27044,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -26796,7 +27074,7 @@
       (building-type-count dock >= 1)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -26806,18 +27084,24 @@
       (civ-selected portuguese)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -26828,7 +27112,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -26838,7 +27121,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -26902,7 +27184,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 101)
+    (up-jump-rule 103)
 )
 (defrule
     (goal produce-galleys 1)
@@ -26924,7 +27206,7 @@
       (unit-available galley-line)
     )
 =>
-    (up-jump-rule 97)
+    (up-jump-rule 99)
 )
 (defrule
     (can-build dock)
@@ -27421,7 +27703,7 @@
       (unit-available galley-line)
     )
 =>
-    (up-jump-rule 39)
+    (up-jump-rule 41)
 )
 (defrule
     (nand
@@ -27596,7 +27878,7 @@
       (building-type-count dock >= 1)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -27606,18 +27888,24 @@
       (civ-selected malay)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -27628,7 +27916,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -27638,7 +27925,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -27669,7 +27955,7 @@
       (building-type-count dock >= 1)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -27679,18 +27965,24 @@
       (civ-selected portuguese)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -27701,7 +27993,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -27711,7 +28002,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -27775,7 +28065,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 69)
+    (up-jump-rule 72)
 )
 (defrule
     (goal produce-fire-ships 1)
@@ -27797,7 +28087,7 @@
       (unit-available fire-ship-line)
     )
 =>
-    (up-jump-rule 65)
+    (up-jump-rule 68)
 )
 (defrule
     (can-build dock)
@@ -27935,7 +28225,7 @@
       (unit-available fire-ship-line)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -27945,18 +28235,24 @@
       (civ-selected byzantine)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -27967,7 +28263,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -27977,7 +28272,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -28007,7 +28301,7 @@
       (unit-available fire-ship-line)
     )
 =>
-    (up-jump-rule 39)
+    (up-jump-rule 41)
 )
 (defrule
     (nand
@@ -28182,7 +28476,7 @@
       (building-type-count dock >= 1)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -28192,18 +28486,24 @@
       (civ-selected malay)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -28214,7 +28514,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -28224,7 +28523,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -28255,7 +28553,7 @@
       (building-type-count dock >= 1)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -28265,18 +28563,24 @@
       (civ-selected portuguese)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -28287,7 +28591,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -28297,7 +28600,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -28361,7 +28663,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 46)
+    (up-jump-rule 48)
 )
 (defrule
     (goal produce-cannon-galleons 1)
@@ -28383,7 +28685,7 @@
       (unit-available cannon-galleon-line)
     )
 =>
-    (up-jump-rule 42)
+    (up-jump-rule 44)
 )
 (defrule
     (can-build dock)
@@ -28398,7 +28700,7 @@
       (unit-available cannon-galleon-line)
     )
 =>
-    (up-jump-rule 39)
+    (up-jump-rule 41)
 )
 (defrule
     (nand
@@ -28573,7 +28875,7 @@
       (building-type-count dock >= 1)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -28583,18 +28885,24 @@
       (civ-selected malay)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -28605,7 +28913,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -28615,7 +28922,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -28646,7 +28952,7 @@
       (building-type-count dock >= 1)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -28656,18 +28962,24 @@
       (civ-selected portuguese)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -28678,7 +28990,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -28688,7 +28999,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -28752,7 +29062,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 56)
+    (up-jump-rule 58)
 )
 (defrule
     (goal produce-demolition-ships 1)
@@ -28774,7 +29084,7 @@
       (unit-available demolition-ship-line)
     )
 =>
-    (up-jump-rule 52)
+    (up-jump-rule 54)
 )
 (defrule
     (can-build dock)
@@ -28869,7 +29179,7 @@
       (unit-available demolition-ship-line)
     )
 =>
-    (up-jump-rule 39)
+    (up-jump-rule 41)
 )
 (defrule
     (nand
@@ -29044,7 +29354,7 @@
       (building-type-count dock >= 1)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -29054,18 +29364,24 @@
       (civ-selected malay)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -29076,7 +29392,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -29086,7 +29401,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -29117,7 +29431,7 @@
       (building-type-count dock >= 1)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (nand
@@ -29127,18 +29441,24 @@
       (civ-selected portuguese)
     )
 =>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -29149,7 +29469,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -29159,7 +29478,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )
@@ -29222,7 +29540,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 746)
+    (up-jump-rule 747)
 )
 (defrule
     (true)
@@ -29482,7 +29800,7 @@
       (goal 176 1)
     )
 =>
-    (up-jump-rule 62)
+    (up-jump-rule 63)
 )
 (defrule
     (nand
@@ -29490,23 +29808,29 @@
       (building-type-count castle >= 1)
     )
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 8)
 )
 (defrule
     (research-completed ri-hoardings)
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
 =>
     (up-jump-rule 4)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (building-type-count-total castle == 0)
 =>
     (build castle)
     (set-goal 338 1)
 )
 (defrule
-    (building-type-count-total castle == 0)
+    (true)
 =>
     (set-goal do-stone-mining 1)
 )
@@ -29517,7 +29841,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (build market)
     (set-goal 338 1)
@@ -29527,7 +29850,6 @@
     (gold-amount >= 300)
     (stone-amount < 650)
     (current-age >= castle-age)
-    (building-type-count-total castle == 0)
 =>
     (buy-commodity stone)
 )

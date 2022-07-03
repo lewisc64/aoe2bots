@@ -5,7 +5,9 @@
     goal castle-count = 0
   #end do
   @up-get-fact building-type-count-total castle castle-count
-  insert ensure-castles(condition="up-compare-goal castle-count g:< desired-military-buildings-per-type")
+  #if up-compare-goal castle-count g:< desired-military-buildings-per-type
+    insert build-castles
+  #end if
 #end if
 
 #if unit-available my-unique-unit-line

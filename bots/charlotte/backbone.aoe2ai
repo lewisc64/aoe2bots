@@ -137,16 +137,14 @@ const gold-unit-threshold = 0
   #end nomerge
 #end template
 
-#template ensure-castles
-  #if {condition}
-    build castle
+#template build-castles
+  build castle
+
+  goal do-stone-mining = 1
   
-    goal do-stone-mining = 1
-    
-    #if gold-amount >= 300 and stone-amount < 650 and current-age >= castle-age
-      build 1 market
-      buy stone
-    #end if
+  #if gold-amount >= 300 and stone-amount < 650 and current-age >= castle-age
+    build 1 market
+    buy stone
   #end if
 #end template
 
