@@ -204,7 +204,7 @@ const gold-unit-threshold = 0
   @up-modify-goal desired-fishing-ships c:/ 200
   
   goal desired-age = 0
-  @up-modify-goal desired-age c:= imperial-age
+  @up-modify-goal desired-age c:= dark-age
   
   goal produce-units = 1
   goal allow-land-units = 1

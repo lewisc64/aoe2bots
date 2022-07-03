@@ -49,7 +49,7 @@ build 1 town-center with wood and stone escrow
   #end if
 
   // lumber camps
-  #if game-time > 30
+  #if game-time > 60
     #when
       build lumber camps
     #then

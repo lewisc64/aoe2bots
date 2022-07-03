@@ -367,6 +367,7 @@
     (set-strategic-number sn-dropsite-separation-distance 8)
     (set-strategic-number sn-wall-targeting-mode 1)
     (set-strategic-number sn-minimum-water-body-size-for-dock 999)
+    (set-strategic-number sn-required-forest-tiles 200)
     (disable-self)
 )
 (defrule
@@ -500,7 +501,7 @@
     (up-modify-goal desired-fishing-ships g:* pop-cap-goal)
     (up-modify-goal desired-fishing-ships c:/ 200)
     (set-goal desired-age 0)
-    (up-modify-goal desired-age c:= imperial-age)
+    (up-modify-goal desired-age c:= dark-age)
     (set-goal produce-units 1)
     (set-goal allow-land-units 1)
     (set-goal allow-naval-units 1)
@@ -32720,9 +32721,15 @@
     (goal produce-units 0)
     (or
       (goal attempted-researches 0)
-      (and
-        (town-under-attack)
-        (goal attacking 0)
+      (or
+        (and
+          (town-under-attack)
+          (goal attacking 0)
+        )
+        (and
+          (up-compare-goal target-military-percentage c:< 100)
+          (military-population < 10)
+        )
       )
     )
 =>
@@ -32731,9 +32738,15 @@
 (defrule
     (or
       (goal attempted-researches 0)
-      (and
-        (town-under-attack)
-        (goal attacking 0)
+      (or
+        (and
+          (town-under-attack)
+          (goal attacking 0)
+        )
+        (and
+          (up-compare-goal target-military-percentage c:< 100)
+          (military-population < 10)
+        )
       )
     )
 =>
@@ -32745,9 +32758,15 @@
     (not
       (goal attempted-researches 0)
     )
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (nor
+      (and
+        (town-under-attack)
+        (goal attacking 0)
+      )
+      (and
+        (up-compare-goal target-military-percentage c:< 100)
+        (military-population < 10)
+      )
     )
 =>
     (chat-local-to-self "hold! (thoughtful)")
@@ -32756,9 +32775,15 @@
     (not
       (goal attempted-researches 0)
     )
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (nor
+      (and
+        (town-under-attack)
+        (goal attacking 0)
+      )
+      (and
+        (up-compare-goal target-military-percentage c:< 100)
+        (military-population < 10)
+      )
     )
 =>
     (set-goal produce-units 0)
@@ -37820,7 +37845,7 @@
     )
     (up-pending-objects c: lumber-camp == 0)
     (can-build lumber-camp)
-    (game-time > 30)
+    (game-time > 60)
     (building-type-count town-center > 0)
 =>
     (build lumber-camp)
@@ -37828,7 +37853,7 @@
 )
 (defrule
     (goal 322 1)
-    (game-time > 30)
+    (game-time > 60)
     (building-type-count town-center > 0)
 =>
     (up-modify-sn sn-camp-max-distance c:+ 1)
