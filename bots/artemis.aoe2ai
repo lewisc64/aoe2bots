@@ -52,8 +52,8 @@ do basic diplomacy
   #end if
 #end template
 
-#if current-age >= feudal-age
-  insert set-escrow(percent=10)
+#if current-age >= feudal-age and military-population >= 10 and up-compare-goal target-military-percentage c:> 100
+  insert set-escrow(percent=20)
 #end if
 
 // camps
