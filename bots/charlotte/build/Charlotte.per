@@ -367,7 +367,6 @@
     (set-strategic-number sn-dropsite-separation-distance 8)
     (set-strategic-number sn-wall-targeting-mode 1)
     (set-strategic-number sn-minimum-water-body-size-for-dock 999)
-    (set-strategic-number sn-required-forest-tiles 200)
     (disable-self)
 )
 (defrule
@@ -29805,8 +29804,11 @@
 )
 (defrule
     (nand
-      (current-age >= imperial-age)
-      (building-type-count castle >= 1)
+      (current-age == imperial-age)
+      (and
+        (current-age >= castle-age)
+        (building-type-count castle >= 1)
+      )
     )
 =>
     (up-jump-rule 8)
@@ -29876,7 +29878,10 @@
 (defrule
     (nand
       (current-age == imperial-age)
-      (current-age >= castle-age)
+      (and
+        (current-age >= castle-age)
+        (building-type-count castle >= 1)
+      )
     )
 =>
     (up-jump-rule 9)
@@ -29954,94 +29959,10 @@
 )
 (defrule
     (nand
-      (not
-        (current-age == imperial-age)
-      )
-      (current-age >= castle-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-masonry)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build university)
-    (up-pending-objects c: university < 5)
-    (building-type-count-total university < 1)
-    (building-type-count-total university == 0)
-=>
-    (build university)
-    (set-goal 338 1)
-)
-(defrule
-    (up-research-status c: ri-masonry < research-pending)
-    (research-available ri-masonry)
-    (not
-      (research-completed ri-masonry)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-masonry)
-    (goal do-research 1)
-    (research-available ri-masonry)
-    (not
-      (research-completed ri-masonry)
-    )
-=>
-    (research ri-masonry)
-)
-(defrule
-    (nand
-      (building-type-count castle >= 1)
-      (current-age >= castle-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-murder-holes)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build university)
-    (up-pending-objects c: university < 5)
-    (building-type-count-total university < 1)
-    (building-type-count-total university == 0)
-=>
-    (build university)
-    (set-goal 338 1)
-)
-(defrule
-    (up-research-status c: ri-murder-holes < research-pending)
-    (research-available ri-murder-holes)
-    (not
-      (research-completed ri-murder-holes)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-)
-(defrule
-    (can-research ri-murder-holes)
-    (goal do-research 1)
-    (research-available ri-murder-holes)
-    (not
-      (research-completed ri-murder-holes)
-    )
-=>
-    (research ri-murder-holes)
-)
-(defrule
-    (nand
       (current-age == imperial-age)
       (and
-        (building-type-count castle >= 1)
         (current-age >= castle-age)
+        (building-type-count castle >= 1)
       )
     )
 =>
@@ -30165,8 +30086,54 @@
         (current-age == imperial-age)
       )
       (and
-        (building-type-count castle >= 1)
         (current-age >= castle-age)
+        (building-type-count castle >= 1)
+      )
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-masonry)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build university)
+    (up-pending-objects c: university < 5)
+    (building-type-count-total university < 1)
+    (building-type-count-total university == 0)
+=>
+    (build university)
+    (set-goal 338 1)
+)
+(defrule
+    (up-research-status c: ri-masonry < research-pending)
+    (research-available ri-masonry)
+    (not
+      (research-completed ri-masonry)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-masonry)
+    (goal do-research 1)
+    (research-available ri-masonry)
+    (not
+      (research-completed ri-masonry)
+    )
+=>
+    (research ri-masonry)
+)
+(defrule
+    (nand
+      (not
+        (current-age == imperial-age)
+      )
+      (and
+        (current-age >= castle-age)
+        (building-type-count castle >= 1)
       )
     )
 =>
@@ -30244,6 +30211,47 @@
     )
 =>
     (research ri-bodkin-arrow)
+)
+(defrule
+    (nand
+      (current-age >= castle-age)
+      (building-type-count castle >= 1)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-murder-holes)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build university)
+    (up-pending-objects c: university < 5)
+    (building-type-count-total university < 1)
+    (building-type-count-total university == 0)
+=>
+    (build university)
+    (set-goal 338 1)
+)
+(defrule
+    (up-research-status c: ri-murder-holes < research-pending)
+    (research-available ri-murder-holes)
+    (not
+      (research-completed ri-murder-holes)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-murder-holes)
+    (goal do-research 1)
+    (research-available ri-murder-holes)
+    (not
+      (research-completed ri-murder-holes)
+    )
+=>
+    (research ri-murder-holes)
 )
 (defrule
     (strategic-number sn-stone-gatherer-percentage > 0)
