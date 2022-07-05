@@ -21,6 +21,8 @@ research ri-loom
     set town size to 28
   #end do
   
+  manage scouting
+  
   build farms
   
   #add action up-modify-sn sn-camp-max-distance c:+ 3

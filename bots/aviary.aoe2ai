@@ -36,6 +36,8 @@ load "templates/fast_castle.aoe2ai"
     scout opposite
   #end do
   
+  manage scouting
+  
   #if escrow-amount wood < 300
     escrow 10 wood
   #else

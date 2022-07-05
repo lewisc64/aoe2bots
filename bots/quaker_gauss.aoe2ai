@@ -19,6 +19,8 @@ load "templates/fast_castle.aoe2ai"
     assign 16 builders to castle
   #end do
   
+  manage scouting
+  
   build lumber camps
   #when
     build gold mining camps

@@ -1,8 +1,10 @@
 #do once
   set up basics
-#end do once
+#end do
 
 #if up-research-status c: castle-age < research-pending
+  
+  manage scouting
   
   research ri-loom
   

@@ -32,6 +32,8 @@ load "templates/fast_castle.aoe2ai"
     assign 8 builders to castle
   #end do
   
+  manage scouting
+  
   build 1 siege-workshop with wood escrow
   build 1 market with wood escrow
   build 1 blacksmith with wood escrow

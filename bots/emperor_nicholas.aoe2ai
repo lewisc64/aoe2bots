@@ -24,6 +24,8 @@ load "templates/fast_castle.aoe2ai"
     sn-percent-building-cancellation = 0
   #end do
   
+  manage scouting
+  
   #if dropsite-min-distance stone == -1
     #do once
       chat to self "out of stone."

@@ -3,6 +3,9 @@
 #end do
 
 #if up-research-status c: feudal-age < research-pending
+
+  manage scouting
+
   #do once
     distribute villagers 30 70 0 0
     sn-enable-training-queue = 1

@@ -22,6 +22,8 @@ load "templates/fast_castle.aoe2ai"
     distribute villagers 35 40 10 15
   #end do
   
+  manage scouting
+  
   research ri-padded-archer-armor with food and gold escrow
   research ri-leather-archer-armor with food and gold escrow
   research ri-ring-archer-armor with food and gold escrow

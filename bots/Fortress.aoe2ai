@@ -17,6 +17,8 @@ do basic diplomacy
     sn-special-attack-type2 = trebuchet
   #end do
   
+  manage scouting
+  
   #if current-age == castle-age
     sell wood when wood > 500
     sell food when food > 1500

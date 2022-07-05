@@ -58,6 +58,8 @@ load "templates/fast_castle.aoe2ai"
       sn-enable-training-queue = 1
     #end if
   #end do
+  
+  manage scouting
 
   #if building-type-count-total stable >= 2
     #do once

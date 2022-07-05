@@ -33,6 +33,8 @@ load "templates/fast_castle.aoe2ai"
   #do once
     distribute villagers 40 40 20 0
   #end do
+  
+  manage scouting
 
   escrow 10 wood
   escrow 10 food

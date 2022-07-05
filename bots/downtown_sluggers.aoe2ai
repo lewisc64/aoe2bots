@@ -12,6 +12,8 @@ do basic diplomacy
     sn-percent-building-cancellation = 0
   #end do
   
+  manage scouting
+  
   sell wood when wood > 1500
   sell food when food > 1500
   buy stone when gold > 1500

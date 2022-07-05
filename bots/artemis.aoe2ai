@@ -28,6 +28,10 @@ build 1 town-center // for nomad
   goal has-rush-buildings = 1
 #end if
 
+// scouting
+
+manage scouting
+
 // diplomacy
 
 do basic diplomacy

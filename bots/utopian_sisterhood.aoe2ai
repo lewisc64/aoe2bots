@@ -25,7 +25,6 @@ do basic diplomacy
 #end template
 
 #if up-research-status c: castle-age >= research-pending
-
   load "charlotte/stats.aoe2ai"
 
   #do once
@@ -33,6 +32,8 @@ do basic diplomacy
     assign 8 builders to town-center-foundation
     assign 8 builders to castle
   #end do
+  
+  manage scouting
   
   #if escrow-amount food <= 1000
     escrow 10 food
