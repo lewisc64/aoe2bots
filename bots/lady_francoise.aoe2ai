@@ -135,11 +135,7 @@ load "templates/fast_castle.aoe2ai"
     research ri-capped-ram with wood and food escrow
     research ri-siege-ram with wood and food escrow
   #end when
-  #when
-    research ri-paladin with food and gold escrow
-  #then always
-    research ri-chemistry with food and gold escrow
-  #end when
+  research ri-paladin with food and gold escrow
   
   #respond to 10 monk-set
     research ri-heresy with gold escrow
