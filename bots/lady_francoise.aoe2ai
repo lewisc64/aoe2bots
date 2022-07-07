@@ -192,6 +192,7 @@ load "templates/fast_castle.aoe2ai"
     #end if
     auto expand town size
   #else
+    sn-number-attack-groups = 0
     #if goal attacking 1
       sn-maximum-town-size = 255
     #else
