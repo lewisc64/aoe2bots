@@ -114,16 +114,6 @@ build castle
   goal produce-battering-rams = 1
 #end do
 
-#if current-age == feudal-age
-  #respond to min-detection-units skirmisher-line
-    goal produce-scouts = 1
-  #end respond
-#else if current-age >= castle-age
-  #do once
-    goal produce-scouts = 1
-  #end do
-#end if
-
 #if building-type-count castle >= 3 and goal produce-archers 1
   #do once
     goal produce-archers = 0
@@ -142,6 +132,15 @@ build castle
 #end respond
 
 #respond to min-detection-units knight-line
+  goal produce-scouts = 0
+  goal produce-spearmen = 1
+#end respond
+
+#respond to min-detection-units mangonel-line
+  goal produce-scouts = 1
+#end respond
+
+#respond to min-detection-units scout-cavalry-line
   goal produce-scouts = 0
   goal produce-spearmen = 1
 #end respond
@@ -301,7 +300,7 @@ lure boars
   #end do
   #if current-age == feudal-age
     #do once
-      distribute villagers 45 35 15 5
+      distribute villagers 40 35 20 5
     #end do
   #end if
   auto balance wood and food and gold
