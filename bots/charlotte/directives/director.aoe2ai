@@ -53,7 +53,7 @@ load "unit_selection/trading.aoe2ai"
     load "water_control/reactive.aoe2ai"
   #end if
   
-  load "targetting.aoe2ai"
+  load "targeting.aoe2ai"
   
   #if not goal enemy-players-count 0
     #if unit-type-count transport-ship > 0
