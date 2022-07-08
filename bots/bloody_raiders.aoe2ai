@@ -124,12 +124,7 @@ research ri-siege-onager
   #end if
 #end if
 
-#do once
-  target closest enemy
-#end do
-#if not player-in-game target-player or not stance-toward target-player enemy
-  target closest enemy
-#end if
+do basic targeting
 
 trade excess wood and food and gold at 2000
 #if current-age >= feudal-age

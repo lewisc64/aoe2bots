@@ -88,10 +88,9 @@ load "templates/fast_castle.aoe2ai"
     train my-unique-unit => train my-unique-unit => train my-unique-unit => train my-unique-unit => train battering-ram-line
   #end if
   
+  do basic targeting
+  
   #if military-population >= 35
-    #repeat every 10 minutes
-      target closest enemy
-    #end repeat
     sn-maximum-town-size = 255
     #do once
       chat to all "Enemy must be fear."

@@ -10,12 +10,7 @@
 manage scouting
 do basic diplomacy
 
-#do once
-  target closest enemy
-#end do
-#if not player-in-game target-player
-  target closest enemy
-#end if
+do basic targeting
 
 #if current-age == feudal-age
   sn-maximum-town-size = 20

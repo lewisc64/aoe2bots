@@ -129,12 +129,7 @@ load "templates/fast_castle.aoe2ai"
     #end if
   #end if
   
-  #do once
-    target closest enemy
-  #end do
-  #if not player-in-game target-player
-    target closest enemy
-  #end if
+  do basic targeting
   
   #if military-population >= 30
     sn-maximum-town-size = 255

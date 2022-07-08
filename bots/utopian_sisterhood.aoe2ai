@@ -97,12 +97,7 @@ do basic diplomacy
     #end if
   #end if
   
-  #do once
-    target closest enemy
-  #end do
-  #if not player-in-game target-player
-    target closest enemy
-  #end if
+  do basic targeting
   
   #if up-compare-goal target-military-percentage c:>= 300 or up-compare-goal population-space-remaining c:< 10
     #do once

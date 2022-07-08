@@ -395,12 +395,7 @@ insert train-unit(unit="monk",goal="produce-monks")
 
 // attacking
 
-#do once
-  target closest enemy
-#end do
-#if not player-in-game target-player or not stance-toward target-player enemy
-  target closest enemy
-#end if
+do basic targeting
 
 #if up-compare-goal target-military-percentage c:>= 110 and military-population >= 10 or (up-compare-goal population-space-remaining c:<= 5 and current-age == imperial-age)
   sn-maximum-town-size = 255
