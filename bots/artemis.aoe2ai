@@ -114,6 +114,12 @@ build castle
   goal produce-battering-rams = 1
 #end do
 
+#if current-age >= castle-age
+  #do once
+    goal produce-scouts = 1
+  #end do
+#end if
+
 #if building-type-count castle >= 3 and goal produce-archers 1
   #do once
     goal produce-archers = 0
@@ -131,13 +137,14 @@ build castle
   goal produce-monks = 1
 #end respond
 
+#respond to min-detection-units battle-elephant-line
+  goal produce-archers = 0
+  goal produce-monks = 1
+#end respond
+
 #respond to min-detection-units knight-line
   goal produce-scouts = 0
   goal produce-spearmen = 1
-#end respond
-
-#respond to min-detection-units mangonel-line
-  goal produce-scouts = 1
 #end respond
 
 #respond to min-detection-units scout-cavalry-line
@@ -145,14 +152,24 @@ build castle
   goal produce-spearmen = 1
 #end respond
 
-#respond to min-detection-units skirmisher-line
-  goal produce-spearmen = 0
+#respond to min-detection-units archer-line
   goal produce-scouts = 1
+  goal produce-spearmen = 0
 #end respond
 
-#respond to min-detection-units battle-elephant-line
-  goal produce-archers = 0
-  goal produce-monks = 1
+#respond to min-detection-units chu-ko-nu-line
+  goal produce-scouts = 1
+  goal produce-spearmen = 0
+#end respond
+
+#respond to min-detection-units skirmisher-line
+  goal produce-scouts = 1
+  goal produce-spearmen = 0
+#end respond
+
+#respond to min-detection-units mangonel-line
+  goal produce-scouts = 1
+  goal produce-spearmen = 0
 #end respond
 
 // research
@@ -303,6 +320,11 @@ lure boars
       distribute villagers 40 35 20 5
     #end do
   #end if
+  #if goal produce-scouts 1 or up-research-status c: castle-age >= research-pending
+    #do once
+      distribute villagers 40 40 15 5
+    #end do
+  #end if
   auto balance wood and food and gold
   trade excess wood and food and gold at 2000
   #if town-under-attack
@@ -353,44 +375,17 @@ lure boars
 
 // military production
 
-#do once
-  goal total-type-production = 0
-  goal expected-units-per-type = 0
-  goal current-unit-amount = 0
-#end do
-
-#template add-to-total-type-production
-  #if unit-available {unit}
-    @up-modify-goal total-type-production g:+ {goal}
-  #end if
-#end template
-
 #template train-unit
-  @up-get-fact unit-type-count {unit} current-unit-amount
-  #if goal produce-units 1 and goal {goal} 1 and up-compare-goal current-unit-amount g:<= expected-units-per-type
+  #if goal produce-units 1 and goal {goal} 1
     train {unit}
   #end if
 #end template
 
-goal total-type-production = 0
-insert add-to-total-type-production(unit="archer-line",goal="produce-archers")
-insert add-to-total-type-production(unit="scout-cavalry-line",goal="produce-scouts")
-insert add-to-total-type-production(unit="knight-line",goal="produce-knights")
-insert add-to-total-type-production(unit="spearman-line",goal="produce-spearmen")
-insert add-to-total-type-production(unit="my-unique-unit-line",goal="produce-unique-units")
-insert add-to-total-type-production(unit="monk",goal="produce-monks")
-#if unit-type-count-total battering-ram-line >= max-rams
-  insert add-to-total-type-production(unit="battering-ram-line",goal="produce-battering-rams")
-#end if
-
-@up-get-fact military-population 0 expected-units-per-type
-@up-modify-goal expected-units-per-type g:/ total-type-production
-
 #if up-compare-goal non-escrowed-wood c:>= 200 or military-population < 10
-  insert train-unit(unit="archer-line",goal="produce-archers")
-  #if unit-type-count-total battering-ram-line >= max-rams
+  #if unit-type-count-total battering-ram-line < max-rams
     insert train-unit(unit="battering-ram-line",goal="produce-battering-rams")
   #end if
+  insert train-unit(unit="archer-line",goal="produce-archers")
   insert train-unit(unit="spearman-line",goal="produce-spearmen")
   insert train-unit(unit="my-unique-unit-line",goal="produce-unique-units")
 #end if
