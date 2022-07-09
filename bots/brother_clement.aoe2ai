@@ -124,7 +124,9 @@ do basic diplomacy without backstabbing
   #end respond
   
   #stages
-    research ri-sanctity
+    #if unit-type-count monk-set >= 2
+      research ri-sanctity
+    #end if
   #advance when up-research-status c: ri-sanctity >= research-pending
     research ri-fervor
   #advance when up-research-status c: ri-fervor >= research-pending
