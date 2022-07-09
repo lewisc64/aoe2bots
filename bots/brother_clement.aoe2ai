@@ -1,0 +1,271 @@
+const ri-madrasah = 490
+
+load "templates/lightning_castle.aoe2ai"
+
+do basic diplomacy without backstabbing
+
+#do once
+  #delay by 2 minutes
+    chat to all "It's okay. I know you suffer."
+    #delay by 10 seconds
+      chat to all "Confess, and be born anew."
+    #end delay
+  #end delay
+#end do
+
+#if up-research-status c: castle-age >= research-pending
+  #do once
+    set up basics
+    sn-maximum-attack-group-size = 1
+    sn-minimum-attack-group-size = 1
+    distribute villagers 30 30 40 0
+    assign 8 builders to castle
+    assign 2 builders to monastery
+    assign 2 builders to siege-workshop
+  #end do
+  
+  manage scouting
+  
+  #do once
+    goal threat-time = 0
+    goal threat-player = 0
+    goal threat-source = 0
+    goal threat-target = 0
+  #end do
+  @up-get-threat-data threat-time threat-player threat-source threat-target
+  
+  #if building-type-count-total town-center == 0 and stone-amount < 100
+    buy stone
+  #end if
+  build 1 town-center
+  
+  build 1 market
+  sell wood when wood >= 500
+  sell food when food >= 1200
+  #if up-research-status c: imperial-age < research-pending
+    buy food when gold >= 1000
+  #end if
+  
+  build lumber camps
+  #when
+    build gold mining camps
+    #if strategic-number sn-stone-gatherer-percentage > 0
+      build stone mining camps
+    #end if
+  #then
+    sn-camp-max-distance += 8
+  #end when
+  
+  build mills
+  #if wood-amount >= 200 or building-type-count-total farm < 6
+    build farms
+  #end if
+  
+  build houses with 10 headroom
+  
+  #do once
+    #if building-type-count-total castle == 0
+      #if strategic-number sn-stone-gatherer-percentage == 0
+        distribute 9 villagers from wood and food and gold to stone
+      #end if
+    #else if strategic-number sn-stone-gatherer-percentage == 9
+      distribute 9 villagers from stone to wood and food and gold
+    #end if
+  #end do
+  
+  build castle
+  
+  research imperial-age
+  
+  #if unit-type-count-total monk-set >= 5
+    research lumber camp upgrades
+    research gold mining camp upgrades
+    research mill upgrades
+    research ri-wheel-barrow
+    research ri-hand-cart
+    #if current-age >= imperial-age
+      research ri-town-watch
+      research ri-town-patrol
+    #end if
+  #end if
+  
+  research ri-capped-ram
+  research ri-siege-ram
+  
+  research ri-madrasah
+  
+  #respond to 1 mangonel-line
+    research ri-redemption
+  #end respond
+  
+  #respond to 1 scorpion-line
+    research ri-redemption
+  #end respond
+  
+  #respond to 1 battering-ram-line
+    research ri-redemption
+  #end respond
+  
+  #respond to 1 trebuchet-set
+    research ri-redemption
+  #end respond
+  
+  #respond to 1 organ-gun-line
+    research ri-redemption
+  #end respond
+  
+  #respond to 2 monk-set
+    research ri-atonement
+  #end respond
+  
+  #respond to 5 monk-set
+    research ri-heresy
+    research ri-faith
+  #end respond
+  
+  #stages
+    research ri-sanctity
+  #advance when up-research-status c: ri-sanctity >= research-pending
+    research ri-fervor
+  #advance when up-research-status c: ri-fervor >= research-pending
+    research ri-theocracy
+  #advance when up-research-status c: ri-theocracy >= research-pending
+    research ri-illumination
+  #advance when up-research-status c: ri-illumination >= research-pending
+    research ri-block-printing
+  #end stages
+  
+  #if current-age == castle-age
+    build 4 monastery
+    #if building-type-count-total monastery >= 4
+      build 1 siege-workshop
+    #end if
+  #else
+    build 10 monastery
+    build 2 siege-workshop
+  #end if
+  
+  #if current-age == imperial-age
+    train 100 villagers with 50 trade
+  #else
+    train 100 villager
+  #end if
+  
+  train 20 battering-ram-line
+  #if up-research-status c: ri-block-printing < research-pending
+    train 20 monk
+  #else
+    train monk
+  #end if
+  
+  do basic targeting
+  
+  #do once
+    goal attacking = 0
+  #end do
+  
+  #if unit-type-count monk-set >= 20 and not town-under-attack
+    #if goal attacking 0
+      #select random
+        chat to all "'Love must be sincere. Hate what is evil; cling to what is good.'"
+        chat to all "Romans 12:9. Repent."
+      #randor
+        chat to all "'Pride goes before destruction, a haughty spirit before a fall.'"
+        chat to all "Proverbs 16:8. Repent."
+      #randor
+        chat to all "'What causes fights and quarrels among you?"
+        chat to all "    Don't they come from your desires that battle within you?'"
+        chat to all "James 4:1. Repent."
+      #randor
+        chat to all "'Blessed are the merciful, for they will be shown mercy.'"
+        chat to all "Matthew 5:7. Repent."
+      #randor
+        chat to all "'Do not judge, or you too will be judged.'"
+        chat to all "Matthew 7:1. Repent."
+      #randor
+        chat to all "'So then, let us not be like others,"
+        chat to all "    who are asleep, but let us be awake and sober.'"
+        chat to all "Thessalonians 5:6. Repent."
+      #randor
+        chat to all "'I keep my eyes always on the LORD."
+        chat to all "    With him at my right hand, I shall not be shaken.'"
+        chat to all "Psalm 16:8. Repent."
+      #end select
+    #end if
+    goal attacking = 1
+  #else if unit-type-count monk-set <= 13
+    goal attacking = 0
+  #end if
+  
+  #if goal attacking 1
+    sn-maximum-town-size = 255
+  #else
+    auto expand town size to 30
+  #end if
+  
+  delete building feitoria
+#end if
+
+#if building-type-count market >= 1
+  #do once
+    #if food-amount >= 100
+      #reply to enemy taunt 3
+        chat to all "Even those who are misguided suffer in the same ways. Here."
+        tribute 100 food to this-any-enemy
+      #end reply
+    #end if
+    #if gold-amount >= 100
+      #reply to enemy taunt 5
+        chat to all "May the grace of God guide your path."
+        tribute 100 gold to this-any-enemy
+      #end reply
+    #end if
+  #end do
+  
+  #reply to ally taunt 3
+    tribute 100 food to this-any-ally
+  #end reply
+  
+  #reply to ally taunt 5
+    tribute 100 gold to this-any-ally
+  #end reply
+#end if
+
+#do once
+  #if research-completed ri-sanctity
+    chat to all "Perhaps you are posessed by tricksters and scoundrels."
+    #delay by 8 seconds
+      chat to all "Seek forgiveness."
+    #end delay
+  #end if
+  
+  #if research-completed ri-theocracy
+    chat to all "Confess to your sins, or burn in hellfire."
+  #end if
+
+  #if research-completed ri-heresy
+    chat to all "'Watch out for false prophets."
+    chat to all "    They come to you in sheep's clothing,"
+    chat to all "    but inwardly they are ferocious wolves.'"
+    chat to all "Matthew 7:15."
+  #end if
+  
+  #if game-time >= 1800 and population < 30
+    chat to all "Lord, what is this trial?"
+    #delay by 4 seconds
+      chat to all "Have I not done enough to earn succour?"
+    #end delay
+  #end if
+#end do
+
+#if population > 100
+  #do once
+    goal target-pop = 0
+  #end do
+  @up-get-target-fact population 0 target-pop
+  #if up-compare-goal target-pop < 30
+    #do once
+      chat to all "I'm sorry it had to be this way."
+    #end do
+  #end if
+#end if

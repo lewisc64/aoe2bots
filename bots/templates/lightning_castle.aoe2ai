@@ -19,8 +19,12 @@
   
   build 1 town-center
   build houses with 5 headroom
-  build lumber camps
-  build mills
+  #if game-time >= 60
+    build lumber camps
+  #end if
+  #if building-type-count lumber-camp >= 1
+    build mills
+  #end if
   
   #if wood-amount >= 100
     build farms
