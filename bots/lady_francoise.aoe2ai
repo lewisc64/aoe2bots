@@ -78,6 +78,11 @@ load "templates/fast_castle.aoe2ai"
     #end do
   #end if
   
+  #if building-type-count-total town-center == 0 and stone-amount < 100
+    buy stone
+  #end if
+  build 1 town-center
+  
   build 1 barracks
   
   #if current-age == imperial-age
