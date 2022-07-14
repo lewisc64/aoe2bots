@@ -56,7 +56,7 @@ do basic diplomacy
   #end if
 #end template
 
-#if current-age >= feudal-age and military-population >= 10 and up-compare-goal target-military-percentage c:> 100
+#if current-age >= feudal-age and military-population >= 20 and up-compare-goal target-military-percentage c:> 100
   insert set-escrow(percent=20)
 #end if
 
@@ -114,12 +114,6 @@ build castle
   goal produce-battering-rams = 1
 #end do
 
-#if current-age >= castle-age
-  #do once
-    goal produce-scouts = 1
-  #end do
-#end if
-
 #if building-type-count castle >= 3 and goal produce-archers 1
   #do once
     goal produce-archers = 0
@@ -170,6 +164,10 @@ build castle
 #respond to min-detection-units mangonel-line
   goal produce-scouts = 1
   goal produce-spearmen = 0
+#end respond
+
+#respond to min-detection-units skirmisher-line
+  goal produce-scouts = 1
 #end respond
 
 // research
