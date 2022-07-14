@@ -37,11 +37,8 @@ load "templates/fast_castle.aoe2ai"
   #end if
 
   #do once
+    set up basics
     assign 4 builders to town-center-foundation
-    sn-maximum-gold-drop-distance = 8
-    sn-maximum-stone-drop-distance = 8
-    sn-maximum-hunt-drop-distance = 48
-    @up-modify-sn sn-maximum-food-drop-distance s:= sn-maximum-town-size
     
     sn-maximum-attack-group-size = 1
     sn-minimum-attack-group-size = 1
