@@ -2,7 +2,7 @@
 load "../research/dock/prerequisites.aoe2ai"
 
 #if unit-available fishing-ship
-  #if current-age >= castle-age
+  #if current-age >= castle-age and building-type-count dock >= 1
     load "../research/dock/gillnets.aoe2ai"
   #end if
   

@@ -3775,7 +3775,10 @@
 )
 (defrule
     (nand
-      (current-age >= castle-age)
+      (and
+        (current-age >= castle-age)
+        (building-type-count dock >= 1)
+      )
       (unit-available fishing-ship)
     )
 =>
@@ -39110,7 +39113,6 @@
     (set-strategic-number sn-maximum-town-size 30)
     (set-strategic-number sn-minimum-town-size 8)
     (set-strategic-number sn-safe-town-size 30)
-    (set-strategic-number sn-maximum-food-drop-distance 30)
     (set-goal 340 0)
     (disable-self)
 )
@@ -39121,7 +39123,6 @@
     (up-modify-sn sn-maximum-town-size c:min 30)
     (set-strategic-number sn-minimum-town-size 8)
     (set-strategic-number sn-safe-town-size 30)
-    (set-strategic-number sn-maximum-food-drop-distance 30)
 )
 (defrule
     (goal 339 0)
