@@ -155,19 +155,13 @@ load "templates/fast_castle.aoe2ai"
   
   train 1 monk with gold escrow
   
-  #if food-amount >= 150 or town-under-attack
-    #if town-under-attack
+  #if food-amount >= 150 or goal under-attack 1
+    #if goal under-attack 1 and not goal threat-source castle
       train knight-line
     #else
       train 5 battering-ram-line
       train knight-line
     #end if
-  #end if
-  
-  trade excess wood and food and gold at 2000
-  
-  #if town-under-attack
-    trade excess wood and food and gold at 300
   #end if
   
   do basic targeting
@@ -193,6 +187,16 @@ load "templates/fast_castle.aoe2ai"
     #else
       auto expand town size
     #end if
+  #end if
+  
+  trade excess wood and food and gold at 2000
+  
+  #if goal under-attack 1
+    trade excess wood and food and gold at 300
+  #end if
+  
+  #if goal attacking 1
+    trade excess wood and food and gold at 500
   #end if
 
 #end if
