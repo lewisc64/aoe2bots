@@ -292,7 +292,7 @@ load "stats.aoe2ai"
   goal enough-gold-for-units = 0
 #end if
 
-#if goal attacking 0 and town-under-attack
+#if goal under-attack 1
   goal enough-wood-for-units = 1
   goal enough-food-for-units = 1
   goal enough-gold-for-units = 1
