@@ -75,6 +75,8 @@ do basic diplomacy without backstabbing
   
   build castle
   
+  goal cap-monks = 0
+  
   research imperial-age
   
   #if unit-type-count-total monk-set >= 5
@@ -94,33 +96,42 @@ do basic diplomacy without backstabbing
   
   research ri-madrasah
   
+  goal need-redemption = 0
   #respond to 1 mangonel-line
-    research ri-redemption
+    goal need-redemption = 1
   #end respond
-  
   #respond to 1 scorpion-line
-    research ri-redemption
+    goal need-redemption = 1
   #end respond
-  
   #respond to 1 battering-ram-line
-    research ri-redemption
+    goal need-redemption = 1
   #end respond
-  
   #respond to 1 trebuchet-set
-    research ri-redemption
+    goal need-redemption = 1
   #end respond
-  
   #respond to 1 organ-gun-line
-    research ri-redemption
+    goal need-redemption = 1
   #end respond
+  #if goal need-redemption 1
+    research ri-redemption
+    #if up-research-status c: ri-redemption < research-pending
+      goal cap-monks = 1
+    #end if
+  #end if
   
   #respond to 2 monk-set
     research ri-atonement
+    #if up-research-status c: ri-atonement < research-pending
+      goal cap-monks = 1
+    #end if
   #end respond
   
   #respond to 5 monk-set
     research ri-heresy
     research ri-faith
+    #if up-research-status c: ri-heresy < research-pending
+      goal cap-monks = 1
+    #end if
   #end respond
   
   #stages
@@ -136,6 +147,10 @@ do basic diplomacy without backstabbing
   #advance when up-research-status c: ri-illumination >= research-pending
     research ri-block-printing
   #end stages
+  
+  #if up-research-status c: ri-block-printing < research-pending  
+    goal cap-monks = 1
+  #end if
   
   #if current-age == castle-age
     build 4 monastery
@@ -154,7 +169,7 @@ do basic diplomacy without backstabbing
   #end if
   
   train 20 battering-ram-line
-  #if up-research-status c: ri-block-printing < research-pending
+  #if goal cap-monks 1
     train 20 monk
   #else
     train monk
