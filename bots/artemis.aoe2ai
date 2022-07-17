@@ -56,8 +56,13 @@ do basic diplomacy
   #end if
 #end template
 
-#if current-age >= feudal-age and military-population >= 20 and up-compare-goal target-military-percentage c:> 100
-  insert set-escrow(percent=20)
+#if current-age >= feudal-age and military-population >= 20 and up-compare-goal target-military-percentage c:> 100 and goal under-attack 0
+  insert set-escrow(percent=10)
+#else if up-research-status c: castle-age < research-pending and military-population >= 10 and goal under-attack 0
+  escrow 10 food
+  escrow 10 gold
+#else
+  insert set-escrow(percent=0)
 #end if
 
 // camps
@@ -94,7 +99,7 @@ insert mining-camps(type="gold")
 #if building-type-count lumber-camp >= 1
   build mills
 #end if
-#if up-compare-goal non-escrowed-wood c:>= 200 or building-type-count-total farm < 6 and up-research-status c: feudal-age >= research-pending
+#if up-compare-goal non-escrowed-wood c:>= 200 or building-type-count-total farm < 6 and (building-type-count-total archery-range >= 2 or goal produce-archers 0)
   build farms
 #end if
 
@@ -109,7 +114,7 @@ build castle
   goal produce-unique-units = 0
   goal produce-knights = 0
   goal produce-monks = 0
-  goal produce-scouts = 0
+  goal produce-scouts = 1
   goal produce-spearmen = 0
   goal produce-battering-rams = 1
 #end do
@@ -117,6 +122,7 @@ build castle
 #if building-type-count castle >= 3 and goal produce-archers 1
   #do once
     goal produce-archers = 0
+    goal produce-spearmen = 0
     goal produce-unique-units = 1
   #end do
 #end if
@@ -161,13 +167,24 @@ build castle
   goal produce-spearmen = 0
 #end respond
 
+#respond to min-detection-units battering-ram-line
+  goal produce-scouts = 1
+  goal produce-spearmen = 0
+#end respond
+
 #respond to min-detection-units mangonel-line
+  goal produce-scouts = 1
+  goal produce-spearmen = 0
+#end respond
+
+#respond to min-detection-units scorpion-line
   goal produce-scouts = 1
   goal produce-spearmen = 0
 #end respond
 
 #respond to min-detection-units skirmisher-line
   goal produce-scouts = 1
+  goal produce-spearmen = 0
 #end respond
 
 // research
@@ -309,23 +326,63 @@ lure boars
   #do once
     distribute villagers 20 80 0 0
   #end do
+  #if civilian-population >= 18
+    #do once
+      distribute villagers 40 60 0 0
+    #end do
+  #end if
 #else
   #do once
-    distribute villagers 80 20 0 0
+    distribute villagers 40 45 15 0
   #end do
-  #if current-age == feudal-age
-    #do once
-      distribute villagers 40 35 20 5
-    #end do
+  
+  // impulses
+  #do once
+    #if goal produce-archers 1 or goal produce-unique-units 1
+      distribute 6 villagers from food to gold
+      distribute 2 villagers from food to wood
+    #end if
+    
+    #if goal produce-scouts 1
+      distribute 8 villagers from wood and gold to food
+    #end if
+    
+    #if goal produce-knights 1
+      distribute 8 villagers from wood to food and gold
+    #end if
+    
+    #if goal produce-monks 1
+      distribute 12 villagers from wood and food to gold
+    #end if
+  #end do
+  
+  #if current-age >= castle-age and strategic-number sn-stone-gatherer-percentage < 6
+    distribute 6 villagers from wood and food and gold to stone
   #end if
-  #if goal produce-scouts 1 or up-research-status c: castle-age >= research-pending
-    #do once
-      distribute villagers 40 40 15 5
-    #end do
-  #end if
+  
   auto balance wood and food and gold
+  
+  #if false
+    #repeat every 30 seconds
+      @up-chat-data-to-all "wood: %d" s: sn-wood-gatherer-percentage
+      @up-chat-data-to-all "food: %d" s: sn-food-gatherer-percentage
+      @up-chat-data-to-all "gold: %d" s: sn-gold-gatherer-percentage
+      @up-chat-data-to-all "stone: %d" s: sn-stone-gatherer-percentage
+    #end repeat
+  #end if
+  
+  #if up-compare-goal non-escrowed-wood c:>= 300
+    build 1 market
+  #end if
+  
+  #if up-research-status c: castle-age < research-pending
+    sell wood when wood >= 400
+    sell food when food >= 900
+    buy food when gold >= 300
+  #end if
+  
   trade excess wood and food and gold at 2000
-  #if town-under-attack
+  #if goal under-attack 1
     build 1 market
     trade excess wood and food and gold at 300
   #end if
@@ -379,20 +436,27 @@ lure boars
   #end if
 #end template
 
-#if up-compare-goal non-escrowed-wood c:>= 200 or military-population < 10
-  #if unit-type-count-total battering-ram-line < max-rams
+#if up-compare-goal non-escrowed-wood c:>= 200 or military-population < 10 or goal under-attack 1
+  #if unit-type-count-total battering-ram-line < max-rams and (goal under-attack 0 or goal threat-source castle)
     insert train-unit(unit="battering-ram-line",goal="produce-battering-rams")
   #end if
-  insert train-unit(unit="archer-line",goal="produce-archers")
-  insert train-unit(unit="spearman-line",goal="produce-spearmen")
-  insert train-unit(unit="my-unique-unit-line",goal="produce-unique-units")
+  #if unit-type-count-total battering-ram-line >= max-rams or building-type-count siege-workshop == 0 or up-pending-objects c: battering-ram-line >= 1 or goal under-attack 1
+    insert train-unit(unit="archer-line",goal="produce-archers")
+    insert train-unit(unit="spearman-line",goal="produce-spearmen")
+    insert train-unit(unit="my-unique-unit-line",goal="produce-unique-units")
+    insert train-unit(unit="scout-cavalry-line",goal="produce-scouts")
+    insert train-unit(unit="knight-line",goal="produce-knights")
+    insert train-unit(unit="monk",goal="produce-monks")
+  #end if
 #end if
-insert train-unit(unit="scout-cavalry-line",goal="produce-scouts")
-insert train-unit(unit="knight-line",goal="produce-knights")
-insert train-unit(unit="monk",goal="produce-monks")
 
 // attacking
 
+#if current-age >= feudal-age
+  #do once
+    scout enemy
+  #end do
+#end if
 do basic targeting
 
 #if up-compare-goal target-military-percentage c:>= 110 and military-population >= 10 or (up-compare-goal population-space-remaining c:<= 5 and current-age == imperial-age)
