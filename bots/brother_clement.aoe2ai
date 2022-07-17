@@ -189,9 +189,10 @@ load "templates/lightning_castle.aoe2ai"
   
   #do once
     goal attacking = 0
+    goal done-pre-theocracy-attack = 0
   #end do
   
-  #if unit-type-count monk-set >= 20 and not town-under-attack and player-in-game any-enemy
+  #if unit-type-count monk-set >= 20 and not town-under-attack and player-in-game any-enemy and (goal done-pre-theocracy-attack 0 or research-completed ri-theocracy)
     #if goal attacking 0
       #select random
         chat to all "'Love must be sincere. Hate what is evil; cling to what is good.'"
@@ -220,6 +221,9 @@ load "templates/lightning_castle.aoe2ai"
       #end select
     #end if
     goal attacking = 1
+    #if not research-completed ri-theocracy
+      goal done-pre-theocracy-attack = 1
+    #end if
   #else if unit-type-count monk-set <= 13 or not player-in-game any-enemy
     goal attacking = 0
   #end if
@@ -248,10 +252,17 @@ const alliance-timeout = 60
   goal chat-alliance-refuse-theirs = -1
   goal chat-heretic = -1
   goal chat-forgive = -1
+  goal locked-teams = 1
   
   goal game-time-goal = 0
-  goal their-male-gold-miners = 0 // for detecting who we are
-  goal our-male-gold-miners = 0 
+#end do
+
+#do once
+  @set-stance my-player-number enemy
+  #if stance-toward my-player-number enemy
+    goal locked-teams = 0
+    @set-stance my-player-number ally
+  #end if
 #end do
 
 @up-get-fact game-time 0 game-time-goal
@@ -381,15 +392,17 @@ insert count-stances(player=8)
   
 #end template
 
-goal done = 0
-insert handle-diplomacy(player=1)
-insert handle-diplomacy(player=2)
-insert handle-diplomacy(player=3)
-insert handle-diplomacy(player=4)
-insert handle-diplomacy(player=5)
-insert handle-diplomacy(player=6)
-insert handle-diplomacy(player=7)
-insert handle-diplomacy(player=8)
+#if goal locked-teams 0
+  goal done = 0
+  insert handle-diplomacy(player=1)
+  insert handle-diplomacy(player=2)
+  insert handle-diplomacy(player=3)
+  insert handle-diplomacy(player=4)
+  insert handle-diplomacy(player=5)
+  insert handle-diplomacy(player=6)
+  insert handle-diplomacy(player=7)
+  insert handle-diplomacy(player=8)
+#end if
 
 #if current-age == imperial-age and building-type-count monastery == 0
   chat to all "The abbey is destroyed. I have failed."
@@ -398,7 +411,9 @@ insert handle-diplomacy(player=8)
   resign
 #end if
 
-@set-stance my-player-number ally
+#if goal locked-teams 0
+  @set-stance my-player-number ally
+#end if
 
 // suppress initial diplo chats
 #if game-time < 120
