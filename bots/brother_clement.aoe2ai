@@ -2,16 +2,22 @@ const ri-madrasah = 490
 
 load "templates/lightning_castle.aoe2ai"
 
-do basic diplomacy without backstabbing
+#if not player-valid 3
+  goal duel = 1
+#else
+  goal duel = 0
+#end if
 
-#do once
-  #delay by 2 minutes
-    chat to all "It's okay. I know you suffer."
-    #delay by 10 seconds
-      chat to all "Confess, and be born anew."
+#if goal duel 1
+  #do once
+    #delay by 2 minutes
+      chat to all "It's okay. I know you suffer."
+      #delay by 10 seconds
+        chat to all "Confess, and be born anew."
+      #end delay
     #end delay
-  #end delay
-#end do
+  #end do
+#end if
 
 #if up-research-status c: castle-age >= research-pending
   #do once
@@ -164,8 +170,12 @@ do basic diplomacy without backstabbing
   
   #if current-age == imperial-age
     train 100 villagers with 50 trade
+    #if unit-type-count-total trade-cart > 50
+      delete unit trade-cart
+    #end if
   #else
     train 100 villager
+    delete unit trade-cart
   #end if
   
   train 20 battering-ram-line
@@ -181,7 +191,7 @@ do basic diplomacy without backstabbing
     goal attacking = 0
   #end do
   
-  #if unit-type-count monk-set >= 20 and not town-under-attack
+  #if unit-type-count monk-set >= 20 and not town-under-attack and player-in-game any-enemy
     #if goal attacking 0
       #select random
         chat to all "'Love must be sincere. Hate what is evil; cling to what is good.'"
@@ -210,7 +220,7 @@ do basic diplomacy without backstabbing
       #end select
     #end if
     goal attacking = 1
-  #else if unit-type-count monk-set <= 13
+  #else if unit-type-count monk-set <= 13 or not player-in-game any-enemy
     goal attacking = 0
   #end if
   
@@ -221,6 +231,290 @@ do basic diplomacy without backstabbing
   #end if
   
   delete building feitoria
+#end if
+
+// diplomacy
+
+const alliance-timeout = 60
+
+#do once
+  @set-stance every-enemy neutral
+  goal chat-alliance-offer = -1
+  goal chat-alliance-our-betrayal = -1
+  goal chat-alliance-their-betrayal = -1
+  goal chat-alliance-accept-ours = -1
+  goal chat-alliance-accept-theirs = -1
+  goal chat-alliance-refuse-ours = -1
+  goal chat-alliance-refuse-theirs = -1
+  goal chat-heretic = -1
+  goal chat-forgive = -1
+  
+  goal game-time-goal = 0
+  goal their-male-gold-miners = 0 // for detecting who we are
+  goal our-male-gold-miners = 0 
+#end do
+
+@up-get-fact game-time 0 game-time-goal
+
+goal enemy-count = 0
+goal ally-count = 0
+
+#template count-stances
+  #if stance-toward {player} ally
+    goal ally-count += 1
+  #else if stance-toward {player} enemy
+    goal enemy-count += 1
+  #end if
+#end template
+
+insert count-stances(player=1)
+insert count-stances(player=2)
+insert count-stances(player=3)
+insert count-stances(player=4)
+insert count-stances(player=5)
+insert count-stances(player=6)
+insert count-stances(player=7)
+insert count-stances(player=8)
+
+#if stance-toward my-player-number enemy
+  goal enemy-count -= 1
+#else if stance-toward my-player-number ally
+  goal ally-count -= 1
+#end if
+
+#template handle-diplomacy
+
+  #do once
+    goal player-{player}-has-donated = 0
+    goal player-{player}-is-heretic = 0
+    goal player-{player}-alliance-offer-expire-at = -1
+    goal trying-to-ally-{player} = 0
+  #end do
+  
+  #if player-in-game {player}
+  
+    // try to ally our non-heretic enemies
+    #if goal done 0 and not stance-toward {player} ally and goal player-{player}-is-heretic 0 and goal player-{player}-alliance-offer-expire-at -1
+      @up-get-fact game-time 0 player-{player}-alliance-offer-expire-at
+      @up-modify-goal player-{player}-alliance-offer-expire-at c:+ alliance-timeout
+      @set-stance {player} ally
+      goal trying-to-ally-{player} = 1
+      goal chat-alliance-offer = {player}
+      goal done = 1
+    #end if
+    
+    // those who do not donate gold and have lots of it are heretics
+    #if goal done 0 and goal player-{player}-has-donated 0 and up-allied-resource-amount {player} gold > 1000 and goal player-{player}-is-heretic 0 and players-building-type-count {player} monastery < 3
+      @clear-tribute-memory {player} gold
+      goal player-{player}-is-heretic = 1
+      goal chat-heretic = {player}
+      goal done = 1
+    #end if
+    
+    // those who donate gold are no longer heretics
+    #if goal done 0 and players-tribute-memory {player} gold > 0 and goal player-{player}-is-heretic 1
+      goal player-{player}-is-heretic = 0
+      goal player-{player}-has-donated = 1
+      @clear-tribute-memory {player} gold
+      goal chat-forgive = {player}
+      goal done = 1
+    #end if
+    
+    #if goal trying-to-ally-{player} 0
+    
+      // enemy those who enemy us
+      #if goal done 0 and players-stance {player} enemy and not stance-toward {player} enemy
+        #if stance-toward {player} ally
+          goal chat-alliance-their-betrayal = -1
+        #end if
+        @set-stance {player} enemy
+        goal done = 1
+      #end if
+      
+      // enemy those who have us as neutral
+      #if goal done 0 and players-stance {player} neutral and not stance-toward {player} enemy
+        @set-stance {player} enemy
+        goal done = 1
+      #end if
+      
+      // ally those who ally us
+      #if goal done 0 and players-stance {player} ally and not stance-toward {player} ally and goal player-{player}-is-heretic 0
+        goal chat-alliance-accept-theirs = {player}
+        @set-stance {player} ally
+        goal player-{player}-alliance-offer-expire-at = -1
+        goal done = 1
+      #end if
+      
+      // enemy those we consider heretics
+      #if goal done 0 and not stance-toward {player} enemy and goal player-{player}-is-heretic 1 and goal enemy-count 0
+        #if stance-toward {player} ally
+          goal chat-alliance-our-betrayal = {player}
+          goal attacking = 1
+        #end if
+        @set-stance {player} enemy
+        goal done = 1
+      #end if
+      
+    #else
+      
+      // they accepted our alliance
+      #if goal done 0 and players-stance {player} ally
+        goal chat-alliance-accept-ours = {player}
+        goal trying-to-ally-{player} = 0
+        goal player-{player}-alliance-offer-expire-at = -1
+        goal done = 1
+      #end if
+      
+      // they refused our alliance
+      #if goal done 0 and players-stance {player} enemy and up-compare-goal game-time-goal g:> player-{player}-alliance-offer-expire-at
+        goal chat-alliance-refuse-ours = {player}
+        goal trying-to-ally-{player} = 0
+        goal done = 1
+      #end if
+      
+    #end if
+  #end if
+  
+  #if not player-in-game {player} and players-stance {player} ally
+    @set-stance {player} ally
+  #end if
+  
+#end template
+
+goal done = 0
+insert handle-diplomacy(player=1)
+insert handle-diplomacy(player=2)
+insert handle-diplomacy(player=3)
+insert handle-diplomacy(player=4)
+insert handle-diplomacy(player=5)
+insert handle-diplomacy(player=6)
+insert handle-diplomacy(player=7)
+insert handle-diplomacy(player=8)
+
+#if current-age == imperial-age and building-type-count monastery == 0
+  chat to all "The abbey is destroyed. I have failed."
+  @set-stance every-enemy ally
+  @set-stance every-neutral ally
+  resign
+#end if
+
+@set-stance my-player-number ally
+
+// suppress initial diplo chats
+#if game-time < 120
+  goal chat-alliance-offer = -1
+  goal chat-alliance-our-betrayal = -1
+  goal chat-alliance-their-betrayal = -1
+  goal chat-alliance-accept-ours = -1
+  goal chat-alliance-accept-theirs = -1
+  goal chat-alliance-refuse-ours = -1
+  goal chat-alliance-refuse-theirs = -1
+  goal chat-heretic = -1
+  goal chat-forgive = -1
+#end if
+
+#if not goal chat-heretic -1
+  #select random
+    @up-chat-data-to-all "Player %d, you have fallen from grace." g: chat-heretic
+  #randor
+    @up-chat-data-to-all "A shame, %d. Greed has become you." g: chat-heretic
+  #randor
+    @up-chat-data-to-all "You bloat like a pig, %d." g: chat-heretic
+  #randor
+    @up-chat-data-to-all "Player %d you are a lecherous animal." g: chat-heretic
+  #end select
+  chat to all "5Donate and be cleansed of sin."
+  goal chat-heretic = -1
+#end if
+
+#if not goal chat-forgive -1
+  #select random
+    @up-chat-data-to-all "Thank you for your donation. The Lord is pleased." g: chat-forgive
+  #end select
+  goal chat-forgive = -1
+#end if
+
+#if not goal chat-alliance-offer -1
+  #select random
+    @up-chat-data-to-all "Player %d, join me in worship." g: chat-alliance-offer
+  #randor
+    @up-chat-data-to-all "An alliance, %d?" g: chat-alliance-offer
+  #randor
+    @up-chat-data-to-all "Shall we join forces in the name of God, %d?" g: chat-alliance-offer
+  #randor
+    @up-chat-data-to-all "Life will be sweeter together, %d." g: chat-alliance-offer
+  #end select
+  goal chat-alliance-offer = -1
+#end if
+
+#if not goal chat-alliance-our-betrayal -1
+  #select random
+    @up-chat-data-to-all "Your demise is but a part of God's plan, %d." g: chat-alliance-our-betrayal
+  #randor
+    @up-chat-data-to-all "Player %d. I find you in contempt of the Lord. Die." g: chat-alliance-our-betrayal
+  #randor
+    @up-chat-data-to-all "Player %d you are a sinner, and will now perish." g: chat-alliance-our-betrayal
+  #end select
+  goal chat-alliance-our-betrayal = -1
+#end if
+
+#if not goal chat-alliance-their-betrayal -1
+  #select random
+    @up-chat-data-to-all "Player %d? Did you dislike the peace?" g: chat-alliance-their-betrayal
+  #randor
+    @up-chat-data-to-all "Unfortunate. I wished for nothing but peace, %d." g: chat-alliance-their-betrayal
+  #randor
+    @up-chat-data-to-all "I should have known. I was blinded by love." g: chat-alliance-their-betrayal
+  #randor
+    @up-chat-data-to-all "I will miss our friendship, %d." g: chat-alliance-their-betrayal
+  #end select
+  goal chat-alliance-their-betrayal = -1
+#end if
+
+#if not goal chat-alliance-accept-ours -1
+  #select random
+    @up-chat-data-to-all "An excellent choice, %d." g: chat-alliance-accept-ours
+  #randor
+    @up-chat-data-to-all "Wonderful. Let us study together %d." g: chat-alliance-accept-ours
+  #randor
+    @up-chat-data-to-all "Excellent, %d. A blessed day." g: chat-alliance-accept-ours
+  #randor
+    @up-chat-data-to-all "Most wise, %d." g: chat-alliance-accept-ours
+  #end select
+  goal chat-alliance-accept-ours = -1
+#end if
+
+#if not goal chat-alliance-accept-theirs -1
+  #select random
+    @up-chat-data-to-all "Of course %d, let us have peace." g: chat-alliance-accept-theirs
+  #randor
+    @up-chat-data-to-all "Your letter was most moving, %d. I accept." g: chat-alliance-accept-theirs
+  #randor
+    @up-chat-data-to-all "Player %d? Hm. I suppose friendship knows no bounds." g: chat-alliance-accept-theirs
+  #end select
+  goal chat-alliance-accept-theirs = -1
+#end if
+
+#if not goal chat-alliance-refuse-ours -1
+  #select random
+    @up-chat-data-to-all "A shame, player %d." g: chat-alliance-refuse-ours
+  #randor
+    @up-chat-data-to-all "Alas, we are doomed to be enemes %d." g: chat-alliance-refuse-ours
+  #randor
+    @up-chat-data-to-all "Please reconsider soon, %d." g: chat-alliance-refuse-ours
+  #end select
+  goal chat-alliance-refuse-ours = -1
+#end if
+
+#if not goal chat-alliance-refuse-theirs -1
+  #select random
+    @up-chat-data-to-all "I will not allow such sin into my life, %d." g: chat-alliance-refuse-theirs
+  #randor
+    @up-chat-data-to-all "I would sooner burn than spend time with you, %d." g: chat-alliance-refuse-theirs
+  #randor
+    @up-chat-data-to-all "Player %d, we have been over this." g: chat-alliance-refuse-theirs
+  #end select
+  goal chat-alliance-refuse-theirs = -1
 #end if
 
 #if building-type-count market >= 1
@@ -250,10 +544,7 @@ do basic diplomacy without backstabbing
 
 #do once
   #if research-completed ri-sanctity
-    chat to all "Perhaps you are posessed by tricksters and scoundrels."
-    #delay by 8 seconds
-      chat to all "Seek forgiveness."
-    #end delay
+    chat to all "In times of trouble, seek forgiveness."
   #end if
   
   #if research-completed ri-theocracy
