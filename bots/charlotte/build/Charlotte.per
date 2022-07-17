@@ -2399,7 +2399,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 38)
+    (up-jump-rule 48)
 )
 (defrule
     (nand
@@ -2513,6 +2513,46 @@
 )
 (defrule
     (not
+      (players-unit-type-count any-enemy monk-set >= 10)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-faith)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build monastery)
+    (up-pending-objects c: monastery < 5)
+    (building-type-count-total monastery < 1)
+    (building-type-count-total monastery == 0)
+=>
+    (build monastery)
+    (set-goal 340 1)
+)
+(defrule
+    (up-research-status c: ri-faith < research-pending)
+    (research-available ri-faith)
+    (not
+      (research-completed ri-faith)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-faith)
+    (goal do-research 1)
+    (research-available ri-faith)
+    (not
+      (research-completed ri-faith)
+    )
+=>
+    (research ri-faith)
+)
+(defrule
+    (not
       (players-unit-type-count any-enemy missionary >= 10)
     )
 =>
@@ -2550,6 +2590,46 @@
     )
 =>
     (research ri-heresy)
+)
+(defrule
+    (not
+      (players-unit-type-count any-enemy missionary >= 10)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-faith)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build monastery)
+    (up-pending-objects c: monastery < 5)
+    (building-type-count-total monastery < 1)
+    (building-type-count-total monastery == 0)
+=>
+    (build monastery)
+    (set-goal 340 1)
+)
+(defrule
+    (up-research-status c: ri-faith < research-pending)
+    (research-available ri-faith)
+    (not
+      (research-completed ri-faith)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+)
+(defrule
+    (can-research ri-faith)
+    (goal do-research 1)
+    (research-available ri-faith)
+    (not
+      (research-completed ri-faith)
+    )
+=>
+    (research ri-faith)
 )
 (defrule
     (nand

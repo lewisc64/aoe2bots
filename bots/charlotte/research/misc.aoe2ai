@@ -4,10 +4,12 @@
 
 #respond to 10 monk-set
   load "../research/monastery/heresy.aoe2ai"
+  load "../research/monastery/faith.aoe2ai"
 #end respond
 
 #respond to 10 missionary
   load "../research/monastery/heresy.aoe2ai"
+  load "../research/monastery/faith.aoe2ai"
 #end respond
 
 #if current-age == imperial-age and goal team-game 1
