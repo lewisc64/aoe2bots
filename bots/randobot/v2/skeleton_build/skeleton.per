@@ -550,3 +550,9 @@
 =>
     (train villager)
 )
+(defrule
+    (unit-type-count-total villager < 10)
+    (game-time >= 1800)
+=>
+    (resign)
+)

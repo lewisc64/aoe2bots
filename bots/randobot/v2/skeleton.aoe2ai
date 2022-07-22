@@ -97,3 +97,7 @@ insert try-retaliate(player=7)
 insert try-retaliate(player=8)
 
 train 120 villager
+
+#if unit-type-count-total villager < 10 and game-time >= 1800
+  resign
+#end if

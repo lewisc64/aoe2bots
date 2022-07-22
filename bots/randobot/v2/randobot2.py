@@ -228,16 +228,17 @@ def avoid_excessive_queue_flood(rules):
                 if action.text.startswith(name):
                     rule.conditions.append(Condition(f"can-{name} " + action.text.split(" ")[-1]))
 
-def limit_buildings(rules, limit=5):
+def limit_buildings(rules):
     for rule in rules:
         for action in rule.actions:
             if action.text.startswith("build"):
-                rule.conditions.append(Condition("building-type-count-total " + action.text.split(" ")[-1] + " < " + str(limit)))
+                rule.conditions.append(Condition("building-type-count-total " + action.text.split(" ")[-1] + " < " + str(random.randint(1, 20))))
                 rule.conditions.append(Condition("up-pending-objects c: " + action.text.split(" ")[-1] + " < 5"))
 
 def avoid_attack_now_spam(rules, interval=60):
     setup_rule = Defrule()
     setup_rule.actions.append(Action(f"enable-timer 20 {interval}"))
+    setup_rule.actions.append(Action("disable-self"))
     setup_rule.optimize()
 
     restart_rule = Defrule()
@@ -255,17 +256,18 @@ def avoid_attack_now_spam(rules, interval=60):
                 rule.conditions.append(Condition("timer-triggered 20"))
                 break
 
-def avoid_stance_change_spam(rules):
+def avoid_spam(rules, action_stubs):
     for rule in rules:
-        found_stance = False
+        found = False
         found_disable_self = False
         for action in rule.actions:
-            if action.text.startswith("set-stance"):
-                found_stance = True
-            elif action.text == "disable-self":
+            for action_stub in action_stubs:
+                if action.text.startswith(action_stub):
+                    found = True
+            if action.text == "disable-self":
                 found_disable_self = True
 
-        if found_stance and not found_disable_self:
+        if found and not found_disable_self:
             rule.actions.append(Action("disable-self"))
 
 def get_skeleton(path):
@@ -288,9 +290,9 @@ if __name__ == "__main__":
         rules.append(rule_generator.generate())
 
     avoid_excessive_queue_flood(rules)
-    limit_buildings(rules, limit=20)
+    limit_buildings(rules)
     avoid_attack_now_spam(rules)
-    avoid_stance_change_spam(rules)
+    avoid_spam(rules, ["set-stance", "chat-to"])
 
     skeleton = get_skeleton("skeleton_build/skeleton.per")
 
