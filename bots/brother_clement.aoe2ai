@@ -41,6 +41,7 @@ load "templates/lightning_castle.aoe2ai"
   @up-get-threat-data threat-time threat-player threat-source threat-target
   
   #if building-type-count-total town-center == 0 and stone-amount < 100
+    build 1 market
     buy stone
   #end if
   build 1 town-center
@@ -118,7 +119,7 @@ load "templates/lightning_castle.aoe2ai"
   #respond to 1 organ-gun-line
     goal need-redemption = 1
   #end respond
-  #if goal need-redemption 1
+  #if goal need-redemption 1 or gold-amount >= 1300
     research ri-redemption
     #if up-research-status c: ri-redemption < research-pending
       goal cap-monks = 1
@@ -158,14 +159,16 @@ load "templates/lightning_castle.aoe2ai"
     goal cap-monks = 1
   #end if
   
-  #if current-age == castle-age
-    build 4 monastery
-    #if building-type-count-total monastery >= 4
-      build 1 siege-workshop
+  #if building-type-count town-center >= 1
+    #if current-age == castle-age
+      build 4 monastery
+      #if building-type-count-total monastery >= 4
+        build 1 siege-workshop
+      #end if
+    #else
+      build 10 monastery
+      build 2 siege-workshop
     #end if
-  #else
-    build 10 monastery
-    build 2 siege-workshop
   #end if
   
   #if current-age == imperial-age
@@ -333,12 +336,19 @@ insert count-stances(player=8)
     goal player-{player}-has-donated = 0
   #end if
   
+  // retry alliance if they are dying
+  #if players-population {player} < 40 and population > 100 and stance-toward {player} enemy
+    #do once
+      insert retry-alliance(player={player})
+    #end do
+  #end if
+  
   #if player-in-game {player}
   
-    // enemy those who threaten our monks or monasteries
-    #if goal done 0 and goal threat-player {player} and players-stance {player} ally and (goal threat-target monk or goal threat-target monastery) and up-compare-goal threat-time c:< 5000
-      chat to self "threatened by {player}"
-      #if goal player-{player}-warnings 0
+    // enemy allies who threaten our monks or monasteries
+    #ifg goal done 0 and goal threat-player {player} and players-stance {player} ally and (goal threat-target monk or goal threat-target monastery) and up-compare-goal threat-time c:< 5000
+      chat to self "threatened by ally {player}"
+      #ifg goal player-{player}-warnings 0
         @set-stance {player} enemy
         goal chat-outrage = {player}
         goal player-{player}-is-heretic = 1
@@ -351,7 +361,7 @@ insert count-stances(player=8)
     #end if
   
     // try to ally our non-heretic enemies
-    #if goal done 0 and not stance-toward {player} ally and not players-stance {player} ally and goal player-{player}-is-heretic 0 and goal player-{player}-alliance-offer-expire-at -1
+    #ifg goal done 0 and not stance-toward {player} ally and not players-stance {player} ally and goal player-{player}-is-heretic 0 and goal player-{player}-alliance-offer-expire-at -1
       chat to self "request alliance {player}"
       insert set-future-stamp(goal="player-{player}-alliance-offer-expire-at",seconds="alliance-timeout")
       @set-stance {player} ally
@@ -361,7 +371,7 @@ insert count-stances(player=8)
     #end if
     
     // those who do not donate gold and have lots of it are heretics
-    #if goal done 0 and goal player-{player}-has-donated 0 and up-allied-resource-amount {player} gold > 1000 and goal player-{player}-is-heretic 0 and players-building-type-count {player} monastery < 3
+    #ifg goal done 0 and goal player-{player}-has-donated 0 and up-allied-resource-amount {player} gold > 1000 and goal player-{player}-is-heretic 0 and players-building-type-count {player} monastery < 3
       chat to self "heretic {player}"
       @clear-tribute-memory {player} gold
       goal player-{player}-is-heretic = 1
@@ -370,7 +380,7 @@ insert count-stances(player=8)
     #end if
     
     // those who donate gold are no longer heretics
-    #if goal done 0 and players-tribute-memory {player} gold > 0 and goal player-{player}-is-heretic 1
+    #ifg goal done 0 and players-tribute-memory {player} gold > 0 and goal player-{player}-is-heretic 1
       chat to self "un-heretic {player}"
       insert set-future-stamp(goal="player-{player}-donation-expire-at",seconds="donation-timeout")
       goal player-{player}-is-heretic = 0
@@ -383,7 +393,7 @@ insert count-stances(player=8)
     #if goal trying-to-ally-{player} 0
     
       // enemy those who enemy us
-      #if goal done 0 and players-stance {player} enemy and not stance-toward {player} enemy
+      #ifg goal done 0 and players-stance {player} enemy and not stance-toward {player} enemy
         chat to self "enemy those who enemy us {player}"
         #if stance-toward {player} ally
           goal chat-alliance-their-betrayal = {player}
@@ -393,14 +403,14 @@ insert count-stances(player=8)
       #end if
       
       // enemy those who have us as neutral
-      #if goal done 0 and players-stance {player} neutral and not stance-toward {player} enemy
+      #ifg goal done 0 and players-stance {player} neutral and not stance-toward {player} enemy
         chat to self "enemy neutral {player}"
         @set-stance {player} enemy
         goal done = 1
       #end if
       
       // ally those who ally us
-      #if goal done 0 and players-stance {player} ally and not stance-toward {player} ally and goal player-{player}-is-heretic 0
+      #ifg goal done 0 and players-stance {player} ally and not stance-toward {player} ally and goal player-{player}-is-heretic 0
         chat to self "accept alliance {player}"
         goal chat-alliance-accept-theirs = {player}
         @set-stance {player} ally
@@ -409,7 +419,7 @@ insert count-stances(player=8)
       #end if
       
       // enemy those we consider heretics
-      #if goal done 0 and not stance-toward {player} enemy and goal player-{player}-is-heretic 1 and goal enemy-count 0 and unit-type-count monk-set >= 20
+      #ifg goal done 0 and not stance-toward {player} enemy and goal player-{player}-is-heretic 1 and goal enemy-count 0 and unit-type-count monk-set >= 20
         chat to self "enemy heretic {player}"
         #if stance-toward {player} ally
           goal chat-alliance-our-betrayal = {player}
@@ -422,7 +432,7 @@ insert count-stances(player=8)
     #else
       
       // they accepted our alliance
-      #if goal done 0 and players-stance {player} ally
+      #ifg goal done 0 and players-stance {player} ally
         chat to self "they accepted alliance {player}"
         goal chat-alliance-accept-ours = {player}
         goal trying-to-ally-{player} = 0
@@ -431,7 +441,7 @@ insert count-stances(player=8)
       #end if
       
       // they refused our alliance
-      #if goal done 0 and players-stance {player} enemy and up-compare-goal game-time-goal g:> player-{player}-alliance-offer-expire-at
+      #ifg goal done 0 and players-stance {player} enemy and up-compare-goal game-time-goal g:> player-{player}-alliance-offer-expire-at
         chat to self "they refused alliance {player}"
         goal chat-alliance-refuse-ours = {player}
         goal trying-to-ally-{player} = 0
