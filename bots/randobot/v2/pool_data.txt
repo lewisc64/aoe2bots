@@ -1,0 +1,378 @@
+!condition!
+
+can-build => 1
+can-train => 1
+can-research => 1
+parameterless-comparable-fact => 10
+parameterless-comparable-fact-seconds => 10
+parameterless-comparable-fact-population => 10
+parameterless-comparable-fact-resource => 10
+
+!action!
+
+generate-random-number => 0.5
+build => 0.5
+build-forward => 0.5
+train => 1
+research => 1
+attack-now => 0.5
+sell-commodity => 0.05
+buy-commodity => 0.05
+chat-to => 0.1
+set-stance => 0.1
+tribute-to-player => 0.001
+disable-self => 0.2
+
+!rel-op!
+== => 1
+!= => 1
+> => 1
+< => 1
+>= => 1
+<= => 1
+
+!commodity!
+
+wood => 1
+food => 1
+gold => 1
+stone => 1
+
+!resource!
+
+wood => 1
+food => 1
+gold => 1
+stone => 1
+
+!chat-target!
+
+all => 1
+allies => 1
+enemies => 1
+
+!relationship!
+
+ally => 1
+enemy => 1
+neutral => 1
+
+!player!
+
+1 => 1
+2 => 1
+3 => 1
+4 => 1
+5 => 1
+6 => 1
+7 => 1
+8 => 1
+any-ally => 20
+any-enemy => 20
+any-neutral => 5
+
+!parameterless-fact!
+
+idle-farm-count => 1
+random-number => 10
+
+!parameterless-fact-seconds!
+
+current-age-time => 1
+current-score => 1
+game-time => 3
+
+!parameterless-fact-population!
+
+housing-headroom => 1
+population => 5
+population-cap => 1
+population-headroom => 1
+soldier-count => 10
+warboat-count => 10
+
+!parameterless-fact-resource!
+
+wood-amount => 5
+food-amount => 5
+gold-amount => 5
+stone-amount => 5
+
+!building!
+
+archery-range => 10
+barracks => 10
+blacksmith => 1
+bombard-tower => 10
+castle => 10
+dock => 10
+farm => 1
+fish-trap => 1
+guard-tower => 1
+house => 1
+keep => 1
+lumber-camp => 1
+market => 1
+mill => 1
+mining-camp => 1
+monastery => 10
+outpost => 1
+siege-workshop => 10
+stable => 10
+town-center => 10
+university => 1
+watch-tower => 1
+wonder => 1
+watch-tower-line => 10
+
+!unit!
+
+my-unique-unit-line => 10
+archer-line => 10
+cavalry-archer-line => 10
+skirmisher-line => 10
+eagle-warrior-line => 10
+militiaman-line => 10
+spearman-line => 10
+berserk-line => 1
+cataphract-line => 1
+chu-ko-nu-line => 1
+conquistador-line => 1
+huskarl-line => 1
+jaguar-man-line => 1
+janissary-line => 1
+longbowman-line => 1
+mameluke-line => 1
+mangudai-line => 1
+plumed-archer-line => 1
+samurai-line => 1
+tarkan-line => 1
+teutonic-knight-line => 1
+throwing-axeman-line => 1
+war-elephant-line => 1
+war-wagon-line => 1
+woad-raider-line => 1
+cannon-galleon-line => 1
+demolition-ship-line => 1
+fire-ship-line => 10
+galley-line => 10
+longboat-line => 1
+turtle-ship-line => 1
+battering-ram-line => 10
+mangonel-line => 10
+scorpion-line => 10
+camel-line => 10
+knight-line => 10
+scout-cavalry-line => 10
+arbalest => 1
+archer => 1
+cavalry-archer => 1
+crossbowman => 1
+elite-skirmisher => 1
+hand-cannoneer => 1
+heavy-cavalry-archer => 1
+skirmisher => 1
+champion => 1
+eagle-warrior => 1
+elite-eagle-warrior => 1
+halberdier => 1
+long-swordsman => 1
+man-at-arms => 1
+militiaman => 1
+pikeman => 1
+spearman => 1
+two-handed-swordsman => 1
+berserk => 1
+cataphract => 1
+chu-ko-nu => 1
+conquistador => 1
+elite-berserk => 1
+elite-cataphract => 1
+elite-chu-ko-nu => 1
+elite-conquistador => 1
+elite-huskarl => 1
+elite-jaguar-man => 1
+elite-janissary => 1
+elite-longbowman => 1
+elite-mameluke => 1
+elite-mangudai => 1
+elite-plumed-archer => 1
+elite-samurai => 1
+elite-tarkan => 1
+elite-teutonic-knight => 1
+elite-throwing-axeman => 1
+elite-war-elephant => 1
+elite-war-wagon => 1
+elite-woad-raider => 1
+huskarl => 1
+jaguar-man => 1
+janissary => 1
+longbowman => 1
+mameluke => 1
+mangudai => 1
+petard => 1
+plumed-archer => 1
+samurai => 1
+tarkan => 1
+teutonic-knight => 1
+throwing-axeman => 1
+trebuchet => 10
+war-elephant => 1
+war-wagon => 1
+woad-raider => 1
+cannon-galleon => 1
+demolition-ship => 1
+elite-cannon-galleon => 1
+elite-longboat => 1
+elite-turtle-ship => 1
+fast-fire-ship => 1
+fire-ship => 1
+fishing-ship => 1
+galleon => 1
+galley => 1
+heavy-demolition-ship => 1
+longboat => 1
+trade-cog => 1
+transport-ship => 1
+turtle-ship => 1
+war-galley => 1
+trade-cart => 10
+missionary => 1
+monk => 10
+battering-ram => 10
+bombard-cannon => 1
+capped-ram => 1
+heavy-scorpion => 1
+mangonel => 1
+onager => 1
+scorpion => 1
+siege-onager => 1
+siege-ram => 1
+camel => 1
+cavalier => 1
+heavy-camel => 1
+hussar => 1
+knight => 1
+light-cavalry => 1
+paladin => 1
+scout-cavalry => 1
+villager => 1
+
+!research!
+
+feudal-age => 1
+castle-age => 1
+imperial-age => 1
+ri-arbalest => 1
+ri-crossbow => 1
+ri-elite-skirmisher => 1
+ri-hand-cannon => 1
+ri-heavy-cavalry-archer => 1
+ri-champion => 1
+ri-elite-eagle-warrior => 1
+ri-halberdier => 1
+ri-long-swordsman => 1
+ri-man-at-arms => 1
+ri-parthian-tactics => 1
+ri-pikeman => 1
+ri-squires => 1
+ri-thumb-ring => 1
+ri-tracking => 1
+ri-two-handed-swordsman => 1
+ri-blast-furnace => 1
+ri-bodkin-arrow => 1
+ri-bracer => 1
+ri-chain-barding => 1
+ri-chain-mail => 1
+ri-fletching => 1
+ri-forging => 1
+ri-iron-casting => 1
+ri-leather-archer-armor => 1
+ri-padded-archer-armor => 1
+ri-plate-barding => 1
+ri-plate-mail => 1
+ri-ring-archer-armor => 1
+ri-scale-barding => 1
+ri-scale-mail => 1
+ri-conscription => 1
+ri-hoardings => 1
+ri-sappers => 1
+ri-elite-berserk => 1
+ri-elite-cataphract => 1
+ri-elite-chu-ko-nu => 1
+ri-elite-huskarl => 1
+ri-elite-janissary => 1
+ri-elite-longbowman => 1
+ri-elite-mameluke => 1
+ri-elite-mangudai => 1
+ri-elite-samurai => 1
+ri-elite-teutonic-knight => 1
+ri-elite-throwing-axeman => 1
+ri-elite-war-elephant => 1
+ri-elite-woad-raider => 1
+my-unique-research => 1
+ri-cannon-galleon => 1
+ri-careening => 1
+ri-deck-guns => 1
+ri-dry-dock => 1
+ri-elite-longboat => 1
+ri-fast-fire-ship => 1
+ri-galleon => 1
+ri-heavy-demolition-ship => 1
+ri-shipwright => 1
+ri-war-galley => 1
+ri-bow-saw => 1
+ri-double-bit-axe => 1
+ri-two-man-saw => 1
+ri-banking => 1
+ri-caravan => 1
+ri-cartography => 1
+ri-coinage => 1
+ri-guilds => 1
+ri-crop-rotation => 1
+ri-heavy-plow => 1
+ri-horse-collar => 1
+ri-gold-mining => 1
+ri-gold-shaft-mining => 1
+ri-stone-mining => 1
+ri-stone-shaft-mining => 1
+ri-atonement => 1
+ri-block-printing => 1
+ri-faith => 1
+ri-fervor => 1
+ri-heresy => 1
+ri-illumination => 1
+ri-redemption => 1
+ri-sanctity => 1
+ri-theocracy => 1
+ri-bombard-cannon => 1
+ri-capped-ram => 1
+ri-heavy-scorpion => 1
+ri-onager => 1
+ri-scorpion => 1
+ri-siege-onager => 1
+ri-siege-ram => 1
+ri-bloodlines => 1
+ri-cavalier => 1
+ri-heavy-camel => 1
+ri-husbandry => 1
+ri-hussar => 1
+ri-light-cavalry => 1
+ri-paladin => 1
+ri-hand-cart => 1
+ri-loom => 1
+ri-town-patrol => 1
+ri-town-watch => 1
+ri-wheel-barrow => 1
+ri-architecture => 1
+ri-ballistics => 1
+ri-bombard-tower => 1
+ri-chemistry => 1
+ri-fortified-wall => 1
+ri-guard-tower => 1
+ri-heated-shot => 1
+ri-keep => 1
+ri-masonry => 1
+ri-murder-holes => 1
+ri-siege-engineers => 1
+ri-stonecutting => 1

@@ -1,0 +1,20 @@
+can-build => "can-build " + building
+can-train => "can-train " + unit
+can-research => "can-research " + research
+parameterless-comparable-fact => parameterless-fact + " " + rel-op + " " + small-number
+parameterless-comparable-fact-seconds => parameterless-fact-seconds + " " + rel-op + " " + seconds
+parameterless-comparable-fact-population => parameterless-fact-population + " " + rel-op + " " + population-number
+parameterless-comparable-fact-resource => parameterless-fact-resource + " " + rel-op + " " + resource-number
+
+generate-random-number => "generate-random-number " + small-number
+build => "build " + building
+build-forward => "build-forward " + building
+train => "train " + unit
+research => "research " + research
+attack-now => "attack-now"
+sell-commodity => "sell-commodity " + commodity
+buy-commodity => "buy-commodity " + commodity
+chat-to => "chat-to-" + chat-target + ' "' + short-text + '"'
+set-stance => "set-stance " + player-number + " " + relationship
+tribute-to-player => "tribute-to-player " + player + " " + resource + " " + resource-number
+disable-self => "disable-self"
