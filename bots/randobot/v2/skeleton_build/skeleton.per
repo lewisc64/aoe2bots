@@ -1,0 +1,552 @@
+;Translated by https://github.com/lewisc64/aoe2ai
+(defconst threat-target 10)
+(defconst threat-source 9)
+(defconst threat-player 8)
+(defconst threat-time 7)
+(defrule
+    (true)
+=>
+    (set-strategic-number sn-enable-new-building-system 1)
+    (set-strategic-number sn-percent-building-cancellation 20)
+    (set-strategic-number sn-cap-civilian-builders 200)
+    (set-difficulty-parameter ability-to-maintain-distance 0)
+    (set-difficulty-parameter ability-to-dodge-missiles 100)
+    (set-strategic-number sn-percent-attack-soldiers 100)
+    (set-strategic-number sn-percent-attack-boats 100)
+    (set-strategic-number sn-attack-intelligence 1)
+    (set-strategic-number sn-livestock-to-town-center 1)
+    (set-strategic-number sn-enable-patrol-attack 1)
+    (set-strategic-number sn-intelligent-gathering 1)
+    (set-strategic-number sn-local-targeting-mode 1)
+    (set-strategic-number sn-retask-gather-amount 0)
+    (set-strategic-number sn-target-evaluation-siege-weapon 500)
+    (set-strategic-number sn-percent-enemy-sighted-response 100)
+    (set-strategic-number sn-task-ungrouped-soldiers 0)
+    (set-strategic-number sn-gather-defense-units 1)
+    (set-strategic-number sn-defer-dropsite-update 1)
+    (set-strategic-number sn-do-not-scale-for-difficulty-level 1)
+    (set-strategic-number sn-number-build-attempts-before-skip 5)
+    (set-strategic-number sn-max-skips-per-attempt 5)
+    (set-strategic-number sn-dropsite-separation-distance 8)
+    (set-strategic-number sn-wall-targeting-mode 1)
+    (set-strategic-number sn-minimum-water-body-size-for-dock 999)
+    (disable-self)
+)
+(defrule
+    (true)
+=>
+    (set-strategic-number sn-maximum-wood-drop-distance -1)
+    (set-strategic-number sn-maximum-food-drop-distance 8)
+    (set-strategic-number sn-maximum-gold-drop-distance 8)
+    (set-strategic-number sn-maximum-stone-drop-distance 8)
+    (set-strategic-number sn-maximum-hunt-drop-distance 48)
+    (set-strategic-number sn-mill-max-distance 25)
+    (set-strategic-number sn-camp-max-distance 25)
+    (set-strategic-number sn-dropsite-separation-distance 5)
+    (set-strategic-number sn-percent-civilian-explorers 0)
+    (set-strategic-number sn-cap-civilian-explorers 0)
+    (set-strategic-number sn-total-number-explorers 1)
+    (set-strategic-number sn-number-explore-groups 1)
+    (set-strategic-number sn-initial-exploration-required 0)
+    (up-assign-builders c: town-center-foundation c: 4)
+    (up-assign-builders c: castle c: 8)
+    (up-assign-builders c: wonder c: 32)
+    (enable-wall-placement 1)
+    (enable-wall-placement 2)
+    (disable-self)
+)
+(defrule
+    (can-build town-center)
+    (up-pending-objects c: town-center < 5)
+    (building-type-count-total town-center < 1)
+=>
+    (build town-center)
+)
+(defrule
+    (or
+      (and
+        (dropsite-min-distance wood > 2)
+        (resource-found wood)
+      )
+      (and
+        (game-time >= 60)
+        (building-type-count-total lumber-camp == 0)
+      )
+    )
+    (up-pending-objects c: lumber-camp == 0)
+    (can-build lumber-camp)
+=>
+    (build lumber-camp)
+)
+(defrule
+    (building-type-count lumber-camp >= 1)
+=>
+    (set-goal 1 0)
+    (up-get-fact building-type-count-total town-center 2)
+    (up-modify-goal 2 c:* 9)
+    (up-modify-goal 1 g:+ 2)
+    (up-get-fact building-type-count-total mill 2)
+    (up-modify-goal 2 c:* 6)
+    (up-modify-goal 1 g:+ 2)
+    (up-get-fact building-type-count-total farm 2)
+)
+(defrule
+    (or
+      (building-type-count-total mill == 0)
+      (up-compare-goal 2 g:>= 1)
+    )
+    (or
+      (resource-found food)
+      (game-time >= 60)
+    )
+    (can-build mill)
+    (building-type-count lumber-camp >= 1)
+=>
+    (build mill)
+)
+(defrule
+    (building-type-count lumber-camp >= 1)
+=>
+    (up-get-fact unit-type-count villager 2)
+    (up-modify-goal 2 s:* sn-food-gatherer-percentage)
+    (up-modify-goal 2 c:/ 100)
+    (up-get-fact building-type-count-total farm 1)
+)
+(defrule
+    (up-compare-goal 1 g:< 2)
+    (can-build farm)
+    (building-type-count lumber-camp >= 1)
+=>
+    (build farm)
+)
+(defrule
+    (true)
+=>
+    (set-goal 3 0)
+    (disable-self)
+)
+(defrule
+    (or
+      (dropsite-min-distance gold > 3)
+      (and
+        (unit-type-count 579 == 0)
+        (and
+          (unit-type-count 581 == 0)
+          (strategic-number sn-gold-gatherer-percentage > 0)
+        )
+      )
+    )
+    (resource-found gold)
+    (up-pending-objects c: mining-camp == 0)
+    (can-build mining-camp)
+    (strategic-number sn-gold-gatherer-percentage > 0)
+=>
+    (build mining-camp)
+    (set-goal 3 1)
+)
+(defrule
+    (goal 3 1)
+    (strategic-number sn-gold-gatherer-percentage > 0)
+=>
+    (up-modify-sn sn-camp-max-distance c:+ 8)
+)
+(defrule
+    (true)
+=>
+    (set-goal 3 0)
+)
+(defrule
+    (true)
+=>
+    (set-goal 4 0)
+    (disable-self)
+)
+(defrule
+    (dropsite-min-distance stone > 3)
+    (resource-found stone)
+    (up-pending-objects c: mining-camp == 0)
+    (can-build mining-camp)
+    (strategic-number sn-stone-gatherer-percentage > 0)
+=>
+    (build mining-camp)
+    (set-goal 4 1)
+)
+(defrule
+    (goal 4 1)
+    (strategic-number sn-stone-gatherer-percentage > 0)
+=>
+    (up-modify-sn sn-camp-max-distance c:+ 8)
+)
+(defrule
+    (true)
+=>
+    (set-goal 4 0)
+)
+(defrule
+    (dropsite-min-distance live-boar != -1)
+=>
+    (set-strategic-number sn-enable-boar-hunting 2)
+    (set-strategic-number sn-minimum-number-hunters 1)
+    (set-strategic-number sn-minimum-boar-lure-group-size 1)
+    (set-strategic-number sn-minimum-boar-hunt-group-size 1)
+    (set-strategic-number sn-maximum-hunt-drop-distance 48)
+)
+(defrule
+    (dropsite-min-distance live-boar == -1)
+=>
+    (set-strategic-number sn-enable-boar-hunting 1)
+    (set-strategic-number sn-minimum-number-hunters 0)
+    (set-strategic-number sn-minimum-boar-lure-group-size 0)
+    (set-strategic-number sn-minimum-boar-hunt-group-size 0)
+    (set-strategic-number sn-maximum-hunt-drop-distance 8)
+)
+(defrule
+    (dropsite-min-distance live-boar < 4)
+    (dropsite-min-distance live-boar >= 0)
+=>
+    (up-request-hunters c: 8)
+)
+(defrule
+    (food-amount < 50)
+    (up-pending-objects c: villager <= 1)
+=>
+    (up-drop-resources c: boar-food 10)
+)
+(defrule
+    (current-age == dark-age)
+=>
+    (set-strategic-number sn-wood-gatherer-percentage 20)
+    (set-strategic-number sn-food-gatherer-percentage 80)
+    (set-strategic-number sn-gold-gatherer-percentage 0)
+    (set-strategic-number sn-stone-gatherer-percentage 0)
+    (disable-self)
+)
+(defrule
+    (population-headroom != 0)
+    (up-pending-objects c: house < 2)
+    (can-build house)
+    (housing-headroom < 5)
+    (current-age == dark-age)
+=>
+    (build house)
+)
+(defrule
+    (current-age >= feudal-age)
+=>
+    (set-strategic-number sn-wood-gatherer-percentage 37)
+    (set-strategic-number sn-food-gatherer-percentage 37)
+    (set-strategic-number sn-gold-gatherer-percentage 18)
+    (set-strategic-number sn-stone-gatherer-percentage 8)
+    (disable-self)
+)
+(defrule
+    (population-headroom != 0)
+    (up-pending-objects c: house < 2)
+    (can-build house)
+    (housing-headroom < 10)
+    (current-age >= feudal-age)
+=>
+    (build house)
+)
+(defrule
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+    (current-age >= feudal-age)
+=>
+    (build barracks)
+)
+(defrule
+    (can-build stable)
+    (up-pending-objects c: stable < 5)
+    (building-type-count-total stable < 1)
+    (current-age >= feudal-age)
+=>
+    (build stable)
+)
+(defrule
+    (can-build archery-range)
+    (up-pending-objects c: archery-range < 5)
+    (building-type-count-total archery-range < 1)
+    (current-age >= feudal-age)
+=>
+    (build archery-range)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (current-age >= feudal-age)
+=>
+    (build blacksmith)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (current-age >= feudal-age)
+=>
+    (build market)
+)
+(defrule
+    (can-build monastery)
+    (up-pending-objects c: monastery < 5)
+    (building-type-count-total monastery < 1)
+    (current-age >= feudal-age)
+=>
+    (build monastery)
+)
+(defrule
+    (can-build siege-workshop)
+    (up-pending-objects c: siege-workshop < 5)
+    (building-type-count-total siege-workshop < 1)
+    (current-age >= feudal-age)
+=>
+    (build siege-workshop)
+)
+(defrule
+    (can-build university)
+    (up-pending-objects c: university < 5)
+    (building-type-count-total university < 1)
+    (current-age >= feudal-age)
+=>
+    (build university)
+)
+(defrule
+    (current-age >= feudal-age)
+=>
+    (enable-timer 1 60)
+    (disable-self)
+)
+(defrule
+    (current-age >= feudal-age)
+=>
+    (up-get-fact resource-amount wood 1)
+    (up-get-fact escrow-amount wood 2)
+    (up-modify-goal 1 g:- 2)
+    (up-get-fact resource-amount food 5)
+    (up-get-fact escrow-amount food 2)
+    (up-modify-goal 5 g:- 2)
+    (up-get-fact resource-amount gold 6)
+    (up-get-fact escrow-amount gold 2)
+    (up-modify-goal 6 g:- 2)
+)
+(defrule
+    (strategic-number sn-wood-gatherer-percentage >= 2)
+    (up-compare-goal 1 c:> 300)
+    (strategic-number sn-food-gatherer-percentage >= 2)
+    (up-compare-goal 5 c:> 300)
+    (strategic-number sn-gold-gatherer-percentage <= 96)
+    (up-compare-goal 6 c:<= 300)
+    (timer-triggered 1)
+    (current-age >= feudal-age)
+=>
+    (up-modify-sn sn-wood-gatherer-percentage c:- 2)
+    (up-modify-sn sn-food-gatherer-percentage c:- 2)
+    (up-modify-sn sn-gold-gatherer-percentage c:+ 4)
+)
+(defrule
+    (strategic-number sn-wood-gatherer-percentage >= 2)
+    (up-compare-goal 1 c:> 300)
+    (strategic-number sn-gold-gatherer-percentage >= 2)
+    (up-compare-goal 6 c:> 300)
+    (strategic-number sn-food-gatherer-percentage <= 96)
+    (up-compare-goal 5 c:<= 300)
+    (timer-triggered 1)
+    (current-age >= feudal-age)
+=>
+    (up-modify-sn sn-wood-gatherer-percentage c:- 2)
+    (up-modify-sn sn-gold-gatherer-percentage c:- 2)
+    (up-modify-sn sn-food-gatherer-percentage c:+ 4)
+)
+(defrule
+    (strategic-number sn-wood-gatherer-percentage >= 4)
+    (up-compare-goal 1 c:> 300)
+    (strategic-number sn-food-gatherer-percentage <= 98)
+    (up-compare-goal 5 c:<= 300)
+    (strategic-number sn-gold-gatherer-percentage <= 98)
+    (up-compare-goal 6 c:<= 300)
+    (timer-triggered 1)
+    (current-age >= feudal-age)
+=>
+    (up-modify-sn sn-wood-gatherer-percentage c:- 4)
+    (up-modify-sn sn-food-gatherer-percentage c:+ 2)
+    (up-modify-sn sn-gold-gatherer-percentage c:+ 2)
+)
+(defrule
+    (strategic-number sn-food-gatherer-percentage >= 2)
+    (up-compare-goal 5 c:> 300)
+    (strategic-number sn-gold-gatherer-percentage >= 2)
+    (up-compare-goal 6 c:> 300)
+    (strategic-number sn-wood-gatherer-percentage <= 96)
+    (up-compare-goal 1 c:<= 300)
+    (timer-triggered 1)
+    (current-age >= feudal-age)
+=>
+    (up-modify-sn sn-food-gatherer-percentage c:- 2)
+    (up-modify-sn sn-gold-gatherer-percentage c:- 2)
+    (up-modify-sn sn-wood-gatherer-percentage c:+ 4)
+)
+(defrule
+    (strategic-number sn-food-gatherer-percentage >= 4)
+    (up-compare-goal 5 c:> 300)
+    (strategic-number sn-wood-gatherer-percentage <= 98)
+    (up-compare-goal 1 c:<= 300)
+    (strategic-number sn-gold-gatherer-percentage <= 98)
+    (up-compare-goal 6 c:<= 300)
+    (timer-triggered 1)
+    (current-age >= feudal-age)
+=>
+    (up-modify-sn sn-food-gatherer-percentage c:- 4)
+    (up-modify-sn sn-wood-gatherer-percentage c:+ 2)
+    (up-modify-sn sn-gold-gatherer-percentage c:+ 2)
+)
+(defrule
+    (strategic-number sn-gold-gatherer-percentage >= 4)
+    (up-compare-goal 6 c:> 300)
+    (strategic-number sn-wood-gatherer-percentage <= 98)
+    (up-compare-goal 1 c:<= 300)
+    (strategic-number sn-food-gatherer-percentage <= 98)
+    (up-compare-goal 5 c:<= 300)
+    (timer-triggered 1)
+    (current-age >= feudal-age)
+=>
+    (up-modify-sn sn-gold-gatherer-percentage c:- 4)
+    (up-modify-sn sn-wood-gatherer-percentage c:+ 2)
+    (up-modify-sn sn-food-gatherer-percentage c:+ 2)
+)
+(defrule
+    (timer-triggered 1)
+    (current-age >= feudal-age)
+=>
+    (disable-timer 1)
+    (enable-timer 1 60)
+)
+(defrule
+    (true)
+=>
+    (set-escrow-percentage food 10)
+    (set-escrow-percentage gold 10)
+    (disable-self)
+)
+(defrule
+    (up-research-status c: imperial-age >= research-pending)
+=>
+    (set-escrow-percentage food 0)
+    (set-escrow-percentage gold 0)
+    (release-escrow food)
+    (release-escrow gold)
+)
+(defrule
+    (can-research-with-escrow feudal-age)
+=>
+    (release-escrow food)
+    (release-escrow gold)
+    (research feudal-age)
+)
+(defrule
+    (can-research-with-escrow castle-age)
+=>
+    (release-escrow food)
+    (release-escrow gold)
+    (research castle-age)
+)
+(defrule
+    (can-research-with-escrow imperial-age)
+=>
+    (release-escrow food)
+    (release-escrow gold)
+    (research imperial-age)
+)
+(defrule
+    (true)
+=>
+    (set-goal threat-time 0)
+    (set-goal threat-player 0)
+    (set-goal threat-source 0)
+    (set-goal threat-target 0)
+    (disable-self)
+)
+(defrule
+    (true)
+=>
+    (up-get-threat-data threat-time threat-player threat-source threat-target)
+)
+(defrule
+    (goal threat-player 1)
+    (up-compare-goal threat-time c:< 1000)
+    (not
+      (stance-toward 1 enemy)
+    )
+=>
+    (set-stance 1 enemy)
+)
+(defrule
+    (goal threat-player 2)
+    (up-compare-goal threat-time c:< 1000)
+    (not
+      (stance-toward 2 enemy)
+    )
+=>
+    (set-stance 2 enemy)
+)
+(defrule
+    (goal threat-player 3)
+    (up-compare-goal threat-time c:< 1000)
+    (not
+      (stance-toward 3 enemy)
+    )
+=>
+    (set-stance 3 enemy)
+)
+(defrule
+    (goal threat-player 4)
+    (up-compare-goal threat-time c:< 1000)
+    (not
+      (stance-toward 4 enemy)
+    )
+=>
+    (set-stance 4 enemy)
+)
+(defrule
+    (goal threat-player 5)
+    (up-compare-goal threat-time c:< 1000)
+    (not
+      (stance-toward 5 enemy)
+    )
+=>
+    (set-stance 5 enemy)
+)
+(defrule
+    (goal threat-player 6)
+    (up-compare-goal threat-time c:< 1000)
+    (not
+      (stance-toward 6 enemy)
+    )
+=>
+    (set-stance 6 enemy)
+)
+(defrule
+    (goal threat-player 7)
+    (up-compare-goal threat-time c:< 1000)
+    (not
+      (stance-toward 7 enemy)
+    )
+=>
+    (set-stance 7 enemy)
+)
+(defrule
+    (goal threat-player 8)
+    (up-compare-goal threat-time c:< 1000)
+    (not
+      (stance-toward 8 enemy)
+    )
+=>
+    (set-stance 8 enemy)
+)
+(defrule
+    (can-train villager)
+    (unit-type-count-total villager < 120)
+=>
+    (train villager)
+)

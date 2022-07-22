@@ -53,8 +53,8 @@ enemies => 1
 
 !relationship!
 
-ally => 1
-enemy => 1
+ally => 10
+enemy => 10
 neutral => 1
 
 !player!
@@ -127,13 +127,13 @@ watch-tower-line => 10
 
 !unit!
 
-my-unique-unit-line => 10
-archer-line => 10
-cavalry-archer-line => 10
-skirmisher-line => 10
-eagle-warrior-line => 10
-militiaman-line => 10
-spearman-line => 10
+my-unique-unit-line => 100
+archer-line => 100
+cavalry-archer-line => 100
+skirmisher-line => 100
+eagle-warrior-line => 100
+militiaman-line => 100
+spearman-line => 100
 berserk-line => 1
 cataphract-line => 1
 chu-ko-nu-line => 1
@@ -154,16 +154,16 @@ war-wagon-line => 1
 woad-raider-line => 1
 cannon-galleon-line => 1
 demolition-ship-line => 1
-fire-ship-line => 10
-galley-line => 10
+fire-ship-line => 100
+galley-line => 100
 longboat-line => 1
 turtle-ship-line => 1
-battering-ram-line => 10
-mangonel-line => 10
-scorpion-line => 10
-camel-line => 10
-knight-line => 10
-scout-cavalry-line => 10
+battering-ram-line => 100
+mangonel-line => 100
+scorpion-line => 100
+camel-line => 100
+knight-line => 100
+scout-cavalry-line => 100
 arbalest => 1
 archer => 1
 cavalry-archer => 1
@@ -236,10 +236,10 @@ trade-cog => 1
 transport-ship => 1
 turtle-ship => 1
 war-galley => 1
-trade-cart => 10
+trade-cart => 100
 missionary => 1
-monk => 10
-battering-ram => 10
+monk => 100
+battering-ram => 100
 bombard-cannon => 1
 capped-ram => 1
 heavy-scorpion => 1

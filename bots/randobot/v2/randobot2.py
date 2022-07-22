@@ -1,10 +1,11 @@
 import random
 
-PER_PATH = r"E:\games\SteamLibrary\steamapps\common\Age2HD\mods\Terrible AI Pack\resources\_common\ai\(TAP) Randobot2.per"
+PER_PATH = r"E:\games\SteamLibrary\steamapps\common\Age2HD\mods\Terrible AI Pack\resources\_common\ai\(TAP) Randobot.per"
 
-BINARY_OPERATORS = ["or", "and", "nor", "nand"]
+BINARY_OPERATORS = ["or", "and", "nor", "nand", "xor"]
 UNARY_OPERATORS = ["not"]
-CHAT_CHARACTERS = "abcdefghijklmnopqrstuvwxyz "
+CONSONANTS = "bcdfghjklmnpqrstvwxz"
+VOWELS = "aeiouy"
 
 class Condition:
     
@@ -104,8 +105,13 @@ class TextGenerator:
 
     def generate(self):
         output = ""
-        for x in range(random.randint(self.min_length, self.max_length + 1)):
-            output += random.choice(CHAT_CHARACTERS)
+        for x in range(random.randint(self.min_length, self.max_length)):
+            if random.randint(1, 4) == 1:
+                output += " "
+            elif random.randint(1,2) == 1:
+                output += random.choice(VOWELS)
+            else:
+                output += random.choice(CONSONANTS)
         return output
 
 class NumberGenerator:
@@ -115,7 +121,7 @@ class NumberGenerator:
         self.max_size = max_size
 
     def generate(self):
-        return str(random.randint(self.min_size, self.max_size + 1))
+        return str(random.randint(self.min_size, self.max_size))
 
 class ConditionGenerator:
 
@@ -146,12 +152,9 @@ class RuleGenerator:
     def generate(self):
         rule = Defrule()
 
-        number_of_conditions = random.randint(1, 8)
+        number_of_conditions = random.randint(1, 5)
         number_of_actions = random.randint(1, 3)
-
-        number_of_conditions = 1
-        number_of_actions = 1
-
+        
         for x in range(1, number_of_conditions + 1):
             rule.conditions.append(self.condition_generator.generate())
 
@@ -185,7 +188,7 @@ def load_pools(path):
 
 def load_item_generators(path, pools):
     output = {
-        "small-number": NumberGenerator(0, 20),
+        "small-number": NumberGenerator(1, 20),
         "resource-number": NumberGenerator(0, 2000),
         "population-number": NumberGenerator(0, 200),
         "seconds": NumberGenerator(0, 3600),
@@ -216,6 +219,59 @@ def load_item_generators(path, pools):
             
     return output
 
+def avoid_excessive_queue_flood(rules):
+    can_sync = ["build", "train", "research"]
+    
+    for rule in rules:
+        for action in rule.actions:
+            for name in can_sync:
+                if action.text.startswith(name):
+                    rule.conditions.append(Condition(f"can-{name} " + action.text.split(" ")[-1]))
+
+def limit_buildings(rules, limit=5):
+    for rule in rules:
+        for action in rule.actions:
+            if action.text.startswith("build"):
+                rule.conditions.append(Condition("building-type-count-total " + action.text.split(" ")[-1] + " < " + str(limit)))
+                rule.conditions.append(Condition("up-pending-objects c: " + action.text.split(" ")[-1] + " < 5"))
+
+def avoid_attack_now_spam(rules, interval=60):
+    setup_rule = Defrule()
+    setup_rule.actions.append(Action(f"enable-timer 20 {interval}"))
+    setup_rule.optimize()
+
+    restart_rule = Defrule()
+    restart_rule.conditions.append(Condition("timer-triggered 20"))
+    restart_rule.actions.append(Action("disable-timer 20"))
+    restart_rule.actions.append(Action(f"enable-timer 20 {interval}"))
+    restart_rule.optimize()
+
+    rules.insert(0, setup_rule)
+    rules.append(restart_rule)
+
+    for rule in rules[2:]:
+        for action in rule.actions:
+            if action.text == "attack-now":
+                rule.conditions.append(Condition("timer-triggered 20"))
+                break
+
+def avoid_stance_change_spam(rules):
+    for rule in rules:
+        found_stance = False
+        found_disable_self = False
+        for action in rule.actions:
+            if action.text.startswith("set-stance"):
+                found_stance = True
+            elif action.text == "disable-self":
+                found_disable_self = True
+
+        if found_stance and not found_disable_self:
+            rule.actions.append(Action("disable-self"))
+
+def get_skeleton(path):
+    with open(path, "r") as file:
+        return file.read()
+
 if __name__ == "__main__":
 
     pools = load_pools("pool_data.txt")
@@ -231,6 +287,13 @@ if __name__ == "__main__":
     for x in range(2000):
         rules.append(rule_generator.generate())
 
+    avoid_excessive_queue_flood(rules)
+    limit_buildings(rules, limit=20)
+    avoid_attack_now_spam(rules)
+    avoid_stance_change_spam(rules)
+
+    skeleton = get_skeleton("skeleton_build/skeleton.per")
+
     with open(PER_PATH, "w") as file:
-        file.write("\n".join([x.to_string() for x in rules]))
+        file.write(";SKELETON\n" + skeleton + "\n;END OF SKELETON - RANDOM STUFF NOW!\n" + "\n".join([x.to_string() for x in rules]))
         

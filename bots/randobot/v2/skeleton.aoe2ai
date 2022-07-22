@@ -1,0 +1,99 @@
+#do once
+  set up basics
+  
+  assign 4 builders to town-center-foundation
+  assign 8 builders to castle
+  assign 32 builders to wonder
+  
+  enable walls on perimeter 1
+  enable walls on perimeter 2
+#end do
+
+build 1 town-center
+
+#template build-mining-camps
+  #if strategic-number sn-{resource}-gatherer-percentage > 0
+    #when
+      build {resource} mining camps
+    #then
+      sn-camp-max-distance += 8
+    #end when
+  #end if
+#end template
+
+build lumber camps
+#if building-type-count lumber-camp >= 1
+  build mills
+  build farms
+#end if
+insert build-mining-camps(resource="gold")
+insert build-mining-camps(resource="stone")
+
+lure boars
+
+#if current-age == dark-age
+  #do once
+    distribute villagers 20 80 0 0
+  #end do
+  
+  build houses with 5 headroom
+#end if
+
+#if current-age >= feudal-age
+  #do once
+    distribute villagers 37 37 18 8
+  #end do
+  
+  build houses with 10 headroom
+  build 1 barracks
+  build 1 stable
+  build 1 archery-range
+  build 1 blacksmith
+  build 1 market
+  build 1 monastery
+  build 1 siege-workshop
+  build 1 university
+  
+  auto balance wood and food and gold
+#end if
+
+#do once
+  escrow 10 food
+  escrow 10 gold
+#end do
+
+#if up-research-status c: imperial-age >= research-pending
+  escrow 0 food
+  escrow 0 gold
+  @release-escrow food
+  @release-escrow gold
+#end if
+
+research feudal-age with food and gold escrow
+research castle-age with food and gold escrow
+research imperial-age with food and gold escrow
+
+#do once
+  goal threat-time = 0
+  goal threat-player = 0
+  goal threat-source = 0
+  goal threat-target = 0
+#end do
+@up-get-threat-data threat-time threat-player threat-source threat-target
+
+#template try-retaliate
+  #if goal threat-player {player} and up-compare-goal threat-time c:< 1000 and not stance-toward {player} enemy
+    @set-stance {player} enemy
+  #end if
+#end template
+
+insert try-retaliate(player=1)
+insert try-retaliate(player=2)
+insert try-retaliate(player=3)
+insert try-retaliate(player=4)
+insert try-retaliate(player=5)
+insert try-retaliate(player=6)
+insert try-retaliate(player=7)
+insert try-retaliate(player=8)
+
+train 120 villager
