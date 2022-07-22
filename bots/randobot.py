@@ -38,6 +38,8 @@ BACKUS_NAUR = """
                 | "sheep-and-forage-too-far"
                 | "starting-age " <rel-op> " " <age>
                 | "town-under-attack"
+                | "players-stance " <player-number> " " <relationship>
+                | "stance-toward " <player-number> " " <relationship>
 
 <number-comparable-fact> ::= "current-age"
                       | ("defend" | "attack") "-" ("soldier" | "warboat") "-count"
@@ -57,7 +59,6 @@ BACKUS_NAUR = """
                       | "players-building-count " <player-number>
                       | "players-building-type-count " <player-number> " " <building>
                       | "players-civilian-population " <player-number>
-                      | "players-current-age-time " <player-number>
                       | "players-military-population " <player-number>
                       | "players-population " <player-number>
                       | "players-score " <player-number>
@@ -65,7 +66,6 @@ BACKUS_NAUR = """
                       | "players-tribute-memory " <player-number> " " <resource-type>
                       | "players-unit-count " <player-number>
                       | "players-unit-type-count " <player-number> " " <unit>
-                      | "players-current-age-time " <player-number>
                       | "players-current-age-time " <player-number>
                       | "population"
                       | "population-cap"
@@ -82,6 +82,7 @@ BACKUS_NAUR = """
              | "attack-now"
              | ("sell" | "buy") "-commodity " <commodity>
              | "chat-to-" ("all" | "allies" | "enemies") ' "' <chat-message> '"'
+             | "set-stance " <player-number> " " <relationship>
              | "disable-self"
 
 <building> ::= "archery-range" | "barracks" | "blacksmith" | "bombard-tower" | "castle" | "dock" | "farm" | "fish-trap" | "guard-tower" | "house" | "keep" | "lumber-camp" | "market" | "mill" | "mining-camp" | "monastery" | "outpost" | "siege-workshop" | "stable" | "town-center" | "university" | "watch-tower" | "wonder" | "watch-tower-line"
@@ -97,6 +98,7 @@ BACKUS_NAUR = """
 <player-number> ::= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8"
 <age> ::= "dark-age" | "feudal-age" | "castle-age" | "imperial-age"
 <civ> ::= "aztec" | "berbers" | "briton" | "burmese" | "byzantine" | "celtic" | "chinese" | "ethiopian" | "frankish" | "gothic" | "hun" | "incan" | "indian" | "italian" | "japanese" | "khmer" | "korean" | "magyar" | "malay" | "malian" | "mayan" | "mongol" | "persian" | "portuguese" | "saracen" | "slavic" | "spanish" | "teutonic" | "turkish" | "vietnamese" | "viking"
+<relationship> ::= "ally" | "neutral" | "enemy"
 
 <binary-op> ::= "and" | "or" | "nand" | "nor"
 <unary-op> ::= "not"
@@ -143,6 +145,12 @@ SKELETON = """(defrule
     (set-strategic-number sn-max-skips-per-attempt 5)
 )
 (defrule
+    (true)
+=>
+    (enable-wall-placement 1)
+    (enable-wall-placement 2)
+)
+(defrule
     (unit-type-count-total villager <= 20)
 =>
     (set-strategic-number sn-wood-gatherer-percentage 20)
@@ -162,9 +170,9 @@ SKELETON = """(defrule
 )
 (defrule
     (population-headroom != 0)
-    (up-pending-objects c: house == 0)
+    (up-pending-objects c: house < 2)
     (can-build house)
-    (housing-headroom < 10)
+    (housing-headroom < 5)
 =>
     (build house)
 )
@@ -422,14 +430,17 @@ def ensure(bot):
     insertions = []
     lines = bot.split("\n")
     for i, line in enumerate(lines):
-        match = re.match(r"^\s*\((build|train|research)\s*([a-z\-]+)\)\s*$", line)
+        match = re.match(r"^\s*\((build|build-forward|train|research)\s*([a-z\-]+)\)\s*$", line)
         if match:
             action = match.group(1)
             operand = match.group(2)
             for j in range(i - 1, 0, -1):
                 if "=>" in lines[j]:
-                    insertions.append((j, f"  (can-{action} {operand})"))
-                    if action == "build":
+                    if action == "build-forward":
+                        insertions.append((j, f"  (can-build {operand})"))
+                    else:
+                        insertions.append((j, f"  (can-{action} {operand})"))
+                    if action == "build" or action == "build-forward":
                         insertions.append((j, f"  (building-type-count-total {operand} < {BUILDING_LIMIT})"))
                     break
 
@@ -438,6 +449,6 @@ def ensure(bot):
 
     return "\n".join(lines)
 
-file = open(r"E:\games\SteamLibrary\steamapps\common\Age2HD\resources\_common\ai\randobot.per", "w")
+file = open(r"E:\games\SteamLibrary\steamapps\common\Age2HD\mods\Terrible AI Pack\resources\_common\ai\(TAP) Randobot.per", "w")
 file.write(SKELETON.format(ensure(create_bot())))
 file.close()
