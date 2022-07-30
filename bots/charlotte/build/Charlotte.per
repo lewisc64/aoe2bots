@@ -29673,7 +29673,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 747)
+    (up-jump-rule 755)
 )
 (defrule
     (true)
@@ -30527,6 +30527,7 @@
       (town-under-attack)
     )
     (game-time >= 60)
+    (building-type-count lumber-camp >= 1)
 =>
     (set-goal produce-fishing-ships 1)
 )
@@ -30544,6 +30545,7 @@
       (town-under-attack)
     )
     (game-time >= 60)
+    (building-type-count lumber-camp >= 1)
 =>
     (set-goal produce-fishing-ships 0)
 )
@@ -30556,7 +30558,10 @@
           (not
             (town-under-attack)
           )
-          (game-time >= 60)
+          (and
+            (game-time >= 60)
+            (building-type-count lumber-camp >= 1)
+          )
         )
       )
     )
@@ -30574,7 +30579,10 @@
           (not
             (town-under-attack)
           )
-          (game-time >= 60)
+          (and
+            (game-time >= 60)
+            (building-type-count lumber-camp >= 1)
+          )
         )
       )
     )
@@ -31890,7 +31898,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 46)
+    (up-jump-rule 54)
 )
 (defrule
     (not
@@ -32252,6 +32260,58 @@
     (goal unique-unit-counters-infantry 0)
 =>
     (set-goal produce-unique-unit 0)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy battle-elephant-line >= min-detection-units)
+      (goal desired-units-per-type 1)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-eagles 0)
+    (set-goal produce-militia 0)
+    (set-goal produce-condottiero 0)
+)
+(defrule
+    (goal unique-unit-is-infantry 1)
+    (goal unique-unit-counters-cavalry 0)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-scouts 0)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy war-elephant-line >= min-detection-units)
+      (goal desired-units-per-type 1)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-eagles 0)
+    (set-goal produce-militia 0)
+    (set-goal produce-condottiero 0)
+)
+(defrule
+    (goal unique-unit-is-infantry 1)
+    (goal unique-unit-counters-cavalry 0)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-scouts 0)
 )
 (defrule
     (nand
@@ -38689,8 +38749,7 @@
     (buy-commodity food)
 )
 (defrule
-    (town-under-attack)
-    (goal attacking 0)
+    (goal under-attack 1)
 =>
     (up-get-fact resource-amount wood 337)
     (up-get-fact escrow-amount wood 338)
@@ -38706,8 +38765,7 @@
     (up-compare-goal 337 c:> gold-threshold)
     (can-sell-commodity wood)
     (up-compare-goal 224 c:< gold-threshold)
-    (town-under-attack)
-    (goal attacking 0)
+    (goal under-attack 1)
 =>
     (sell-commodity wood)
 )
@@ -38715,8 +38773,7 @@
     (up-compare-goal 325 c:> gold-threshold)
     (can-sell-commodity food)
     (up-compare-goal 224 c:< gold-threshold)
-    (town-under-attack)
-    (goal attacking 0)
+    (goal under-attack 1)
 =>
     (sell-commodity food)
 )
@@ -38724,8 +38781,7 @@
     (up-compare-goal 337 c:< gold-threshold)
     (up-compare-goal 224 c:> gold-threshold)
     (can-buy-commodity wood)
-    (town-under-attack)
-    (goal attacking 0)
+    (goal under-attack 1)
 =>
     (buy-commodity wood)
 )
@@ -38733,8 +38789,7 @@
     (up-compare-goal 325 c:< gold-threshold)
     (up-compare-goal 224 c:> gold-threshold)
     (can-buy-commodity food)
-    (town-under-attack)
-    (goal attacking 0)
+    (goal under-attack 1)
 =>
     (buy-commodity food)
 )
@@ -38746,9 +38801,8 @@
     )
     (up-compare-goal non-escrowed-gold c:> gold-threshold)
     (wood-amount < half-max-wood)
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (chat-local-to-self "buy wood, excellent price.")
@@ -38762,9 +38816,8 @@
     )
     (up-compare-goal non-escrowed-gold c:> gold-threshold)
     (wood-amount < half-max-wood)
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (buy-commodity wood)
@@ -38777,9 +38830,8 @@
     )
     (up-compare-goal non-escrowed-gold c:> gold-threshold)
     (food-amount < half-max-food)
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (chat-local-to-self "buy food, excellent price.")
@@ -38793,9 +38845,8 @@
     )
     (up-compare-goal non-escrowed-gold c:> gold-threshold)
     (food-amount < half-max-food)
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (buy-commodity food)
@@ -38808,9 +38859,8 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (gold-amount < half-max-gold)
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (chat-local-to-self "sell wood, excellent price.")
@@ -38824,9 +38874,8 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (gold-amount < half-max-gold)
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (sell-commodity wood)
@@ -38839,9 +38888,8 @@
     )
     (up-compare-goal non-escrowed-food c:> food-threshold)
     (gold-amount < half-max-gold)
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (chat-local-to-self "sell food, excellent price.")
@@ -38855,9 +38903,8 @@
     )
     (up-compare-goal non-escrowed-food c:> food-threshold)
     (gold-amount < half-max-gold)
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (sell-commodity food)
@@ -38866,9 +38913,8 @@
     (commodity-buying-price wood <= good-wood-price)
     (up-compare-goal non-escrowed-wood c:< wood-threshold)
     (up-compare-goal non-escrowed-gold c:> gold-threshold)
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (chat-local-to-self "buy wood, good price.")
@@ -38878,9 +38924,8 @@
     (commodity-buying-price wood <= good-wood-price)
     (up-compare-goal non-escrowed-wood c:< wood-threshold)
     (up-compare-goal non-escrowed-gold c:> gold-threshold)
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (buy-commodity wood)
@@ -38889,9 +38934,8 @@
     (commodity-buying-price food <= good-food-price)
     (up-compare-goal non-escrowed-food c:< food-threshold)
     (up-compare-goal non-escrowed-gold c:> gold-threshold)
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (chat-local-to-self "buy food, good price.")
@@ -38901,9 +38945,8 @@
     (commodity-buying-price food <= good-food-price)
     (up-compare-goal non-escrowed-food c:< food-threshold)
     (up-compare-goal non-escrowed-gold c:> gold-threshold)
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (buy-commodity food)
@@ -38914,9 +38957,8 @@
     (not
       (up-compare-goal non-escrowed-gold c:> gold-threshold)
     )
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (chat-local-to-self "sell wood, good price.")
@@ -38928,9 +38970,8 @@
     (not
       (up-compare-goal non-escrowed-gold c:> gold-threshold)
     )
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (sell-commodity wood)
@@ -38941,9 +38982,8 @@
     (not
       (up-compare-goal non-escrowed-gold c:> gold-threshold)
     )
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (chat-local-to-self "sell food, good price.")
@@ -38955,9 +38995,8 @@
     (not
       (up-compare-goal non-escrowed-gold c:> gold-threshold)
     )
-    (nand
-      (town-under-attack)
-      (goal attacking 0)
+    (not
+      (goal under-attack 1)
     )
 =>
     (sell-commodity food)

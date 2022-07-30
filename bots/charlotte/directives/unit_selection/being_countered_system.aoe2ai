@@ -45,6 +45,16 @@
   #end if
 #end template
 
+#template turn-off-for-elephants
+  goal produce-eagles = 0
+  goal produce-militia = 0
+  goal produce-condottiero = 0
+  #if goal unique-unit-is-infantry 1 and goal unique-unit-counters-cavalry 0
+    goal produce-unique-units = 0
+  #end if
+  goal produce-scouts = 0
+#end template
+
 #respond to min-detection-units monk-set
   insert turn-off-for-monks
 #end respond
@@ -122,6 +132,14 @@
   
   #respond to min-detection-units spearman-line
     insert turn-off-for-anti-cavalry
+  #end respond
+  
+  #respond to min-detection-units battle-elephant-line
+    insert turn-off-for-elephants
+  #end respond
+  
+  #respond to min-detection-units war-elephant-line
+    insert turn-off-for-elephants
   #end respond
   
 #end if
