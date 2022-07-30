@@ -83,6 +83,7 @@ load "templates/lightning_castle.aoe2ai"
   build castle
   
   goal cap-monks = 0
+  goal produce-monks = 1
   
   research imperial-age
   
@@ -122,7 +123,7 @@ load "templates/lightning_castle.aoe2ai"
   #if goal need-redemption 1 or gold-amount >= 1300
     research ri-redemption
     #if up-research-status c: ri-redemption < research-pending
-      goal cap-monks = 1
+      goal produce-monks = 0
     #end if
   #end if
   
@@ -181,11 +182,13 @@ load "templates/lightning_castle.aoe2ai"
     delete unit trade-cart
   #end if
   
-  train 20 battering-ram-line
-  #if goal cap-monks 1
-    train 20 monk
-  #else
-    train monk
+  #if goal produce-monks 1
+    train 20 battering-ram-line
+    #if goal cap-monks 1
+      train 20 monk
+    #else
+      train monk
+    #end if
   #end if
   
   do basic targeting
