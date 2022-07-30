@@ -1,38 +1,38 @@
-const town-size = 18
-
-#do once
-  target walls
-#end do
-
 load "templates/fast_castle.aoe2ai"
 
 do basic diplomacy
 
-research ri-loom
-
-#if building-type-count-total castle > 0
-  build 5 town-center
-#end if
-
 #if current-age >= castle-age
   
   #do once
-    distribute villagers 30 45 5 20
-    set town size to 28
+    distribute villagers 25 40 15 20
+    
+    assign 8 builders to castle
+    assign 4 builders to town-center-foundation
   #end do
   
   manage scouting
   
-  build farms
-  
-  #add action up-modify-sn sn-camp-max-distance c:+ 3
+  #when
     build gold mining camps
-  #remove action
-  build stone mining camps
+    build stone mining camps
+  #then
+    sn-camp-max-distance += 8
+  #end when
   build lumber camps
   build castle
   build 1 university
+  build 1 blacksmith
   build houses with 15 headroom
+  
+  build mills
+  #if wood-amount >= 200
+    build farms
+  #end if
+  
+  #if building-type-count-total castle > 0
+    build 5 town-center
+  #end if
   
   research town center upgrades
   research lumber camp upgrades
@@ -57,21 +57,23 @@ research ri-loom
   sell wood when wood > 1000
   sell food when food > 1500
   
+  do basic targeting
+  
   #if unit-type-count-total petard >= 50
-    #if not(enemy-buildings-in-town)
-      increase town size by 5
-    #end if
+    sn-maximum-town-size = 255
     #do once
       chat to all "DOWN WITH THE GOVERNMENT!"
     #end do
   #else
-    set town size to town-size
+    auto expand town size to 30
   #end if
+  
+  auto balance wood and food and gold
 
 #end if
 
-#do once
-  #if building-type-count castle > 0
+#if building-type-count castle > 0
+  #do once
     chat to all "How do explosives work again?"
-  #end if
-#end do
+  #end do
+#end if
