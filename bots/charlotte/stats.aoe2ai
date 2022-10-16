@@ -368,7 +368,8 @@ insert decide-blacksmith-investment(type="infantry")
     goal {prefix}unique-unit-is-expensive = 1
   #end if
   #if players-civ {player} portuguese
-    // may as well not exist.
+    goal {prefix}unique-unit-is-expensive = 1
+    goal {prefix}unique-unit-counters-infantry = 1
   #end if
   #if players-civ {player} saracen
     goal {prefix}unique-unit-is-cavalry = 1

@@ -61,30 +61,54 @@ const wood-unit-threshold = 200
 const food-unit-threshold = 0
 const gold-unit-threshold = 0
 
-#template all-land-unit-goal-names
-  {before}villagers{after}
-  {before}trade-carts{after}
+#template all-land-ranged-unit-goal-names
   {before}archers{after}
   {before}hand-cannoneers{after}
   {before}skirmishers{after}
   {before}cavalry-archers{after}
+  {before}genitours{after}
+#end template
+
+#template all-land-infantry-unit-goal-names
   {before}militia{after}
   {before}spearmen{after}
   {before}eagles{after}
+  {before}condottiero{after}
+#end template
+
+#template all-land-cavalry-unit-goal-names
   {before}scouts{after}
   {before}knights{after}
   {before}camels{after}
   {before}battle-elephants{after}
+#end template
+
+#template all-land-siege-unit-goal-names
   {before}battering-rams{after}
   {before}mangonels{after}
   {before}scorpions{after}
   {before}bombard-cannons{after}
   {before}trebuchets{after}
-  {before}unique-units{after}
+#end template
+
+#template all-land-holy-unit-goal-names
   {before}monks{after}
-  {before}genitours{after}
-  {before}condottiero{after}
   {before}missionaries{after}
+#end template
+
+#template all-land-economy-unit-goal-names
+  {before}villagers{after}
+  {before}trade-carts{after}
+#end template
+
+#template all-land-unit-goal-names
+  insert all-land-ranged-unit-goal-names(before="{before}",after="{after}")
+  insert all-land-infantry-unit-goal-names(before="{before}",after="{after}")
+  insert all-land-cavalry-unit-goal-names(before="{before}",after="{after}")
+  insert all-land-siege-unit-goal-names(before="{before}",after="{after}")
+  insert all-land-holy-unit-goal-names(before="{before}",after="{after}")
+  insert all-land-economy-unit-goal-names(before="{before}",after="{after}")
+  {before}unique-units{after}
 #end template
 
 #template all-naval-unit-goal-names

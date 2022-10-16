@@ -29,7 +29,7 @@ goal conniving-produce = 0
 #end if
 
 // make units if being attacked
-#if goal conniving-produce 0 and town-under-attack and goal attacking 0
+#if goal conniving-produce 0 and goal under-attack 1 and goal attacking 0
   goal conniving-produce = 1
   #repeat every 30 seconds
     chat to self "under attack!"

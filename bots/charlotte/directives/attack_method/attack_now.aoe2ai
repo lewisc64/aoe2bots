@@ -1,5 +1,5 @@
 // reset town size if switching off TSA
-#if strategic-number sn-maximum-town-size == 255
+#if strategic-number sn-maximum-town-size > 30
   @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
 #end if
 

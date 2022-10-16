@@ -1,6 +1,27 @@
 // should be extreme values, prevents losing.
 // load before all_switched, or after civ_decisions
 
+#do once
+  goal bcs-making-infantry = 0
+  goal bcs-making-ranged = 0
+  goal bcs-making-cavalry = 0
+#end do
+
+#if goal produce-unique-unit 1
+  #if goal unique-unit-is-infantry 1
+    goal bcs-making-infantry = 1
+  #end if
+  #if goal unique-unit-is-ranged 1
+    goal bcs-making-ranged = 1
+  #end if
+  #if goal unique-unit-is-cavalry 1
+    goal bcs-making-cavalry = 1
+  #end if
+#end if
+insert all-land-ranged-unit-goal-names(before="#if goal produce-",after=" 1; goal bcs-making-ranged = 1; #end if")
+insert all-land-infantry-unit-goal-names(before="#if goal produce-",after=" 1; goal bcs-making-infantry = 1; #end if")
+insert all-land-cavalry-unit-goal-names(before="#if goal produce-",after=" 1; goal bcs-making-cavalry = 1; #end if")
+
 #template turn-off-for-archers
   goal produce-militia = 0
   goal produce-condottiero = 0
@@ -30,7 +51,7 @@
   goal produce-mangonels = 0
 #end template
 
-#template turn-off-for-cavalry
+#template turn-off-siege-for-cavalry
   goal produce-scorpions = 0
   goal produce-mangonels = 0
 #end template
@@ -81,27 +102,27 @@
 #end respond
 
 #respond to min-detection-units knight-line
-  insert turn-off-for-cavalry
+  insert turn-off-siege-for-cavalry
 #end respond
 
 #respond to min-detection-units scout-cavalry-line
-  insert turn-off-for-cavalry
+  insert turn-off-siege-for-cavalry
 #end respond
 
 #respond to min-detection-units camel-line
-  insert turn-off-for-cavalry
+  insert turn-off-siege-for-cavalry
 #end respond
 
 #respond to min-detection-units battle-elephant-line
-  insert turn-off-for-cavalry
+  insert turn-off-siege-for-cavalry
 #end respond
 
 #respond to min-detection-units war-elephant-line
-  insert turn-off-for-cavalry
+  insert turn-off-siege-for-cavalry
 #end respond
 
-#if goal desired-units-per-type 1
-  
+// if we are only making infantry
+#if goal desired-units-per-type 1 or goal bcs-making-infantry 1 and goal bcs-making-ranged 0 and goal bcs-making-cavalry 0
   #respond to min-detection-units archer
     insert turn-off-for-archers
   #end respond
@@ -129,11 +150,16 @@
   #respond to min-detection-units teutonic-knight-line
     insert turn-off-for-anti-infantry
   #end respond
-  
+#end if
+
+// if we are only making cavalry
+#if goal desired-units-per-type 1 or goal bcs-making-cavalry 1 and goal bcs-making-infantry 0 and goal bcs-making-ranged 0
   #respond to min-detection-units spearman-line
     insert turn-off-for-anti-cavalry
   #end respond
-  
+#end if
+
+#if goal desired-units-per-type 1
   #respond to min-detection-units battle-elephant-line
     insert turn-off-for-elephants
   #end respond
@@ -141,5 +167,4 @@
   #respond to min-detection-units war-elephant-line
     insert turn-off-for-elephants
   #end respond
-  
 #end if
