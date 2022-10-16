@@ -104,62 +104,83 @@ load "templates/lightning_castle.aoe2ai"
   
   research ri-madrasah
   
-  goal need-redemption = 0
-  #respond to 1 mangonel-line
-    goal need-redemption = 1
-  #end respond
-  #respond to 1 scorpion-line
-    goal need-redemption = 1
-  #end respond
-  #respond to 1 battering-ram-line
-    goal need-redemption = 1
-  #end respond
-  #respond to 1 trebuchet-set
-    goal need-redemption = 1
-  #end respond
-  #respond to 1 organ-gun-line
-    goal need-redemption = 1
-  #end respond
-  #if goal need-redemption 1 or gold-amount >= 1300
-    research ri-redemption
-    #if up-research-status c: ri-redemption < research-pending
-      goal produce-monks = 0
+  // redemption
+  #if research-available ri-redemption
+    goal need-redemption = 0
+    #respond to 1 mangonel-line
+      goal need-redemption = 1
+    #end respond
+    #respond to 1 scorpion-line
+      goal need-redemption = 1
+    #end respond
+    #respond to 1 battering-ram-line
+      goal need-redemption = 1
+    #end respond
+    #respond to 1 trebuchet-set
+      goal need-redemption = 1
+    #end respond
+    #respond to 1 organ-gun-line
+      goal need-redemption = 1
+    #end respond
+    #if goal need-redemption 1 or gold-amount >= 1300
+      research ri-redemption
+      #if up-research-status c: ri-redemption < research-pending
+        goal produce-monks = 0
+      #end if
     #end if
   #end if
   
-  #respond to 2 monk-set
-    research ri-atonement
-    #if up-research-status c: ri-atonement < research-pending
-      goal cap-monks = 1
-    #end if
-  #end respond
+  // anti-monk techs
+  #if research-available ri-atonement
+    #respond to 2 monk-set
+      research ri-atonement
+      #if up-research-status c: ri-atonement < research-pending
+        goal cap-monks = 1
+      #end if
+    #end respond
+  #end if
   
-  #respond to 5 monk-set
-    research ri-heresy
-    research ri-faith
-    #if up-research-status c: ri-heresy < research-pending
-      goal cap-monks = 1
-    #end if
-  #end respond
+  #if research-available ri-heresy
+    #respond to 5 monk-set
+      research ri-heresy
+      #if up-research-status c: ri-heresy < research-pending
+        goal cap-monks = 1
+      #end if
+    #end respond
+  #end if
   
+  #if research-available ri-faith
+    #respond to 5 monk-set
+      research ri-faith
+      #if up-research-status c: ri-faith < research-pending
+        goal cap-monks = 1
+      #end if
+    #end respond
+  #end if
+  
+  // direct monk upgrades
   #stages
     #if unit-type-count monk-set >= 2
       research ri-sanctity
     #end if
-  #advance when up-research-status c: ri-sanctity >= research-pending
+    goal cap-monks = 1
+  #advance when up-research-status c: ri-sanctity >= research-pending or not research-available ri-sanctity and building-type-count monastery >= 1
     research ri-fervor
-  #advance when up-research-status c: ri-fervor >= research-pending
+    goal cap-monks = 1
+  #advance when up-research-status c: ri-fervor >= research-pending or not research-available ri-fervor
     research ri-theocracy
-  #advance when up-research-status c: ri-theocracy >= research-pending
+    goal cap-monks = 1
+  #advance when up-research-status c: ri-theocracy >= research-pending or not research-available ri-theocracy and current-age >= imperial-age
     research ri-illumination
-  #advance when up-research-status c: ri-illumination >= research-pending
+    goal cap-monks = 1
+  #advance when up-research-status c: ri-illumination >= research-pending or not research-available ri-illumination
     research ri-block-printing
+    goal cap-monks = 1
+  #advance when up-research-status c: ri-block-printing >= research-pending or not research-available ri-block-printing
+    // nothing, monks could be uncapped.
   #end stages
   
-  #if up-research-status c: ri-block-printing < research-pending  
-    goal cap-monks = 1
-  #end if
-  
+  // military buildings
   #if building-type-count town-center >= 1
     #if current-age == castle-age
       build 4 monastery
@@ -383,7 +404,7 @@ insert count-stances(player=8)
     #end if
     
     // those who donate gold are no longer heretics
-    #ifg goal done 0 and players-tribute-memory {player} gold > 0 and goal player-{player}-is-heretic 1
+    #ifg goal done 0 and (players-tribute-memory {player} gold > 0 or players-building-type-count {player} monastery >= 3) and goal player-{player}-is-heretic 1
       chat to self "un-heretic {player}"
       insert set-future-stamp(goal="player-{player}-donation-expire-at",seconds="donation-timeout")
       goal player-{player}-is-heretic = 0
