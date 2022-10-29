@@ -1,16 +1,34 @@
 const alliance-request-timeout = 60
 const allied-victory-timeout = 120
+const bad-egg-expiry = 300
 
 #template diplo-set-up-player-goals
   goal player-{player}-is-bad-egg = 0
+  goal player-{player}-bad-egg-expires-at = -1
   goal player-{player}-alliance-request-time-stamp = 0
   goal allied-with-{player} = 0
   goal tried-alliance-with-{player} = 0
 #end template
 
+#template set-bad-egg
+  goal player-{player}-is-bad-egg = 1
+  @up-modify-goal player-{player}-bad-egg-expires-at g:= game-time-goal
+  @up-modify-goal player-{player}-bad-egg-expires-at c:+ bad-egg-expiry
+#end template
+
 #template handle-stance-changes
   #if player-in-game {player}
-  
+    
+    // players who have been bad eggs for a while are forgiven
+    #if goal player-{player}-is-bad-egg 1 and not goal player-{player}-bad-egg-expires-at -1
+      #if up-compare-goal game-time-goal g:>= player-{player}-bad-egg-expires-at
+        goal player-{player}-is-bad-egg = 0
+        goal player-{player}-bad-egg-expires-at = -1
+        chat to self "player {player} is no longer a bad egg"
+      #end if
+    #end if
+    
+    // accept alliances
     #if goal player-{player}-is-bad-egg 0 and goal allied-with-{player} 0
       #if players-stance {player} ally
         #if stance-toward {player} enemy or stance-toward {player} neutral
@@ -28,25 +46,28 @@ const allied-victory-timeout = 120
       #end if
     #end if
     
+    // we are betrayed, in a declared way
     #if goal allied-with-{player} 1 and not players-stance {player} ally
       goal chat-betrayed-by-player = {player}
-      goal player-{player}-is-bad-egg = 1
+      insert set-bad-egg(player={player})
       goal allied-with-{player} = 0
       @set-stance {player} enemy
     #end if
     
+    // we are attacked by a neutral or an ally without a stance change
     #if goal threat-player {player} and up-compare-goal threat-time c:< 1000 and not stance-toward {player} enemy
       chat to self "attacked by player {player}"
       #if goal allied-with-{player} 1
         goal chat-betrayed-by-player = {player}
         goal allied-with-{player} = 0
-        goal player-{player}-is-bad-egg = 1
+        insert set-bad-egg(player={player})
       #else if stance-toward {player} ally
-        goal player-{player}-is-bad-egg = 1
+        insert set-bad-egg(player={player})
       #end if
       @set-stance {player} enemy
     #end if
     
+    // time out alliance requests
     #if goal allied-with-{player} 0 and stance-toward {player} ally and goal player-{player}-is-bad-egg 0 and goal tried-alliance-with-{player} 0
       @up-modify-goal temp g:= game-time-goal
       @up-modify-goal temp g:- player-{player}-alliance-request-time-stamp
@@ -67,7 +88,7 @@ const allied-victory-timeout = 120
   #if player-in-game {player} and goal allied-with-{player} 1
     goal chat-betray-player = {player}
     @set-stance {player} enemy
-    goal player-{player}-is-bad-egg = 1
+    insert set-bad-egg(player={player})
     goal allied-with-{player} = 0
   #end if
 #end template
