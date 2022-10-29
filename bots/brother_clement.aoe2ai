@@ -1,3 +1,4 @@
+const ri-herbal-medicine = 441
 const ri-madrasah = 490
 
 load "templates/lightning_castle.aoe2ai"
@@ -157,6 +158,15 @@ load "templates/lightning_castle.aoe2ai"
       #end if
     #end respond
   #end if
+
+  // do these techs with an excess of gold
+  #if gold-amount > 3000
+    research ri-redemption
+    research ri-herbal-medicine
+    research ri-atonement
+    research ri-heresy
+    research ri-faith
+  #end if
   
   // direct monk upgrades
   #stages
@@ -193,22 +203,31 @@ load "templates/lightning_castle.aoe2ai"
     #end if
   #end if
   
-  #if current-age == imperial-age
-    train 100 villagers with 50 trade
-    #if unit-type-count-total trade-cart > 50
-      delete unit trade-cart
-    #end if
-  #else
-    train 100 villager
-    delete unit trade-cart
+  // training
+  
+  goal train-stuff = 1
+  #if up-research-status c: imperial-age < research-pending and food-amount > 700 and gold-amount > 500 and (building-type-count castle >= 1 or building-type-count siege-workshop >= 1)
+    goal train-stuff = 0
   #end if
   
-  #if goal produce-monks 1
-    train 20 battering-ram-line
-    #if goal cap-monks 1
-      train 20 monk
+  #if goal train-stuff 1
+    #if current-age == imperial-age
+      train 100 villagers with 50 trade
+      #if unit-type-count-total trade-cart > 50
+        delete unit trade-cart
+      #end if
     #else
-      train monk
+      train 100 villager
+      delete unit trade-cart
+    #end if
+    
+    #if goal produce-monks 1
+      train 20 battering-ram-line
+      #if goal cap-monks 1
+        train 20 monk
+      #else
+        train monk
+      #end if
     #end if
   #end if
   
