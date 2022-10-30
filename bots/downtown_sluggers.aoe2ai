@@ -10,6 +10,9 @@ do basic diplomacy
     escrow 10 gold
     assign 8 builders to castle
     sn-percent-building-cancellation = 0
+    sn-maximum-attack-group-size = 1
+    sn-minimum-attack-group-size = 1
+    sn-number-attack-groups = 200
   #end do
   
   manage scouting
@@ -58,9 +61,5 @@ do basic diplomacy
   train 120 villagers with 30 trade
   train 3 trebuchet
   train my-unique-unit
-  
-  #repeat every 30 seconds
-    attack
-  #end repeat
 
 #end if
