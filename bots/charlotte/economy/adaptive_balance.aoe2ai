@@ -120,24 +120,30 @@ goal did-tribute = 0
       #if up-compare-goal non-escrowed-gold c:> gold-threshold
         // do nothing, all above thresholds.
       #else
+        chat to self "rebalance: wood food -> gold"
         distribute 4 villagers from wood and food to gold
       #end if
     #else
       #if up-compare-goal non-escrowed-gold c:> gold-threshold
+        chat to self "rebalance: wood gold -> food"
         distribute 4 villagers from wood and gold to food
       #else
+        chat to self "rebalance: wood -> food gold"
         distribute 4 villagers from wood to food and gold
       #end if
     #end if
   #else
     #if up-compare-goal non-escrowed-food c:> food-threshold
       #if up-compare-goal non-escrowed-gold c:> gold-threshold
+        chat to self "rebalance: food gold -> wood"
         distribute 4 villagers from food and gold to wood
       #else
+        chat to self "rebalance: food -> wood gold"
         distribute 4 villagers from food to wood and gold
       #end if
     #else
       #if up-compare-goal non-escrowed-gold c:> gold-threshold
+        chat to self "rebalance: gold -> wood food"
         distribute 4 villagers from gold to wood and food
       #else
         // do nothing, all below thresholds.

@@ -1,7 +1,3 @@
-#do once
-  chat to self "being thoughtful"
-#end do
-
 #if goal attempted-researches 0 or goal under-attack 1 and goal attacking 0 or up-compare-goal target-military-percentage c:< 100 and military-population < 10
   #if goal produce-units 0
     chat to self "go! (thoughtful)"

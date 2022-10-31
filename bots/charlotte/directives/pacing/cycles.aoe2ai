@@ -1,0 +1,59 @@
+const production-cycle-duration = 300
+const research-cycle-duration = 120
+
+#do once
+  goal cycles-aggressive = 0
+  goal next_switch_at = 0
+#end do
+
+#template begin-research-cycle
+  chat to self "start research cycle"
+  goal cycles-aggressive = 0
+  @up-modify-goal next_switch_at g:= game-time-goal
+  @up-modify-goal next_switch_at c:+ research-cycle-duration
+#end template
+
+#template begin-production-cycle
+  chat to self "start production cycle"
+  goal cycles-aggressive = 1
+  @up-modify-goal next_switch_at g:= game-time-goal
+  @up-modify-goal next_switch_at c:+ production-cycle-duration
+#end template
+
+#if current-age == feudal-age
+  #do once
+    insert begin-research-cycle
+  #end do
+  
+  #if building-type-count archery-range >= 1 or building-type-count stable >= 1 or building-type-count barracks >= 2
+    #do once
+      insert begin-production-cycle
+    #end do
+  #end if
+#end if
+
+#if current-age == castle-age
+  #do once
+    insert begin-research-cycle
+  #end do
+#end if
+
+#if current-age == imperial-age
+  #do once
+    insert begin-research-cycle
+  #end do
+#end if
+
+#ifg up-compare-goal game-time-goal g:>= next_switch_at
+  #ifg goal cycles-aggressive 0
+    insert begin-production-cycle
+  #else
+    insert begin-research-cycle
+  #end if
+#end if
+
+#if goal cycles-aggressive 1
+  load "reckless.aoe2ai"
+#else
+  load "thoughtful.aoe2ai"
+#end if

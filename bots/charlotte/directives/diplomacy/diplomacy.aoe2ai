@@ -1,6 +1,6 @@
 const alliance-request-timeout = 60
 const allied-victory-timeout = 120
-const bad-egg-expiry = 300
+const bad-egg-expiry = 600
 
 #template diplo-set-up-player-goals
   goal player-{player}-is-bad-egg = 0
@@ -130,11 +130,9 @@ const bad-egg-expiry = 300
 #select random persistant
   load "backstabbing.aoe2ai"
 #randor
-  load "introverted.aoe2ai"
-#randor
-  load "pragmatic.aoe2ai"
-#randor
   load "pair_seeking.aoe2ai"
+#randor
+  load "introverted.aoe2ai"
 #end select
 
 #if not (goal enemy-players-count 0 and goal neutral-players-count 0) or (up-compare-goal population-space-remaining c:> 5)
