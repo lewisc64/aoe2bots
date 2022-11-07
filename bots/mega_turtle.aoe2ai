@@ -79,7 +79,9 @@ train 5 trebuchet
 #if up-research-status c: imperial-age < research-pending
   train 15 my-unique-unit-line
 #else
-  train my-unique-unit-line
+  #if not unit-available trebuchet or unit-type-count-total trebuchet-set >= 5 or up-pending-objects c: trebuchet-set >= 1 or military-population <= 8
+    train my-unique-unit-line
+  #end if
 #end if
 
 #if current-age >= castle-age 
