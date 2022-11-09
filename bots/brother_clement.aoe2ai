@@ -238,7 +238,7 @@ load "templates/lightning_castle.aoe2ai"
     goal done-pre-theocracy-attack = 0
   #end do
   
-  #if unit-type-count monk-set >= 20 and not town-under-attack and player-in-game any-enemy and (goal done-pre-theocracy-attack 0 or research-completed ri-theocracy)
+  #if unit-type-count monk-set >= 20 and not town-under-attack and player-in-game any-enemy and (goal done-pre-theocracy-attack 0 or research-completed ri-theocracy or game-time >= 3600)
     #if goal attacking 0
       #select random
         chat to all "'Love must be sincere. Hate what is evil; cling to what is good.'"
