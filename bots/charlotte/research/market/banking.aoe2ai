@@ -7,8 +7,9 @@
   #if research-available ri-banking
     #if up-research-status c: ri-banking < research-pending
       goal attempted-researches += 1
+      @up-modify-goal attempted-researches-importance c:max importance-low
     #end if
-    #if goal do-research 1
+    #if goal do-research 1 and up-compare-goal research-level c:<= importance-low
       research ri-banking
     #end if
   #end if

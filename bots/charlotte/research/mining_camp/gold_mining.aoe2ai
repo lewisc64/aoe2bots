@@ -4,8 +4,9 @@
   #if research-available ri-gold-mining
     #if up-research-status c: ri-gold-mining < research-pending
       goal attempted-researches += 1
+      @up-modify-goal attempted-researches-importance c:max importance-medium
     #end if
-    #if goal do-research 1
+    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
       research ri-gold-mining
     #end if
   #end if

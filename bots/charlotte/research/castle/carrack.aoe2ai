@@ -5,8 +5,9 @@
   #if research-available ri-carrack
     #if up-research-status c: ri-carrack < research-pending
       goal attempted-researches += 1
+      @up-modify-goal attempted-researches-importance c:max importance-medium
     #end if
-    #if goal do-research 1
+    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
       research ri-carrack
     #end if
   #end if

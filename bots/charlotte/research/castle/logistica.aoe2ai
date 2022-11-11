@@ -5,8 +5,9 @@
   #if research-available ri-logistica
     #if up-research-status c: ri-logistica < research-pending
       goal attempted-researches += 1
+      @up-modify-goal attempted-researches-importance c:max importance-medium
     #end if
-    #if goal do-research 1
+    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
       research ri-logistica
     #end if
   #end if

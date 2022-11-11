@@ -5,8 +5,9 @@
   #if research-available ri-heavy-camel
     #if up-research-status c: ri-heavy-camel < research-pending
       goal attempted-researches += 1
+      @up-modify-goal attempted-researches-importance c:max importance-high
     #end if
-    #if goal do-research 1
+    #if goal do-research 1 and up-compare-goal research-level c:<= importance-high
       research ri-heavy-camel
     #end if
   #end if

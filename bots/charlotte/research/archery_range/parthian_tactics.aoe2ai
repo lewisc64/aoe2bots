@@ -4,8 +4,9 @@
   #if research-available ri-parthian-tactics
     #if up-research-status c: ri-parthian-tactics < research-pending
       goal attempted-researches += 1
+      @up-modify-goal attempted-researches-importance c:max importance-high
     #end if
-    #if goal do-research 1
+    #if goal do-research 1 and up-compare-goal research-level c:<= importance-high
       research ri-parthian-tactics
     #end if
   #end if

@@ -61,6 +61,11 @@ const wood-unit-threshold = 200
 const food-unit-threshold = 0
 const gold-unit-threshold = 0
 
+const importance-critical = 7
+const importance-high = 5
+const importance-medium = 3
+const importance-low = 1
+
 #template all-land-ranged-unit-goal-names
   {before}archers{after}
   {before}hand-cannoneers{after}
@@ -234,6 +239,7 @@ const gold-unit-threshold = 0
   goal allow-land-units = 1
   goal allow-naval-units = 1
   goal do-research = 1
+  goal research-level = 0
   goal attacking = 0
   
   assign 8 builders to castle
@@ -322,4 +328,6 @@ load "stats.aoe2ai"
   goal enough-gold-for-units = 1
 #end if
 
+@up-modify-goal research-level g:= attempted-researches-importance
 goal attempted-researches = 0
+goal attempted-researches-importance = 0

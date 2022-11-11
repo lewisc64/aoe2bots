@@ -2,11 +2,12 @@
   load "../siege_workshop/prerequisites.aoe2ai"
   //load "../town_center/imperial_age.aoe2ai"
 
-  #if research-available ri-capped-ram
+  #if research-available ri-capped-ram and current-age >= imperial-age
     #if up-research-status c: ri-capped-ram < research-pending
       goal attempted-researches += 1
+      @up-modify-goal attempted-researches-importance c:max importance-medium
     #end if
-    #if goal do-research 1
+    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
       research ri-capped-ram
     #end if
   #end if

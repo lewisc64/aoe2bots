@@ -5,8 +5,9 @@
   #if research-available ri-eagle-warrior
     #if up-research-status c: ri-eagle-warrior < research-pending
       goal attempted-researches += 1
+      @up-modify-goal attempted-researches-importance c:max importance-medium
     #end if
-    #if goal do-research 1
+    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
       research ri-eagle-warrior
     #end if
   #end if

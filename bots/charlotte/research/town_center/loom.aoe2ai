@@ -4,8 +4,9 @@
   #if research-available ri-loom
     #if up-research-status c: ri-loom < research-pending
       goal attempted-researches += 1
+      @up-modify-goal attempted-researches-importance c:max importance-critical
     #end if
-    #if goal do-research 1
+    #if goal do-research 1 and up-compare-goal research-level c:<= importance-critical
       research ri-loom
     #end if
   #end if

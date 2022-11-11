@@ -6,8 +6,9 @@
   #if research-available ri-heavy-plow
     #if up-research-status c: ri-heavy-plow < research-pending
       goal attempted-researches += 1
+      @up-modify-goal attempted-researches-importance c:max importance-critical
     #end if
-    #if goal do-research 1
+    #if goal do-research 1 and up-compare-goal research-level c:<= importance-critical
       research ri-heavy-plow
     #end if
   #end if

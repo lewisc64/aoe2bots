@@ -5,8 +5,9 @@
   #if research-available ri-forced-levy
     #if up-research-status c: ri-forced-levy < research-pending
       goal attempted-researches += 1
+      @up-modify-goal attempted-researches-importance c:max importance-medium
     #end if
-    #if goal do-research 1
+    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
       research ri-forced-levy
     #end if
   #end if

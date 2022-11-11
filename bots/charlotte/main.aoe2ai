@@ -17,3 +17,18 @@ load "economy/all_ages.aoe2ai"
 #if strategic-number sn-maximum-town-size <= 30
   auto expand town size to 30
 #end if
+
+#repeat every 10 seconds
+  #if goal research-level importance-critical
+    chat to self "Research level: CRITICAL"
+  #end if
+  #if goal research-level importance-high
+    chat to self "Research level: HIGH"
+  #end if
+  #if goal research-level importance-medium
+    chat to self "Research level: MEDIUM"
+  #end if
+  #if goal research-level importance-low
+    chat to self "Research level: LOW"
+  #end if
+#end repeat
