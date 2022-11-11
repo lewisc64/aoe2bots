@@ -11,7 +11,7 @@
     load "../university/prerequisites.aoe2ai"
   #end if
 
-  #if research-available imperial-age
+  #if research-available imperial-age and building-type-count town-center >= 1
     #if up-research-status c: imperial-age < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-low

@@ -1,7 +1,7 @@
 #if not research-completed ri-parthian-tactics
   load "../archery_range/prerequisites.aoe2ai"
 
-  #if research-available ri-parthian-tactics
+  #if research-available ri-parthian-tactics and building-type-count archery-range >= 1
     #if up-research-status c: ri-parthian-tactics < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-high

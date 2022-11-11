@@ -1,7 +1,7 @@
 #if not research-completed ri-thumb-ring
   load "../archery_range/prerequisites.aoe2ai"
 
-  #if research-available ri-thumb-ring
+  #if research-available ri-thumb-ring and building-type-count archery-range >= 1
     #if up-research-status c: ri-thumb-ring < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium

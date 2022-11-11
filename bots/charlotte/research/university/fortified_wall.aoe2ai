@@ -2,7 +2,7 @@
   load "../university/prerequisites.aoe2ai"
   //load "../town_center/castle_age.aoe2ai"
 
-  #if research-available ri-fortified-wall
+  #if research-available ri-fortified-wall and building-type-count university >= 1
     #if up-research-status c: ri-fortified-wall < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium

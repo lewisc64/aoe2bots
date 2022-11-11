@@ -4,7 +4,7 @@
   
   load "../barracks/man_at_arms.aoe2ai"
 
-  #if research-available ri-long-swordsman
+  #if research-available ri-long-swordsman and building-type-count barracks >= 1
     #if up-research-status c: ri-long-swordsman < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium

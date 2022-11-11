@@ -3,7 +3,7 @@
   //load "../town_center/imperial_age.aoe2ai"
   load "../university/chemistry.aoe2ai"
 
-  #if research-available ri-cannon-galleon
+  #if research-available ri-cannon-galleon and building-type-count dock >= 1
     #if up-research-status c: ri-cannon-galleon < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium

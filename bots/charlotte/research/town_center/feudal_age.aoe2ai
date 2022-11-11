@@ -4,7 +4,7 @@
   load "../lumber_camp/prerequisites.aoe2ai"
   load "../mill/prerequisites.aoe2ai"
 
-  #if research-available feudal-age
+  #if research-available feudal-age and building-type-count town-center >= 1
     #if up-research-status c: feudal-age < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-low

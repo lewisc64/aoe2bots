@@ -3,22 +3,31 @@ const research-cycle-duration = 120
 
 #do once
   goal cycles-aggressive = 0
-  goal next_switch_at = 0
+  goal cycles-next-switch-at = 0
+  goal observed-research-amount-decrease = 0
+  goal research-amount-tracker = 0
 #end do
 
 #template begin-research-cycle
-  chat to self "start research cycle"
+  chat to self "cycles: start research cycle"
   goal cycles-aggressive = 0
-  @up-modify-goal next_switch_at g:= game-time-goal
-  @up-modify-goal next_switch_at c:+ research-cycle-duration
+  @up-modify-goal cycles-next-switch-at g:= game-time-goal
+  @up-modify-goal cycles-next-switch-at c:+ research-cycle-duration
+  goal observed-research-amount-decrease = 0
 #end template
 
 #template begin-production-cycle
-  chat to self "start production cycle"
+  chat to self "cycles: start production cycle"
   goal cycles-aggressive = 1
-  @up-modify-goal next_switch_at g:= game-time-goal
-  @up-modify-goal next_switch_at c:+ production-cycle-duration
+  @up-modify-goal cycles-next-switch-at g:= game-time-goal
+  @up-modify-goal cycles-next-switch-at c:+ production-cycle-duration
 #end template
+
+#if up-compare-goal research-amount-tracker g:> attempted-researches and goal cycles-aggressive 0 and goal observed-research-amount-decrease 0
+  chat to self "cycles: observed research amount decrease, allowing switch"
+  goal observed-research-amount-decrease = 1
+#end if
+@up-modify-goal research-amount-tracker g:= attempted-researches
 
 #if current-age == feudal-age
   #do once
@@ -44,7 +53,7 @@ const research-cycle-duration = 120
   #end do
 #end if
 
-#ifg up-compare-goal game-time-goal g:>= next_switch_at
+#ifg up-compare-goal game-time-goal g:>= cycles-next-switch-at and (goal cycles-aggressive 1 or goal observed-research-amount-decrease 1)
   #ifg goal cycles-aggressive 0
     insert begin-production-cycle
   #else

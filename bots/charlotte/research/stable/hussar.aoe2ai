@@ -3,7 +3,7 @@
   //load "../town_center/imperial_age.aoe2ai"
   load "../stable/light_cavalry.aoe2ai"
 
-  #if research-available ri-hussar
+  #if research-available ri-hussar and building-type-count stable >= 1
     #if up-research-status c: ri-hussar < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium

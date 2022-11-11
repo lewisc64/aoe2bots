@@ -2,7 +2,7 @@
   load "../stable/prerequisites.aoe2ai"
   //load "../town_center/castle_age.aoe2ai"
 
-  #if research-available ri-light-cavalry
+  #if research-available ri-light-cavalry and building-type-count stable >= 1
     #if up-research-status c: ri-light-cavalry < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-high

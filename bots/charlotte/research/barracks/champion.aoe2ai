@@ -4,7 +4,7 @@
   
   load "../barracks/two_handed_swordsman.aoe2ai"
 
-  #if research-available ri-champion
+  #if research-available ri-champion and building-type-count barracks >= 1
     #if up-research-status c: ri-champion < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium

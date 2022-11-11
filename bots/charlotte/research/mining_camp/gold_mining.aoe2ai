@@ -1,7 +1,7 @@
 #if not research-completed ri-gold-mining
   load "../mining_camp/prerequisites.aoe2ai"
 
-  #if research-available ri-gold-mining
+  #if research-available ri-gold-mining and building-type-count mining-camp >= 1
     #if up-research-status c: ri-gold-mining < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium

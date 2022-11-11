@@ -2,7 +2,7 @@
   load "../lumber_camp/prerequisites.aoe2ai"
   load "../lumber_camp/bow_saw.aoe2ai"
 
-  #if research-available ri-two-man-saw
+  #if research-available ri-two-man-saw and building-type-count lumber-camp >= 1
     #if up-research-status c: ri-two-man-saw < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium

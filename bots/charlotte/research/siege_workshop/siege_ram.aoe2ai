@@ -3,7 +3,7 @@
   //load "../town_center/imperial_age.aoe2ai"
   load "../siege_workshop/capped_ram.aoe2ai"
 
-  #if research-available ri-siege-ram
+  #if research-available ri-siege-ram and building-type-count siege-workshop >= 1
     #if up-research-status c: ri-siege-ram < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium

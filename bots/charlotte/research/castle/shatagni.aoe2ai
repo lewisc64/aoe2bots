@@ -2,7 +2,7 @@
   load "../castle/prerequisites.aoe2ai"
   //load "../town_center/imperial_age.aoe2ai"
 
-  #if research-available ri-shatagni
+  #if research-available ri-shatagni and building-type-count castle >= 1
     #if up-research-status c: ri-shatagni < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium

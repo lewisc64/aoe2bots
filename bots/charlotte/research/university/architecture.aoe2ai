@@ -4,7 +4,7 @@
   
   load "../university/masonry.aoe2ai"
 
-  #if research-available ri-architecture
+  #if research-available ri-architecture and building-type-count university >= 1
     #if up-research-status c: ri-architecture < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-low

@@ -2,7 +2,7 @@
   load "../mill/prerequisites.aoe2ai"
   //load "../town_center/feudal_age.aoe2ai"
 
-  #if research-available ri-horse-collar
+  #if research-available ri-horse-collar and building-type-count mill >= 1
     #if up-research-status c: ri-horse-collar < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-critical

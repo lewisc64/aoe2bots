@@ -3,7 +3,7 @@
   //load "../town_center/castle_age.aoe2ai"
 
   #if research-available ri-careening
-    #if up-research-status c: ri-careening < research-pending
+    #if up-research-status c: ri-careening < research-pending and building-type-count dock >= 1
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium
     #end if

@@ -2,7 +2,7 @@
   load "../stable/prerequisites.aoe2ai"
   //load "../town_center/imperial_age.aoe2ai"
 
-  #if research-available ri-elite-battle-elephant
+  #if research-available ri-elite-battle-elephant and building-type-count stable >= 1
     #if up-research-status c: ri-elite-battle-elephant < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium

@@ -3,7 +3,7 @@
   //load "../town_center/castle_age.aoe2ai"
   load "../blacksmith/scale_mail.aoe2ai"
 
-  #if research-available ri-chain-mail
+  #if research-available ri-chain-mail and building-type-count blacksmith >= 1
     #if up-research-status c: ri-chain-mail < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium

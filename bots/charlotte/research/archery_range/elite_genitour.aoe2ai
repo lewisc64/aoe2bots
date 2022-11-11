@@ -2,7 +2,7 @@
   load "../archery_range/prerequisites.aoe2ai"
   //load "../town_center/imperial_age.aoe2ai"
 
-  #if research-available ri-elite-genitour
+  #if research-available ri-elite-genitour and building-type-count archery-range >= 1
     #if up-research-status c: ri-elite-genitour < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium

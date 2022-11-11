@@ -2,7 +2,7 @@
   load "../mining_camp/prerequisites.aoe2ai"
   load "../mining_camp/gold_mining.aoe2ai"
 
-  #if research-available ri-gold-shaft-mining
+  #if research-available ri-gold-shaft-mining and building-type-count mining-camp >= 1
     #if up-research-status c: ri-gold-shaft-mining < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium
