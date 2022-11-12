@@ -1,5 +1,8 @@
 const ri-herbal-medicine = 441
 const ri-madrasah = 490
+const ri-inquisition = 492
+const ri-sultans = 506
+const ri-orthodoxy = 512
 
 load "templates/lightning_castle.aoe2ai"
 
@@ -104,6 +107,9 @@ load "templates/lightning_castle.aoe2ai"
   research ri-siege-ram
   
   research ri-madrasah
+  research ri-inquisition
+  research ri-sultans
+  research ri-orthodoxy
   
   // redemption
   #if research-available ri-redemption
