@@ -30,6 +30,7 @@ const ri-thalassocracy = 624
 const ri-carrack = 572
 const ri-shatagni = 507
 const ri-forced-levy = 625
+const ri-orthodoxy = 512
 
 const ri-elite-genitour = 599
 const genitour-line = 1079
@@ -236,6 +237,7 @@ const importance-low = 1
   @up-modify-goal desired-age c:= dark-age
   
   goal produce-units = 1
+  goal throttle-units = 0
   goal allow-land-units = 1
   goal allow-naval-units = 1
   goal do-research = 1
@@ -322,7 +324,7 @@ load "stats.aoe2ai"
   goal enough-gold-for-units = 0
 #end if
 
-#if goal under-attack 1
+#if goal under-attack 1 or military-population < 10
   goal enough-wood-for-units = 1
   goal enough-food-for-units = 1
   goal enough-gold-for-units = 1

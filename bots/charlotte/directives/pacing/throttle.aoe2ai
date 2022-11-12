@@ -1,0 +1,14 @@
+goal produce-units = 1
+goal do-research = 1
+
+#if goal attempted-researches 0 or goal under-attack 1 and goal attacking 0
+  #if goal throttle-units 1
+    chat to self "go! (throttle)"
+  #end if
+  goal throttle-units = 0
+#else
+  #if goal throttle-units 0
+    chat to self "hold! (throttle)"
+  #end if
+  goal throttle-units = 1
+#end if

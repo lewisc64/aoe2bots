@@ -72,7 +72,7 @@ load "prerequisites.aoe2ai"
     @up-modify-goal old-produce-units g:= produce-units
     
     @up-get-fact unit-type-count {unit} current-unit-amount
-    #if up-compare-goal current-unit-amount g:> expected-units-per-type and military-population >= 5
+    #if up-compare-goal current-unit-amount g:> expected-units-per-type and military-population >= 5 or goal throttle-units 1 and up-pending-objects c: {unit} >= 1
       goal produce-units = 0
     #end if
     

@@ -4,10 +4,6 @@
   @up-modify-goal desired-age c:= dark-age
 #end if
 
-#if up-research-status c: feudal-age == research-pending
-  build 1 barracks
-#end if
-
 #if up-research-status c: feudal-age >= research-pending
   goal attack-ready = 1
 #end if

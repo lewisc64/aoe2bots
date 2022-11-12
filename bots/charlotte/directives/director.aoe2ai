@@ -43,7 +43,7 @@ load "unit_selection/trading.aoe2ai"
   load "unit_selection/transporting.aoe2ai"
   
   load "attack_decision/aggressive.aoe2ai"
-  load "pacing/cycles.aoe2ai"
+  load "pacing/balanced_random.aoe2ai"
   
   #if goal full-water-map 1
     load "land_control/passive.aoe2ai"
@@ -61,7 +61,7 @@ load "unit_selection/trading.aoe2ai"
     #else if building-type-count town-center >= 1
       load "attack_method/town_size_attack.aoe2ai"
     #else
-      load "attacK_method/attack_groups.aoe2ai"
+      load "attack_method/attack_groups.aoe2ai"
     #end if
   #end if
 #else

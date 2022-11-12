@@ -3,19 +3,19 @@
 // make skirmishers?
 #if goal partial-ranged-blacksmith-investment 1 and goal produce-genitours 0
   goal produce-skirmishers = 0
-  #if players-unit-type-count target-player skirmisher-line >= min-detection-units
+  #if players-unit-type-count target-player skirmisher-line >= min-detection-units and goal produce-knights 0 and goal produce-camels 0
     goal produce-skirmishers = 1
   #end if
-  #if players-unit-type-count target-player archer-line >= min-detection-units
+  #if players-unit-type-count target-player archer-line >= min-detection-units and goal produce-knights 0 and goal produce-camels 0
     goal produce-skirmishers = 1
   #end if
-  #if players-unit-type-count target-player cavalry-archer-line >= min-detection-units
+  #if players-unit-type-count target-player cavalry-archer-line >= min-detection-units and goal produce-camels 0
     goal produce-skirmishers = 1
   #end if
   #if players-unit-type-count target-player spearman-line >= min-detection-units
     goal produce-skirmishers = 1
   #end if
-  #if players-unit-type-count target-player war-wagon-line >= min-detection-units
+  #if players-unit-type-count target-player war-wagon-line >= min-detection-units and goal produce-camels 0
     goal produce-skirmishers = 1
   #end if
 #else
@@ -23,7 +23,7 @@
 #end if
 
 // make spearmen?
-#if goal partial-infantry-blacksmith-investment 1 and (current-age == feudal-age or research-available ri-pikeman or research-completed ri-pikeman) and goal produce-camels 0
+#if goal partial-infantry-blacksmith-investment 1 and (current-age == feudal-age or research-available ri-pikeman or up-research-status c: ri-pikeman >= research-pending) and goal produce-camels 0
   goal produce-spearmen = 0
   #if players-unit-type-count target-player scout-cavalry-line >= min-detection-units
     goal produce-spearmen = 1
