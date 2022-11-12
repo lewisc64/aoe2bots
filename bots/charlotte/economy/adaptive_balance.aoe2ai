@@ -165,11 +165,7 @@ goal did-tribute = 0
 #end if
 
 #if goal do-stone-mining 1
-  #select random persistant
-    insert divert-to-stone(percent="8")
-  #randor
-    insert divert-to-stone(percent="4")
-  #end select
+  insert divert-to-stone(percent="8")
 #else
   insert divert-all-from-stone
 #end if
