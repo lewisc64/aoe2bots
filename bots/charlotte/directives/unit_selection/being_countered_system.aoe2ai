@@ -7,7 +7,7 @@
   goal bcs-making-cavalry = 0
 #end do
 
-#if goal produce-unique-unit 1
+#if goal produce-unique-units 1
   #if goal unique-unit-is-infantry 1
     goal bcs-making-infantry = 1
   #end if
