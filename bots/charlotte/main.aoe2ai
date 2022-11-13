@@ -18,7 +18,7 @@ load "economy/all_ages.aoe2ai"
   auto expand town size to 30
 #end if
 
-#repeat every 10 seconds
+#repeat every 60 seconds
   #if goal research-level importance-critical
     chat to self "Research level: CRITICAL"
   #end if

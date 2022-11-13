@@ -115,57 +115,102 @@ goal did-tribute = 0
 #end if
 
 #repeat every 60 seconds
-  #if up-compare-goal non-escrowed-wood c:> wood-threshold
-    #if up-compare-goal non-escrowed-food c:> food-threshold
-      #if up-compare-goal non-escrowed-gold c:> gold-threshold
-        // do nothing, all above thresholds.
+  #if dropsite-min-distance gold >= 0
+    
+    // balancing with gold
+    #if up-compare-goal non-escrowed-wood c:> wood-threshold
+      #if up-compare-goal non-escrowed-food c:> food-threshold
+        #if up-compare-goal non-escrowed-gold c:> gold-threshold
+          // do nothing, all above thresholds.
+        #else
+          chat to self "rebalance: wood food -> gold"
+          distribute 4 villagers from wood and food to gold
+        #end if
       #else
-        chat to self "rebalance: wood food -> gold"
-        distribute 4 villagers from wood and food to gold
+        #if up-compare-goal non-escrowed-gold c:> gold-threshold
+          chat to self "rebalance: wood gold -> food"
+          distribute 4 villagers from wood and gold to food
+        #else
+          chat to self "rebalance: wood -> food gold"
+          distribute 4 villagers from wood to food and gold
+        #end if
       #end if
     #else
-      #if up-compare-goal non-escrowed-gold c:> gold-threshold
-        chat to self "rebalance: wood gold -> food"
-        distribute 4 villagers from wood and gold to food
+      #if up-compare-goal non-escrowed-food c:> food-threshold
+        #if up-compare-goal non-escrowed-gold c:> gold-threshold
+          chat to self "rebalance: food gold -> wood"
+          distribute 4 villagers from food and gold to wood
+        #else
+          chat to self "rebalance: food -> wood gold"
+          distribute 4 villagers from food to wood and gold
+        #end if
       #else
-        chat to self "rebalance: wood -> food gold"
-        distribute 4 villagers from wood to food and gold
+        #if up-compare-goal non-escrowed-gold c:> gold-threshold
+          chat to self "rebalance: gold -> wood food"
+          distribute 4 villagers from gold to wood and food
+        #else
+          // do nothing, all below thresholds.
+        #end if
       #end if
     #end if
+    
   #else
-    #if up-compare-goal non-escrowed-food c:> food-threshold
-      #if up-compare-goal non-escrowed-gold c:> gold-threshold
-        chat to self "rebalance: food gold -> wood"
-        distribute 4 villagers from food and gold to wood
+  
+    // balancing without gold
+    #if up-compare-goal non-escrowed-wood c:> wood-threshold
+      #if up-compare-goal non-escrowed-food c:> food-threshold
+        // do nothing, both above thresholds
       #else
-        chat to self "rebalance: food -> wood gold"
-        distribute 4 villagers from food to wood and gold
+        chat to self "rebalance: wood -> food"
+        distribute 4 villagers from wood to food
       #end if
     #else
-      #if up-compare-goal non-escrowed-gold c:> gold-threshold
-        chat to self "rebalance: gold -> wood food"
-        distribute 4 villagers from gold to wood and food
+      #if up-compare-goal non-escrowed-food c:> food-threshold
+        chat to self "rebalance: food -> wood"
+        distribute 4 villagers from food to wood
       #else
-        // do nothing, all below thresholds.
+        // do nothing, both below thresholds
       #end if
     #end if
+    
   #end if
 #end repeat
 
 #if strategic-number sn-wood-gatherer-percentage < minimum-wood-gatherer-percentage
+  chat to self "rebalance: minimum wood hit"
   distribute 2 villagers from food and gold to wood
 #end if
 
 #if strategic-number sn-food-gatherer-percentage < minimum-food-gatherer-percentage
+  chat to self "rebalance: minimum food hit"
   distribute 2 villagers from wood and gold to food
 #end if
 
-#if strategic-number sn-gold-gatherer-percentage < minimum-gold-gatherer-percentage
-  distribute 2 villagers from wood and food to gold
+#if dropsite-min-distance gold >= 0
+  #if strategic-number sn-gold-gatherer-percentage < minimum-gold-gatherer-percentage
+    chat to self "rebalance: minimum gold hit"
+    distribute 2 villagers from wood and food to gold
+  #end if
+#else
+  #do once
+    chat to self "there is no gold, moving all villagers away from gold"
+  #end do
+  distribute 1 villagers from gold to wood
+  distribute 1 villagers from gold to food
 #end if
 
 #if goal do-stone-mining 1
   insert divert-to-stone(percent="8")
 #else
   insert divert-all-from-stone
+#end if
+
+#if up-compare-goal desired-trade-carts g:< max-desired-trade-carts
+  #repeat every 5 minutes
+    #if up-compare-goal total-trade-carts g:>= desired-trade-carts and up-compare-goal non-escrowed-gold c:<= gold-threshold
+      @up-modify-goal desired-trade-carts c:+ 5
+      @up-modify-goal desired-trade-carts g:min max-desired-trade-carts
+      chat to self "scale up trade"
+    #end if
+  #end repeat
 #end if

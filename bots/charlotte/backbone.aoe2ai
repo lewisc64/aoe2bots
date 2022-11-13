@@ -217,6 +217,8 @@ const importance-low = 1
   
   goal desired-villagers = 120
   goal desired-trade-carts = 30
+  goal min-desired-trade-carts = 30
+  goal max-desired-trade-carts = 50
   goal desired-fishing-ships = 10
   
   #select random persistant
@@ -228,10 +230,18 @@ const importance-low = 1
   // previous numbers assume pop cap of 200, normalise to actual pop cap.
   goal pop-cap-goal = 0
   @up-get-fact population-cap 0 pop-cap-goal
+  
   @up-modify-goal desired-villagers g:* pop-cap-goal
   @up-modify-goal desired-villagers c:/ 200
+  
   @up-modify-goal desired-fishing-ships g:* pop-cap-goal
-  @up-modify-goal desired-fishing-ships c:/ 200
+  @up-modify-goal desired-fishing-ships c:/ 200 
+  
+  @up-modify-goal min-desired-trade-carts g:* pop-cap-goal
+  @up-modify-goal min-desired-trade-carts c:/ 200
+  @up-modify-goal max-desired-trade-carts g:* pop-cap-goal
+  @up-modify-goal max-desired-trade-carts c:/ 200
+  @up-modify-goal desired-trade-carts g:= min-desired-trade-carts
   
   goal desired-age = 0
   @up-modify-goal desired-age c:= dark-age
@@ -251,10 +261,6 @@ const importance-low = 1
 #end do
 
 manage scouting
-
-@up-modify-goal desired-trade-carts g:= desired-villagers
-@up-modify-goal desired-trade-carts s:* sn-gold-gatherer-percentage
-@up-modify-goal desired-trade-carts c:/ 100
 
 #select random persistant
   goal do-stone-mining = 1
