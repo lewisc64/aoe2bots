@@ -1,27 +1,27 @@
-#template count-units-selected
-  goal total-units-selected = 0
-  @up-modify-goal total-units-selected g:+ produce-archers
-  @up-modify-goal total-units-selected g:+ produce-hand-cannoneers
-  @up-modify-goal total-units-selected g:+ produce-skirmishers
-  @up-modify-goal total-units-selected g:+ produce-cavalry-archers
-  @up-modify-goal total-units-selected g:+ produce-militia
-  @up-modify-goal total-units-selected g:+ produce-spearmen
-  @up-modify-goal total-units-selected g:+ produce-eagles
-  @up-modify-goal total-units-selected g:+ produce-scouts
-  @up-modify-goal total-units-selected g:+ produce-knights
-  @up-modify-goal total-units-selected g:+ produce-camels
-  @up-modify-goal total-units-selected g:+ produce-battle-elephants
-  @up-modify-goal total-units-selected g:+ produce-mangonels
-  @up-modify-goal total-units-selected g:+ produce-scorpions
-  @up-modify-goal total-units-selected g:+ produce-unique-units
-  @up-modify-goal total-units-selected g:+ produce-monks
-  @up-modify-goal total-units-selected g:+ produce-genitours
-  @up-modify-goal total-units-selected g:+ produce-condottiero
-  @up-modify-goal total-units-selected g:+ produce-missionaries
+#template random-unit-selection-count-units-selected
+  goal {goal} = 0
+  @up-modify-goal {goal} g:+ produce-archers
+  @up-modify-goal {goal} g:+ produce-hand-cannoneers
+  @up-modify-goal {goal} g:+ produce-skirmishers
+  @up-modify-goal {goal} g:+ produce-cavalry-archers
+  @up-modify-goal {goal} g:+ produce-militia
+  @up-modify-goal {goal} g:+ produce-spearmen
+  @up-modify-goal {goal} g:+ produce-eagles
+  @up-modify-goal {goal} g:+ produce-scouts
+  @up-modify-goal {goal} g:+ produce-knights
+  @up-modify-goal {goal} g:+ produce-camels
+  @up-modify-goal {goal} g:+ produce-battle-elephants
+  @up-modify-goal {goal} g:+ produce-mangonels
+  @up-modify-goal {goal} g:+ produce-scorpions
+  @up-modify-goal {goal} g:+ produce-unique-units
+  @up-modify-goal {goal} g:+ produce-monks
+  @up-modify-goal {goal} g:+ produce-genitours
+  @up-modify-goal {goal} g:+ produce-condottiero
+  @up-modify-goal {goal} g:+ produce-missionaries
   // ships do not count towards unit total.
 #end template
 
-insert count-units-selected
+insert random-unit-selection-count-units-selected(goal="total-units-selected")
 
 #if up-compare-goal total-units-selected g:< desired-units-per-type
   #select random

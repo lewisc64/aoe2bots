@@ -21,7 +21,7 @@
 (defconst excellent-food-price 50)
 (defconst excellent-wood-sell-price 200)
 (defconst excellent-food-sell-price 200)
-(defconst did-tribute 343)
+(defconst did-tribute 345)
 (defconst attack-ready 177)
 (defconst do-backstep 178)
 (defconst emergency-trash 179)
@@ -66,64 +66,66 @@
 (defconst bcs-making-cavalry 225)
 (defconst bcs-making-ranged 224)
 (defconst bcs-making-infantry 223)
+(defconst no-unit-rule-passes 226)
+(defconst director-units-selected 227)
 (defconst max-demolition-ships 5)
 (defconst max-defensive-mangonels 4)
 (defconst max-cannon-galleons 8)
 (defconst max-trebs 4)
 (defconst max-imperial-age-rams 10)
 (defconst max-castle-age-rams 5)
-(defconst passive-override 229)
-(defconst aggressive-override 228)
-(defconst balanced-aggressive 227)
-(defconst threatening-important 233)
-(defconst next-retarget 232)
+(defconst passive-override 231)
+(defconst aggressive-override 230)
+(defconst balanced-aggressive 229)
+(defconst threatening-important 235)
+(defconst next-retarget 234)
 (defconst retarget-interval 300)
-(defconst did-reset 234)
-(defconst chat-betrayed-by-player 279)
-(defconst chat-betray-player 278)
-(defconst no-enemies-stamp 277)
-(defconst player-8-is-bad-egg 272)
-(defconst player-8-bad-egg-expires-at 273)
-(defconst player-8-alliance-request-time-stamp 274)
-(defconst allied-with-8 275)
-(defconst tried-alliance-with-8 276)
-(defconst player-7-is-bad-egg 267)
-(defconst player-7-bad-egg-expires-at 268)
-(defconst player-7-alliance-request-time-stamp 269)
-(defconst allied-with-7 270)
-(defconst tried-alliance-with-7 271)
-(defconst player-6-is-bad-egg 262)
-(defconst player-6-bad-egg-expires-at 263)
-(defconst player-6-alliance-request-time-stamp 264)
-(defconst allied-with-6 265)
-(defconst tried-alliance-with-6 266)
-(defconst player-5-is-bad-egg 257)
-(defconst player-5-bad-egg-expires-at 258)
-(defconst player-5-alliance-request-time-stamp 259)
-(defconst allied-with-5 260)
-(defconst tried-alliance-with-5 261)
-(defconst player-4-is-bad-egg 252)
-(defconst player-4-bad-egg-expires-at 253)
-(defconst player-4-alliance-request-time-stamp 254)
-(defconst allied-with-4 255)
-(defconst tried-alliance-with-4 256)
-(defconst player-3-is-bad-egg 247)
-(defconst player-3-bad-egg-expires-at 248)
-(defconst player-3-alliance-request-time-stamp 249)
-(defconst allied-with-3 250)
-(defconst tried-alliance-with-3 251)
-(defconst player-2-is-bad-egg 242)
-(defconst player-2-bad-egg-expires-at 243)
-(defconst player-2-alliance-request-time-stamp 244)
-(defconst allied-with-2 245)
-(defconst tried-alliance-with-2 246)
-(defconst player-1-is-bad-egg 237)
-(defconst player-1-bad-egg-expires-at 238)
-(defconst player-1-alliance-request-time-stamp 239)
-(defconst allied-with-1 240)
-(defconst tried-alliance-with-1 241)
-(defconst accept-alliance-requests 236)
-(defconst want-alliance 235)
+(defconst did-reset 236)
+(defconst chat-betrayed-by-player 281)
+(defconst chat-betray-player 280)
+(defconst no-enemies-stamp 279)
+(defconst player-8-is-bad-egg 274)
+(defconst player-8-bad-egg-expires-at 275)
+(defconst player-8-alliance-request-time-stamp 276)
+(defconst allied-with-8 277)
+(defconst tried-alliance-with-8 278)
+(defconst player-7-is-bad-egg 269)
+(defconst player-7-bad-egg-expires-at 270)
+(defconst player-7-alliance-request-time-stamp 271)
+(defconst allied-with-7 272)
+(defconst tried-alliance-with-7 273)
+(defconst player-6-is-bad-egg 264)
+(defconst player-6-bad-egg-expires-at 265)
+(defconst player-6-alliance-request-time-stamp 266)
+(defconst allied-with-6 267)
+(defconst tried-alliance-with-6 268)
+(defconst player-5-is-bad-egg 259)
+(defconst player-5-bad-egg-expires-at 260)
+(defconst player-5-alliance-request-time-stamp 261)
+(defconst allied-with-5 262)
+(defconst tried-alliance-with-5 263)
+(defconst player-4-is-bad-egg 254)
+(defconst player-4-bad-egg-expires-at 255)
+(defconst player-4-alliance-request-time-stamp 256)
+(defconst allied-with-4 257)
+(defconst tried-alliance-with-4 258)
+(defconst player-3-is-bad-egg 249)
+(defconst player-3-bad-egg-expires-at 250)
+(defconst player-3-alliance-request-time-stamp 251)
+(defconst allied-with-3 252)
+(defconst tried-alliance-with-3 253)
+(defconst player-2-is-bad-egg 244)
+(defconst player-2-bad-egg-expires-at 245)
+(defconst player-2-alliance-request-time-stamp 246)
+(defconst allied-with-2 247)
+(defconst tried-alliance-with-2 248)
+(defconst player-1-is-bad-egg 239)
+(defconst player-1-bad-egg-expires-at 240)
+(defconst player-1-alliance-request-time-stamp 241)
+(defconst allied-with-1 242)
+(defconst tried-alliance-with-1 243)
+(defconst accept-alliance-requests 238)
+(defconst want-alliance 237)
 (defconst bad-egg-expiry 600)
 (defconst allied-victory-timeout 120)
 (defconst alliance-request-timeout 60)
@@ -1898,7 +1900,7 @@
     (building-type-count-total town-center-foundation == 0)
 =>
     (build town-center)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed feudal-age)
@@ -1969,7 +1971,7 @@
     (building-type-count-total town-center-foundation == 0)
 =>
     (build town-center)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed castle-age)
@@ -1989,7 +1991,7 @@
     (building-type-count-total town-center-foundation == 0)
 =>
     (build town-center)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed feudal-age)
@@ -2053,7 +2055,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -2076,7 +2078,7 @@
     (building-type-count-total market == 0)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (gold-amount > 400)
@@ -2151,7 +2153,7 @@
     (building-type-count-total town-center-foundation == 0)
 =>
     (build town-center)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed imperial-age)
@@ -2171,7 +2173,7 @@
     (building-type-count-total town-center-foundation == 0)
 =>
     (build town-center)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed castle-age)
@@ -2191,7 +2193,7 @@
     (building-type-count-total town-center-foundation == 0)
 =>
     (build town-center)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed feudal-age)
@@ -2255,7 +2257,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -2278,7 +2280,7 @@
     (building-type-count-total market == 0)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (gold-amount > 400)
@@ -2361,7 +2363,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -2377,7 +2379,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -2406,7 +2408,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -2427,7 +2429,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: imperial-age < research-pending)
@@ -2485,7 +2487,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -2501,7 +2503,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -2553,7 +2555,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-heresy < research-pending)
@@ -2597,7 +2599,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-faith < research-pending)
@@ -2641,7 +2643,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-heresy < research-pending)
@@ -2685,7 +2687,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-faith < research-pending)
@@ -2731,7 +2733,7 @@
     (building-type-count-total market == 0)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-banking)
@@ -2751,7 +2753,7 @@
     (building-type-count-total market == 0)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-coinage < research-pending)
@@ -2828,7 +2830,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -2844,7 +2846,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -2895,7 +2897,7 @@
     (building-type-count-total town-center-foundation == 0)
 =>
     (build town-center)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -2918,7 +2920,7 @@
     (building-type-count-total town-center-foundation == 0)
 =>
     (build town-center)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-loom < research-pending)
@@ -2964,7 +2966,7 @@
     (building-type-count-total town-center-foundation == 0)
 =>
     (build town-center)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-wheel-barrow < research-pending)
@@ -3335,7 +3337,7 @@
     (building-type-count-total town-center-foundation == 0)
 =>
     (build town-center)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-hand-cart)
@@ -3355,7 +3357,7 @@
     (building-type-count-total town-center-foundation == 0)
 =>
     (build town-center)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-wheel-barrow < research-pending)
@@ -3848,7 +3850,7 @@
     (building-type-count-total town-center-foundation == 0)
 =>
     (build town-center)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-loom < research-pending)
@@ -3888,7 +3890,7 @@
     (building-type-count-total market == 0)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -3911,7 +3913,7 @@
     (building-type-count-total market == 0)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-caravan < research-pending)
@@ -3966,7 +3968,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -3982,7 +3984,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -4024,7 +4026,7 @@
     (unit-available trade-cart)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train trade-cart)
@@ -4134,7 +4136,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -4150,7 +4152,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -4565,7 +4567,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-chemistry < research-pending)
@@ -4634,7 +4636,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-chemistry < research-pending)
@@ -4735,7 +4737,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -4745,7 +4747,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -4775,7 +4777,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -4785,7 +4787,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-crossbow < research-pending)
@@ -4843,7 +4845,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -4853,7 +4855,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-arbalest)
@@ -4880,7 +4882,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -4890,7 +4892,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-crossbow < research-pending)
@@ -4968,7 +4970,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -4984,7 +4986,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -5049,7 +5051,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -5065,7 +5067,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -5127,7 +5129,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -5172,7 +5174,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -5220,7 +5222,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -5240,7 +5242,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -5311,7 +5313,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -5331,7 +5333,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -5407,7 +5409,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bracer)
@@ -5427,7 +5429,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -5447,7 +5449,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -5546,7 +5548,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-ring-archer-armor)
@@ -5566,7 +5568,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -5586,7 +5588,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -5684,7 +5686,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-chemistry < research-pending)
@@ -5736,7 +5738,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -5746,7 +5748,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-thumb-ring < research-pending)
@@ -5790,7 +5792,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-ballistics < research-pending)
@@ -5821,7 +5823,7 @@
     (building-type-count-total barracks < 1)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -5840,7 +5842,7 @@
     (up-compare-goal archery-range-count g:< desired-military-buildings-per-type)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train archer-line)
@@ -5910,7 +5912,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -5920,7 +5922,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -5952,7 +5954,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -5968,7 +5970,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -6017,7 +6019,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (unit-available hand-cannoneer)
@@ -6037,7 +6039,7 @@
     (unit-available hand-cannoneer)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (not
@@ -6059,7 +6061,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-ring-archer-armor)
@@ -6079,7 +6081,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -6099,7 +6101,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -6238,7 +6240,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -6248,7 +6250,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -6278,7 +6280,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -6288,7 +6290,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-elite-skirmisher < research-pending)
@@ -6346,7 +6348,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -6356,7 +6358,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-imperial-skirmisher)
@@ -6383,7 +6385,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -6393,7 +6395,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-elite-skirmisher < research-pending)
@@ -6471,7 +6473,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -6487,7 +6489,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -6552,7 +6554,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -6568,7 +6570,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -6630,7 +6632,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -6675,7 +6677,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -6723,7 +6725,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -6743,7 +6745,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -6814,7 +6816,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -6834,7 +6836,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -6910,7 +6912,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bracer)
@@ -6930,7 +6932,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -6950,7 +6952,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -7049,7 +7051,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-ring-archer-armor)
@@ -7069,7 +7071,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -7089,7 +7091,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -7187,7 +7189,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-chemistry < research-pending)
@@ -7239,7 +7241,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -7249,7 +7251,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-thumb-ring < research-pending)
@@ -7293,7 +7295,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-ballistics < research-pending)
@@ -7324,7 +7326,7 @@
     (building-type-count-total barracks < 1)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -7343,7 +7345,7 @@
     (up-compare-goal archery-range-count g:< desired-military-buildings-per-type)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train skirmisher-line)
@@ -7413,7 +7415,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -7423,7 +7425,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -7453,7 +7455,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -7463,7 +7465,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-elite-genitour < research-pending)
@@ -7515,7 +7517,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -7560,7 +7562,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -7608,7 +7610,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -7628,7 +7630,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -7699,7 +7701,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -7719,7 +7721,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -7795,7 +7797,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bracer)
@@ -7815,7 +7817,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -7835,7 +7837,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -7934,7 +7936,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-ring-archer-armor)
@@ -7954,7 +7956,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -7974,7 +7976,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -8072,7 +8074,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-chemistry < research-pending)
@@ -8124,7 +8126,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -8134,7 +8136,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-thumb-ring < research-pending)
@@ -8178,7 +8180,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-ballistics < research-pending)
@@ -8209,7 +8211,7 @@
     (building-type-count-total barracks < 1)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -8228,7 +8230,7 @@
     (up-compare-goal archery-range-count g:< desired-military-buildings-per-type)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (not
@@ -8256,7 +8258,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -8266,7 +8268,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-bloodlines < research-pending)
@@ -8317,7 +8319,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -8327,7 +8329,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-husbandry < research-pending)
@@ -8381,7 +8383,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -8397,7 +8399,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -8459,7 +8461,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -8469,7 +8471,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-parthian-tactics < research-pending)
@@ -8562,7 +8564,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -8572,7 +8574,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -8602,7 +8604,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -8612,7 +8614,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-heavy-cavalry-archer < research-pending)
@@ -8667,7 +8669,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -8683,7 +8685,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -8745,7 +8747,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -8790,7 +8792,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -8838,7 +8840,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -8858,7 +8860,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -8929,7 +8931,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -8949,7 +8951,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -9025,7 +9027,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bracer)
@@ -9045,7 +9047,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -9065,7 +9067,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -9164,7 +9166,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-ring-archer-armor)
@@ -9184,7 +9186,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -9204,7 +9206,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -9302,7 +9304,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-chemistry < research-pending)
@@ -9354,7 +9356,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -9364,7 +9366,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-thumb-ring < research-pending)
@@ -9408,7 +9410,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-ballistics < research-pending)
@@ -9439,7 +9441,7 @@
     (building-type-count-total barracks < 1)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -9458,7 +9460,7 @@
     (up-compare-goal archery-range-count g:< desired-military-buildings-per-type)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (not
@@ -9486,7 +9488,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -9496,7 +9498,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-bloodlines < research-pending)
@@ -9547,7 +9549,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -9557,7 +9559,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-husbandry < research-pending)
@@ -9611,7 +9613,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -9627,7 +9629,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -9689,7 +9691,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -9699,7 +9701,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-parthian-tactics < research-pending)
@@ -9784,7 +9786,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -9806,7 +9808,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-man-at-arms < research-pending)
@@ -9856,7 +9858,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-long-swordsman)
@@ -9875,7 +9877,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-man-at-arms < research-pending)
@@ -9953,7 +9955,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-champion)
@@ -9972,7 +9974,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-two-handed-swordsman)
@@ -9991,7 +9993,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-long-swordsman)
@@ -10010,7 +10012,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-man-at-arms < research-pending)
@@ -10144,7 +10146,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -10160,7 +10162,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -10222,7 +10224,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -10267,7 +10269,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -10315,7 +10317,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -10335,7 +10337,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -10406,7 +10408,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-mail)
@@ -10426,7 +10428,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -10502,7 +10504,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-blast-furnace)
@@ -10522,7 +10524,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -10542,7 +10544,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -10641,7 +10643,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-plate-mail)
@@ -10661,7 +10663,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-mail)
@@ -10681,7 +10683,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -10789,7 +10791,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -10805,7 +10807,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -10859,7 +10861,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-tracking < research-pending)
@@ -10903,7 +10905,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-squires < research-pending)
@@ -10947,7 +10949,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-arson < research-pending)
@@ -11001,7 +11003,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -11017,7 +11019,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -11069,7 +11071,7 @@
     (up-compare-goal barracks-count g:< desired-military-buildings-per-type)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train militiaman-line)
@@ -11131,7 +11133,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (not
@@ -11160,7 +11162,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -11205,7 +11207,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -11253,7 +11255,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -11273,7 +11275,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -11344,7 +11346,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-mail)
@@ -11364,7 +11366,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -11440,7 +11442,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-blast-furnace)
@@ -11460,7 +11462,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -11480,7 +11482,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -11579,7 +11581,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-plate-mail)
@@ -11599,7 +11601,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-mail)
@@ -11619,7 +11621,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -11727,7 +11729,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -11743,7 +11745,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -11797,7 +11799,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-tracking < research-pending)
@@ -11841,7 +11843,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-squires < research-pending)
@@ -11885,7 +11887,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-arson < research-pending)
@@ -11939,7 +11941,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -11955,7 +11957,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -12007,7 +12009,7 @@
     (up-compare-goal barracks-count g:< desired-military-buildings-per-type)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train condottiero)
@@ -12069,7 +12071,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -12091,7 +12093,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-pikeman < research-pending)
@@ -12141,7 +12143,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-halberdier)
@@ -12160,7 +12162,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-pikeman < research-pending)
@@ -12235,7 +12237,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -12280,7 +12282,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -12328,7 +12330,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -12348,7 +12350,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -12419,7 +12421,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-mail)
@@ -12439,7 +12441,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -12515,7 +12517,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-blast-furnace)
@@ -12535,7 +12537,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -12555,7 +12557,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -12654,7 +12656,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-plate-mail)
@@ -12674,7 +12676,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-mail)
@@ -12694,7 +12696,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -12802,7 +12804,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -12818,7 +12820,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -12872,7 +12874,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-tracking < research-pending)
@@ -12916,7 +12918,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-squires < research-pending)
@@ -12960,7 +12962,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-arson < research-pending)
@@ -13014,7 +13016,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -13030,7 +13032,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -13082,7 +13084,7 @@
     (up-compare-goal barracks-count g:< desired-military-buildings-per-type)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train spearman-line)
@@ -13144,7 +13146,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -13166,7 +13168,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-eagle-warrior < research-pending)
@@ -13216,7 +13218,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-elite-eagle-warrior)
@@ -13235,7 +13237,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-eagle-warrior < research-pending)
@@ -13318,7 +13320,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -13334,7 +13336,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -13404,7 +13406,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -13420,7 +13422,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -13482,7 +13484,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -13527,7 +13529,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -13575,7 +13577,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -13595,7 +13597,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -13666,7 +13668,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-mail)
@@ -13686,7 +13688,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -13762,7 +13764,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-blast-furnace)
@@ -13782,7 +13784,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -13802,7 +13804,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -13901,7 +13903,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-plate-mail)
@@ -13921,7 +13923,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-mail)
@@ -13941,7 +13943,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -14049,7 +14051,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -14065,7 +14067,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -14119,7 +14121,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-tracking < research-pending)
@@ -14163,7 +14165,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-squires < research-pending)
@@ -14207,7 +14209,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-arson < research-pending)
@@ -14261,7 +14263,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -14277,7 +14279,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -14329,7 +14331,7 @@
     (up-compare-goal barracks-count g:< desired-military-buildings-per-type)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train eagle-warrior-line)
@@ -14398,7 +14400,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -14408,7 +14410,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -14437,7 +14439,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -14447,7 +14449,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-light-cavalry < research-pending)
@@ -14504,7 +14506,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -14514,7 +14516,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-hussar)
@@ -14540,7 +14542,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -14550,7 +14552,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-light-cavalry < research-pending)
@@ -14625,7 +14627,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -14670,7 +14672,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -14718,7 +14720,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -14738,7 +14740,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -14809,7 +14811,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-barding)
@@ -14829,7 +14831,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -14905,7 +14907,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-blast-furnace)
@@ -14925,7 +14927,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -14945,7 +14947,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -15044,7 +15046,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-plate-barding)
@@ -15064,7 +15066,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-barding)
@@ -15084,7 +15086,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -15181,7 +15183,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -15191,7 +15193,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-bloodlines < research-pending)
@@ -15242,7 +15244,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -15252,7 +15254,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-husbandry < research-pending)
@@ -15306,7 +15308,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -15322,7 +15324,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -15386,7 +15388,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -15402,7 +15404,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -15466,7 +15468,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -15482,7 +15484,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -15523,7 +15525,7 @@
     (building-type-count-total barracks < 1)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -15542,7 +15544,7 @@
     (up-compare-goal stable-count g:< desired-military-buildings-per-type)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train scout-cavalry-line)
@@ -15610,7 +15612,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -15620,7 +15622,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -15649,7 +15651,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -15659,7 +15661,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-paladin)
@@ -15685,7 +15687,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -15695,7 +15697,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-cavalier < research-pending)
@@ -15770,7 +15772,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -15815,7 +15817,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -15863,7 +15865,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -15883,7 +15885,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -15954,7 +15956,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-barding)
@@ -15974,7 +15976,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -16050,7 +16052,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-blast-furnace)
@@ -16070,7 +16072,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -16090,7 +16092,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -16189,7 +16191,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-plate-barding)
@@ -16209,7 +16211,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-barding)
@@ -16229,7 +16231,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -16326,7 +16328,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -16336,7 +16338,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-bloodlines < research-pending)
@@ -16387,7 +16389,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -16397,7 +16399,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-husbandry < research-pending)
@@ -16451,7 +16453,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -16467,7 +16469,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -16531,7 +16533,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -16547,7 +16549,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -16611,7 +16613,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -16627,7 +16629,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -16668,7 +16670,7 @@
     (building-type-count-total barracks < 1)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -16687,7 +16689,7 @@
     (up-compare-goal stable-count g:< desired-military-buildings-per-type)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train knight-line)
@@ -16756,7 +16758,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -16766,7 +16768,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -16795,7 +16797,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -16805,7 +16807,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-heavy-camel < research-pending)
@@ -16857,7 +16859,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -16867,7 +16869,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-imperial-camel)
@@ -16893,7 +16895,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -16903,7 +16905,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-heavy-camel < research-pending)
@@ -16978,7 +16980,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -17023,7 +17025,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -17071,7 +17073,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -17091,7 +17093,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -17162,7 +17164,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-barding)
@@ -17182,7 +17184,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -17258,7 +17260,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-blast-furnace)
@@ -17278,7 +17280,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -17298,7 +17300,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -17397,7 +17399,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-plate-barding)
@@ -17417,7 +17419,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-barding)
@@ -17437,7 +17439,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -17534,7 +17536,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -17544,7 +17546,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-bloodlines < research-pending)
@@ -17595,7 +17597,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -17605,7 +17607,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-husbandry < research-pending)
@@ -17659,7 +17661,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -17675,7 +17677,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -17739,7 +17741,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -17755,7 +17757,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -17819,7 +17821,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -17835,7 +17837,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -17876,7 +17878,7 @@
     (building-type-count-total barracks < 1)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -17895,7 +17897,7 @@
     (up-compare-goal stable-count g:< desired-military-buildings-per-type)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train camel-line)
@@ -17964,7 +17966,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -17974,7 +17976,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -18006,7 +18008,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -18022,7 +18024,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -18087,7 +18089,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -18103,7 +18105,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -18168,7 +18170,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -18184,7 +18186,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -18246,7 +18248,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -18256,7 +18258,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-elite-battle-elephant < research-pending)
@@ -18308,7 +18310,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -18353,7 +18355,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -18401,7 +18403,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -18421,7 +18423,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -18492,7 +18494,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-barding)
@@ -18512,7 +18514,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -18588,7 +18590,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-blast-furnace)
@@ -18608,7 +18610,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -18628,7 +18630,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -18727,7 +18729,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-plate-barding)
@@ -18747,7 +18749,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-barding)
@@ -18767,7 +18769,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -18864,7 +18866,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -18874,7 +18876,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-bloodlines < research-pending)
@@ -18925,7 +18927,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -18935,7 +18937,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-husbandry < research-pending)
@@ -18989,7 +18991,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -19005,7 +19007,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -19069,7 +19071,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -19085,7 +19087,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -19149,7 +19151,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -19165,7 +19167,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -19206,7 +19208,7 @@
     (building-type-count-total barracks < 1)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -19225,7 +19227,7 @@
     (up-compare-goal stable-count g:< desired-military-buildings-per-type)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train battle-elephant-line)
@@ -19295,7 +19297,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build siege-workshop)
@@ -19305,7 +19307,7 @@
     (building-type-count-total siege-workshop == 0)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -19335,7 +19337,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build siege-workshop)
@@ -19345,7 +19347,7 @@
     (building-type-count-total siege-workshop == 0)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-siege-ram)
@@ -19372,7 +19374,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build siege-workshop)
@@ -19382,7 +19384,7 @@
     (building-type-count-total siege-workshop == 0)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-capped-ram < research-pending)
@@ -19458,7 +19460,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-siege-engineers < research-pending)
@@ -19502,7 +19504,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-chemistry < research-pending)
@@ -19556,7 +19558,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -19572,7 +19574,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -19622,7 +19624,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build siege-workshop)
@@ -19632,7 +19634,7 @@
     (building-type-count-total siege-workshop == 0)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -19651,7 +19653,7 @@
     (up-compare-goal siege-workshop-count g:< desired-military-buildings-per-type)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train battering-ram-line)
@@ -19721,7 +19723,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build siege-workshop)
@@ -19731,7 +19733,7 @@
     (building-type-count-total siege-workshop == 0)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -19761,7 +19763,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build siege-workshop)
@@ -19771,7 +19773,7 @@
     (building-type-count-total siege-workshop == 0)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-siege-onager)
@@ -19798,7 +19800,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build siege-workshop)
@@ -19808,7 +19810,7 @@
     (building-type-count-total siege-workshop == 0)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-onager < research-pending)
@@ -19888,7 +19890,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -19904,7 +19906,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -19965,7 +19967,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-siege-engineers < research-pending)
@@ -20009,7 +20011,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-chemistry < research-pending)
@@ -20063,7 +20065,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -20079,7 +20081,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -20129,7 +20131,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build siege-workshop)
@@ -20139,7 +20141,7 @@
     (building-type-count-total siege-workshop == 0)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -20158,7 +20160,7 @@
     (up-compare-goal siege-workshop-count g:< desired-military-buildings-per-type)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train mangonel-line)
@@ -20228,7 +20230,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build siege-workshop)
@@ -20238,7 +20240,7 @@
     (building-type-count-total siege-workshop == 0)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -20268,7 +20270,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build siege-workshop)
@@ -20278,7 +20280,7 @@
     (building-type-count-total siege-workshop == 0)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-heavy-scorpion < research-pending)
@@ -20333,7 +20335,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -20349,7 +20351,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -20414,7 +20416,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -20430,7 +20432,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -20491,7 +20493,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-siege-engineers < research-pending)
@@ -20535,7 +20537,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-chemistry < research-pending)
@@ -20589,7 +20591,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -20605,7 +20607,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -20655,7 +20657,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build siege-workshop)
@@ -20665,7 +20667,7 @@
     (building-type-count-total siege-workshop == 0)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -20684,7 +20686,7 @@
     (up-compare-goal siege-workshop-count g:< desired-military-buildings-per-type)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train scorpion-line)
@@ -20754,7 +20756,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build siege-workshop)
@@ -20764,7 +20766,7 @@
     (building-type-count-total siege-workshop == 0)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (not
@@ -20792,7 +20794,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-siege-engineers < research-pending)
@@ -20836,7 +20838,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-chemistry < research-pending)
@@ -20890,7 +20892,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -20906,7 +20908,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -20956,7 +20958,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build siege-workshop)
@@ -20966,7 +20968,7 @@
     (building-type-count-total siege-workshop == 0)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -20985,7 +20987,7 @@
     (up-compare-goal siege-workshop-count g:< desired-military-buildings-per-type)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train bombard-cannon)
@@ -21052,7 +21054,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -21068,7 +21070,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -21104,7 +21106,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-siege-engineers < research-pending)
@@ -21148,7 +21150,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-chemistry < research-pending)
@@ -21202,7 +21204,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -21218,7 +21220,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -21268,7 +21270,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build siege-workshop)
@@ -21278,7 +21280,7 @@
     (building-type-count-total siege-workshop == 0)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -21297,7 +21299,7 @@
     (up-compare-goal siege-workshop-count g:< desired-military-buildings-per-type)
 =>
     (build siege-workshop)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train trebuchet)
@@ -21376,7 +21378,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -21392,7 +21394,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -21427,7 +21429,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -21443,7 +21445,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -21530,7 +21532,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -21575,7 +21577,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -21623,7 +21625,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -21643,7 +21645,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -21714,7 +21716,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-mail)
@@ -21734,7 +21736,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -21810,7 +21812,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-blast-furnace)
@@ -21830,7 +21832,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -21850,7 +21852,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -21949,7 +21951,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-plate-mail)
@@ -21969,7 +21971,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-mail)
@@ -21989,7 +21991,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -22097,7 +22099,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -22113,7 +22115,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -22167,7 +22169,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-tracking < research-pending)
@@ -22211,7 +22213,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-squires < research-pending)
@@ -22255,7 +22257,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-arson < research-pending)
@@ -22309,7 +22311,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -22325,7 +22327,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -22377,7 +22379,7 @@
     (up-compare-goal barracks-count g:< desired-military-buildings-per-type)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -22422,7 +22424,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -22467,7 +22469,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -22515,7 +22517,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -22535,7 +22537,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -22606,7 +22608,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-mail)
@@ -22626,7 +22628,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -22702,7 +22704,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-blast-furnace)
@@ -22722,7 +22724,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -22742,7 +22744,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -22841,7 +22843,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-plate-mail)
@@ -22861,7 +22863,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-mail)
@@ -22881,7 +22883,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-mail < research-pending)
@@ -22989,7 +22991,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -23005,7 +23007,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -23059,7 +23061,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-tracking < research-pending)
@@ -23103,7 +23105,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-squires < research-pending)
@@ -23147,7 +23149,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-arson < research-pending)
@@ -23201,7 +23203,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -23217,7 +23219,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -23269,7 +23271,7 @@
     (up-compare-goal barracks-count g:< desired-military-buildings-per-type)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -23311,7 +23313,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -23356,7 +23358,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -23404,7 +23406,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -23424,7 +23426,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -23495,7 +23497,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -23515,7 +23517,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -23591,7 +23593,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bracer)
@@ -23611,7 +23613,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -23631,7 +23633,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -23730,7 +23732,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-ring-archer-armor)
@@ -23750,7 +23752,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -23770,7 +23772,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -23868,7 +23870,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-chemistry < research-pending)
@@ -23920,7 +23922,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -23930,7 +23932,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-thumb-ring < research-pending)
@@ -23974,7 +23976,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-ballistics < research-pending)
@@ -24005,7 +24007,7 @@
     (building-type-count-total barracks < 1)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -24024,7 +24026,7 @@
     (up-compare-goal archery-range-count g:< desired-military-buildings-per-type)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (not
@@ -24052,7 +24054,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -24062,7 +24064,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-bloodlines < research-pending)
@@ -24113,7 +24115,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -24123,7 +24125,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-husbandry < research-pending)
@@ -24177,7 +24179,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -24193,7 +24195,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -24255,7 +24257,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -24265,7 +24267,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-parthian-tactics < research-pending)
@@ -24330,7 +24332,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -24375,7 +24377,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -24423,7 +24425,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -24443,7 +24445,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -24514,7 +24516,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -24534,7 +24536,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -24610,7 +24612,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bracer)
@@ -24630,7 +24632,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -24650,7 +24652,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -24749,7 +24751,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-ring-archer-armor)
@@ -24769,7 +24771,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -24789,7 +24791,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -24887,7 +24889,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-chemistry < research-pending)
@@ -24939,7 +24941,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build archery-range)
@@ -24949,7 +24951,7 @@
     (building-type-count-total archery-range == 0)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-thumb-ring < research-pending)
@@ -24993,7 +24995,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-ballistics < research-pending)
@@ -25024,7 +25026,7 @@
     (building-type-count-total barracks < 1)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -25043,7 +25045,7 @@
     (up-compare-goal archery-range-count g:< desired-military-buildings-per-type)
 =>
     (build archery-range)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (nand
@@ -25088,7 +25090,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -25133,7 +25135,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -25181,7 +25183,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -25201,7 +25203,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -25272,7 +25274,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-barding)
@@ -25292,7 +25294,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -25368,7 +25370,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-blast-furnace)
@@ -25388,7 +25390,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-iron-casting)
@@ -25408,7 +25410,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-forging < research-pending)
@@ -25507,7 +25509,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-plate-barding)
@@ -25527,7 +25529,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-barding)
@@ -25547,7 +25549,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -25644,7 +25646,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -25654,7 +25656,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-bloodlines < research-pending)
@@ -25705,7 +25707,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -25715,7 +25717,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-husbandry < research-pending)
@@ -25769,7 +25771,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -25785,7 +25787,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -25849,7 +25851,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -25865,7 +25867,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -25929,7 +25931,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -25945,7 +25947,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -25986,7 +25988,7 @@
     (building-type-count-total barracks < 1)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -26005,7 +26007,7 @@
     (up-compare-goal stable-count g:< desired-military-buildings-per-type)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (unit-available my-unique-unit-line)
@@ -26042,7 +26044,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -26058,7 +26060,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -26123,7 +26125,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -26139,7 +26141,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -26204,7 +26206,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -26220,7 +26222,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -26288,7 +26290,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -26304,7 +26306,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -26372,7 +26374,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -26388,7 +26390,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -26456,7 +26458,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -26472,7 +26474,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -26540,7 +26542,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -26556,7 +26558,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -26624,7 +26626,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -26640,7 +26642,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -26708,7 +26710,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -26724,7 +26726,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -26792,7 +26794,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -26808,7 +26810,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -26866,7 +26868,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-siege-engineers < research-pending)
@@ -26914,7 +26916,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-siege-engineers < research-pending)
@@ -26962,7 +26964,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-chemistry < research-pending)
@@ -27011,7 +27013,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-plate-barding)
@@ -27031,7 +27033,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-barding)
@@ -27051,7 +27053,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -27148,7 +27150,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-chain-barding)
@@ -27168,7 +27170,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-scale-barding < research-pending)
@@ -27236,7 +27238,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-ballistics < research-pending)
@@ -27288,7 +27290,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -27298,7 +27300,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-husbandry < research-pending)
@@ -27350,7 +27352,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -27360,7 +27362,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-bloodlines < research-pending)
@@ -27409,7 +27411,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-ring-archer-armor)
@@ -27429,7 +27431,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -27449,7 +27451,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -27546,7 +27548,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -27566,7 +27568,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -27641,7 +27643,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -27651,7 +27653,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-husbandry < research-pending)
@@ -27703,7 +27705,7 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build stable)
@@ -27713,7 +27715,7 @@
     (building-type-count-total stable == 0)
 =>
     (build stable)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-bloodlines < research-pending)
@@ -27762,7 +27764,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-ring-archer-armor)
@@ -27782,7 +27784,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -27802,7 +27804,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -27899,7 +27901,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-leather-archer-armor)
@@ -27919,7 +27921,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-padded-archer-armor < research-pending)
@@ -28028,7 +28030,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (not
@@ -28056,7 +28058,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-redemption < research-pending)
@@ -28100,7 +28102,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-sanctity < research-pending)
@@ -28144,7 +28146,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fervor < research-pending)
@@ -28198,7 +28200,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -28214,7 +28216,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -28278,7 +28280,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -28294,7 +28296,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -28349,7 +28351,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-atonement < research-pending)
@@ -28393,7 +28395,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-theocracy < research-pending)
@@ -28437,7 +28439,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-illumination < research-pending)
@@ -28481,7 +28483,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-block-printing < research-pending)
@@ -28523,7 +28525,7 @@
     (up-compare-goal monastery-count g:< desired-military-buildings-per-type)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train monk)
@@ -28584,7 +28586,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (not
@@ -28612,7 +28614,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-redemption < research-pending)
@@ -28656,7 +28658,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-sanctity < research-pending)
@@ -28700,7 +28702,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fervor < research-pending)
@@ -28754,7 +28756,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -28770,7 +28772,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -28834,7 +28836,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -28850,7 +28852,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -28905,7 +28907,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-atonement < research-pending)
@@ -28949,7 +28951,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-theocracy < research-pending)
@@ -28993,7 +28995,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-illumination < research-pending)
@@ -29037,7 +29039,7 @@
     (building-type-count-total monastery == 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-block-printing < research-pending)
@@ -29079,7 +29081,7 @@
     (up-compare-goal monastery-count g:< desired-military-buildings-per-type)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train missionary)
@@ -29359,7 +29361,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -29375,7 +29377,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -29440,7 +29442,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -29456,7 +29458,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -29592,7 +29594,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -29643,7 +29645,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -29663,7 +29665,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -29791,7 +29793,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bracer)
@@ -29811,7 +29813,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -29831,7 +29833,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -29932,7 +29934,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-chemistry < research-pending)
@@ -30072,7 +30074,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-ballistics < research-pending)
@@ -30315,7 +30317,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -30331,7 +30333,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -30396,7 +30398,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -30412,7 +30414,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -30691,7 +30693,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -30707,7 +30709,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -30960,7 +30962,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -30976,7 +30978,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -31041,7 +31043,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -31057,7 +31059,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -31390,7 +31392,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -31406,7 +31408,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -31471,7 +31473,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -31487,7 +31489,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -31908,7 +31910,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -31924,7 +31926,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -31989,7 +31991,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -32005,7 +32007,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -32078,7 +32080,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 849)
+    (up-jump-rule 855)
 )
 (defrule
     (true)
@@ -32307,7 +32309,7 @@
     (civ-selected portuguese)
 =>
     (build feitoria)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build feitoria)
@@ -32317,7 +32319,7 @@
     (civ-selected portuguese)
 =>
     (build feitoria)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (goal produce-unique-units 1)
@@ -32368,7 +32370,7 @@
     (up-pending-objects c: castle < 5)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -32384,7 +32386,7 @@
     (current-age >= castle-age)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-buy-commodity stone)
@@ -32440,7 +32442,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-architecture)
@@ -32459,7 +32461,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-masonry < research-pending)
@@ -32531,7 +32533,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bracer)
@@ -32551,7 +32553,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -32571,7 +32573,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -32667,7 +32669,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-masonry < research-pending)
@@ -32718,7 +32720,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (research-completed ri-bodkin-arrow)
@@ -32738,7 +32740,7 @@
     (building-type-count-total blacksmith == 0)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fletching < research-pending)
@@ -32806,7 +32808,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-murder-holes < research-pending)
@@ -32889,7 +32891,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-fortified-wall < research-pending)
@@ -32941,7 +32943,7 @@
     (building-type-count-total university == 0)
 =>
     (build university)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: ri-murder-holes < research-pending)
@@ -33984,7 +33986,7 @@
     (building-type-count-total blacksmith < 2)
 =>
     (build blacksmith)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (civ-selected magyar)
@@ -35138,6 +35140,79 @@
 )
 (defrule
     (not
+      (goal emergency-trash 1)
+    )
+    (goal attack-ready 1)
+=>
+    (set-goal no-unit-rule-passes 0)
+    (set-goal director-units-selected 0)
+    (disable-self)
+)
+(defrule
+    (nand
+      (not
+        (goal emergency-trash 1)
+      )
+      (goal attack-ready 1)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (true)
+=>
+    (set-goal director-units-selected 0)
+    (up-modify-goal director-units-selected g:+ produce-archers)
+    (up-modify-goal director-units-selected g:+ produce-hand-cannoneers)
+    (up-modify-goal director-units-selected g:+ produce-skirmishers)
+    (up-modify-goal director-units-selected g:+ produce-cavalry-archers)
+    (up-modify-goal director-units-selected g:+ produce-militia)
+    (up-modify-goal director-units-selected g:+ produce-spearmen)
+    (up-modify-goal director-units-selected g:+ produce-eagles)
+    (up-modify-goal director-units-selected g:+ produce-scouts)
+    (up-modify-goal director-units-selected g:+ produce-knights)
+    (up-modify-goal director-units-selected g:+ produce-camels)
+    (up-modify-goal director-units-selected g:+ produce-battle-elephants)
+    (up-modify-goal director-units-selected g:+ produce-mangonels)
+    (up-modify-goal director-units-selected g:+ produce-scorpions)
+    (up-modify-goal director-units-selected g:+ produce-unique-units)
+    (up-modify-goal director-units-selected g:+ produce-monks)
+    (up-modify-goal director-units-selected g:+ produce-genitours)
+    (up-modify-goal director-units-selected g:+ produce-condottiero)
+    (up-modify-goal director-units-selected g:+ produce-missionaries)
+)
+(defrule
+    (goal director-units-selected 0)
+    (not
+      (goal emergency-trash 1)
+    )
+    (goal attack-ready 1)
+=>
+    (up-modify-goal no-unit-rule-passes c:+ 1)
+)
+(defrule
+    (not
+      (goal director-units-selected 0)
+    )
+    (not
+      (goal emergency-trash 1)
+    )
+    (goal attack-ready 1)
+=>
+    (set-goal no-unit-rule-passes 0)
+)
+(defrule
+    (up-compare-goal no-unit-rule-passes c:>= 30)
+    (not
+      (goal emergency-trash 1)
+    )
+    (goal attack-ready 1)
+=>
+    (chat-local-to-self "ATTENTION: failed to select units, emergency trash activated")
+    (set-goal emergency-trash 1)
+)
+(defrule
+    (not
       (goal attack-ready 1)
     )
 =>
@@ -35372,19 +35447,19 @@
     (true)
 =>
     (chat-local-to-self "being reckless and thoughtful, chaotically!")
-    (set-goal 226 0)
+    (set-goal 228 0)
     (disable-self)
     (generate-random-number 2)
-    (up-get-fact random-number 0 226)
+    (up-get-fact random-number 0 228)
 )
 (defrule
-    (goal 226 1)
+    (goal 228 1)
 =>
     (set-goal balanced-aggressive 1)
     (disable-self)
 )
 (defrule
-    (goal 226 2)
+    (goal 228 2)
 =>
     (set-goal balanced-aggressive 0)
     (disable-self)
@@ -35404,18 +35479,18 @@
 (defrule
     (timer-triggered 4)
 =>
-    (set-goal 230 0)
+    (set-goal 232 0)
     (generate-random-number 2)
-    (up-get-fact random-number 0 230)
+    (up-get-fact random-number 0 232)
 )
 (defrule
-    (goal 230 1)
+    (goal 232 1)
     (timer-triggered 4)
 =>
     (set-goal balanced-aggressive 1)
 )
 (defrule
-    (goal 230 2)
+    (goal 232 2)
     (timer-triggered 4)
 =>
     (set-goal balanced-aggressive 0)
@@ -35692,8 +35767,8 @@
 (defrule
     (true)
 =>
-    (up-find-player enemy find-closest 231)
-    (up-modify-sn sn-target-player-number g:= 231)
+    (up-find-player enemy find-closest 233)
+    (up-modify-sn sn-target-player-number g:= 233)
     (up-send-scout group-type-land-explore scout-enemy)
     (disable-self)
 )
@@ -35707,8 +35782,8 @@
       )
     )
 =>
-    (up-find-player enemy find-closest 231)
-    (up-modify-sn sn-target-player-number g:= 231)
+    (up-find-player enemy find-closest 233)
+    (up-modify-sn sn-target-player-number g:= 233)
     (up-send-scout group-type-land-explore scout-enemy)
 )
 (defrule
@@ -36001,14 +36076,14 @@
     (set-goal no-enemies-stamp 0)
     (set-goal chat-betray-player -1)
     (set-goal chat-betrayed-by-player -1)
-    (set-goal 280 0)
+    (set-goal 282 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 280)
+    (up-get-fact random-number 0 282)
     (disable-self)
 )
 (defrule
     (not
-      (goal 280 1)
+      (goal 282 1)
     )
 =>
     (up-jump-rule 5)
@@ -36065,7 +36140,7 @@
 )
 (defrule
     (not
-      (goal 280 2)
+      (goal 282 2)
     )
 =>
     (up-jump-rule 5)
@@ -36127,7 +36202,7 @@
 )
 (defrule
     (not
-      (goal 280 3)
+      (goal 282 3)
     )
 =>
     (up-jump-rule 4)
@@ -36198,25 +36273,25 @@
 (defrule
     (true)
 =>
-    (set-goal 281 0)
+    (set-goal 283 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 281)
+    (up-get-fact random-number 0 283)
     (disable-self)
 )
 (defrule
-    (goal 281 1)
+    (goal 283 1)
 =>
     (chat-to-all "We aren't winning togther, then? What a shame.")
     (disable-self)
 )
 (defrule
-    (goal 281 2)
+    (goal 283 2)
 =>
     (chat-to-all "I suppose now we should fight.")
     (disable-self)
 )
 (defrule
-    (goal 281 3)
+    (goal 283 3)
 =>
     (chat-to-all "We did it, but the game is not over. This is just the beginning.")
     (disable-self)
@@ -36242,13 +36317,13 @@
 (defrule
     (goal want-alliance 1)
 =>
-    (set-goal 282 0)
+    (set-goal 284 0)
     (generate-random-number 8)
-    (up-get-fact random-number 0 282)
+    (up-get-fact random-number 0 284)
 )
 (defrule
     (nand
-      (goal 282 1)
+      (goal 284 1)
       (goal want-alliance 1)
     )
 =>
@@ -36273,22 +36348,22 @@
 (defrule
     (true)
 =>
-    (set-goal 283 0)
+    (set-goal 285 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 283)
+    (up-get-fact random-number 0 285)
 )
 (defrule
-    (goal 283 1)
+    (goal 285 1)
 =>
     (chat-to-player 1 "Let's be allies.")
 )
 (defrule
-    (goal 283 2)
+    (goal 285 2)
 =>
     (chat-to-player 1 "Want to work together?")
 )
 (defrule
-    (goal 283 3)
+    (goal 285 3)
 =>
     (chat-to-player 1 "Want to team up?")
 )
@@ -36306,7 +36381,7 @@
 )
 (defrule
     (nand
-      (goal 282 2)
+      (goal 284 2)
       (goal want-alliance 1)
     )
 =>
@@ -36331,22 +36406,22 @@
 (defrule
     (true)
 =>
-    (set-goal 284 0)
+    (set-goal 286 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 284)
+    (up-get-fact random-number 0 286)
 )
 (defrule
-    (goal 284 1)
+    (goal 286 1)
 =>
     (chat-to-player 2 "Let's be allies.")
 )
 (defrule
-    (goal 284 2)
+    (goal 286 2)
 =>
     (chat-to-player 2 "Want to work together?")
 )
 (defrule
-    (goal 284 3)
+    (goal 286 3)
 =>
     (chat-to-player 2 "Want to team up?")
 )
@@ -36364,7 +36439,7 @@
 )
 (defrule
     (nand
-      (goal 282 3)
+      (goal 284 3)
       (goal want-alliance 1)
     )
 =>
@@ -36389,22 +36464,22 @@
 (defrule
     (true)
 =>
-    (set-goal 285 0)
+    (set-goal 287 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 285)
+    (up-get-fact random-number 0 287)
 )
 (defrule
-    (goal 285 1)
+    (goal 287 1)
 =>
     (chat-to-player 3 "Let's be allies.")
 )
 (defrule
-    (goal 285 2)
+    (goal 287 2)
 =>
     (chat-to-player 3 "Want to work together?")
 )
 (defrule
-    (goal 285 3)
+    (goal 287 3)
 =>
     (chat-to-player 3 "Want to team up?")
 )
@@ -36422,7 +36497,7 @@
 )
 (defrule
     (nand
-      (goal 282 4)
+      (goal 284 4)
       (goal want-alliance 1)
     )
 =>
@@ -36447,22 +36522,22 @@
 (defrule
     (true)
 =>
-    (set-goal 286 0)
+    (set-goal 288 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 286)
+    (up-get-fact random-number 0 288)
 )
 (defrule
-    (goal 286 1)
+    (goal 288 1)
 =>
     (chat-to-player 4 "Let's be allies.")
 )
 (defrule
-    (goal 286 2)
+    (goal 288 2)
 =>
     (chat-to-player 4 "Want to work together?")
 )
 (defrule
-    (goal 286 3)
+    (goal 288 3)
 =>
     (chat-to-player 4 "Want to team up?")
 )
@@ -36480,7 +36555,7 @@
 )
 (defrule
     (nand
-      (goal 282 5)
+      (goal 284 5)
       (goal want-alliance 1)
     )
 =>
@@ -36505,22 +36580,22 @@
 (defrule
     (true)
 =>
-    (set-goal 287 0)
+    (set-goal 289 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 287)
+    (up-get-fact random-number 0 289)
 )
 (defrule
-    (goal 287 1)
+    (goal 289 1)
 =>
     (chat-to-player 5 "Let's be allies.")
 )
 (defrule
-    (goal 287 2)
+    (goal 289 2)
 =>
     (chat-to-player 5 "Want to work together?")
 )
 (defrule
-    (goal 287 3)
+    (goal 289 3)
 =>
     (chat-to-player 5 "Want to team up?")
 )
@@ -36538,7 +36613,7 @@
 )
 (defrule
     (nand
-      (goal 282 6)
+      (goal 284 6)
       (goal want-alliance 1)
     )
 =>
@@ -36563,22 +36638,22 @@
 (defrule
     (true)
 =>
-    (set-goal 288 0)
+    (set-goal 290 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 288)
+    (up-get-fact random-number 0 290)
 )
 (defrule
-    (goal 288 1)
+    (goal 290 1)
 =>
     (chat-to-player 6 "Let's be allies.")
 )
 (defrule
-    (goal 288 2)
+    (goal 290 2)
 =>
     (chat-to-player 6 "Want to work together?")
 )
 (defrule
-    (goal 288 3)
+    (goal 290 3)
 =>
     (chat-to-player 6 "Want to team up?")
 )
@@ -36596,7 +36671,7 @@
 )
 (defrule
     (nand
-      (goal 282 7)
+      (goal 284 7)
       (goal want-alliance 1)
     )
 =>
@@ -36621,22 +36696,22 @@
 (defrule
     (true)
 =>
-    (set-goal 289 0)
+    (set-goal 291 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 289)
+    (up-get-fact random-number 0 291)
 )
 (defrule
-    (goal 289 1)
+    (goal 291 1)
 =>
     (chat-to-player 7 "Let's be allies.")
 )
 (defrule
-    (goal 289 2)
+    (goal 291 2)
 =>
     (chat-to-player 7 "Want to work together?")
 )
 (defrule
-    (goal 289 3)
+    (goal 291 3)
 =>
     (chat-to-player 7 "Want to team up?")
 )
@@ -36654,7 +36729,7 @@
 )
 (defrule
     (nand
-      (goal 282 8)
+      (goal 284 8)
       (goal want-alliance 1)
     )
 =>
@@ -36679,22 +36754,22 @@
 (defrule
     (true)
 =>
-    (set-goal 290 0)
+    (set-goal 292 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 290)
+    (up-get-fact random-number 0 292)
 )
 (defrule
-    (goal 290 1)
+    (goal 292 1)
 =>
     (chat-to-player 8 "Let's be allies.")
 )
 (defrule
-    (goal 290 2)
+    (goal 292 2)
 =>
     (chat-to-player 8 "Want to work together?")
 )
 (defrule
-    (goal 290 3)
+    (goal 292 3)
 =>
     (chat-to-player 8 "Want to team up?")
 )
@@ -36714,13 +36789,13 @@
     (goal enemy-players-count 0)
     (goal want-alliance 0)
 =>
-    (set-goal 291 0)
+    (set-goal 293 0)
     (generate-random-number 8)
-    (up-get-fact random-number 0 291)
+    (up-get-fact random-number 0 293)
 )
 (defrule
     (nand
-      (goal 291 1)
+      (goal 293 1)
       (and
         (goal enemy-players-count 0)
         (goal want-alliance 0)
@@ -36738,7 +36813,7 @@
 )
 (defrule
     (nand
-      (goal 291 2)
+      (goal 293 2)
       (and
         (goal enemy-players-count 0)
         (goal want-alliance 0)
@@ -36756,7 +36831,7 @@
 )
 (defrule
     (nand
-      (goal 291 3)
+      (goal 293 3)
       (and
         (goal enemy-players-count 0)
         (goal want-alliance 0)
@@ -36774,7 +36849,7 @@
 )
 (defrule
     (nand
-      (goal 291 4)
+      (goal 293 4)
       (and
         (goal enemy-players-count 0)
         (goal want-alliance 0)
@@ -36792,7 +36867,7 @@
 )
 (defrule
     (nand
-      (goal 291 5)
+      (goal 293 5)
       (and
         (goal enemy-players-count 0)
         (goal want-alliance 0)
@@ -36810,7 +36885,7 @@
 )
 (defrule
     (nand
-      (goal 291 6)
+      (goal 293 6)
       (and
         (goal enemy-players-count 0)
         (goal want-alliance 0)
@@ -36828,7 +36903,7 @@
 )
 (defrule
     (nand
-      (goal 291 7)
+      (goal 293 7)
       (and
         (goal enemy-players-count 0)
         (goal want-alliance 0)
@@ -36846,7 +36921,7 @@
 )
 (defrule
     (nand
-      (goal 291 8)
+      (goal 293 8)
       (and
         (goal enemy-players-count 0)
         (goal want-alliance 0)
@@ -36865,13 +36940,13 @@
 (defrule
     (goal want-alliance -1)
 =>
-    (set-goal 292 0)
+    (set-goal 294 0)
     (generate-random-number 8)
-    (up-get-fact random-number 0 292)
+    (up-get-fact random-number 0 294)
 )
 (defrule
     (nand
-      (goal 292 1)
+      (goal 294 1)
       (goal want-alliance -1)
     )
 =>
@@ -36907,7 +36982,7 @@
 )
 (defrule
     (nand
-      (goal 292 2)
+      (goal 294 2)
       (goal want-alliance -1)
     )
 =>
@@ -36943,7 +37018,7 @@
 )
 (defrule
     (nand
-      (goal 292 3)
+      (goal 294 3)
       (goal want-alliance -1)
     )
 =>
@@ -36979,7 +37054,7 @@
 )
 (defrule
     (nand
-      (goal 292 4)
+      (goal 294 4)
       (goal want-alliance -1)
     )
 =>
@@ -37015,7 +37090,7 @@
 )
 (defrule
     (nand
-      (goal 292 5)
+      (goal 294 5)
       (goal want-alliance -1)
     )
 =>
@@ -37051,7 +37126,7 @@
 )
 (defrule
     (nand
-      (goal 292 6)
+      (goal 294 6)
       (goal want-alliance -1)
     )
 =>
@@ -37087,7 +37162,7 @@
 )
 (defrule
     (nand
-      (goal 292 7)
+      (goal 294 7)
       (goal want-alliance -1)
     )
 =>
@@ -37123,7 +37198,7 @@
 )
 (defrule
     (nand
-      (goal 292 8)
+      (goal 294 8)
       (goal want-alliance -1)
     )
 =>
@@ -37195,22 +37270,22 @@
 (defrule
     (true)
 =>
-    (set-goal 293 0)
+    (set-goal 295 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 293)
+    (up-get-fact random-number 0 295)
 )
 (defrule
-    (goal 293 1)
+    (goal 295 1)
 =>
     (chat-to-player 1 "Good idea.")
 )
 (defrule
-    (goal 293 2)
+    (goal 295 2)
 =>
     (chat-to-player 1 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 293 3)
+    (goal 295 3)
 =>
     (chat-to-player 1 "I agree, let's be friends.")
 )
@@ -37256,22 +37331,22 @@
 (defrule
     (true)
 =>
-    (set-goal 294 0)
+    (set-goal 296 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 294)
+    (up-get-fact random-number 0 296)
 )
 (defrule
-    (goal 294 1)
+    (goal 296 1)
 =>
     (chat-to-player 1 "Let's do this. Together.")
 )
 (defrule
-    (goal 294 2)
+    (goal 296 2)
 =>
     (chat-to-player 1 "Nice to have you with me.")
 )
 (defrule
-    (goal 294 3)
+    (goal 296 3)
 =>
     (chat-to-player 1 "Unstoppable team!")
 )
@@ -37451,22 +37526,22 @@
 (defrule
     (true)
 =>
-    (set-goal 295 0)
+    (set-goal 297 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 295)
+    (up-get-fact random-number 0 297)
 )
 (defrule
-    (goal 295 1)
+    (goal 297 1)
 =>
     (chat-to-player 1 "Fine, have it your way.")
 )
 (defrule
-    (goal 295 2)
+    (goal 297 2)
 =>
     (chat-to-player 1 "Would've been nice.")
 )
 (defrule
-    (goal 295 3)
+    (goal 297 3)
 =>
     (chat-to-player 1 "Whatever.")
 )
@@ -37531,22 +37606,22 @@
 (defrule
     (true)
 =>
-    (set-goal 296 0)
+    (set-goal 298 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 296)
+    (up-get-fact random-number 0 298)
 )
 (defrule
-    (goal 296 1)
+    (goal 298 1)
 =>
     (chat-to-player 2 "Good idea.")
 )
 (defrule
-    (goal 296 2)
+    (goal 298 2)
 =>
     (chat-to-player 2 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 296 3)
+    (goal 298 3)
 =>
     (chat-to-player 2 "I agree, let's be friends.")
 )
@@ -37592,22 +37667,22 @@
 (defrule
     (true)
 =>
-    (set-goal 297 0)
+    (set-goal 299 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 297)
+    (up-get-fact random-number 0 299)
 )
 (defrule
-    (goal 297 1)
+    (goal 299 1)
 =>
     (chat-to-player 2 "Let's do this. Together.")
 )
 (defrule
-    (goal 297 2)
+    (goal 299 2)
 =>
     (chat-to-player 2 "Nice to have you with me.")
 )
 (defrule
-    (goal 297 3)
+    (goal 299 3)
 =>
     (chat-to-player 2 "Unstoppable team!")
 )
@@ -37787,22 +37862,22 @@
 (defrule
     (true)
 =>
-    (set-goal 298 0)
+    (set-goal 300 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 298)
+    (up-get-fact random-number 0 300)
 )
 (defrule
-    (goal 298 1)
+    (goal 300 1)
 =>
     (chat-to-player 2 "Fine, have it your way.")
 )
 (defrule
-    (goal 298 2)
+    (goal 300 2)
 =>
     (chat-to-player 2 "Would've been nice.")
 )
 (defrule
-    (goal 298 3)
+    (goal 300 3)
 =>
     (chat-to-player 2 "Whatever.")
 )
@@ -37867,22 +37942,22 @@
 (defrule
     (true)
 =>
-    (set-goal 299 0)
+    (set-goal 301 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 299)
+    (up-get-fact random-number 0 301)
 )
 (defrule
-    (goal 299 1)
+    (goal 301 1)
 =>
     (chat-to-player 3 "Good idea.")
 )
 (defrule
-    (goal 299 2)
+    (goal 301 2)
 =>
     (chat-to-player 3 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 299 3)
+    (goal 301 3)
 =>
     (chat-to-player 3 "I agree, let's be friends.")
 )
@@ -37928,22 +38003,22 @@
 (defrule
     (true)
 =>
-    (set-goal 300 0)
+    (set-goal 302 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 300)
+    (up-get-fact random-number 0 302)
 )
 (defrule
-    (goal 300 1)
+    (goal 302 1)
 =>
     (chat-to-player 3 "Let's do this. Together.")
 )
 (defrule
-    (goal 300 2)
+    (goal 302 2)
 =>
     (chat-to-player 3 "Nice to have you with me.")
 )
 (defrule
-    (goal 300 3)
+    (goal 302 3)
 =>
     (chat-to-player 3 "Unstoppable team!")
 )
@@ -38123,22 +38198,22 @@
 (defrule
     (true)
 =>
-    (set-goal 301 0)
+    (set-goal 303 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 301)
+    (up-get-fact random-number 0 303)
 )
 (defrule
-    (goal 301 1)
+    (goal 303 1)
 =>
     (chat-to-player 3 "Fine, have it your way.")
 )
 (defrule
-    (goal 301 2)
+    (goal 303 2)
 =>
     (chat-to-player 3 "Would've been nice.")
 )
 (defrule
-    (goal 301 3)
+    (goal 303 3)
 =>
     (chat-to-player 3 "Whatever.")
 )
@@ -38203,22 +38278,22 @@
 (defrule
     (true)
 =>
-    (set-goal 302 0)
+    (set-goal 304 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 302)
+    (up-get-fact random-number 0 304)
 )
 (defrule
-    (goal 302 1)
+    (goal 304 1)
 =>
     (chat-to-player 4 "Good idea.")
 )
 (defrule
-    (goal 302 2)
+    (goal 304 2)
 =>
     (chat-to-player 4 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 302 3)
+    (goal 304 3)
 =>
     (chat-to-player 4 "I agree, let's be friends.")
 )
@@ -38264,22 +38339,22 @@
 (defrule
     (true)
 =>
-    (set-goal 303 0)
+    (set-goal 305 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 303)
+    (up-get-fact random-number 0 305)
 )
 (defrule
-    (goal 303 1)
+    (goal 305 1)
 =>
     (chat-to-player 4 "Let's do this. Together.")
 )
 (defrule
-    (goal 303 2)
+    (goal 305 2)
 =>
     (chat-to-player 4 "Nice to have you with me.")
 )
 (defrule
-    (goal 303 3)
+    (goal 305 3)
 =>
     (chat-to-player 4 "Unstoppable team!")
 )
@@ -38459,22 +38534,22 @@
 (defrule
     (true)
 =>
-    (set-goal 304 0)
+    (set-goal 306 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 304)
+    (up-get-fact random-number 0 306)
 )
 (defrule
-    (goal 304 1)
+    (goal 306 1)
 =>
     (chat-to-player 4 "Fine, have it your way.")
 )
 (defrule
-    (goal 304 2)
+    (goal 306 2)
 =>
     (chat-to-player 4 "Would've been nice.")
 )
 (defrule
-    (goal 304 3)
+    (goal 306 3)
 =>
     (chat-to-player 4 "Whatever.")
 )
@@ -38539,22 +38614,22 @@
 (defrule
     (true)
 =>
-    (set-goal 305 0)
+    (set-goal 307 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 305)
+    (up-get-fact random-number 0 307)
 )
 (defrule
-    (goal 305 1)
+    (goal 307 1)
 =>
     (chat-to-player 5 "Good idea.")
 )
 (defrule
-    (goal 305 2)
+    (goal 307 2)
 =>
     (chat-to-player 5 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 305 3)
+    (goal 307 3)
 =>
     (chat-to-player 5 "I agree, let's be friends.")
 )
@@ -38600,22 +38675,22 @@
 (defrule
     (true)
 =>
-    (set-goal 306 0)
+    (set-goal 308 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 306)
+    (up-get-fact random-number 0 308)
 )
 (defrule
-    (goal 306 1)
+    (goal 308 1)
 =>
     (chat-to-player 5 "Let's do this. Together.")
 )
 (defrule
-    (goal 306 2)
+    (goal 308 2)
 =>
     (chat-to-player 5 "Nice to have you with me.")
 )
 (defrule
-    (goal 306 3)
+    (goal 308 3)
 =>
     (chat-to-player 5 "Unstoppable team!")
 )
@@ -38795,22 +38870,22 @@
 (defrule
     (true)
 =>
-    (set-goal 307 0)
+    (set-goal 309 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 307)
+    (up-get-fact random-number 0 309)
 )
 (defrule
-    (goal 307 1)
+    (goal 309 1)
 =>
     (chat-to-player 5 "Fine, have it your way.")
 )
 (defrule
-    (goal 307 2)
+    (goal 309 2)
 =>
     (chat-to-player 5 "Would've been nice.")
 )
 (defrule
-    (goal 307 3)
+    (goal 309 3)
 =>
     (chat-to-player 5 "Whatever.")
 )
@@ -38875,22 +38950,22 @@
 (defrule
     (true)
 =>
-    (set-goal 308 0)
+    (set-goal 310 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 308)
+    (up-get-fact random-number 0 310)
 )
 (defrule
-    (goal 308 1)
+    (goal 310 1)
 =>
     (chat-to-player 6 "Good idea.")
 )
 (defrule
-    (goal 308 2)
+    (goal 310 2)
 =>
     (chat-to-player 6 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 308 3)
+    (goal 310 3)
 =>
     (chat-to-player 6 "I agree, let's be friends.")
 )
@@ -38936,22 +39011,22 @@
 (defrule
     (true)
 =>
-    (set-goal 309 0)
+    (set-goal 311 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 309)
+    (up-get-fact random-number 0 311)
 )
 (defrule
-    (goal 309 1)
+    (goal 311 1)
 =>
     (chat-to-player 6 "Let's do this. Together.")
 )
 (defrule
-    (goal 309 2)
+    (goal 311 2)
 =>
     (chat-to-player 6 "Nice to have you with me.")
 )
 (defrule
-    (goal 309 3)
+    (goal 311 3)
 =>
     (chat-to-player 6 "Unstoppable team!")
 )
@@ -39131,22 +39206,22 @@
 (defrule
     (true)
 =>
-    (set-goal 310 0)
+    (set-goal 312 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 310)
+    (up-get-fact random-number 0 312)
 )
 (defrule
-    (goal 310 1)
+    (goal 312 1)
 =>
     (chat-to-player 6 "Fine, have it your way.")
 )
 (defrule
-    (goal 310 2)
+    (goal 312 2)
 =>
     (chat-to-player 6 "Would've been nice.")
 )
 (defrule
-    (goal 310 3)
+    (goal 312 3)
 =>
     (chat-to-player 6 "Whatever.")
 )
@@ -39211,22 +39286,22 @@
 (defrule
     (true)
 =>
-    (set-goal 311 0)
+    (set-goal 313 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 311)
+    (up-get-fact random-number 0 313)
 )
 (defrule
-    (goal 311 1)
+    (goal 313 1)
 =>
     (chat-to-player 7 "Good idea.")
 )
 (defrule
-    (goal 311 2)
+    (goal 313 2)
 =>
     (chat-to-player 7 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 311 3)
+    (goal 313 3)
 =>
     (chat-to-player 7 "I agree, let's be friends.")
 )
@@ -39272,22 +39347,22 @@
 (defrule
     (true)
 =>
-    (set-goal 312 0)
+    (set-goal 314 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 312)
+    (up-get-fact random-number 0 314)
 )
 (defrule
-    (goal 312 1)
+    (goal 314 1)
 =>
     (chat-to-player 7 "Let's do this. Together.")
 )
 (defrule
-    (goal 312 2)
+    (goal 314 2)
 =>
     (chat-to-player 7 "Nice to have you with me.")
 )
 (defrule
-    (goal 312 3)
+    (goal 314 3)
 =>
     (chat-to-player 7 "Unstoppable team!")
 )
@@ -39467,22 +39542,22 @@
 (defrule
     (true)
 =>
-    (set-goal 313 0)
+    (set-goal 315 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 313)
+    (up-get-fact random-number 0 315)
 )
 (defrule
-    (goal 313 1)
+    (goal 315 1)
 =>
     (chat-to-player 7 "Fine, have it your way.")
 )
 (defrule
-    (goal 313 2)
+    (goal 315 2)
 =>
     (chat-to-player 7 "Would've been nice.")
 )
 (defrule
-    (goal 313 3)
+    (goal 315 3)
 =>
     (chat-to-player 7 "Whatever.")
 )
@@ -39547,22 +39622,22 @@
 (defrule
     (true)
 =>
-    (set-goal 314 0)
+    (set-goal 316 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 314)
+    (up-get-fact random-number 0 316)
 )
 (defrule
-    (goal 314 1)
+    (goal 316 1)
 =>
     (chat-to-player 8 "Good idea.")
 )
 (defrule
-    (goal 314 2)
+    (goal 316 2)
 =>
     (chat-to-player 8 "I was hoping you'd do that!")
 )
 (defrule
-    (goal 314 3)
+    (goal 316 3)
 =>
     (chat-to-player 8 "I agree, let's be friends.")
 )
@@ -39608,22 +39683,22 @@
 (defrule
     (true)
 =>
-    (set-goal 315 0)
+    (set-goal 317 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 315)
+    (up-get-fact random-number 0 317)
 )
 (defrule
-    (goal 315 1)
+    (goal 317 1)
 =>
     (chat-to-player 8 "Let's do this. Together.")
 )
 (defrule
-    (goal 315 2)
+    (goal 317 2)
 =>
     (chat-to-player 8 "Nice to have you with me.")
 )
 (defrule
-    (goal 315 3)
+    (goal 317 3)
 =>
     (chat-to-player 8 "Unstoppable team!")
 )
@@ -39803,22 +39878,22 @@
 (defrule
     (true)
 =>
-    (set-goal 316 0)
+    (set-goal 318 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 316)
+    (up-get-fact random-number 0 318)
 )
 (defrule
-    (goal 316 1)
+    (goal 318 1)
 =>
     (chat-to-player 8 "Fine, have it your way.")
 )
 (defrule
-    (goal 316 2)
+    (goal 318 2)
 =>
     (chat-to-player 8 "Would've been nice.")
 )
 (defrule
-    (goal 316 3)
+    (goal 318 3)
 =>
     (chat-to-player 8 "Whatever.")
 )
@@ -39853,62 +39928,62 @@
 (defrule
     (true)
 =>
-    (set-goal 317 0)
+    (set-goal 319 0)
     (generate-random-number 11)
-    (up-get-fact random-number 0 317)
+    (up-get-fact random-number 0 319)
 )
 (defrule
-    (goal 317 1)
+    (goal 319 1)
 =>
     (up-chat-data-to-all "Really %d?" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 317 2)
+    (goal 319 2)
 =>
     (up-chat-data-to-all "I thought we were friends, player %d!" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 317 3)
+    (goal 319 3)
 =>
     (up-chat-data-to-all "Player %d! You backstabber!" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 317 4)
+    (goal 319 4)
 =>
     (up-chat-data-to-all "Player %d? What gives?!" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 317 5)
+    (goal 319 5)
 =>
     (up-chat-data-to-all "I knew you were a bad egg, player %d." g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 317 6)
+    (goal 319 6)
 =>
     (up-chat-data-to-all "Player %d? But why?" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 317 7)
+    (goal 319 7)
 =>
     (up-chat-data-to-all "Alright, player %d, bring it on!!" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 317 8)
+    (goal 319 8)
 =>
     (up-chat-data-to-all "Don't bite off more than you can chew, player %d..." g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 317 9)
+    (goal 319 9)
 =>
     (up-chat-data-to-all "Why me, player %d?" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 317 10)
+    (goal 319 10)
 =>
     (up-chat-data-to-all "Why now, player %d?" g: chat-betrayed-by-player)
 )
 (defrule
-    (goal 317 11)
+    (goal 319 11)
 =>
     (up-chat-data-to-all "Shame. We could've been best frends, player %d." g: chat-betrayed-by-player)
 )
@@ -39927,57 +40002,57 @@
 (defrule
     (true)
 =>
-    (set-goal 318 0)
+    (set-goal 320 0)
     (generate-random-number 10)
-    (up-get-fact random-number 0 318)
+    (up-get-fact random-number 0 320)
 )
 (defrule
-    (goal 318 1)
+    (goal 320 1)
 =>
     (up-chat-data-to-all "It could never have worked between us, player %d." g: chat-betray-player)
 )
 (defrule
-    (goal 318 2)
+    (goal 320 2)
 =>
     (up-chat-data-to-all "I've had enough of you, player %d." g: chat-betray-player)
 )
 (defrule
-    (goal 318 3)
+    (goal 320 3)
 =>
     (up-chat-data-to-all "You aren't needed anymore player %d." g: chat-betray-player)
 )
 (defrule
-    (goal 318 4)
+    (goal 320 4)
 =>
     (up-chat-data-to-all "Time to die, player %d!" g: chat-betray-player)
 )
 (defrule
-    (goal 318 5)
+    (goal 320 5)
 =>
     (up-chat-data-to-all "Player %d, we're done." g: chat-betray-player)
 )
 (defrule
-    (goal 318 6)
+    (goal 320 6)
 =>
     (up-chat-data-to-all "Your days are numbered, player %d!" g: chat-betray-player)
 )
 (defrule
-    (goal 318 7)
+    (goal 320 7)
 =>
     (up-chat-data-to-all "I'm sorry about this, player %d." g: chat-betray-player)
 )
 (defrule
-    (goal 318 8)
+    (goal 320 8)
 =>
     (chat-to-all "Love can be fleeting.")
 )
 (defrule
-    (goal 318 9)
+    (goal 320 9)
 =>
     (chat-to-all "Whoops, wrong button.")
 )
 (defrule
-    (goal 318 10)
+    (goal 320 10)
 =>
     (chat-to-all "I'm itching for a fight.")
 )
@@ -40033,22 +40108,22 @@
 (defrule
     (true)
 =>
-    (set-goal 319 0)
+    (set-goal 321 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 319)
+    (up-get-fact random-number 0 321)
 )
 (defrule
-    (goal 319 1)
+    (goal 321 1)
 =>
     (chat-to-player every-ally "1Sure.")
 )
 (defrule
-    (goal 319 2)
+    (goal 321 2)
 =>
     (chat-to-player every-ally "1Of course.")
 )
 (defrule
-    (goal 319 3)
+    (goal 321 3)
 =>
     (chat-to-player every-ally "1Okay.")
 )
@@ -40075,22 +40150,22 @@
 (defrule
     (true)
 =>
-    (set-goal 320 0)
+    (set-goal 322 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 320)
+    (up-get-fact random-number 0 322)
 )
 (defrule
-    (goal 320 1)
+    (goal 322 1)
 =>
     (chat-to-player every-ally "1Sure.")
 )
 (defrule
-    (goal 320 2)
+    (goal 322 2)
 =>
     (chat-to-player every-ally "1Of course.")
 )
 (defrule
-    (goal 320 3)
+    (goal 322 3)
 =>
     (chat-to-player every-ally "1Okay.")
 )
@@ -40107,22 +40182,22 @@
 (defrule
     (true)
 =>
-    (set-goal 321 0)
+    (set-goal 323 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 321)
+    (up-get-fact random-number 0 323)
 )
 (defrule
-    (goal 321 1)
+    (goal 323 1)
 =>
     (chat-to-player every-ally "2Sorry, no.")
 )
 (defrule
-    (goal 321 2)
+    (goal 323 2)
 =>
     (chat-to-player every-ally "2Not right now, sorry.")
 )
 (defrule
-    (goal 321 3)
+    (goal 323 3)
 =>
     (chat-to-player every-ally "2Sorry, no can do!")
 )
@@ -40284,22 +40359,22 @@
 (defrule
     (true)
 =>
-    (set-goal 322 0)
+    (set-goal 324 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 322)
+    (up-get-fact random-number 0 324)
 )
 (defrule
-    (goal 322 1)
+    (goal 324 1)
 =>
     (chat-to-all "2Absolutely not.")
 )
 (defrule
-    (goal 322 2)
+    (goal 324 2)
 =>
     (chat-to-all "2Are you out of your mind?")
 )
 (defrule
-    (goal 322 3)
+    (goal 324 3)
 =>
     (chat-to-all "2As if!")
 )
@@ -40319,22 +40394,22 @@
 (defrule
     (true)
 =>
-    (set-goal 323 0)
+    (set-goal 325 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 323)
+    (up-get-fact random-number 0 325)
 )
 (defrule
-    (goal 323 1)
+    (goal 325 1)
 =>
     (chat-to-all "2Absolutely not.")
 )
 (defrule
-    (goal 323 2)
+    (goal 325 2)
 =>
     (chat-to-all "2Are you out of your mind?")
 )
 (defrule
-    (goal 323 3)
+    (goal 325 3)
 =>
     (chat-to-all "2As if!")
 )
@@ -40353,22 +40428,22 @@
 (defrule
     (true)
 =>
-    (set-goal 324 0)
+    (set-goal 326 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 324)
+    (up-get-fact random-number 0 326)
 )
 (defrule
-    (goal 324 1)
+    (goal 326 1)
 =>
     (chat-to-all "2Absolutely not.")
 )
 (defrule
-    (goal 324 2)
+    (goal 326 2)
 =>
     (chat-to-all "2Are you out of your mind?")
 )
 (defrule
-    (goal 324 3)
+    (goal 326 3)
 =>
     (chat-to-all "2As if!")
 )
@@ -40390,13 +40465,13 @@
       (goal team-game 1)
     )
 =>
-    (set-goal 325 0)
+    (set-goal 327 0)
     (generate-random-number 4)
-    (up-get-fact random-number 0 325)
+    (up-get-fact random-number 0 327)
     (disable-self)
 )
 (defrule
-    (goal 325 1)
+    (goal 327 1)
     (or
       (goal free-for-all 1)
       (goal team-game 1)
@@ -40407,7 +40482,7 @@
 )
 (defrule
     (goal free-for-all 1)
-    (goal 325 2)
+    (goal 327 2)
     (or
       (goal free-for-all 1)
       (goal team-game 1)
@@ -40420,7 +40495,7 @@
     (not
       (goal free-for-all 1)
     )
-    (goal 325 2)
+    (goal 327 2)
     (or
       (goal free-for-all 1)
       (goal team-game 1)
@@ -40430,7 +40505,7 @@
     (disable-self)
 )
 (defrule
-    (goal 325 3)
+    (goal 327 3)
     (or
       (goal free-for-all 1)
       (goal team-game 1)
@@ -40440,7 +40515,7 @@
     (disable-self)
 )
 (defrule
-    (goal 325 4)
+    (goal 327 4)
     (or
       (goal free-for-all 1)
       (goal team-game 1)
@@ -40457,13 +40532,13 @@
       (goal team-game 1)
     )
 =>
-    (set-goal 326 0)
+    (set-goal 328 0)
     (generate-random-number 7)
-    (up-get-fact random-number 0 326)
+    (up-get-fact random-number 0 328)
     (disable-self)
 )
 (defrule
-    (goal 326 1)
+    (goal 328 1)
     (not
       (goal free-for-all 1)
     )
@@ -40475,7 +40550,7 @@
     (disable-self)
 )
 (defrule
-    (goal 326 2)
+    (goal 328 2)
     (not
       (goal free-for-all 1)
     )
@@ -40487,7 +40562,7 @@
     (disable-self)
 )
 (defrule
-    (goal 326 3)
+    (goal 328 3)
     (not
       (goal free-for-all 1)
     )
@@ -40499,7 +40574,7 @@
     (disable-self)
 )
 (defrule
-    (goal 326 4)
+    (goal 328 4)
     (not
       (goal free-for-all 1)
     )
@@ -40511,7 +40586,7 @@
     (disable-self)
 )
 (defrule
-    (goal 326 5)
+    (goal 328 5)
     (not
       (goal free-for-all 1)
     )
@@ -40523,7 +40598,7 @@
     (disable-self)
 )
 (defrule
-    (goal 326 6)
+    (goal 328 6)
     (not
       (goal free-for-all 1)
     )
@@ -40535,7 +40610,7 @@
     (disable-self)
 )
 (defrule
-    (goal 326 7)
+    (goal 328 7)
     (not
       (goal free-for-all 1)
     )
@@ -40563,20 +40638,20 @@
 (defrule
     (goal team-game 1)
 =>
-    (set-goal 327 0)
+    (set-goal 329 0)
     (generate-random-number 2)
-    (up-get-fact random-number 0 327)
+    (up-get-fact random-number 0 329)
     (disable-self)
 )
 (defrule
-    (goal 327 1)
+    (goal 329 1)
     (goal team-game 1)
 =>
     (chat-to-all "Um, who exactly are we fighting?")
     (disable-self)
 )
 (defrule
-    (goal 327 2)
+    (goal 329 2)
     (goal team-game 1)
 =>
     (chat-to-all "I guess we win already?")
@@ -40587,13 +40662,13 @@
       (goal team-game 1)
     )
 =>
-    (set-goal 328 0)
+    (set-goal 330 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 328)
+    (up-get-fact random-number 0 330)
     (disable-self)
 )
 (defrule
-    (goal 328 1)
+    (goal 330 1)
     (not
       (goal team-game 1)
     )
@@ -40602,7 +40677,7 @@
     (disable-self)
 )
 (defrule
-    (goal 328 2)
+    (goal 330 2)
     (not
       (goal team-game 1)
     )
@@ -40611,7 +40686,7 @@
     (disable-self)
 )
 (defrule
-    (goal 328 3)
+    (goal 330 3)
     (not
       (goal team-game 1)
     )
@@ -40642,25 +40717,25 @@
 (defrule
     (true)
 =>
-    (set-goal 329 0)
+    (set-goal 331 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 329)
+    (up-get-fact random-number 0 331)
     (disable-self)
 )
 (defrule
-    (goal 329 1)
+    (goal 331 1)
 =>
     (chat-to-all "I'm having some trouble with this one.")
     (disable-self)
 )
 (defrule
-    (goal 329 2)
+    (goal 331 2)
 =>
     (chat-to-all "This is a tough game.")
     (disable-self)
 )
 (defrule
-    (goal 329 3)
+    (goal 331 3)
 =>
     (chat-to-all "I don't like my chances here.")
     (disable-self)
@@ -40687,25 +40762,25 @@
 (defrule
     (true)
 =>
-    (set-goal 330 0)
+    (set-goal 332 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 330)
+    (up-get-fact random-number 0 332)
     (disable-self)
 )
 (defrule
-    (goal 330 1)
+    (goal 332 1)
 =>
     (chat-to-all "We may need a different strategy...")
     (disable-self)
 )
 (defrule
-    (goal 330 2)
+    (goal 332 2)
 =>
     (chat-to-all "Hopefully we still have a shot?")
     (disable-self)
 )
 (defrule
-    (goal 330 3)
+    (goal 332 3)
 =>
     (chat-to-all "This is hard.")
     (disable-self)
@@ -40734,37 +40809,37 @@
 (defrule
     (true)
 =>
-    (set-goal 331 0)
+    (set-goal 333 0)
     (generate-random-number 5)
-    (up-get-fact random-number 0 331)
+    (up-get-fact random-number 0 333)
     (disable-self)
 )
 (defrule
-    (goal 331 1)
+    (goal 333 1)
 =>
     (chat-to-all "I feel vastly outpaced, you're playing a good game.")
     (disable-self)
 )
 (defrule
-    (goal 331 2)
+    (goal 333 2)
 =>
     (chat-to-all "I'm not doing very well...")
     (disable-self)
 )
 (defrule
-    (goal 331 3)
+    (goal 333 3)
 =>
     (chat-to-all "This could have gone better, oh well.")
     (disable-self)
 )
 (defrule
-    (goal 331 4)
+    (goal 333 4)
 =>
     (chat-to-all "You're playing quite well.")
     (disable-self)
 )
 (defrule
-    (goal 331 5)
+    (goal 333 5)
 =>
     (chat-to-all "I'm not sure I can best you.")
     (disable-self)
@@ -40791,19 +40866,19 @@
 (defrule
     (true)
 =>
-    (set-goal 332 0)
+    (set-goal 334 0)
     (generate-random-number 2)
-    (up-get-fact random-number 0 332)
+    (up-get-fact random-number 0 334)
     (disable-self)
 )
 (defrule
-    (goal 332 1)
+    (goal 334 1)
 =>
     (chat-to-all "I'm pretty sure I've got this game.")
     (disable-self)
 )
 (defrule
-    (goal 332 2)
+    (goal 334 2)
 =>
     (chat-to-all "It was tough, but I got there in the end.")
     (disable-self)
@@ -40890,31 +40965,31 @@
 (defrule
     (true)
 =>
-    (set-goal 333 0)
+    (set-goal 335 0)
     (generate-random-number 6)
-    (up-get-fact random-number 0 333)
+    (up-get-fact random-number 0 335)
     (disable-self)
 )
 (defrule
-    (goal 333 1)
+    (goal 335 1)
 =>
     (chat-to-all "I don't like this...")
     (disable-self)
 )
 (defrule
-    (goal 333 2)
+    (goal 335 2)
 =>
     (chat-to-all "Dicey.")
     (disable-self)
 )
 (defrule
-    (goal 333 3)
+    (goal 335 3)
 =>
     (chat-to-all "I'd better step on the pedal a bit, sheesh.")
     (disable-self)
 )
 (defrule
-    (goal 333 4)
+    (goal 335 4)
 =>
     (chat-to-all "...please don't hurt me!")
     (disable-self)
@@ -40924,7 +40999,7 @@
       (goal team-game 1)
       (goal free-for-all 1)
     )
-    (goal 333 5)
+    (goal 335 5)
 =>
     (chat-to-all "It's looking scary out there...")
     (disable-self)
@@ -40936,13 +41011,13 @@
     (not
       (goal free-for-all 1)
     )
-    (goal 333 5)
+    (goal 335 5)
 =>
     (chat-to-all "You're looking scary...")
     (disable-self)
 )
 (defrule
-    (goal 333 6)
+    (goal 335 6)
 =>
     (chat-to-all "That's a lot of stuff.")
     (disable-self)
@@ -40973,9 +41048,9 @@
 (defrule
     (true)
 =>
-    (set-goal 334 0)
+    (set-goal 336 0)
     (generate-random-number 8)
-    (up-get-fact random-number 0 334)
+    (up-get-fact random-number 0 336)
     (disable-self)
 )
 (defrule
@@ -40983,7 +41058,7 @@
       (goal team-game 1)
       (goal free-for-all 1)
     )
-    (goal 334 1)
+    (goal 336 1)
 =>
     (chat-to-all "Let's crush 'em!")
     (disable-self)
@@ -40995,13 +41070,13 @@
     (not
       (goal free-for-all 1)
     )
-    (goal 334 1)
+    (goal 336 1)
 =>
     (chat-to-all "It's time for some violence!")
     (disable-self)
 )
 (defrule
-    (goal 334 2)
+    (goal 336 2)
 =>
     (chat-to-all "Oh yeah, this is good.")
     (disable-self)
@@ -41011,7 +41086,7 @@
       (goal team-game 1)
       (goal free-for-all 1)
     )
-    (goal 334 3)
+    (goal 336 3)
 =>
     (chat-to-all "You lot aren't prepared for this.")
     (disable-self)
@@ -41023,32 +41098,32 @@
     (not
       (goal free-for-all 1)
     )
-    (goal 334 3)
+    (goal 336 3)
 =>
     (chat-to-all "You aren't prepared for this.")
     (disable-self)
 )
 (defrule
-    (goal 334 4)
+    (goal 336 4)
 =>
     (chat-to-all "[cracks knuckles]")
     (disable-self)
 )
 (defrule
-    (goal 334 5)
+    (goal 336 5)
 =>
     (chat-to-all "I'm pumped! Let's go!!!")
     (disable-self)
 )
 (defrule
-    (goal 334 6)
+    (goal 336 6)
 =>
     (chat-to-all "Allow me to show you some numbers.")
     (disable-self)
 )
 (defrule
     (goal team-game 1)
-    (goal 334 7)
+    (goal 336 7)
 =>
     (chat-to-all "We're bringing the pain.")
     (disable-self)
@@ -41057,13 +41132,13 @@
     (not
       (goal team-game 1)
     )
-    (goal 334 7)
+    (goal 336 7)
 =>
     (chat-to-all "I'm bringing the pain.")
     (disable-self)
 )
 (defrule
-    (goal 334 8)
+    (goal 336 8)
 =>
     (chat-to-all "It'll all be over soon.")
     (disable-self)
@@ -41096,9 +41171,9 @@
 (defrule
     (true)
 =>
-    (set-goal 335 0)
+    (set-goal 337 0)
     (generate-random-number 5)
-    (up-get-fact random-number 0 335)
+    (up-get-fact random-number 0 337)
     (disable-self)
 )
 (defrule
@@ -41106,7 +41181,7 @@
       (goal team-game 1)
       (goal free-for-all 1)
     )
-    (goal 335 1)
+    (goal 337 1)
 =>
     (chat-to-all "Come at me.")
     (disable-self)
@@ -41118,31 +41193,31 @@
     (not
       (goal free-for-all 1)
     )
-    (goal 335 1)
+    (goal 337 1)
 =>
     (chat-to-all "I'm ready for what you've got.")
     (disable-self)
 )
 (defrule
-    (goal 335 2)
+    (goal 337 2)
 =>
     (chat-to-all "Feeling confident.")
     (disable-self)
 )
 (defrule
-    (goal 335 3)
+    (goal 337 3)
 =>
     (chat-to-all "Feeling good.")
     (disable-self)
 )
 (defrule
-    (goal 335 4)
+    (goal 337 4)
 =>
     (chat-to-all "I am prepared.")
     (disable-self)
 )
 (defrule
-    (goal 335 5)
+    (goal 337 5)
 =>
     (chat-to-all "Are you ready?")
     (disable-self)
@@ -41157,31 +41232,31 @@
 (defrule
     (true)
 =>
-    (set-goal 336 0)
+    (set-goal 338 0)
     (generate-random-number 4)
-    (up-get-fact random-number 0 336)
+    (up-get-fact random-number 0 338)
     (disable-self)
 )
 (defrule
-    (goal 336 1)
+    (goal 338 1)
 =>
     (chat-to-all "My heart's not really in this anymore, sorry.")
     (disable-self)
 )
 (defrule
-    (goal 336 2)
+    (goal 338 2)
 =>
     (chat-to-all "It was a good game, I think I'm out though.")
     (disable-self)
 )
 (defrule
-    (goal 336 3)
+    (goal 338 3)
 =>
     (chat-to-all "Good game, well played.")
     (disable-self)
 )
 (defrule
-    (goal 336 4)
+    (goal 338 4)
 =>
     (chat-to-all "I'm done.")
     (disable-self)
@@ -41196,25 +41271,25 @@
 (defrule
     (true)
 =>
-    (set-goal 337 0)
+    (set-goal 339 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 337)
+    (up-get-fact random-number 0 339)
     (disable-self)
 )
 (defrule
-    (goal 337 1)
+    (goal 339 1)
 =>
     (chat-to-allies "On my way up.")
     (disable-self)
 )
 (defrule
-    (goal 337 2)
+    (goal 339 2)
 =>
     (chat-to-allies "I've clicked up.")
     (disable-self)
 )
 (defrule
-    (goal 337 3)
+    (goal 339 3)
 =>
     (chat-to-allies "Going castle.")
     (disable-self)
@@ -41236,20 +41311,20 @@
 (defrule
     (true)
 =>
-    (set-goal 338 0)
+    (set-goal 340 0)
     (generate-random-number 5)
-    (up-get-fact random-number 0 338)
+    (up-get-fact random-number 0 340)
     (disable-self)
 )
 (defrule
-    (goal 338 1)
+    (goal 340 1)
 =>
     (chat-to-all "Why must you do this?")
     (disable-self)
 )
 (defrule
     (goal team-game 1)
-    (goal 338 2)
+    (goal 340 2)
 =>
     (chat-to-all "Your teammate is a real piece of work.")
     (disable-self)
@@ -41258,25 +41333,25 @@
     (not
       (goal team-game 1)
     )
-    (goal 338 2)
+    (goal 340 2)
 =>
     (chat-to-all "I don't think I like you very much...")
     (disable-self)
 )
 (defrule
-    (goal 338 3)
+    (goal 340 3)
 =>
     (chat-to-all "[sigh]")
     (disable-self)
 )
 (defrule
-    (goal 338 4)
+    (goal 340 4)
 =>
     (chat-to-all "Why can't we just have fun?")
     (disable-self)
 )
 (defrule
-    (goal 338 5)
+    (goal 340 5)
 =>
     (chat-to-all "You know I can't deal with this. It's unfair.")
     (disable-self)
@@ -41299,7 +41374,7 @@
     (release-escrow wood)
     (release-escrow stone)
     (build town-center)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-research-status c: feudal-age < research-pending)
@@ -41390,7 +41465,7 @@
     (building-type-count town-center > 0)
 =>
     (build monastery)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-train monk)
@@ -41408,7 +41483,7 @@
     (building-type-count town-center > 0)
 =>
     (build house)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (population-headroom != 0)
@@ -41421,12 +41496,12 @@
     (building-type-count town-center > 0)
 =>
     (build house)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
 =>
-    (set-goal 339 0)
+    (set-goal 341 0)
     (disable-self)
 )
 (defrule
@@ -41446,10 +41521,10 @@
     (building-type-count town-center > 0)
 =>
     (build lumber-camp)
-    (set-goal 339 1)
+    (set-goal 341 1)
 )
 (defrule
-    (goal 339 1)
+    (goal 341 1)
     (game-time > 60)
     (building-type-count town-center > 0)
 =>
@@ -41458,25 +41533,25 @@
 (defrule
     (true)
 =>
-    (set-goal 339 0)
+    (set-goal 341 0)
 )
 (defrule
     (building-type-count lumber-camp >= 1)
     (building-type-count town-center > 0)
 =>
-    (set-goal 231 0)
-    (up-get-fact building-type-count-total town-center 340)
-    (up-modify-goal 340 c:* 9)
-    (up-modify-goal 231 g:+ 340)
-    (up-get-fact building-type-count-total mill 340)
-    (up-modify-goal 340 c:* 6)
-    (up-modify-goal 231 g:+ 340)
-    (up-get-fact building-type-count-total farm 340)
+    (set-goal 233 0)
+    (up-get-fact building-type-count-total town-center 342)
+    (up-modify-goal 342 c:* 9)
+    (up-modify-goal 233 g:+ 342)
+    (up-get-fact building-type-count-total mill 342)
+    (up-modify-goal 342 c:* 6)
+    (up-modify-goal 233 g:+ 342)
+    (up-get-fact building-type-count-total farm 342)
 )
 (defrule
     (or
       (building-type-count-total mill == 0)
-      (up-compare-goal 340 g:>= 231)
+      (up-compare-goal 342 g:>= 233)
     )
     (or
       (resource-found food)
@@ -41497,7 +41572,7 @@
     (building-type-count town-center > 0)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (stone-amount < 100)
@@ -41516,31 +41591,31 @@
     (building-type-count town-center > 0)
 =>
     (build town-center)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (up-pending-objects c: castle == 0)
     (building-type-count town-center > 0)
 =>
-    (set-goal 341 0)
+    (set-goal 343 0)
     (generate-random-number 2)
-    (up-get-fact random-number 0 341)
+    (up-get-fact random-number 0 343)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (goal 341 1)
+    (goal 343 1)
     (up-pending-objects c: castle == 0)
     (building-type-count town-center > 0)
 =>
     (build castle)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
     (goal attacking 1)
-    (goal 341 2)
+    (goal 343 2)
     (up-pending-objects c: castle == 0)
     (building-type-count town-center > 0)
 =>
@@ -41550,7 +41625,7 @@
 (defrule
     (true)
 =>
-    (set-goal 342 0)
+    (set-goal 344 0)
     (disable-self)
 )
 (defrule
@@ -41571,7 +41646,7 @@
     (building-type-count town-center > 0)
 =>
     (build mining-camp)
-    (set-goal 342 1)
+    (set-goal 344 1)
 )
 (defrule
     (dropsite-min-distance stone > 3)
@@ -41582,10 +41657,10 @@
     (building-type-count town-center > 0)
 =>
     (build mining-camp)
-    (set-goal 342 1)
+    (set-goal 344 1)
 )
 (defrule
-    (goal 342 1)
+    (goal 344 1)
     (building-type-count town-center > 0)
 =>
     (up-modify-sn sn-camp-max-distance c:+ 4)
@@ -41593,7 +41668,7 @@
 (defrule
     (true)
 =>
-    (set-goal 342 0)
+    (set-goal 344 0)
 )
 (defrule
     (wood-amount >= 150)
@@ -41601,13 +41676,13 @@
     (up-research-status c: feudal-age < research-pending)
     (building-type-count town-center > 0)
 =>
-    (up-get-fact unit-type-count villager 340)
-    (up-modify-goal 340 s:* sn-food-gatherer-percentage)
-    (up-modify-goal 340 c:/ 100)
-    (up-get-fact building-type-count-total farm 231)
+    (up-get-fact unit-type-count villager 342)
+    (up-modify-goal 342 s:* sn-food-gatherer-percentage)
+    (up-modify-goal 342 c:/ 100)
+    (up-get-fact building-type-count-total farm 233)
 )
 (defrule
-    (up-compare-goal 231 g:< 340)
+    (up-compare-goal 233 g:< 342)
     (can-build farm)
     (wood-amount >= 150)
     (up-pending-objects c: farm == 0)
@@ -41633,13 +41708,13 @@
     )
     (building-type-count town-center > 0)
 =>
-    (up-get-fact unit-type-count villager 340)
-    (up-modify-goal 340 s:* sn-food-gatherer-percentage)
-    (up-modify-goal 340 c:/ 100)
-    (up-get-fact building-type-count-total farm 231)
+    (up-get-fact unit-type-count villager 342)
+    (up-modify-goal 342 s:* sn-food-gatherer-percentage)
+    (up-modify-goal 342 c:/ 100)
+    (up-get-fact building-type-count-total farm 233)
 )
 (defrule
-    (up-compare-goal 231 g:< 340)
+    (up-compare-goal 233 g:< 342)
     (can-build farm)
     (up-research-status c: ri-horse-collar != research-pending)
     (up-research-status c: ri-heavy-plow != research-pending)
@@ -41677,7 +41752,7 @@
     (wood-amount > 200)
 =>
     (build market)
-    (set-goal 354 1)
+    (set-goal 356 1)
 )
 (defrule
     (true)
@@ -41773,22 +41848,22 @@
 (defrule
     (true)
 =>
-    (set-goal 344 0)
+    (set-goal 346 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 344)
+    (up-get-fact random-number 0 346)
 )
 (defrule
-    (goal 344 1)
+    (goal 346 1)
 =>
     (chat-to-player every-ally "1Sure.")
 )
 (defrule
-    (goal 344 2)
+    (goal 346 2)
 =>
     (chat-to-player every-ally "1Of course.")
 )
 (defrule
-    (goal 344 3)
+    (goal 346 3)
 =>
     (chat-to-player every-ally "1Okay.")
 )
@@ -41806,22 +41881,22 @@
 (defrule
     (true)
 =>
-    (set-goal 345 0)
+    (set-goal 347 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 345)
+    (up-get-fact random-number 0 347)
 )
 (defrule
-    (goal 345 1)
+    (goal 347 1)
 =>
     (chat-to-player every-ally "2Sorry, no.")
 )
 (defrule
-    (goal 345 2)
+    (goal 347 2)
 =>
     (chat-to-player every-ally "2Not right now, sorry.")
 )
 (defrule
-    (goal 345 3)
+    (goal 347 3)
 =>
     (chat-to-player every-ally "2Sorry, no can do!")
 )
@@ -41859,22 +41934,22 @@
 (defrule
     (true)
 =>
-    (set-goal 346 0)
+    (set-goal 348 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 346)
+    (up-get-fact random-number 0 348)
 )
 (defrule
-    (goal 346 1)
+    (goal 348 1)
 =>
     (chat-to-player every-ally "1Sure.")
 )
 (defrule
-    (goal 346 2)
+    (goal 348 2)
 =>
     (chat-to-player every-ally "1Of course.")
 )
 (defrule
-    (goal 346 3)
+    (goal 348 3)
 =>
     (chat-to-player every-ally "1Okay.")
 )
@@ -41892,22 +41967,22 @@
 (defrule
     (true)
 =>
-    (set-goal 347 0)
+    (set-goal 349 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 347)
+    (up-get-fact random-number 0 349)
 )
 (defrule
-    (goal 347 1)
+    (goal 349 1)
 =>
     (chat-to-player every-ally "2Sorry, no.")
 )
 (defrule
-    (goal 347 2)
+    (goal 349 2)
 =>
     (chat-to-player every-ally "2Not right now, sorry.")
 )
 (defrule
-    (goal 347 3)
+    (goal 349 3)
 =>
     (chat-to-player every-ally "2Sorry, no can do!")
 )
@@ -41945,22 +42020,22 @@
 (defrule
     (true)
 =>
-    (set-goal 348 0)
+    (set-goal 350 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 348)
+    (up-get-fact random-number 0 350)
 )
 (defrule
-    (goal 348 1)
+    (goal 350 1)
 =>
     (chat-to-player every-ally "1Sure.")
 )
 (defrule
-    (goal 348 2)
+    (goal 350 2)
 =>
     (chat-to-player every-ally "1Of course.")
 )
 (defrule
-    (goal 348 3)
+    (goal 350 3)
 =>
     (chat-to-player every-ally "1Okay.")
 )
@@ -41978,22 +42053,22 @@
 (defrule
     (true)
 =>
-    (set-goal 349 0)
+    (set-goal 351 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 349)
+    (up-get-fact random-number 0 351)
 )
 (defrule
-    (goal 349 1)
+    (goal 351 1)
 =>
     (chat-to-player every-ally "2Sorry, no.")
 )
 (defrule
-    (goal 349 2)
+    (goal 351 2)
 =>
     (chat-to-player every-ally "2Not right now, sorry.")
 )
 (defrule
-    (goal 349 3)
+    (goal 351 3)
 =>
     (chat-to-player every-ally "2Sorry, no can do!")
 )
@@ -42031,22 +42106,22 @@
 (defrule
     (true)
 =>
-    (set-goal 350 0)
+    (set-goal 352 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 350)
+    (up-get-fact random-number 0 352)
 )
 (defrule
-    (goal 350 1)
+    (goal 352 1)
 =>
     (chat-to-player every-ally "1Sure.")
 )
 (defrule
-    (goal 350 2)
+    (goal 352 2)
 =>
     (chat-to-player every-ally "1Of course.")
 )
 (defrule
-    (goal 350 3)
+    (goal 352 3)
 =>
     (chat-to-player every-ally "1Okay.")
 )
@@ -42064,22 +42139,22 @@
 (defrule
     (true)
 =>
-    (set-goal 351 0)
+    (set-goal 353 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 351)
+    (up-get-fact random-number 0 353)
 )
 (defrule
-    (goal 351 1)
+    (goal 353 1)
 =>
     (chat-to-player every-ally "2Sorry, no.")
 )
 (defrule
-    (goal 351 2)
+    (goal 353 2)
 =>
     (chat-to-player every-ally "2Not right now, sorry.")
 )
 (defrule
-    (goal 351 3)
+    (goal 353 3)
 =>
     (chat-to-player every-ally "2Sorry, no can do!")
 )
@@ -42094,20 +42169,20 @@
       (goal did-tribute 0)
     )
 =>
-    (up-get-fact resource-amount wood 340)
-    (up-get-fact escrow-amount wood 231)
-    (up-modify-goal 340 g:- 231)
-    (up-get-fact resource-amount food 352)
-    (up-get-fact escrow-amount food 231)
-    (up-modify-goal 352 g:- 231)
-    (up-get-fact resource-amount gold 353)
-    (up-get-fact escrow-amount gold 231)
-    (up-modify-goal 353 g:- 231)
+    (up-get-fact resource-amount wood 342)
+    (up-get-fact escrow-amount wood 233)
+    (up-modify-goal 342 g:- 233)
+    (up-get-fact resource-amount food 354)
+    (up-get-fact escrow-amount food 233)
+    (up-modify-goal 354 g:- 233)
+    (up-get-fact resource-amount gold 355)
+    (up-get-fact escrow-amount gold 233)
+    (up-modify-goal 355 g:- 233)
 )
 (defrule
-    (up-compare-goal 340 c:> max-gold)
+    (up-compare-goal 342 c:> max-gold)
     (can-sell-commodity wood)
-    (up-compare-goal 353 c:< max-gold)
+    (up-compare-goal 355 c:< max-gold)
     (or
       (goal team-game 0)
       (goal did-tribute 0)
@@ -42116,9 +42191,9 @@
     (sell-commodity wood)
 )
 (defrule
-    (up-compare-goal 352 c:> max-gold)
+    (up-compare-goal 354 c:> max-gold)
     (can-sell-commodity food)
-    (up-compare-goal 353 c:< max-gold)
+    (up-compare-goal 355 c:< max-gold)
     (or
       (goal team-game 0)
       (goal did-tribute 0)
@@ -42127,8 +42202,8 @@
     (sell-commodity food)
 )
 (defrule
-    (up-compare-goal 340 c:< max-gold)
-    (up-compare-goal 353 c:> max-gold)
+    (up-compare-goal 342 c:< max-gold)
+    (up-compare-goal 355 c:> max-gold)
     (can-buy-commodity wood)
     (or
       (goal team-game 0)
@@ -42138,8 +42213,8 @@
     (buy-commodity wood)
 )
 (defrule
-    (up-compare-goal 352 c:< max-gold)
-    (up-compare-goal 353 c:> max-gold)
+    (up-compare-goal 354 c:< max-gold)
+    (up-compare-goal 355 c:> max-gold)
     (can-buy-commodity food)
     (or
       (goal team-game 0)
@@ -42151,43 +42226,43 @@
 (defrule
     (goal under-attack 1)
 =>
-    (up-get-fact resource-amount wood 352)
-    (up-get-fact escrow-amount wood 353)
-    (up-modify-goal 352 g:- 353)
-    (up-get-fact resource-amount food 340)
-    (up-get-fact escrow-amount food 353)
-    (up-modify-goal 340 g:- 353)
-    (up-get-fact resource-amount gold 231)
-    (up-get-fact escrow-amount gold 353)
-    (up-modify-goal 231 g:- 353)
+    (up-get-fact resource-amount wood 354)
+    (up-get-fact escrow-amount wood 355)
+    (up-modify-goal 354 g:- 355)
+    (up-get-fact resource-amount food 342)
+    (up-get-fact escrow-amount food 355)
+    (up-modify-goal 342 g:- 355)
+    (up-get-fact resource-amount gold 233)
+    (up-get-fact escrow-amount gold 355)
+    (up-modify-goal 233 g:- 355)
 )
 (defrule
-    (up-compare-goal 352 c:> gold-threshold)
+    (up-compare-goal 354 c:> gold-threshold)
     (can-sell-commodity wood)
-    (up-compare-goal 231 c:< gold-threshold)
+    (up-compare-goal 233 c:< gold-threshold)
     (goal under-attack 1)
 =>
     (sell-commodity wood)
 )
 (defrule
-    (up-compare-goal 340 c:> gold-threshold)
+    (up-compare-goal 342 c:> gold-threshold)
     (can-sell-commodity food)
-    (up-compare-goal 231 c:< gold-threshold)
+    (up-compare-goal 233 c:< gold-threshold)
     (goal under-attack 1)
 =>
     (sell-commodity food)
 )
 (defrule
-    (up-compare-goal 352 c:< gold-threshold)
-    (up-compare-goal 231 c:> gold-threshold)
+    (up-compare-goal 354 c:< gold-threshold)
+    (up-compare-goal 233 c:> gold-threshold)
     (can-buy-commodity wood)
     (goal under-attack 1)
 =>
     (buy-commodity wood)
 )
 (defrule
-    (up-compare-goal 340 c:< gold-threshold)
-    (up-compare-goal 231 c:> gold-threshold)
+    (up-compare-goal 342 c:< gold-threshold)
+    (up-compare-goal 233 c:> gold-threshold)
     (can-buy-commodity food)
     (goal under-attack 1)
 =>
@@ -42805,7 +42880,7 @@
     (set-strategic-number sn-maximum-town-size 30)
     (set-strategic-number sn-minimum-town-size 8)
     (set-strategic-number sn-safe-town-size 30)
-    (set-goal 355 0)
+    (set-goal 357 0)
     (disable-self)
 )
 (defrule
@@ -42817,23 +42892,23 @@
     (set-strategic-number sn-safe-town-size 30)
 )
 (defrule
-    (goal 354 0)
+    (goal 356 0)
     (strategic-number sn-maximum-town-size <= 30)
 =>
-    (set-goal 355 0)
+    (set-goal 357 0)
 )
 (defrule
-    (goal 354 1)
-    (goal 355 0)
+    (goal 356 1)
+    (goal 357 0)
     (strategic-number sn-maximum-town-size <= 30)
 =>
     (up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size)
-    (set-goal 355 1)
+    (set-goal 357 1)
 )
 (defrule
     (strategic-number sn-maximum-town-size <= 30)
 =>
-    (set-goal 354 0)
+    (set-goal 356 0)
 )
 (defrule
     (true)

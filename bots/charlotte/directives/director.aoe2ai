@@ -37,6 +37,21 @@ load "unit_selection/trading.aoe2ai"
     load "unit_selection/random_unit_selection.aoe2ai"
     load "unit_selection/being_countered_system.aoe2ai"
     load "unit_selection/counter_system.aoe2ai"
+    
+    #do once
+      goal no-unit-rule-passes = 0
+      goal director-units-selected = 0
+    #end do
+    insert random-unit-selection-count-units-selected(goal="director-units-selected")
+    #if goal director-units-selected 0
+      goal no-unit-rule-passes += 1
+    #else
+      goal no-unit-rule-passes = 0
+    #end if
+    #if up-compare-goal no-unit-rule-passes c:>= 30
+      chat to self "ATTENTION: failed to select units, emergency trash activated"
+      goal emergency-trash = 1
+    #end if
   #end if
   
   load "unit_selection/mandatory_siege.aoe2ai"
