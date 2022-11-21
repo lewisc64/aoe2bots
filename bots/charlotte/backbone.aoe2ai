@@ -51,7 +51,6 @@ const dead-trade-cart-loaded = 205
 const dead-male-builder = 213
 const dead-female-builder = 225
 
-const max-town-centers = 3
 const dark-age-military-buildings = 1
 const feudal-age-military-buildings = 3
 const castle-age-military-buildings = 4
@@ -213,7 +212,13 @@ const importance-low = 1
   #end if
   
   goal desired-military-buildings-per-type = 2
-  goal desired-town-centers = max-town-centers
+  #select random persistant
+    goal desired-town-centers = 3
+  #randor
+    goal desired-town-centers = 4
+  #randor
+    goal desired-town-centers = 5
+  #end select
   
   goal desired-villagers = 120
   goal desired-trade-carts = 30

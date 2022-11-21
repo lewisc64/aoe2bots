@@ -205,9 +205,9 @@ goal did-tribute = 0
   insert divert-all-from-stone
 #end if
 
-#if up-compare-goal desired-trade-carts g:< max-desired-trade-carts
+#ifg up-compare-goal desired-trade-carts g:< max-desired-trade-carts
   #repeat every 5 minutes
-    #if up-compare-goal total-trade-carts g:>= desired-trade-carts and up-compare-goal non-escrowed-gold c:<= gold-threshold
+    #ifg up-compare-goal total-trade-carts g:>= desired-trade-carts and up-compare-goal non-escrowed-gold c:<= gold-threshold
       @up-modify-goal desired-trade-carts c:+ 5
       @up-modify-goal desired-trade-carts g:min max-desired-trade-carts
       chat to self "scale up trade"

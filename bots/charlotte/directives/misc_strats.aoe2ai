@@ -100,3 +100,10 @@
 #if goal produce-unique-units 1 and current-age == feudal-age
   goal do-stone-mining = 1
 #end if
+
+// build more town centers once fully boomed
+#if up-compare-goal total-villagers g:>= desired-villagers
+  #do once
+    @up-modify-goal desired-town-centers c:max 6
+  #end do
+#end if
