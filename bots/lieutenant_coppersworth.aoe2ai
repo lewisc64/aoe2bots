@@ -29,10 +29,12 @@ load "templates/fast_castle.aoe2ai"
 #if up-research-status c: castle-age >= research-pending
 
   set town size to 28
-
-  #do once
+  
+  #if stone-amount < 100
+    distribute villagers 38 38 18 6
+  #else
     distribute villagers 40 40 20 0
-  #end do
+  #end if
   
   manage scouting
 
@@ -104,6 +106,9 @@ load "templates/fast_castle.aoe2ai"
   build lumber camps
   #when
     build gold mining camps
+    #if strategic-number sn-stone-gatherer-percentage > 0
+      build stone mining camps
+    #end if
   #then
     sn-camp-max-distance += 15
   #end when
