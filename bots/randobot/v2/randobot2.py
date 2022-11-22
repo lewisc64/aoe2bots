@@ -292,7 +292,7 @@ if __name__ == "__main__":
     avoid_excessive_queue_flood(rules)
     limit_buildings(rules)
     avoid_attack_now_spam(rules)
-    avoid_spam(rules, ["set-stance", "chat-to"])
+    avoid_spam(rules, ["set-stance", "chat-to", "buy-commodity", "sell-commodity"])
 
     skeleton = get_skeleton("skeleton_build/skeleton.per")
 
