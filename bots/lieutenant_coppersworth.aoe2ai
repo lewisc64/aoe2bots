@@ -73,7 +73,11 @@ load "templates/fast_castle.aoe2ai"
   research mill upgrades with food and gold escrow
   research gold mining camp upgrades with food and gold escrow
   
-  train 120 villager with 30 trade using escrow for caravan
+  #if current-age == imperial-age
+    train 120 villager with 30 trade using escrow for caravan
+  #else
+    train 120 villager
+  #end if
 
   train 10 monk
   train 60 camel-line
