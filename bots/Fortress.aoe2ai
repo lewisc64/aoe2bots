@@ -31,7 +31,11 @@ do basic diplomacy
     buy stone when gold > 2000
   #end if
   
-  train 100 villager with 30 trade
+  #if current-age == imperial-age
+    train 100 villager with 40 trade
+  #else
+    train 100 villager
+  #end if
   train bombard-cannon
   
   research imperial-age
