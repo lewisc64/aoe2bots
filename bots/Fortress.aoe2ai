@@ -17,6 +17,8 @@ do basic diplomacy
     sn-special-attack-type2 = trebuchet
   #end do
   
+  auto balance wood and food and gold
+  
   manage scouting
   
   #if current-age == castle-age
@@ -68,7 +70,7 @@ do basic diplomacy
       sn-maximum-town-size += 5
     #end if
   #else if strategic-number sn-maximum-town-size > 40
-    sn-maximum-town-size = 40
+    auto expand town size to 40
   #end if
   
   #when
@@ -90,6 +92,9 @@ do basic diplomacy
   build 1 market
   build 1 university
   build 2 siege-workshop
+  #if building-type-count-total castle >= 4
+    build 5 siege-workshop
+  #end if
   build 5 castle
   #if building-type-count-total castle > 0
     build stone walls on perimeter 2
