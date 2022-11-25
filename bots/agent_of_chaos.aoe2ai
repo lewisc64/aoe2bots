@@ -92,7 +92,11 @@ research imperial-age
 
 #end if
 
-train 120 villager with 30 trade
+#if current-age == imperial-age
+  train 120 villager with 30 trade
+#else
+  train 120 villager
+#end if
 train 1 monk
 #if unit-type-count villager > 120
   delete unit villager
