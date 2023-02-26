@@ -16,13 +16,12 @@ manage scouting
   do basic diplomacy without backstabbing
 #end select
 
-#when
-  research feudal-age with food escrow
-#then
+#if current-age >= feudal-age 
   escrow 10 food
   escrow 10 gold
-#end when
+#end if
 
+research feudal-age with food escrow
 research castle-age with food and gold escrow
 
 research mill upgrades with food escrow
@@ -61,7 +60,11 @@ build 1 market
 build 1 university
 build 1 monastery
 
-train 120 villager with 30 trade using escrow for caravan
+#if current-age >= imperial-age
+  train 120 villager with 30 trade using escrow for caravan
+#else
+  train 120 villager
+#end if
 research ri-loom with gold escrow
 
 train militiaman-line => train spearman-line
