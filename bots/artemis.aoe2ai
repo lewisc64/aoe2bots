@@ -56,11 +56,10 @@ do basic diplomacy
   #end if
 #end template
 
-#if current-age >= feudal-age and military-population >= 20 and up-compare-goal target-military-percentage c:> 100 and goal under-attack 0
-  insert set-escrow(percent=10)
-#else if up-research-status c: castle-age < research-pending and military-population >= 10 and goal under-attack 0
-  escrow 10 food
-  escrow 10 gold
+#if current-age >= feudal-age and military-population >= 20 and goal under-attack 0
+  insert set-escrow(percent=20)
+#else if up-research-status c: castle-age < research-pending and military-population >= 10 and goal under-attack 0 and current-age-time >= 600
+  insert set-escrow(percent=40)
 #else
   insert set-escrow(percent=0)
 #end if
@@ -114,11 +113,12 @@ build castle
   goal produce-unique-units = 0
   goal produce-knights = 0
   goal produce-monks = 0
-  goal produce-scouts = 1
+  goal produce-scouts = 0
   goal produce-spearmen = 0
   goal produce-battering-rams = 1
 #end do
 
+// when we have castles, crunch the spearmen and archers into genoese crossbowmen
 #if building-type-count castle >= 3 and goal produce-archers 1
   #do once
     goal produce-archers = 0
@@ -143,6 +143,11 @@ build castle
 #end respond
 
 #respond to min-detection-units knight-line
+  goal produce-scouts = 0
+  goal produce-spearmen = 1
+#end respond
+
+#respond to min-detection-units camel-line
   goal produce-scouts = 0
   goal produce-spearmen = 1
 #end respond
@@ -332,44 +337,47 @@ lure boars
     #end do
   #end if
 #else
-  #do once
-    distribute villagers 40 45 15 0
-  #end do
+  distribute villagers 45 45 10 0
+
+  #if goal produce-archers 1 or goal produce-unique-units 1
+    distribute 6 villagers from food to gold
+    distribute 2 villagers from food to wood
+  #end if
   
-  // impulses
-  #do once
-    #if goal produce-archers 1 or goal produce-unique-units 1
-      distribute 6 villagers from food to gold
-      distribute 2 villagers from food to wood
-    #end if
-    
-    #if goal produce-scouts 1
-      distribute 8 villagers from wood and gold to food
-    #end if
-    
-    #if goal produce-knights 1
-      distribute 8 villagers from wood to food and gold
-    #end if
-    
-    #if goal produce-monks 1
-      distribute 12 villagers from wood and food to gold
-    #end if
-  #end do
+  #if goal produce-scouts 1
+    distribute 8 villagers from wood and gold to food
+  #end if
+  
+  #if goal produce-knights 1
+    distribute 8 villagers from wood to food and gold
+  #end if
+  
+  #if goal produce-monks 1
+    distribute 12 villagers from wood and food to gold
+  #end if
   
   #if current-age >= castle-age and strategic-number sn-stone-gatherer-percentage < 6
     distribute 6 villagers from wood and food and gold to stone
   #end if
   
-  auto balance wood and food and gold
-  
-  #if false
-    #repeat every 30 seconds
-      @up-chat-data-to-all "wood: %d" s: sn-wood-gatherer-percentage
-      @up-chat-data-to-all "food: %d" s: sn-food-gatherer-percentage
-      @up-chat-data-to-all "gold: %d" s: sn-gold-gatherer-percentage
-      @up-chat-data-to-all "stone: %d" s: sn-stone-gatherer-percentage
-    #end repeat
+  #if up-compare-goal non-escrowed-wood c:>= 300
+    distribute 12 villagers from wood to food and gold
   #end if
+  
+  #if up-compare-goal non-escrowed-wood c:>= 600
+    distribute 12 villagers from wood to food and gold
+  #end if
+  
+  #if up-compare-goal non-escrowed-wood c:>= 1400
+    distribute 12 villagers from food to wood and gold
+  #end if
+
+  #repeat every 30 seconds
+    @up-chat-data-to-all "wood: %d" s: sn-wood-gatherer-percentage
+    @up-chat-data-to-all "food: %d" s: sn-food-gatherer-percentage
+    @up-chat-data-to-all "gold: %d" s: sn-gold-gatherer-percentage
+    @up-chat-data-to-all "stone: %d" s: sn-stone-gatherer-percentage
+  #end repeat
   
   #if up-compare-goal non-escrowed-wood c:>= 300
     build 1 market
