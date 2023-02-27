@@ -58,7 +58,11 @@ do basic diplomacy
     escrow 0 gold
   #end when
   
-  train 120 villagers with 30 trade
+  #if current-age == imperial-age
+    train 120 villagers with 30 trade
+  #else
+    train 120 villager
+  #end if
   train 3 trebuchet
   train my-unique-unit
 
