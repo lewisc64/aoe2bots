@@ -45,7 +45,11 @@ research ri-murder-holes
 research ri-fletching
 research ri-siege-engineers
 
-train 100 villager with 30 trade
+#if current-age == imperial-age
+  train 100 villager with 30 trade
+#else
+  train 100 villager
+#end if
 train 5 battering-ram-line
 train scorpion-line
 #if food-amount > 200
