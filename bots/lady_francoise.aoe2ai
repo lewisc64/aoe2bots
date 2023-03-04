@@ -5,11 +5,91 @@ const minimum-army = 12
 load "charlotte/stats.aoe2ai"
 load "templates/fast_castle.aoe2ai"
 
-#select random persistant
-  do basic diplomacy
-#randor
-  do basic diplomacy without backstabbing
-#end select
+#template diplo-chat-alliance-offer
+  #select random
+    @up-chat-data-to-all "Take my hand, %d." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "We should ally, %d. For the sake of both of us." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "I suggest we form an alliance, %d." g: {player_goal}
+  #end select
+#end template
+
+#template diplo-chat-our-betrayal
+  #select random
+    @up-chat-data-to-all "Our story together is drawing to a close." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "Ready your blade." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "It is time." g: {player_goal}
+  #end select
+#end template
+
+#template diplo-chat-their-betrayal
+  #select random
+    @up-chat-data-to-all "Hmm, it was inevitable it seems." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "Perhaps I have become too trusting." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "The hands of trechery reach far and deep." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "I see now. We were never friends, were we %d?" g: {player_goal}
+  #end select
+#end template
+
+#template diplo-chat-accepted-our-alliance
+  #select random
+    @up-chat-data-to-all "Very good." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "You are wise to accept." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "Most wise, %d." g: {player_goal}
+  #end select
+#end template
+
+#template diplo-chat-accepted-their-alliance
+  @up-chat-data-to-all "We have an agreement, %d." g: {player_goal}
+#end template
+
+#template diplo-chat-refused-our-alliance
+  #select random
+    @up-chat-data-to-all "You will live to regret that decision, %d." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "A curse upon your name, %d." g: {player_goal}
+  #end select
+#end template
+
+#template diplo-chat-refused-their-alliance
+  #select random
+    @up-chat-data-to-all "Be silent." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "Again, no." g: {player_goal}
+  #end select
+#end template
+
+#template diplo-chat-friendly-fire-warning
+  #select random
+    @up-chat-data-to-all "A mistake %d, of course. Don't do it again." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "Cease your childish games." g: {player_goal}
+  #end select
+#end template
+
+#template diplo-chat-friendly-fire-betrayal
+  chat to all "I have had enough of you."
+#end template
+
+#template diplo-chat-resign
+#end template
+
+#template diplo-should-player-be-marked
+#end template
+
+load "templates/diplomacy_engine.aoe2ai"
+
+#if unit-type-count knight-line >= minimum-army
+  insert diplo-mark-random-ally-if-no-enemies
+#end if
 
 #template escrow-resources
   #if escrow-amount food < 1300

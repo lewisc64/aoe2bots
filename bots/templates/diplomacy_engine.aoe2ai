@@ -1,5 +1,5 @@
 // specify templates with param player_goal (containing the player number to talk to):
-// * diplo-diplo-chat-alliance-offer
+// * diplo-chat-alliance-offer
 // * diplo-chat-our-betrayal
 // * diplo-chat-their-betrayal
 // * diplo-chat-accepted-our-alliance
@@ -19,8 +19,8 @@
 // * diplo-chat-resign
 
 // provides these templates for control:
-// * diplo-betray-player
-// * diplo-do-betrayal-if-no-enemies
+// * diplo-mark-ally
+// * diplo-mark-random-ally-if-no-enemies
 // * diplo-retry-alliance-with-player
 // * diplo-retry-all-alliances
 
@@ -28,7 +28,7 @@ const diplo-alliance-timeout = 60
 const diplo-mute-period = 120
 
 #do once
-  @set-stance every-enemy neutral
+  @set-stance every-enemy ally
   goal diplo-chat-alliance-offer = -1
   goal diplo-chat-alliance-our-betrayal = -1
   goal diplo-chat-alliance-their-betrayal = -1
@@ -127,32 +127,30 @@ insert diplo-count-stances(player=8)
   insert diplo-retry-alliance-with-player(player=8)
 #end template
 
-#template diplo-betray-player
+#template diplo-mark-ally
   #if players-stance {player} ally and stance-toward {player} ally and not goal diplo-my-player-number-guess {player}
     goal diplo-player-{player}-is-marked = 1
-    @set-stance {player} enemy
-    goal diplo-chat-alliance-our-betrayal = {player}
   #end if
 #end template
 
-#template diplo-do-betrayal-if-no-enemies
-  #if goal diplo-enemy-count 0
+#template diplo-mark-random-ally-if-no-enemies
+  #if goal diplo-enemy-count 0 and goal diplo-player-1-is-marked 0 and goal diplo-player-2-is-marked 0 and goal diplo-player-3-is-marked 0 and goal diplo-player-4-is-marked 0 and goal diplo-player-5-is-marked 0 and goal diplo-player-6-is-marked 0 and goal diplo-player-7-is-marked 0 and goal diplo-player-8-is-marked 0
     #select random
-      insert diplo-betray-player(player=1)
+      insert diplo-mark-ally(player=1)
     #randor
-      insert diplo-betray-player(player=2)
+      insert diplo-mark-ally(player=2)
     #randor
-      insert diplo-betray-player(player=3)
+      insert diplo-mark-ally(player=3)
     #randor
-      insert diplo-betray-player(player=4)
+      insert diplo-mark-ally(player=4)
     #randor
-      insert diplo-betray-player(player=5)
+      insert diplo-mark-ally(player=5)
     #randor
-      insert diplo-betray-player(player=6)
+      insert diplo-mark-ally(player=6)
     #randor
-      insert diplo-betray-player(player=7)
+      insert diplo-mark-ally(player=7)
     #randor
-      insert diplo-betray-player(player=8)
+      insert diplo-mark-ally(player=8)
     #end select
   #end if
 #end template
@@ -185,7 +183,7 @@ insert diplo-count-stances(player=8)
     #end if
     
     // try alliances
-    #ifg goal diplo-action-done 0 and not stance-toward {player} ally and not players-stance {player} ally and goal diplo-player-{player}-alliance-offer-expire-at -1 and goal diplo-player-{player}-is-marked 0
+    #ifg goal diplo-action-done 0 and not stance-toward {player} ally and not players-stance {player} ally and goal diplo-player-{player}-alliance-offer-expire-at -1 and (goal diplo-player-{player}-is-marked 0 or up-compare-goal diplo-enemy-count c:>= 2)
       chat to self "request alliance {player}"
       insert diplo-set-future-stamp(goal="diplo-player-{player}-alliance-offer-expire-at",seconds="diplo-alliance-timeout")
       @set-stance {player} ally
@@ -215,7 +213,7 @@ insert diplo-count-stances(player=8)
       #end if
       
       // ally those who ally us
-      #ifg goal diplo-action-done 0 and players-stance {player} ally and not stance-toward {player} ally and goal diplo-player-{player}-is-marked 0 and goal diplo-accept-alliances 1
+      #ifg goal diplo-action-done 0 and players-stance {player} ally and not stance-toward {player} ally and (goal diplo-player-{player}-is-marked 0 or up-compare-goal diplo-enemy-count c:>= 2) and goal diplo-accept-alliances 1
         chat to self "accept alliance {player}"
         goal diplo-chat-alliance-accept-theirs = {player}
         @set-stance {player} ally
@@ -224,7 +222,7 @@ insert diplo-count-stances(player=8)
       #end if
       
       // enemy those that are marked
-      #ifg goal diplo-action-done 0 and not stance-toward {player} enemy and goal diplo-player-{player}-is-marked 1 and goal diplo-enemy-count 0
+      #ifg goal diplo-action-done 0 and not stance-toward {player} enemy and goal diplo-player-{player}-is-marked 1 and goal diplo-enemy-count 0 and goal allow-marked-war-for-player {player}
         chat to self "enemy marked {player}"
         #if stance-toward {player} ally
           goal diplo-chat-alliance-our-betrayal = {player}
@@ -256,15 +254,35 @@ insert diplo-count-stances(player=8)
     #end if
   #end if
   
-  #if not player-in-game {player} and players-stance {player} ally
-    @set-stance {player} ally
+  #if not player-in-game {player}
+    goal diplo-player-{player}-is-marked = 0
+    #if players-stance {player} ally
+      @set-stance {player} ally
+    #end if
   #end if
   
 #end template
 
-#if goal diplo-locked-teams 0
+#if goal diplo-locked-teams 0 and game-time >= 8
   #repeat every 5 seconds
     goal diplo-action-done = 0
+    #select random
+      goal allow-marked-war-for-player = 1
+    #randor
+      goal allow-marked-war-for-player = 2
+    #randor
+      goal allow-marked-war-for-player = 3
+    #randor
+      goal allow-marked-war-for-player = 4
+    #randor
+      goal allow-marked-war-for-player = 5
+    #randor
+      goal allow-marked-war-for-player = 6
+    #randor
+      goal allow-marked-war-for-player = 7
+    #randor
+      goal allow-marked-war-for-player = 8
+    #end select
     insert handle-diplomacy(player=1)
     insert handle-diplomacy(player=2)
     insert handle-diplomacy(player=3)
@@ -299,7 +317,7 @@ insert diplo-count-stances(player=8)
 #end if
 
 // after mute period is over, retry alliance requests to name and shame.
-#if game-time >= diplo-mute-period
+#if game-time > diplo-mute-period
   #do once grouped
     insert diplo-retry-all-alliances
   #end do

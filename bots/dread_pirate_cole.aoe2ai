@@ -45,7 +45,7 @@ do basic targeting
   #select random
     chat to all "A change in the wind says I."
   #randor
-    @up-chat-data-to-all "Avast, %d! Surrender ye doubloons!" g: {player_goal}
+    @up-chat-data-to-all "Avast, %d! Surrender yer doubloons!" g: {player_goal}
   #end select
 #end template
 
@@ -249,7 +249,7 @@ train 10 fishing-ship
     auto expand town size to 30
   #end if
   sn-number-boat-attack-groups = 200
-  insert diplo-do-betrayal-if-no-enemies
+  insert diplo-mark-random-ally-if-no-enemies
 #else
   sn-number-boat-attack-groups = 0
   #if strategic-number sn-maximum-town-size > 30

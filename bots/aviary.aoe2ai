@@ -10,13 +10,47 @@ const max-wood = 1500
 const max-food = 1500
 const max-gold = 1500
 
-#select random persistant
-  do basic diplomacy
-#randor
-  do basic diplomacy without backstabbing
-#end select
-
 load "templates/fast_castle.aoe2ai"
+
+#template diplo-chat-alliance-offer
+#end template
+
+#template diplo-chat-our-betrayal
+#end template
+
+#template diplo-chat-their-betrayal
+#end template
+
+#template diplo-chat-accepted-our-alliance
+#end template
+
+#template diplo-chat-accepted-their-alliance
+#end template
+
+#template diplo-chat-refused-our-alliance
+#end template
+
+#template diplo-chat-refused-their-alliance
+#end template
+
+#template diplo-chat-friendly-fire-warning
+#end template
+
+#template diplo-chat-friendly-fire-betrayal
+#end template
+
+#template diplo-chat-resign
+#end template
+
+#template diplo-should-player-be-marked
+  #if cc-players-unit-type-count {player} eagle-warrior-line >= 10
+    goal {marked_goal} = 0
+  #else
+    goal {marked_goal} = 1
+  #end if
+#end template
+
+load "templates/diplomacy_engine.aoe2ai"
 
 #if up-research-status c: castle-age >= research-pending
   #do once

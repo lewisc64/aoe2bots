@@ -2,7 +2,73 @@ const ri-tigui = 576
 
 load "templates/fast_castle.aoe2ai"
 
-do basic diplomacy
+#template diplo-chat-alliance-offer
+#end template
+
+#template diplo-chat-our-betrayal
+#end template
+
+#template diplo-chat-their-betrayal
+#end template
+
+#template diplo-chat-accepted-our-alliance
+#end template
+
+#template diplo-chat-accepted-their-alliance
+#end template
+
+#template diplo-chat-refused-our-alliance
+#end template
+
+#template diplo-chat-refused-their-alliance
+#end template
+
+#template diplo-chat-friendly-fire-warning
+#end template
+
+#template diplo-chat-friendly-fire-betrayal
+#end template
+
+#template diplo-chat-resign
+#end template
+
+#template diplo-should-player-be-marked
+  goal {marked_goal} = 0
+  #if goal purge 1
+    #if cc-players-unit-type-count {player} 56 >= 1
+      goal {marked_goal} = 1
+    #end if
+    #if cc-players-unit-type-count {player} 118 >= 1
+      goal {marked_goal} = 1
+    #end if
+    #if cc-players-unit-type-count {player} 120 >= 1
+      goal {marked_goal} = 1
+    #end if
+    #if cc-players-unit-type-count {player} 122 >= 1
+      goal {marked_goal} = 1
+    #end if
+    #if cc-players-unit-type-count {player} 123 >= 1
+      goal {marked_goal} = 1
+    #end if
+    #if cc-players-unit-type-count {player} 124 >= 1
+      goal {marked_goal} = 1
+    #end if
+    #if cc-players-unit-type-count {player} 156 >= 1
+      goal {marked_goal} = 1
+    #end if
+    #if cc-players-unit-type-count {player} 259 >= 1
+      goal {marked_goal} = 1
+    #end if
+    #if cc-players-unit-type-count {player} 579 >= 1
+      goal {marked_goal} = 1
+    #end if
+    #if cc-players-unit-type-count {player} 592 >= 1
+      goal {marked_goal} = 1
+    #end if
+  #end if
+#end template
+
+load "templates/diplomacy_engine.aoe2ai"
 
 #template purge
   #do once
