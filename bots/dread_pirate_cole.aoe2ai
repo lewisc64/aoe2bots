@@ -1,0 +1,259 @@
+// yarr
+
+const sea-fish = 905
+
+#do once
+  set up basics
+  
+  #if not civ-selected italian
+    chat to all "I be not the right civ."
+  #else
+    chat to all "Take what ye can, give nothin' back."
+  #end if
+#end do
+
+#do once grouped
+  goal full-water-map = 0
+  goal partial-water-map = 0
+  #if cc-players-unit-type-count 0 sea-fish >= 1 and game-time < 5
+    #if building-type-count stone-wall-line == 0 and building-type-count palisade-wall == 0 and wall-completed-percentage 2 == 100
+      goal full-water-map = 1
+    #else
+      goal partial-water-map = 1
+    #end if
+  #end if
+  #if goal full-water-map 1 or goal partial-water-map 1
+    goal water-map = 1
+  #else
+    goal water-map = 0
+  #end if
+#end do
+
+do basic targeting
+
+// diplomacy
+
+#template diplo-chat-alliance-offer
+  chat to all "Join my crew."
+#end template
+
+#template diplo-chat-our-betrayal
+  chat to all "A change in the wind says I."
+#end template
+
+#template diplo-chat-their-betrayal
+  chat to all "Blast! It be a mutiny!"
+#end template
+
+#template diplo-chat-accepted-our-alliance
+  chat to all "A fine day."
+#end template
+
+#template diplo-chat-accepted-their-alliance
+  chat to all "We have an accord."
+#end template
+
+#template diplo-chat-refused-our-alliance
+  chat to all "I thought it be generous, but now ye face the kraken."
+#end template
+
+#template diplo-chat-refused-their-alliance
+  chat to all "May ye be lost to the depths, ye filthy dog."
+#end template
+
+#template diplo-chat-friendly-fire-warning
+  chat to all "Would ye stop blowin' holes in my ship?!"
+#end template
+
+#template diplo-chat-friendly-fire-betrayal
+  chat to all "I be reachin' the end of me rope! Fire!!"
+#end template
+
+#template diplo-chat-resign
+  chat to all "A captain... Always goes down with their ship..."
+#end template
+
+#template diplo-should-player-be-marked
+  // default behaviour
+#end template
+
+load "templates/diplomacy_engine.aoe2ai"
+
+#if game-time >= 300
+  insert diplo-betray-player(player=1)
+#end if
+
+// common stuff
+
+build 1 town-center
+
+lure boars
+
+#if current-age == dark-age
+  build houses with 5 headroom
+#else
+  build houses with 10 headroom
+#end if
+
+#if game-time > 60
+  build lumber camps
+#end if
+
+#template build-mining-camps
+  #if strategic-number sn-{resource}-gatherer-percentage > 0
+    #when
+      build {resource} mining camps
+    #then
+      sn-camp-max-distance += 5
+    #end when
+  #end if
+#end template
+insert build-mining-camps(resource="gold")
+insert build-mining-camps(resource="stone")
+
+#if building-type-count lumber-camp >= 1
+  build mills
+  #if wood-amount > 200
+    build farms
+  #end if
+#end if
+
+#if current-age >= feudal-age
+  #do once
+    distribute villagers 40 40 20 0
+  #end do
+  auto balance wood and food and gold
+#else
+  distribute villagers 20 80 0 0
+#end if
+
+#if current-age == feudal-age and up-research-status c: castle-age < research-pending
+  buy food when gold > 400
+  sell food when food > 900
+#end if
+
+#if current-age == castle-age and up-research-status c: imperial-age < research-pending
+  buy food when gold > 1000
+  sell food when food > 1200
+#end if
+
+trade excess wood and food and gold at 2000
+
+research feudal-age
+build 1 blacksmith
+build 1 market
+research castle-age
+build 1 university
+build 1 monastery
+build 1 siege-workshop
+research imperial-age
+research ri-chemistry
+
+research ri-loom
+research ri-wheel-barrow
+research ri-hand-cart
+research mill upgrades
+research lumber camp upgrades
+research gold mining camp upgrades
+
+#if goal water-map 1
+  #if building-type-count lumber-camp >= 1
+    build 1 dock
+  #end if
+  research ri-careening
+  research ri-dry-dock
+  research ri-shipwright
+  research ri-war-galley
+  research ri-fast-fire-ship
+  research ri-cannon-galleon
+#else
+  build 1 blacksmith
+  research ri-padded-archer-armor
+  research ri-leather-archer-armor
+  research ri-ring-archer-armor
+  research ri-siege-engineers
+#end if
+
+train 1 monk
+
+#if goal water-map 1
+  #if current-age < castle-age or up-research-status c: ri-war-galley >= research-pending
+    #if current-age < imperial-age or up-research-status c: ri-fast-fire-ship >= research-pending
+      #if current-age < imperial-age or up-research-status c: ri-cannon-galleon >= research-pending
+        #if current-age == feudal-age
+          build 2 dock
+        #else if current-age == castle-age
+          build 4 dock
+        #else
+          build 8 dock
+        #end if
+        #if research-completed ri-cannon-galleon
+          train fire-ship-line => train cannon-galleon-line
+        #else
+          train fire-ship-line
+        #end if
+      #end if
+    #end if
+  #end if
+#else
+  #if up-research-status c: ri-ring-archer-armor >= research-pending
+    build 1 siege-workshop
+    build 1 barracks
+    train 10 bombard-cannon
+    #if unit-type-count-total bombard-cannon >= 10 or up-pending-objects c: bombard-cannon >= 1
+      build 8 archery-range
+      train hand-cannoneer
+    #end if
+  #end if
+#end if
+
+#if current-age == imperial-age
+  #if goal water-map 0
+    train 120 villagers with 40 trade
+  #else
+    train 100 villager
+    #if players-building-type-count any-ally dock >= 1 and warboat-count >= 10
+      train 20 trade-cog
+    #end if
+  #end if
+#else
+  train 120 villager
+#end if
+train 10 fishing-ship
+
+#if military-population >= 30
+  #do once
+    #if goal water-map 1
+      chat to all "Avast, ye! Ready the guns! Stay the mainsail!"
+    #else
+      chat to all "Avast, ye! Ready the guns!"
+    #end if
+  #end do
+  #if goal full-water-map 0
+    sn-maximum-town-size = 255
+  #else
+    auto expand town size to 30
+  #end if
+  sn-number-boat-attack-groups = 200
+  insert diplo-do-betrayal-if-no-enemies
+#else
+  sn-number-boat-attack-groups = 0
+  #if strategic-number sn-maximum-town-size > 30
+    sn-maximum-town-size = 30
+  #end if
+  auto expand town size to 30
+#end if
+
+// misc dialog
+
+#if unit-type-count fire-ship-line >= 10
+  chat to all "The sea beckons, and I be heeding her call."
+#end if
+
+#if unit-type-count cannon-galleon-line >= 10
+  chat to all "The finest cannons in seven seas!"
+#end if
+
+#if unit-type-count bombard-cannon >= 1 and goal water-map 0
+  chat to all "I miss the sea..."
+#end if
