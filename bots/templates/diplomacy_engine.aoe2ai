@@ -166,7 +166,7 @@ insert diplo-count-stances(player=8)
     goal diplo-player-{player}-is-marked = 0
   #end do
   
-  #if player-in-game {player}
+  #if player-in-game {player} and not goal diplo-my-player-number-guess {player}
   
     insert diplo-should-player-be-marked(marked_goal="diplo-player-{player}-is-marked",player={player})
   

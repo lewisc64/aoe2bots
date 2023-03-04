@@ -34,15 +34,29 @@ do basic targeting
 // diplomacy
 
 #template diplo-chat-alliance-offer
-  chat to all "Join my crew."
+  #select random
+    @up-chat-data-to-all "Join my crew, %d." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "Player %d, join me search for loot." g: {player_goal}
+  #end select
 #end template
 
 #template diplo-chat-our-betrayal
-  chat to all "A change in the wind says I."
+  #select random
+    chat to all "A change in the wind says I."
+  #randor
+    @up-chat-data-to-all "Avast, %d! Surrender ye doubloons!" g: {player_goal}
+  #end select
 #end template
 
 #template diplo-chat-their-betrayal
-  chat to all "Blast! It be a mutiny!"
+  #select random
+    @up-chat-data-to-all "Blast! %d! Ye mutinous swab!" g: {player_goal}
+  #randor
+    @up-chat-data-to-all "Argh! %d! Ye damn scallywag!" g: {player_goal}
+  #randor
+    @up-chat-data-to-all "Slap me thrice! %d! Ye filthy bilge rat!" g: {player_goal}
+  #end select
 #end template
 
 #template diplo-chat-accepted-our-alliance
@@ -54,7 +68,7 @@ do basic targeting
 #end template
 
 #template diplo-chat-refused-our-alliance
-  chat to all "I thought it be generous, but now ye face the kraken."
+  chat to all "I thought it be generous."
 #end template
 
 #template diplo-chat-refused-their-alliance
@@ -70,18 +84,16 @@ do basic targeting
 #end template
 
 #template diplo-chat-resign
-  chat to all "A captain... Always goes down with their ship..."
+  chat to all "A captain... Always goes down with his ship..."
 #end template
 
 #template diplo-should-player-be-marked
-  // default behaviour
+  #if players-unit-type-count {player} dock >= 1
+    goal {marked_goal} = 1
+  #end if
 #end template
 
 load "templates/diplomacy_engine.aoe2ai"
-
-#if game-time >= 300
-  insert diplo-betray-player(player=1)
-#end if
 
 // common stuff
 
@@ -137,6 +149,8 @@ insert build-mining-camps(resource="stone")
   sell food when food > 1200
 #end if
 
+sell stone when stone > 400
+
 trade excess wood and food and gold at 2000
 
 research feudal-age
@@ -184,13 +198,13 @@ train 1 monk
           build 2 dock
         #else if current-age == castle-age
           build 4 dock
-        #else
+        #else if current-age == imperial-age
           build 8 dock
         #end if
         #if research-completed ri-cannon-galleon
           train fire-ship-line => train cannon-galleon-line
         #else
-          train fire-ship-line
+          train 40 fire-ship-line
         #end if
       #end if
     #end if
@@ -246,14 +260,24 @@ train 10 fishing-ship
 
 // misc dialog
 
-#if unit-type-count fire-ship-line >= 10
-  chat to all "The sea beckons, and I be heeding her call."
-#end if
+#do once
+  #if unit-type-count fire-ship-line >= 10
+    chat to all "The sea beckons, and I be heeding her call."
+  #end if
+  
+  #if unit-type-count fire-ship-line >= 50
+    chat to all "I be the scourge of the seven seas, know it well."
+  #end if
 
-#if unit-type-count cannon-galleon-line >= 10
-  chat to all "The finest cannons in seven seas!"
-#end if
+  #if unit-type-count cannon-galleon-line >= 10
+    chat to all "The finest cannons in all the world!"
+  #end if
 
-#if unit-type-count bombard-cannon >= 1 and goal water-map 0
-  chat to all "I miss the sea..."
-#end if
+  #if unit-type-count bombard-cannon >= 1 and goal water-map 0
+    chat to all "I miss the sea..."
+  #end if
+  
+  #if research-completed ri-ring-archer-armor
+    chat to all "Nothin' like fresh powder to wake ye up."
+  #end if
+#end do
