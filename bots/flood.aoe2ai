@@ -1,6 +1,7 @@
 #do once
   set up basics
-  take boar
+  
+  assign 4 builders to barracks
   
   sn-maximum-attack-group-size = 1
   sn-minimum-attack-group-size = 1
@@ -9,12 +10,11 @@
   sn-special-attack-type2 = villager
 #end do
 
+lure boars
+
 manage scouting
-#select random persistant
-  do basic diplomacy
-#randor
-  do basic diplomacy without backstabbing
-#end select
+do basic diplomacy
+do basic targeting
 
 #if current-age >= feudal-age 
   escrow 10 food
@@ -26,6 +26,8 @@ research castle-age with food and gold escrow
 
 research mill upgrades with food escrow
 research lumber camp upgrades with food escrow
+research ri-wheel-barrow with wood and food escrow
+research ri-hand-cart with wood and food escrow
 
 research ri-man-at-arms with food and gold escrow
 
@@ -54,7 +56,9 @@ research ri-masonry
 research ri-architecture
 
 build lumber camps
-build mills
+#if building-type-count lumber-camp >= 1
+  build mills
+#end if
 build 1 blacksmith
 build 1 market
 build 1 university
@@ -88,7 +92,7 @@ train 1 monk
   #when
     build gold mining camps
   #then
-    sn-camp-max-distance += 15
+    sn-camp-max-distance += 8
   #end when
   build houses with 15 headroom
   
@@ -97,6 +101,8 @@ train 1 monk
   #end if
   
   build forward 4 barracks
+  
+  auto balance wood and food and gold
   
 #end if
 
