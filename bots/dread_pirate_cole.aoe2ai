@@ -13,6 +13,8 @@ const sea-fish = 905
 #end do
 
 #do once grouped
+  enable walls on perimeter 1
+  enable walls on perimeter 2
   goal full-water-map = 0
   goal partial-water-map = 0
   #if cc-players-unit-type-count 0 sea-fish >= 1 and game-time < 5
@@ -180,7 +182,9 @@ research gold mining camp upgrades
   research ri-war-galley
   research ri-fast-fire-ship
   research ri-cannon-galleon
-#else
+#end if
+
+#if goal full-water-map 0
   build 1 blacksmith
   research ri-padded-archer-armor
   research ri-leather-archer-armor
@@ -190,7 +194,7 @@ research gold mining camp upgrades
 
 train 1 monk
 
-#if goal water-map 1
+#if goal water-map 1 and (goal full-water-map 1 or warboat-count < 30)
   #if current-age < castle-age or up-research-status c: ri-war-galley >= research-pending
     #if current-age < imperial-age or up-research-status c: ri-fast-fire-ship >= research-pending
       #if current-age < imperial-age or up-research-status c: ri-cannon-galleon >= research-pending
@@ -209,7 +213,9 @@ train 1 monk
       #end if
     #end if
   #end if
-#else
+#end if
+
+#if goal full-water-map 0
   #if up-research-status c: ri-ring-archer-armor >= research-pending
     build 1 siege-workshop
     build 1 barracks
