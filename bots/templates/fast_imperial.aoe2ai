@@ -1,0 +1,40 @@
+load "fast_castle.aoe2ai"
+
+#if up-research-status c: castle-age >= research-pending and up-research-status c: imperial-age < research-pending
+  #do once
+    assign 2 builders to university
+    assign 2 builders to siege-workshop
+  #end do
+
+  distribute villagers 30 45 25 0
+  
+  build 1 siege-workshop
+  build 1 university
+  
+  build 1 market
+  sell food when food > 1200
+  buy food when gold > 1000
+  sell wood when wood > 400
+
+  build houses with 10 headroom
+  build lumber camps
+  #if food-amount < 1000
+    build farms
+  #end if
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 8
+  #end when
+  
+  research gold mining camp upgrades
+  research mill upgrades
+  research lumber camp upgrades
+  
+  research ri-wheel-barrow
+  research ri-hand-cart
+  
+  research imperial-age
+  
+  train 120 villager
+#end if

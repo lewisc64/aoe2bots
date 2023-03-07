@@ -1,0 +1,37 @@
+#template diplo-chat-alliance-offer
+#end template
+
+#template diplo-chat-our-betrayal
+#end template
+
+#template diplo-chat-their-betrayal
+#end template
+
+#template diplo-chat-accepted-our-alliance
+#end template
+
+#template diplo-chat-accepted-their-alliance
+#end template
+
+#template diplo-chat-refused-our-alliance
+#end template
+
+#template diplo-chat-refused-their-alliance
+#end template
+
+#template diplo-chat-friendly-fire-warning
+#end template
+
+#template diplo-chat-friendly-fire-betrayal
+#end template
+
+#template diplo-chat-resign
+#end template
+
+#template diplo-should-player-be-marked
+#end template
+
+load "diplomacy_engine.aoe2ai"
+#if military-population >= 2
+  insert diplo-mark-random-ally-if-no-enemies
+#end if

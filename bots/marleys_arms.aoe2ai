@@ -1,0 +1,80 @@
+const condottiero = 184
+
+load "templates/basic_diplomacy.aoe2ai"
+load "templates/fast_imperial.aoe2ai"
+load "charlotte/stats.aoe2ai"
+
+#if up-research-status c: imperial-age >= research-pending
+  #do once
+    set up basics
+    distribute villagers 30 50 20 0
+    assign 4 builders to town-center-foundation
+    assign 2 builders to barracks
+    assign 2 builders to siege-workshop
+  #end do
+  
+  manage scouting
+  lure boars
+  do basic targeting
+  
+  build houses with 15 headroom
+  build lumber camps
+  build mills
+  #if wood-amount >= 200
+    build farms
+  #end if
+  
+  build 1 market
+  build 3 town-center
+  build 1 siege-workshop
+  
+  research mill upgrades
+  research lumber camp upgrades
+  research gold mining camp upgrades
+  research ri-tracking
+  research ri-squires
+  research ri-arson
+  research infantry blacksmith upgrades
+  research ri-capped-ram
+  
+  #if up-research-status c: ri-blast-furnace >= research-pending and up-research-status c: ri-plate-mail >= research-pending
+    build 1 siege-workshop
+    #if building-type-count-total siege-workshop >= 1
+      build 12 barracks
+    #end if
+    #if military-population < 10
+      train condottiero
+    #else if unit-type-count-total battering-ram-line < 10 and up-pending-objects c: battering-ram-line == 0
+      train battering-ram-line
+    #else
+      train condottiero
+    #end if
+  #else
+    build 1 barracks
+    #if up-pending-objects c: condottiero < 1
+      train condottiero
+    #end if
+  #end if
+  
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 8
+  #end when
+  
+  train 120 villagers with 30 trade
+  
+  #if goal under-attack 1
+    trade excess wood and food and gold at 300
+  #end if
+  
+  #if up-compare-goal target-military-percentage c:>= 100 or up-compare-goal population-space-remaining c:< 10
+    trade excess wood and food and gold at 500
+    sn-maximum-town-size = 255
+  #else
+    auto expand town size to 30
+  #end if
+  
+  auto balance wood and food and gold
+  trade excess wood and food and gold at 2000
+#end if
