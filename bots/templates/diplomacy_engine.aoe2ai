@@ -294,7 +294,7 @@ insert diplo-count-stances(player=8)
   #end repeat
 #end if
 
-#if game-time >= 1800 and population <= 10
+#if game-time >= 1800 and civilian-population <= 10
   insert diplo-chat-resign
   @set-stance every-enemy ally
   @set-stance every-neutral ally
