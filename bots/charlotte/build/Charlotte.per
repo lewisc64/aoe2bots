@@ -32108,7 +32108,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 857)
+    (up-jump-rule 856)
 )
 (defrule
     (true)
@@ -34988,7 +34988,7 @@
       )
     )
 =>
-    (up-jump-rule 17)
+    (up-jump-rule 16)
 )
 (defrule
     (goal partial-ranged-blacksmith-investment 1)
@@ -35017,13 +35017,6 @@
 (defrule
     (players-unit-type-count target-player cavalry-archer-line >= min-detection-units)
     (goal produce-camels 0)
-    (goal partial-ranged-blacksmith-investment 1)
-    (goal produce-genitours 0)
-=>
-    (set-goal produce-skirmishers 1)
-)
-(defrule
-    (players-unit-type-count target-player spearman-line >= min-detection-units)
     (goal partial-ranged-blacksmith-investment 1)
     (goal produce-genitours 0)
 =>

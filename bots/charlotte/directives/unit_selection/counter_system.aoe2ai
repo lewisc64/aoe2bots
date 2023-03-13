@@ -12,9 +12,6 @@
   #if players-unit-type-count target-player cavalry-archer-line >= min-detection-units and goal produce-camels 0
     goal produce-skirmishers = 1
   #end if
-  #if players-unit-type-count target-player spearman-line >= min-detection-units
-    goal produce-skirmishers = 1
-  #end if
   #if players-unit-type-count target-player war-wagon-line >= min-detection-units and goal produce-camels 0
     goal produce-skirmishers = 1
   #end if
