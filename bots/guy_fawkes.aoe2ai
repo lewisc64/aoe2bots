@@ -50,7 +50,11 @@ do basic diplomacy
   research ri-chemistry
   research ri-siege-engineers
   
-  train 130 villager with 30 trade
+  #if current-age == imperial-age
+    train 130 villager with 30 trade
+  #else
+    train 130 villager
+  #end if
   train petard
   
   buy stone when gold > 1000
