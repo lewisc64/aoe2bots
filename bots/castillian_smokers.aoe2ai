@@ -126,9 +126,6 @@ load "templates/fast_castle.aoe2ai"
   build 1 university
   
   train 1 missionary
-  #if unit-available bombard-cannon and unit-type-count-total bombard-cannon < 5
-    train bombard-cannon
-  #else
-    train my-unique-unit-line
-  #end if
+  train bombard-cannon
+  train my-unique-unit-line
 #end if
