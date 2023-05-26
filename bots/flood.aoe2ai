@@ -71,7 +71,9 @@ build 1 monastery
 #end if
 research ri-loom with gold escrow
 
-train militiaman-line => train spearman-line
+#if unit-type-count-total villager >= 90 or up-pending-objects c: villager >= 1
+  train militiaman-line => train spearman-line
+#end if
 train 1 monk
 
 #if up-research-status c: feudal-age < research-pending
