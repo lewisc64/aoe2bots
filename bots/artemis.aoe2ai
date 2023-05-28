@@ -41,6 +41,34 @@ escrow 0 food
 escrow 0 gold
 escrow 0 stone
 
+#template escrow-resources
+  #if escrow-amount wood < 300
+    escrow {percentage} wood
+  #else
+    escrow 0 wood
+  #end if
+  #if escrow-amount food < 1300
+    escrow {percentage} food
+  #else
+    escrow 0 food
+  #end if
+  #if escrow-amount gold < 800
+    escrow {percentage} gold
+  #else
+    escrow 0 gold
+  #end if
+#end template
+
+#if unit-type-count-total archer-line < 10 or up-research-status c: ri-arbalest >= research-pending and up-research-status c: ri-ring-archer-armor >= research-pending and up-research-status c: ri-bracer >= research-pending
+  insert escrow-resources(percentage=0)
+#else if unit-type-count-total archer-line < 20
+  insert escrow-resources(percentage=10)
+#else if unit-type-count-total archer-line < 30
+  insert escrow-resources(percentage=20)
+#else
+  insert escrow-resources(percentage=40)
+#end if
+
 lure boars
 
 #if current-age == dark-age
@@ -84,80 +112,71 @@ build castle
   insert production-goal-names(before="goal ",after=" = 0")
 #end do
 
-#stages
+#if up-research-status c: feudal-age < research-pending
   distribute villagers 20 80 0 0
   goal villager-production = 1
   goal archer-production = 0
-#advance when up-research-status c: feudal-age >= research-pending
-  distribute villagers 50 20 30 0
-  goal archer-production = 2
-#advance when unit-type-count archer-line >= 12
-  #if goal under-attack 1
-    distribute villagers 50 20 30 0
-    goal archer-production = 2
-  #else
-    distribute villagers 28 38 28 6
-    goal archer-production = 0
-  #end if
-  sell wood when wood > 400
-  buy food when gold > 400
-  sell food when food > 900
-#advance when up-research-status c: castle-age >= research-pending
+#else if up-research-status c: castle-age < research-pending
   #do once
-    distribute villagers 28 38 28 6
+    distribute villagers 40 40 20 0
+    scout opposite
   #end do
   goal do-auto-balance = 1
-  goal villager-production = 3
+  goal villager-production = 1
   goal archer-production = 2
+#else if up-research-status c: imperial-age < research-pending
+  goal do-auto-balance = 1
+  goal villager-production = 4
   goal battering-ram-production = 1
-#advance when civilian-population >= 120
-  goal archer-production = 1
-  goal battering-ram-production = 0
-#advance when up-research-status c: imperial-age >= research-pending
-#advance when up-research-status c: ri-arbalest >= research-pending
-#advance when up-research-status c: ri-bracer >= research-pending
-#advance when up-research-status c: ri-ring-archer-armor >= research-pending
-#advance when up-research-status c: ri-chemistry >= research-pending
-  goal archer-production = 8
-  goal battering-ram-production = 1
-#end stages
+  goal archer-production = 4
+#else
+  #do once
+    goal do-auto-balance = 1
+    goal archer-production = 8
+    goal battering-ram-production = 3
+    goal villager-production = 4
+  #end do
+  #repeat every 5 minutes
+    #if wood-amount > 1000 and food-amount > 1000 and gold-amount > 1000
+      goal archer-production += 1
+    #end if
+  #end repeat
+#end if
 
 #if up-compare-goal target-military-percentage c:>= 110
   goal attacking = 1
-#end if
-
-#if up-compare-goal target-military-percentage c:< 100
+#else if up-compare-goal target-military-percentage c:< 100
   goal attacking = 0
 #end if
 
 // research
 
-research ri-loom
-research ri-double-bit-axe
-research ri-bow-saw
-research ri-two-man-saw
+research ri-loom with gold escrow
+research ri-double-bit-axe with wood and food escrow
+research ri-bow-saw with wood and food escrow
+research ri-two-man-saw with wood and food escrow
 
-research ri-horse-collar
-research ri-heavy-plow
-research ri-crop-rotation
+research ri-horse-collar with wood and food escrow
+research ri-heavy-plow with wood and food escrow
+research ri-crop-rotation with wood and food escrow
 
-research ri-gold-mining
-research ri-gold-shaft-mining
-research feudal-age
+research ri-gold-mining with wood and food escrow
+research ri-gold-shaft-mining with wood and food escrow
+research feudal-age with food escrow
 
-research castle-age
+research castle-age with food and gold escrow
 build 1 university
 build 1 siege-workshop
-research imperial-age
+research imperial-age with food and gold escrow
 
 // unit research
 
 #template research-ranged-upgrades
   build 1 blacksmith
-  research ranged blacksmith upgrades
+  research ranged blacksmith upgrades with food and gold escrow
   build 1 university
-  research ri-ballistics
-  research ri-chemistry
+  research ri-ballistics with wood and gold escrow
+  research ri-chemistry with food and gold escrow
 #end template
 
 #template research-foot-archer-upgrades
@@ -165,43 +184,43 @@ research imperial-age
   research ri-thumb-ring
   #if civ-selected italian
     build 1 castle
-    research ri-pavise
+    research ri-pavise with food and gold escrow
   #end if
 #end template
 
 #template research-cavalry-upgrades
   build 1 blacksmith
-  research cavalry blacksmith upgrades
+  research cavalry blacksmith upgrades with food and gold escrow
   build 1 stable
-  research ri-bloodlines
-  research ri-husbandry
+  research ri-bloodlines with food and gold escrow
+  research ri-husbandry with food escrow
 #end template
 
 #if not goal archer-production 0
   build 1 archery-range
-  research ri-crossbow
-  research ri-arbalest
+  research ri-crossbow with food and gold escrow
+  research ri-arbalest with food and gold escrow
   insert research-ranged-upgrades
   insert research-foot-archer-upgrades
 #end if
 
 #if not goal skirmisher-production 0
   build 1 archery-range
-  research ri-elite-skirmisher
-  research ri-imperial-skirmisher
+  research ri-elite-skirmisher with wood and gold escrow
+  research ri-imperial-skirmisher with wood and gold escrow
   insert research-ranged-upgrades
 #end if
 
 #if not goal battering-ram-production 0
   build 1 siege-workshop
-  research ri-capped-ram
-  research ri-siege-ram
+  research ri-capped-ram with food escrow
+  research ri-siege-ram with food escrow
 #end if
 
 #if not goal scout-production 0
   build 1 stable
-  research ri-light-cavalry
-  research ri-hussar
+  research ri-light-cavalry with food and gold escrow
+  research ri-hussar with food and gold escrow
   insert research-cavalry-upgrades
 #end if
 
@@ -213,6 +232,7 @@ research imperial-age
     escrow 90 wood
     escrow 90 stone
   #end if
+  buy stone when stone < 100
   build town-center with wood and stone escrow
 #end if
 
@@ -276,7 +296,7 @@ goal total-production = 0
   insert train-unit(production_goal="battering-ram-production",unit="battering-ram-line")
 #end if
 
-#if goal battering-ram-production 0 or up-pending-objects c: battering-ram-line > 0 or unit-type-count-total battering-ram-line >= max-rams or (goal under-attack 1 and not goal threat-source castle)
+#if building-type-count siege-workshop == 0 or goal battering-ram-production 0 or up-pending-objects c: battering-ram-line > 0 or unit-type-count-total battering-ram-line >= max-rams or (goal under-attack 1 and not goal threat-source castle)
   insert train-unit(production_goal="archer-production",unit="archer-line")
   insert train-unit(production_goal="skirmisher-production",unit="skirmisher-line")
   insert train-unit(production_goal="scout-production",unit="scout-cavalry-line")
