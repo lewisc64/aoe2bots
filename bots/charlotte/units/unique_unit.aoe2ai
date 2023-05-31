@@ -22,13 +22,13 @@
   @up-modify-goal old-desired-military-buildings-per-type g:= desired-military-buildings-per-type
   goal desired-military-buildings-per-type = 0
   
-  #if civ-selected aztec or civ-selected celtic or civ-selected ethiopian or civ-selected frankish or civ-selected gothic
+  #if civ-selected aztec or civ-selected celtic or civ-selected ethiopian or civ-selected frankish or civ-selected gothic or civ-selected indian
     load "types/infantry.aoe2ai"
   #end if
   #if civ-selected incan or civ-selected japanese or civ-selected malay or civ-selected malian or civ-selected teutonic or civ-selected viking
     load "types/infantry.aoe2ai"
   #end if
-  #if civ-selected berbers or civ-selected indian or civ-selected korean or civ-selected mongol or civ-selected burmese
+  #if civ-selected berbers or civ-selected korean or civ-selected mongol or civ-selected burmese
     load "types/cavalry_archer.aoe2ai"
   #end if
   #if civ-selected briton or civ-selected chinese or civ-selected italian or civ-selected mayan or civ-selected vietnamese

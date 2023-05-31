@@ -40,6 +40,7 @@ goal total-type-production = 0
   insert add-to-total-type-production(unit="battle-elephant-line",goal="produce-battle-elephants")
   
   insert add-to-total-type-production(unit="battering-ram-line",goal="produce-battering-rams")
+  insert add-to-total-type-production(unit="armored-elephant-line",goal="produce-armored-elephants")
   insert add-to-total-type-production(unit="mangonel-line",goal="produce-mangonels")
   insert add-to-total-type-production(unit="scorpion-line",goal="produce-scorpions")
   insert add-to-total-type-production(unit="bombard-cannon",goal="produce-bombard-cannons")
@@ -99,6 +100,7 @@ load "prerequisites.aoe2ai"
   insert load-unit(production_goal="produce-battle-elephants",unit="battle-elephant-line",unit_path="battle_elephant.aoe2ai")
 
   insert load-unit(production_goal="produce-battering-rams",unit="battering-ram-line",unit_path="battering_ram.aoe2ai")
+  insert load-unit(production_goal="produce-armored-elephants",unit="armored-elephant-line",unit_path="armored_elephant.aoe2ai")
   insert load-unit(production_goal="produce-mangonels",unit="mangonel-line",unit_path="mangonel.aoe2ai")
   insert load-unit(production_goal="produce-scorpions",unit="scorpion-line",unit_path="scorpion.aoe2ai")
   insert load-unit(production_goal="produce-bombard-cannons",unit="bombard-cannon",unit_path="bombard_cannon.aoe2ai")

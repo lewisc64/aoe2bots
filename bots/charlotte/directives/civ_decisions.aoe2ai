@@ -115,12 +115,12 @@
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
-  #if players-civ {player} indian
+  #if players-civ {player} indian // hindustani
     goal {prefix}good-skirmishers = 1
     goal {prefix}good-hand-cannoneers = 1
-    goal {prefix}good-cavalry-archers = 1
     goal {prefix}good-camels = 1
     goal {prefix}good-scouts = 1
+    goal {prefix}good-armored-elephants = 1
     goal {prefix}good-galleys = 1
   #end if
   #if players-civ {player} italian
