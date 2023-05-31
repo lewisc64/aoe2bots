@@ -15483,86 +15483,6 @@
 (defrule
     (nand
       (not
-        (research-completed ri-manipur-cavalry)
-      )
-      (civ-selected burmese)
-    )
-=>
-    (up-jump-rule 5)
-)
-(defrule
-    (not
-      (building-type-count-total castle == 0)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (can-build castle)
-    (up-pending-objects c: castle < 5)
-=>
-    (build castle)
-    (set-goal 360 1)
-)
-(defrule
-    (true)
-=>
-    (set-goal do-stone-mining 1)
-)
-(defrule
-    (can-build market)
-    (up-pending-objects c: market < 5)
-    (building-type-count-total market < 1)
-    (gold-amount >= 300)
-    (stone-amount < 650)
-    (current-age >= castle-age)
-=>
-    (build market)
-    (set-goal 360 1)
-)
-(defrule
-    (can-buy-commodity stone)
-    (gold-amount >= 300)
-    (stone-amount < 650)
-    (current-age >= castle-age)
-=>
-    (buy-commodity stone)
-)
-(defrule
-    (up-research-status c: ri-manipur-cavalry < research-pending)
-    (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-manipur-cavalry)
-    )
-    (civ-selected burmese)
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-    (up-modify-goal attempted-researches-importance c:max importance-medium)
-)
-(defrule
-    (can-research ri-manipur-cavalry)
-    (goal do-research 1)
-    (up-compare-goal research-level c:<= importance-medium)
-    (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-manipur-cavalry)
-    )
-    (civ-selected burmese)
-=>
-    (research ri-manipur-cavalry)
-)
-(defrule
-    (not
-      (current-age >= imperial-age)
-    )
-=>
-    (up-jump-rule 8)
-)
-(defrule
-    (nand
-      (not
         (research-completed ri-farimba)
       )
       (civ-selected malian)
@@ -15632,6 +15552,87 @@
     (civ-selected malian)
 =>
     (research ri-farimba)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy archer-line >= 2)
+      (current-age >= imperial-age)
+    )
+=>
+    (up-jump-rule 8)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-manipur-cavalry)
+      )
+      (civ-selected burmese)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+    (set-goal 360 1)
+)
+(defrule
+    (true)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (current-age >= castle-age)
+=>
+    (build market)
+    (set-goal 360 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (current-age >= castle-age)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (up-research-status c: ri-manipur-cavalry < research-pending)
+    (research-available ri-manipur-cavalry)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-manipur-cavalry)
+    )
+    (civ-selected burmese)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-manipur-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-manipur-cavalry)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-manipur-cavalry)
+    )
+    (civ-selected burmese)
+=>
+    (research ri-manipur-cavalry)
 )
 (defrule
     (can-build barracks)
@@ -16628,86 +16629,6 @@
 (defrule
     (nand
       (not
-        (research-completed ri-manipur-cavalry)
-      )
-      (civ-selected burmese)
-    )
-=>
-    (up-jump-rule 5)
-)
-(defrule
-    (not
-      (building-type-count-total castle == 0)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (can-build castle)
-    (up-pending-objects c: castle < 5)
-=>
-    (build castle)
-    (set-goal 360 1)
-)
-(defrule
-    (true)
-=>
-    (set-goal do-stone-mining 1)
-)
-(defrule
-    (can-build market)
-    (up-pending-objects c: market < 5)
-    (building-type-count-total market < 1)
-    (gold-amount >= 300)
-    (stone-amount < 650)
-    (current-age >= castle-age)
-=>
-    (build market)
-    (set-goal 360 1)
-)
-(defrule
-    (can-buy-commodity stone)
-    (gold-amount >= 300)
-    (stone-amount < 650)
-    (current-age >= castle-age)
-=>
-    (buy-commodity stone)
-)
-(defrule
-    (up-research-status c: ri-manipur-cavalry < research-pending)
-    (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-manipur-cavalry)
-    )
-    (civ-selected burmese)
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-    (up-modify-goal attempted-researches-importance c:max importance-medium)
-)
-(defrule
-    (can-research ri-manipur-cavalry)
-    (goal do-research 1)
-    (up-compare-goal research-level c:<= importance-medium)
-    (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-manipur-cavalry)
-    )
-    (civ-selected burmese)
-=>
-    (research ri-manipur-cavalry)
-)
-(defrule
-    (not
-      (current-age >= imperial-age)
-    )
-=>
-    (up-jump-rule 8)
-)
-(defrule
-    (nand
-      (not
         (research-completed ri-farimba)
       )
       (civ-selected malian)
@@ -16777,6 +16698,87 @@
     (civ-selected malian)
 =>
     (research ri-farimba)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy archer-line >= 2)
+      (current-age >= imperial-age)
+    )
+=>
+    (up-jump-rule 8)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-manipur-cavalry)
+      )
+      (civ-selected burmese)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+    (set-goal 360 1)
+)
+(defrule
+    (true)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (current-age >= castle-age)
+=>
+    (build market)
+    (set-goal 360 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (current-age >= castle-age)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (up-research-status c: ri-manipur-cavalry < research-pending)
+    (research-available ri-manipur-cavalry)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-manipur-cavalry)
+    )
+    (civ-selected burmese)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-manipur-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-manipur-cavalry)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-manipur-cavalry)
+    )
+    (civ-selected burmese)
+=>
+    (research ri-manipur-cavalry)
 )
 (defrule
     (can-build barracks)
@@ -17836,86 +17838,6 @@
 (defrule
     (nand
       (not
-        (research-completed ri-manipur-cavalry)
-      )
-      (civ-selected burmese)
-    )
-=>
-    (up-jump-rule 5)
-)
-(defrule
-    (not
-      (building-type-count-total castle == 0)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (can-build castle)
-    (up-pending-objects c: castle < 5)
-=>
-    (build castle)
-    (set-goal 360 1)
-)
-(defrule
-    (true)
-=>
-    (set-goal do-stone-mining 1)
-)
-(defrule
-    (can-build market)
-    (up-pending-objects c: market < 5)
-    (building-type-count-total market < 1)
-    (gold-amount >= 300)
-    (stone-amount < 650)
-    (current-age >= castle-age)
-=>
-    (build market)
-    (set-goal 360 1)
-)
-(defrule
-    (can-buy-commodity stone)
-    (gold-amount >= 300)
-    (stone-amount < 650)
-    (current-age >= castle-age)
-=>
-    (buy-commodity stone)
-)
-(defrule
-    (up-research-status c: ri-manipur-cavalry < research-pending)
-    (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-manipur-cavalry)
-    )
-    (civ-selected burmese)
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-    (up-modify-goal attempted-researches-importance c:max importance-medium)
-)
-(defrule
-    (can-research ri-manipur-cavalry)
-    (goal do-research 1)
-    (up-compare-goal research-level c:<= importance-medium)
-    (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-manipur-cavalry)
-    )
-    (civ-selected burmese)
-=>
-    (research ri-manipur-cavalry)
-)
-(defrule
-    (not
-      (current-age >= imperial-age)
-    )
-=>
-    (up-jump-rule 8)
-)
-(defrule
-    (nand
-      (not
         (research-completed ri-farimba)
       )
       (civ-selected malian)
@@ -17985,6 +17907,87 @@
     (civ-selected malian)
 =>
     (research ri-farimba)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy archer-line >= 2)
+      (current-age >= imperial-age)
+    )
+=>
+    (up-jump-rule 8)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-manipur-cavalry)
+      )
+      (civ-selected burmese)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+    (set-goal 360 1)
+)
+(defrule
+    (true)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (current-age >= castle-age)
+=>
+    (build market)
+    (set-goal 360 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (current-age >= castle-age)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (up-research-status c: ri-manipur-cavalry < research-pending)
+    (research-available ri-manipur-cavalry)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-manipur-cavalry)
+    )
+    (civ-selected burmese)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-manipur-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-manipur-cavalry)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-manipur-cavalry)
+    )
+    (civ-selected burmese)
+=>
+    (research ri-manipur-cavalry)
 )
 (defrule
     (can-build barracks)
@@ -19166,86 +19169,6 @@
 (defrule
     (nand
       (not
-        (research-completed ri-manipur-cavalry)
-      )
-      (civ-selected burmese)
-    )
-=>
-    (up-jump-rule 5)
-)
-(defrule
-    (not
-      (building-type-count-total castle == 0)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (can-build castle)
-    (up-pending-objects c: castle < 5)
-=>
-    (build castle)
-    (set-goal 360 1)
-)
-(defrule
-    (true)
-=>
-    (set-goal do-stone-mining 1)
-)
-(defrule
-    (can-build market)
-    (up-pending-objects c: market < 5)
-    (building-type-count-total market < 1)
-    (gold-amount >= 300)
-    (stone-amount < 650)
-    (current-age >= castle-age)
-=>
-    (build market)
-    (set-goal 360 1)
-)
-(defrule
-    (can-buy-commodity stone)
-    (gold-amount >= 300)
-    (stone-amount < 650)
-    (current-age >= castle-age)
-=>
-    (buy-commodity stone)
-)
-(defrule
-    (up-research-status c: ri-manipur-cavalry < research-pending)
-    (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-manipur-cavalry)
-    )
-    (civ-selected burmese)
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-    (up-modify-goal attempted-researches-importance c:max importance-medium)
-)
-(defrule
-    (can-research ri-manipur-cavalry)
-    (goal do-research 1)
-    (up-compare-goal research-level c:<= importance-medium)
-    (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-manipur-cavalry)
-    )
-    (civ-selected burmese)
-=>
-    (research ri-manipur-cavalry)
-)
-(defrule
-    (not
-      (current-age >= imperial-age)
-    )
-=>
-    (up-jump-rule 8)
-)
-(defrule
-    (nand
-      (not
         (research-completed ri-farimba)
       )
       (civ-selected malian)
@@ -19315,6 +19238,87 @@
     (civ-selected malian)
 =>
     (research ri-farimba)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy archer-line >= 2)
+      (current-age >= imperial-age)
+    )
+=>
+    (up-jump-rule 8)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-manipur-cavalry)
+      )
+      (civ-selected burmese)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+    (set-goal 360 1)
+)
+(defrule
+    (true)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (current-age >= castle-age)
+=>
+    (build market)
+    (set-goal 360 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (current-age >= castle-age)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (up-research-status c: ri-manipur-cavalry < research-pending)
+    (research-available ri-manipur-cavalry)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-manipur-cavalry)
+    )
+    (civ-selected burmese)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-manipur-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-manipur-cavalry)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-manipur-cavalry)
+    )
+    (civ-selected burmese)
+=>
+    (research ri-manipur-cavalry)
 )
 (defrule
     (can-build barracks)
@@ -25946,86 +25950,6 @@
 (defrule
     (nand
       (not
-        (research-completed ri-manipur-cavalry)
-      )
-      (civ-selected burmese)
-    )
-=>
-    (up-jump-rule 5)
-)
-(defrule
-    (not
-      (building-type-count-total castle == 0)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (can-build castle)
-    (up-pending-objects c: castle < 5)
-=>
-    (build castle)
-    (set-goal 360 1)
-)
-(defrule
-    (true)
-=>
-    (set-goal do-stone-mining 1)
-)
-(defrule
-    (can-build market)
-    (up-pending-objects c: market < 5)
-    (building-type-count-total market < 1)
-    (gold-amount >= 300)
-    (stone-amount < 650)
-    (current-age >= castle-age)
-=>
-    (build market)
-    (set-goal 360 1)
-)
-(defrule
-    (can-buy-commodity stone)
-    (gold-amount >= 300)
-    (stone-amount < 650)
-    (current-age >= castle-age)
-=>
-    (buy-commodity stone)
-)
-(defrule
-    (up-research-status c: ri-manipur-cavalry < research-pending)
-    (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-manipur-cavalry)
-    )
-    (civ-selected burmese)
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-    (up-modify-goal attempted-researches-importance c:max importance-medium)
-)
-(defrule
-    (can-research ri-manipur-cavalry)
-    (goal do-research 1)
-    (up-compare-goal research-level c:<= importance-medium)
-    (research-available ri-manipur-cavalry)
-    (building-type-count castle >= 1)
-    (not
-      (research-completed ri-manipur-cavalry)
-    )
-    (civ-selected burmese)
-=>
-    (research ri-manipur-cavalry)
-)
-(defrule
-    (not
-      (current-age >= imperial-age)
-    )
-=>
-    (up-jump-rule 8)
-)
-(defrule
-    (nand
-      (not
         (research-completed ri-farimba)
       )
       (civ-selected malian)
@@ -26095,6 +26019,87 @@
     (civ-selected malian)
 =>
     (research ri-farimba)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy archer-line >= 2)
+      (current-age >= imperial-age)
+    )
+=>
+    (up-jump-rule 8)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-manipur-cavalry)
+      )
+      (civ-selected burmese)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+    (set-goal 360 1)
+)
+(defrule
+    (true)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (current-age >= castle-age)
+=>
+    (build market)
+    (set-goal 360 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (current-age >= castle-age)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (up-research-status c: ri-manipur-cavalry < research-pending)
+    (research-available ri-manipur-cavalry)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-manipur-cavalry)
+    )
+    (civ-selected burmese)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-manipur-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-manipur-cavalry)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-manipur-cavalry)
+    )
+    (civ-selected burmese)
+=>
+    (research ri-manipur-cavalry)
 )
 (defrule
     (can-build barracks)
