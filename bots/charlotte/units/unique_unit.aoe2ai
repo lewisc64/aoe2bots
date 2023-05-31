@@ -53,10 +53,6 @@
   #end if
   
   #if current-age == imperial-age
-    #if civ-selected viking
-      load "../research/castle/beserkergang.aoe2ai"
-    #end if
-    
     #if civ-selected byzantine
       load "../research/castle/logistica.aoe2ai"
     #end if

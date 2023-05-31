@@ -1,14 +1,14 @@
-#if not research-completed ri-beserkergang and civ-selected viking
+#if not research-completed ri-bogsveigar and civ-selected viking
   load "../castle/prerequisites.aoe2ai"
   //load "../town_center/imperial_age.aoe2ai"
 
-  #if research-available ri-beserkergang and building-type-count castle >= 1
-    #if up-research-status c: ri-beserkergang < research-pending
+  #if research-available ri-bogsveigar and building-type-count castle >= 1
+    #if up-research-status c: ri-bogsveigar < research-pending
       goal attempted-researches += 1
       @up-modify-goal attempted-researches-importance c:max importance-medium
     #end if
     #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-beserkergang
+      research ri-bogsveigar
     #end if
   #end if
 #end if

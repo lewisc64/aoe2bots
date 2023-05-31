@@ -6,6 +6,7 @@ load "../research/archery_range/prerequisites.aoe2ai"
     load "../research/archery_range/crossbow.aoe2ai"
   #else if current-age == imperial-age
     load "../research/archery_range/arbalest.aoe2ai"
+    load "../research/castle/bogsveigar.aoe2ai"
   #end if
   
   #if current-age >= castle-age
