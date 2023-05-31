@@ -2915,7 +2915,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 3272)
+    (up-jump-rule 3281)
 )
 (defrule
     (can-build town-center)
@@ -13415,7 +13415,7 @@
 (defrule
     (nand
       (not
-        (research-completed ri-couriers)
+        (research-completed ri-fabric-shields)
       )
       (civ-selected incan)
     )
@@ -13461,11 +13461,11 @@
     (buy-commodity stone)
 )
 (defrule
-    (up-research-status c: ri-couriers < research-pending)
-    (research-available ri-couriers)
+    (up-research-status c: ri-fabric-shields < research-pending)
+    (research-available ri-fabric-shields)
     (building-type-count castle >= 1)
     (not
-      (research-completed ri-couriers)
+      (research-completed ri-fabric-shields)
     )
     (civ-selected incan)
 =>
@@ -13473,17 +13473,17 @@
     (up-modify-goal attempted-researches-importance c:max importance-medium)
 )
 (defrule
-    (can-research ri-couriers)
+    (can-research ri-fabric-shields)
     (goal do-research 1)
     (up-compare-goal research-level c:<= importance-medium)
-    (research-available ri-couriers)
+    (research-available ri-fabric-shields)
     (building-type-count castle >= 1)
     (not
-      (research-completed ri-couriers)
+      (research-completed ri-fabric-shields)
     )
     (civ-selected incan)
 =>
-    (research ri-couriers)
+    (research ri-fabric-shields)
 )
 (defrule
     (nand
@@ -21435,7 +21435,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 722)
+    (up-jump-rule 731)
 )
 (defrule
     (goal produce-unique-units 1)
@@ -21466,7 +21466,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 718)
+    (up-jump-rule 727)
 )
 (defrule
     (current-age >= castle-age)
@@ -26370,6 +26370,87 @@
     (civ-selected italian)
 =>
     (research ri-pavise)
+)
+(defrule
+    (nand
+      (civ-selected incan)
+      (unit-available my-unique-unit-line)
+    )
+=>
+    (up-jump-rule 8)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-fabric-shields)
+      )
+      (civ-selected incan)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+    (set-goal 360 1)
+)
+(defrule
+    (true)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (current-age >= castle-age)
+=>
+    (build market)
+    (set-goal 360 1)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount >= 300)
+    (stone-amount < 650)
+    (current-age >= castle-age)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (up-research-status c: ri-fabric-shields < research-pending)
+    (research-available ri-fabric-shields)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-fabric-shields)
+    )
+    (civ-selected incan)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-fabric-shields)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-fabric-shields)
+    (building-type-count castle >= 1)
+    (not
+      (research-completed ri-fabric-shields)
+    )
+    (civ-selected incan)
+=>
+    (research ri-fabric-shields)
 )
 (defrule
     (nand

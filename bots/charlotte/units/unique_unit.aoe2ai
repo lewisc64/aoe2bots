@@ -52,6 +52,10 @@
     load "../research/castle/pavise.aoe2ai"
   #end if
   
+  #if civ-selected incan
+    load "../research/castle/fabric_shields.aoe2ai"
+  #end if
+  
   #if current-age == imperial-age
     #if civ-selected byzantine
       load "../research/castle/logistica.aoe2ai"
