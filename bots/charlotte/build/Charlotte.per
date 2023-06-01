@@ -33910,8 +33910,9 @@
 (defrule
     (players-civ my-player-number khmer)
 =>
-    (set-goal good-spearmen 1)
+    (set-goal good-scouts 1)
     (set-goal good-battle-elephants 1)
+    (set-goal good-skirmishers 1)
     (set-goal good-battering-rams 1)
     (set-goal good-scorpions 1)
     (set-goal good-hand-cannoneers 1)
@@ -34358,8 +34359,9 @@
 (defrule
     (players-civ any-enemy khmer)
 =>
-    (set-goal enemy-good-spearmen 1)
+    (set-goal enemy-good-scouts 1)
     (set-goal enemy-good-battle-elephants 1)
+    (set-goal enemy-good-skirmishers 1)
     (set-goal enemy-good-battering-rams 1)
     (set-goal enemy-good-scorpions 1)
     (set-goal enemy-good-hand-cannoneers 1)
@@ -42237,11 +42239,21 @@
 (defrule
     (or
       (building-type-count-total mill == 0)
-      (up-compare-goal 347 g:>= 238)
+      (and
+        (not
+          (civ-selected khmer)
+        )
+        (up-compare-goal 347 g:>= 238)
+      )
     )
     (or
       (resource-found food)
-      (game-time >= 60)
+      (and
+        (not
+          (civ-selected khmer)
+        )
+        (game-time >= 60)
+      )
     )
     (can-build mill)
     (building-type-count lumber-camp >= 1)

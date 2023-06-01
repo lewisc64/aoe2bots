@@ -146,8 +146,9 @@
     goal {prefix}good-galleys = 1
   #end if
   #if players-civ {player} khmer
-    goal {prefix}good-spearmen = 1
+    goal {prefix}good-scouts = 1
     goal {prefix}good-battle-elephants = 1
+    goal {prefix}good-skirmishers = 1
     goal {prefix}good-battering-rams = 1
     goal {prefix}good-scorpions = 1
     goal {prefix}good-hand-cannoneers = 1
