@@ -14,7 +14,6 @@
     goal {prefix}good-galleys = 1
   #end if
   #if players-civ {player} berbers
-    goal {prefix}good-unique-units = 0 // my-unique-unit-line is broken on HD for this civ
     goal {prefix}good-skirmishers = 1
     goal {prefix}good-hand-cannoneers = 1
     goal {prefix}good-militia = 1
@@ -65,7 +64,6 @@
   #if players-civ {player} chinese
     goal {prefix}good-archers = 1
     goal {prefix}good-skirmishers = 1
-    goal {prefix}good-miltia = 1
     goal {prefix}good-spearmen = 1
     goal {prefix}good-camels = 1
     goal {prefix}good-battering-rams = 1
@@ -169,6 +167,7 @@
     goal {prefix}good-cavalry-archers = 1
     goal {prefix}good-scouts = 1
     goal {prefix}good-knights = 1
+    goal {prefix}good-scorpions = 1
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
@@ -195,13 +194,13 @@
     goal {prefix}good-eagles = 1
     goal {prefix}good-spearmen = 1
     goal {prefix}good-battering-rams = 1
+    goal {prefix}good-scorpions = 1
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
   #if players-civ {player} mongol
     goal {prefix}good-cavalry-archers = 1
     goal {prefix}good-scouts = 1
-    goal {prefix}good-militia = 1
     goal {prefix}good-battering-rams = 1
     goal {prefix}good-mangonels = 1
     goal {prefix}good-scorpions = 1
@@ -268,6 +267,7 @@
     goal {prefix}good-hand-cannoneers = 1
     goal {prefix}good-militia = 1
     goal {prefix}good-spearmen = 1
+    goal {prefix}good-knights = 1
     goal {prefix}good-monks = 1
     goal {prefix}good-mangonels = 1
     goal {prefix}good-scorpions = 1

@@ -45,7 +45,7 @@
   #end if
   
   #if civ-selected magyar
-    load "../research/castle/mercenaries.aoe2ai"
+    load "../research/castle/corvinian_army.aoe2ai"
   #end if
   
   #if civ-selected italian
@@ -54,6 +54,10 @@
   
   #if civ-selected incan
     load "../research/castle/fabric_shields.aoe2ai"
+  #end if
+  
+  #if civ-selected saracen
+    load "../research/castle/zealotry.aoe2ai"
   #end if
   
   #if current-age == imperial-age
