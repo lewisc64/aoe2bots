@@ -1,0 +1,15 @@
+#if not research-completed ri-gambesons
+  load "../barracks/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
+  load "../barracks/supplies.aoe2ai"
+
+  #if research-available ri-gambesons and building-type-count barracks >= 1
+    #if up-research-status c: ri-gambesons < research-pending
+      goal attempted-researches += 1
+      @up-modify-goal attempted-researches-importance c:max importance-low
+    #end if
+    #if goal do-research 1 and up-compare-goal research-level c:<= importance-low
+      research ri-gambesons
+    #end if
+  #end if
+#end if

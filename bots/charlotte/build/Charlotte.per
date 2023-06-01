@@ -2920,7 +2920,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 3334)
+    (up-jump-rule 3319)
 )
 (defrule
     (can-build town-center)
@@ -9877,7 +9877,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 147)
+    (up-jump-rule 157)
 )
 (defrule
     (goal produce-militia 1)
@@ -9908,7 +9908,7 @@
       (unit-available militiaman-line)
     )
 =>
-    (up-jump-rule 143)
+    (up-jump-rule 153)
 )
 (defrule
     (can-build barracks)
@@ -10329,11 +10329,145 @@
     (research ri-forced-levy)
 )
 (defrule
+    (nand
+      (current-age >= castle-age)
+      (unit-available militiaman-line)
+    )
+=>
+    (up-jump-rule 9)
+)
+(defrule
+    (research-completed ri-gambesons)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+    (building-type-count-total barracks == 0)
+=>
+    (build barracks)
+    (set-goal 363 1)
+)
+(defrule
+    (research-completed ri-gambesons)
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-supplies)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+    (building-type-count-total barracks == 0)
+=>
+    (build barracks)
+    (set-goal 363 1)
+)
+(defrule
+    (up-research-status c: ri-supplies < research-pending)
+    (research-available ri-supplies)
+    (building-type-count barracks >= 1)
+    (not
+      (research-completed ri-supplies)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-supplies)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-supplies)
+    (building-type-count barracks >= 1)
+    (not
+      (research-completed ri-supplies)
+    )
+=>
+    (research ri-supplies)
+)
+(defrule
+    (up-research-status c: ri-gambesons < research-pending)
+    (research-available ri-gambesons)
+    (building-type-count barracks >= 1)
+    (not
+      (research-completed ri-gambesons)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-gambesons)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-gambesons)
+    (building-type-count barracks >= 1)
+    (not
+      (research-completed ri-gambesons)
+    )
+=>
+    (research ri-gambesons)
+)
+(defrule
+    (nand
+      (not
+        (current-age >= castle-age)
+      )
+      (unit-available militiaman-line)
+    )
+=>
+    (up-jump-rule 4)
+)
+(defrule
+    (research-completed ri-supplies)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+    (building-type-count-total barracks == 0)
+=>
+    (build barracks)
+    (set-goal 363 1)
+)
+(defrule
+    (up-research-status c: ri-supplies < research-pending)
+    (research-available ri-supplies)
+    (building-type-count barracks >= 1)
+    (not
+      (research-completed ri-supplies)
+    )
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-supplies)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-supplies)
+    (building-type-count barracks >= 1)
+    (not
+      (research-completed ri-supplies)
+    )
+=>
+    (research ri-supplies)
+)
+(defrule
     (not
       (unit-available militiaman-line)
     )
 =>
-    (up-jump-rule 96)
+    (up-jump-rule 91)
 )
 (defrule
     (not
@@ -10972,50 +11106,6 @@
     (civ-selected gothic)
 =>
     (research ri-perfusion)
-)
-(defrule
-    (not
-      (current-age >= castle-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-tracking)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build barracks)
-    (up-pending-objects c: barracks < 5)
-    (building-type-count-total barracks < 1)
-    (building-type-count-total barracks == 0)
-=>
-    (build barracks)
-    (set-goal 363 1)
-)
-(defrule
-    (up-research-status c: ri-tracking < research-pending)
-    (research-available ri-tracking)
-    (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-tracking)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-    (up-modify-goal attempted-researches-importance c:max importance-medium)
-)
-(defrule
-    (can-research ri-tracking)
-    (goal do-research 1)
-    (up-compare-goal research-level c:<= importance-medium)
-    (research-available ri-tracking)
-    (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-tracking)
-    )
-=>
-    (research ri-tracking)
 )
 (defrule
     (not
@@ -11224,7 +11314,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 112)
+    (up-jump-rule 107)
 )
 (defrule
     (goal produce-condottiero 1)
@@ -11255,7 +11345,7 @@
       (unit-available condottiero)
     )
 =>
-    (up-jump-rule 108)
+    (up-jump-rule 103)
 )
 (defrule
     (can-build barracks)
@@ -11271,7 +11361,7 @@
       (unit-available condottiero)
     )
 =>
-    (up-jump-rule 96)
+    (up-jump-rule 91)
 )
 (defrule
     (not
@@ -11910,50 +12000,6 @@
     (civ-selected gothic)
 =>
     (research ri-perfusion)
-)
-(defrule
-    (not
-      (current-age >= castle-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-tracking)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build barracks)
-    (up-pending-objects c: barracks < 5)
-    (building-type-count-total barracks < 1)
-    (building-type-count-total barracks == 0)
-=>
-    (build barracks)
-    (set-goal 363 1)
-)
-(defrule
-    (up-research-status c: ri-tracking < research-pending)
-    (research-available ri-tracking)
-    (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-tracking)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-    (up-modify-goal attempted-researches-importance c:max importance-medium)
-)
-(defrule
-    (can-research ri-tracking)
-    (goal do-research 1)
-    (up-compare-goal research-level c:<= importance-medium)
-    (research-available ri-tracking)
-    (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-tracking)
-    )
-=>
-    (research ri-tracking)
 )
 (defrule
     (not
@@ -12243,7 +12289,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 118)
+    (up-jump-rule 113)
 )
 (defrule
     (goal produce-spearmen 1)
@@ -12274,7 +12320,7 @@
       (unit-available spearman-line)
     )
 =>
-    (up-jump-rule 114)
+    (up-jump-rule 109)
 )
 (defrule
     (can-build barracks)
@@ -12427,7 +12473,7 @@
       (unit-available spearman-line)
     )
 =>
-    (up-jump-rule 96)
+    (up-jump-rule 91)
 )
 (defrule
     (not
@@ -13075,50 +13121,6 @@
     (up-jump-rule 4)
 )
 (defrule
-    (research-completed ri-tracking)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build barracks)
-    (up-pending-objects c: barracks < 5)
-    (building-type-count-total barracks < 1)
-    (building-type-count-total barracks == 0)
-=>
-    (build barracks)
-    (set-goal 363 1)
-)
-(defrule
-    (up-research-status c: ri-tracking < research-pending)
-    (research-available ri-tracking)
-    (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-tracking)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-    (up-modify-goal attempted-researches-importance c:max importance-medium)
-)
-(defrule
-    (can-research ri-tracking)
-    (goal do-research 1)
-    (up-compare-goal research-level c:<= importance-medium)
-    (research-available ri-tracking)
-    (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-tracking)
-    )
-=>
-    (research ri-tracking)
-)
-(defrule
-    (not
-      (current-age >= castle-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
     (research-completed ri-squires)
 =>
     (up-jump-rule 1)
@@ -13318,7 +13320,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 136)
+    (up-jump-rule 131)
 )
 (defrule
     (goal produce-eagles 1)
@@ -13349,7 +13351,7 @@
       (unit-available eagle-warrior-line)
     )
 =>
-    (up-jump-rule 132)
+    (up-jump-rule 127)
 )
 (defrule
     (can-build barracks)
@@ -13674,7 +13676,7 @@
       (unit-available eagle-warrior-line)
     )
 =>
-    (up-jump-rule 96)
+    (up-jump-rule 91)
 )
 (defrule
     (not
@@ -14313,50 +14315,6 @@
     (civ-selected gothic)
 =>
     (research ri-perfusion)
-)
-(defrule
-    (not
-      (current-age >= castle-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-tracking)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build barracks)
-    (up-pending-objects c: barracks < 5)
-    (building-type-count-total barracks < 1)
-    (building-type-count-total barracks == 0)
-=>
-    (build barracks)
-    (set-goal 363 1)
-)
-(defrule
-    (up-research-status c: ri-tracking < research-pending)
-    (research-available ri-tracking)
-    (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-tracking)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-    (up-modify-goal attempted-researches-importance c:max importance-medium)
-)
-(defrule
-    (can-research ri-tracking)
-    (goal do-research 1)
-    (up-compare-goal research-level c:<= importance-medium)
-    (research-available ri-tracking)
-    (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-tracking)
-    )
-=>
-    (research ri-tracking)
 )
 (defrule
     (not
@@ -21901,7 +21859,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 731)
+    (up-jump-rule 721)
 )
 (defrule
     (goal produce-unique-units 1)
@@ -21932,7 +21890,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 727)
+    (up-jump-rule 717)
 )
 (defrule
     (current-age >= castle-age)
@@ -22093,7 +22051,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 96)
+    (up-jump-rule 91)
 )
 (defrule
     (not
@@ -22732,50 +22690,6 @@
     (civ-selected gothic)
 =>
     (research ri-perfusion)
-)
-(defrule
-    (not
-      (current-age >= castle-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-tracking)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build barracks)
-    (up-pending-objects c: barracks < 5)
-    (building-type-count-total barracks < 1)
-    (building-type-count-total barracks == 0)
-=>
-    (build barracks)
-    (set-goal 363 1)
-)
-(defrule
-    (up-research-status c: ri-tracking < research-pending)
-    (research-available ri-tracking)
-    (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-tracking)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-    (up-modify-goal attempted-researches-importance c:max importance-medium)
-)
-(defrule
-    (can-research ri-tracking)
-    (goal do-research 1)
-    (up-compare-goal research-level c:<= importance-medium)
-    (research-available ri-tracking)
-    (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-tracking)
-    )
-=>
-    (research ri-tracking)
 )
 (defrule
     (not
@@ -22985,7 +22899,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 96)
+    (up-jump-rule 91)
 )
 (defrule
     (not
@@ -23624,50 +23538,6 @@
     (civ-selected gothic)
 =>
     (research ri-perfusion)
-)
-(defrule
-    (not
-      (current-age >= castle-age)
-    )
-=>
-    (up-jump-rule 4)
-)
-(defrule
-    (research-completed ri-tracking)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build barracks)
-    (up-pending-objects c: barracks < 5)
-    (building-type-count-total barracks < 1)
-    (building-type-count-total barracks == 0)
-=>
-    (build barracks)
-    (set-goal 363 1)
-)
-(defrule
-    (up-research-status c: ri-tracking < research-pending)
-    (research-available ri-tracking)
-    (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-tracking)
-    )
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-    (up-modify-goal attempted-researches-importance c:max importance-medium)
-)
-(defrule
-    (can-research ri-tracking)
-    (goal do-research 1)
-    (up-compare-goal research-level c:<= importance-medium)
-    (research-available ri-tracking)
-    (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-tracking)
-    )
-=>
-    (research ri-tracking)
 )
 (defrule
     (not

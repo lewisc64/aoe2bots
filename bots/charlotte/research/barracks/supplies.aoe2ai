@@ -1,0 +1,14 @@
+#if not research-completed ri-supplies
+  load "../barracks/prerequisites.aoe2ai"
+  //load "../town_center/feudal_age.aoe2ai"
+
+  #if research-available ri-supplies and building-type-count barracks >= 1
+    #if up-research-status c: ri-supplies < research-pending
+      goal attempted-researches += 1
+      @up-modify-goal attempted-researches-importance c:max importance-low
+    #end if
+    #if goal do-research 1 and up-compare-goal research-level c:<= importance-low
+      research ri-supplies
+    #end if
+  #end if
+#end if
