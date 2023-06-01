@@ -32658,7 +32658,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 860)
+    (up-jump-rule 857)
 )
 (defrule
     (true)
@@ -32747,14 +32747,7 @@
     (set-strategic-number sn-percent-building-cancellation 0)
 )
 (defrule
-    (building-type-count town-center-foundation >= 1)
-    (building-type-count town-center == 0)
-=>
-    (delete-building farm)
-)
-(defrule
-    (up-compare-goal population-space-remaining > 10)
-    (up-compare-goal desired-military-buildings-per-type c:< 8)
+    (up-compare-goal population-space-remaining c:> 10)
     (wood-amount >= 1000)
     (food-amount >= 1000)
     (gold-amount >= 1000)
@@ -32764,8 +32757,7 @@
 )
 (defrule
     (timer-triggered 1)
-    (up-compare-goal population-space-remaining > 10)
-    (up-compare-goal desired-military-buildings-per-type c:< 8)
+    (up-compare-goal population-space-remaining c:> 10)
     (wood-amount >= 1000)
     (food-amount >= 1000)
     (gold-amount >= 1000)
@@ -32774,20 +32766,6 @@
     (up-modify-goal desired-town-centers c:+ 1)
     (disable-timer 1)
     (enable-timer 1 600)
-)
-(defrule
-    (game-time >= 2400)
-=>
-    (enable-timer 2 1800)
-    (disable-self)
-)
-(defrule
-    (timer-triggered 2)
-    (game-time >= 2400)
-=>
-    (up-reset-unit c: -1)
-    (disable-timer 2)
-    (enable-timer 2 1800)
 )
 (defrule
     (building-type-count house == 0)
@@ -32811,20 +32789,20 @@
 (defrule
     (true)
 =>
-    (enable-timer 3 30)
+    (enable-timer 2 30)
     (disable-self)
 )
 (defrule
     (goal attacking 0)
-    (timer-triggered 3)
+    (timer-triggered 2)
 =>
     (set-strategic-number sn-task-ungrouped-soldiers 1)
 )
 (defrule
-    (timer-triggered 3)
+    (timer-triggered 2)
 =>
-    (disable-timer 3)
-    (enable-timer 3 30)
+    (disable-timer 2)
+    (enable-timer 2 30)
 )
 (defrule
     (current-age >= castle-age)
@@ -32861,7 +32839,7 @@
 =>
     (set-strategic-number sn-number-explore-groups 0)
     (set-strategic-number sn-total-number-explorers 0)
-    (up-reset-unit c: -1)
+    (up-reset-scouts)
 )
 (defrule
     (strategic-number sn-number-explore-groups == 0)
@@ -36161,11 +36139,11 @@
 (defrule
     (true)
 =>
-    (enable-timer 4 180)
+    (enable-timer 3 180)
     (disable-self)
 )
 (defrule
-    (timer-triggered 4)
+    (timer-triggered 3)
 =>
     (set-goal 237 0)
     (generate-random-number 2)
@@ -36173,21 +36151,21 @@
 )
 (defrule
     (goal 237 1)
-    (timer-triggered 4)
+    (timer-triggered 3)
 =>
     (set-goal balanced-aggressive 1)
 )
 (defrule
     (goal 237 2)
-    (timer-triggered 4)
+    (timer-triggered 3)
 =>
     (set-goal balanced-aggressive 0)
 )
 (defrule
-    (timer-triggered 4)
+    (timer-triggered 3)
 =>
-    (disable-timer 4)
-    (enable-timer 4 180)
+    (disable-timer 3)
+    (enable-timer 3 180)
 )
 (defrule
     (up-compare-goal target-military-percentage c:> 100)
@@ -36201,18 +36179,18 @@
     (up-compare-goal target-military-percentage c:<= 150)
     (goal attacking 1)
 =>
-    (enable-timer 5 30)
+    (enable-timer 4 30)
     (disable-self)
 )
 (defrule
-    (timer-triggered 5)
+    (timer-triggered 4)
     (up-compare-goal target-military-percentage c:> 100)
     (up-compare-goal target-military-percentage c:<= 150)
     (goal attacking 1)
 =>
     (chat-local-to-self "make military lead bigger")
-    (disable-timer 5)
-    (enable-timer 5 30)
+    (disable-timer 4)
+    (enable-timer 4 30)
 )
 (defrule
     (up-compare-goal largest-enemy-military-percentage c:>= 200)
@@ -36230,11 +36208,11 @@
       (goal attempted-researches 0)
     )
 =>
-    (enable-timer 6 30)
+    (enable-timer 5 30)
     (disable-self)
 )
 (defrule
-    (timer-triggered 6)
+    (timer-triggered 5)
     (up-compare-goal largest-enemy-military-percentage c:>= 200)
     (military-population >= 30)
     (not
@@ -36242,8 +36220,8 @@
     )
 =>
     (chat-local-to-self "massive lead, do techs.")
-    (disable-timer 6)
-    (enable-timer 6 30)
+    (disable-timer 5)
+    (enable-timer 5 30)
 )
 (defrule
     (nand
@@ -36266,17 +36244,17 @@
     (goal produce-militia 1)
     (up-research-status c: ri-man-at-arms < research-pending)
 =>
-    (enable-timer 7 30)
+    (enable-timer 6 30)
     (disable-self)
 )
 (defrule
-    (timer-triggered 7)
+    (timer-triggered 6)
     (goal produce-militia 1)
     (up-research-status c: ri-man-at-arms < research-pending)
 =>
     (chat-local-to-self "waiting for man at arms")
-    (disable-timer 7)
-    (enable-timer 7 30)
+    (disable-timer 6)
+    (enable-timer 6 30)
 )
 (defrule
     (goal produce-militia 1)
@@ -36565,16 +36543,16 @@
 (defrule
     (goal attacking 1)
 =>
-    (enable-timer 8 60)
+    (enable-timer 7 60)
     (disable-self)
 )
 (defrule
-    (timer-triggered 8)
+    (timer-triggered 7)
     (goal attacking 1)
 =>
     (attack-now)
-    (disable-timer 8)
-    (enable-timer 8 60)
+    (disable-timer 7)
+    (enable-timer 7 60)
 )
 (defrule
     (goal attacking 1)
@@ -41385,7 +41363,7 @@
 (defrule
     (goal locked-teams 1)
 =>
-    (enable-timer 9 1800)
+    (enable-timer 8 1800)
     (disable-self)
 )
 (defrule
@@ -41394,7 +41372,7 @@
       (and
         (up-compare-goal score-percentage c:<= 70)
         (and
-          (timer-triggered 9)
+          (timer-triggered 8)
           (goal locked-teams 1)
         )
       )
@@ -41438,7 +41416,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 9)
+            (timer-triggered 8)
             (goal locked-teams 1)
           )
         )
@@ -41485,7 +41463,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 9)
+            (timer-triggered 8)
             (goal locked-teams 1)
           )
         )
@@ -41542,7 +41520,7 @@
             (up-compare-goal score-percentage c:<= 70)
           )
           (and
-            (timer-triggered 9)
+            (timer-triggered 8)
             (goal locked-teams 1)
           )
         )
@@ -41585,7 +41563,7 @@
               (up-compare-goal score-percentage c:<= 70)
             )
             (and
-              (timer-triggered 9)
+              (timer-triggered 8)
               (goal locked-teams 1)
             )
           )
@@ -41617,7 +41595,7 @@
               (up-compare-goal score-percentage c:<= 70)
             )
             (and
-              (timer-triggered 9)
+              (timer-triggered 8)
               (goal locked-teams 1)
             )
           )
@@ -41642,7 +41620,7 @@
       (and
         (military-population >= 20)
         (and
-          (timer-triggered 9)
+          (timer-triggered 8)
           (goal locked-teams 1)
         )
       )
@@ -41723,7 +41701,7 @@
           (and
             (military-population >= 20)
             (and
-              (timer-triggered 9)
+              (timer-triggered 8)
               (goal locked-teams 1)
             )
           )
@@ -41846,7 +41824,7 @@
           (and
             (military-population >= 20)
             (and
-              (timer-triggered 9)
+              (timer-triggered 8)
               (goal locked-teams 1)
             )
           )
@@ -42317,8 +42295,7 @@
     (up-pending-objects c: castle == 0)
     (building-type-count town-center > 0)
 =>
-    (up-set-placement-data any-enemy town-center c: 4)
-    (up-build place-forward 0 c: castle)
+    (build-forward castle)
 )
 (defrule
     (true)
@@ -42441,7 +42418,7 @@
       )
     )
 =>
-    (up-jump-rule 130)
+    (up-jump-rule 128)
 )
 (defrule
     (can-build market)
@@ -42922,6 +42899,7 @@
     (buy-commodity food)
 )
 (defrule
+    (up-compare-goal non-escrowed-gold c:< gold-threshold)
     (goal under-attack 1)
 =>
     (up-get-fact resource-amount wood 359)
@@ -42930,41 +42908,22 @@
     (up-get-fact resource-amount food 347)
     (up-get-fact escrow-amount food 360)
     (up-modify-goal 347 g:- 360)
-    (up-get-fact resource-amount gold 238)
-    (up-get-fact escrow-amount gold 360)
-    (up-modify-goal 238 g:- 360)
 )
 (defrule
-    (up-compare-goal 359 c:> gold-threshold)
+    (up-compare-goal 359 c:> food-threshold)
     (can-sell-commodity wood)
-    (up-compare-goal 238 c:< gold-threshold)
+    (up-compare-goal non-escrowed-gold c:< gold-threshold)
     (goal under-attack 1)
 =>
     (sell-commodity wood)
 )
 (defrule
-    (up-compare-goal 347 c:> gold-threshold)
+    (up-compare-goal 347 c:> food-threshold)
     (can-sell-commodity food)
-    (up-compare-goal 238 c:< gold-threshold)
+    (up-compare-goal non-escrowed-gold c:< gold-threshold)
     (goal under-attack 1)
 =>
     (sell-commodity food)
-)
-(defrule
-    (up-compare-goal 359 c:< gold-threshold)
-    (up-compare-goal 238 c:> gold-threshold)
-    (can-buy-commodity wood)
-    (goal under-attack 1)
-=>
-    (buy-commodity wood)
-)
-(defrule
-    (up-compare-goal 347 c:< gold-threshold)
-    (up-compare-goal 238 c:> gold-threshold)
-    (can-buy-commodity food)
-    (goal under-attack 1)
-=>
-    (buy-commodity food)
 )
 (defrule
     (commodity-buying-price wood <= excellent-wood-price)
@@ -43177,7 +43136,7 @@
 (defrule
     (true)
 =>
-    (enable-timer 10 60)
+    (enable-timer 9 60)
     (disable-self)
 )
 (defrule
@@ -43187,7 +43146,7 @@
     (up-compare-goal non-escrowed-food c:> food-threshold)
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (chat-local-to-self "rebalance: wood food -> gold")
 )
@@ -43201,7 +43160,7 @@
     (up-compare-goal non-escrowed-food c:> food-threshold)
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 2)
     (up-modify-sn sn-food-gatherer-percentage c:- 2)
@@ -43214,7 +43173,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (chat-local-to-self "rebalance: wood gold -> food")
 )
@@ -43228,7 +43187,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 2)
     (up-modify-sn sn-gold-gatherer-percentage c:- 2)
@@ -43243,7 +43202,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (chat-local-to-self "rebalance: wood -> food gold")
 )
@@ -43259,7 +43218,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 4)
     (up-modify-sn sn-food-gatherer-percentage c:+ 2)
@@ -43272,7 +43231,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (chat-local-to-self "rebalance: food gold -> wood")
 )
@@ -43286,7 +43245,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (up-modify-sn sn-food-gatherer-percentage c:- 2)
     (up-modify-sn sn-gold-gatherer-percentage c:- 2)
@@ -43301,7 +43260,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (chat-local-to-self "rebalance: food -> wood gold")
 )
@@ -43317,7 +43276,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (up-modify-sn sn-food-gatherer-percentage c:- 4)
     (up-modify-sn sn-wood-gatherer-percentage c:+ 2)
@@ -43332,7 +43291,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (chat-local-to-self "rebalance: gold -> wood food")
 )
@@ -43348,7 +43307,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (up-modify-sn sn-gold-gatherer-percentage c:- 4)
     (up-modify-sn sn-wood-gatherer-percentage c:+ 2)
@@ -43362,7 +43321,7 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (chat-local-to-self "rebalance: wood -> food")
 )
@@ -43376,7 +43335,7 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 4)
     (up-modify-sn sn-food-gatherer-percentage c:+ 4)
@@ -43389,7 +43348,7 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (chat-local-to-self "rebalance: food -> wood")
 )
@@ -43403,16 +43362,16 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
     (up-modify-sn sn-food-gatherer-percentage c:- 4)
     (up-modify-sn sn-wood-gatherer-percentage c:+ 4)
 )
 (defrule
-    (timer-triggered 10)
+    (timer-triggered 9)
 =>
-    (disable-timer 10)
-    (enable-timer 10 60)
+    (disable-timer 9)
+    (enable-timer 9 60)
 )
 (defrule
     (strategic-number sn-wood-gatherer-percentage < minimum-wood-gatherer-percentage)
@@ -43562,11 +43521,11 @@
 (defrule
     (goal 361 1)
 =>
-    (enable-timer 11 300)
+    (enable-timer 10 300)
     (disable-self)
 )
 (defrule
-    (timer-triggered 11)
+    (timer-triggered 10)
     (goal 361 1)
 =>
     (set-goal 362 0)
@@ -43574,14 +43533,14 @@
 (defrule
     (up-compare-goal total-trade-carts g:>= desired-trade-carts)
     (up-compare-goal non-escrowed-gold c:<= gold-threshold)
-    (timer-triggered 11)
+    (timer-triggered 10)
     (goal 361 1)
 =>
     (set-goal 362 1)
 )
 (defrule
     (goal 362 1)
-    (timer-triggered 11)
+    (timer-triggered 10)
     (goal 361 1)
 =>
     (up-modify-goal desired-trade-carts c:+ 5)
@@ -43589,11 +43548,11 @@
     (chat-local-to-self "scale up trade")
 )
 (defrule
-    (timer-triggered 11)
+    (timer-triggered 10)
     (goal 361 1)
 =>
-    (disable-timer 11)
-    (enable-timer 11 300)
+    (disable-timer 10)
+    (enable-timer 10 300)
 )
 (defrule
     (strategic-number sn-maximum-town-size <= 30)
@@ -43634,36 +43593,36 @@
 (defrule
     (true)
 =>
-    (enable-timer 12 60)
+    (enable-timer 11 60)
     (disable-self)
 )
 (defrule
     (goal research-level importance-critical)
-    (timer-triggered 12)
+    (timer-triggered 11)
 =>
     (chat-local-to-self "Research level: CRITICAL")
 )
 (defrule
     (goal research-level importance-high)
-    (timer-triggered 12)
+    (timer-triggered 11)
 =>
     (chat-local-to-self "Research level: HIGH")
 )
 (defrule
     (goal research-level importance-medium)
-    (timer-triggered 12)
+    (timer-triggered 11)
 =>
     (chat-local-to-self "Research level: MEDIUM")
 )
 (defrule
     (goal research-level importance-low)
-    (timer-triggered 12)
+    (timer-triggered 11)
 =>
     (chat-local-to-self "Research level: LOW")
 )
 (defrule
-    (timer-triggered 12)
+    (timer-triggered 11)
 =>
-    (disable-timer 12)
-    (enable-timer 12 60)
+    (disable-timer 11)
+    (enable-timer 11 60)
 )

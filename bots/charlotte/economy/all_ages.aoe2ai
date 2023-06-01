@@ -73,7 +73,7 @@ build 1 town-center with wood and stone escrow
       build castle
     #randor
       #if goal attacking 1
-        build forward castle near town-center
+        build forward castle
       #end if
     #end select
   #end if

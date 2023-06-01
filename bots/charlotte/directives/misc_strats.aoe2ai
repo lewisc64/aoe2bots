@@ -22,23 +22,11 @@
   sn-percent-building-cancellation = 0
 #end if
 
-// delete farms that may be miles away
-#if building-type-count town-center-foundation >= 1 and building-type-count town-center == 0
-  delete building farm
-#end if
-
 // increase production over time
-#if up-compare-goal population-space-remaining > 10 and up-compare-goal desired-military-buildings-per-type c:< 8 and wood-amount >= 1000 and food-amount >= 1000 and gold-amount >= 1000
+#if up-compare-goal population-space-remaining c:> 10 and wood-amount >= 1000 and food-amount >= 1000 and gold-amount >= 1000
   #repeat every 10 minutes
     goal desired-military-buildings-per-type += 1
     goal desired-town-centers += 1
-  #end repeat
-#end if
-
-// help stuck units
-#if game-time >= 2400
-  #repeat every 30 minutes
-    @up-reset-unit c: -1
   #end repeat
 #end if
 
@@ -78,7 +66,7 @@
   #if strategic-number sn-number-explore-groups >= 1
     sn-number-explore-groups = 0
     sn-total-number-explorers = 0
-    @up-reset-unit c: -1
+    @up-reset-scouts
   #end if
 #else if strategic-number sn-number-explore-groups == 0
   sn-number-explore-groups = 1
