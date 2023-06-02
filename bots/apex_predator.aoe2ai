@@ -1,0 +1,244 @@
+// plays as the Aztecs
+
+const ri-garland-wars = 24
+const ri-atlatl = 460
+
+const max-rams = 10
+const max-skirmishers = 20
+
+#template diplo-chat-alliance-offer
+  @up-chat-data-to-all "YOU HELP ME %d." g: {player_goal}
+#end template
+
+#template diplo-chat-our-betrayal
+  #select random
+    @up-chat-data-to-all "PLAYER %d IS WEAK." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "PLAYER %d HAS NO RECOURSE" g: {player_goal}
+  #randor
+    @up-chat-data-to-all "PLAYER %d WILL BE EXPUNGED." g: {player_goal}
+  #end select
+#end template
+
+#template diplo-chat-their-betrayal
+  #select random
+    @up-chat-data-to-all "I HAVE FACED WORSE." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "ANOTHER CHALLENGER." g: {player_goal}
+  #randor
+    @up-chat-data-to-all "YOU HAD FANGS THIS WHOLE TIME %d. CUTE." g: {player_goal}
+  #end select
+#end template
+
+#template diplo-chat-accepted-our-alliance
+  @up-chat-data-to-all "YES. GOOD." g: {player_goal}
+#end template
+
+#template diplo-chat-accepted-their-alliance
+  @up-chat-data-to-all "I WILL HUNT WITH YOU." g: {player_goal}
+#end template
+
+#template diplo-chat-refused-our-alliance
+  @up-chat-data-to-all "NO MATTER. LONE WOLVES SUFFER IN THE END." g: {player_goal}
+#end template
+
+#template diplo-chat-refused-their-alliance
+  @up-chat-data-to-all "I WILL NOT HUNT WITH YOU." g: {player_goal}
+#end template
+
+#template diplo-chat-friendly-fire-warning
+  @up-chat-data-to-all "THE PREY TWITCHES. IT IS NOT TIME %d." g: {player_goal}
+#end template
+
+#template diplo-chat-friendly-fire-betrayal
+  @up-chat-data-to-all "YOU MADE YOURSELF A PRIORITY." g: {player_goal}
+#end template
+
+#template diplo-chat-resign
+  chat to all "I WILL BE BACK."
+#end template
+
+#template diplo-should-player-be-marked
+  #if military-population >= 20
+    goal {marked_goal} = 1
+  #else
+    goal {marked_goal} = 0
+  #end if
+#end template
+
+#do once
+  chat to all "I SMELL PREY."
+#end do
+
+load "templates/diplomacy_engine.aoe2ai"
+
+load "charlotte/stats.aoe2ai"
+load "templates/fast_castle.aoe2ai"
+do basic targeting
+
+#if up-research-status c: castle-age >= research-pending
+  #do once
+    distribute villagers 35 40 15 10
+    
+    assign 8 builders to castle
+    assign 8 builders to town-center-foundation
+  #end do
+  
+  #if building-type-count-total castle == 0 and strategic-number sn-stone-gatherer-percentage == 10
+    #do once
+      distribute 18 villagers from wood and food and gold to stone
+    #end do
+  #end if
+  
+  #if building-type-count-total castle >= 1 and strategic-number sn-stone-gatherer-percentage > 10
+    #do once
+      distribute 18 villagers from stone to wood and food and gold
+    #end do
+  #end if
+  
+  auto balance wood and food and gold
+  
+  #template escrow-resources
+    #if escrow-amount wood < 275
+      escrow {percentage} wood
+    #else
+      escrow 0 wood
+    #end if
+    #if escrow-amount food < 1000
+      escrow {percentage} food
+    #else
+      escrow 0 food
+    #end if
+    #if escrow-amount gold < 500
+      escrow {percentage} gold
+    #else
+      escrow 0 gold
+    #end if
+  #end template
+  
+  #if military-population < 10 or up-research-status c: my-unique-unit-upgrade >= research-pending
+    insert escrow-resources(percentage=0)
+  #else if military-population < 20
+    insert escrow-resources(percentage=10)
+  #else if military-population < 30
+    insert escrow-resources(percentage=20)
+  #else
+    insert escrow-resources(percentage=40)
+  #end if
+  
+  build lumber camps
+  #when
+    build stone mining camps
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 8
+  #end when
+  
+  build houses with 20 headroom
+  #if up-compare-goal non-escrowed-wood c:>= 200
+    build farms
+  #end if
+  
+  build castle
+  build 1 town-center with wood and stone escrow
+  #if building-type-count-total castle >= 1
+    build 3 town-center with wood and stone escrow
+  #end if
+  build 1 barracks
+  build 1 blacksmith
+  build 1 monastery
+  build 1 siege-workshop
+  build 1 university
+  build 3 archery-range
+  
+  research ri-wheel-barrow with wood and food escrow
+  research ri-hand-cart with wood and food escrow
+  
+  research lumber camp upgrades with wood and food escrow
+  research gold mining camp upgrades with wood and food escrow
+  research mill upgrades with wood and food escrow
+  
+  research ri-arson with food and gold escrow
+  research ri-squires with food escrow
+  research infantry blacksmith upgrades with food and gold escrow
+  research ri-conscription with food and gold escrow
+  research my-unique-unit-upgrade with food and gold escrow
+  research ri-garland-wars with food and gold escrow
+  
+  research ri-elite-skirmisher with wood and gold escrow
+  research ri-imperial-skirmisher with wood and gold escrow
+  research ranged blacksmith upgrades with food and gold escrow
+  research ri-atlatl with food and gold escrow
+  research ri-ballistics with wood and gold escrow
+  research ri-chemistry with food and gold escrow
+  
+  research ri-capped-ram with food escrow
+  research ri-siege-ram with food escrow
+  
+  research ri-murder-holes with food and stone escrow
+  
+  research imperial-age with food and gold escrow
+  
+  #if current-age == imperial-age
+    train 120 villager with 30 trade
+  #else
+    train 120 villager
+  #end if
+  train 1 monk
+  
+  #if goal under-attack 1 or up-compare-goal non-escrowed-food c:>= 110
+    #if building-type-count siege-workshop >= 1 and unit-type-count-total battering-ram-line < max-rams and up-pending-objects c: battering-ram-line == 0 and military-population >= 20
+      train battering-ram-line
+    #else
+      #if building-type-count castle >= 1
+        #if up-pending-objects c: skirmisher-line >= 3
+          train my-unique-unit-line
+        #else
+          
+          goal skirm-count = 0
+          goal jag-count = 0
+          @up-get-fact unit-type-count-total skirmisher-line skirm-count
+          @up-get-fact unit-type-count-total jaguar-man-line jag-count
+          #if up-compare-goal skirm-count g:>= jag-count
+            train my-unique-unit-line
+          #else
+            train skirmisher-line
+          #end if
+          
+        #end if
+      #else
+        train skirmisher-line
+      #end if
+    #end if
+  #end if
+  
+  #if up-compare-goal target-military-percentage c:>= 110 and military-population >= 20
+    goal attacking = 1
+  #else if up-compare-goal target-military-percentage c:< 100
+    goal attacking = 0
+  #end if
+  
+  sell wood when wood > 2000
+  sell food when food > 2000
+  #if stone-amount < 650
+    buy stone when gold > 2000
+  #end if
+  
+  #if goal attacking 0
+    #if strategic-number sn-maximum-town-size > 30
+      sn-maximum-town-size = 30
+    #end if
+    auto expand town size to 30
+  #else
+    #do once
+      chat to all "THE HUNT BEGINS."
+    #end do
+    sn-maximum-town-size = 255
+  #end if
+  
+  #if goal attacking 1 and up-compare-goal target-military-percentage c:>= 200 and military-population >= 30
+    #do once
+      chat to all "YOU PEEL LIKE A RABBIT."
+    #end do
+  #end if
+#end if
