@@ -3236,7 +3236,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 4258)
+    (up-jump-rule 4265)
 )
 (defrule
     (can-build town-center)
@@ -10268,7 +10268,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 197)
+    (up-jump-rule 198)
 )
 (defrule
     (goal produce-militia 1)
@@ -10299,7 +10299,7 @@
       (unit-available militiaman-line)
     )
 =>
-    (up-jump-rule 193)
+    (up-jump-rule 194)
 )
 (defrule
     (can-build barracks)
@@ -10943,7 +10943,7 @@
       (unit-available militiaman-line)
     )
 =>
-    (up-jump-rule 108)
+    (up-jump-rule 109)
 )
 (defrule
     (not
@@ -11626,7 +11626,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 5)
 )
 (defrule
     (research-completed ri-arson)
@@ -11643,12 +11643,14 @@
     (set-goal 365 1)
 )
 (defrule
+    (research-completed ri-arson)
+=>
+    (up-jump-rule 2)
+)
+(defrule
     (up-research-status c: ri-arson < research-pending)
     (research-available ri-arson)
     (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-arson)
-    )
 =>
     (up-modify-goal attempted-researches c:+ 1)
     (up-modify-goal attempted-researches-importance c:max importance-low)
@@ -11659,9 +11661,6 @@
     (up-compare-goal research-level c:<= importance-low)
     (research-available ri-arson)
     (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-arson)
-    )
 =>
     (research ri-arson)
 )
@@ -11791,7 +11790,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 126)
+    (up-jump-rule 127)
 )
 (defrule
     (goal produce-condottiero 1)
@@ -11822,7 +11821,7 @@
       (unit-available condottiero)
     )
 =>
-    (up-jump-rule 122)
+    (up-jump-rule 123)
 )
 (defrule
     (can-build barracks)
@@ -11838,7 +11837,7 @@
       (unit-available condottiero)
     )
 =>
-    (up-jump-rule 108)
+    (up-jump-rule 109)
 )
 (defrule
     (not
@@ -12521,7 +12520,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 5)
 )
 (defrule
     (research-completed ri-arson)
@@ -12538,12 +12537,14 @@
     (set-goal 365 1)
 )
 (defrule
+    (research-completed ri-arson)
+=>
+    (up-jump-rule 2)
+)
+(defrule
     (up-research-status c: ri-arson < research-pending)
     (research-available ri-arson)
     (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-arson)
-    )
 =>
     (up-modify-goal attempted-researches c:+ 1)
     (up-modify-goal attempted-researches-importance c:max importance-low)
@@ -12554,9 +12555,6 @@
     (up-compare-goal research-level c:<= importance-low)
     (research-available ri-arson)
     (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-arson)
-    )
 =>
     (research ri-arson)
 )
@@ -12774,7 +12772,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 133)
+    (up-jump-rule 134)
 )
 (defrule
     (goal produce-spearmen 1)
@@ -12805,7 +12803,7 @@
       (unit-available spearman-line)
     )
 =>
-    (up-jump-rule 129)
+    (up-jump-rule 130)
 )
 (defrule
     (can-build barracks)
@@ -12955,7 +12953,7 @@
       (unit-available spearman-line)
     )
 =>
-    (up-jump-rule 108)
+    (up-jump-rule 109)
 )
 (defrule
     (not
@@ -13638,7 +13636,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 5)
 )
 (defrule
     (research-completed ri-arson)
@@ -13655,12 +13653,14 @@
     (set-goal 365 1)
 )
 (defrule
+    (research-completed ri-arson)
+=>
+    (up-jump-rule 2)
+)
+(defrule
     (up-research-status c: ri-arson < research-pending)
     (research-available ri-arson)
     (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-arson)
-    )
 =>
     (up-modify-goal attempted-researches c:+ 1)
     (up-modify-goal attempted-researches-importance c:max importance-low)
@@ -13671,9 +13671,6 @@
     (up-compare-goal research-level c:<= importance-low)
     (research-available ri-arson)
     (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-arson)
-    )
 =>
     (research ri-arson)
 )
@@ -13803,7 +13800,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 155)
+    (up-jump-rule 156)
 )
 (defrule
     (goal produce-eagles 1)
@@ -13834,7 +13831,7 @@
       (unit-available eagle-warrior-line)
     )
 =>
-    (up-jump-rule 151)
+    (up-jump-rule 152)
 )
 (defrule
     (can-build barracks)
@@ -14170,7 +14167,7 @@
       (unit-available eagle-warrior-line)
     )
 =>
-    (up-jump-rule 108)
+    (up-jump-rule 109)
 )
 (defrule
     (not
@@ -14853,7 +14850,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 5)
 )
 (defrule
     (research-completed ri-arson)
@@ -14870,12 +14867,14 @@
     (set-goal 365 1)
 )
 (defrule
+    (research-completed ri-arson)
+=>
+    (up-jump-rule 2)
+)
+(defrule
     (up-research-status c: ri-arson < research-pending)
     (research-available ri-arson)
     (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-arson)
-    )
 =>
     (up-modify-goal attempted-researches c:+ 1)
     (up-modify-goal attempted-researches-importance c:max importance-low)
@@ -14886,9 +14885,6 @@
     (up-compare-goal research-level c:<= importance-low)
     (research-available ri-arson)
     (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-arson)
-    )
 =>
     (research ri-arson)
 )
@@ -22876,7 +22872,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 878)
+    (up-jump-rule 880)
 )
 (defrule
     (goal produce-unique-units 1)
@@ -22907,7 +22903,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 874)
+    (up-jump-rule 876)
 )
 (defrule
     (current-age >= castle-age)
@@ -23075,7 +23071,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 108)
+    (up-jump-rule 109)
 )
 (defrule
     (not
@@ -23758,7 +23754,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 5)
 )
 (defrule
     (research-completed ri-arson)
@@ -23775,12 +23771,14 @@
     (set-goal 365 1)
 )
 (defrule
+    (research-completed ri-arson)
+=>
+    (up-jump-rule 2)
+)
+(defrule
     (up-research-status c: ri-arson < research-pending)
     (research-available ri-arson)
     (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-arson)
-    )
 =>
     (up-modify-goal attempted-researches c:+ 1)
     (up-modify-goal attempted-researches-importance c:max importance-low)
@@ -23791,9 +23789,6 @@
     (up-compare-goal research-level c:<= importance-low)
     (research-available ri-arson)
     (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-arson)
-    )
 =>
     (research ri-arson)
 )
@@ -23924,7 +23919,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 108)
+    (up-jump-rule 109)
 )
 (defrule
     (not
@@ -24607,7 +24602,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 5)
 )
 (defrule
     (research-completed ri-arson)
@@ -24624,12 +24619,14 @@
     (set-goal 365 1)
 )
 (defrule
+    (research-completed ri-arson)
+=>
+    (up-jump-rule 2)
+)
+(defrule
     (up-research-status c: ri-arson < research-pending)
     (research-available ri-arson)
     (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-arson)
-    )
 =>
     (up-modify-goal attempted-researches c:+ 1)
     (up-modify-goal attempted-researches-importance c:max importance-low)
@@ -24640,9 +24637,6 @@
     (up-compare-goal research-level c:<= importance-low)
     (research-available ri-arson)
     (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-arson)
-    )
 =>
     (research ri-arson)
 )
@@ -29667,7 +29661,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 274)
+    (up-jump-rule 275)
 )
 (defrule
     (goal produce-konniks 1)
@@ -29698,7 +29692,7 @@
       (unit-available konnik-set)
     )
 =>
-    (up-jump-rule 270)
+    (up-jump-rule 271)
 )
 (defrule
     (true)
@@ -29849,7 +29843,7 @@
       (unit-available konnik-line)
     )
 =>
-    (up-jump-rule 108)
+    (up-jump-rule 109)
 )
 (defrule
     (not
@@ -30532,7 +30526,7 @@
       (current-age >= castle-age)
     )
 =>
-    (up-jump-rule 4)
+    (up-jump-rule 5)
 )
 (defrule
     (research-completed ri-arson)
@@ -30549,12 +30543,14 @@
     (set-goal 365 1)
 )
 (defrule
+    (research-completed ri-arson)
+=>
+    (up-jump-rule 2)
+)
+(defrule
     (up-research-status c: ri-arson < research-pending)
     (research-available ri-arson)
     (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-arson)
-    )
 =>
     (up-modify-goal attempted-researches c:+ 1)
     (up-modify-goal attempted-researches-importance c:max importance-low)
@@ -30565,9 +30561,6 @@
     (up-compare-goal research-level c:<= importance-low)
     (research-available ri-arson)
     (building-type-count barracks >= 1)
-    (not
-      (research-completed ri-arson)
-    )
 =>
     (research ri-arson)
 )

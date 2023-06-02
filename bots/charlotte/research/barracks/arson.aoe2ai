@@ -1,14 +1,6 @@
 #if not research-completed ri-arson
   load "../barracks/prerequisites.aoe2ai"
   //load "../town_center/castle_age.aoe2ai"
-
-  #if research-available ri-arson and building-type-count barracks >= 1
-    #if up-research-status c: ri-arson < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-low
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-low
-      research ri-arson
-    #end if
-  #end if
+  
+  insert attempt-research(research="ri-arson",importance="importance-low",building="barracks")
 #end if
