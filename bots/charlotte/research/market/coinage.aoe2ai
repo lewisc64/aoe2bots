@@ -2,13 +2,5 @@
   load "../market/prerequisites.aoe2ai"
   //load "../town_center/castle_age.aoe2ai"
 
-  #if research-available ri-coinage and building-type-count market >= 1
-    #if up-research-status c: ri-coinage < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-low
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-low
-      research ri-coinage
-    #end if
-  #end if
+  insert attempt-research(research="ri-coinage",importance="importance-low",building="market")
 #end if

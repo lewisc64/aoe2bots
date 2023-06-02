@@ -1,13 +1,5 @@
 #if not research-completed ri-thumb-ring
   load "../archery_range/prerequisites.aoe2ai"
 
-  #if research-available ri-thumb-ring and building-type-count archery-range >= 1
-    #if up-research-status c: ri-thumb-ring < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-medium
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-thumb-ring
-    #end if
-  #end if
+  insert attempt-research(research="ri-thumb-ring",importance="importance-medium",building="archery-range")
 #end if

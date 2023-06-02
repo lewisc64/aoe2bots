@@ -4,13 +4,5 @@
   
   load "../barracks/two_handed_swordsman.aoe2ai"
 
-  #if research-available ri-champion and building-type-count barracks >= 1
-    #if up-research-status c: ri-champion < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-medium
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-champion
-    #end if
-  #end if
+  insert attempt-research(research="ri-champion",importance="importance-medium",building="barracks")
 #end if

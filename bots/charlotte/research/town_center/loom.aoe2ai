@@ -1,13 +1,5 @@
 #if not research-completed ri-loom
   load "../town_center/prerequisites.aoe2ai"
 
-  #if research-available ri-loom and building-type-count town-center >= 1
-    #if up-research-status c: ri-loom < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-critical
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-critical
-      research ri-loom
-    #end if
-  #end if
+  insert attempt-research(research="ri-loom",importance="importance-critical",building="town-center")
 #end if

@@ -2,13 +2,5 @@
   load "../lumber_camp/prerequisites.aoe2ai"
   load "../lumber_camp/double_bit_axe.aoe2ai"
 
-  #if research-available ri-bow-saw and building-type-count lumber-camp >= 1
-    #if up-research-status c: ri-bow-saw < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-critical
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-critical
-      research ri-bow-saw
-    #end if
-  #end if
+  insert attempt-research(research="ri-bow-saw",importance="importance-critical",building="lumber-camp")
 #end if

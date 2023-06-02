@@ -2,13 +2,5 @@
   load "../castle/prerequisites.aoe2ai"
   //load "../town_center/imperial_age.aoe2ai"
 
-  #if research-available ri-paper-money and building-type-count castle >= 1
-    #if up-research-status c: ri-paper-money < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-low
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-low
-      research ri-paper-money
-    #end if
-  #end if
+  insert attempt-research(research="ri-paper-money",importance="importance-low",building="castle")
 #end if

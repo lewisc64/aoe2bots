@@ -2,13 +2,6 @@
   load "../university/prerequisites.aoe2ai"
   //load "../town_center/castle_age.aoe2ai"
 
-  #if research-available ri-murder-holes and building-type-count university >= 1
-    #if up-research-status c: ri-murder-holes < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-medium
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-murder-holes
-    #end if
-  #end if
+  insert gather-stone(amount="100")
+  insert attempt-research(research="ri-murder-holes",importance="importance-medium",building="university")
 #end if

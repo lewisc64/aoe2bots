@@ -3,13 +3,5 @@
   //load "../town_center/castle_age.aoe2ai"
   load "../town_center/wheelbarrow.aoe2ai"
 
-  #if research-available ri-hand-cart and building-type-count town-center >= 1
-    #if up-research-status c: ri-hand-cart < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-medium
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-hand-cart
-    #end if
-  #end if
+  insert attempt-research(research="ri-hand-cart",importance="importance-medium",building="town-center")
 #end if

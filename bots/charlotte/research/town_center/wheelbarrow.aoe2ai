@@ -2,13 +2,5 @@
   load "../town_center/prerequisites.aoe2ai"
   //load "../town_center/feudal_age.aoe2ai"
 
-  #if research-available ri-wheel-barrow and building-type-count town-center >= 1
-    #if up-research-status c: ri-wheel-barrow < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-medium
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-wheel-barrow
-    #end if
-  #end if
+  insert attempt-research(research="ri-wheel-barrow",importance="importance-medium",building="town-center")
 #end if

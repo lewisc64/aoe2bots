@@ -170,14 +170,33 @@ const importance-low = 1
   #end nomerge
 #end template
 
+#template gather-stone
+  #if stone-amount < {amount}
+    goal do-stone-mining = 1
+    #if gold-amount > 300
+      build 1 market
+      buy stone
+    #end if
+  #end if
+#end template
+
 #template build-castles
   build castle
-
-  goal do-stone-mining = 1
   
-  #if gold-amount >= 300 and stone-amount < 650 and current-age >= castle-age
-    build 1 market
-    buy stone
+  #if current-age >= castle-age
+    insert gather-stone(amount="650")
+  #end if
+#end template
+
+#template attempt-research
+  #if research-available {research} and building-type-count {building} >= 1
+    #if up-research-status c: {research} < research-pending
+      goal attempted-researches += 1
+      @up-modify-goal attempted-researches-importance c:max {importance}
+    #end if
+    #if goal do-research 1 and up-compare-goal research-level c:<= {importance}
+      research {research}
+    #end if
   #end if
 #end template
 

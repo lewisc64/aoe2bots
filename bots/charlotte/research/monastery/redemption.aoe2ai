@@ -2,13 +2,5 @@
   load "../monastery/prerequisites.aoe2ai"
   //load "../town_center/castle_age.aoe2ai"
 
-  #if research-available ri-redemption and building-type-count monastery >= 1
-    #if up-research-status c: ri-redemption < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-medium
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-redemption
-    #end if
-  #end if
+  insert attempt-research(research="ri-redemption",importance="importance-medium",building="monastery")
 #end if

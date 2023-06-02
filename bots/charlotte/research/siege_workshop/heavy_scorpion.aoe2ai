@@ -2,13 +2,5 @@
   load "../siege_workshop/prerequisites.aoe2ai"
   //load "../town_center/imperial_age.aoe2ai"
 
-  #if research-available ri-heavy-scorpion and building-type-count siege-workshop >= 1
-    #if up-research-status c: ri-heavy-scorpion < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-medium
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-heavy-scorpion
-    #end if
-  #end if
+  insert attempt-research(research="ri-heavy-scorpion",importance="importance-medium",building="siege-workshop")
 #end if

@@ -15,13 +15,5 @@
     sell wood when wood > 400
   #end if
 
-  #if research-available castle-age and building-type-count town-center >= 1
-    #if up-research-status c: castle-age < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-low
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-low
-      research castle-age
-    #end if
-  #end if
+  insert attempt-research(research="castle-age",importance="importance-low",building="town-center")
 #end if

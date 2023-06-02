@@ -3,13 +3,5 @@
   //load "../town_center/imperial_age.aoe2ai"
   load "../blacksmith/chain_barding.aoe2ai"
 
-  #if research-available ri-plate-barding and building-type-count blacksmith >= 1
-    #if up-research-status c: ri-plate-barding < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-medium
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-plate-barding
-    #end if
-  #end if
+  insert attempt-research(research="ri-plate-barding",importance="importance-medium",building="blacksmith")
 #end if

@@ -3,13 +3,5 @@
   //load "../town_center/castle_age.aoe2ai"
   load "../mill/horse_collar.aoe2ai"
 
-  #if research-available ri-heavy-plow and building-type-count mill >= 1
-    #if up-research-status c: ri-heavy-plow < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-critical
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-critical
-      research ri-heavy-plow
-    #end if
-  #end if
+  insert attempt-research(research="ri-heavy-plow",importance="importance-critical",building="mill")
 #end if

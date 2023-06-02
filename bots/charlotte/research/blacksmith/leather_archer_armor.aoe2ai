@@ -3,13 +3,5 @@
   //load "../town_center/castle_age.aoe2ai"
   load "../blacksmith/padded_archer_armor.aoe2ai"
 
-  #if research-available ri-leather-archer-armor and building-type-count blacksmith >= 1
-    #if up-research-status c: ri-leather-archer-armor < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-medium
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-leather-archer-armor
-    #end if
-  #end if
+  insert attempt-research(research="ri-leather-archer-armor",importance="importance-medium",building="blacksmith")
 #end if

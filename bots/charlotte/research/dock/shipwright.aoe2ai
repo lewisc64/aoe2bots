@@ -2,13 +2,5 @@
   load "../dock/prerequisites.aoe2ai"
   //load "../town_center/imperial-age.aoe2ai"
 
-  #if research-available ri-shipwright and building-type-count dock >= 1
-    #if up-research-status c: ri-shipwright < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-medium
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-shipwright
-    #end if
-  #end if
+  insert attempt-research(research="ri-shipwright",importance="importance-medium",building="dock")
 #end if
