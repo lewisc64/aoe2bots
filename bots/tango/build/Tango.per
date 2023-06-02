@@ -3427,6 +3427,7 @@
     )
     (up-pending-objects c: lumber-camp == 0)
     (can-build lumber-camp)
+    (dropsite-min-distance wood != 255)
 =>
     (build lumber-camp)
     (set-goal 50 1)
@@ -3722,6 +3723,7 @@
     (resource-found stone)
     (up-pending-objects c: mining-camp == 0)
     (can-build mining-camp)
+    (dropsite-min-distance stone != 255)
     (not
       (up-research-status c: feudal-age < research-pending)
     )
@@ -3948,6 +3950,7 @@
     (resource-found gold)
     (up-pending-objects c: mining-camp == 0)
     (can-build mining-camp)
+    (dropsite-min-distance gold != 255)
     (or
       (up-research-status c: feudal-age >= research-pending)
       (wood-amount > 200)

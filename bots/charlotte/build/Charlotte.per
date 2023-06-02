@@ -42773,6 +42773,7 @@
     )
     (up-pending-objects c: lumber-camp == 0)
     (can-build lumber-camp)
+    (dropsite-min-distance wood != 255)
     (game-time > 60)
     (building-type-count town-center > 0)
 =>
@@ -42907,6 +42908,7 @@
     (resource-found gold)
     (up-pending-objects c: mining-camp == 0)
     (can-build mining-camp)
+    (dropsite-min-distance gold != 255)
     (strategic-number sn-gold-gatherer-percentage > 0)
     (building-type-count town-center > 0)
 =>
@@ -42918,6 +42920,7 @@
     (resource-found stone)
     (up-pending-objects c: mining-camp == 0)
     (can-build mining-camp)
+    (dropsite-min-distance stone != 255)
     (strategic-number sn-stone-gatherer-percentage > 0)
     (building-type-count town-center > 0)
 =>
