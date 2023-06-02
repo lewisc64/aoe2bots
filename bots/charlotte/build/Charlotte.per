@@ -1,4 +1,8 @@
 ;Translated by https://github.com/lewisc64/aoe2ai
+(defconst chat-b8998735697e4cd38237f8411e4d40e06cbbc790 "Research level: LOW")
+(defconst chat-ebae1d86c02c2920af25f66bb982462bf689d398 "Research level: MEDIUM")
+(defconst chat-84675dc7c0b9c4fa2bae6118449907b7018c7fcd "Research level: HIGH")
+(defconst chat-02a44b954882b7be12972680db2dfdb8d3573037 "Research level: CRITICAL")
 (defconst max-wood 1600)
 (defconst max-food 1600)
 (defconst max-gold 1600)
@@ -22,12 +26,117 @@
 (defconst excellent-wood-sell-price 200)
 (defconst excellent-food-sell-price 200)
 (defconst did-tribute 348)
+(defconst chat-c16cc99892e60a495525ca01fdef862c1af9487e "sending wood to ally")
+(defconst chat-ccdd2139b41000710da3064889e4b1ae35562704 "sending food to ally")
+(defconst chat-c8395566c9f14bcc1ba9ca2f7a7ef0841786ca33 "sending gold to ally")
+(defconst chat-0d406058bc76910a3af52fb117012d201c5bd292 "sending stone to ally")
+(defconst chat-751b5928087d11eba65985a66c3803e65d9dae20 "buy wood, excellent price.")
+(defconst chat-799ebc2e18e5acaa96f2916b700be42ad0a64dba "buy food, excellent price.")
+(defconst chat-2cd1cb794480bb23192fb8a01b286cdde2b1ac70 "sell wood, excellent price.")
+(defconst chat-44c30f3a793150391847d49ba872e9cee87b8bea "sell food, excellent price.")
+(defconst chat-c62715314a567434688ed360f54f41ec310888de "buy wood, good price.")
+(defconst chat-21c85db3b3664127b620546345848989c1926b4a "buy food, good price.")
+(defconst chat-875edfa23fa1b4599a86404c2d08b0d801758fc4 "sell wood, good price.")
+(defconst chat-116f9ef6361a9063fd3ee3fbe9cc61f87fcdc777 "sell food, good price.")
+(defconst chat-34f8609760258d82ecc3e0146f981c1ec0725afb "rebalance: wood food -> gold")
+(defconst chat-19b22c4216400b4ac44cedd180de15040bba208a "rebalance: wood gold -> food")
+(defconst chat-7f1eda05222ecfc6817de23caf16247e9200bb91 "rebalance: wood -> food gold")
+(defconst chat-852bc71dbe1d5f015c304fd5abc8ff06a003dc65 "rebalance: food gold -> wood")
+(defconst chat-bd7c8904ccd4165da66d7d9cecb51f8500c6890b "rebalance: food -> wood gold")
+(defconst chat-822e28c24c9ecfade87e50563a2fda287b1d3e41 "rebalance: gold -> wood food")
+(defconst chat-d94b5a6ca271d8c89b20340814572189d3edf11b "rebalance: wood -> food")
+(defconst chat-5910be933cb49a20786061b35fa87af01792653d "rebalance: food -> wood")
+(defconst chat-7a235c0422e15153261184195d5b73a1f30f9281 "rebalance: minimum wood hit")
+(defconst chat-b68108b9246231bd0dcba3f02d73a21fd94239a8 "rebalance: minimum food hit")
+(defconst chat-7c910559fb331f99581145a809d8a7f4c80a3f40 "rebalance: minimum gold hit")
+(defconst chat-4419ac64cf698a06e303ef2add9e74b240d800d5 "there is no gold, moving all villagers away from gold")
+(defconst chat-9c1fa295fbd8be460841820389f2c1c66e60be8c "scale up trade")
+(defconst chat-5020f05cec7992e87bfff7f3806503ffd09fabb4 "Imperial age.")
+(defconst chat-6aa194c8364dcbf888b9f71dddead1b65e2a18b1 "On my way to imperial.")
+(defconst chat-3e71608742dd8317c17d7aad90031f4ca2f4e31e "Castle age.")
+(defconst chat-8e47476ff2d44144fef9f4c3b25acadc9b58ade1 "On my way to castle.")
+(defconst chat-1b168fc75d0dccead31debc6304ae90e62b85346 "Feudal age.")
+(defconst chat-8c1add5792f06349834823be7af5388dd18dc6e5 "On my way to feudal.")
+(defconst chat-3157faa10ad8f4349ca9a0f430e2020480a2924d "Dark age.")
+(defconst chat-c4920c37e39cb5df2dc2ae05b30a0bd92a835105 "2As if!")
+(defconst chat-aba9a618839083a1fc344dc2d94aaa3aac5d8a7b "2Are you out of your mind?")
+(defconst chat-96d6c00acaea47ba19980829b2fd9456b0f6bc20 "2Absolutely not.")
+(defconst chat-8503ede3ea63ea360679c1a7bb9c6feb415c1aeb "Have fun!")
+(defconst chat-8e30d6aac813417d581bd798bb4422107881ac34 "Good luck!")
+(defconst chat-352a6728c4532105f53a668dfbd418be5cb3fd10 "HF!")
+(defconst chat-f5dc299365d92f463b51850f4998d15a1ccea957 "GL!")
+(defconst chat-a7a3d544f2e165ee5b1d0c26d4ff3e158cca81a1 "Good luck, have fun!")
+(defconst chat-3d0ebcbcac2c3738090ce9627d7d67ce721988cb "Looking forward to this. Let's go.")
+(defconst chat-4b2d225e68bb2a07009be46ed0e20152c08e55aa "Hi! Go easy on me, okay?")
+(defconst chat-34a4e982ab21b1135e32998f31b988f2e721aa37 "Let's do this!")
+(defconst chat-c1a2c8283f88d733961d6b4365e9be13d623d2ed "GL everyone!!!")
+(defconst chat-c1a91b91f6684242f1d97269a22c358daf5c4c7c "May the best team win!")
+(defconst chat-c19d910ae0af1d7a0109c0695c694cb1ea6d76ce "May the best ruler win!")
+(defconst chat-0c828eb15d2a93d63913170c9c76265baa71917f "Good luck and have fun everyone!")
+(defconst chat-a3be6ee65fab627be24ec41da7725a025c510c56 "Nobody's here?")
+(defconst chat-81efecdd5c82a2660ad0c59f815946bef2f13f88 "Lonely...")
+(defconst chat-c44ed845a6ff3c2ffb3ab515fa52338d12f60525 "Hello? Is anyone there?")
+(defconst chat-407f29f6af78f4b121f2dcc95bc1802f5565e1e0 "I guess we win already?")
+(defconst chat-54ceebfc9eedd7e5470e1bf52d52982ae8466606 "Um, who exactly are we fighting?")
+(defconst chat-8cfad1992442d65d54a87d6db94bf15a1791fd14 "I don't like my chances here.")
+(defconst chat-07fbe50aef0a19edc7a165a23218530a51375911 "This is a tough game.")
+(defconst chat-6e3caf41f579a199863e77aba43701a14a104135 "I'm having some trouble with this one.")
+(defconst chat-38e831846ef26cbdaacad9bf5e7250fc188a6c32 "This is hard.")
+(defconst chat-3af0b005d375f748321b4a41fcecc1aae4aefaf6 "Hopefully we still have a shot?")
+(defconst chat-148fc18afce1ba1e4bf765ce58284107bababfe7 "We may need a different strategy...")
+(defconst chat-785d57ccabb15e87d9006519033209d563547b10 "I'm not sure I can best you.")
+(defconst chat-2e540e7a93e8a2c16dd2db03a61f281bd71d44a6 "You're playing quite well.")
+(defconst chat-2b4241267e3b903ad08c41a2e2e065b1e18d6217 "This could have gone better, oh well.")
+(defconst chat-27daacbab2622883f44b817a5b7a32ce0d4a0daa "I'm not doing very well...")
+(defconst chat-19634ee5b0c18ded8ea33b3ae8dd61089f1b8332 "I feel vastly outpaced, you're playing a good game.")
+(defconst chat-7d06b793b137e11ecd1977e0a7e00d7e063fc5d2 "It was tough, but I got there in the end.")
+(defconst chat-64380c78099f9d606c5717d5cd64375f7af9b1b1 "I'm pretty sure I've got this game.")
+(defconst chat-4d11f67974ce3ca3532c23088d775e38fb8c3735 "Looks like we're close to getting this squared off.")
+(defconst chat-5d312d4a59392d3794263192a8821782d3d2b8f1 "I'm winning this one. You played well though!")
+(defconst chat-b6df83614ca4dbd79ddb8598e07cc0b0d02b7e84 "That's a lot of stuff.")
+(defconst chat-eaa2467d642e1a4eb5a8d9106ae62d43146b2a2e "You're looking scary...")
+(defconst chat-8ce4eeee4ffed6c3f3b1db90374ebfcde5700522 "It's looking scary out there...")
+(defconst chat-51fc69ba67d089e91a8fca0c10c2534cd01e61e3 "...please don't hurt me!")
+(defconst chat-961c2deda7b66bdb5f5e299c7782fbb4da858a1b "I'd better step on the pedal a bit, sheesh.")
+(defconst chat-0ecbe33a40e3a01167989f50032df37ff257587f "Dicey.")
+(defconst chat-e9532672b85a1beb284e4e03bceb633880370346 "I don't like this...")
+(defconst chat-8b07e683b6a8a2be05e5fa0983ac1162cbb86b70 "It'll all be over soon.")
+(defconst chat-e3e25ce529666447cfcdc1517c952205c85ae301 "I'm bringing the pain.")
+(defconst chat-3ce3c2bac686e227e9a22ec034d350f77befc77c "We're bringing the pain.")
+(defconst chat-735d0d536d636678c4a8895adb4b86ec7b62a486 "Allow me to show you some numbers.")
+(defconst chat-10cbe05e84d9c7317507462818d034f774765349 "I'm pumped! Let's go!!!")
+(defconst chat-83694dc1c91d4874c26ac8bc2ecea836aead3ce2 "[cracks knuckles]")
+(defconst chat-6d95d94755acaedd03e97615b28c41909ac4230b "You aren't prepared for this.")
+(defconst chat-f5bd8413755fcb04dd7e0a8b597a929cf19c17a7 "You lot aren't prepared for this.")
+(defconst chat-f3d1912b990b10acb7343d585e19bc2241d2c1c3 "Oh yeah, this is good.")
+(defconst chat-a95fb62cb0053175f353ba1288f8d2d234b09f01 "It's time for some violence!")
+(defconst chat-6ede43a29bcd9bae6087d5d2d82447536ed824ce "Let's crush 'em!")
+(defconst chat-b68a42add4208a6c61dc94dc77aff979411df768 "Are you ready?")
+(defconst chat-74a9cde05529e14835c25fda908d5d7619760bb8 "I am prepared.")
+(defconst chat-fda0087cd235c1ddfbec157a739e406b8df7e9c6 "Feeling good.")
+(defconst chat-bc024c7f06f28ebe926a8bc05620b507a71db22c "Feeling confident.")
+(defconst chat-2e1e4d4524c3a7b32d06e7a0f47dde021d92eea9 "I'm ready for what you've got.")
+(defconst chat-5ff49d06db6d9da4b3d8576ad8c7200426baa045 "Come at me.")
+(defconst chat-3b79e38c69b431d2a0cf2ee8e393dcaf1c582f75 "I'm done.")
+(defconst chat-0fd729c917031e72165260ea46645b93da7953fb "Good game, well played.")
+(defconst chat-e224508cbf520f93d798247d758574cec6bbd53e "It was a good game, I think I'm out though.")
+(defconst chat-abff28fcabfdd0b5dbf2f25ec16d71cd700ceba0 "My heart's not really in this anymore, sorry.")
+(defconst chat-6ceeb449e5d4dccf41ce23aa49e4a25fd5d58182 "Going castle.")
+(defconst chat-3f53f5f3fede916e304e8d1841050694cc36a6a0 "I've clicked up.")
+(defconst chat-da0510cbce82adf42730cc776c097ced4769ef84 "On my way up.")
+(defconst chat-32ed7d56f6e3169a4469afaac177b2bb4f6c212d "You know I can't deal with this. It's unfair.")
+(defconst chat-796082ad792e39c9e35f9d12504b7da4d7825edf "Why can't we just have fun?")
+(defconst chat-c0f45c97d40bc07b3efd507b6eeff5ff0c829214 "[sigh]")
+(defconst chat-994b2d17a26b32564ea254679b1a01fc834304d7 "I don't think I like you very much...")
+(defconst chat-fa0929c4c5ee827d7c95b20bfee567236a3dbaeb "Your teammate is a real piece of work.")
+(defconst chat-c9d0a992bee2534cc3036d84862a2fca61e96673 "Why must you do this?")
 (defconst attack-ready 180)
 (defconst do-backstep 181)
 (defconst emergency-trash 182)
 (defconst do-counter-systems 183)
 (defconst dead-female-builders 185)
 (defconst dead-builders 184)
+(defconst chat-8f742eb6e8f419863eef6d7174d91d0a49e04e3e "attack ready!")
 (defconst enemy-good-unique-units 213)
 (defconst enemy-good-villagers 211)
 (defconst enemy-good-trade-carts 212)
@@ -68,19 +177,104 @@
 (defconst bcs-making-infantry 226)
 (defconst no-unit-rule-passes 229)
 (defconst director-units-selected 230)
+(defconst chat-29ea2bba50e4d37d23b48f2d6fe2bb51dd2c79be "ATTENTION: failed to select units, turning off counter systems")
 (defconst max-demolition-ships 5)
 (defconst max-defensive-mangonels 4)
 (defconst max-cannon-galleons 8)
 (defconst max-trebs 4)
 (defconst max-imperial-age-rams 10)
 (defconst max-castle-age-rams 5)
+(defconst chat-fefcabf59d1c3c3caa349ec6ed9b0d28e70eb966 "attacking aggressively")
+(defconst chat-a373c0fbab909e639a5687e4475b4753c7459701 "go! (thoughtful)")
+(defconst chat-4a66ee3f7553287adc5b1eced0eceffcc2061b8f "hold! (thoughtful)")
+(defconst chat-2d2b74194462d0d4cb99bbd9229a4b903a4d3074 "waiting for man at arms")
+(defconst chat-ba183a7e2eeae21ba551776d9426e1df24686067 "massive lead, do techs.")
+(defconst chat-52ae6a85e981cdf086ac3cccf45b963d6202eccd "make military lead bigger")
 (defconst passive-override 234)
 (defconst aggressive-override 233)
 (defconst balanced-aggressive 232)
+(defconst chat-fc08c9d5dec4bab3540668111e77d2fd114538f8 "being reckless and thoughtful, chaotically!")
 (defconst threatening-important 238)
 (defconst next-retarget 237)
 (defconst retarget-interval 300)
 (defconst did-reset 239)
+(defconst chat-24431b28ab67d3f626c364c93d8846158d17db36 "Love can be fleeting.")
+(defconst chat-515042920fb0d9bf0d0b9d82f7026f465ea6d162 "Whoops, wrong button.")
+(defconst chat-ace1e65c7cd0e3b09613b3464a22b026da9f8238 "I'm itching for a fight.")
+(defconst chat-eff6100e64480d30af47207c5d14fa0bb2446c86 "player 8 is no longer a bad egg")
+(defconst chat-50513f1a2be7088d01afd3ec816114c2691b9152 "accepting alliance request from player 8")
+(defconst chat-fa3751e319cbe5cacd139c7a1562fa43f2572540 "player 8 accepted our alliance request")
+(defconst chat-0f45c15df8f4b98f45e76a193f81ee06c4264160 "attacked by player 8")
+(defconst chat-a59989c36f66486bdb677b966bef4ab9aa0bca61 "alliance request to player 8 timed out")
+(defconst chat-394d0dfc698bda587775c81bb0f30b0d5526a13f "player 7 is no longer a bad egg")
+(defconst chat-0d53ad97300dc104338e8d21b46b4754e07ce204 "accepting alliance request from player 7")
+(defconst chat-8087453fdc70a35c4d48192914c94b262bd716aa "player 7 accepted our alliance request")
+(defconst chat-4ed8c17a5c5ebe44478b112d0504cf7503a6feb4 "attacked by player 7")
+(defconst chat-fb4127402bce408b590abd4f83a508462a0ab9b6 "alliance request to player 7 timed out")
+(defconst chat-3bc7aa8c06652eb2594dce3bad6b029ce0b326e2 "player 6 is no longer a bad egg")
+(defconst chat-43d4565c80b77922e63818fd0a889f4835a27abc "accepting alliance request from player 6")
+(defconst chat-242ed4d43b83f84d1413e44e905c2b9a166f4104 "player 6 accepted our alliance request")
+(defconst chat-53567c58d5c94e135fe952436954bf043a31e01f "attacked by player 6")
+(defconst chat-1769508a0087b10ac1737e5d2e2f7d8ef6109642 "alliance request to player 6 timed out")
+(defconst chat-e5e799bb57b080e85534d5c5d7946731946daf70 "player 5 is no longer a bad egg")
+(defconst chat-aad65329038f71ebf68e6a1d065bca65e7e03140 "accepting alliance request from player 5")
+(defconst chat-349f79ea82b90a83246236380d1215e02744cbe1 "player 5 accepted our alliance request")
+(defconst chat-f120f59c5092ae5e71f5b3e761c95b0594d41efc "attacked by player 5")
+(defconst chat-125cdd96447018887b75673fc9b99fd92f05bac9 "alliance request to player 5 timed out")
+(defconst chat-abf508ba3a4719c6a1adfd5aad724b36f94116ea "player 4 is no longer a bad egg")
+(defconst chat-44b7511ff94bc36a35a4d972c0c9e42942081e6d "accepting alliance request from player 4")
+(defconst chat-7f0cbcd84755dad6a892d7bdaa7aee6699da2b3f "player 4 accepted our alliance request")
+(defconst chat-e83a4ecd69f3c41b09a0a1236e7aa0581ac00f34 "attacked by player 4")
+(defconst chat-76b4999be9f61799040a3ad99ff3b989f6d00007 "alliance request to player 4 timed out")
+(defconst chat-8594f65dab922519b58986ad1f5c4853490f706e "player 3 is no longer a bad egg")
+(defconst chat-4da2fe72f310c312c3e753e125861365b995725c "accepting alliance request from player 3")
+(defconst chat-ee3a57429acd2b5c46c5efe0509ac7ba8df94c79 "player 3 accepted our alliance request")
+(defconst chat-1062b2c8150cadf4f44729f3bf5a41ddcda43f06 "attacked by player 3")
+(defconst chat-3390d0fa3590638e3b866f872aa0d98d2e33dd5a "alliance request to player 3 timed out")
+(defconst chat-cae7444347e8f1878ab694150cf0a449e1b19fbb "player 2 is no longer a bad egg")
+(defconst chat-4d94c32dded366a0ead5a964f450f4dbe7115836 "accepting alliance request from player 2")
+(defconst chat-a57c75786a340d4b260054050994d55241080470 "player 2 accepted our alliance request")
+(defconst chat-fd31965fd7bd8017f4bc4ce2e429ae212acef5dc "attacked by player 2")
+(defconst chat-0ae2f37c329f1f5e07ad495f3ee3dc7c463ad180 "alliance request to player 2 timed out")
+(defconst chat-625aa2158a8e10e2f23af1b781c6c5688fed55e8 "player 1 is no longer a bad egg")
+(defconst chat-ae022016e19b11fd2b8bb5494d85a16624caea4f "I agree, let's be friends.")
+(defconst chat-6e4b5a5d9cd840be6824f7209855519c9bf8a732 "I was hoping you'd do that!")
+(defconst chat-a0936c429351330a24a75a7382b6594ea631f840 "Good idea.")
+(defconst chat-0b496bb36546bfec15f2a89936c356726ea0c985 "accepting alliance request from player 1")
+(defconst chat-456f0f3ef0322a669d04b16584960dfa36421054 "Unstoppable team!")
+(defconst chat-73443f250f6062de5d7ac5c26f0641c3e391f34d "Nice to have you with me.")
+(defconst chat-87b47d886a3bcf4fecf764721e89a5c3f00f218b "Let's do this. Together.")
+(defconst chat-c4af4a60de342317bf64acdd14e7654b066abf95 "player 1 accepted our alliance request")
+(defconst chat-7e6a680c96f5ebc7c72001bf5a70a615cc4daa7e "attacked by player 1")
+(defconst chat-c11ce23a13444a91229eb0dad991c757ca58c03f "Whatever.")
+(defconst chat-705519f70cb48c4e7326f64dfe1bb719a92d85fa "Would've been nice.")
+(defconst chat-c139b871360335954087bfe0e7808ac0062bea98 "Fine, have it your way.")
+(defconst chat-5f9454d0a28cba01a380875cdd8330bda2cdd9e8 "alliance request to player 1 timed out")
+(defconst chat-54d3097efdeb918de212c08f5fbd8a0d4569560c "making neutral player 8 our enemy")
+(defconst chat-566aa7f01644ad99857a038cc0d073814a473205 "making neutral player 7 our enemy")
+(defconst chat-32084f20d0ded4850e4969abba00fa19b12e208f "making neutral player 6 our enemy")
+(defconst chat-af9c8ef690306aab8e0c9f40f9ec80307a6fb13e "making neutral player 5 our enemy")
+(defconst chat-a5ce7b19a86442374b546816584bd68615ae4950 "making neutral player 4 our enemy")
+(defconst chat-0a984a85a19f6f52ad3f72e5780f2db18b2f4728 "making neutral player 3 our enemy")
+(defconst chat-8eeed920dbe367e9912ca6974cc93ae6c8145c48 "making neutral player 2 our enemy")
+(defconst chat-4ec0f4607a8df0a976c0ec084a71cec372eac904 "making neutral player 1 our enemy")
+(defconst chat-26025f32da3a0314a95d9151ef900223c3fbd814 "requesting alliance from player 8")
+(defconst chat-755ccccd63e8921c5dbcbc9ee32fb74e5cdef1be "requesting alliance from player 7")
+(defconst chat-353fab865644592490d81cb7a6ae038b34714ddf "requesting alliance from player 6")
+(defconst chat-93661ec66e7c4deca69f3e4b5f60ca098147cdb5 "requesting alliance from player 5")
+(defconst chat-50cf04c191209fa0f58e77cde822a9fa6bae413c "requesting alliance from player 4")
+(defconst chat-3d39714454a854157bbdab21123bebef664f0e04 "requesting alliance from player 3")
+(defconst chat-7f6b22d6159d7a0a4c1071f8fd6d6b0f8370520f "requesting alliance from player 2")
+(defconst chat-215e1a2442ffb7fc9dbb2e86ae46e08209378593 "Want to team up?")
+(defconst chat-21f870721f49c52175e60a05dffe0ccc60187af1 "Want to work together?")
+(defconst chat-ae0f0f92d6a271b3a396721f9adafc0b3398bda6 "Let's be allies.")
+(defconst chat-95cbd354811d09c43e5aa5da7c1197f4ebf546d9 "requesting alliance from player 1")
+(defconst chat-a8d554bee6bdf89cc899a01fc2b99b59b54f26f8 "We aren't winning togther, then? What a shame.")
+(defconst chat-51fed912c4cfaf31ff9c4a58c80de9135728d8f8 "I suppose now we should fight.")
+(defconst chat-855ec5486bd3e68f0d5c64a497528881e346d20a "We did it, but the game is not over. This is just the beginning.")
+(defconst chat-05e870225114ac83ef4fa050a98af6016fa4c572 "Being introverted.")
+(defconst chat-0ed19ef74edde4e6a25b364e1e76b0dd12585260 "Being pair-seeking.")
+(defconst chat-0b1c1a18f0b679b01cfd555be430b584551a7df2 "Being backstabbing.")
 (defconst chat-betrayed-by-player 284)
 (defconst chat-betray-player 283)
 (defconst no-enemies-stamp 282)
@@ -129,6 +323,12 @@
 (defconst bad-egg-expiry 600)
 (defconst allied-victory-timeout 120)
 (defconst alliance-request-timeout 60)
+(defconst chat-adce784ed342763397f2d5c5567de3da43ad274c "2Sorry, no.")
+(defconst chat-39c49ff4279bb5160e5406ffd1627ea17127aab9 "2Not right now, sorry.")
+(defconst chat-4f5a3f8e7707db677e3935f1ab3f9fa22019323e "2Sorry, no can do!")
+(defconst chat-d70e126bdbfa17c210e069ec4095fd43cf3c84ec "1Sure.")
+(defconst chat-240eb2776efd751ff3abc7e50068b9d40675aba1 "1Of course.")
+(defconst chat-59b165c02042977bdaf7087bdf3887eb9f20a828 "1Okay.")
 (defconst feitoria-pop-usage 167)
 (defconst desired-villagers-with-subtractions 166)
 (defconst dock-count 168)
@@ -33842,7 +34042,7 @@
 (defrule
     (goal attack-ready 1)
 =>
-    (chat-local-to-self "attack ready!")
+    (chat-local-to-self chat-8f742eb6e8f419863eef6d7174d91d0a49e04e3e)
     (disable-self)
 )
 (defrule
@@ -35986,7 +36186,7 @@
     )
     (goal attack-ready 1)
 =>
-    (chat-local-to-self "ATTENTION: failed to select units, turning off counter systems")
+    (chat-local-to-self chat-29ea2bba50e4d37d23b48f2d6fe2bb51dd2c79be)
     (set-goal do-counter-systems 0)
 )
 (defrule
@@ -36267,7 +36467,7 @@
 (defrule
     (true)
 =>
-    (chat-local-to-self "attacking aggressively")
+    (chat-local-to-self chat-fefcabf59d1c3c3caa349ec6ed9b0d28e70eb966)
     (disable-self)
 )
 (defrule
@@ -36306,7 +36506,7 @@
 (defrule
     (true)
 =>
-    (chat-local-to-self "being reckless and thoughtful, chaotically!")
+    (chat-local-to-self chat-fc08c9d5dec4bab3540668111e77d2fd114538f8)
     (set-goal 231 0)
     (disable-self)
     (generate-random-number 2)
@@ -36382,7 +36582,7 @@
     (up-compare-goal target-military-percentage c:<= 150)
     (goal attacking 1)
 =>
-    (chat-local-to-self "make military lead bigger")
+    (chat-local-to-self chat-52ae6a85e981cdf086ac3cccf45b963d6202eccd)
     (disable-timer 4)
     (enable-timer 4 30)
 )
@@ -36413,7 +36613,7 @@
       (goal attempted-researches 0)
     )
 =>
-    (chat-local-to-self "massive lead, do techs.")
+    (chat-local-to-self chat-ba183a7e2eeae21ba551776d9426e1df24686067)
     (disable-timer 5)
     (enable-timer 5 30)
 )
@@ -36446,7 +36646,7 @@
     (goal produce-militia 1)
     (up-research-status c: ri-man-at-arms < research-pending)
 =>
-    (chat-local-to-self "waiting for man at arms")
+    (chat-local-to-self chat-2d2b74194462d0d4cb99bbd9229a4b903a4d3074)
     (disable-timer 6)
     (enable-timer 6 30)
 )
@@ -36481,7 +36681,7 @@
       )
     )
 =>
-    (chat-local-to-self "go! (thoughtful)")
+    (chat-local-to-self chat-a373c0fbab909e639a5687e4475b4753c7459701)
 )
 (defrule
     (or
@@ -36517,7 +36717,7 @@
       )
     )
 =>
-    (chat-local-to-self "hold! (thoughtful)")
+    (chat-local-to-self chat-4a66ee3f7553287adc5b1eced0eceffcc2061b8f)
 )
 (defrule
     (not
@@ -36951,7 +37151,7 @@
 (defrule
     (true)
 =>
-    (chat-local-to-self "Being backstabbing.")
+    (chat-local-to-self chat-0b1c1a18f0b679b01cfd555be430b584551a7df2)
     (set-goal team-game 0)
     (set-goal free-for-all 1)
     (disable-self)
@@ -37008,7 +37208,7 @@
 (defrule
     (true)
 =>
-    (chat-local-to-self "Being pair-seeking.")
+    (chat-local-to-self chat-0ed19ef74edde4e6a25b364e1e76b0dd12585260)
     (set-goal team-game 1)
     (set-goal free-for-all 0)
     (disable-self)
@@ -37070,7 +37270,7 @@
 (defrule
     (true)
 =>
-    (chat-local-to-self "Being introverted.")
+    (chat-local-to-self chat-05e870225114ac83ef4fa050a98af6016fa4c572)
     (set-goal team-game 0)
     (set-goal free-for-all 1)
     (disable-self)
@@ -37141,19 +37341,19 @@
 (defrule
     (goal 286 1)
 =>
-    (chat-to-all "We aren't winning togther, then? What a shame.")
+    (chat-to-all chat-a8d554bee6bdf89cc899a01fc2b99b59b54f26f8)
     (disable-self)
 )
 (defrule
     (goal 286 2)
 =>
-    (chat-to-all "I suppose now we should fight.")
+    (chat-to-all chat-51fed912c4cfaf31ff9c4a58c80de9135728d8f8)
     (disable-self)
 )
 (defrule
     (goal 286 3)
 =>
-    (chat-to-all "We did it, but the game is not over. This is just the beginning.")
+    (chat-to-all chat-855ec5486bd3e68f0d5c64a497528881e346d20a)
     (disable-self)
 )
 (defrule
@@ -37215,17 +37415,17 @@
 (defrule
     (goal 288 1)
 =>
-    (chat-to-player 1 "Let's be allies.")
+    (chat-to-player 1 chat-ae0f0f92d6a271b3a396721f9adafc0b3398bda6)
 )
 (defrule
     (goal 288 2)
 =>
-    (chat-to-player 1 "Want to work together?")
+    (chat-to-player 1 chat-21f870721f49c52175e60a05dffe0ccc60187af1)
 )
 (defrule
     (goal 288 3)
 =>
-    (chat-to-player 1 "Want to team up?")
+    (chat-to-player 1 chat-215e1a2442ffb7fc9dbb2e86ae46e08209378593)
 )
 (defrule
     (player-in-game 1)
@@ -37235,7 +37435,7 @@
     )
     (goal tried-alliance-with-1 0)
 =>
-    (chat-local-to-self "requesting alliance from player 1")
+    (chat-local-to-self chat-95cbd354811d09c43e5aa5da7c1197f4ebf546d9)
     (set-stance 1 ally)
     (up-modify-goal player-1-alliance-request-time-stamp g:= game-time-goal)
 )
@@ -37273,17 +37473,17 @@
 (defrule
     (goal 289 1)
 =>
-    (chat-to-player 2 "Let's be allies.")
+    (chat-to-player 2 chat-ae0f0f92d6a271b3a396721f9adafc0b3398bda6)
 )
 (defrule
     (goal 289 2)
 =>
-    (chat-to-player 2 "Want to work together?")
+    (chat-to-player 2 chat-21f870721f49c52175e60a05dffe0ccc60187af1)
 )
 (defrule
     (goal 289 3)
 =>
-    (chat-to-player 2 "Want to team up?")
+    (chat-to-player 2 chat-215e1a2442ffb7fc9dbb2e86ae46e08209378593)
 )
 (defrule
     (player-in-game 2)
@@ -37293,7 +37493,7 @@
     )
     (goal tried-alliance-with-2 0)
 =>
-    (chat-local-to-self "requesting alliance from player 2")
+    (chat-local-to-self chat-7f6b22d6159d7a0a4c1071f8fd6d6b0f8370520f)
     (set-stance 2 ally)
     (up-modify-goal player-2-alliance-request-time-stamp g:= game-time-goal)
 )
@@ -37331,17 +37531,17 @@
 (defrule
     (goal 290 1)
 =>
-    (chat-to-player 3 "Let's be allies.")
+    (chat-to-player 3 chat-ae0f0f92d6a271b3a396721f9adafc0b3398bda6)
 )
 (defrule
     (goal 290 2)
 =>
-    (chat-to-player 3 "Want to work together?")
+    (chat-to-player 3 chat-21f870721f49c52175e60a05dffe0ccc60187af1)
 )
 (defrule
     (goal 290 3)
 =>
-    (chat-to-player 3 "Want to team up?")
+    (chat-to-player 3 chat-215e1a2442ffb7fc9dbb2e86ae46e08209378593)
 )
 (defrule
     (player-in-game 3)
@@ -37351,7 +37551,7 @@
     )
     (goal tried-alliance-with-3 0)
 =>
-    (chat-local-to-self "requesting alliance from player 3")
+    (chat-local-to-self chat-3d39714454a854157bbdab21123bebef664f0e04)
     (set-stance 3 ally)
     (up-modify-goal player-3-alliance-request-time-stamp g:= game-time-goal)
 )
@@ -37389,17 +37589,17 @@
 (defrule
     (goal 291 1)
 =>
-    (chat-to-player 4 "Let's be allies.")
+    (chat-to-player 4 chat-ae0f0f92d6a271b3a396721f9adafc0b3398bda6)
 )
 (defrule
     (goal 291 2)
 =>
-    (chat-to-player 4 "Want to work together?")
+    (chat-to-player 4 chat-21f870721f49c52175e60a05dffe0ccc60187af1)
 )
 (defrule
     (goal 291 3)
 =>
-    (chat-to-player 4 "Want to team up?")
+    (chat-to-player 4 chat-215e1a2442ffb7fc9dbb2e86ae46e08209378593)
 )
 (defrule
     (player-in-game 4)
@@ -37409,7 +37609,7 @@
     )
     (goal tried-alliance-with-4 0)
 =>
-    (chat-local-to-self "requesting alliance from player 4")
+    (chat-local-to-self chat-50cf04c191209fa0f58e77cde822a9fa6bae413c)
     (set-stance 4 ally)
     (up-modify-goal player-4-alliance-request-time-stamp g:= game-time-goal)
 )
@@ -37447,17 +37647,17 @@
 (defrule
     (goal 292 1)
 =>
-    (chat-to-player 5 "Let's be allies.")
+    (chat-to-player 5 chat-ae0f0f92d6a271b3a396721f9adafc0b3398bda6)
 )
 (defrule
     (goal 292 2)
 =>
-    (chat-to-player 5 "Want to work together?")
+    (chat-to-player 5 chat-21f870721f49c52175e60a05dffe0ccc60187af1)
 )
 (defrule
     (goal 292 3)
 =>
-    (chat-to-player 5 "Want to team up?")
+    (chat-to-player 5 chat-215e1a2442ffb7fc9dbb2e86ae46e08209378593)
 )
 (defrule
     (player-in-game 5)
@@ -37467,7 +37667,7 @@
     )
     (goal tried-alliance-with-5 0)
 =>
-    (chat-local-to-self "requesting alliance from player 5")
+    (chat-local-to-self chat-93661ec66e7c4deca69f3e4b5f60ca098147cdb5)
     (set-stance 5 ally)
     (up-modify-goal player-5-alliance-request-time-stamp g:= game-time-goal)
 )
@@ -37505,17 +37705,17 @@
 (defrule
     (goal 293 1)
 =>
-    (chat-to-player 6 "Let's be allies.")
+    (chat-to-player 6 chat-ae0f0f92d6a271b3a396721f9adafc0b3398bda6)
 )
 (defrule
     (goal 293 2)
 =>
-    (chat-to-player 6 "Want to work together?")
+    (chat-to-player 6 chat-21f870721f49c52175e60a05dffe0ccc60187af1)
 )
 (defrule
     (goal 293 3)
 =>
-    (chat-to-player 6 "Want to team up?")
+    (chat-to-player 6 chat-215e1a2442ffb7fc9dbb2e86ae46e08209378593)
 )
 (defrule
     (player-in-game 6)
@@ -37525,7 +37725,7 @@
     )
     (goal tried-alliance-with-6 0)
 =>
-    (chat-local-to-self "requesting alliance from player 6")
+    (chat-local-to-self chat-353fab865644592490d81cb7a6ae038b34714ddf)
     (set-stance 6 ally)
     (up-modify-goal player-6-alliance-request-time-stamp g:= game-time-goal)
 )
@@ -37563,17 +37763,17 @@
 (defrule
     (goal 294 1)
 =>
-    (chat-to-player 7 "Let's be allies.")
+    (chat-to-player 7 chat-ae0f0f92d6a271b3a396721f9adafc0b3398bda6)
 )
 (defrule
     (goal 294 2)
 =>
-    (chat-to-player 7 "Want to work together?")
+    (chat-to-player 7 chat-21f870721f49c52175e60a05dffe0ccc60187af1)
 )
 (defrule
     (goal 294 3)
 =>
-    (chat-to-player 7 "Want to team up?")
+    (chat-to-player 7 chat-215e1a2442ffb7fc9dbb2e86ae46e08209378593)
 )
 (defrule
     (player-in-game 7)
@@ -37583,7 +37783,7 @@
     )
     (goal tried-alliance-with-7 0)
 =>
-    (chat-local-to-self "requesting alliance from player 7")
+    (chat-local-to-self chat-755ccccd63e8921c5dbcbc9ee32fb74e5cdef1be)
     (set-stance 7 ally)
     (up-modify-goal player-7-alliance-request-time-stamp g:= game-time-goal)
 )
@@ -37621,17 +37821,17 @@
 (defrule
     (goal 295 1)
 =>
-    (chat-to-player 8 "Let's be allies.")
+    (chat-to-player 8 chat-ae0f0f92d6a271b3a396721f9adafc0b3398bda6)
 )
 (defrule
     (goal 295 2)
 =>
-    (chat-to-player 8 "Want to work together?")
+    (chat-to-player 8 chat-21f870721f49c52175e60a05dffe0ccc60187af1)
 )
 (defrule
     (goal 295 3)
 =>
-    (chat-to-player 8 "Want to team up?")
+    (chat-to-player 8 chat-215e1a2442ffb7fc9dbb2e86ae46e08209378593)
 )
 (defrule
     (player-in-game 8)
@@ -37641,7 +37841,7 @@
     )
     (goal tried-alliance-with-8 0)
 =>
-    (chat-local-to-self "requesting alliance from player 8")
+    (chat-local-to-self chat-26025f32da3a0314a95d9151ef900223c3fbd814)
     (set-stance 8 ally)
     (up-modify-goal player-8-alliance-request-time-stamp g:= game-time-goal)
 )
@@ -37668,7 +37868,7 @@
     (player-in-game 1)
     (stance-toward 1 neutral)
 =>
-    (chat-local-to-self "making neutral player 1 our enemy")
+    (chat-local-to-self chat-4ec0f4607a8df0a976c0ec084a71cec372eac904)
     (set-stance 1 enemy)
 )
 (defrule
@@ -37686,7 +37886,7 @@
     (player-in-game 2)
     (stance-toward 2 neutral)
 =>
-    (chat-local-to-self "making neutral player 2 our enemy")
+    (chat-local-to-self chat-8eeed920dbe367e9912ca6974cc93ae6c8145c48)
     (set-stance 2 enemy)
 )
 (defrule
@@ -37704,7 +37904,7 @@
     (player-in-game 3)
     (stance-toward 3 neutral)
 =>
-    (chat-local-to-self "making neutral player 3 our enemy")
+    (chat-local-to-self chat-0a984a85a19f6f52ad3f72e5780f2db18b2f4728)
     (set-stance 3 enemy)
 )
 (defrule
@@ -37722,7 +37922,7 @@
     (player-in-game 4)
     (stance-toward 4 neutral)
 =>
-    (chat-local-to-self "making neutral player 4 our enemy")
+    (chat-local-to-self chat-a5ce7b19a86442374b546816584bd68615ae4950)
     (set-stance 4 enemy)
 )
 (defrule
@@ -37740,7 +37940,7 @@
     (player-in-game 5)
     (stance-toward 5 neutral)
 =>
-    (chat-local-to-self "making neutral player 5 our enemy")
+    (chat-local-to-self chat-af9c8ef690306aab8e0c9f40f9ec80307a6fb13e)
     (set-stance 5 enemy)
 )
 (defrule
@@ -37758,7 +37958,7 @@
     (player-in-game 6)
     (stance-toward 6 neutral)
 =>
-    (chat-local-to-self "making neutral player 6 our enemy")
+    (chat-local-to-self chat-32084f20d0ded4850e4969abba00fa19b12e208f)
     (set-stance 6 enemy)
 )
 (defrule
@@ -37776,7 +37976,7 @@
     (player-in-game 7)
     (stance-toward 7 neutral)
 =>
-    (chat-local-to-self "making neutral player 7 our enemy")
+    (chat-local-to-self chat-566aa7f01644ad99857a038cc0d073814a473205)
     (set-stance 7 enemy)
 )
 (defrule
@@ -37794,7 +37994,7 @@
     (player-in-game 8)
     (stance-toward 8 neutral)
 =>
-    (chat-local-to-self "making neutral player 8 our enemy")
+    (chat-local-to-self chat-54d3097efdeb918de212c08f5fbd8a0d4569560c)
     (set-stance 8 enemy)
 )
 (defrule
@@ -38102,7 +38302,7 @@
 =>
     (set-goal player-1-is-bad-egg 0)
     (set-goal player-1-bad-egg-expires-at -1)
-    (chat-local-to-self "player 1 is no longer a bad egg")
+    (chat-local-to-self chat-625aa2158a8e10e2f23af1b781c6c5688fed55e8)
 )
 (defrule
     (nand
@@ -38137,17 +38337,17 @@
 (defrule
     (goal 298 1)
 =>
-    (chat-to-player 1 "Good idea.")
+    (chat-to-player 1 chat-a0936c429351330a24a75a7382b6594ea631f840)
 )
 (defrule
     (goal 298 2)
 =>
-    (chat-to-player 1 "I was hoping you'd do that!")
+    (chat-to-player 1 chat-6e4b5a5d9cd840be6824f7209855519c9bf8a732)
 )
 (defrule
     (goal 298 3)
 =>
-    (chat-to-player 1 "I agree, let's be friends.")
+    (chat-to-player 1 chat-ae022016e19b11fd2b8bb5494d85a16624caea4f)
 )
 (defrule
     (goal accept-alliance-requests 1)
@@ -38160,7 +38360,7 @@
     (goal allied-with-1 0)
     (player-in-game 1)
 =>
-    (chat-local-to-self "accepting alliance request from player 1")
+    (chat-local-to-self chat-0b496bb36546bfec15f2a89936c356726ea0c985)
     (set-stance 1 ally)
     (set-goal allied-with-1 1)
 )
@@ -38198,17 +38398,17 @@
 (defrule
     (goal 299 1)
 =>
-    (chat-to-player 1 "Let's do this. Together.")
+    (chat-to-player 1 chat-87b47d886a3bcf4fecf764721e89a5c3f00f218b)
 )
 (defrule
     (goal 299 2)
 =>
-    (chat-to-player 1 "Nice to have you with me.")
+    (chat-to-player 1 chat-73443f250f6062de5d7ac5c26f0641c3e391f34d)
 )
 (defrule
     (goal 299 3)
 =>
-    (chat-to-player 1 "Unstoppable team!")
+    (chat-to-player 1 chat-456f0f3ef0322a669d04b16584960dfa36421054)
 )
 (defrule
     (not
@@ -38222,7 +38422,7 @@
     (goal allied-with-1 0)
     (player-in-game 1)
 =>
-    (chat-local-to-self "player 1 accepted our alliance request")
+    (chat-local-to-self chat-c4af4a60de342317bf64acdd14e7654b066abf95)
     (set-goal allied-with-1 1)
 )
 (defrule
@@ -38272,7 +38472,7 @@
     )
     (player-in-game 1)
 =>
-    (chat-local-to-self "attacked by player 1")
+    (chat-local-to-self chat-7e6a680c96f5ebc7c72001bf5a70a615cc4daa7e)
 )
 (defrule
     (goal allied-with-1 1)
@@ -38393,17 +38593,17 @@
 (defrule
     (goal 300 1)
 =>
-    (chat-to-player 1 "Fine, have it your way.")
+    (chat-to-player 1 chat-c139b871360335954087bfe0e7808ac0062bea98)
 )
 (defrule
     (goal 300 2)
 =>
-    (chat-to-player 1 "Would've been nice.")
+    (chat-to-player 1 chat-705519f70cb48c4e7326f64dfe1bb719a92d85fa)
 )
 (defrule
     (goal 300 3)
 =>
-    (chat-to-player 1 "Whatever.")
+    (chat-to-player 1 chat-c11ce23a13444a91229eb0dad991c757ca58c03f)
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
@@ -38413,7 +38613,7 @@
     (goal tried-alliance-with-1 0)
     (player-in-game 1)
 =>
-    (chat-local-to-self "alliance request to player 1 timed out")
+    (chat-local-to-self chat-5f9454d0a28cba01a380875cdd8330bda2cdd9e8)
     (set-stance 1 neutral)
     (set-goal tried-alliance-with-1 1)
 )
@@ -38438,7 +38638,7 @@
 =>
     (set-goal player-2-is-bad-egg 0)
     (set-goal player-2-bad-egg-expires-at -1)
-    (chat-local-to-self "player 2 is no longer a bad egg")
+    (chat-local-to-self chat-cae7444347e8f1878ab694150cf0a449e1b19fbb)
 )
 (defrule
     (nand
@@ -38473,17 +38673,17 @@
 (defrule
     (goal 301 1)
 =>
-    (chat-to-player 2 "Good idea.")
+    (chat-to-player 2 chat-a0936c429351330a24a75a7382b6594ea631f840)
 )
 (defrule
     (goal 301 2)
 =>
-    (chat-to-player 2 "I was hoping you'd do that!")
+    (chat-to-player 2 chat-6e4b5a5d9cd840be6824f7209855519c9bf8a732)
 )
 (defrule
     (goal 301 3)
 =>
-    (chat-to-player 2 "I agree, let's be friends.")
+    (chat-to-player 2 chat-ae022016e19b11fd2b8bb5494d85a16624caea4f)
 )
 (defrule
     (goal accept-alliance-requests 1)
@@ -38496,7 +38696,7 @@
     (goal allied-with-2 0)
     (player-in-game 2)
 =>
-    (chat-local-to-self "accepting alliance request from player 2")
+    (chat-local-to-self chat-4d94c32dded366a0ead5a964f450f4dbe7115836)
     (set-stance 2 ally)
     (set-goal allied-with-2 1)
 )
@@ -38534,17 +38734,17 @@
 (defrule
     (goal 302 1)
 =>
-    (chat-to-player 2 "Let's do this. Together.")
+    (chat-to-player 2 chat-87b47d886a3bcf4fecf764721e89a5c3f00f218b)
 )
 (defrule
     (goal 302 2)
 =>
-    (chat-to-player 2 "Nice to have you with me.")
+    (chat-to-player 2 chat-73443f250f6062de5d7ac5c26f0641c3e391f34d)
 )
 (defrule
     (goal 302 3)
 =>
-    (chat-to-player 2 "Unstoppable team!")
+    (chat-to-player 2 chat-456f0f3ef0322a669d04b16584960dfa36421054)
 )
 (defrule
     (not
@@ -38558,7 +38758,7 @@
     (goal allied-with-2 0)
     (player-in-game 2)
 =>
-    (chat-local-to-self "player 2 accepted our alliance request")
+    (chat-local-to-self chat-a57c75786a340d4b260054050994d55241080470)
     (set-goal allied-with-2 1)
 )
 (defrule
@@ -38608,7 +38808,7 @@
     )
     (player-in-game 2)
 =>
-    (chat-local-to-self "attacked by player 2")
+    (chat-local-to-self chat-fd31965fd7bd8017f4bc4ce2e429ae212acef5dc)
 )
 (defrule
     (goal allied-with-2 1)
@@ -38729,17 +38929,17 @@
 (defrule
     (goal 303 1)
 =>
-    (chat-to-player 2 "Fine, have it your way.")
+    (chat-to-player 2 chat-c139b871360335954087bfe0e7808ac0062bea98)
 )
 (defrule
     (goal 303 2)
 =>
-    (chat-to-player 2 "Would've been nice.")
+    (chat-to-player 2 chat-705519f70cb48c4e7326f64dfe1bb719a92d85fa)
 )
 (defrule
     (goal 303 3)
 =>
-    (chat-to-player 2 "Whatever.")
+    (chat-to-player 2 chat-c11ce23a13444a91229eb0dad991c757ca58c03f)
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
@@ -38749,7 +38949,7 @@
     (goal tried-alliance-with-2 0)
     (player-in-game 2)
 =>
-    (chat-local-to-self "alliance request to player 2 timed out")
+    (chat-local-to-self chat-0ae2f37c329f1f5e07ad495f3ee3dc7c463ad180)
     (set-stance 2 neutral)
     (set-goal tried-alliance-with-2 1)
 )
@@ -38774,7 +38974,7 @@
 =>
     (set-goal player-3-is-bad-egg 0)
     (set-goal player-3-bad-egg-expires-at -1)
-    (chat-local-to-self "player 3 is no longer a bad egg")
+    (chat-local-to-self chat-8594f65dab922519b58986ad1f5c4853490f706e)
 )
 (defrule
     (nand
@@ -38809,17 +39009,17 @@
 (defrule
     (goal 304 1)
 =>
-    (chat-to-player 3 "Good idea.")
+    (chat-to-player 3 chat-a0936c429351330a24a75a7382b6594ea631f840)
 )
 (defrule
     (goal 304 2)
 =>
-    (chat-to-player 3 "I was hoping you'd do that!")
+    (chat-to-player 3 chat-6e4b5a5d9cd840be6824f7209855519c9bf8a732)
 )
 (defrule
     (goal 304 3)
 =>
-    (chat-to-player 3 "I agree, let's be friends.")
+    (chat-to-player 3 chat-ae022016e19b11fd2b8bb5494d85a16624caea4f)
 )
 (defrule
     (goal accept-alliance-requests 1)
@@ -38832,7 +39032,7 @@
     (goal allied-with-3 0)
     (player-in-game 3)
 =>
-    (chat-local-to-self "accepting alliance request from player 3")
+    (chat-local-to-self chat-4da2fe72f310c312c3e753e125861365b995725c)
     (set-stance 3 ally)
     (set-goal allied-with-3 1)
 )
@@ -38870,17 +39070,17 @@
 (defrule
     (goal 305 1)
 =>
-    (chat-to-player 3 "Let's do this. Together.")
+    (chat-to-player 3 chat-87b47d886a3bcf4fecf764721e89a5c3f00f218b)
 )
 (defrule
     (goal 305 2)
 =>
-    (chat-to-player 3 "Nice to have you with me.")
+    (chat-to-player 3 chat-73443f250f6062de5d7ac5c26f0641c3e391f34d)
 )
 (defrule
     (goal 305 3)
 =>
-    (chat-to-player 3 "Unstoppable team!")
+    (chat-to-player 3 chat-456f0f3ef0322a669d04b16584960dfa36421054)
 )
 (defrule
     (not
@@ -38894,7 +39094,7 @@
     (goal allied-with-3 0)
     (player-in-game 3)
 =>
-    (chat-local-to-self "player 3 accepted our alliance request")
+    (chat-local-to-self chat-ee3a57429acd2b5c46c5efe0509ac7ba8df94c79)
     (set-goal allied-with-3 1)
 )
 (defrule
@@ -38944,7 +39144,7 @@
     )
     (player-in-game 3)
 =>
-    (chat-local-to-self "attacked by player 3")
+    (chat-local-to-self chat-1062b2c8150cadf4f44729f3bf5a41ddcda43f06)
 )
 (defrule
     (goal allied-with-3 1)
@@ -39065,17 +39265,17 @@
 (defrule
     (goal 306 1)
 =>
-    (chat-to-player 3 "Fine, have it your way.")
+    (chat-to-player 3 chat-c139b871360335954087bfe0e7808ac0062bea98)
 )
 (defrule
     (goal 306 2)
 =>
-    (chat-to-player 3 "Would've been nice.")
+    (chat-to-player 3 chat-705519f70cb48c4e7326f64dfe1bb719a92d85fa)
 )
 (defrule
     (goal 306 3)
 =>
-    (chat-to-player 3 "Whatever.")
+    (chat-to-player 3 chat-c11ce23a13444a91229eb0dad991c757ca58c03f)
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
@@ -39085,7 +39285,7 @@
     (goal tried-alliance-with-3 0)
     (player-in-game 3)
 =>
-    (chat-local-to-self "alliance request to player 3 timed out")
+    (chat-local-to-self chat-3390d0fa3590638e3b866f872aa0d98d2e33dd5a)
     (set-stance 3 neutral)
     (set-goal tried-alliance-with-3 1)
 )
@@ -39110,7 +39310,7 @@
 =>
     (set-goal player-4-is-bad-egg 0)
     (set-goal player-4-bad-egg-expires-at -1)
-    (chat-local-to-self "player 4 is no longer a bad egg")
+    (chat-local-to-self chat-abf508ba3a4719c6a1adfd5aad724b36f94116ea)
 )
 (defrule
     (nand
@@ -39145,17 +39345,17 @@
 (defrule
     (goal 307 1)
 =>
-    (chat-to-player 4 "Good idea.")
+    (chat-to-player 4 chat-a0936c429351330a24a75a7382b6594ea631f840)
 )
 (defrule
     (goal 307 2)
 =>
-    (chat-to-player 4 "I was hoping you'd do that!")
+    (chat-to-player 4 chat-6e4b5a5d9cd840be6824f7209855519c9bf8a732)
 )
 (defrule
     (goal 307 3)
 =>
-    (chat-to-player 4 "I agree, let's be friends.")
+    (chat-to-player 4 chat-ae022016e19b11fd2b8bb5494d85a16624caea4f)
 )
 (defrule
     (goal accept-alliance-requests 1)
@@ -39168,7 +39368,7 @@
     (goal allied-with-4 0)
     (player-in-game 4)
 =>
-    (chat-local-to-self "accepting alliance request from player 4")
+    (chat-local-to-self chat-44b7511ff94bc36a35a4d972c0c9e42942081e6d)
     (set-stance 4 ally)
     (set-goal allied-with-4 1)
 )
@@ -39206,17 +39406,17 @@
 (defrule
     (goal 308 1)
 =>
-    (chat-to-player 4 "Let's do this. Together.")
+    (chat-to-player 4 chat-87b47d886a3bcf4fecf764721e89a5c3f00f218b)
 )
 (defrule
     (goal 308 2)
 =>
-    (chat-to-player 4 "Nice to have you with me.")
+    (chat-to-player 4 chat-73443f250f6062de5d7ac5c26f0641c3e391f34d)
 )
 (defrule
     (goal 308 3)
 =>
-    (chat-to-player 4 "Unstoppable team!")
+    (chat-to-player 4 chat-456f0f3ef0322a669d04b16584960dfa36421054)
 )
 (defrule
     (not
@@ -39230,7 +39430,7 @@
     (goal allied-with-4 0)
     (player-in-game 4)
 =>
-    (chat-local-to-self "player 4 accepted our alliance request")
+    (chat-local-to-self chat-7f0cbcd84755dad6a892d7bdaa7aee6699da2b3f)
     (set-goal allied-with-4 1)
 )
 (defrule
@@ -39280,7 +39480,7 @@
     )
     (player-in-game 4)
 =>
-    (chat-local-to-self "attacked by player 4")
+    (chat-local-to-self chat-e83a4ecd69f3c41b09a0a1236e7aa0581ac00f34)
 )
 (defrule
     (goal allied-with-4 1)
@@ -39401,17 +39601,17 @@
 (defrule
     (goal 309 1)
 =>
-    (chat-to-player 4 "Fine, have it your way.")
+    (chat-to-player 4 chat-c139b871360335954087bfe0e7808ac0062bea98)
 )
 (defrule
     (goal 309 2)
 =>
-    (chat-to-player 4 "Would've been nice.")
+    (chat-to-player 4 chat-705519f70cb48c4e7326f64dfe1bb719a92d85fa)
 )
 (defrule
     (goal 309 3)
 =>
-    (chat-to-player 4 "Whatever.")
+    (chat-to-player 4 chat-c11ce23a13444a91229eb0dad991c757ca58c03f)
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
@@ -39421,7 +39621,7 @@
     (goal tried-alliance-with-4 0)
     (player-in-game 4)
 =>
-    (chat-local-to-self "alliance request to player 4 timed out")
+    (chat-local-to-self chat-76b4999be9f61799040a3ad99ff3b989f6d00007)
     (set-stance 4 neutral)
     (set-goal tried-alliance-with-4 1)
 )
@@ -39446,7 +39646,7 @@
 =>
     (set-goal player-5-is-bad-egg 0)
     (set-goal player-5-bad-egg-expires-at -1)
-    (chat-local-to-self "player 5 is no longer a bad egg")
+    (chat-local-to-self chat-e5e799bb57b080e85534d5c5d7946731946daf70)
 )
 (defrule
     (nand
@@ -39481,17 +39681,17 @@
 (defrule
     (goal 310 1)
 =>
-    (chat-to-player 5 "Good idea.")
+    (chat-to-player 5 chat-a0936c429351330a24a75a7382b6594ea631f840)
 )
 (defrule
     (goal 310 2)
 =>
-    (chat-to-player 5 "I was hoping you'd do that!")
+    (chat-to-player 5 chat-6e4b5a5d9cd840be6824f7209855519c9bf8a732)
 )
 (defrule
     (goal 310 3)
 =>
-    (chat-to-player 5 "I agree, let's be friends.")
+    (chat-to-player 5 chat-ae022016e19b11fd2b8bb5494d85a16624caea4f)
 )
 (defrule
     (goal accept-alliance-requests 1)
@@ -39504,7 +39704,7 @@
     (goal allied-with-5 0)
     (player-in-game 5)
 =>
-    (chat-local-to-self "accepting alliance request from player 5")
+    (chat-local-to-self chat-aad65329038f71ebf68e6a1d065bca65e7e03140)
     (set-stance 5 ally)
     (set-goal allied-with-5 1)
 )
@@ -39542,17 +39742,17 @@
 (defrule
     (goal 311 1)
 =>
-    (chat-to-player 5 "Let's do this. Together.")
+    (chat-to-player 5 chat-87b47d886a3bcf4fecf764721e89a5c3f00f218b)
 )
 (defrule
     (goal 311 2)
 =>
-    (chat-to-player 5 "Nice to have you with me.")
+    (chat-to-player 5 chat-73443f250f6062de5d7ac5c26f0641c3e391f34d)
 )
 (defrule
     (goal 311 3)
 =>
-    (chat-to-player 5 "Unstoppable team!")
+    (chat-to-player 5 chat-456f0f3ef0322a669d04b16584960dfa36421054)
 )
 (defrule
     (not
@@ -39566,7 +39766,7 @@
     (goal allied-with-5 0)
     (player-in-game 5)
 =>
-    (chat-local-to-self "player 5 accepted our alliance request")
+    (chat-local-to-self chat-349f79ea82b90a83246236380d1215e02744cbe1)
     (set-goal allied-with-5 1)
 )
 (defrule
@@ -39616,7 +39816,7 @@
     )
     (player-in-game 5)
 =>
-    (chat-local-to-self "attacked by player 5")
+    (chat-local-to-self chat-f120f59c5092ae5e71f5b3e761c95b0594d41efc)
 )
 (defrule
     (goal allied-with-5 1)
@@ -39737,17 +39937,17 @@
 (defrule
     (goal 312 1)
 =>
-    (chat-to-player 5 "Fine, have it your way.")
+    (chat-to-player 5 chat-c139b871360335954087bfe0e7808ac0062bea98)
 )
 (defrule
     (goal 312 2)
 =>
-    (chat-to-player 5 "Would've been nice.")
+    (chat-to-player 5 chat-705519f70cb48c4e7326f64dfe1bb719a92d85fa)
 )
 (defrule
     (goal 312 3)
 =>
-    (chat-to-player 5 "Whatever.")
+    (chat-to-player 5 chat-c11ce23a13444a91229eb0dad991c757ca58c03f)
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
@@ -39757,7 +39957,7 @@
     (goal tried-alliance-with-5 0)
     (player-in-game 5)
 =>
-    (chat-local-to-self "alliance request to player 5 timed out")
+    (chat-local-to-self chat-125cdd96447018887b75673fc9b99fd92f05bac9)
     (set-stance 5 neutral)
     (set-goal tried-alliance-with-5 1)
 )
@@ -39782,7 +39982,7 @@
 =>
     (set-goal player-6-is-bad-egg 0)
     (set-goal player-6-bad-egg-expires-at -1)
-    (chat-local-to-self "player 6 is no longer a bad egg")
+    (chat-local-to-self chat-3bc7aa8c06652eb2594dce3bad6b029ce0b326e2)
 )
 (defrule
     (nand
@@ -39817,17 +40017,17 @@
 (defrule
     (goal 313 1)
 =>
-    (chat-to-player 6 "Good idea.")
+    (chat-to-player 6 chat-a0936c429351330a24a75a7382b6594ea631f840)
 )
 (defrule
     (goal 313 2)
 =>
-    (chat-to-player 6 "I was hoping you'd do that!")
+    (chat-to-player 6 chat-6e4b5a5d9cd840be6824f7209855519c9bf8a732)
 )
 (defrule
     (goal 313 3)
 =>
-    (chat-to-player 6 "I agree, let's be friends.")
+    (chat-to-player 6 chat-ae022016e19b11fd2b8bb5494d85a16624caea4f)
 )
 (defrule
     (goal accept-alliance-requests 1)
@@ -39840,7 +40040,7 @@
     (goal allied-with-6 0)
     (player-in-game 6)
 =>
-    (chat-local-to-self "accepting alliance request from player 6")
+    (chat-local-to-self chat-43d4565c80b77922e63818fd0a889f4835a27abc)
     (set-stance 6 ally)
     (set-goal allied-with-6 1)
 )
@@ -39878,17 +40078,17 @@
 (defrule
     (goal 314 1)
 =>
-    (chat-to-player 6 "Let's do this. Together.")
+    (chat-to-player 6 chat-87b47d886a3bcf4fecf764721e89a5c3f00f218b)
 )
 (defrule
     (goal 314 2)
 =>
-    (chat-to-player 6 "Nice to have you with me.")
+    (chat-to-player 6 chat-73443f250f6062de5d7ac5c26f0641c3e391f34d)
 )
 (defrule
     (goal 314 3)
 =>
-    (chat-to-player 6 "Unstoppable team!")
+    (chat-to-player 6 chat-456f0f3ef0322a669d04b16584960dfa36421054)
 )
 (defrule
     (not
@@ -39902,7 +40102,7 @@
     (goal allied-with-6 0)
     (player-in-game 6)
 =>
-    (chat-local-to-self "player 6 accepted our alliance request")
+    (chat-local-to-self chat-242ed4d43b83f84d1413e44e905c2b9a166f4104)
     (set-goal allied-with-6 1)
 )
 (defrule
@@ -39952,7 +40152,7 @@
     )
     (player-in-game 6)
 =>
-    (chat-local-to-self "attacked by player 6")
+    (chat-local-to-self chat-53567c58d5c94e135fe952436954bf043a31e01f)
 )
 (defrule
     (goal allied-with-6 1)
@@ -40073,17 +40273,17 @@
 (defrule
     (goal 315 1)
 =>
-    (chat-to-player 6 "Fine, have it your way.")
+    (chat-to-player 6 chat-c139b871360335954087bfe0e7808ac0062bea98)
 )
 (defrule
     (goal 315 2)
 =>
-    (chat-to-player 6 "Would've been nice.")
+    (chat-to-player 6 chat-705519f70cb48c4e7326f64dfe1bb719a92d85fa)
 )
 (defrule
     (goal 315 3)
 =>
-    (chat-to-player 6 "Whatever.")
+    (chat-to-player 6 chat-c11ce23a13444a91229eb0dad991c757ca58c03f)
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
@@ -40093,7 +40293,7 @@
     (goal tried-alliance-with-6 0)
     (player-in-game 6)
 =>
-    (chat-local-to-self "alliance request to player 6 timed out")
+    (chat-local-to-self chat-1769508a0087b10ac1737e5d2e2f7d8ef6109642)
     (set-stance 6 neutral)
     (set-goal tried-alliance-with-6 1)
 )
@@ -40118,7 +40318,7 @@
 =>
     (set-goal player-7-is-bad-egg 0)
     (set-goal player-7-bad-egg-expires-at -1)
-    (chat-local-to-self "player 7 is no longer a bad egg")
+    (chat-local-to-self chat-394d0dfc698bda587775c81bb0f30b0d5526a13f)
 )
 (defrule
     (nand
@@ -40153,17 +40353,17 @@
 (defrule
     (goal 316 1)
 =>
-    (chat-to-player 7 "Good idea.")
+    (chat-to-player 7 chat-a0936c429351330a24a75a7382b6594ea631f840)
 )
 (defrule
     (goal 316 2)
 =>
-    (chat-to-player 7 "I was hoping you'd do that!")
+    (chat-to-player 7 chat-6e4b5a5d9cd840be6824f7209855519c9bf8a732)
 )
 (defrule
     (goal 316 3)
 =>
-    (chat-to-player 7 "I agree, let's be friends.")
+    (chat-to-player 7 chat-ae022016e19b11fd2b8bb5494d85a16624caea4f)
 )
 (defrule
     (goal accept-alliance-requests 1)
@@ -40176,7 +40376,7 @@
     (goal allied-with-7 0)
     (player-in-game 7)
 =>
-    (chat-local-to-self "accepting alliance request from player 7")
+    (chat-local-to-self chat-0d53ad97300dc104338e8d21b46b4754e07ce204)
     (set-stance 7 ally)
     (set-goal allied-with-7 1)
 )
@@ -40214,17 +40414,17 @@
 (defrule
     (goal 317 1)
 =>
-    (chat-to-player 7 "Let's do this. Together.")
+    (chat-to-player 7 chat-87b47d886a3bcf4fecf764721e89a5c3f00f218b)
 )
 (defrule
     (goal 317 2)
 =>
-    (chat-to-player 7 "Nice to have you with me.")
+    (chat-to-player 7 chat-73443f250f6062de5d7ac5c26f0641c3e391f34d)
 )
 (defrule
     (goal 317 3)
 =>
-    (chat-to-player 7 "Unstoppable team!")
+    (chat-to-player 7 chat-456f0f3ef0322a669d04b16584960dfa36421054)
 )
 (defrule
     (not
@@ -40238,7 +40438,7 @@
     (goal allied-with-7 0)
     (player-in-game 7)
 =>
-    (chat-local-to-self "player 7 accepted our alliance request")
+    (chat-local-to-self chat-8087453fdc70a35c4d48192914c94b262bd716aa)
     (set-goal allied-with-7 1)
 )
 (defrule
@@ -40288,7 +40488,7 @@
     )
     (player-in-game 7)
 =>
-    (chat-local-to-self "attacked by player 7")
+    (chat-local-to-self chat-4ed8c17a5c5ebe44478b112d0504cf7503a6feb4)
 )
 (defrule
     (goal allied-with-7 1)
@@ -40409,17 +40609,17 @@
 (defrule
     (goal 318 1)
 =>
-    (chat-to-player 7 "Fine, have it your way.")
+    (chat-to-player 7 chat-c139b871360335954087bfe0e7808ac0062bea98)
 )
 (defrule
     (goal 318 2)
 =>
-    (chat-to-player 7 "Would've been nice.")
+    (chat-to-player 7 chat-705519f70cb48c4e7326f64dfe1bb719a92d85fa)
 )
 (defrule
     (goal 318 3)
 =>
-    (chat-to-player 7 "Whatever.")
+    (chat-to-player 7 chat-c11ce23a13444a91229eb0dad991c757ca58c03f)
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
@@ -40429,7 +40629,7 @@
     (goal tried-alliance-with-7 0)
     (player-in-game 7)
 =>
-    (chat-local-to-self "alliance request to player 7 timed out")
+    (chat-local-to-self chat-fb4127402bce408b590abd4f83a508462a0ab9b6)
     (set-stance 7 neutral)
     (set-goal tried-alliance-with-7 1)
 )
@@ -40454,7 +40654,7 @@
 =>
     (set-goal player-8-is-bad-egg 0)
     (set-goal player-8-bad-egg-expires-at -1)
-    (chat-local-to-self "player 8 is no longer a bad egg")
+    (chat-local-to-self chat-eff6100e64480d30af47207c5d14fa0bb2446c86)
 )
 (defrule
     (nand
@@ -40489,17 +40689,17 @@
 (defrule
     (goal 319 1)
 =>
-    (chat-to-player 8 "Good idea.")
+    (chat-to-player 8 chat-a0936c429351330a24a75a7382b6594ea631f840)
 )
 (defrule
     (goal 319 2)
 =>
-    (chat-to-player 8 "I was hoping you'd do that!")
+    (chat-to-player 8 chat-6e4b5a5d9cd840be6824f7209855519c9bf8a732)
 )
 (defrule
     (goal 319 3)
 =>
-    (chat-to-player 8 "I agree, let's be friends.")
+    (chat-to-player 8 chat-ae022016e19b11fd2b8bb5494d85a16624caea4f)
 )
 (defrule
     (goal accept-alliance-requests 1)
@@ -40512,7 +40712,7 @@
     (goal allied-with-8 0)
     (player-in-game 8)
 =>
-    (chat-local-to-self "accepting alliance request from player 8")
+    (chat-local-to-self chat-50513f1a2be7088d01afd3ec816114c2691b9152)
     (set-stance 8 ally)
     (set-goal allied-with-8 1)
 )
@@ -40550,17 +40750,17 @@
 (defrule
     (goal 320 1)
 =>
-    (chat-to-player 8 "Let's do this. Together.")
+    (chat-to-player 8 chat-87b47d886a3bcf4fecf764721e89a5c3f00f218b)
 )
 (defrule
     (goal 320 2)
 =>
-    (chat-to-player 8 "Nice to have you with me.")
+    (chat-to-player 8 chat-73443f250f6062de5d7ac5c26f0641c3e391f34d)
 )
 (defrule
     (goal 320 3)
 =>
-    (chat-to-player 8 "Unstoppable team!")
+    (chat-to-player 8 chat-456f0f3ef0322a669d04b16584960dfa36421054)
 )
 (defrule
     (not
@@ -40574,7 +40774,7 @@
     (goal allied-with-8 0)
     (player-in-game 8)
 =>
-    (chat-local-to-self "player 8 accepted our alliance request")
+    (chat-local-to-self chat-fa3751e319cbe5cacd139c7a1562fa43f2572540)
     (set-goal allied-with-8 1)
 )
 (defrule
@@ -40624,7 +40824,7 @@
     )
     (player-in-game 8)
 =>
-    (chat-local-to-self "attacked by player 8")
+    (chat-local-to-self chat-0f45c15df8f4b98f45e76a193f81ee06c4264160)
 )
 (defrule
     (goal allied-with-8 1)
@@ -40745,17 +40945,17 @@
 (defrule
     (goal 321 1)
 =>
-    (chat-to-player 8 "Fine, have it your way.")
+    (chat-to-player 8 chat-c139b871360335954087bfe0e7808ac0062bea98)
 )
 (defrule
     (goal 321 2)
 =>
-    (chat-to-player 8 "Would've been nice.")
+    (chat-to-player 8 chat-705519f70cb48c4e7326f64dfe1bb719a92d85fa)
 )
 (defrule
     (goal 321 3)
 =>
-    (chat-to-player 8 "Whatever.")
+    (chat-to-player 8 chat-c11ce23a13444a91229eb0dad991c757ca58c03f)
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
@@ -40765,7 +40965,7 @@
     (goal tried-alliance-with-8 0)
     (player-in-game 8)
 =>
-    (chat-local-to-self "alliance request to player 8 timed out")
+    (chat-local-to-self chat-a59989c36f66486bdb677b966bef4ab9aa0bca61)
     (set-stance 8 neutral)
     (set-goal tried-alliance-with-8 1)
 )
@@ -40904,17 +41104,17 @@
 (defrule
     (goal 323 8)
 =>
-    (chat-to-all "Love can be fleeting.")
+    (chat-to-all chat-24431b28ab67d3f626c364c93d8846158d17db36)
 )
 (defrule
     (goal 323 9)
 =>
-    (chat-to-all "Whoops, wrong button.")
+    (chat-to-all chat-515042920fb0d9bf0d0b9d82f7026f465ea6d162)
 )
 (defrule
     (goal 323 10)
 =>
-    (chat-to-all "I'm itching for a fight.")
+    (chat-to-all chat-ace1e65c7cd0e3b09613b3464a22b026da9f8238)
 )
 (defrule
     (not
@@ -40975,17 +41175,17 @@
 (defrule
     (goal 324 1)
 =>
-    (chat-to-player every-ally "1Sure.")
+    (chat-to-player every-ally chat-d70e126bdbfa17c210e069ec4095fd43cf3c84ec)
 )
 (defrule
     (goal 324 2)
 =>
-    (chat-to-player every-ally "1Of course.")
+    (chat-to-player every-ally chat-240eb2776efd751ff3abc7e50068b9d40675aba1)
 )
 (defrule
     (goal 324 3)
 =>
-    (chat-to-player every-ally "1Okay.")
+    (chat-to-player every-ally chat-59b165c02042977bdaf7087bdf3887eb9f20a828)
 )
 (defrule
     (taunt-detected any-ally 34)
@@ -41017,17 +41217,17 @@
 (defrule
     (goal 325 1)
 =>
-    (chat-to-player every-ally "1Sure.")
+    (chat-to-player every-ally chat-d70e126bdbfa17c210e069ec4095fd43cf3c84ec)
 )
 (defrule
     (goal 325 2)
 =>
-    (chat-to-player every-ally "1Of course.")
+    (chat-to-player every-ally chat-240eb2776efd751ff3abc7e50068b9d40675aba1)
 )
 (defrule
     (goal 325 3)
 =>
-    (chat-to-player every-ally "1Okay.")
+    (chat-to-player every-ally chat-59b165c02042977bdaf7087bdf3887eb9f20a828)
 )
 (defrule
     (nand
@@ -41049,17 +41249,17 @@
 (defrule
     (goal 326 1)
 =>
-    (chat-to-player every-ally "2Sorry, no.")
+    (chat-to-player every-ally chat-adce784ed342763397f2d5c5567de3da43ad274c)
 )
 (defrule
     (goal 326 2)
 =>
-    (chat-to-player every-ally "2Not right now, sorry.")
+    (chat-to-player every-ally chat-39c49ff4279bb5160e5406ffd1627ea17127aab9)
 )
 (defrule
     (goal 326 3)
 =>
-    (chat-to-player every-ally "2Sorry, no can do!")
+    (chat-to-player every-ally chat-4f5a3f8e7707db677e3935f1ab3f9fa22019323e)
 )
 (defrule
     (taunt-detected any-ally 35)
@@ -41109,7 +41309,7 @@
 (defrule
     (up-research-status c: feudal-age < research-pending)
 =>
-    (chat-to-player every-ally "Dark age.")
+    (chat-to-player every-ally chat-3157faa10ad8f4349ca9a0f430e2020480a2924d)
 )
 (defrule
     (up-research-status c: feudal-age == research-pending)
@@ -41117,7 +41317,7 @@
       (up-research-status c: feudal-age < research-pending)
     )
 =>
-    (chat-to-player every-ally "On my way to feudal.")
+    (chat-to-player every-ally chat-8c1add5792f06349834823be7af5388dd18dc6e5)
 )
 (defrule
     (up-research-status c: castle-age < research-pending)
@@ -41128,7 +41328,7 @@
       (up-research-status c: feudal-age == research-pending)
     )
 =>
-    (chat-to-player every-ally "Feudal age.")
+    (chat-to-player every-ally chat-1b168fc75d0dccead31debc6304ae90e62b85346)
 )
 (defrule
     (up-research-status c: castle-age == research-pending)
@@ -41142,7 +41342,7 @@
       (up-research-status c: castle-age < research-pending)
     )
 =>
-    (chat-to-player every-ally "On my way to castle.")
+    (chat-to-player every-ally chat-8e47476ff2d44144fef9f4c3b25acadc9b58ade1)
 )
 (defrule
     (up-research-status c: imperial-age < research-pending)
@@ -41159,7 +41359,7 @@
       (up-research-status c: castle-age == research-pending)
     )
 =>
-    (chat-to-player every-ally "Castle age.")
+    (chat-to-player every-ally chat-3e71608742dd8317c17d7aad90031f4ca2f4e31e)
 )
 (defrule
     (up-research-status c: imperial-age == research-pending)
@@ -41179,7 +41379,7 @@
       (up-research-status c: imperial-age < research-pending)
     )
 =>
-    (chat-to-player every-ally "On my way to imperial.")
+    (chat-to-player every-ally chat-6aa194c8364dcbf888b9f71dddead1b65e2a18b1)
 )
 (defrule
     (not
@@ -41201,7 +41401,7 @@
       (up-research-status c: imperial-age == research-pending)
     )
 =>
-    (chat-to-player every-ally "Imperial age.")
+    (chat-to-player every-ally chat-5020f05cec7992e87bfff7f3806503ffd09fabb4)
 )
 (defrule
     (taunt-detected any-ally 42)
@@ -41226,17 +41426,17 @@
 (defrule
     (goal 327 1)
 =>
-    (chat-to-all "2Absolutely not.")
+    (chat-to-all chat-96d6c00acaea47ba19980829b2fd9456b0f6bc20)
 )
 (defrule
     (goal 327 2)
 =>
-    (chat-to-all "2Are you out of your mind?")
+    (chat-to-all chat-aba9a618839083a1fc344dc2d94aaa3aac5d8a7b)
 )
 (defrule
     (goal 327 3)
 =>
-    (chat-to-all "2As if!")
+    (chat-to-all chat-c4920c37e39cb5df2dc2ae05b30a0bd92a835105)
 )
 (defrule
     (taunt-detected any-enemy 34)
@@ -41261,17 +41461,17 @@
 (defrule
     (goal 328 1)
 =>
-    (chat-to-all "2Absolutely not.")
+    (chat-to-all chat-96d6c00acaea47ba19980829b2fd9456b0f6bc20)
 )
 (defrule
     (goal 328 2)
 =>
-    (chat-to-all "2Are you out of your mind?")
+    (chat-to-all chat-aba9a618839083a1fc344dc2d94aaa3aac5d8a7b)
 )
 (defrule
     (goal 328 3)
 =>
-    (chat-to-all "2As if!")
+    (chat-to-all chat-c4920c37e39cb5df2dc2ae05b30a0bd92a835105)
 )
 (defrule
     (taunt-detected any-enemy 35)
@@ -41295,17 +41495,17 @@
 (defrule
     (goal 329 1)
 =>
-    (chat-to-all "2Absolutely not.")
+    (chat-to-all chat-96d6c00acaea47ba19980829b2fd9456b0f6bc20)
 )
 (defrule
     (goal 329 2)
 =>
-    (chat-to-all "2Are you out of your mind?")
+    (chat-to-all chat-aba9a618839083a1fc344dc2d94aaa3aac5d8a7b)
 )
 (defrule
     (goal 329 3)
 =>
-    (chat-to-all "2As if!")
+    (chat-to-all chat-c4920c37e39cb5df2dc2ae05b30a0bd92a835105)
 )
 (defrule
     (taunt-detected any-enemy 38)
@@ -41337,7 +41537,7 @@
       (goal team-game 1)
     )
 =>
-    (chat-to-all "Good luck and have fun everyone!")
+    (chat-to-all chat-0c828eb15d2a93d63913170c9c76265baa71917f)
     (disable-self)
 )
 (defrule
@@ -41348,7 +41548,7 @@
       (goal team-game 1)
     )
 =>
-    (chat-to-all "May the best ruler win!")
+    (chat-to-all chat-c19d910ae0af1d7a0109c0695c694cb1ea6d76ce)
     (disable-self)
 )
 (defrule
@@ -41361,7 +41561,7 @@
       (goal team-game 1)
     )
 =>
-    (chat-to-all "May the best team win!")
+    (chat-to-all chat-c1a91b91f6684242f1d97269a22c358daf5c4c7c)
     (disable-self)
 )
 (defrule
@@ -41371,7 +41571,7 @@
       (goal team-game 1)
     )
 =>
-    (chat-to-all "GL everyone!!!")
+    (chat-to-all chat-c1a2c8283f88d733961d6b4365e9be13d623d2ed)
     (disable-self)
 )
 (defrule
@@ -41381,7 +41581,7 @@
       (goal team-game 1)
     )
 =>
-    (chat-to-all "Let's do this!")
+    (chat-to-all chat-34a4e982ab21b1135e32998f31b988f2e721aa37)
     (disable-self)
 )
 (defrule
@@ -41406,7 +41606,7 @@
       (goal team-game 1)
     )
 =>
-    (chat-to-all "Hi! Go easy on me, okay?")
+    (chat-to-all chat-4b2d225e68bb2a07009be46ed0e20152c08e55aa)
     (disable-self)
 )
 (defrule
@@ -41418,7 +41618,7 @@
       (goal team-game 1)
     )
 =>
-    (chat-to-all "Looking forward to this. Let's go.")
+    (chat-to-all chat-3d0ebcbcac2c3738090ce9627d7d67ce721988cb)
     (disable-self)
 )
 (defrule
@@ -41430,7 +41630,7 @@
       (goal team-game 1)
     )
 =>
-    (chat-to-all "Good luck, have fun!")
+    (chat-to-all chat-a7a3d544f2e165ee5b1d0c26d4ff3e158cca81a1)
     (disable-self)
 )
 (defrule
@@ -41442,7 +41642,7 @@
       (goal team-game 1)
     )
 =>
-    (chat-to-all "GL!")
+    (chat-to-all chat-f5dc299365d92f463b51850f4998d15a1ccea957)
     (disable-self)
 )
 (defrule
@@ -41454,7 +41654,7 @@
       (goal team-game 1)
     )
 =>
-    (chat-to-all "HF!")
+    (chat-to-all chat-352a6728c4532105f53a668dfbd418be5cb3fd10)
     (disable-self)
 )
 (defrule
@@ -41466,7 +41666,7 @@
       (goal team-game 1)
     )
 =>
-    (chat-to-all "Good luck!")
+    (chat-to-all chat-8e30d6aac813417d581bd798bb4422107881ac34)
     (disable-self)
 )
 (defrule
@@ -41478,7 +41678,7 @@
       (goal team-game 1)
     )
 =>
-    (chat-to-all "Have fun!")
+    (chat-to-all chat-8503ede3ea63ea360679c1a7bb9c6feb415c1aeb)
     (disable-self)
 )
 (defrule
@@ -41507,14 +41707,14 @@
     (goal 332 1)
     (goal team-game 1)
 =>
-    (chat-to-all "Um, who exactly are we fighting?")
+    (chat-to-all chat-54ceebfc9eedd7e5470e1bf52d52982ae8466606)
     (disable-self)
 )
 (defrule
     (goal 332 2)
     (goal team-game 1)
 =>
-    (chat-to-all "I guess we win already?")
+    (chat-to-all chat-407f29f6af78f4b121f2dcc95bc1802f5565e1e0)
     (disable-self)
 )
 (defrule
@@ -41533,7 +41733,7 @@
       (goal team-game 1)
     )
 =>
-    (chat-to-all "Hello? Is anyone there?")
+    (chat-to-all chat-c44ed845a6ff3c2ffb3ab515fa52338d12f60525)
     (disable-self)
 )
 (defrule
@@ -41542,7 +41742,7 @@
       (goal team-game 1)
     )
 =>
-    (chat-to-all "Lonely...")
+    (chat-to-all chat-81efecdd5c82a2660ad0c59f815946bef2f13f88)
     (disable-self)
 )
 (defrule
@@ -41551,7 +41751,7 @@
       (goal team-game 1)
     )
 =>
-    (chat-to-all "Nobody's here?")
+    (chat-to-all chat-a3be6ee65fab627be24ec41da7725a025c510c56)
     (disable-self)
 )
 (defrule
@@ -41585,19 +41785,19 @@
 (defrule
     (goal 334 1)
 =>
-    (chat-to-all "I'm having some trouble with this one.")
+    (chat-to-all chat-6e3caf41f579a199863e77aba43701a14a104135)
     (disable-self)
 )
 (defrule
     (goal 334 2)
 =>
-    (chat-to-all "This is a tough game.")
+    (chat-to-all chat-07fbe50aef0a19edc7a165a23218530a51375911)
     (disable-self)
 )
 (defrule
     (goal 334 3)
 =>
-    (chat-to-all "I don't like my chances here.")
+    (chat-to-all chat-8cfad1992442d65d54a87d6db94bf15a1791fd14)
     (disable-self)
 )
 (defrule
@@ -41630,19 +41830,19 @@
 (defrule
     (goal 335 1)
 =>
-    (chat-to-all "We may need a different strategy...")
+    (chat-to-all chat-148fc18afce1ba1e4bf765ce58284107bababfe7)
     (disable-self)
 )
 (defrule
     (goal 335 2)
 =>
-    (chat-to-all "Hopefully we still have a shot?")
+    (chat-to-all chat-3af0b005d375f748321b4a41fcecc1aae4aefaf6)
     (disable-self)
 )
 (defrule
     (goal 335 3)
 =>
-    (chat-to-all "This is hard.")
+    (chat-to-all chat-38e831846ef26cbdaacad9bf5e7250fc188a6c32)
     (disable-self)
 )
 (defrule
@@ -41677,31 +41877,31 @@
 (defrule
     (goal 336 1)
 =>
-    (chat-to-all "I feel vastly outpaced, you're playing a good game.")
+    (chat-to-all chat-19634ee5b0c18ded8ea33b3ae8dd61089f1b8332)
     (disable-self)
 )
 (defrule
     (goal 336 2)
 =>
-    (chat-to-all "I'm not doing very well...")
+    (chat-to-all chat-27daacbab2622883f44b817a5b7a32ce0d4a0daa)
     (disable-self)
 )
 (defrule
     (goal 336 3)
 =>
-    (chat-to-all "This could have gone better, oh well.")
+    (chat-to-all chat-2b4241267e3b903ad08c41a2e2e065b1e18d6217)
     (disable-self)
 )
 (defrule
     (goal 336 4)
 =>
-    (chat-to-all "You're playing quite well.")
+    (chat-to-all chat-2e540e7a93e8a2c16dd2db03a61f281bd71d44a6)
     (disable-self)
 )
 (defrule
     (goal 336 5)
 =>
-    (chat-to-all "I'm not sure I can best you.")
+    (chat-to-all chat-785d57ccabb15e87d9006519033209d563547b10)
     (disable-self)
 )
 (defrule
@@ -41734,13 +41934,13 @@
 (defrule
     (goal 337 1)
 =>
-    (chat-to-all "I'm pretty sure I've got this game.")
+    (chat-to-all chat-64380c78099f9d606c5717d5cd64375f7af9b1b1)
     (disable-self)
 )
 (defrule
     (goal 337 2)
 =>
-    (chat-to-all "It was tough, but I got there in the end.")
+    (chat-to-all chat-7d06b793b137e11ecd1977e0a7e00d7e063fc5d2)
     (disable-self)
 )
 (defrule
@@ -41770,7 +41970,7 @@
 (defrule
     (true)
 =>
-    (chat-to-all "Looks like we're close to getting this squared off.")
+    (chat-to-all chat-4d11f67974ce3ca3532c23088d775e38fb8c3735)
     (disable-self)
 )
 (defrule
@@ -41802,7 +42002,7 @@
 (defrule
     (true)
 =>
-    (chat-to-all "I'm winning this one. You played well though!")
+    (chat-to-all chat-5d312d4a59392d3794263192a8821782d3d2b8f1)
     (disable-self)
 )
 (defrule
@@ -41833,25 +42033,25 @@
 (defrule
     (goal 338 1)
 =>
-    (chat-to-all "I don't like this...")
+    (chat-to-all chat-e9532672b85a1beb284e4e03bceb633880370346)
     (disable-self)
 )
 (defrule
     (goal 338 2)
 =>
-    (chat-to-all "Dicey.")
+    (chat-to-all chat-0ecbe33a40e3a01167989f50032df37ff257587f)
     (disable-self)
 )
 (defrule
     (goal 338 3)
 =>
-    (chat-to-all "I'd better step on the pedal a bit, sheesh.")
+    (chat-to-all chat-961c2deda7b66bdb5f5e299c7782fbb4da858a1b)
     (disable-self)
 )
 (defrule
     (goal 338 4)
 =>
-    (chat-to-all "...please don't hurt me!")
+    (chat-to-all chat-51fc69ba67d089e91a8fca0c10c2534cd01e61e3)
     (disable-self)
 )
 (defrule
@@ -41861,7 +42061,7 @@
     )
     (goal 338 5)
 =>
-    (chat-to-all "It's looking scary out there...")
+    (chat-to-all chat-8ce4eeee4ffed6c3f3b1db90374ebfcde5700522)
     (disable-self)
 )
 (defrule
@@ -41873,13 +42073,13 @@
     )
     (goal 338 5)
 =>
-    (chat-to-all "You're looking scary...")
+    (chat-to-all chat-eaa2467d642e1a4eb5a8d9106ae62d43146b2a2e)
     (disable-self)
 )
 (defrule
     (goal 338 6)
 =>
-    (chat-to-all "That's a lot of stuff.")
+    (chat-to-all chat-b6df83614ca4dbd79ddb8598e07cc0b0d02b7e84)
     (disable-self)
 )
 (defrule
@@ -41920,7 +42120,7 @@
     )
     (goal 339 1)
 =>
-    (chat-to-all "Let's crush 'em!")
+    (chat-to-all chat-6ede43a29bcd9bae6087d5d2d82447536ed824ce)
     (disable-self)
 )
 (defrule
@@ -41932,13 +42132,13 @@
     )
     (goal 339 1)
 =>
-    (chat-to-all "It's time for some violence!")
+    (chat-to-all chat-a95fb62cb0053175f353ba1288f8d2d234b09f01)
     (disable-self)
 )
 (defrule
     (goal 339 2)
 =>
-    (chat-to-all "Oh yeah, this is good.")
+    (chat-to-all chat-f3d1912b990b10acb7343d585e19bc2241d2c1c3)
     (disable-self)
 )
 (defrule
@@ -41948,7 +42148,7 @@
     )
     (goal 339 3)
 =>
-    (chat-to-all "You lot aren't prepared for this.")
+    (chat-to-all chat-f5bd8413755fcb04dd7e0a8b597a929cf19c17a7)
     (disable-self)
 )
 (defrule
@@ -41960,32 +42160,32 @@
     )
     (goal 339 3)
 =>
-    (chat-to-all "You aren't prepared for this.")
+    (chat-to-all chat-6d95d94755acaedd03e97615b28c41909ac4230b)
     (disable-self)
 )
 (defrule
     (goal 339 4)
 =>
-    (chat-to-all "[cracks knuckles]")
+    (chat-to-all chat-83694dc1c91d4874c26ac8bc2ecea836aead3ce2)
     (disable-self)
 )
 (defrule
     (goal 339 5)
 =>
-    (chat-to-all "I'm pumped! Let's go!!!")
+    (chat-to-all chat-10cbe05e84d9c7317507462818d034f774765349)
     (disable-self)
 )
 (defrule
     (goal 339 6)
 =>
-    (chat-to-all "Allow me to show you some numbers.")
+    (chat-to-all chat-735d0d536d636678c4a8895adb4b86ec7b62a486)
     (disable-self)
 )
 (defrule
     (goal team-game 1)
     (goal 339 7)
 =>
-    (chat-to-all "We're bringing the pain.")
+    (chat-to-all chat-3ce3c2bac686e227e9a22ec034d350f77befc77c)
     (disable-self)
 )
 (defrule
@@ -41994,13 +42194,13 @@
     )
     (goal 339 7)
 =>
-    (chat-to-all "I'm bringing the pain.")
+    (chat-to-all chat-e3e25ce529666447cfcdc1517c952205c85ae301)
     (disable-self)
 )
 (defrule
     (goal 339 8)
 =>
-    (chat-to-all "It'll all be over soon.")
+    (chat-to-all chat-8b07e683b6a8a2be05e5fa0983ac1162cbb86b70)
     (disable-self)
 )
 (defrule
@@ -42043,7 +42243,7 @@
     )
     (goal 340 1)
 =>
-    (chat-to-all "Come at me.")
+    (chat-to-all chat-5ff49d06db6d9da4b3d8576ad8c7200426baa045)
     (disable-self)
 )
 (defrule
@@ -42055,31 +42255,31 @@
     )
     (goal 340 1)
 =>
-    (chat-to-all "I'm ready for what you've got.")
+    (chat-to-all chat-2e1e4d4524c3a7b32d06e7a0f47dde021d92eea9)
     (disable-self)
 )
 (defrule
     (goal 340 2)
 =>
-    (chat-to-all "Feeling confident.")
+    (chat-to-all chat-bc024c7f06f28ebe926a8bc05620b507a71db22c)
     (disable-self)
 )
 (defrule
     (goal 340 3)
 =>
-    (chat-to-all "Feeling good.")
+    (chat-to-all chat-fda0087cd235c1ddfbec157a739e406b8df7e9c6)
     (disable-self)
 )
 (defrule
     (goal 340 4)
 =>
-    (chat-to-all "I am prepared.")
+    (chat-to-all chat-74a9cde05529e14835c25fda908d5d7619760bb8)
     (disable-self)
 )
 (defrule
     (goal 340 5)
 =>
-    (chat-to-all "Are you ready?")
+    (chat-to-all chat-b68a42add4208a6c61dc94dc77aff979411df768)
     (disable-self)
 )
 (defrule
@@ -42100,25 +42300,25 @@
 (defrule
     (goal 341 1)
 =>
-    (chat-to-all "My heart's not really in this anymore, sorry.")
+    (chat-to-all chat-abff28fcabfdd0b5dbf2f25ec16d71cd700ceba0)
     (disable-self)
 )
 (defrule
     (goal 341 2)
 =>
-    (chat-to-all "It was a good game, I think I'm out though.")
+    (chat-to-all chat-e224508cbf520f93d798247d758574cec6bbd53e)
     (disable-self)
 )
 (defrule
     (goal 341 3)
 =>
-    (chat-to-all "Good game, well played.")
+    (chat-to-all chat-0fd729c917031e72165260ea46645b93da7953fb)
     (disable-self)
 )
 (defrule
     (goal 341 4)
 =>
-    (chat-to-all "I'm done.")
+    (chat-to-all chat-3b79e38c69b431d2a0cf2ee8e393dcaf1c582f75)
     (disable-self)
 )
 (defrule
@@ -42139,19 +42339,19 @@
 (defrule
     (goal 342 1)
 =>
-    (chat-to-allies "On my way up.")
+    (chat-to-allies chat-da0510cbce82adf42730cc776c097ced4769ef84)
     (disable-self)
 )
 (defrule
     (goal 342 2)
 =>
-    (chat-to-allies "I've clicked up.")
+    (chat-to-allies chat-3f53f5f3fede916e304e8d1841050694cc36a6a0)
     (disable-self)
 )
 (defrule
     (goal 342 3)
 =>
-    (chat-to-allies "Going castle.")
+    (chat-to-allies chat-6ceeb449e5d4dccf41ce23aa49e4a25fd5d58182)
     (disable-self)
 )
 (defrule
@@ -42179,14 +42379,14 @@
 (defrule
     (goal 343 1)
 =>
-    (chat-to-all "Why must you do this?")
+    (chat-to-all chat-c9d0a992bee2534cc3036d84862a2fca61e96673)
     (disable-self)
 )
 (defrule
     (goal team-game 1)
     (goal 343 2)
 =>
-    (chat-to-all "Your teammate is a real piece of work.")
+    (chat-to-all chat-fa0929c4c5ee827d7c95b20bfee567236a3dbaeb)
     (disable-self)
 )
 (defrule
@@ -42195,25 +42395,25 @@
     )
     (goal 343 2)
 =>
-    (chat-to-all "I don't think I like you very much...")
+    (chat-to-all chat-994b2d17a26b32564ea254679b1a01fc834304d7)
     (disable-self)
 )
 (defrule
     (goal 343 3)
 =>
-    (chat-to-all "[sigh]")
+    (chat-to-all chat-c0f45c97d40bc07b3efd507b6eeff5ff0c829214)
     (disable-self)
 )
 (defrule
     (goal 343 4)
 =>
-    (chat-to-all "Why can't we just have fun?")
+    (chat-to-all chat-796082ad792e39c9e35f9d12504b7da4d7825edf)
     (disable-self)
 )
 (defrule
     (goal 343 5)
 =>
-    (chat-to-all "You know I can't deal with this. It's unfair.")
+    (chat-to-all chat-32ed7d56f6e3169a4469afaac177b2bb4f6c212d)
     (disable-self)
 )
 (defrule
@@ -42641,7 +42841,7 @@
 =>
     (tribute-to-player this-any-ally wood 100)
     (set-goal did-tribute 1)
-    (chat-local-to-self "sending wood to ally")
+    (chat-local-to-self chat-c16cc99892e60a495525ca01fdef862c1af9487e)
 )
 (defrule
     (not
@@ -42656,7 +42856,7 @@
 =>
     (tribute-to-player this-any-ally food 100)
     (set-goal did-tribute 1)
-    (chat-local-to-self "sending food to ally")
+    (chat-local-to-self chat-ccdd2139b41000710da3064889e4b1ae35562704)
 )
 (defrule
     (not
@@ -42671,7 +42871,7 @@
 =>
     (tribute-to-player this-any-ally gold 100)
     (set-goal did-tribute 1)
-    (chat-local-to-self "sending gold to ally")
+    (chat-local-to-self chat-c8395566c9f14bcc1ba9ca2f7a7ef0841786ca33)
 )
 (defrule
     (not
@@ -42686,7 +42886,7 @@
 =>
     (tribute-to-player this-any-ally stone 100)
     (set-goal did-tribute 1)
-    (chat-local-to-self "sending stone to ally")
+    (chat-local-to-self chat-0d406058bc76910a3af52fb117012d201c5bd292)
 )
 (defrule
     (not
@@ -42724,17 +42924,17 @@
 (defrule
     (goal 349 1)
 =>
-    (chat-to-player every-ally "1Sure.")
+    (chat-to-player every-ally chat-d70e126bdbfa17c210e069ec4095fd43cf3c84ec)
 )
 (defrule
     (goal 349 2)
 =>
-    (chat-to-player every-ally "1Of course.")
+    (chat-to-player every-ally chat-240eb2776efd751ff3abc7e50068b9d40675aba1)
 )
 (defrule
     (goal 349 3)
 =>
-    (chat-to-player every-ally "1Okay.")
+    (chat-to-player every-ally chat-59b165c02042977bdaf7087bdf3887eb9f20a828)
 )
 (defrule
     (nand
@@ -42757,17 +42957,17 @@
 (defrule
     (goal 350 1)
 =>
-    (chat-to-player every-ally "2Sorry, no.")
+    (chat-to-player every-ally chat-adce784ed342763397f2d5c5567de3da43ad274c)
 )
 (defrule
     (goal 350 2)
 =>
-    (chat-to-player every-ally "2Not right now, sorry.")
+    (chat-to-player every-ally chat-39c49ff4279bb5160e5406ffd1627ea17127aab9)
 )
 (defrule
     (goal 350 3)
 =>
-    (chat-to-player every-ally "2Sorry, no can do!")
+    (chat-to-player every-ally chat-4f5a3f8e7707db677e3935f1ab3f9fa22019323e)
 )
 (defrule
     (taunt-detected any-ally 3)
@@ -42810,17 +43010,17 @@
 (defrule
     (goal 351 1)
 =>
-    (chat-to-player every-ally "1Sure.")
+    (chat-to-player every-ally chat-d70e126bdbfa17c210e069ec4095fd43cf3c84ec)
 )
 (defrule
     (goal 351 2)
 =>
-    (chat-to-player every-ally "1Of course.")
+    (chat-to-player every-ally chat-240eb2776efd751ff3abc7e50068b9d40675aba1)
 )
 (defrule
     (goal 351 3)
 =>
-    (chat-to-player every-ally "1Okay.")
+    (chat-to-player every-ally chat-59b165c02042977bdaf7087bdf3887eb9f20a828)
 )
 (defrule
     (nand
@@ -42843,17 +43043,17 @@
 (defrule
     (goal 352 1)
 =>
-    (chat-to-player every-ally "2Sorry, no.")
+    (chat-to-player every-ally chat-adce784ed342763397f2d5c5567de3da43ad274c)
 )
 (defrule
     (goal 352 2)
 =>
-    (chat-to-player every-ally "2Not right now, sorry.")
+    (chat-to-player every-ally chat-39c49ff4279bb5160e5406ffd1627ea17127aab9)
 )
 (defrule
     (goal 352 3)
 =>
-    (chat-to-player every-ally "2Sorry, no can do!")
+    (chat-to-player every-ally chat-4f5a3f8e7707db677e3935f1ab3f9fa22019323e)
 )
 (defrule
     (taunt-detected any-ally 4)
@@ -42896,17 +43096,17 @@
 (defrule
     (goal 353 1)
 =>
-    (chat-to-player every-ally "1Sure.")
+    (chat-to-player every-ally chat-d70e126bdbfa17c210e069ec4095fd43cf3c84ec)
 )
 (defrule
     (goal 353 2)
 =>
-    (chat-to-player every-ally "1Of course.")
+    (chat-to-player every-ally chat-240eb2776efd751ff3abc7e50068b9d40675aba1)
 )
 (defrule
     (goal 353 3)
 =>
-    (chat-to-player every-ally "1Okay.")
+    (chat-to-player every-ally chat-59b165c02042977bdaf7087bdf3887eb9f20a828)
 )
 (defrule
     (nand
@@ -42929,17 +43129,17 @@
 (defrule
     (goal 354 1)
 =>
-    (chat-to-player every-ally "2Sorry, no.")
+    (chat-to-player every-ally chat-adce784ed342763397f2d5c5567de3da43ad274c)
 )
 (defrule
     (goal 354 2)
 =>
-    (chat-to-player every-ally "2Not right now, sorry.")
+    (chat-to-player every-ally chat-39c49ff4279bb5160e5406ffd1627ea17127aab9)
 )
 (defrule
     (goal 354 3)
 =>
-    (chat-to-player every-ally "2Sorry, no can do!")
+    (chat-to-player every-ally chat-4f5a3f8e7707db677e3935f1ab3f9fa22019323e)
 )
 (defrule
     (taunt-detected any-ally 5)
@@ -42982,17 +43182,17 @@
 (defrule
     (goal 355 1)
 =>
-    (chat-to-player every-ally "1Sure.")
+    (chat-to-player every-ally chat-d70e126bdbfa17c210e069ec4095fd43cf3c84ec)
 )
 (defrule
     (goal 355 2)
 =>
-    (chat-to-player every-ally "1Of course.")
+    (chat-to-player every-ally chat-240eb2776efd751ff3abc7e50068b9d40675aba1)
 )
 (defrule
     (goal 355 3)
 =>
-    (chat-to-player every-ally "1Okay.")
+    (chat-to-player every-ally chat-59b165c02042977bdaf7087bdf3887eb9f20a828)
 )
 (defrule
     (nand
@@ -43015,17 +43215,17 @@
 (defrule
     (goal 356 1)
 =>
-    (chat-to-player every-ally "2Sorry, no.")
+    (chat-to-player every-ally chat-adce784ed342763397f2d5c5567de3da43ad274c)
 )
 (defrule
     (goal 356 2)
 =>
-    (chat-to-player every-ally "2Not right now, sorry.")
+    (chat-to-player every-ally chat-39c49ff4279bb5160e5406ffd1627ea17127aab9)
 )
 (defrule
     (goal 356 3)
 =>
-    (chat-to-player every-ally "2Sorry, no can do!")
+    (chat-to-player every-ally chat-4f5a3f8e7707db677e3935f1ab3f9fa22019323e)
 )
 (defrule
     (taunt-detected any-ally 6)
@@ -43149,7 +43349,7 @@
       (goal under-attack 1)
     )
 =>
-    (chat-local-to-self "buy wood, excellent price.")
+    (chat-local-to-self chat-751b5928087d11eba65985a66c3803e65d9dae20)
 )
 (defrule
     (can-buy-commodity wood)
@@ -43178,7 +43378,7 @@
       (goal under-attack 1)
     )
 =>
-    (chat-local-to-self "buy food, excellent price.")
+    (chat-local-to-self chat-799ebc2e18e5acaa96f2916b700be42ad0a64dba)
 )
 (defrule
     (can-buy-commodity food)
@@ -43207,7 +43407,7 @@
       (goal under-attack 1)
     )
 =>
-    (chat-local-to-self "sell wood, excellent price.")
+    (chat-local-to-self chat-2cd1cb794480bb23192fb8a01b286cdde2b1ac70)
 )
 (defrule
     (can-sell-commodity wood)
@@ -43236,7 +43436,7 @@
       (goal under-attack 1)
     )
 =>
-    (chat-local-to-self "sell food, excellent price.")
+    (chat-local-to-self chat-44c30f3a793150391847d49ba872e9cee87b8bea)
 )
 (defrule
     (can-sell-commodity food)
@@ -43261,7 +43461,7 @@
       (goal under-attack 1)
     )
 =>
-    (chat-local-to-self "buy wood, good price.")
+    (chat-local-to-self chat-c62715314a567434688ed360f54f41ec310888de)
 )
 (defrule
     (can-buy-commodity wood)
@@ -43282,7 +43482,7 @@
       (goal under-attack 1)
     )
 =>
-    (chat-local-to-self "buy food, good price.")
+    (chat-local-to-self chat-21c85db3b3664127b620546345848989c1926b4a)
 )
 (defrule
     (can-buy-commodity food)
@@ -43305,7 +43505,7 @@
       (goal under-attack 1)
     )
 =>
-    (chat-local-to-self "sell wood, good price.")
+    (chat-local-to-self chat-875edfa23fa1b4599a86404c2d08b0d801758fc4)
 )
 (defrule
     (can-sell-commodity wood)
@@ -43330,7 +43530,7 @@
       (goal under-attack 1)
     )
 =>
-    (chat-local-to-self "sell food, good price.")
+    (chat-local-to-self chat-116f9ef6361a9063fd3ee3fbe9cc61f87fcdc777)
 )
 (defrule
     (can-sell-commodity food)
@@ -43360,7 +43560,7 @@
     (dropsite-min-distance gold >= 0)
     (timer-triggered 9)
 =>
-    (chat-local-to-self "rebalance: wood food -> gold")
+    (chat-local-to-self chat-34f8609760258d82ecc3e0146f981c1ec0725afb)
 )
 (defrule
     (strategic-number sn-wood-gatherer-percentage >= 2)
@@ -43387,7 +43587,7 @@
     (dropsite-min-distance gold >= 0)
     (timer-triggered 9)
 =>
-    (chat-local-to-self "rebalance: wood gold -> food")
+    (chat-local-to-self chat-19b22c4216400b4ac44cedd180de15040bba208a)
 )
 (defrule
     (strategic-number sn-wood-gatherer-percentage >= 2)
@@ -43416,7 +43616,7 @@
     (dropsite-min-distance gold >= 0)
     (timer-triggered 9)
 =>
-    (chat-local-to-self "rebalance: wood -> food gold")
+    (chat-local-to-self chat-7f1eda05222ecfc6817de23caf16247e9200bb91)
 )
 (defrule
     (strategic-number sn-wood-gatherer-percentage >= 4)
@@ -43445,7 +43645,7 @@
     (dropsite-min-distance gold >= 0)
     (timer-triggered 9)
 =>
-    (chat-local-to-self "rebalance: food gold -> wood")
+    (chat-local-to-self chat-852bc71dbe1d5f015c304fd5abc8ff06a003dc65)
 )
 (defrule
     (strategic-number sn-food-gatherer-percentage >= 2)
@@ -43474,7 +43674,7 @@
     (dropsite-min-distance gold >= 0)
     (timer-triggered 9)
 =>
-    (chat-local-to-self "rebalance: food -> wood gold")
+    (chat-local-to-self chat-bd7c8904ccd4165da66d7d9cecb51f8500c6890b)
 )
 (defrule
     (strategic-number sn-food-gatherer-percentage >= 4)
@@ -43505,7 +43705,7 @@
     (dropsite-min-distance gold >= 0)
     (timer-triggered 9)
 =>
-    (chat-local-to-self "rebalance: gold -> wood food")
+    (chat-local-to-self chat-822e28c24c9ecfade87e50563a2fda287b1d3e41)
 )
 (defrule
     (strategic-number sn-gold-gatherer-percentage >= 4)
@@ -43535,7 +43735,7 @@
     )
     (timer-triggered 9)
 =>
-    (chat-local-to-self "rebalance: wood -> food")
+    (chat-local-to-self chat-d94b5a6ca271d8c89b20340814572189d3edf11b)
 )
 (defrule
     (strategic-number sn-wood-gatherer-percentage >= 4)
@@ -43562,7 +43762,7 @@
     )
     (timer-triggered 9)
 =>
-    (chat-local-to-self "rebalance: food -> wood")
+    (chat-local-to-self chat-5910be933cb49a20786061b35fa87af01792653d)
 )
 (defrule
     (strategic-number sn-food-gatherer-percentage >= 4)
@@ -43588,7 +43788,7 @@
 (defrule
     (strategic-number sn-wood-gatherer-percentage < minimum-wood-gatherer-percentage)
 =>
-    (chat-local-to-self "rebalance: minimum wood hit")
+    (chat-local-to-self chat-7a235c0422e15153261184195d5b73a1f30f9281)
 )
 (defrule
     (strategic-number sn-food-gatherer-percentage >= 1)
@@ -43603,7 +43803,7 @@
 (defrule
     (strategic-number sn-food-gatherer-percentage < minimum-food-gatherer-percentage)
 =>
-    (chat-local-to-self "rebalance: minimum food hit")
+    (chat-local-to-self chat-b68108b9246231bd0dcba3f02d73a21fd94239a8)
 )
 (defrule
     (strategic-number sn-wood-gatherer-percentage >= 1)
@@ -43619,7 +43819,7 @@
     (strategic-number sn-gold-gatherer-percentage < minimum-gold-gatherer-percentage)
     (dropsite-min-distance gold >= 0)
 =>
-    (chat-local-to-self "rebalance: minimum gold hit")
+    (chat-local-to-self chat-7c910559fb331f99581145a809d8a7f4c80a3f40)
 )
 (defrule
     (strategic-number sn-wood-gatherer-percentage >= 1)
@@ -43637,7 +43837,7 @@
       (dropsite-min-distance gold >= 0)
     )
 =>
-    (chat-local-to-self "there is no gold, moving all villagers away from gold")
+    (chat-local-to-self chat-4419ac64cf698a06e303ef2add9e74b240d800d5)
     (disable-self)
 )
 (defrule
@@ -43757,7 +43957,7 @@
 =>
     (up-modify-goal desired-trade-carts c:+ 5)
     (up-modify-goal desired-trade-carts g:min max-desired-trade-carts)
-    (chat-local-to-self "scale up trade")
+    (chat-local-to-self chat-9c1fa295fbd8be460841820389f2c1c66e60be8c)
 )
 (defrule
     (timer-triggered 10)
@@ -43812,25 +44012,25 @@
     (goal research-level importance-critical)
     (timer-triggered 11)
 =>
-    (chat-local-to-self "Research level: CRITICAL")
+    (chat-local-to-self chat-02a44b954882b7be12972680db2dfdb8d3573037)
 )
 (defrule
     (goal research-level importance-high)
     (timer-triggered 11)
 =>
-    (chat-local-to-self "Research level: HIGH")
+    (chat-local-to-self chat-84675dc7c0b9c4fa2bae6118449907b7018c7fcd)
 )
 (defrule
     (goal research-level importance-medium)
     (timer-triggered 11)
 =>
-    (chat-local-to-self "Research level: MEDIUM")
+    (chat-local-to-self chat-ebae1d86c02c2920af25f66bb982462bf689d398)
 )
 (defrule
     (goal research-level importance-low)
     (timer-triggered 11)
 =>
-    (chat-local-to-self "Research level: LOW")
+    (chat-local-to-self chat-b8998735697e4cd38237f8411e4d40e06cbbc790)
 )
 (defrule
     (timer-triggered 11)
