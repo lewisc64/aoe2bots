@@ -47,6 +47,7 @@ goal total-type-production = 0
   
   insert add-to-total-type-production(unit="trebuchet",goal="produce-trebuchets")
   insert add-to-total-type-production(unit="my-unique-unit-line",goal="produce-unique-units")
+  insert add-to-total-type-production(unit="konnik-set",goal="produce-konniks")
   
   insert add-to-total-type-production(unit="monk",goal="produce-monks")
   insert add-to-total-type-production(unit="missionary",goal="produce-missionaries")
@@ -107,6 +108,7 @@ load "prerequisites.aoe2ai"
 
   insert load-unit(production_goal="produce-trebuchets",unit="trebuchet-set",unit_path="trebuchet.aoe2ai")
   insert load-unit(production_goal="produce-unique-units",unit="my-unique-unit-line",unit_path="unique_unit.aoe2ai")
+  insert load-unit(production_goal="produce-konniks",unit="konnik-set",unit_path="konnik.aoe2ai")
 
   insert load-unit(production_goal="produce-monks",unit="monk-set",unit_path="monk.aoe2ai")
   insert load-unit(production_goal="produce-missionaries",unit="missionary",unit_path="missionary.aoe2ai")

@@ -14,6 +14,7 @@
   @up-modify-goal {goal} g:+ produce-mangonels
   @up-modify-goal {goal} g:+ produce-scorpions
   @up-modify-goal {goal} g:+ produce-unique-units
+  @up-modify-goal {goal} g:+ produce-konniks
   @up-modify-goal {goal} g:+ produce-monks
   @up-modify-goal {goal} g:+ produce-genitours
   @up-modify-goal {goal} g:+ produce-condottiero
@@ -97,6 +98,9 @@ insert random-unit-selection-count-units-selected(goal="total-units-selected")
   
   #randor
     @up-modify-goal produce-missionaries g:= good-missionaries
+  
+  #randor
+    @up-modify-goal produce-konniks g:= good-konniks
     
   #end select
 #end if

@@ -89,6 +89,7 @@ const importance-low = 1
   {before}knights{after}
   {before}camels{after}
   {before}battle-elephants{after}
+  {before}konniks{after}
 #end template
 
 #template all-land-siege-unit-goal-names
@@ -185,6 +186,14 @@ const importance-low = 1
   
   #if current-age >= castle-age
     insert gather-stone(amount="650")
+  #end if
+#end template
+
+#template build-kreposts
+  build krepost
+  
+  #if current-age >= castle-age
+    insert gather-stone(amount="350")
   #end if
 #end template
 

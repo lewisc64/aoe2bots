@@ -42,6 +42,18 @@
     goal {prefix}good-monks = 1
     goal {prefix}good-galleys = 1
   #end if
+  #if players-civ {player} bulgarians
+    goal {prefix}good-unique-units = 0
+    goal {prefix}good-konniks = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-knights = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-mangonels = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-galleys = 1
+  #end if
   #if players-civ {player} byzantine
     goal {prefix}good-speamen = 1
     goal {prefix}good-archers = 1
