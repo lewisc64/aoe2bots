@@ -7,6 +7,7 @@ load "ranged.aoe2ai"
 #if current-age >= castle-age
   load "../../research/stable/husbandry.aoe2ai"
   load "../../research/castle/sipahi.aoe2ai"
+  load "../../research/castle/steppe_husbandry.aoe2ai"
 #end if
 
 #if current-age == imperial-age

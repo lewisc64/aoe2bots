@@ -80,6 +80,13 @@
     goal {prefix}good-scorpions = 1
     goal {prefix}good-galleys = 1
   #end if
+  #if players-civ {player} cumans
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-knights = 1
+    goal {prefix}good-steppe-lancers = 1
+    goal {prefix}good-battering-rams = 1
+  #end if
   #if players-civ {player} ethiopian
     goal {prefix}good-archers = 1
     goal {prefix}good-skirmishers = 1
@@ -211,6 +218,7 @@
   #if players-civ {player} mongol
     goal {prefix}good-cavalry-archers = 1
     goal {prefix}good-scouts = 1
+    goal {prefix}good-steppe-lancers = 1
     goal {prefix}good-battering-rams = 1
     goal {prefix}good-mangonels = 1
     goal {prefix}good-scorpions = 1

@@ -1,6 +1,10 @@
 #if building-type-count-total siege-workshop == 0
   load "../blacksmith/prerequisites.aoe2ai"
-  //load "../town_center/castle_age.aoe2ai"
+  #if civ-selected cumans
+    //load "../town_center/feudal_age.aoe2ai"
+  #else
+    //load "../town_center/castle_age.aoe2ai"
+  #end if
   
   #if building-type-count blacksmith >= 1
     build 1 siege-workshop

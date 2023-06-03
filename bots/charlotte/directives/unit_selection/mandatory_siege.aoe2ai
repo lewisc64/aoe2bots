@@ -30,8 +30,8 @@ const max-demolition-ships = 5
   #end if
 
   // trebs and rams
-  #if current-age == castle-age or building-type-count castle == 0 or goal good-battering-rams 1 or goal good-armored-elephants 1
-    #if military-population >= 20 or enemy-buildings-in-town or goal threat-source castle
+  #if current-age == castle-age or building-type-count castle == 0 or goal good-battering-rams 1 or goal good-armored-elephants 1 or civ-selected cumans
+    #if military-population >= 20 or enemy-buildings-in-town or goal threat-source castle or goal threat-source krepost
       
       // rams and armored elephants
       #if goal good-armored-elephants 1

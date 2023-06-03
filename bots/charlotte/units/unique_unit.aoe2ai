@@ -28,7 +28,7 @@
   #if civ-selected incan or civ-selected japanese or civ-selected malay or civ-selected malian or civ-selected teutonic or civ-selected viking
     load "types/infantry.aoe2ai"
   #end if
-  #if civ-selected berbers or civ-selected korean or civ-selected mongol or civ-selected burmese
+  #if civ-selected berbers or civ-selected korean or civ-selected mongol or civ-selected burmese or civ-selected cumans
     load "types/cavalry_archer.aoe2ai"
   #end if
   #if civ-selected briton or civ-selected chinese or civ-selected italian or civ-selected mayan or civ-selected vietnamese

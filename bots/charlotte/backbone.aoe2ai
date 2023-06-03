@@ -89,6 +89,7 @@ const importance-low = 1
   {before}knights{after}
   {before}camels{after}
   {before}battle-elephants{after}
+  {before}steppe-lancers{after}
 #end template
 
 #template all-land-siege-unit-goal-names
@@ -291,6 +292,7 @@ const importance-low = 1
   goal attacking = 0
   
   assign 8 builders to castle
+  assign 8 builders to krepost
   assign 4 builders to town-center-foundation
   
   goal temp = 0

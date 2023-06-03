@@ -8,6 +8,10 @@ load "../research/stable/prerequisites.aoe2ai"
     load "../research/stable/hussar.aoe2ai"
   #end if
   
+  #if current-age >= castle-age
+    load "../research/castle/steppe_husbandry.aoe2ai"
+  #end if
+  
   load "types/cavalry.aoe2ai"
   
   #if goal produce-units 1 and goal enough-food-for-units 1

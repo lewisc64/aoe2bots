@@ -1,6 +1,10 @@
 #if not research-completed ri-capped-ram
   load "../siege_workshop/prerequisites.aoe2ai"
-  //load "../town_center/imperial_age.aoe2ai"
+  #if civ-selected cumans
+    //load "../town_center/castle_age.aoe2ai"
+  #else
+    //load "../town_center/imperial_age.aoe2ai"
+  #end if
 
   insert attempt-research(research="ri-capped-ram",importance="importance-medium",building="siege-workshop")
 #end if

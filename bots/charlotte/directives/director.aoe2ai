@@ -55,7 +55,7 @@ load "unit_selection/trading.aoe2ai"
     #else
       goal no-unit-rule-passes = 0
     #end if
-    #if up-compare-goal no-unit-rule-passes c:>= 30
+    #if up-compare-goal no-unit-rule-passes c:>= 60
       chat to self "ATTENTION: failed to select units, turning off counter systems"
       goal do-counter-systems = 0
     #end if

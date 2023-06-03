@@ -11,6 +11,7 @@
   @up-modify-goal {goal} g:+ produce-knights
   @up-modify-goal {goal} g:+ produce-camels
   @up-modify-goal {goal} g:+ produce-battle-elephants
+  @up-modify-goal {goal} g:+ produce-steppe-lancers
   @up-modify-goal {goal} g:+ produce-mangonels
   @up-modify-goal {goal} g:+ produce-scorpions
   @up-modify-goal {goal} g:+ produce-unique-units
@@ -66,6 +67,9 @@ insert random-unit-selection-count-units-selected(goal="total-units-selected")
     #if goal produce-scouts 0 and goal produce-battle-elephants 0
       @up-modify-goal produce-knights g:= good-knights
     #end if
+
+  #randor
+    @up-modify-goal produce-steppe-lancers g:= good-steppe-lancers
     
   #randor
     @up-modify-goal produce-camels g:= good-camels
