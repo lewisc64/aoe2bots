@@ -47,7 +47,6 @@ insert all-land-cavalry-unit-goal-names(before="#if goal produce-",after=" 1; go
   goal produce-camels = 0
   #if goal unique-unit-is-expensive 1
     goal produce-unique-units = 0
-    goal produce-konniks = 0
   #end if
   goal produce-mangonels = 0
 #end template
@@ -73,7 +72,6 @@ insert all-land-cavalry-unit-goal-names(before="#if goal produce-",after=" 1; go
   goal produce-condottiero = 0
   #if goal unique-unit-is-infantry 1 and goal unique-unit-counters-cavalry 0
     goal produce-unique-units = 0
-    goal produce-konniks = 0
   #end if
   goal produce-scouts = 0
 #end template

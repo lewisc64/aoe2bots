@@ -8,7 +8,7 @@
   insert build-kreposts
 #end if
 
-#if unit-available konnik-line
+#if unit-available konnik-line or unit-available krepost-konnik-line
   #if current-age == imperial-age
     load "../research/castle/my_unique_unit_upgrade.aoe2ai"
   #end if
