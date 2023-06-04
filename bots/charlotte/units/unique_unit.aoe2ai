@@ -34,7 +34,7 @@
   #if civ-selected briton or civ-selected chinese or civ-selected italian or civ-selected mayan or civ-selected vietnamese
     load "types/ranged.aoe2ai"
   #end if
-  #if civ-selected byzantine or civ-selected hun or civ-selected magyar or civ-selected persian or civ-selected saracen or civ-selected slavic
+  #if civ-selected byzantine or civ-selected hun or civ-selected magyar or civ-selected persian or civ-selected saracen or civ-selected slavic or civ-selected lithuanians
     load "types/cavalry.aoe2ai"
   #end if
   

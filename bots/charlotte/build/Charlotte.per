@@ -1656,6 +1656,12 @@
     (disable-self)
 )
 (defrule
+    (players-civ my-player-number lithuanians)
+=>
+    (set-goal unique-unit-is-cavalry 1)
+    (disable-self)
+)
+(defrule
     (players-civ my-player-number magyar)
 =>
     (set-goal unique-unit-is-cavalry 1)
@@ -3308,7 +3314,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 4486)
+    (up-jump-rule 4524)
 )
 (defrule
     (can-build town-center)
@@ -6696,7 +6702,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 162)
+    (up-jump-rule 173)
 )
 (defrule
     (goal produce-skirmishers 1)
@@ -6727,7 +6733,7 @@
       (unit-available skirmisher-line)
     )
 =>
-    (up-jump-rule 158)
+    (up-jump-rule 169)
 )
 (defrule
     (nand
@@ -6935,6 +6941,97 @@
     (building-type-count archery-range >= 1)
 =>
     (research ri-imperial-skirmisher)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == castle-age)
+        )
+        (unit-available skirmisher-line)
+      )
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-tower-shields)
+      )
+      (civ-selected lithuanians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-tower-shields)
+      )
+      (civ-selected lithuanians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-tower-shields < research-pending)
+    (research-available ri-tower-shields)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-tower-shields)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-tower-shields)
+    (building-type-count castle >= 1)
+=>
+    (research ri-tower-shields)
 )
 (defrule
     (nand
@@ -12841,7 +12938,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 134)
+    (up-jump-rule 145)
 )
 (defrule
     (goal produce-spearmen 1)
@@ -12872,7 +12969,7 @@
       (unit-available spearman-line)
     )
 =>
-    (up-jump-rule 130)
+    (up-jump-rule 141)
 )
 (defrule
     (can-build barracks)
@@ -13012,6 +13109,97 @@
     (building-type-count barracks >= 1)
 =>
     (research ri-halberdier)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == castle-age)
+        )
+        (unit-available spearman-line)
+      )
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-tower-shields)
+      )
+      (civ-selected lithuanians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-tower-shields)
+      )
+      (civ-selected lithuanians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-tower-shields < research-pending)
+    (research-available ri-tower-shields)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-tower-shields)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-tower-shields)
+    (building-type-count castle >= 1)
+=>
+    (research ri-tower-shields)
 )
 (defrule
     (not
@@ -15033,7 +15221,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 180)
+    (up-jump-rule 196)
 )
 (defrule
     (goal produce-scouts 1)
@@ -15064,7 +15252,7 @@
       (unit-available scout-cavalry-line)
     )
 =>
-    (up-jump-rule 176)
+    (up-jump-rule 192)
 )
 (defrule
     (not
@@ -15268,6 +15456,126 @@
     (building-type-count stable >= 1)
 =>
     (research ri-hussar)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == castle-age)
+        )
+        (unit-available scout-cavalry-line)
+      )
+    )
+=>
+    (up-jump-rule 15)
+)
+(defrule
+    (research-completed ri-winged-hussar)
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (not
+      (building-type-count-total stable == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+    (building-type-count-total barracks == 0)
+=>
+    (build barracks)
+)
+(defrule
+    (can-build stable)
+    (up-pending-objects c: stable < 5)
+    (building-type-count-total stable < 1)
+    (building-type-count barracks >= 1)
+    (building-type-count-total stable == 0)
+=>
+    (build stable)
+)
+(defrule
+    (research-completed ri-winged-hussar)
+=>
+    (up-jump-rule 7)
+)
+(defrule
+    (research-completed ri-light-cavalry)
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (not
+      (building-type-count-total stable == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+    (building-type-count-total barracks == 0)
+=>
+    (build barracks)
+)
+(defrule
+    (can-build stable)
+    (up-pending-objects c: stable < 5)
+    (building-type-count-total stable < 1)
+    (building-type-count barracks >= 1)
+    (building-type-count-total stable == 0)
+=>
+    (build stable)
+)
+(defrule
+    (research-completed ri-light-cavalry)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-light-cavalry < research-pending)
+    (research-available ri-light-cavalry)
+    (building-type-count stable >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-high)
+)
+(defrule
+    (can-research ri-light-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-high)
+    (research-available ri-light-cavalry)
+    (building-type-count stable >= 1)
+=>
+    (research ri-light-cavalry)
+)
+(defrule
+    (research-completed ri-winged-hussar)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-winged-hussar < research-pending)
+    (research-available ri-winged-hussar)
+    (building-type-count stable >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-winged-hussar)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-winged-hussar)
+    (building-type-count stable >= 1)
+=>
+    (research ri-winged-hussar)
 )
 (defrule
     (nand
@@ -29759,7 +30067,10 @@
               (civ-selected persian)
               (or
                 (civ-selected saracen)
-                (civ-selected slavic)
+                (or
+                  (civ-selected slavic)
+                  (civ-selected lithuanians)
+                )
               )
             )
           )
@@ -36941,7 +37252,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1112)
+    (up-jump-rule 1113)
 )
 (defrule
     (true)
@@ -37981,7 +38292,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 38)
+    (up-jump-rule 39)
 )
 (defrule
     (true)
@@ -38259,6 +38570,17 @@
     (set-goal good-hand-cannoneers 1)
     (set-goal good-fire-ships 1)
     (set-goal good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number lithuanians)
+=>
+    (set-goal good-skirmishers 1)
+    (set-goal good-hand-cannoneers 1)
+    (set-goal good-spearmen 1)
+    (set-goal good-scouts 1)
+    (set-goal good-knights 1)
+    (set-goal good-monks 1)
     (disable-self)
 )
 (defrule
@@ -47961,7 +48283,26 @@
 )
 (defrule
     (can-train monk)
+    (unit-type-count-total monk-set < 3)
+    (civ-selected lithuanians)
+    (or
+      (goal produce-unique-units 1)
+      (goal produce-knights 1)
+    )
+    (building-type-count town-center > 0)
+=>
+    (train monk)
+)
+(defrule
+    (can-train monk)
     (unit-type-count-total monk-set < 1)
+    (nand
+      (civ-selected lithuanians)
+      (or
+        (goal produce-unique-units 1)
+        (goal produce-knights 1)
+      )
+    )
     (building-type-count town-center > 0)
 =>
     (train monk)

@@ -6,6 +6,7 @@ load "../research/barracks/prerequisites.aoe2ai"
     load "../research/barracks/pikeman.aoe2ai"
   #else if current-age == imperial-age
     load "../research/barracks/halberdier.aoe2ai"
+    load "../research/castle/tower_shields.aoe2ai"
   #end if
   
   load "types/infantry.aoe2ai"

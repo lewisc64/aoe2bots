@@ -356,6 +356,9 @@ insert decide-blacksmith-investment(type="infantry")
     goal {prefix}unique-unit-is-cavalry-archer = 1
     goal {prefix}unique-unit-counters-ranged = 1
   #end if
+  #if players-civ {player} lithuanians
+    goal {prefix}unique-unit-is-cavalry = 1
+  #end if
   #if players-civ {player} magyar
     goal {prefix}unique-unit-is-cavalry = 1
   #end if
