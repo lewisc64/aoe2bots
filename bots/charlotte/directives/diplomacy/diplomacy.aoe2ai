@@ -48,7 +48,7 @@ const bad-egg-expiry = 600
     
     // we are betrayed, in a declared way
     #if goal allied-with-{player} 1 and not players-stance {player} ally
-      goal chat-betrayed-by-player = {player}
+      insert say-alliance-betrayal-line-to-all(player={player})
       insert set-bad-egg(player={player})
       goal allied-with-{player} = 0
       @set-stance {player} enemy
@@ -58,7 +58,7 @@ const bad-egg-expiry = 600
     #if goal threat-player {player} and up-compare-goal threat-time c:< 1000 and not stance-toward {player} enemy
       chat to self "attacked by player {player}"
       #if goal allied-with-{player} 1
-        goal chat-betrayed-by-player = {player}
+        insert say-alliance-betrayal-line-to-all(player={player})
         goal allied-with-{player} = 0
         insert set-bad-egg(player={player})
       #else if stance-toward {player} ally
@@ -86,7 +86,7 @@ const bad-egg-expiry = 600
 
 #template betray-ally
   #if player-in-game {player} and goal allied-with-{player} 1
-    goal chat-betray-player = {player}
+    insert say-do-betrayal-line-to-all(player={player})
     @set-stance {player} enemy
     insert set-bad-egg(player={player})
     goal allied-with-{player} = 0
@@ -122,9 +122,6 @@ const bad-egg-expiry = 600
   insert diplo-set-up-player-goals(player=8)
   @set-stance every-enemy neutral
   goal no-enemies-stamp = 0
-  
-  goal chat-betray-player = -1
-  goal chat-betrayed-by-player = -1
 #end do
 
 #select random persistant
@@ -227,15 +224,5 @@ insert handle-stance-changes(player=5)
 insert handle-stance-changes(player=6)
 insert handle-stance-changes(player=7)
 insert handle-stance-changes(player=8)
-
-#if not goal chat-betrayed-by-player -1
-  insert say-alliance-betrayal-line-to-all(goal="chat-betrayed-by-player")
-  goal chat-betrayed-by-player = -1
-#end if
-
-#if not goal chat-betray-player -1
-  insert say-do-betrayal-line-to-all(goal="chat-betray-player")
-  goal chat-betray-player = -1
-#end if
 
 @set-stance my-player-number ally
