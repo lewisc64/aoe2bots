@@ -1,5 +1,9 @@
 const ri-arquebus = 573
 
+#do once
+  set name to "Fortress"
+#end do
+
 load "templates/fast_castle.aoe2ai"
 
 do basic diplomacy

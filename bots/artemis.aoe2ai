@@ -17,6 +17,7 @@ const max-rams = 8
 #end template
 
 #do once
+  set name to "Artemis"
   set up basics
   
   assign 4 builders to town-center-foundation

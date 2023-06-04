@@ -4,6 +4,10 @@ const ri-inquisition = 492
 const ri-sultans = 506
 const ri-orthodoxy = 512
 
+#do once
+  set name to "Brother Clement"
+#end do
+
 load "templates/lightning_castle.aoe2ai"
 
 #if not player-valid 3

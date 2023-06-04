@@ -1,5 +1,9 @@
 const condottiero = 184
 
+#do once
+  set name to "Marley's Arms"
+#end do
+
 load "templates/basic_diplomacy.aoe2ai"
 load "templates/fast_imperial.aoe2ai"
 load "charlotte/stats.aoe2ai"

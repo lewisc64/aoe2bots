@@ -1,5 +1,9 @@
 const ri-tigui = 576
 
+#do once
+  set name to "Utopian Sisterhood"
+#end do
+
 load "templates/fast_castle.aoe2ai"
 
 #template diplo-chat-alliance-offer
