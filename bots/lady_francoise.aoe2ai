@@ -6,64 +6,69 @@ load "charlotte/stats.aoe2ai"
 load "templates/fast_castle.aoe2ai"
 
 #template diplo-chat-alliance-offer
+  @up-get-player-color {player} -1
   #select random
-    @up-chat-data-to-all "Take my hand, %d." g: {player_goal}
+    chat const to all "Take my hand, %s." 7031232
   #randor
-    @up-chat-data-to-all "We should ally, %d. For the sake of both of us." g: {player_goal}
+    chat const to all "We should ally, %s. For the sake of both of us." 7031232
   #randor
-    @up-chat-data-to-all "I suggest we form an alliance, %d." g: {player_goal}
+    chat const to all "I suggest we form an alliance, %s." 7031232
   #end select
 #end template
 
 #template diplo-chat-our-betrayal
+  @up-get-player-color {player} -1
   #select random
-    @up-chat-data-to-all "Our story together is drawing to a close." g: {player_goal}
+    chat const to all "Our story together is drawing to a close, %s." 7031232
   #randor
-    @up-chat-data-to-all "Ready your blade." g: {player_goal}
+    chat const to all "%s. Ready your blade." 7031232
   #randor
-    @up-chat-data-to-all "It is time." g: {player_goal}
+    chat const to all "%s. It is time." 7031232
   #end select
 #end template
 
 #template diplo-chat-their-betrayal
   #select random
-    @up-chat-data-to-all "It was inevitable it seems." g: {player_goal}
+    chat to all "It was inevitable it seems."
   #randor
-    @up-chat-data-to-all "I have become too trusting." g: {player_goal}
+    chat to all "I have become too trusting."
   #randor
-    @up-chat-data-to-all "The hands of trechery reach far and deep." g: {player_goal}
+    chat to all "The hands of trechery reach far and deep."
   #end select
 #end template
 
 #template diplo-chat-accepted-our-alliance
-  @up-chat-data-to-all "Very good." g: {player_goal}
+  chat to all "Very good."
 #end template
 
 #template diplo-chat-accepted-their-alliance
-  @up-chat-data-to-all "We have an agreement, %d." g: {player_goal}
+  @up-get-player-color {player} -1
+  chat const to all "We have an agreement, %s." 7031232
 #end template
 
 #template diplo-chat-refused-our-alliance
+  @up-get-player-color {player} -1
   #select random
-    @up-chat-data-to-all "You will live to regret that decision, %d." g: {player_goal}
+    chat const to all "You will live to regret that decision, %s." 7031232
   #randor
-    @up-chat-data-to-all "A curse upon your name, %d." g: {player_goal}
+    chat const to all "A curse upon your name, %s." 7031232
   #end select
 #end template
 
 #template diplo-chat-refused-their-alliance
   #select random
-    @up-chat-data-to-all "Be silent." g: {player_goal}
+    chat to all "Be silent."
   #randor
-    @up-chat-data-to-all "Again, no." g: {player_goal}
+    chat to all "Again, no."
   #end select
 #end template
 
 #template diplo-chat-friendly-fire-warning
+  @up-get-player-color {player} -1
   #select random
-    @up-chat-data-to-all "A mistake %d, of course. Don't do it again." g: {player_goal}
+    chat const to all "A mistake %s, of course. Don't do it again." 7031232
   #randor
-    @up-chat-data-to-all "Cease your childish games." g: {player_goal}
+    chat const to all "Cease your childish games, %s." 7031232
   #end select
 #end template
 

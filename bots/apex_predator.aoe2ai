@@ -7,51 +7,60 @@ const max-rams = 10
 const max-skirmishers = 20
 
 #template diplo-chat-alliance-offer
-  @up-chat-data-to-all "YOU HELP ME %d." g: {player_goal}
+  @up-get-player-color {player} -1
+  chat const to all "YOU HELP ME %s." 7031232
 #end template
 
 #template diplo-chat-our-betrayal
+  @up-get-player-color {player} -1
   #select random
-    @up-chat-data-to-all "PLAYER %d IS WEAK." g: {player_goal}
+    chat const to all "%s IS WEAK." 7031232
   #randor
-    @up-chat-data-to-all "PLAYER %d HAS NO RECOURSE" g: {player_goal}
+    chat const to all "%s HAS NO RECOURSE" 7031232
   #randor
-    @up-chat-data-to-all "PLAYER %d WILL BE EXPUNGED." g: {player_goal}
+    chat const to all "%s WILL BE EXPUNGED." 7031232
   #end select
 #end template
 
 #template diplo-chat-their-betrayal
+  @up-get-player-color {player} -1
   #select random
-    @up-chat-data-to-all "I HAVE FACED WORSE." g: {player_goal}
+    chat const to all "I HAVE FACED WORSE." 7031232
   #randor
-    @up-chat-data-to-all "ANOTHER CHALLENGER." g: {player_goal}
+    chat const to all "ANOTHER CHALLENGER." 7031232
   #randor
-    @up-chat-data-to-all "YOU HAD FANGS THIS WHOLE TIME %d. CUTE." g: {player_goal}
+    chat const to all "YOU HAD FANGS THIS WHOLE TIME %s. CUTE." 7031232
   #end select
 #end template
 
 #template diplo-chat-accepted-our-alliance
-  @up-chat-data-to-all "YES. GOOD." g: {player_goal}
+  @up-get-player-color {player} -1
+  chat const to all "YES. GOOD." 7031232
 #end template
 
 #template diplo-chat-accepted-their-alliance
-  @up-chat-data-to-all "I WILL HUNT WITH YOU." g: {player_goal}
+  @up-get-player-color {player} -1
+  chat const to all "I WILL HUNT WITH YOU." 7031232
 #end template
 
 #template diplo-chat-refused-our-alliance
-  @up-chat-data-to-all "NO MATTER. LONE WOLVES SUFFER IN THE END." g: {player_goal}
+  @up-get-player-color {player} -1
+  chat const to all "NO MATTER. LONE WOLVES SUFFER IN THE END." 7031232
 #end template
 
 #template diplo-chat-refused-their-alliance
-  @up-chat-data-to-all "I WILL NOT HUNT WITH YOU." g: {player_goal}
+  @up-get-player-color {player} -1
+  chat const to all "I WILL NOT HUNT WITH YOU." 7031232
 #end template
 
 #template diplo-chat-friendly-fire-warning
-  @up-chat-data-to-all "THE PREY TWITCHES. IT IS NOT TIME %d." g: {player_goal}
+  @up-get-player-color {player} -1
+  chat const to all "THE PREY TWITCHES. IT IS NOT TIME %s." 7031232
 #end template
 
 #template diplo-chat-friendly-fire-betrayal
-  @up-chat-data-to-all "YOU MADE YOURSELF A PRIORITY." g: {player_goal}
+  @up-get-player-color {player} -1
+  chat const to all "YOU MADE YOURSELF A PRIORITY." 7031232
 #end template
 
 #template diplo-chat-resign

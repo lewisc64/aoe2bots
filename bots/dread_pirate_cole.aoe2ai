@@ -36,28 +36,31 @@ do basic targeting
 // diplomacy
 
 #template diplo-chat-alliance-offer
+  @up-get-player-color {player} -1
   #select random
-    @up-chat-data-to-all "Join my crew, %d." g: {player_goal}
+    chat const to all "Join my crew, %s." 7031232
   #randor
-    @up-chat-data-to-all "Player %d, join me search for loot." g: {player_goal}
+    chat const to all "%s, join me search for loot." 7031232
   #end select
 #end template
 
 #template diplo-chat-our-betrayal
+  @up-get-player-color {player} -1
   #select random
     chat to all "A change in the wind says I."
   #randor
-    @up-chat-data-to-all "Avast, %d! Surrender yer doubloons!" g: {player_goal}
+    chat const to all "Avast, %s! Surrender yer doubloons!" 7031232
   #end select
 #end template
 
 #template diplo-chat-their-betrayal
+  @up-get-player-color {player} -1
   #select random
-    @up-chat-data-to-all "Blast! %d! Ye mutinous swab!" g: {player_goal}
+    chat const to all "Blast! %s! Ye mutinous swab!" 7031232
   #randor
-    @up-chat-data-to-all "Argh! %d! Ye damn scallywag!" g: {player_goal}
+    chat const to all "Argh! %s! Ye damn scallywag!" 7031232
   #randor
-    @up-chat-data-to-all "Slap me thrice! %d! Ye filthy bilge rat!" g: {player_goal}
+    chat const to all "Slap me thrice! %s! Ye filthy bilge rat!" 7031232
   #end select
 #end template
 
