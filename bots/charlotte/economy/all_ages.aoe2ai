@@ -33,11 +33,7 @@ build 1 town-center with wood and stone escrow
 
   // relic gathering
   build 1 monastery
-  #if civ-selected lithuanians and (goal produce-unique-units 1 or goal produce-knights 1)
-    train 3 monk
-  #else
-    train 1 monk
-  #end if
+  train 1 monk
 
   // houses
   #if up-research-status c: feudal-age < research-pending

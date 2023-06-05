@@ -289,6 +289,16 @@
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
+  #if players-civ {player} tatars
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-cavalry-archers = 1
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-camels = 1
+    goal {prefix}good-steppe-lancers = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-scorpions = 1
+  #end if
   #if players-civ {player} teutonic
     goal {prefix}good-hand-cannoneers = 1
     goal {prefix}good-militia = 1

@@ -138,6 +138,7 @@
 (defconst dead-builders 189)
 (defconst chat-8f742eb6e8f419863eef6d7174d91d0a49e04e3e "attack ready!")
 (defconst good-speamen 194)
+(defconst chat-e28d42129a931d309ec172fff1beddcc5b1b6aec "am tatars")
 (defconst militia-trash 196)
 (defconst unique-unit-cavalry-trash 195)
 (defconst total-units-selected 197)
@@ -684,6 +685,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 7 g:+ 9)
     (up-modify-goal 7 c:mod 3)
+    (up-modify-goal 7 c:+ 3)
+    (up-modify-goal 7 c:mod 3)
     (up-modify-goal 7 c:+ 1)
     (disable-self)
 )
@@ -721,6 +724,8 @@
     (up-get-fact random-number 0 15)
     (up-get-precise-time 0 9)
     (up-modify-goal 15 g:+ 9)
+    (up-modify-goal 15 c:mod 2)
+    (up-modify-goal 15 c:+ 2)
     (up-modify-goal 15 c:mod 2)
     (up-modify-goal 15 c:+ 1)
     (disable-self)
@@ -817,6 +822,8 @@
     (up-get-fact random-number 0 27)
     (up-get-precise-time 0 9)
     (up-modify-goal 27 g:+ 9)
+    (up-modify-goal 27 c:mod 2)
+    (up-modify-goal 27 c:+ 2)
     (up-modify-goal 27 c:mod 2)
     (up-modify-goal 27 c:+ 1)
     (disable-self)
@@ -1725,6 +1732,12 @@
 =>
     (set-goal unique-unit-is-cavalry-archer 1)
     (set-goal unique-unit-is-expensive 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number tatars)
+=>
+    (set-goal unique-unit-is-cavalry 1)
     (disable-self)
 )
 (defrule
@@ -3315,7 +3328,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 4524)
+    (up-jump-rule 4557)
 )
 (defrule
     (can-build town-center)
@@ -9213,7 +9226,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 170)
+    (up-jump-rule 181)
 )
 (defrule
     (goal produce-cavalry-archers 1)
@@ -9244,7 +9257,7 @@
       (unit-available cavalry-archer-line)
     )
 =>
-    (up-jump-rule 166)
+    (up-jump-rule 177)
 )
 (defrule
     (nand
@@ -9416,6 +9429,92 @@
     (building-type-count castle >= 1)
 =>
     (research ri-recurve-bow)
+)
+(defrule
+    (nand
+      (current-age >= castle-age)
+      (unit-available cavalry-archer-line)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-silk-armor)
+      )
+      (civ-selected tatars)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-silk-armor)
+      )
+      (civ-selected tatars)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-silk-armor < research-pending)
+    (research-available ri-silk-armor)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-silk-armor)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-silk-armor)
+    (building-type-count castle >= 1)
+=>
+    (research ri-silk-armor)
 )
 (defrule
     (not
@@ -15222,7 +15321,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 196)
+    (up-jump-rule 207)
 )
 (defrule
     (goal produce-scouts 1)
@@ -15253,7 +15352,7 @@
       (unit-available scout-cavalry-line)
     )
 =>
-    (up-jump-rule 192)
+    (up-jump-rule 203)
 )
 (defrule
     (not
@@ -15663,6 +15762,92 @@
     (building-type-count castle >= 1)
 =>
     (research ri-steppe-husbandry)
+)
+(defrule
+    (nand
+      (current-age >= castle-age)
+      (unit-available scout-cavalry-line)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-silk-armor)
+      )
+      (civ-selected tatars)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-silk-armor)
+      )
+      (civ-selected tatars)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-silk-armor < research-pending)
+    (research-available ri-silk-armor)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-silk-armor)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-silk-armor)
+    (building-type-count castle >= 1)
+=>
+    (research ri-silk-armor)
 )
 (defrule
     (not
@@ -20666,7 +20851,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 164)
+    (up-jump-rule 175)
 )
 (defrule
     (goal produce-steppe-lancers 1)
@@ -20697,7 +20882,7 @@
       (unit-available steppe-lancer-line)
     )
 =>
-    (up-jump-rule 160)
+    (up-jump-rule 171)
 )
 (defrule
     (not
@@ -20867,6 +21052,92 @@
     (building-type-count castle >= 1)
 =>
     (research ri-steppe-husbandry)
+)
+(defrule
+    (nand
+      (current-age >= castle-age)
+      (unit-available steppe-lancer-line)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-silk-armor)
+      )
+      (civ-selected tatars)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-silk-armor)
+      )
+      (civ-selected tatars)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-silk-armor < research-pending)
+    (research-available ri-silk-armor)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-silk-armor)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-silk-armor)
+    (building-type-count castle >= 1)
+=>
+    (research ri-silk-armor)
 )
 (defrule
     (not
@@ -30070,7 +30341,10 @@
                 (civ-selected saracen)
                 (or
                   (civ-selected slavic)
-                  (civ-selected lithuanians)
+                  (or
+                    (civ-selected lithuanians)
+                    (civ-selected tatars)
+                  )
                 )
               )
             )
@@ -37253,7 +37527,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1113)
+    (up-jump-rule 1114)
 )
 (defrule
     (true)
@@ -37454,6 +37728,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 191 g:+ 9)
     (up-modify-goal 191 c:mod 3)
+    (up-modify-goal 191 c:+ 3)
+    (up-modify-goal 191 c:mod 3)
     (up-modify-goal 191 c:+ 1)
     (disable-self)
 )
@@ -37495,6 +37771,8 @@
     (up-get-fact random-number 0 192)
     (up-get-precise-time 0 9)
     (up-modify-goal 192 g:+ 9)
+    (up-modify-goal 192 c:mod 2)
+    (up-modify-goal 192 c:+ 2)
     (up-modify-goal 192 c:mod 2)
     (up-modify-goal 192 c:+ 1)
     (disable-self)
@@ -38017,6 +38295,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 193 g:+ 9)
     (up-modify-goal 193 c:mod 2)
+    (up-modify-goal 193 c:+ 2)
+    (up-modify-goal 193 c:mod 2)
     (up-modify-goal 193 c:+ 1)
     (disable-self)
 )
@@ -38293,7 +38573,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 39)
+    (up-jump-rule 40)
 )
 (defrule
     (true)
@@ -38718,6 +38998,20 @@
     (disable-self)
 )
 (defrule
+    (players-civ my-player-number tatars)
+=>
+    (chat-to-all chat-e28d42129a931d309ec172fff1beddcc5b1b6aec)
+    (set-goal good-skirmishers 1)
+    (set-goal good-cavalry-archers 1)
+    (set-goal good-hand-cannoneers 1)
+    (set-goal good-scouts 1)
+    (set-goal good-camels 1)
+    (set-goal good-steppe-lancers 1)
+    (set-goal good-battering-rams 1)
+    (set-goal good-scorpions 1)
+    (disable-self)
+)
+(defrule
     (players-civ my-player-number teutonic)
 =>
     (set-goal good-hand-cannoneers 1)
@@ -39027,6 +39321,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 198 g:+ 9)
     (up-modify-goal 198 c:mod 19)
+    (up-modify-goal 198 c:+ 19)
+    (up-modify-goal 198 c:mod 19)
     (up-modify-goal 198 c:+ 1)
 )
 (defrule
@@ -39170,6 +39466,8 @@
     (up-get-fact random-number 0 199)
     (up-get-precise-time 0 9)
     (up-modify-goal 199 g:+ 9)
+    (up-modify-goal 199 c:mod 3)
+    (up-modify-goal 199 c:+ 3)
     (up-modify-goal 199 c:mod 3)
     (up-modify-goal 199 c:+ 1)
 )
@@ -40442,6 +40740,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 205 g:+ 9)
     (up-modify-goal 205 c:mod 2)
+    (up-modify-goal 205 c:+ 2)
+    (up-modify-goal 205 c:mod 2)
     (up-modify-goal 205 c:+ 1)
 )
 (defrule
@@ -40476,6 +40776,8 @@
     (up-get-fact random-number 0 209)
     (up-get-precise-time 0 9)
     (up-modify-goal 209 g:+ 9)
+    (up-modify-goal 209 c:mod 2)
+    (up-modify-goal 209 c:+ 2)
     (up-modify-goal 209 c:mod 2)
     (up-modify-goal 209 c:+ 1)
 )
@@ -41014,6 +41316,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 256 g:+ 9)
     (up-modify-goal 256 c:mod 3)
+    (up-modify-goal 256 c:+ 3)
+    (up-modify-goal 256 c:mod 3)
     (up-modify-goal 256 c:+ 1)
     (disable-self)
 )
@@ -41215,6 +41519,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 257 g:+ 9)
     (up-modify-goal 257 c:mod 3)
+    (up-modify-goal 257 c:+ 3)
+    (up-modify-goal 257 c:mod 3)
     (up-modify-goal 257 c:+ 1)
     (disable-self)
 )
@@ -41263,6 +41569,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 258 g:+ 9)
     (up-modify-goal 258 c:mod 8)
+    (up-modify-goal 258 c:+ 8)
+    (up-modify-goal 258 c:mod 8)
     (up-modify-goal 258 c:+ 1)
 )
 (defrule
@@ -41297,6 +41605,8 @@
     (up-get-fact random-number 0 259)
     (up-get-precise-time 0 9)
     (up-modify-goal 259 g:+ 9)
+    (up-modify-goal 259 c:mod 3)
+    (up-modify-goal 259 c:+ 3)
     (up-modify-goal 259 c:mod 3)
     (up-modify-goal 259 c:+ 1)
 )
@@ -41360,6 +41670,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 260 g:+ 9)
     (up-modify-goal 260 c:mod 3)
+    (up-modify-goal 260 c:+ 3)
+    (up-modify-goal 260 c:mod 3)
     (up-modify-goal 260 c:+ 1)
 )
 (defrule
@@ -41421,6 +41733,8 @@
     (up-get-fact random-number 0 261)
     (up-get-precise-time 0 9)
     (up-modify-goal 261 g:+ 9)
+    (up-modify-goal 261 c:mod 3)
+    (up-modify-goal 261 c:+ 3)
     (up-modify-goal 261 c:mod 3)
     (up-modify-goal 261 c:+ 1)
 )
@@ -41484,6 +41798,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 262 g:+ 9)
     (up-modify-goal 262 c:mod 3)
+    (up-modify-goal 262 c:+ 3)
+    (up-modify-goal 262 c:mod 3)
     (up-modify-goal 262 c:+ 1)
 )
 (defrule
@@ -41545,6 +41861,8 @@
     (up-get-fact random-number 0 263)
     (up-get-precise-time 0 9)
     (up-modify-goal 263 g:+ 9)
+    (up-modify-goal 263 c:mod 3)
+    (up-modify-goal 263 c:+ 3)
     (up-modify-goal 263 c:mod 3)
     (up-modify-goal 263 c:+ 1)
 )
@@ -41608,6 +41926,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 264 g:+ 9)
     (up-modify-goal 264 c:mod 3)
+    (up-modify-goal 264 c:+ 3)
+    (up-modify-goal 264 c:mod 3)
     (up-modify-goal 264 c:+ 1)
 )
 (defrule
@@ -41669,6 +41989,8 @@
     (up-get-fact random-number 0 265)
     (up-get-precise-time 0 9)
     (up-modify-goal 265 g:+ 9)
+    (up-modify-goal 265 c:mod 3)
+    (up-modify-goal 265 c:+ 3)
     (up-modify-goal 265 c:mod 3)
     (up-modify-goal 265 c:+ 1)
 )
@@ -41732,6 +42054,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 266 g:+ 9)
     (up-modify-goal 266 c:mod 3)
+    (up-modify-goal 266 c:+ 3)
+    (up-modify-goal 266 c:mod 3)
     (up-modify-goal 266 c:+ 1)
 )
 (defrule
@@ -41770,6 +42094,8 @@
     (up-get-fact random-number 0 267)
     (up-get-precise-time 0 9)
     (up-modify-goal 267 g:+ 9)
+    (up-modify-goal 267 c:mod 8)
+    (up-modify-goal 267 c:+ 8)
     (up-modify-goal 267 c:mod 8)
     (up-modify-goal 267 c:+ 1)
 )
@@ -41926,6 +42252,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 268 g:+ 9)
     (up-modify-goal 268 c:mod 8)
+    (up-modify-goal 268 c:+ 8)
+    (up-modify-goal 268 c:mod 8)
     (up-modify-goal 268 c:+ 1)
 )
 (defrule
@@ -41953,6 +42281,8 @@
     (up-get-fact random-number 0 269)
     (up-get-precise-time 0 9)
     (up-modify-goal 269 g:+ 9)
+    (up-modify-goal 269 c:mod 10)
+    (up-modify-goal 269 c:+ 10)
     (up-modify-goal 269 c:mod 10)
     (up-modify-goal 269 c:+ 1)
 )
@@ -42059,6 +42389,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 270 g:+ 9)
     (up-modify-goal 270 c:mod 10)
+    (up-modify-goal 270 c:+ 10)
+    (up-modify-goal 270 c:mod 10)
     (up-modify-goal 270 c:+ 1)
 )
 (defrule
@@ -42163,6 +42495,8 @@
     (up-get-fact random-number 0 271)
     (up-get-precise-time 0 9)
     (up-modify-goal 271 g:+ 9)
+    (up-modify-goal 271 c:mod 10)
+    (up-modify-goal 271 c:+ 10)
     (up-modify-goal 271 c:mod 10)
     (up-modify-goal 271 c:+ 1)
 )
@@ -42269,6 +42603,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 272 g:+ 9)
     (up-modify-goal 272 c:mod 10)
+    (up-modify-goal 272 c:+ 10)
+    (up-modify-goal 272 c:mod 10)
     (up-modify-goal 272 c:+ 1)
 )
 (defrule
@@ -42373,6 +42709,8 @@
     (up-get-fact random-number 0 273)
     (up-get-precise-time 0 9)
     (up-modify-goal 273 g:+ 9)
+    (up-modify-goal 273 c:mod 10)
+    (up-modify-goal 273 c:+ 10)
     (up-modify-goal 273 c:mod 10)
     (up-modify-goal 273 c:+ 1)
 )
@@ -42479,6 +42817,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 274 g:+ 9)
     (up-modify-goal 274 c:mod 10)
+    (up-modify-goal 274 c:+ 10)
+    (up-modify-goal 274 c:mod 10)
     (up-modify-goal 274 c:+ 1)
 )
 (defrule
@@ -42584,6 +42924,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 275 g:+ 9)
     (up-modify-goal 275 c:mod 10)
+    (up-modify-goal 275 c:+ 10)
+    (up-modify-goal 275 c:mod 10)
     (up-modify-goal 275 c:+ 1)
 )
 (defrule
@@ -42688,6 +43030,8 @@
     (up-get-fact random-number 0 276)
     (up-get-precise-time 0 9)
     (up-modify-goal 276 g:+ 9)
+    (up-modify-goal 276 c:mod 10)
+    (up-modify-goal 276 c:+ 10)
     (up-modify-goal 276 c:mod 10)
     (up-modify-goal 276 c:+ 1)
 )
@@ -42812,6 +43156,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 277 g:+ 9)
     (up-modify-goal 277 c:mod 3)
+    (up-modify-goal 277 c:+ 3)
+    (up-modify-goal 277 c:mod 3)
     (up-modify-goal 277 c:+ 1)
 )
 (defrule
@@ -42877,6 +43223,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 278 g:+ 9)
     (up-modify-goal 278 c:mod 3)
+    (up-modify-goal 278 c:+ 3)
+    (up-modify-goal 278 c:mod 3)
     (up-modify-goal 278 c:+ 1)
 )
 (defrule
@@ -42931,6 +43279,8 @@
     (up-get-fact random-number 0 279)
     (up-get-precise-time 0 9)
     (up-modify-goal 279 g:+ 9)
+    (up-modify-goal 279 c:mod 11)
+    (up-modify-goal 279 c:+ 11)
     (up-modify-goal 279 c:mod 11)
     (up-modify-goal 279 c:+ 1)
 )
@@ -43057,6 +43407,8 @@
     (up-get-fact random-number 0 280)
     (up-get-precise-time 0 9)
     (up-modify-goal 280 g:+ 9)
+    (up-modify-goal 280 c:mod 11)
+    (up-modify-goal 280 c:+ 11)
     (up-modify-goal 280 c:mod 11)
     (up-modify-goal 280 c:+ 1)
 )
@@ -43232,6 +43584,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 281 g:+ 9)
     (up-modify-goal 281 c:mod 3)
+    (up-modify-goal 281 c:+ 3)
+    (up-modify-goal 281 c:mod 3)
     (up-modify-goal 281 c:+ 1)
 )
 (defrule
@@ -43316,6 +43670,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 282 g:+ 9)
     (up-modify-goal 282 c:mod 3)
+    (up-modify-goal 282 c:+ 3)
+    (up-modify-goal 282 c:mod 3)
     (up-modify-goal 282 c:+ 1)
 )
 (defrule
@@ -43381,6 +43737,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 283 g:+ 9)
     (up-modify-goal 283 c:mod 3)
+    (up-modify-goal 283 c:+ 3)
+    (up-modify-goal 283 c:mod 3)
     (up-modify-goal 283 c:+ 1)
 )
 (defrule
@@ -43435,6 +43793,8 @@
     (up-get-fact random-number 0 284)
     (up-get-precise-time 0 9)
     (up-modify-goal 284 g:+ 9)
+    (up-modify-goal 284 c:mod 11)
+    (up-modify-goal 284 c:+ 11)
     (up-modify-goal 284 c:mod 11)
     (up-modify-goal 284 c:+ 1)
 )
@@ -43561,6 +43921,8 @@
     (up-get-fact random-number 0 285)
     (up-get-precise-time 0 9)
     (up-modify-goal 285 g:+ 9)
+    (up-modify-goal 285 c:mod 11)
+    (up-modify-goal 285 c:+ 11)
     (up-modify-goal 285 c:mod 11)
     (up-modify-goal 285 c:+ 1)
 )
@@ -43736,6 +44098,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 286 g:+ 9)
     (up-modify-goal 286 c:mod 3)
+    (up-modify-goal 286 c:+ 3)
+    (up-modify-goal 286 c:mod 3)
     (up-modify-goal 286 c:+ 1)
 )
 (defrule
@@ -43820,6 +44184,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 287 g:+ 9)
     (up-modify-goal 287 c:mod 3)
+    (up-modify-goal 287 c:+ 3)
+    (up-modify-goal 287 c:mod 3)
     (up-modify-goal 287 c:+ 1)
 )
 (defrule
@@ -43885,6 +44251,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 288 g:+ 9)
     (up-modify-goal 288 c:mod 3)
+    (up-modify-goal 288 c:+ 3)
+    (up-modify-goal 288 c:mod 3)
     (up-modify-goal 288 c:+ 1)
 )
 (defrule
@@ -43939,6 +44307,8 @@
     (up-get-fact random-number 0 289)
     (up-get-precise-time 0 9)
     (up-modify-goal 289 g:+ 9)
+    (up-modify-goal 289 c:mod 11)
+    (up-modify-goal 289 c:+ 11)
     (up-modify-goal 289 c:mod 11)
     (up-modify-goal 289 c:+ 1)
 )
@@ -44065,6 +44435,8 @@
     (up-get-fact random-number 0 290)
     (up-get-precise-time 0 9)
     (up-modify-goal 290 g:+ 9)
+    (up-modify-goal 290 c:mod 11)
+    (up-modify-goal 290 c:+ 11)
     (up-modify-goal 290 c:mod 11)
     (up-modify-goal 290 c:+ 1)
 )
@@ -44240,6 +44612,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 291 g:+ 9)
     (up-modify-goal 291 c:mod 3)
+    (up-modify-goal 291 c:+ 3)
+    (up-modify-goal 291 c:mod 3)
     (up-modify-goal 291 c:+ 1)
 )
 (defrule
@@ -44324,6 +44698,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 292 g:+ 9)
     (up-modify-goal 292 c:mod 3)
+    (up-modify-goal 292 c:+ 3)
+    (up-modify-goal 292 c:mod 3)
     (up-modify-goal 292 c:+ 1)
 )
 (defrule
@@ -44389,6 +44765,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 293 g:+ 9)
     (up-modify-goal 293 c:mod 3)
+    (up-modify-goal 293 c:+ 3)
+    (up-modify-goal 293 c:mod 3)
     (up-modify-goal 293 c:+ 1)
 )
 (defrule
@@ -44443,6 +44821,8 @@
     (up-get-fact random-number 0 294)
     (up-get-precise-time 0 9)
     (up-modify-goal 294 g:+ 9)
+    (up-modify-goal 294 c:mod 11)
+    (up-modify-goal 294 c:+ 11)
     (up-modify-goal 294 c:mod 11)
     (up-modify-goal 294 c:+ 1)
 )
@@ -44569,6 +44949,8 @@
     (up-get-fact random-number 0 295)
     (up-get-precise-time 0 9)
     (up-modify-goal 295 g:+ 9)
+    (up-modify-goal 295 c:mod 11)
+    (up-modify-goal 295 c:+ 11)
     (up-modify-goal 295 c:mod 11)
     (up-modify-goal 295 c:+ 1)
 )
@@ -44744,6 +45126,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 296 g:+ 9)
     (up-modify-goal 296 c:mod 3)
+    (up-modify-goal 296 c:+ 3)
+    (up-modify-goal 296 c:mod 3)
     (up-modify-goal 296 c:+ 1)
 )
 (defrule
@@ -44828,6 +45212,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 297 g:+ 9)
     (up-modify-goal 297 c:mod 3)
+    (up-modify-goal 297 c:+ 3)
+    (up-modify-goal 297 c:mod 3)
     (up-modify-goal 297 c:+ 1)
 )
 (defrule
@@ -44893,6 +45279,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 298 g:+ 9)
     (up-modify-goal 298 c:mod 3)
+    (up-modify-goal 298 c:+ 3)
+    (up-modify-goal 298 c:mod 3)
     (up-modify-goal 298 c:+ 1)
 )
 (defrule
@@ -44947,6 +45335,8 @@
     (up-get-fact random-number 0 299)
     (up-get-precise-time 0 9)
     (up-modify-goal 299 g:+ 9)
+    (up-modify-goal 299 c:mod 11)
+    (up-modify-goal 299 c:+ 11)
     (up-modify-goal 299 c:mod 11)
     (up-modify-goal 299 c:+ 1)
 )
@@ -45073,6 +45463,8 @@
     (up-get-fact random-number 0 300)
     (up-get-precise-time 0 9)
     (up-modify-goal 300 g:+ 9)
+    (up-modify-goal 300 c:mod 11)
+    (up-modify-goal 300 c:+ 11)
     (up-modify-goal 300 c:mod 11)
     (up-modify-goal 300 c:+ 1)
 )
@@ -45248,6 +45640,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 301 g:+ 9)
     (up-modify-goal 301 c:mod 3)
+    (up-modify-goal 301 c:+ 3)
+    (up-modify-goal 301 c:mod 3)
     (up-modify-goal 301 c:+ 1)
 )
 (defrule
@@ -45332,6 +45726,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 302 g:+ 9)
     (up-modify-goal 302 c:mod 3)
+    (up-modify-goal 302 c:+ 3)
+    (up-modify-goal 302 c:mod 3)
     (up-modify-goal 302 c:+ 1)
 )
 (defrule
@@ -45397,6 +45793,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 303 g:+ 9)
     (up-modify-goal 303 c:mod 3)
+    (up-modify-goal 303 c:+ 3)
+    (up-modify-goal 303 c:mod 3)
     (up-modify-goal 303 c:+ 1)
 )
 (defrule
@@ -45451,6 +45849,8 @@
     (up-get-fact random-number 0 304)
     (up-get-precise-time 0 9)
     (up-modify-goal 304 g:+ 9)
+    (up-modify-goal 304 c:mod 11)
+    (up-modify-goal 304 c:+ 11)
     (up-modify-goal 304 c:mod 11)
     (up-modify-goal 304 c:+ 1)
 )
@@ -45577,6 +45977,8 @@
     (up-get-fact random-number 0 305)
     (up-get-precise-time 0 9)
     (up-modify-goal 305 g:+ 9)
+    (up-modify-goal 305 c:mod 11)
+    (up-modify-goal 305 c:+ 11)
     (up-modify-goal 305 c:mod 11)
     (up-modify-goal 305 c:+ 1)
 )
@@ -45752,6 +46154,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 306 g:+ 9)
     (up-modify-goal 306 c:mod 3)
+    (up-modify-goal 306 c:+ 3)
+    (up-modify-goal 306 c:mod 3)
     (up-modify-goal 306 c:+ 1)
 )
 (defrule
@@ -45836,6 +46240,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 307 g:+ 9)
     (up-modify-goal 307 c:mod 3)
+    (up-modify-goal 307 c:+ 3)
+    (up-modify-goal 307 c:mod 3)
     (up-modify-goal 307 c:+ 1)
 )
 (defrule
@@ -45901,6 +46307,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 308 g:+ 9)
     (up-modify-goal 308 c:mod 3)
+    (up-modify-goal 308 c:+ 3)
+    (up-modify-goal 308 c:mod 3)
     (up-modify-goal 308 c:+ 1)
 )
 (defrule
@@ -45955,6 +46363,8 @@
     (up-get-fact random-number 0 309)
     (up-get-precise-time 0 9)
     (up-modify-goal 309 g:+ 9)
+    (up-modify-goal 309 c:mod 11)
+    (up-modify-goal 309 c:+ 11)
     (up-modify-goal 309 c:mod 11)
     (up-modify-goal 309 c:+ 1)
 )
@@ -46081,6 +46491,8 @@
     (up-get-fact random-number 0 310)
     (up-get-precise-time 0 9)
     (up-modify-goal 310 g:+ 9)
+    (up-modify-goal 310 c:mod 11)
+    (up-modify-goal 310 c:+ 11)
     (up-modify-goal 310 c:mod 11)
     (up-modify-goal 310 c:+ 1)
 )
@@ -46256,6 +46668,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 311 g:+ 9)
     (up-modify-goal 311 c:mod 3)
+    (up-modify-goal 311 c:+ 3)
+    (up-modify-goal 311 c:mod 3)
     (up-modify-goal 311 c:+ 1)
 )
 (defrule
@@ -46340,6 +46754,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 312 g:+ 9)
     (up-modify-goal 312 c:mod 3)
+    (up-modify-goal 312 c:+ 3)
+    (up-modify-goal 312 c:mod 3)
     (up-modify-goal 312 c:+ 1)
 )
 (defrule
@@ -46405,6 +46821,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 313 g:+ 9)
     (up-modify-goal 313 c:mod 3)
+    (up-modify-goal 313 c:+ 3)
+    (up-modify-goal 313 c:mod 3)
     (up-modify-goal 313 c:+ 1)
 )
 (defrule
@@ -46459,6 +46877,8 @@
     (up-get-fact random-number 0 314)
     (up-get-precise-time 0 9)
     (up-modify-goal 314 g:+ 9)
+    (up-modify-goal 314 c:mod 11)
+    (up-modify-goal 314 c:+ 11)
     (up-modify-goal 314 c:mod 11)
     (up-modify-goal 314 c:+ 1)
 )
@@ -46585,6 +47005,8 @@
     (up-get-fact random-number 0 315)
     (up-get-precise-time 0 9)
     (up-modify-goal 315 g:+ 9)
+    (up-modify-goal 315 c:mod 11)
+    (up-modify-goal 315 c:+ 11)
     (up-modify-goal 315 c:mod 11)
     (up-modify-goal 315 c:+ 1)
 )
@@ -46760,6 +47182,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 316 g:+ 9)
     (up-modify-goal 316 c:mod 3)
+    (up-modify-goal 316 c:+ 3)
+    (up-modify-goal 316 c:mod 3)
     (up-modify-goal 316 c:+ 1)
 )
 (defrule
@@ -46851,6 +47275,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 317 g:+ 9)
     (up-modify-goal 317 c:mod 3)
+    (up-modify-goal 317 c:+ 3)
+    (up-modify-goal 317 c:mod 3)
     (up-modify-goal 317 c:+ 1)
 )
 (defrule
@@ -46897,6 +47323,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 318 g:+ 9)
     (up-modify-goal 318 c:mod 3)
+    (up-modify-goal 318 c:+ 3)
+    (up-modify-goal 318 c:mod 3)
     (up-modify-goal 318 c:+ 1)
 )
 (defrule
@@ -46932,6 +47360,8 @@
     (up-get-fact random-number 0 319)
     (up-get-precise-time 0 9)
     (up-modify-goal 319 g:+ 9)
+    (up-modify-goal 319 c:mod 3)
+    (up-modify-goal 319 c:+ 3)
     (up-modify-goal 319 c:mod 3)
     (up-modify-goal 319 c:+ 1)
 )
@@ -47114,6 +47544,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 320 g:+ 9)
     (up-modify-goal 320 c:mod 3)
+    (up-modify-goal 320 c:+ 3)
+    (up-modify-goal 320 c:mod 3)
     (up-modify-goal 320 c:+ 1)
 )
 (defrule
@@ -47153,6 +47585,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 321 g:+ 9)
     (up-modify-goal 321 c:mod 3)
+    (up-modify-goal 321 c:+ 3)
+    (up-modify-goal 321 c:mod 3)
     (up-modify-goal 321 c:+ 1)
 )
 (defrule
@@ -47190,6 +47624,8 @@
     (up-get-fact random-number 0 322)
     (up-get-precise-time 0 9)
     (up-modify-goal 322 g:+ 9)
+    (up-modify-goal 322 c:mod 3)
+    (up-modify-goal 322 c:+ 3)
     (up-modify-goal 322 c:mod 3)
     (up-modify-goal 322 c:+ 1)
 )
@@ -47231,6 +47667,8 @@
     (up-get-fact random-number 0 323)
     (up-get-precise-time 0 9)
     (up-modify-goal 323 g:+ 9)
+    (up-modify-goal 323 c:mod 4)
+    (up-modify-goal 323 c:+ 4)
     (up-modify-goal 323 c:mod 4)
     (up-modify-goal 323 c:+ 1)
     (disable-self)
@@ -47302,6 +47740,8 @@
     (up-get-fact random-number 0 324)
     (up-get-precise-time 0 9)
     (up-modify-goal 324 g:+ 9)
+    (up-modify-goal 324 c:mod 7)
+    (up-modify-goal 324 c:+ 7)
     (up-modify-goal 324 c:mod 7)
     (up-modify-goal 324 c:+ 1)
     (disable-self)
@@ -47413,6 +47853,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 325 g:+ 9)
     (up-modify-goal 325 c:mod 2)
+    (up-modify-goal 325 c:+ 2)
+    (up-modify-goal 325 c:mod 2)
     (up-modify-goal 325 c:+ 1)
     (disable-self)
 )
@@ -47440,6 +47882,8 @@
     (up-get-fact random-number 0 326)
     (up-get-precise-time 0 9)
     (up-modify-goal 326 g:+ 9)
+    (up-modify-goal 326 c:mod 3)
+    (up-modify-goal 326 c:+ 3)
     (up-modify-goal 326 c:mod 3)
     (up-modify-goal 326 c:+ 1)
     (disable-self)
@@ -47500,6 +47944,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 327 g:+ 9)
     (up-modify-goal 327 c:mod 3)
+    (up-modify-goal 327 c:+ 3)
+    (up-modify-goal 327 c:mod 3)
     (up-modify-goal 327 c:+ 1)
     (disable-self)
 )
@@ -47548,6 +47994,8 @@
     (up-get-fact random-number 0 328)
     (up-get-precise-time 0 9)
     (up-modify-goal 328 g:+ 9)
+    (up-modify-goal 328 c:mod 3)
+    (up-modify-goal 328 c:+ 3)
     (up-modify-goal 328 c:mod 3)
     (up-modify-goal 328 c:+ 1)
     (disable-self)
@@ -47599,6 +48047,8 @@
     (up-get-fact random-number 0 329)
     (up-get-precise-time 0 9)
     (up-modify-goal 329 g:+ 9)
+    (up-modify-goal 329 c:mod 5)
+    (up-modify-goal 329 c:+ 5)
     (up-modify-goal 329 c:mod 5)
     (up-modify-goal 329 c:+ 1)
     (disable-self)
@@ -47660,6 +48110,8 @@
     (up-get-fact random-number 0 330)
     (up-get-precise-time 0 9)
     (up-modify-goal 330 g:+ 9)
+    (up-modify-goal 330 c:mod 2)
+    (up-modify-goal 330 c:+ 2)
     (up-modify-goal 330 c:mod 2)
     (up-modify-goal 330 c:+ 1)
     (disable-self)
@@ -47764,6 +48216,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 331 g:+ 9)
     (up-modify-goal 331 c:mod 6)
+    (up-modify-goal 331 c:+ 6)
+    (up-modify-goal 331 c:mod 6)
     (up-modify-goal 331 c:+ 1)
     (disable-self)
 )
@@ -47850,6 +48304,8 @@
     (up-get-fact random-number 0 332)
     (up-get-precise-time 0 9)
     (up-modify-goal 332 g:+ 9)
+    (up-modify-goal 332 c:mod 8)
+    (up-modify-goal 332 c:+ 8)
     (up-modify-goal 332 c:mod 8)
     (up-modify-goal 332 c:+ 1)
     (disable-self)
@@ -47978,6 +48434,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 333 g:+ 9)
     (up-modify-goal 333 c:mod 5)
+    (up-modify-goal 333 c:+ 5)
+    (up-modify-goal 333 c:mod 5)
     (up-modify-goal 333 c:+ 1)
     (disable-self)
 )
@@ -48043,6 +48501,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 334 g:+ 9)
     (up-modify-goal 334 c:mod 4)
+    (up-modify-goal 334 c:+ 4)
+    (up-modify-goal 334 c:mod 4)
     (up-modify-goal 334 c:+ 1)
     (disable-self)
 )
@@ -48085,6 +48545,8 @@
     (up-get-fact random-number 0 335)
     (up-get-precise-time 0 9)
     (up-modify-goal 335 g:+ 9)
+    (up-modify-goal 335 c:mod 3)
+    (up-modify-goal 335 c:+ 3)
     (up-modify-goal 335 c:mod 3)
     (up-modify-goal 335 c:+ 1)
     (disable-self)
@@ -48129,6 +48591,8 @@
     (up-get-fact random-number 0 336)
     (up-get-precise-time 0 9)
     (up-modify-goal 336 g:+ 9)
+    (up-modify-goal 336 c:mod 5)
+    (up-modify-goal 336 c:+ 5)
     (up-modify-goal 336 c:mod 5)
     (up-modify-goal 336 c:+ 1)
     (disable-self)
@@ -48284,26 +48748,7 @@
 )
 (defrule
     (can-train monk)
-    (unit-type-count-total monk-set < 3)
-    (civ-selected lithuanians)
-    (or
-      (goal produce-unique-units 1)
-      (goal produce-knights 1)
-    )
-    (building-type-count town-center > 0)
-=>
-    (train monk)
-)
-(defrule
-    (can-train monk)
     (unit-type-count-total monk-set < 1)
-    (nand
-      (civ-selected lithuanians)
-      (or
-        (goal produce-unique-units 1)
-        (goal produce-knights 1)
-      )
-    )
     (building-type-count town-center > 0)
 =>
     (train monk)
@@ -48443,6 +48888,8 @@
     (up-get-fact random-number 0 339)
     (up-get-precise-time 0 338)
     (up-modify-goal 339 g:+ 338)
+    (up-modify-goal 339 c:mod 2)
+    (up-modify-goal 339 c:+ 2)
     (up-modify-goal 339 c:mod 2)
     (up-modify-goal 339 c:+ 1)
 )
@@ -48698,6 +49145,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 342 g:+ 9)
     (up-modify-goal 342 c:mod 3)
+    (up-modify-goal 342 c:+ 3)
+    (up-modify-goal 342 c:mod 3)
     (up-modify-goal 342 c:+ 1)
 )
 (defrule
@@ -48734,6 +49183,8 @@
     (up-get-fact random-number 0 343)
     (up-get-precise-time 0 338)
     (up-modify-goal 343 g:+ 338)
+    (up-modify-goal 343 c:mod 3)
+    (up-modify-goal 343 c:+ 3)
     (up-modify-goal 343 c:mod 3)
     (up-modify-goal 343 c:+ 1)
 )
@@ -48792,6 +49243,8 @@
     (up-get-precise-time 0 338)
     (up-modify-goal 344 g:+ 338)
     (up-modify-goal 344 c:mod 3)
+    (up-modify-goal 344 c:+ 3)
+    (up-modify-goal 344 c:mod 3)
     (up-modify-goal 344 c:+ 1)
 )
 (defrule
@@ -48828,6 +49281,8 @@
     (up-get-fact random-number 0 345)
     (up-get-precise-time 0 9)
     (up-modify-goal 345 g:+ 9)
+    (up-modify-goal 345 c:mod 3)
+    (up-modify-goal 345 c:+ 3)
     (up-modify-goal 345 c:mod 3)
     (up-modify-goal 345 c:+ 1)
 )
@@ -48886,6 +49341,8 @@
     (up-get-precise-time 0 9)
     (up-modify-goal 346 g:+ 9)
     (up-modify-goal 346 c:mod 3)
+    (up-modify-goal 346 c:+ 3)
+    (up-modify-goal 346 c:mod 3)
     (up-modify-goal 346 c:+ 1)
 )
 (defrule
@@ -48922,6 +49379,8 @@
     (up-get-fact random-number 0 347)
     (up-get-precise-time 0 338)
     (up-modify-goal 347 g:+ 338)
+    (up-modify-goal 347 c:mod 3)
+    (up-modify-goal 347 c:+ 3)
     (up-modify-goal 347 c:mod 3)
     (up-modify-goal 347 c:+ 1)
 )
@@ -48980,6 +49439,8 @@
     (up-get-precise-time 0 338)
     (up-modify-goal 348 g:+ 338)
     (up-modify-goal 348 c:mod 3)
+    (up-modify-goal 348 c:+ 3)
+    (up-modify-goal 348 c:mod 3)
     (up-modify-goal 348 c:+ 1)
 )
 (defrule
@@ -49016,6 +49477,8 @@
     (up-get-fact random-number 0 349)
     (up-get-precise-time 0 9)
     (up-modify-goal 349 g:+ 9)
+    (up-modify-goal 349 c:mod 3)
+    (up-modify-goal 349 c:+ 3)
     (up-modify-goal 349 c:mod 3)
     (up-modify-goal 349 c:+ 1)
 )

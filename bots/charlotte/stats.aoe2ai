@@ -394,6 +394,9 @@ insert decide-blacksmith-investment(type="infantry")
     goal {prefix}unique-unit-is-cavalry-archer = 1
     goal {prefix}unique-unit-is-expensive = 1
   #end if
+  #if players-civ {player} tatars
+    goal {prefix}unique-unit-is-cavalry = 1
+  #end if
   #if players-civ {player} teutonic
     goal {prefix}unique-unit-is-infantry = 1
     goal {prefix}unique-unit-is-expensive = 1
