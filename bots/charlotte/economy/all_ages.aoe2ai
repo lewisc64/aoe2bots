@@ -32,7 +32,9 @@ build 1 town-center with wood and stone escrow
   #end if
   
   // deer pushing
-  push deer
+  #if game-time < 600
+    push deer
+  #end if
   
   // relic gathering
   build 1 monastery

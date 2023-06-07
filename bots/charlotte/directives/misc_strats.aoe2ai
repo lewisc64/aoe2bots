@@ -71,6 +71,7 @@
 #else if strategic-number sn-number-explore-groups == 0
   sn-number-explore-groups = 1
   sn-total-number-explorers = 1
+  scout enemy
 #end if
 
 // build feitorias
@@ -94,4 +95,14 @@
   #do once
     @up-modify-goal desired-town-centers c:max 6
   #end do
+#end if
+
+// run scout towards sheep
+#if game-time < 600
+  $clear
+  $find local 1 scout-cavalry-line
+  $find local 1 eagle-warrior-line
+  $focus gaia
+  $find remote livestock-class
+  $move
 #end if

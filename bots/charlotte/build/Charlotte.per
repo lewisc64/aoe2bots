@@ -37525,7 +37525,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1114)
+    (up-jump-rule 1115)
 )
 (defrule
     (true)
@@ -37716,6 +37716,7 @@
 =>
     (set-strategic-number sn-number-explore-groups 1)
     (set-strategic-number sn-total-number-explorers 1)
+    (up-send-scout group-type-land-explore scout-enemy)
 )
 (defrule
     (civ-selected portuguese)
@@ -37760,6 +37761,19 @@
 =>
     (up-modify-goal desired-town-centers c:max 6)
     (disable-self)
+)
+(defrule
+    (game-time < 600)
+=>
+    (up-reset-search 1 1 1 1)
+    (up-reset-filters)
+    (up-find-local c: scout-cavalry-line c: 1)
+    (up-reset-filters)
+    (up-find-local c: eagle-warrior-line c: 1)
+    (up-modify-sn sn-focus-player-number c:= 0)
+    (up-reset-filters)
+    (up-find-remote c: livestock-class c: 255)
+    (up-target-objects 0 action-move -1 -1)
 )
 (defrule
     (true)
@@ -48738,6 +48752,7 @@
 (defrule
     (dropsite-min-distance deer-hunting != 255)
     (dropsite-min-distance deer-hunting != -1)
+    (game-time < 600)
     (building-type-count town-center > 0)
 =>
     (up-full-reset-search)
@@ -48754,6 +48769,7 @@
     (dropsite-min-distance deer-hunting != 255)
     (dropsite-min-distance deer-hunting != -1)
     (up-compare-goal 343 c:>= 1)
+    (game-time < 600)
     (building-type-count town-center > 0)
 =>
     (up-clean-search search-remote 44 1)
@@ -48771,6 +48787,7 @@
 (defrule
     (dropsite-min-distance deer-hunting <= 4)
     (dropsite-min-distance deer-hunting != -1)
+    (game-time < 600)
     (building-type-count town-center > 0)
 =>
     (up-full-reset-search)
