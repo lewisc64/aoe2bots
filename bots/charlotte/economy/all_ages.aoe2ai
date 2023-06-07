@@ -30,7 +30,10 @@ build 1 town-center with wood and stone escrow
   #if unit-type-count villager >= 8
     lure boars
   #end if
-
+  
+  // deer pushing
+  push deer
+  
   // relic gathering
   build 1 monastery
   train 1 monk
