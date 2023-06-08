@@ -813,6 +813,16 @@
     (set-strategic-number sn-cap-civilian-explorers 0)
 )
 (defrule
+    (game-time < 600)
+=>
+    (up-full-reset-search)
+    (up-find-local c: scout-cavalry-line c: 1)
+    (up-find-local c: eagle-warrior-line c: 1)
+    (up-modify-sn sn-focus-player-number c:= 0)
+    (up-find-remote c: livestock-class c: 255)
+    (up-target-objects 0 action-move -1 -1)
+)
+(defrule
     (true)
 =>
     (set-goal 27 0)
@@ -37525,7 +37535,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1115)
+    (up-jump-rule 1114)
 )
 (defrule
     (true)
@@ -37761,19 +37771,6 @@
 =>
     (up-modify-goal desired-town-centers c:max 6)
     (disable-self)
-)
-(defrule
-    (game-time < 600)
-=>
-    (up-reset-search 1 1 1 1)
-    (up-reset-filters)
-    (up-find-local c: scout-cavalry-line c: 1)
-    (up-reset-filters)
-    (up-find-local c: eagle-warrior-line c: 1)
-    (up-modify-sn sn-focus-player-number c:= 0)
-    (up-reset-filters)
-    (up-find-remote c: livestock-class c: 255)
-    (up-target-objects 0 action-move -1 -1)
 )
 (defrule
     (true)
