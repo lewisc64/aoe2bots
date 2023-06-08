@@ -11,11 +11,12 @@
     sn-enable-training-queue = 1
   #end do
   
-  #if civilian-population >= 25
+  #if unit-type-count-total villager >= 25
     sn-enable-training-queue = 0
   #end if
   
   lure boars
+  push deer
   
   build 1 town-center
   build houses with 5 headroom
