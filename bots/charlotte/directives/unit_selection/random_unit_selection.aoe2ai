@@ -19,6 +19,7 @@
   @up-modify-goal {goal} g:+ produce-genitours
   @up-modify-goal {goal} g:+ produce-condottiero
   @up-modify-goal {goal} g:+ produce-missionaries
+  @up-modify-goal {goal} g:+ produce-elephant-archers
   // ships do not count towards unit total.
 #end template
 
@@ -101,7 +102,10 @@ insert random-unit-selection-count-units-selected(goal="total-units-selected")
   
   #randor
     @up-modify-goal produce-missionaries g:= good-missionaries
-    
+  
+  #randor
+    @up-modify-goal produce-elephant-archers g:= good-elephant-archers
+  
   #end select
 #end if
 

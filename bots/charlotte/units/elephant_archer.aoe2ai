@@ -1,19 +1,19 @@
 //load "../research/town_center/castle_age.aoe2ai"
-load "../research/siege_workshop/prerequisites.aoe2ai"
+load "../research/archery_range/prerequisites.aoe2ai"
 
-#if unit-available armored-elephant-line
+#if unit-available elephant-archer-line
 
   #if current-age >= castle-age 
     load "../research/castle/paiks.aoe2ai"
   #end if
 
   #if current-age == imperial-age
-    load "../research/siege_workshop/siege_elephant.aoe2ai"
+    load "../research/archery_range/elite_elephant_archer.aoe2ai"
   #end if
   
-  load "types/siege.aoe2ai"
+  load "types/cavalry_archer.aoe2ai"
   
   #if goal produce-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1
-    train armored-elephant-line
+    train cavalry-archer-line
   #end if
 #end if

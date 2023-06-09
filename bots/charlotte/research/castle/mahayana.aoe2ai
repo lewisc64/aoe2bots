@@ -1,0 +1,6 @@
+#if not research-completed ri-mahayana and civ-selected bengalis
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+
+  insert attempt-research(research="ri-mahayana",importance="importance-low",building="castle")
+#end if

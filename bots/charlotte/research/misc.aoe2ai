@@ -27,3 +27,7 @@
 #if current-age == imperial-age and goal team-game 1 and goal locked-teams 1 and players-building-type-count any-ally castle >= 1
   load "../research/castle/cuman_mercenaries.aoe2ai"
 #end if
+
+#if current-age == imperial-age and up-compare-goal population-headroom c:< 10
+  load "../research/castle/mahayana.aoe2ai"
+#end if

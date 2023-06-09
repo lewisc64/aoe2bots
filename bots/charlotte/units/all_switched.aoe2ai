@@ -30,6 +30,7 @@ goal total-type-production = 0
   insert add-to-total-type-production(unit="skirmisher-line",goal="produce-skirmishers")
   insert add-to-total-type-production(unit="genitour-line",goal="produce-genitours")
   insert add-to-total-type-production(unit="cavalry-archer-line",goal="produce-cavalry-archers")
+  insert add-to-total-type-production(unit="elephant-archer-line",goal="produce-elephant-archers")
   
   insert add-to-total-type-production(unit="militiaman-line",goal="produce-militia")
   insert add-to-total-type-production(unit="condottiero",goal="produce-condottiero")
@@ -95,6 +96,7 @@ load "prerequisites.aoe2ai"
   insert load-unit(production_goal="produce-skirmishers",unit="skirmisher-line",unit_path="skirmisher.aoe2ai")
   insert load-unit(production_goal="produce-genitours",unit="genitour-line",unit_path="genitour.aoe2ai")
   insert load-unit(production_goal="produce-cavalry-archers",unit="cavalry-archer-line",unit_path="cavalry_archer.aoe2ai")
+  insert load-unit(production_goal="produce-elephant-archers",unit="elephant-archer-line",unit_path="elephant_archer.aoe2ai")
 
   insert load-unit(production_goal="produce-militia",unit="militiaman-line",unit_path="militia.aoe2ai")
   insert load-unit(production_goal="produce-condottiero",unit="condottiero",unit_path="condottiero.aoe2ai")

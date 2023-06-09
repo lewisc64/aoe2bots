@@ -13,6 +13,16 @@
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
+  #if players-civ {player} bengalis
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-elephant-archers = 1
+    goal {prefix}good-battle-elephants = 1
+    goal {prefix}good-monks = 1
+    goal {prefix}good-armored-elephants = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
+  #end if
   #if players-civ {player} berbers
     goal {prefix}good-skirmishers = 1
     goal {prefix}good-hand-cannoneers = 1
