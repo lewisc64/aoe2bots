@@ -1,0 +1,6 @@
+#if not research-completed ri-medical-corps and civ-selected dravidians
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
+
+  insert attempt-research(research="ri-medical-corps",importance="importance-low",building="castle")
+#end if

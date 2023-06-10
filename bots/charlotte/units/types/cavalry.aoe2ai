@@ -19,8 +19,9 @@
   load "../../research/castle/stirrups.aoe2ai"
 #end if
 
-#if current-age >= imperial-age
+#if current-age == imperial-age
   load "../../research/castle/farimba.aoe2ai"
+  load "../../research/castle/wootz_steel.aoe2ai"
   #respond to 2 archer-line
     load "../../research/castle/manipur_cavalry.aoe2ai"
   #end respond

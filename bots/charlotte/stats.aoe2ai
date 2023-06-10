@@ -292,6 +292,10 @@ insert decide-blacksmith-investment(type="infantry")
     goal {prefix}unique-unit-is-infantry = 1
     goal {prefix}unique-unit-counters-infantry = 1
   #end if
+  #if players-civ {player} bengalis
+    goal {prefix}unique-unit-is-cavalry-archer = 1
+    goal {prefix}unique-unit-counters-infantry = 1
+  #end if
   #if players-civ {player} berbers
     goal {prefix}unique-unit-is-cavalry-archer = 1
     goal {prefix}unique-unit-counters-cavalry-archer = 1
@@ -319,6 +323,10 @@ insert decide-blacksmith-investment(type="infantry")
   #end if
   #if players-civ {player} cumans
     goal {prefix}unique-unit-is-cavalry-archer = 1
+  #end if
+  #if players-civ {player} dravidians
+    goal {prefix}unique-unit-is-infantry = 1
+    goal {prefix}unique-unit-counters-infantry = 1
   #end if
   #if players-civ {player} ethiopian
     goal {prefix}unique-unit-is-infantry = 1

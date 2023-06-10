@@ -1555,6 +1555,13 @@
     (disable-self)
 )
 (defrule
+    (players-civ my-player-number bengalis)
+=>
+    (set-goal unique-unit-is-cavalry-archer 1)
+    (set-goal unique-unit-counters-infantry 1)
+    (disable-self)
+)
+(defrule
     (players-civ my-player-number berbers)
 =>
     (set-goal unique-unit-is-cavalry-archer 1)
@@ -1604,6 +1611,13 @@
     (players-civ my-player-number cumans)
 =>
     (set-goal unique-unit-is-cavalry-archer 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number dravidians)
+=>
+    (set-goal unique-unit-is-infantry 1)
+    (set-goal unique-unit-counters-infantry 1)
     (disable-self)
 )
 (defrule
@@ -3423,7 +3437,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 4763)
+    (up-jump-rule 4950)
 )
 (defrule
     (can-build town-center)
@@ -10697,7 +10711,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 170)
+    (up-jump-rule 181)
 )
 (defrule
     (goal produce-elephant-archers 1)
@@ -10728,7 +10742,7 @@
       (unit-available elephant-archer-line)
     )
 =>
-    (up-jump-rule 166)
+    (up-jump-rule 177)
 )
 (defrule
     (nand
@@ -10840,6 +10854,92 @@
     (building-type-count castle >= 1)
 =>
     (research ri-paiks)
+)
+(defrule
+    (nand
+      (current-age >= castle-age)
+      (unit-available elephant-archer-line)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-medical-corps)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-medical-corps)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-medical-corps < research-pending)
+    (research-available ri-medical-corps)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-medical-corps)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-medical-corps)
+    (building-type-count castle >= 1)
+=>
+    (research ri-medical-corps)
 )
 (defrule
     (nand
@@ -11975,7 +12075,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 198)
+    (up-jump-rule 209)
 )
 (defrule
     (goal produce-militia 1)
@@ -12006,7 +12106,7 @@
       (unit-available militiaman-line)
     )
 =>
-    (up-jump-rule 194)
+    (up-jump-rule 205)
 )
 (defrule
     (can-build barracks)
@@ -12635,7 +12735,7 @@
       (unit-available militiaman-line)
     )
 =>
-    (up-jump-rule 109)
+    (up-jump-rule 120)
 )
 (defrule
     (not
@@ -13255,6 +13355,99 @@
     (building-type-count castle >= 1)
 =>
     (research ri-perfusion)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-wootz-steel < research-pending)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-wootz-steel)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (research ri-wootz-steel)
 )
 (defrule
     (not
@@ -13463,7 +13656,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 127)
+    (up-jump-rule 138)
 )
 (defrule
     (goal produce-condottiero 1)
@@ -13494,7 +13687,7 @@
       (unit-available condottiero)
     )
 =>
-    (up-jump-rule 123)
+    (up-jump-rule 134)
 )
 (defrule
     (can-build barracks)
@@ -13509,7 +13702,7 @@
       (unit-available condottiero)
     )
 =>
-    (up-jump-rule 109)
+    (up-jump-rule 120)
 )
 (defrule
     (not
@@ -14129,6 +14322,99 @@
     (building-type-count castle >= 1)
 =>
     (research ri-perfusion)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-wootz-steel < research-pending)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-wootz-steel)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (research ri-wootz-steel)
 )
 (defrule
     (not
@@ -14423,7 +14709,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 145)
+    (up-jump-rule 156)
 )
 (defrule
     (goal produce-spearmen 1)
@@ -14454,7 +14740,7 @@
       (unit-available spearman-line)
     )
 =>
-    (up-jump-rule 141)
+    (up-jump-rule 152)
 )
 (defrule
     (can-build barracks)
@@ -14691,7 +14977,7 @@
       (unit-available spearman-line)
     )
 =>
-    (up-jump-rule 109)
+    (up-jump-rule 120)
 )
 (defrule
     (not
@@ -15313,6 +15599,99 @@
     (research ri-perfusion)
 )
 (defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-wootz-steel < research-pending)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-wootz-steel)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (research ri-wootz-steel)
+)
+(defrule
     (not
       (current-age >= castle-age)
     )
@@ -15519,7 +15898,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 156)
+    (up-jump-rule 167)
 )
 (defrule
     (goal produce-eagles 1)
@@ -15550,7 +15929,7 @@
       (unit-available eagle-warrior-line)
     )
 =>
-    (up-jump-rule 152)
+    (up-jump-rule 163)
 )
 (defrule
     (can-build barracks)
@@ -15878,7 +16257,7 @@
       (unit-available eagle-warrior-line)
     )
 =>
-    (up-jump-rule 109)
+    (up-jump-rule 120)
 )
 (defrule
     (not
@@ -16500,6 +16879,99 @@
     (research ri-perfusion)
 )
 (defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-wootz-steel < research-pending)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-wootz-steel)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (research ri-wootz-steel)
+)
+(defrule
     (not
       (current-age >= castle-age)
     )
@@ -16706,7 +17178,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 207)
+    (up-jump-rule 218)
 )
 (defrule
     (goal produce-scouts 1)
@@ -16737,7 +17209,7 @@
       (unit-available scout-cavalry-line)
     )
 =>
-    (up-jump-rule 203)
+    (up-jump-rule 214)
 )
 (defrule
     (not
@@ -17239,7 +17711,7 @@
       (unit-available scout-cavalry-line)
     )
 =>
-    (up-jump-rule 136)
+    (up-jump-rule 147)
 )
 (defrule
     (not
@@ -18055,7 +18527,7 @@
 )
 (defrule
     (not
-      (current-age >= imperial-age)
+      (current-age == imperial-age)
     )
 =>
     (up-jump-rule 10)
@@ -18139,9 +18611,94 @@
     (research ri-farimba)
 )
 (defrule
+    (not
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-wootz-steel < research-pending)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-wootz-steel)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (research ri-wootz-steel)
+)
+(defrule
     (nand
       (players-unit-type-count any-enemy archer-line >= 2)
-      (current-age >= imperial-age)
+      (current-age == imperial-age)
     )
 =>
     (up-jump-rule 10)
@@ -18268,7 +18825,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 161)
+    (up-jump-rule 172)
 )
 (defrule
     (goal produce-knights 1)
@@ -18299,7 +18856,7 @@
       (unit-available knight-line)
     )
 =>
-    (up-jump-rule 157)
+    (up-jump-rule 168)
 )
 (defrule
     (not
@@ -18445,7 +19002,7 @@
       (unit-available knight-line)
     )
 =>
-    (up-jump-rule 136)
+    (up-jump-rule 147)
 )
 (defrule
     (not
@@ -19261,7 +19818,7 @@
 )
 (defrule
     (not
-      (current-age >= imperial-age)
+      (current-age == imperial-age)
     )
 =>
     (up-jump-rule 10)
@@ -19345,9 +19902,94 @@
     (research ri-farimba)
 )
 (defrule
+    (not
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-wootz-steel < research-pending)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-wootz-steel)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (research ri-wootz-steel)
+)
+(defrule
     (nand
       (players-unit-type-count any-enemy archer-line >= 2)
-      (current-age >= imperial-age)
+      (current-age == imperial-age)
     )
 =>
     (up-jump-rule 10)
@@ -19475,7 +20117,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 180)
+    (up-jump-rule 191)
 )
 (defrule
     (goal produce-camels 1)
@@ -19506,7 +20148,7 @@
       (unit-available camel-line)
     )
 =>
-    (up-jump-rule 176)
+    (up-jump-rule 187)
 )
 (defrule
     (not
@@ -19797,7 +20439,7 @@
       (unit-available camel-line)
     )
 =>
-    (up-jump-rule 136)
+    (up-jump-rule 147)
 )
 (defrule
     (not
@@ -20613,7 +21255,7 @@
 )
 (defrule
     (not
-      (current-age >= imperial-age)
+      (current-age == imperial-age)
     )
 =>
     (up-jump-rule 10)
@@ -20697,9 +21339,94 @@
     (research ri-farimba)
 )
 (defrule
+    (not
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-wootz-steel < research-pending)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-wootz-steel)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (research ri-wootz-steel)
+)
+(defrule
     (nand
       (players-unit-type-count any-enemy archer-line >= 2)
-      (current-age >= imperial-age)
+      (current-age == imperial-age)
     )
 =>
     (up-jump-rule 10)
@@ -20827,7 +21554,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 197)
+    (up-jump-rule 219)
 )
 (defrule
     (goal produce-battle-elephants 1)
@@ -20858,7 +21585,7 @@
       (unit-available battle-elephant-line)
     )
 =>
-    (up-jump-rule 193)
+    (up-jump-rule 215)
 )
 (defrule
     (not
@@ -21230,6 +21957,92 @@
 )
 (defrule
     (nand
+      (current-age >= castle-age)
+      (unit-available battle-elephant-line)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-medical-corps)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-medical-corps)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-medical-corps < research-pending)
+    (research-available ri-medical-corps)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-medical-corps)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-medical-corps)
+    (building-type-count castle >= 1)
+=>
+    (research ri-medical-corps)
+)
+(defrule
+    (nand
       (current-age == imperial-age)
       (unit-available battle-elephant-line)
     )
@@ -21292,7 +22105,7 @@
       (unit-available battle-elephant-line)
     )
 =>
-    (up-jump-rule 136)
+    (up-jump-rule 147)
 )
 (defrule
     (not
@@ -22108,7 +22921,7 @@
 )
 (defrule
     (not
-      (current-age >= imperial-age)
+      (current-age == imperial-age)
     )
 =>
     (up-jump-rule 10)
@@ -22192,9 +23005,94 @@
     (research ri-farimba)
 )
 (defrule
+    (not
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-wootz-steel < research-pending)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-wootz-steel)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (research ri-wootz-steel)
+)
+(defrule
     (nand
       (players-unit-type-count any-enemy archer-line >= 2)
-      (current-age >= imperial-age)
+      (current-age == imperial-age)
     )
 =>
     (up-jump-rule 10)
@@ -22322,7 +23220,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 175)
+    (up-jump-rule 186)
 )
 (defrule
     (goal produce-steppe-lancers 1)
@@ -22353,7 +23251,7 @@
       (unit-available steppe-lancer-line)
     )
 =>
-    (up-jump-rule 171)
+    (up-jump-rule 182)
 )
 (defrule
     (not
@@ -22615,7 +23513,7 @@
       (unit-available steppe-lancer-line)
     )
 =>
-    (up-jump-rule 136)
+    (up-jump-rule 147)
 )
 (defrule
     (not
@@ -23431,7 +24329,7 @@
 )
 (defrule
     (not
-      (current-age >= imperial-age)
+      (current-age == imperial-age)
     )
 =>
     (up-jump-rule 10)
@@ -23515,9 +24413,94 @@
     (research ri-farimba)
 )
 (defrule
+    (not
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-wootz-steel < research-pending)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-wootz-steel)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (research ri-wootz-steel)
+)
+(defrule
     (nand
       (players-unit-type-count any-enemy archer-line >= 2)
-      (current-age >= imperial-age)
+      (current-age == imperial-age)
     )
 =>
     (up-jump-rule 10)
@@ -24122,7 +25105,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 57)
+    (up-jump-rule 68)
 )
 (defrule
     (goal produce-armored-elephants 1)
@@ -24153,7 +25136,7 @@
       (unit-available armored-elephant-line)
     )
 =>
-    (up-jump-rule 53)
+    (up-jump-rule 64)
 )
 (defrule
     (not
@@ -24265,6 +25248,92 @@
     (building-type-count castle >= 1)
 =>
     (research ri-paiks)
+)
+(defrule
+    (nand
+      (current-age >= castle-age)
+      (unit-available armored-elephant-line)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-medical-corps)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-medical-corps)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-medical-corps < research-pending)
+    (research-available ri-medical-corps)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-medical-corps)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-medical-corps)
+    (building-type-count castle >= 1)
+=>
+    (research ri-medical-corps)
 )
 (defrule
     (nand
@@ -26205,7 +27274,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 275)
+    (up-jump-rule 297)
 )
 (defrule
     (goal produce-unique-units 1)
@@ -26236,7 +27305,7 @@
       (unit-available konnik-set)
     )
 =>
-    (up-jump-rule 271)
+    (up-jump-rule 293)
 )
 (defrule
     (true)
@@ -26393,7 +27462,7 @@
       (unit-available krepost-konnik-line)
     )
 =>
-    (up-jump-rule 109)
+    (up-jump-rule 120)
 )
 (defrule
     (not
@@ -27015,6 +28084,99 @@
     (research ri-perfusion)
 )
 (defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-wootz-steel < research-pending)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-wootz-steel)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (research ri-wootz-steel)
+)
+(defrule
     (not
       (current-age >= castle-age)
     )
@@ -27207,7 +28369,7 @@
       (unit-available krepost-konnik-line)
     )
 =>
-    (up-jump-rule 136)
+    (up-jump-rule 147)
 )
 (defrule
     (not
@@ -28023,7 +29185,7 @@
 )
 (defrule
     (not
-      (current-age >= imperial-age)
+      (current-age == imperial-age)
     )
 =>
     (up-jump-rule 10)
@@ -28107,9 +29269,94 @@
     (research ri-farimba)
 )
 (defrule
+    (not
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-wootz-steel < research-pending)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-wootz-steel)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (research ri-wootz-steel)
+)
+(defrule
     (nand
       (players-unit-type-count any-enemy archer-line >= 2)
-      (current-age >= imperial-age)
+      (current-age == imperial-age)
     )
 =>
     (up-jump-rule 10)
@@ -28263,7 +29510,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 902)
+    (up-jump-rule 935)
 )
 (defrule
     (goal produce-unique-units 1)
@@ -28294,7 +29541,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 898)
+    (up-jump-rule 931)
 )
 (defrule
     (current-age >= castle-age)
@@ -28449,7 +29696,10 @@
               (civ-selected frankish)
               (or
                 (civ-selected gothic)
-                (civ-selected indian)
+                (or
+                  (civ-selected indian)
+                  (civ-selected dravidians)
+                )
               )
             )
           )
@@ -28458,7 +29708,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 109)
+    (up-jump-rule 120)
 )
 (defrule
     (not
@@ -29078,6 +30328,99 @@
     (building-type-count castle >= 1)
 =>
     (research ri-perfusion)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-wootz-steel < research-pending)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-wootz-steel)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (research ri-wootz-steel)
 )
 (defrule
     (not
@@ -29287,7 +30630,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 109)
+    (up-jump-rule 120)
 )
 (defrule
     (not
@@ -29907,6 +31250,99 @@
     (building-type-count castle >= 1)
 =>
     (research ri-perfusion)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-wootz-steel < research-pending)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-wootz-steel)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (research ri-wootz-steel)
 )
 (defrule
     (not
@@ -31914,7 +33350,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 136)
+    (up-jump-rule 147)
 )
 (defrule
     (not
@@ -32730,7 +34166,7 @@
 )
 (defrule
     (not
-      (current-age >= imperial-age)
+      (current-age == imperial-age)
     )
 =>
     (up-jump-rule 10)
@@ -32814,9 +34250,94 @@
     (research ri-farimba)
 )
 (defrule
+    (not
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-wootz-steel < research-pending)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-wootz-steel)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (research ri-wootz-steel)
+)
+(defrule
     (nand
       (players-unit-type-count any-enemy archer-line >= 2)
-      (current-age >= imperial-age)
+      (current-age == imperial-age)
     )
 =>
     (up-jump-rule 10)
@@ -39173,7 +40694,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1119)
+    (up-jump-rule 1120)
 )
 (defrule
     (true)
@@ -40220,7 +41741,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 40)
+    (up-jump-rule 41)
 )
 (defrule
     (true)
@@ -40386,6 +41907,21 @@
     (set-goal good-knights 1)
     (set-goal good-steppe-lancers 1)
     (set-goal good-battering-rams 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number dravidians)
+=>
+    (set-goal good-archers 1)
+    (set-goal good-skirmishers 1)
+    (set-goal good-elephant-archers 1)
+    (set-goal good-militia 1)
+    (set-goal good-spearmen 1)
+    (set-goal good-armored-elephants 1)
+    (set-goal good-mangonels 1)
+    (set-goal good-scorpions 1)
+    (set-goal good-galleys 1)
+    (set-goal good-fire-ships 1)
     (disable-self)
 )
 (defrule

@@ -97,6 +97,18 @@
     goal {prefix}good-steppe-lancers = 1
     goal {prefix}good-battering-rams = 1
   #end if
+  #if players-civ {player} dravidians
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-elephant-archers = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-armored-elephants = 1
+    goal {prefix}good-mangonels = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-galleys = 1
+    goal {prefix}good-fire-ships = 1
+  #end if
   #if players-civ {player} ethiopian
     goal {prefix}good-archers = 1
     goal {prefix}good-skirmishers = 1
