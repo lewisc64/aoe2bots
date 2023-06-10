@@ -2,13 +2,5 @@
   load "../dock/prerequisites.aoe2ai"
   //load "../town_center/imperial_age.aoe2ai"
 
-  #if research-available ri-heavy-demolition-ship and building-type-count dock >= 1
-    #if up-research-status c: ri-heavy-demolition-ship < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-medium
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-heavy-demolition-ship
-    #end if
-  #end if
+  insert attempt-research(research="ri-heavy-demolition-ship",importance="importance-medium",building="dock")
 #end if

@@ -29,15 +29,6 @@ const diplo-mute-period = 120
 
 #do once
   @set-stance every-enemy ally
-  goal diplo-chat-alliance-offer = -1
-  goal diplo-chat-alliance-our-betrayal = -1
-  goal diplo-chat-alliance-their-betrayal = -1
-  goal diplo-chat-alliance-accept-ours = -1
-  goal diplo-chat-alliance-accept-theirs = -1
-  goal diplo-chat-alliance-refuse-ours = -1
-  goal diplo-chat-alliance-refuse-theirs = -1
-  goal diplo-chat-outrage = -1
-  goal diplo-chat-warning = -1
   goal diplo-locked-teams = 1
   
   goal diplo-accept-alliances = 1
@@ -173,11 +164,15 @@ insert diplo-count-stances(player=8)
       chat to self "threatened by ally {player}"
       #ifg goal diplo-player-{player}-warnings 0
         @set-stance {player} enemy
-        goal diplo-chat-outrage = {player}
+        #if game-time >= diplo-mute-period
+          insert diplo-chat-friendly-fire-betrayal(player={player})
+        #end if
         goal diplo-action-done = 1
       #else
         goal diplo-player-{player}-warnings -= 1
-        goal diplo-chat-warning = {player}
+        #if game-time >= diplo-mute-period
+          insert diplo-chat-friendly-fire-warning(player={player})
+        #end if
         goal diplo-action-done = 1
       #end if
     #end if
@@ -188,7 +183,9 @@ insert diplo-count-stances(player=8)
       insert diplo-set-future-stamp(goal="diplo-player-{player}-alliance-offer-expire-at",seconds="diplo-alliance-timeout")
       @set-stance {player} ally
       goal diplo-trying-to-ally-{player} = 1
-      goal diplo-chat-alliance-offer = {player}
+      #if game-time >= diplo-mute-period
+        insert diplo-chat-alliance-offer(player={player})
+      #end if
       goal diplo-action-done = 1
     #end if
     
@@ -198,7 +195,9 @@ insert diplo-count-stances(player=8)
       #ifg goal diplo-action-done 0 and players-stance {player} enemy and not stance-toward {player} enemy
         chat to self "enemy those who enemy us {player}"
         #if stance-toward {player} ally
-          goal diplo-chat-alliance-their-betrayal = {player}
+          #if game-time >= diplo-mute-period
+            insert diplo-chat-their-betrayal(player={player})
+          #end if
           goal diplo-player-{player}-alliance-offer-expire-at = 0
         #end if
         @set-stance {player} enemy
@@ -215,7 +214,9 @@ insert diplo-count-stances(player=8)
       // ally those who ally us
       #ifg goal diplo-action-done 0 and players-stance {player} ally and not stance-toward {player} ally and (goal diplo-player-{player}-is-marked 0 or up-compare-goal diplo-enemy-count c:>= 2) and goal diplo-accept-alliances 1
         chat to self "accept alliance {player}"
-        goal diplo-chat-alliance-accept-theirs = {player}
+        #if game-time >= diplo-mute-period
+          insert diplo-chat-accepted-their-alliance(player={player})
+        #end if
         @set-stance {player} ally
         goal diplo-player-{player}-alliance-offer-expire-at = -1
         goal diplo-action-done = 1
@@ -224,8 +225,8 @@ insert diplo-count-stances(player=8)
       // enemy those that are marked
       #ifg goal diplo-action-done 0 and not stance-toward {player} enemy and goal diplo-player-{player}-is-marked 1 and goal diplo-enemy-count 0 and goal allow-marked-war-for-player {player}
         chat to self "enemy marked {player}"
-        #if stance-toward {player} ally
-          goal diplo-chat-alliance-our-betrayal = {player}
+        #if stance-toward {player} ally and game-time >= diplo-mute-period
+          insert diplo-chat-our-betrayal(player={player})
         #end if
         @set-stance {player} enemy
         goal diplo-action-done = 1
@@ -236,7 +237,9 @@ insert diplo-count-stances(player=8)
       // they accepted our alliance
       #ifg goal diplo-action-done 0 and players-stance {player} ally
         chat to self "they accepted alliance {player}"
-        goal diplo-chat-alliance-accept-ours = {player}
+        #if game-time >= diplo-mute-period
+          insert diplo-chat-accepted-our-alliance(player={player})
+        #end if
         goal diplo-trying-to-ally-{player} = 0
         goal diplo-player-{player}-alliance-offer-expire-at = -1
         goal diplo-action-done = 1
@@ -245,7 +248,9 @@ insert diplo-count-stances(player=8)
       // they refused our alliance
       #ifg goal diplo-action-done 0 and players-stance {player} enemy and up-compare-goal diplo-game-time-goal g:> diplo-player-{player}-alliance-offer-expire-at
         chat to self "they refused alliance {player}"
-        goal diplo-chat-alliance-refuse-ours = {player}
+        #if game-time >= diplo-mute-period
+          insert diplo-chat-refused-our-alliance(player={player})
+        #end if
         goal diplo-trying-to-ally-{player} = 0
         @set-stance {player} enemy
         goal diplo-action-done = 1
@@ -305,17 +310,6 @@ insert diplo-count-stances(player=8)
   @set-stance my-player-number ally
 #end if
 
-// suppress initial diplo chats
-#if game-time < diplo-mute-period
-  goal diplo-chat-alliance-offer = -1
-  goal diplo-chat-alliance-our-betrayal = -1
-  goal diplo-chat-alliance-their-betrayal = -1
-  goal diplo-chat-alliance-accept-ours = -1
-  goal diplo-chat-alliance-accept-theirs = -1
-  goal diplo-chat-alliance-refuse-ours = -1
-  goal diplo-chat-alliance-refuse-theirs = -1
-#end if
-
 // after mute period is over, retry alliance requests to name and shame.
 #if game-time > diplo-mute-period
   #do once grouped
@@ -328,49 +322,4 @@ insert diplo-count-stances(player=8)
   #do once grouped
     insert diplo-retry-all-alliances
   #end do
-#end if
-
-#if not goal diplo-chat-alliance-offer -1
-  insert diplo-chat-alliance-offer(player_goal="diplo-chat-alliance-offer")
-  goal diplo-chat-alliance-offer = -1
-#end if
-
-#if not goal diplo-chat-alliance-our-betrayal -1
-  insert diplo-chat-our-betrayal(player_goal="diplo-chat-alliance-our-betrayal")
-  goal diplo-chat-alliance-our-betrayal = -1
-#end if
-
-#if not goal diplo-chat-alliance-their-betrayal -1
-  insert diplo-chat-their-betrayal(player_goal="diplo-chat-alliance-their-betrayal")
-  goal diplo-chat-alliance-their-betrayal = -1
-#end if
-
-#if not goal diplo-chat-alliance-accept-ours -1
-  insert diplo-chat-accepted-our-alliance(player_goal="diplo-chat-alliance-accept-ours")
-  goal diplo-chat-alliance-accept-ours = -1
-#end if
-
-#if not goal diplo-chat-alliance-accept-theirs -1
-  insert diplo-chat-accepted-their-alliance(player_goal="diplo-chat-alliance-accept-theirs")
-  goal diplo-chat-alliance-accept-theirs = -1
-#end if
-
-#if not goal diplo-chat-alliance-refuse-ours -1
-  insert diplo-chat-refused-our-alliance(player_goal="diplo-chat-alliance-refuse-ours")
-  goal diplo-chat-alliance-refuse-ours = -1
-#end if
-
-#if not goal diplo-chat-alliance-refuse-theirs -1
-  insert diplo-chat-refused-their-alliance(player_goal="diplo-chat-alliance-refuse-theirs")
-  goal diplo-chat-alliance-refuse-theirs = -1
-#end if
-
-#if not goal diplo-chat-outrage -1
-  insert diplo-chat-friendly-fire-betrayal(player_goal="diplo-chat-outrage")
-  goal diplo-chat-outrage = -1
-#end if
-
-#if not goal diplo-chat-warning -1
-  insert diplo-chat-friendly-fire-warning(player_goal="diplo-chat-warning")
-  goal diplo-chat-warning = -1
 #end if

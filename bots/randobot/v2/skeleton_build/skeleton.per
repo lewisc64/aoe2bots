@@ -6,6 +6,7 @@
 (defrule
     (true)
 =>
+    (up-change-name "Randobot")
     (set-strategic-number sn-enable-new-building-system 1)
     (set-strategic-number sn-percent-building-cancellation 20)
     (set-strategic-number sn-cap-civilian-builders 200)
@@ -75,6 +76,7 @@
     )
     (up-pending-objects c: lumber-camp == 0)
     (can-build lumber-camp)
+    (dropsite-min-distance wood != 255)
 =>
     (build lumber-camp)
 )
@@ -93,11 +95,21 @@
 (defrule
     (or
       (building-type-count-total mill == 0)
-      (up-compare-goal 2 g:>= 1)
+      (and
+        (not
+          (civ-selected khmer)
+        )
+        (up-compare-goal 2 g:>= 1)
+      )
     )
     (or
       (resource-found food)
-      (game-time >= 60)
+      (and
+        (not
+          (civ-selected khmer)
+        )
+        (game-time >= 60)
+      )
     )
     (can-build mill)
     (building-type-count lumber-camp >= 1)
@@ -139,6 +151,7 @@
     (resource-found gold)
     (up-pending-objects c: mining-camp == 0)
     (can-build mining-camp)
+    (dropsite-min-distance gold != 255)
     (strategic-number sn-gold-gatherer-percentage > 0)
 =>
     (build mining-camp)
@@ -166,6 +179,7 @@
     (resource-found stone)
     (up-pending-objects c: mining-camp == 0)
     (can-build mining-camp)
+    (dropsite-min-distance stone != 255)
     (strategic-number sn-stone-gatherer-percentage > 0)
 =>
     (build mining-camp)
@@ -423,19 +437,20 @@
     (enable-timer 1 60)
 )
 (defrule
-    (true)
-=>
-    (set-escrow-percentage food 10)
-    (set-escrow-percentage gold 10)
-    (disable-self)
-)
-(defrule
     (up-research-status c: imperial-age >= research-pending)
 =>
     (set-escrow-percentage food 0)
     (set-escrow-percentage gold 0)
     (release-escrow food)
     (release-escrow gold)
+)
+(defrule
+    (not
+      (up-research-status c: imperial-age >= research-pending)
+    )
+=>
+    (set-escrow-percentage food 10)
+    (set-escrow-percentage gold 10)
 )
 (defrule
     (can-research-with-escrow feudal-age)

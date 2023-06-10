@@ -1,0 +1,6 @@
+#if not research-completed ri-paper-money and civ-selected vietnamese
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+
+  insert attempt-research(research="ri-paper-money",importance="importance-low",building="castle")
+#end if

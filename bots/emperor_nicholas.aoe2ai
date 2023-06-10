@@ -2,6 +2,10 @@
 
 const ri-logistica = 61
 
+#do once
+  set name to "Emp. Nicholas"
+#end do
+
 load "charlotte/stats.aoe2ai"
 load "templates/fast_castle.aoe2ai"
 

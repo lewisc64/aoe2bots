@@ -4,6 +4,10 @@ const ri-inquisition = 492
 const ri-sultans = 506
 const ri-orthodoxy = 512
 
+#do once
+  set name to "Brother Clement"
+#end do
+
 load "templates/lightning_castle.aoe2ai"
 
 #if not player-valid 3
@@ -281,17 +285,12 @@ load "templates/lightning_castle.aoe2ai"
   #end if
   
   #if goal attacking 1
-    sn-maximum-town-size = 255
-    
-    // monks and rams get stuck sometimes
-    #repeat every 10 minutes
-      @up-reset-unit c: -1
-    #end repeat
-    
+    sn-number-attack-groups = 200
   #else
-    auto expand town size to 30
+    sn-number-attack-groups = 0
   #end if
   
+  auto expand town size to 30
   delete building feitoria
 #end if
 

@@ -2,13 +2,5 @@
   load "../university/prerequisites.aoe2ai"
   //load "../town_center/castle_age.aoe2ai"
 
-  #if research-available ri-masonry and building-type-count university >= 1
-    #if up-research-status c: ri-masonry < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-low
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-low
-      research ri-masonry
-    #end if
-  #end if
+  insert attempt-research(research="ri-masonry",importance="importance-low",building="university")
 #end if

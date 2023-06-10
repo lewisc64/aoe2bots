@@ -3,13 +3,5 @@
   //load "../town_center/imperial_age.aoe2ai"
   load "../siege_workshop/onager.aoe2ai"
 
-  #if research-available ri-siege-onager and building-type-count siege-workshop >= 1
-    #if up-research-status c: ri-siege-onager < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-low
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-low
-      research ri-siege-onager
-    #end if
-  #end if
+  insert attempt-research(research="ri-siege-onager",importance="importance-low",building="siege-workshop")
 #end if

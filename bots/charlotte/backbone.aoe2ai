@@ -1,7 +1,7 @@
 const ri-yeomen = 3
 const ri-el-dorado = 4
 const ri-garland-wars = 24
-const ri-beserkergang = 49
+const ri-bogsveigar = 49
 const ri-perfusion = 457
 const ri-logistica = 61
 const ri-mahouts = 7
@@ -15,7 +15,7 @@ const ri-manipur-cavalry = 627
 const ri-furor-celtica = 5
 const ri-tusk-swords = 622
 const ri-double-crossbow = 623
-const ri-mercenaries = 514
+const ri-corvinian-army = 514
 const ri-farimba = 577
 const ri-chatras = 628
 const ri-recurve-bow = 515
@@ -23,7 +23,7 @@ const ri-inquisition = 492
 const ri-atlatl = 460
 const ri-greek-fire = 464
 const ri-andean-sling = 516
-const ri-sultans = 506
+const ri-grand-trunk-road = 506
 const ri-pavise = 494
 const ri-silk-road = 499
 const ri-thalassocracy = 624
@@ -31,6 +31,9 @@ const ri-carrack = 572
 const ri-shatagni = 507
 const ri-forced-levy = 625
 const ri-orthodoxy = 512
+const ri-hulche-javelineers = 485
+const ri-zealotry = 9
+const ri-paper-money = 629
 
 const ri-elite-genitour = 599
 const genitour-line = 1079
@@ -48,6 +51,8 @@ const infantry-unit-class = 906
 const cavalry-unit-class = 912
 const dead-trade-cart = 178
 const dead-trade-cart-loaded = 205
+const male-gold-miner = 579
+const female-gold-miner = 581
 const dead-male-builder = 213
 const dead-female-builder = 225
 
@@ -72,6 +77,7 @@ const importance-low = 1
   {before}skirmishers{after}
   {before}cavalry-archers{after}
   {before}genitours{after}
+  {before}elephant-archers{after}
 #end template
 
 #template all-land-infantry-unit-goal-names
@@ -86,6 +92,7 @@ const importance-low = 1
   {before}knights{after}
   {before}camels{after}
   {before}battle-elephants{after}
+  {before}steppe-lancers{after}
 #end template
 
 #template all-land-siege-unit-goal-names
@@ -94,6 +101,7 @@ const importance-low = 1
   {before}scorpions{after}
   {before}bombard-cannons{after}
   {before}trebuchets{after}
+  {before}armored-elephants{after}
 #end template
 
 #template all-land-holy-unit-goal-names
@@ -166,14 +174,41 @@ const importance-low = 1
   #end nomerge
 #end template
 
+#template gather-stone
+  #if stone-amount < {amount}
+    goal do-stone-mining = 1
+    #if gold-amount > 300
+      build 1 market
+      buy stone
+    #end if
+  #end if
+#end template
+
 #template build-castles
   build castle
-
-  goal do-stone-mining = 1
   
-  #if gold-amount >= 300 and stone-amount < 650 and current-age >= castle-age
-    build 1 market
-    buy stone
+  #if current-age >= castle-age
+    insert gather-stone(amount="650")
+  #end if
+#end template
+
+#template build-kreposts
+  build krepost
+  
+  #if current-age >= castle-age
+    insert gather-stone(amount="350")
+  #end if
+#end template
+
+#template attempt-research
+  #if research-available {research} and building-type-count {building} >= 1
+    #if up-research-status c: {research} < research-pending
+      goal attempted-researches += 1
+      @up-modify-goal attempted-researches-importance c:max {importance}
+    #end if
+    #if goal do-research 1 and up-compare-goal research-level c:<= {importance}
+      research {research}
+    #end if
   #end if
 #end template
 
@@ -260,6 +295,7 @@ const importance-low = 1
   goal attacking = 0
   
   assign 8 builders to castle
+  assign 8 builders to krepost
   assign 4 builders to town-center-foundation
   
   goal temp = 0

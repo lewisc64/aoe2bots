@@ -28,7 +28,7 @@ insert all-land-cavalry-unit-goal-names(before="#if goal produce-",after=" 1; go
   goal produce-hand-cannoneers = 0
   goal produce-monks = 0
   goal produce-missionaries = 0
-  #if goal unique-unit-is-infantry 1 and not (civ-selected gothic or civ-selected malay or civ-selected celtic)
+  #if goal unique-unit-is-infantry 1 and not (civ-selected gothic or civ-selected malay or civ-selected celtic or civ-selected bulgarians)
     goal produce-unique-units = 0
   #end if
 #end template
@@ -36,7 +36,7 @@ insert all-land-cavalry-unit-goal-names(before="#if goal produce-",after=" 1; go
 #template turn-off-for-anti-infantry
   goal produce-militia = 0
   goal produce-condottiero = 0
-  #if goal unique-unit-is-infantry 1 and not (civ-selected gothic or civ-selected malay or civ-selected celtic)
+  #if goal unique-unit-is-infantry 1 and not (civ-selected gothic or civ-selected malay or civ-selected celtic or civ-selected bulgarians)
     goal produce-unique-units = 0
   #end if
 #end template
@@ -61,7 +61,7 @@ insert all-land-cavalry-unit-goal-names(before="#if goal produce-",after=" 1; go
   goal produce-scouts = 0
   goal produce-battle-elephants = 0
   goal produce-camels = 0
-  #if goal unique-unit-is-cavalry 1 and goal unique-unit-counters-infantry 0
+  #if goal unique-unit-is-cavalry 1 and goal unique-unit-counters-infantry 0 and not civ-selected bulgarians
     goal produce-unique-units = 0
   #end if
 #end template

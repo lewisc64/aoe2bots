@@ -1,0 +1,6 @@
+#if not research-completed ri-siege-elephant
+  load "../siege_workshop/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+
+  insert attempt-research(research="ri-siege-elephant",importance="importance-medium",building="siege-workshop")
+#end if

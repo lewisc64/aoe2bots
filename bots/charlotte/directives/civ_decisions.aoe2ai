@@ -13,8 +13,17 @@
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
+  #if players-civ {player} bengalis
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-elephant-archers = 1
+    goal {prefix}good-battle-elephants = 1
+    goal {prefix}good-monks = 1
+    goal {prefix}good-armored-elephants = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
+  #end if
   #if players-civ {player} berbers
-    goal {prefix}good-unique-units = 0 // my-unique-unit-line is broken on HD for this civ
     goal {prefix}good-skirmishers = 1
     goal {prefix}good-hand-cannoneers = 1
     goal {prefix}good-militia = 1
@@ -43,6 +52,16 @@
     goal {prefix}good-monks = 1
     goal {prefix}good-galleys = 1
   #end if
+  #if players-civ {player} bulgarians
+    goal {prefix}good-militia = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-knights = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-mangonels = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-galleys = 1
+  #end if
   #if players-civ {player} byzantine
     goal {prefix}good-speamen = 1
     goal {prefix}good-archers = 1
@@ -65,12 +84,18 @@
   #if players-civ {player} chinese
     goal {prefix}good-archers = 1
     goal {prefix}good-skirmishers = 1
-    goal {prefix}good-miltia = 1
     goal {prefix}good-spearmen = 1
     goal {prefix}good-camels = 1
     goal {prefix}good-battering-rams = 1
     goal {prefix}good-scorpions = 1
     goal {prefix}good-galleys = 1
+  #end if
+  #if players-civ {player} cumans
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-knights = 1
+    goal {prefix}good-steppe-lancers = 1
+    goal {prefix}good-battering-rams = 1
   #end if
   #if players-civ {player} ethiopian
     goal {prefix}good-archers = 1
@@ -115,12 +140,12 @@
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
-  #if players-civ {player} indian
+  #if players-civ {player} indian // hindustani
     goal {prefix}good-skirmishers = 1
     goal {prefix}good-hand-cannoneers = 1
-    goal {prefix}good-cavalry-archers = 1
     goal {prefix}good-camels = 1
     goal {prefix}good-scouts = 1
+    goal {prefix}good-armored-elephants = 1
     goal {prefix}good-galleys = 1
   #end if
   #if players-civ {player} italian
@@ -141,12 +166,14 @@
     goal {prefix}good-spearmen = 1
     goal {prefix}good-scorpions = 1
     goal {prefix}good-monks = 1
+    goal {prefix}good-hand-cannoneers = 1
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
   #if players-civ {player} khmer
-    goal {prefix}good-spearmen = 1
+    goal {prefix}good-scouts = 1
     goal {prefix}good-battle-elephants = 1
+    goal {prefix}good-skirmishers = 1
     goal {prefix}good-battering-rams = 1
     goal {prefix}good-scorpions = 1
     goal {prefix}good-hand-cannoneers = 1
@@ -161,12 +188,21 @@
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
+  #if players-civ {player} lithuanians
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-knights = 1
+    goal {prefix}good-monks = 1
+  #end if
   #if players-civ {player} magyar
     goal {prefix}good-archers = 1
     goal {prefix}good-skirmishers = 1
     goal {prefix}good-cavalry-archers = 1
     goal {prefix}good-scouts = 1
     goal {prefix}good-knights = 1
+    goal {prefix}good-scorpions = 1
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
@@ -193,13 +229,14 @@
     goal {prefix}good-eagles = 1
     goal {prefix}good-spearmen = 1
     goal {prefix}good-battering-rams = 1
+    goal {prefix}good-scorpions = 1
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
   #if players-civ {player} mongol
     goal {prefix}good-cavalry-archers = 1
     goal {prefix}good-scouts = 1
-    goal {prefix}good-militia = 1
+    goal {prefix}good-steppe-lancers = 1
     goal {prefix}good-battering-rams = 1
     goal {prefix}good-mangonels = 1
     goal {prefix}good-scorpions = 1
@@ -262,10 +299,21 @@
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
+  #if players-civ {player} tatars
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-cavalry-archers = 1
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-camels = 1
+    goal {prefix}good-steppe-lancers = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-scorpions = 1
+  #end if
   #if players-civ {player} teutonic
     goal {prefix}good-hand-cannoneers = 1
     goal {prefix}good-militia = 1
     goal {prefix}good-spearmen = 1
+    goal {prefix}good-knights = 1
     goal {prefix}good-monks = 1
     goal {prefix}good-mangonels = 1
     goal {prefix}good-scorpions = 1
@@ -309,6 +357,4 @@
       goal good-condottiero = 1
     #end if
   #end if
-  
-  insert get-good-units(prefix="enemy-",player="any-enemy")
 #end do

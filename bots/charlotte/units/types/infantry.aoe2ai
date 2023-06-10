@@ -11,7 +11,6 @@
 #end if
 
 #if current-age >= castle-age
-  load "../../research/barracks/tracking.aoe2ai"
   load "../../research/barracks/squires.aoe2ai"
   load "../../research/barracks/arson.aoe2ai"
   load "../../research/castle/garland_wars.aoe2ai"

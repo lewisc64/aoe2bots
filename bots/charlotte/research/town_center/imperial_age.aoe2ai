@@ -11,13 +11,5 @@
     load "../university/prerequisites.aoe2ai"
   #end if
 
-  #if research-available imperial-age and building-type-count town-center >= 1
-    #if up-research-status c: imperial-age < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-low
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-low
-      research imperial-age
-    #end if
-  #end if
+  insert attempt-research(research="imperial-age",importance="importance-low",building="town-center")
 #end if

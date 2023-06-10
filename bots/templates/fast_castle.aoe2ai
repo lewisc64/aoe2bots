@@ -19,6 +19,7 @@
   #end if
   
   lure boars
+  push deer
 
   build 1 town-center
   build houses
@@ -44,16 +45,13 @@
     #end do
   #end if
   
-  #if civilian-population >= 27
+  #if unit-type-count-total villager >= 27
+    sn-enable-training-queue = 0
     research feudal-age
   #end if
   
   train 40 villager
   research ri-loom
-  
-  #if civilian-population >= 25
-    sn-enable-training-queue = 0
-  #end if
   
   #if up-pending-objects c: villager <= 1 and strategic-number sn-enable-training-queue == 1
     drop off food

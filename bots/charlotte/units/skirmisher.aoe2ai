@@ -6,11 +6,13 @@ load "../research/archery_range/prerequisites.aoe2ai"
     load "../research/archery_range/elite_skirmisher.aoe2ai"
   #else if current-age == imperial-age
     load "../research/archery_range/imperial_skirmisher.aoe2ai"
+    load "../research/castle/tower_shields.aoe2ai"
   #end if
   
   #if current-age >= castle-age
     load "../research/castle/atlatl.aoe2ai"
     load "../research/castle/andean_sling.aoe2ai"
+    load "../research/castle/hulche_javelineers.aoe2ai"
   #end if
   
   load "types/ranged.aoe2ai"

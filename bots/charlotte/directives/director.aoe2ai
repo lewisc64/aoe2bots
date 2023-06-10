@@ -55,7 +55,7 @@ load "unit_selection/trading.aoe2ai"
     #else
       goal no-unit-rule-passes = 0
     #end if
-    #if up-compare-goal no-unit-rule-passes c:>= 30
+    #if up-compare-goal no-unit-rule-passes c:>= 60
       chat to self "ATTENTION: failed to select units, turning off counter systems"
       goal do-counter-systems = 0
     #end if
@@ -80,8 +80,6 @@ load "unit_selection/trading.aoe2ai"
   #if not goal enemy-players-count 0
     #if unit-type-count transport-ship > 0
       load "attack_method/attack_now.aoe2ai"
-    #else if building-type-count town-center >= 1
-      load "attack_method/town_size_attack.aoe2ai"
     #else
       load "attack_method/attack_groups.aoe2ai"
     #end if

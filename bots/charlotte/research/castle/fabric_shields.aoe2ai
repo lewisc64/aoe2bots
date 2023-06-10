@@ -1,0 +1,6 @@
+#if not research-completed ri-fabric-shields and civ-selected incan
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+
+  insert attempt-research(research="ri-fabric-shields",importance="importance-medium",building="castle")
+#end if

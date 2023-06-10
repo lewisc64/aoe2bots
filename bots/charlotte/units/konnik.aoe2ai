@@ -1,0 +1,31 @@
+//load "../research/town_center/castle_age.aoe2ai"
+
+#do once
+  goal krepost-count = 0
+#end do
+@up-get-fact building-type-count-total krepost krepost-count
+#if up-compare-goal krepost-count g:< desired-military-buildings-per-type
+  insert build-kreposts
+#end if
+
+#if unit-available konnik-line or unit-available krepost-konnik-line
+  #if current-age == imperial-age
+    load "../research/castle/my_unique_unit_upgrade.aoe2ai"
+  #end if
+  
+  #do once
+    goal old-desired-military-buildings-per-type = 0
+  #end do
+  @up-modify-goal old-desired-military-buildings-per-type g:= desired-military-buildings-per-type
+  goal desired-military-buildings-per-type = 0
+  
+  load "types/infantry.aoe2ai"
+  load "types/cavalry.aoe2ai"
+  
+  @up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type
+  
+  #if goal produce-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1
+    train konnik-line
+    train krepost-konnik-line
+  #end if
+#end if

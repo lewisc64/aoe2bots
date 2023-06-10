@@ -1,13 +1,5 @@
 #if not research-completed ri-gold-mining
   load "../mining_camp/prerequisites.aoe2ai"
 
-  #if research-available ri-gold-mining and building-type-count mining-camp >= 1
-    #if up-research-status c: ri-gold-mining < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-medium
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-gold-mining
-    #end if
-  #end if
+  insert attempt-research(research="ri-gold-mining",importance="importance-medium",building="mining-camp")
 #end if

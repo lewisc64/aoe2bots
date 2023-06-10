@@ -1,0 +1,6 @@
+#if not research-completed ri-stirrups and civ-selected bulgarians
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
+
+  insert attempt-research(research="ri-stirrups",importance="importance-high",building="castle")
+#end if

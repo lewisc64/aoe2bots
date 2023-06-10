@@ -1,0 +1,19 @@
+//load "../research/town_center/castle_age.aoe2ai"
+load "../research/stable/prerequisites.aoe2ai"
+
+#if unit-available steppe-lancer-line
+  #if current-age == imperial-age
+    load "../research/stable/elite_steppe_lancer.aoe2ai"
+  #end if
+  
+  #if current-age >= castle-age
+    load "../research/castle/steppe_husbandry.aoe2ai"
+    load "../research/castle/silk_armor.aoe2ai"
+  #end if
+  
+  load "types/cavalry.aoe2ai"
+  
+  #if goal produce-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1
+    train steppe-lancer-line
+  #end if
+#end if

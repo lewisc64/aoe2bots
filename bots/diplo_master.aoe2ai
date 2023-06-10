@@ -17,6 +17,7 @@ const town-size = 30
 #end if
 
 #do once
+  set name to "Diplo Master"
   set up scouting
   set up new building system
   set up micro

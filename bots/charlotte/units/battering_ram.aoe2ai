@@ -1,7 +1,16 @@
-//load "../research/town_center/castle_age.aoe2ai"
+#if civ-selected cumans
+  //load "../research/town_center/feudal_age.aoe2ai"
+#else
+  //load "../research/town_center/castle_age.aoe2ai"
+#end if
 load "../research/siege_workshop/prerequisites.aoe2ai"
 
 #if unit-available battering-ram-line
+
+  #if current-age == castle-age and civ-selected cumans
+    load "../research/siege_workshop/capped_ram.aoe2ai"
+  #end if
+
   #if current-age == imperial-age
     load "../research/siege_workshop/siege_ram.aoe2ai"
   #end if

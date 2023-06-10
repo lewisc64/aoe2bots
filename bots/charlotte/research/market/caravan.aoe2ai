@@ -2,13 +2,5 @@
   load "../market/prerequisites.aoe2ai"
   //load "../town_center/castle_age.aoe2ai"
 
-  #if research-available ri-caravan and building-type-count market >= 1
-    #if up-research-status c: ri-caravan < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-medium
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-caravan
-    #end if
-  #end if
+  insert attempt-research(research="ri-caravan",importance="importance-medium",building="market")
 #end if

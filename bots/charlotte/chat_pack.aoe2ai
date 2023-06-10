@@ -309,46 +309,48 @@
 #end template
 
 #template say-alliance-betrayal-line-to-all
+  @up-get-player-color {player} -1
   #select random
-    @up-chat-data-to-all "Really %d?" g: {goal}
+    chat const to all "Really %s?" 7031232
   #randor
-    @up-chat-data-to-all "I thought we were friends, player %d!" g: {goal}
+    chat const to all "I thought we were friends, %s!" 7031232
   #randor
-    @up-chat-data-to-all "Player %d! You backstabber!" g: {goal}
+    chat const to all "%s! You backstabber!" 7031232
   #randor
-    @up-chat-data-to-all "Player %d? What gives?!" g: {goal}
+    chat const to all "%s? What gives?!" 7031232
   #randor
-    @up-chat-data-to-all "I knew you were a bad egg, player %d." g: {goal}
+    chat const to all "I knew you were a bad egg, %s." 7031232
   #randor
-    @up-chat-data-to-all "Player %d? But why?" g: {goal}
+    chat const to all "%s? But why?" 7031232
   #randor
-    @up-chat-data-to-all "Alright, player %d, bring it on!!" g: {goal}
+    chat const to all "Alright, %s, bring it on!!" 7031232
   #randor
-    @up-chat-data-to-all "Don't bite off more than you can chew, player %d..." g: {goal}
+    chat const to all "Don't bite off more than you can chew, %s..." 7031232
   #randor
-    @up-chat-data-to-all "Why me, player %d?" g: {goal}
+    chat const to all "Why me, %s?" 7031232
   #randor
-    @up-chat-data-to-all "Why now, player %d?" g: {goal}
+    chat const to all "Why now, %s?" 7031232
   #randor
-    @up-chat-data-to-all "Shame. We could've been best frends, player %d." g: {goal}
+    chat const to all "Shame. We could've been best frends, %s." 7031232
   #end select
 #end template
 
 #template say-do-betrayal-line-to-all
+  @up-get-player-color {player} -1
   #select random
-    @up-chat-data-to-all "It could never have worked between us, player %d." g: {goal}
+    chat const to all "It could never have worked between us, %s." 7031232
   #randor
-    @up-chat-data-to-all "I've had enough of you, player %d." g: {goal}
+    chat const to all "I've had enough of you, %s." 7031232
   #randor
-    @up-chat-data-to-all "You aren't needed anymore player %d." g: {goal}
+    chat const to all "You aren't needed anymore %s." 7031232
   #randor
-    @up-chat-data-to-all "Time to die, player %d!" g: {goal}
+    chat const to all "Time to die, %s!" 7031232
   #randor
-    @up-chat-data-to-all "Player %d, we're done." g: {goal}
+    chat const to all "%s, we're done." 7031232
   #randor
-    @up-chat-data-to-all "Your days are numbered, player %d!" g: {goal}
+    chat const to all "Your days are numbered, %s!" 7031232
   #randor
-    @up-chat-data-to-all "I'm sorry about this, player %d." g: {goal}
+    chat const to all "I'm sorry about this, %s." 7031232
   #randor
     chat to all "Love can be fleeting."
   #randor

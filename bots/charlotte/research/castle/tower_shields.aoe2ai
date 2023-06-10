@@ -1,0 +1,6 @@
+#if not research-completed ri-tower-shields and civ-selected lithuanians
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+
+  insert attempt-research(research="ri-tower-shields",importance="importance-medium",building="castle")
+#end if

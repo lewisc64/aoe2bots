@@ -3,13 +3,5 @@
   load "../archery_range/elite_skirmisher.aoe2ai"
   //load "../town_center/imperial_age.aoe2ai"
 
-  #if research-available ri-imperial-skirmisher and building-type-count archery-range >= 1
-    #if up-research-status c: ri-imperial-skirmisher < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-medium
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-imperial-skirmisher
-    #end if
-  #end if
+  insert attempt-research(research="ri-imperial-skirmisher",importance="importance-medium",building="archery-range")
 #end if

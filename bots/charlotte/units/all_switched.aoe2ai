@@ -8,6 +8,8 @@ load "villager.aoe2ai"
   load "fishing_ship.aoe2ai"
 #end if
 
+train mercenary-kipchak
+
 #do once
   goal old-produce-units = 0
   goal current-unit-amount = 0
@@ -28,6 +30,7 @@ goal total-type-production = 0
   insert add-to-total-type-production(unit="skirmisher-line",goal="produce-skirmishers")
   insert add-to-total-type-production(unit="genitour-line",goal="produce-genitours")
   insert add-to-total-type-production(unit="cavalry-archer-line",goal="produce-cavalry-archers")
+  insert add-to-total-type-production(unit="elephant-archer-line",goal="produce-elephant-archers")
   
   insert add-to-total-type-production(unit="militiaman-line",goal="produce-militia")
   insert add-to-total-type-production(unit="condottiero",goal="produce-condottiero")
@@ -38,14 +41,20 @@ goal total-type-production = 0
   insert add-to-total-type-production(unit="knight-line",goal="produce-knights")
   insert add-to-total-type-production(unit="camel-line",goal="produce-camels")
   insert add-to-total-type-production(unit="battle-elephant-line",goal="produce-battle-elephants")
+  insert add-to-total-type-production(unit="steppe-lancer-line",goal="produce-steppe-lancers")
   
   insert add-to-total-type-production(unit="battering-ram-line",goal="produce-battering-rams")
+  insert add-to-total-type-production(unit="armored-elephant-line",goal="produce-armored-elephants")
   insert add-to-total-type-production(unit="mangonel-line",goal="produce-mangonels")
   insert add-to-total-type-production(unit="scorpion-line",goal="produce-scorpions")
   insert add-to-total-type-production(unit="bombard-cannon",goal="produce-bombard-cannons")
   
   insert add-to-total-type-production(unit="trebuchet",goal="produce-trebuchets")
-  insert add-to-total-type-production(unit="my-unique-unit-line",goal="produce-unique-units")
+  #if civ-selected bulgarians
+    insert add-to-total-type-production(unit="konnik-set",goal="produce-unique-units")
+  #else
+    insert add-to-total-type-production(unit="my-unique-unit-line",goal="produce-unique-units")
+  #end if
   
   insert add-to-total-type-production(unit="monk",goal="produce-monks")
   insert add-to-total-type-production(unit="missionary",goal="produce-missionaries")
@@ -87,6 +96,7 @@ load "prerequisites.aoe2ai"
   insert load-unit(production_goal="produce-skirmishers",unit="skirmisher-line",unit_path="skirmisher.aoe2ai")
   insert load-unit(production_goal="produce-genitours",unit="genitour-line",unit_path="genitour.aoe2ai")
   insert load-unit(production_goal="produce-cavalry-archers",unit="cavalry-archer-line",unit_path="cavalry_archer.aoe2ai")
+  insert load-unit(production_goal="produce-elephant-archers",unit="elephant-archer-line",unit_path="elephant_archer.aoe2ai")
 
   insert load-unit(production_goal="produce-militia",unit="militiaman-line",unit_path="militia.aoe2ai")
   insert load-unit(production_goal="produce-condottiero",unit="condottiero",unit_path="condottiero.aoe2ai")
@@ -97,14 +107,20 @@ load "prerequisites.aoe2ai"
   insert load-unit(production_goal="produce-knights",unit="knight-line",unit_path="knight.aoe2ai")
   insert load-unit(production_goal="produce-camels",unit="camel-line",unit_path="camel.aoe2ai")
   insert load-unit(production_goal="produce-battle-elephants",unit="battle-elephant-line",unit_path="battle_elephant.aoe2ai")
+  insert load-unit(production_goal="produce-steppe-lancers",unit="steppe-lancer-line",unit_path="steppe_lancer.aoe2ai")
 
   insert load-unit(production_goal="produce-battering-rams",unit="battering-ram-line",unit_path="battering_ram.aoe2ai")
+  insert load-unit(production_goal="produce-armored-elephants",unit="armored-elephant-line",unit_path="armored_elephant.aoe2ai")
   insert load-unit(production_goal="produce-mangonels",unit="mangonel-line",unit_path="mangonel.aoe2ai")
   insert load-unit(production_goal="produce-scorpions",unit="scorpion-line",unit_path="scorpion.aoe2ai")
   insert load-unit(production_goal="produce-bombard-cannons",unit="bombard-cannon",unit_path="bombard_cannon.aoe2ai")
 
   insert load-unit(production_goal="produce-trebuchets",unit="trebuchet-set",unit_path="trebuchet.aoe2ai")
-  insert load-unit(production_goal="produce-unique-units",unit="my-unique-unit-line",unit_path="unique_unit.aoe2ai")
+  #if civ-selected bulgarians
+    insert load-unit(production_goal="produce-unique-units",unit="konnik-set",unit_path="konnik.aoe2ai")
+  #else
+    insert load-unit(production_goal="produce-unique-units",unit="my-unique-unit-line",unit_path="unique_unit.aoe2ai")
+  #end if
 
   insert load-unit(production_goal="produce-monks",unit="monk-set",unit_path="monk.aoe2ai")
   insert load-unit(production_goal="produce-missionaries",unit="missionary",unit_path="missionary.aoe2ai")

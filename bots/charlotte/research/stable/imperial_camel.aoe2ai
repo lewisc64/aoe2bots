@@ -3,13 +3,5 @@
   //load "../town_center/imperial_age.aoe2ai"
   load "../stable/heavy_camel.aoe2ai"
 
-  #if research-available ri-imperial-camel and building-type-count stable >= 1
-    #if up-research-status c: ri-imperial-camel < research-pending
-      goal attempted-researches += 1
-      @up-modify-goal attempted-researches-importance c:max importance-medium
-    #end if
-    #if goal do-research 1 and up-compare-goal research-level c:<= importance-medium
-      research ri-imperial-camel
-    #end if
-  #end if
+  insert attempt-research(research="ri-imperial-camel",importance="importance-medium",building="stable")
 #end if

@@ -302,6 +302,11 @@ insert decide-blacksmith-investment(type="infantry")
   #if players-civ {player} burmese
     goal {prefix}unique-unit-is-cavalry-archer = 1
   #end if
+  #if players-civ {player} bulgarians
+    goal {prefix}unique-unit-is-cavalry = 1
+    goal {prefix}unique-unit-is-infantry = 1
+    goal {prefix}unique-unit-is-expensive = 1
+  #end if
   #if players-civ {player} byzantine
     goal {prefix}unique-unit-is-cavalry = 1
     goal {prefix}unique-unit-counters-infantry = 1
@@ -311,6 +316,9 @@ insert decide-blacksmith-investment(type="infantry")
   #end if
   #if players-civ {player} chinese
     goal {prefix}unique-unit-is-ranged = 1
+  #end if
+  #if players-civ {player} cumans
+    goal {prefix}unique-unit-is-cavalry-archer = 1
   #end if
   #if players-civ {player} ethiopian
     goal {prefix}unique-unit-is-infantry = 1
@@ -348,6 +356,9 @@ insert decide-blacksmith-investment(type="infantry")
     goal {prefix}unique-unit-is-cavalry-archer = 1
     goal {prefix}unique-unit-counters-ranged = 1
   #end if
+  #if players-civ {player} lithuanians
+    goal {prefix}unique-unit-is-cavalry = 1
+  #end if
   #if players-civ {player} magyar
     goal {prefix}unique-unit-is-cavalry = 1
   #end if
@@ -382,6 +393,9 @@ insert decide-blacksmith-investment(type="infantry")
   #if players-civ {player} spanish
     goal {prefix}unique-unit-is-cavalry-archer = 1
     goal {prefix}unique-unit-is-expensive = 1
+  #end if
+  #if players-civ {player} tatars
+    goal {prefix}unique-unit-is-cavalry = 1
   #end if
   #if players-civ {player} teutonic
     goal {prefix}unique-unit-is-infantry = 1
