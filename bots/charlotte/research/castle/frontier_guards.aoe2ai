@@ -1,0 +1,6 @@
+#if not research-completed ri-frontier-guards and civ-selected gurjaras
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+
+  insert attempt-research(research="ri-frontier-guards",importance="importance-low",building="castle")
+#end if

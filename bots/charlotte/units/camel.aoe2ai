@@ -5,6 +5,7 @@ load "../research/stable/prerequisites.aoe2ai"
   #if current-age == imperial-age
     load "../research/stable/heavy_camel.aoe2ai"
     load "../research/stable/imperial_camel.aoe2ai"
+    load "../research/castle/frontier_guards.aoe2ai"
   #end if
   
   #if current-age >= castle-age

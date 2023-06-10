@@ -10,6 +10,7 @@ load "../research/archery_range/prerequisites.aoe2ai"
 
   #if current-age == imperial-age
     load "../research/archery_range/elite_elephant_archer.aoe2ai"
+    load "../research/castle/frontier_guards.aoe2ai"
   #end if
   
   load "types/cavalry_archer.aoe2ai"

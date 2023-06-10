@@ -134,6 +134,15 @@
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
+  #if players-civ {player} gurjaras
+    goal {prefix}good-elephant-archers = 1
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-shrivamsha-riders = 1
+    goal {prefix}good-camels = 1
+    goal {prefix}good-armored-elephants = 1
+    goal {prefix}good-galleys = 1
+  #end if
   #if players-civ {player} hun
     goal {prefix}good-cavalry-archers = 1
     goal {prefix}good-battering-rams = 1

@@ -74,7 +74,10 @@ insert random-unit-selection-count-units-selected(goal="total-units-selected")
     
   #randor
     @up-modify-goal produce-camels g:= good-camels
-    
+  
+  #randor
+    @up-modify-goal produce-shrivamsha-riders g:= good-shrivamsha-riders
+  
   #randor
     #if goal produce-scouts 0 and goal produce-knights 0
       @up-modify-goal produce-battle-elephants g:= good-battle-elephants

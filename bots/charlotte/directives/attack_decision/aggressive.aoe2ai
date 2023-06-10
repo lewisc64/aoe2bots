@@ -7,3 +7,7 @@
 #else if up-compare-goal target-military-percentage c:<= 80 and goal attacking 1
   goal attacking = 0
 #end if
+
+#if not player-in-game any-enemy
+  goal attacking = 0
+#end if

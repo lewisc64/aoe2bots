@@ -46,6 +46,33 @@ build 1 town-center with wood and stone escrow
   #else
     build houses with 20 headroom
   #end if
+  
+  #if civ-selected gurjaras
+    #if building-type-count-total lumber-camp >= 1
+      build 1 mill
+    #end if
+  
+    // redirect shepherds to berries
+    $clear
+    $focus gaia
+    $find local town-center
+    $target is first local
+    $clear local
+    $find local male-shepherd
+    $find local female-shepherd
+    $find remote forage-class within 30 tiles of target
+    $attack
+  
+    // garrison the sheep
+    $clear
+    $focus myself
+    $find local livestock-class
+    $find remote 1 mill
+    $garrison
+    $clear local
+    $find local 1 mill
+    $gather
+  #end if
 
   // lumber camps
   #if game-time > 60

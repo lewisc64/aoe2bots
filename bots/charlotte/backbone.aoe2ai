@@ -49,10 +49,13 @@ const castle-arrow-chemistry = 747
 const ranged-unit-class = 900
 const infantry-unit-class = 906
 const cavalry-unit-class = 912
+const forage-class = 907
 const dead-trade-cart = 178
 const dead-trade-cart-loaded = 205
 const male-gold-miner = 579
 const female-gold-miner = 581
+const male-shepherd = 590
+const female-shepherd = 592
 const dead-male-builder = 213
 const dead-female-builder = 225
 
@@ -91,6 +94,7 @@ const importance-low = 1
   {before}scouts{after}
   {before}knights{after}
   {before}camels{after}
+  {before}shrivamsha-riders{after}
   {before}battle-elephants{after}
   {before}steppe-lancers{after}
 #end template

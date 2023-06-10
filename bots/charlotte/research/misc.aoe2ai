@@ -18,6 +18,7 @@
 
 #if current-age >= castle-age
   load "../research/castle/grand_trunk_road.aoe2ai"
+  load "../research/castle/kshatriyas.aoe2ai"
 #end if
 
 #if current-age == imperial-age

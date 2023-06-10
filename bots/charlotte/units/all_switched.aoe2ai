@@ -40,6 +40,7 @@ goal total-type-production = 0
   insert add-to-total-type-production(unit="scout-cavalry-line",goal="produce-scouts")
   insert add-to-total-type-production(unit="knight-line",goal="produce-knights")
   insert add-to-total-type-production(unit="camel-line",goal="produce-camels")
+  insert add-to-total-type-production(unit="shrivamsha-rider-line",goal="produce-shrivamsha-riders")
   insert add-to-total-type-production(unit="battle-elephant-line",goal="produce-battle-elephants")
   insert add-to-total-type-production(unit="steppe-lancer-line",goal="produce-steppe-lancers")
   
@@ -106,6 +107,7 @@ load "prerequisites.aoe2ai"
   insert load-unit(production_goal="produce-scouts",unit="scout-cavalry-line",unit_path="scout_cavalry.aoe2ai")
   insert load-unit(production_goal="produce-knights",unit="knight-line",unit_path="knight.aoe2ai")
   insert load-unit(production_goal="produce-camels",unit="camel-line",unit_path="camel.aoe2ai")
+  insert load-unit(production_goal="produce-shrivamsha-riders",unit="shrivamsha-rider-line",unit_path="shrivamsha_rider.aoe2ai")
   insert load-unit(production_goal="produce-battle-elephants",unit="battle-elephant-line",unit_path="battle_elephant.aoe2ai")
   insert load-unit(production_goal="produce-steppe-lancers",unit="steppe-lancer-line",unit_path="steppe_lancer.aoe2ai")
 
