@@ -28,6 +28,6 @@
   load "../research/castle/cuman_mercenaries.aoe2ai"
 #end if
 
-#if current-age == imperial-age and up-compare-goal population-headroom c:< 10
+#if current-age == imperial-age and up-compare-goal population-space-remaining c:< 10
   load "../research/castle/mahayana.aoe2ai"
 #end if
