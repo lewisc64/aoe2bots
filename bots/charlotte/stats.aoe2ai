@@ -307,6 +307,11 @@ insert decide-blacksmith-investment(type="infantry")
   #if players-civ {player} briton
     goal {prefix}unique-unit-is-ranged = 1
   #end if
+  #if players-civ {player} burgundians
+    goal {prefix}unique-unit-is-cavalry = 1
+    goal {prefix}unique-unit-counters-infantry = 1
+    goal {prefix}unique-unit-counters-ranged = 1
+  #end if
   #if players-civ {player} burmese
     goal {prefix}unique-unit-is-cavalry-archer = 1
   #end if

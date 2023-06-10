@@ -50,6 +50,13 @@
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
+  #if players-civ {player} burgundians
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-knights = 1
+    goal {prefix}good-fire-ships = 1
+    goal {prefix}good-galleys = 1
+  #end if
   #if players-civ {player} burmese
     goal {prefix}good-scouts = 1
     goal {prefix}good-militia = 1

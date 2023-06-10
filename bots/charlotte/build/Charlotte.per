@@ -1592,6 +1592,14 @@
     (disable-self)
 )
 (defrule
+    (players-civ my-player-number burgundians)
+=>
+    (set-goal unique-unit-is-cavalry 1)
+    (set-goal unique-unit-counters-infantry 1)
+    (set-goal unique-unit-counters-ranged 1)
+    (disable-self)
+)
+(defrule
     (players-civ my-player-number burmese)
 =>
     (set-goal unique-unit-is-cavalry-archer 1)
@@ -2782,7 +2790,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 102)
+    (up-jump-rule 160)
 )
 (defrule
     (nand
@@ -3285,6 +3293,91 @@
 )
 (defrule
     (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-burgundian-vineyards)
+      )
+      (civ-selected burgundians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-burgundian-vineyards)
+      )
+      (civ-selected burgundians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-burgundian-vineyards < research-pending)
+    (research-available ri-burgundian-vineyards)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-burgundian-vineyards)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-burgundian-vineyards)
+    (building-type-count castle >= 1)
+=>
+    (research ri-burgundian-vineyards)
+)
+(defrule
+    (not
       (current-age == imperial-age)
     )
 =>
@@ -3547,12 +3640,383 @@
     (research ri-mahayana)
 )
 (defrule
+    (nand
+      (civ-selected burgundians)
+      (and
+        (wood-amount >= 2000)
+        (and
+          (food-amount >= 2000)
+          (and
+            (gold-amount >= 2000)
+            (up-compare-goal population-space-remaining c:< 10)
+          )
+        )
+      )
+    )
+=>
+    (up-jump-rule 17)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 11)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-forging)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-forging)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-iron-casting)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-iron-casting)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-blast-furnace < research-pending)
+    (research-available ri-blast-furnace)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-blast-furnace)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-blast-furnace)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-blast-furnace)
+)
+(defrule
+    (nand
+      (civ-selected burgundians)
+      (and
+        (wood-amount >= 2000)
+        (and
+          (food-amount >= 2000)
+          (and
+            (gold-amount >= 2000)
+            (up-compare-goal population-space-remaining c:< 10)
+          )
+        )
+      )
+    )
+=>
+    (up-jump-rule 17)
+)
+(defrule
+    (research-completed ri-plate-mail)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-plate-mail)
+=>
+    (up-jump-rule 11)
+)
+(defrule
+    (research-completed ri-chain-mail)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-chain-mail)
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (research-completed ri-scale-mail)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-scale-mail)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-scale-mail < research-pending)
+    (research-available ri-scale-mail)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-scale-mail)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-scale-mail)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-scale-mail)
+)
+(defrule
+    (research-completed ri-chain-mail)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-chain-mail < research-pending)
+    (research-available ri-chain-mail)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-chain-mail)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-chain-mail)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-chain-mail)
+)
+(defrule
+    (research-completed ri-plate-mail)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-plate-mail < research-pending)
+    (research-available ri-plate-mail)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-plate-mail)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-plate-mail)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-plate-mail)
+)
+(defrule
+    (nand
+      (and
+        (research-completed ri-plate-mail)
+        (research-completed ri-blast-furnace)
+      )
+      (and
+        (civ-selected burgundians)
+        (and
+          (wood-amount >= 2000)
+          (and
+            (food-amount >= 2000)
+            (and
+              (gold-amount >= 2000)
+              (up-compare-goal population-space-remaining c:< 10)
+            )
+          )
+        )
+      )
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-flemish-revolution)
+      )
+      (civ-selected burgundians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-flemish-revolution)
+      )
+      (civ-selected burgundians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-flemish-revolution < research-pending)
+    (research-available ri-flemish-revolution)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-flemish-revolution)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-flemish-revolution)
+    (building-type-count castle >= 1)
+=>
+    (research ri-flemish-revolution)
+)
+(defrule
     (nor
       (building-type-count town-center > 0)
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 5196)
+    (up-jump-rule 5204)
 )
 (defrule
     (can-build town-center)
@@ -3609,8 +4073,20 @@
 )
 (defrule
     (nand
-      (current-age == feudal-age)
-      (unit-available villager)
+      (or
+        (current-age == feudal-age)
+        (and
+          (civ-selected burgundians)
+          (current-age == dark-age)
+        )
+      )
+      (and
+        (or
+          (current-age >= feudal-age)
+          (game-time >= 300)
+        )
+        (unit-available villager)
+      )
     )
 =>
     (up-jump-rule 5)
@@ -3652,8 +4128,20 @@
 )
 (defrule
     (nand
-      (current-age == feudal-age)
-      (unit-available villager)
+      (or
+        (current-age == feudal-age)
+        (and
+          (civ-selected burgundians)
+          (current-age == dark-age)
+        )
+      )
+      (and
+        (or
+          (current-age >= feudal-age)
+          (game-time >= 300)
+        )
+        (unit-available villager)
+      )
     )
 =>
     (up-jump-rule 5)
@@ -3695,12 +4183,30 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
-      (and
-        (not
+      (or
+        (current-age == castle-age)
+        (and
+          (civ-selected burgundians)
           (current-age == feudal-age)
         )
-        (unit-available villager)
+      )
+      (and
+        (and
+          (not
+            (current-age == feudal-age)
+          )
+          (nand
+            (civ-selected burgundians)
+            (current-age == dark-age)
+          )
+        )
+        (and
+          (or
+            (current-age >= feudal-age)
+            (game-time >= 300)
+          )
+          (unit-available villager)
+        )
       )
     )
 =>
@@ -3783,12 +4289,30 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
-      (and
-        (not
+      (or
+        (current-age == castle-age)
+        (and
+          (civ-selected burgundians)
           (current-age == feudal-age)
         )
-        (unit-available villager)
+      )
+      (and
+        (and
+          (not
+            (current-age == feudal-age)
+          )
+          (nand
+            (civ-selected burgundians)
+            (current-age == dark-age)
+          )
+        )
+        (and
+          (or
+            (current-age >= feudal-age)
+            (game-time >= 300)
+          )
+          (unit-available villager)
+        )
       )
     )
 =>
@@ -3871,16 +4395,40 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
-      (and
-        (not
-          (current-age == feudal-age)
+      (or
+        (current-age == imperial-age)
+        (and
+          (civ-selected burgundians)
+          (current-age >= castle-age)
         )
+      )
+      (and
         (and
           (not
-            (current-age == castle-age)
+            (current-age == feudal-age)
           )
-          (unit-available villager)
+          (nand
+            (civ-selected burgundians)
+            (current-age == dark-age)
+          )
+        )
+        (and
+          (and
+            (not
+              (current-age == castle-age)
+            )
+            (nand
+              (civ-selected burgundians)
+              (current-age == feudal-age)
+            )
+          )
+          (and
+            (or
+              (current-age >= feudal-age)
+              (game-time >= 300)
+            )
+            (unit-available villager)
+          )
         )
       )
     )
@@ -4004,16 +4552,40 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
-      (and
-        (not
-          (current-age == feudal-age)
+      (or
+        (current-age == imperial-age)
+        (and
+          (civ-selected burgundians)
+          (current-age >= castle-age)
         )
+      )
+      (and
         (and
           (not
-            (current-age == castle-age)
+            (current-age == feudal-age)
           )
-          (unit-available villager)
+          (nand
+            (civ-selected burgundians)
+            (current-age == dark-age)
+          )
+        )
+        (and
+          (and
+            (not
+              (current-age == castle-age)
+            )
+            (nand
+              (civ-selected burgundians)
+              (current-age == feudal-age)
+            )
+          )
+          (and
+            (or
+              (current-age >= feudal-age)
+              (game-time >= 300)
+            )
+            (unit-available villager)
+          )
         )
       )
     )
@@ -19302,7 +19874,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 183)
+    (up-jump-rule 191)
 )
 (defrule
     (goal produce-knights 1)
@@ -19333,7 +19905,7 @@
       (unit-available knight-line)
     )
 =>
-    (up-jump-rule 179)
+    (up-jump-rule 187)
 )
 (defrule
     (not
@@ -19444,6 +20016,68 @@
     (building-type-count castle >= 1)
 =>
     (research ri-szlachta-privileges)
+)
+(defrule
+    (nand
+      (and
+        (current-age == castle-age)
+        (civ-selected burgundians)
+      )
+      (unit-available knight-line)
+    )
+=>
+    (up-jump-rule 7)
+)
+(defrule
+    (research-completed ri-cavalier)
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (not
+      (building-type-count-total stable == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+    (building-type-count-total barracks == 0)
+=>
+    (build barracks)
+)
+(defrule
+    (can-build stable)
+    (up-pending-objects c: stable < 5)
+    (building-type-count-total stable < 1)
+    (building-type-count barracks >= 1)
+    (building-type-count-total stable == 0)
+=>
+    (build stable)
+)
+(defrule
+    (research-completed ri-cavalier)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-cavalier < research-pending)
+    (research-available ri-cavalier)
+    (building-type-count stable >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-high)
+)
+(defrule
+    (can-research ri-cavalier)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-high)
+    (research-available ri-cavalier)
+    (building-type-count stable >= 1)
+=>
+    (research ri-cavalier)
 )
 (defrule
     (nand
@@ -35230,7 +35864,10 @@
                   (civ-selected slavic)
                   (or
                     (civ-selected lithuanians)
-                    (civ-selected tatars)
+                    (or
+                      (civ-selected tatars)
+                      (civ-selected burgundians)
+                    )
                   )
                 )
               )
@@ -42686,7 +43323,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1130)
+    (up-jump-rule 1131)
 )
 (defrule
     (true)
@@ -43733,7 +44370,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 44)
+    (up-jump-rule 45)
 )
 (defrule
     (true)
@@ -43836,6 +44473,16 @@
     (set-goal good-militia 1)
     (set-goal good-spearmen 1)
     (set-goal good-scorpions 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number burgundians)
+=>
+    (set-goal good-hand-cannoneers 1)
+    (set-goal good-spearmen 1)
+    (set-goal good-knights 1)
     (set-goal good-fire-ships 1)
     (set-goal good-galleys 1)
     (disable-self)
