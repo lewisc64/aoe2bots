@@ -1,4 +1,4 @@
-#if unit-type-count-total villager >= 21 or population-cap < 75 or food-amount >= 2000
+#if unit-type-count-total villager >= 27 or population-cap < 75 or food-amount >= 2000
   @up-modify-goal desired-age c:= imperial-age
 #else
   @up-modify-goal desired-age c:= dark-age

@@ -14,6 +14,6 @@ load "../research/archery_range/prerequisites.aoe2ai"
   load "types/cavalry_archer.aoe2ai"
   
   #if goal produce-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1
-    train cavalry-archer-line
+    train elephant-archer-line
   #end if
 #end if

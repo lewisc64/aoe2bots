@@ -157,6 +157,7 @@
 (defconst chat-a373c0fbab909e639a5687e4475b4753c7459701 "go! (thoughtful)")
 (defconst chat-4a66ee3f7553287adc5b1eced0eceffcc2061b8f "hold! (thoughtful)")
 (defconst chat-2d2b74194462d0d4cb99bbd9229a4b903a4d3074 "waiting for man at arms")
+(defconst chat-49aa10c1d04c6d8d102e71999aa161f5eaf495d2 "not enough military!")
 (defconst chat-ba183a7e2eeae21ba551776d9426e1df24686067 "massive lead, do techs.")
 (defconst chat-52ae6a85e981cdf086ac3cccf45b963d6202eccd "make military lead bigger")
 (defconst passive-override 210)
@@ -11955,13 +11956,13 @@
     (research ri-parthian-tactics)
 )
 (defrule
-    (can-train cavalry-archer-line)
+    (can-train elephant-archer-line)
     (goal produce-units 1)
     (goal enough-food-for-units 1)
     (goal enough-gold-for-units 1)
     (unit-available elephant-archer-line)
 =>
-    (train cavalry-archer-line)
+    (train elephant-archer-line)
 )
 (defrule
     (goal produce-elephant-archers 1)
@@ -39172,7 +39173,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1116)
+    (up-jump-rule 1119)
 )
 (defrule
     (true)
@@ -39186,7 +39187,7 @@
 )
 (defrule
     (or
-      (unit-type-count-total villager >= 21)
+      (unit-type-count-total villager >= 27)
       (or
         (population-cap < 75)
         (food-amount >= 2000)
@@ -39197,7 +39198,7 @@
 )
 (defrule
     (not
-      (unit-type-count-total villager >= 21)
+      (unit-type-count-total villager >= 27)
     )
     (nor
       (population-cap < 75)
@@ -42394,7 +42395,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 25)
+    (up-jump-rule 28)
 )
 (defrule
     (true)
@@ -42523,6 +42524,25 @@
     (enable-timer 5 30)
 )
 (defrule
+    (up-compare-goal largest-enemy-military-percentage c:< 33)
+=>
+    (set-goal aggressive-override 1)
+)
+(defrule
+    (up-compare-goal largest-enemy-military-percentage c:< 33)
+=>
+    (enable-timer 6 30)
+    (disable-self)
+)
+(defrule
+    (timer-triggered 6)
+    (up-compare-goal largest-enemy-military-percentage c:< 33)
+=>
+    (chat-local-to-self chat-49aa10c1d04c6d8d102e71999aa161f5eaf495d2)
+    (disable-timer 6)
+    (enable-timer 6 30)
+)
+(defrule
     (nand
       (or
         (goal balanced-aggressive 1)
@@ -42543,17 +42563,17 @@
     (goal produce-militia 1)
     (up-research-status c: ri-man-at-arms < research-pending)
 =>
-    (enable-timer 6 30)
+    (enable-timer 7 30)
     (disable-self)
 )
 (defrule
-    (timer-triggered 6)
+    (timer-triggered 7)
     (goal produce-militia 1)
     (up-research-status c: ri-man-at-arms < research-pending)
 =>
     (chat-local-to-self chat-2d2b74194462d0d4cb99bbd9229a4b903a4d3074)
-    (disable-timer 6)
-    (enable-timer 6 30)
+    (disable-timer 7)
+    (enable-timer 7 30)
 )
 (defrule
     (goal produce-militia 1)
@@ -42842,16 +42862,16 @@
 (defrule
     (goal attacking 1)
 =>
-    (enable-timer 7 60)
+    (enable-timer 8 60)
     (disable-self)
 )
 (defrule
-    (timer-triggered 7)
+    (timer-triggered 8)
     (goal attacking 1)
 =>
     (attack-now)
-    (disable-timer 7)
-    (enable-timer 7 60)
+    (disable-timer 8)
+    (enable-timer 8 60)
 )
 (defrule
     (goal attacking 1)
@@ -49585,7 +49605,7 @@
 (defrule
     (goal locked-teams 1)
 =>
-    (enable-timer 8 1800)
+    (enable-timer 9 1800)
     (disable-self)
 )
 (defrule
@@ -49594,7 +49614,7 @@
       (and
         (up-compare-goal score-percentage c:<= 70)
         (and
-          (timer-triggered 8)
+          (timer-triggered 9)
           (goal locked-teams 1)
         )
       )
@@ -49644,7 +49664,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 8)
+            (timer-triggered 9)
             (goal locked-teams 1)
           )
         )
@@ -49697,7 +49717,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 8)
+            (timer-triggered 9)
             (goal locked-teams 1)
           )
         )
@@ -49760,7 +49780,7 @@
             (up-compare-goal score-percentage c:<= 70)
           )
           (and
-            (timer-triggered 8)
+            (timer-triggered 9)
             (goal locked-teams 1)
           )
         )
@@ -49809,7 +49829,7 @@
               (up-compare-goal score-percentage c:<= 70)
             )
             (and
-              (timer-triggered 8)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
@@ -49841,7 +49861,7 @@
               (up-compare-goal score-percentage c:<= 70)
             )
             (and
-              (timer-triggered 8)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
@@ -49866,7 +49886,7 @@
       (and
         (military-population >= 20)
         (and
-          (timer-triggered 8)
+          (timer-triggered 9)
           (goal locked-teams 1)
         )
       )
@@ -49953,7 +49973,7 @@
           (and
             (military-population >= 20)
             (and
-              (timer-triggered 8)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
@@ -50082,7 +50102,7 @@
           (and
             (military-population >= 20)
             (and
-              (timer-triggered 8)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
@@ -51536,7 +51556,7 @@
 (defrule
     (true)
 =>
-    (enable-timer 9 60)
+    (enable-timer 10 60)
     (disable-self)
 )
 (defrule
@@ -51546,7 +51566,7 @@
     (up-compare-goal non-escrowed-food c:> food-threshold)
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-34f8609760258d82ecc3e0146f981c1ec0725afb)
 )
@@ -51560,7 +51580,7 @@
     (up-compare-goal non-escrowed-food c:> food-threshold)
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 2)
     (up-modify-sn sn-food-gatherer-percentage c:- 2)
@@ -51573,7 +51593,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-19b22c4216400b4ac44cedd180de15040bba208a)
 )
@@ -51587,7 +51607,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 2)
     (up-modify-sn sn-gold-gatherer-percentage c:- 2)
@@ -51602,7 +51622,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-7f1eda05222ecfc6817de23caf16247e9200bb91)
 )
@@ -51618,7 +51638,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 4)
     (up-modify-sn sn-food-gatherer-percentage c:+ 2)
@@ -51631,7 +51651,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-852bc71dbe1d5f015c304fd5abc8ff06a003dc65)
 )
@@ -51645,7 +51665,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-food-gatherer-percentage c:- 2)
     (up-modify-sn sn-gold-gatherer-percentage c:- 2)
@@ -51660,7 +51680,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-bd7c8904ccd4165da66d7d9cecb51f8500c6890b)
 )
@@ -51676,7 +51696,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-food-gatherer-percentage c:- 4)
     (up-modify-sn sn-wood-gatherer-percentage c:+ 2)
@@ -51691,7 +51711,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-822e28c24c9ecfade87e50563a2fda287b1d3e41)
 )
@@ -51707,7 +51727,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-gold-gatherer-percentage c:- 4)
     (up-modify-sn sn-wood-gatherer-percentage c:+ 2)
@@ -51721,7 +51741,7 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-d94b5a6ca271d8c89b20340814572189d3edf11b)
 )
@@ -51735,7 +51755,7 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 4)
     (up-modify-sn sn-food-gatherer-percentage c:+ 4)
@@ -51748,7 +51768,7 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-5910be933cb49a20786061b35fa87af01792653d)
 )
@@ -51762,16 +51782,16 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-food-gatherer-percentage c:- 4)
     (up-modify-sn sn-wood-gatherer-percentage c:+ 4)
 )
 (defrule
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
-    (disable-timer 9)
-    (enable-timer 9 60)
+    (disable-timer 10)
+    (enable-timer 10 60)
 )
 (defrule
     (strategic-number sn-wood-gatherer-percentage < minimum-wood-gatherer-percentage)
@@ -51921,11 +51941,11 @@
 (defrule
     (goal 362 1)
 =>
-    (enable-timer 10 300)
+    (enable-timer 11 300)
     (disable-self)
 )
 (defrule
-    (timer-triggered 10)
+    (timer-triggered 11)
     (goal 362 1)
 =>
     (set-goal 363 0)
@@ -51933,14 +51953,14 @@
 (defrule
     (up-compare-goal total-trade-carts g:>= desired-trade-carts)
     (up-compare-goal non-escrowed-gold c:<= gold-threshold)
-    (timer-triggered 10)
+    (timer-triggered 11)
     (goal 362 1)
 =>
     (set-goal 363 1)
 )
 (defrule
     (goal 363 1)
-    (timer-triggered 10)
+    (timer-triggered 11)
     (goal 362 1)
 =>
     (up-modify-goal desired-trade-carts c:+ 5)
@@ -51948,11 +51968,11 @@
     (chat-local-to-self chat-9c1fa295fbd8be460841820389f2c1c66e60be8c)
 )
 (defrule
-    (timer-triggered 10)
+    (timer-triggered 11)
     (goal 362 1)
 =>
-    (disable-timer 10)
-    (enable-timer 10 300)
+    (disable-timer 11)
+    (enable-timer 11 300)
 )
 (defrule
     (strategic-number sn-maximum-town-size <= 30)
@@ -52061,36 +52081,36 @@
 (defrule
     (true)
 =>
-    (enable-timer 11 60)
+    (enable-timer 12 60)
     (disable-self)
 )
 (defrule
     (goal research-level importance-critical)
-    (timer-triggered 11)
+    (timer-triggered 12)
 =>
     (chat-local-to-self chat-02a44b954882b7be12972680db2dfdb8d3573037)
 )
 (defrule
     (goal research-level importance-high)
-    (timer-triggered 11)
+    (timer-triggered 12)
 =>
     (chat-local-to-self chat-84675dc7c0b9c4fa2bae6118449907b7018c7fcd)
 )
 (defrule
     (goal research-level importance-medium)
-    (timer-triggered 11)
+    (timer-triggered 12)
 =>
     (chat-local-to-self chat-ebae1d86c02c2920af25f66bb982462bf689d398)
 )
 (defrule
     (goal research-level importance-low)
-    (timer-triggered 11)
+    (timer-triggered 12)
 =>
     (chat-local-to-self chat-b8998735697e4cd38237f8411e4d40e06cbbc790)
 )
 (defrule
-    (timer-triggered 11)
+    (timer-triggered 12)
 =>
-    (disable-timer 11)
-    (enable-timer 11 60)
+    (disable-timer 12)
+    (enable-timer 12 60)
 )
