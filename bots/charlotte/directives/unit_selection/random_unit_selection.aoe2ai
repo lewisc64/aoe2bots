@@ -32,7 +32,7 @@ insert random-unit-selection-count-units-selected(goal="total-units-selected")
     #end if
     
   #randor
-    #if not goal total-units-selected 0
+    #if not goal total-units-selected 0 or civ-selected bohemians
       @up-modify-goal produce-hand-cannoneers g:= good-hand-cannoneers
     #end if
     

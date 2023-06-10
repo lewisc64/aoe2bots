@@ -2,6 +2,11 @@
 load "../research/stable/prerequisites.aoe2ai"
 
 #if unit-available knight-line
+
+  #if current-age >= castle-age
+    load "../research/castle/szlachta_privileges.aoe2ai"
+  #end if
+
   #if current-age == imperial-age
     load "../research/stable/paladin.aoe2ai"
   #end if

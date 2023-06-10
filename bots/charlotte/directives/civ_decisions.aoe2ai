@@ -34,6 +34,13 @@
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
+  #if players-civ {player} bohemians
+    goal {prefix}good-hand-cannoneers = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-scorpions = 1
+    goal {prefix}good-monks = 1
+    goal {prefix}good-galleys = 1
+  #end if
   #if players-civ {player} briton
     goal {prefix}good-archers = 1
     goal {prefix}good-skirmishers = 1
@@ -273,6 +280,13 @@
     goal {prefix}good-battering-rams = 1
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
+  #end if
+  #if players-civ {player} poles
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-knights = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-galleys = 1
+    goal {prefix}good-fire-ships = 1
   #end if
   #if players-civ {player} portuguese
     goal {prefix}good-archers = 1

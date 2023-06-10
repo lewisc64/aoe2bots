@@ -2,9 +2,19 @@ load "../research/monastery/prerequisites.aoe2ai"
 
 #if unit-available monk
 
+  #if current-age == imperial-age
+    load "../research/castle/hussite_reforms.aoe2ai"
+  #end if
+
   load "types/holy.aoe2ai"
   
-  #if goal produce-units 1 and goal enough-gold-for-units 1
-    train monk
+  #if research-completed ri-hussite-reforms
+    #if goal produce-units 1 and goal enough-food-for-units 1
+      train monk
+    #end if
+  #else
+    #if goal produce-units 1 and goal enough-gold-for-units 1
+      train monk
+    #end if
   #end if
 #end if

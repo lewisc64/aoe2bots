@@ -22,7 +22,7 @@
   @up-modify-goal old-desired-military-buildings-per-type g:= desired-military-buildings-per-type
   goal desired-military-buildings-per-type = 0
   
-  #if civ-selected aztec or civ-selected celtic or civ-selected ethiopian or civ-selected frankish or civ-selected gothic or civ-selected indian or civ-selected dravidians
+  #if civ-selected aztec or civ-selected celtic or civ-selected ethiopian or civ-selected frankish or civ-selected gothic or civ-selected indian or civ-selected dravidians or civ-selected poles
     load "types/infantry.aoe2ai"
   #end if
   #if civ-selected incan or civ-selected japanese or civ-selected malay or civ-selected malian or civ-selected teutonic or civ-selected viking or civ-selected gurjaras
@@ -89,7 +89,7 @@
       load "../research/castle/manipur_cavalry.aoe2ai"
     #end if
     
-    #if civ-selected portuguese
+    #if civ-selected portuguese or civ-selected bohemians
       load "../research/university/siege_engineers.aoe2ai"
     #end if
   #end if

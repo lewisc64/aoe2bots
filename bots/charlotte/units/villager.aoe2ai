@@ -37,6 +37,11 @@ load "../research/town_center/prerequisites.aoe2ai"
     #end if
   #end if
   
+  #if current-age >= castle-age and civ-selected bohemians
+    load "../research/monastery/fervor.aoe2ai"
+    load "../research/monastery/sanctity.aoe2ai"
+  #end if
+  
   #do once
     goal desired-villagers-with-subtractions = 0
   #end do

@@ -3,6 +3,10 @@ load "../research/archery_range/prerequisites.aoe2ai"
 
 #if unit-available hand-cannoneer
   
+  #if current-age >= castle-age
+    load "../research/castle/wagenburg_tactics.aoe2ai"
+  #end if
+  
   #if current-age == imperial-age
     load "../research/castle/shatagni.aoe2ai"
   #end if

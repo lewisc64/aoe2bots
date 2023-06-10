@@ -12,6 +12,7 @@ load "../research/stable/prerequisites.aoe2ai"
   #if current-age >= castle-age
     load "../research/castle/steppe_husbandry.aoe2ai"
     load "../research/castle/silk_armor.aoe2ai"
+    load "../research/castle/lechitic_legacy.aoe2ai"
   #end if
   
   load "types/cavalry.aoe2ai"

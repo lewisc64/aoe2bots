@@ -1,0 +1,6 @@
+#if not research-completed ri-szlachta-privileges and civ-selected poles
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
+
+  insert attempt-research(research="ri-szlachta-privileges",importance="importance-medium",building="castle")
+#end if
