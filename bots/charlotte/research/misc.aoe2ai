@@ -37,9 +37,10 @@
 #if civ-selected burgundians and wood-amount >= 2000 and food-amount >= 2000 and gold-amount >= 2000 and up-compare-goal population-space-remaining c:< 10
   load "../research/blacksmith/blast_furnace.aoe2ai"
   load "../research/blacksmith/plate_mail.aoe2ai"
-  #if research-completed ri-plate-mail and research-completed ri-blast-furnace
-    load "../research/castle/flemish_revolution.aoe2ai"
-  #end if
+  // flemish revolution breaks the villager unit type count
+  //#if research-completed ri-plate-mail and research-completed ri-blast-furnace
+  //  load "../research/castle/flemish_revolution.aoe2ai"
+  //#end if
 #end if
 
 #if current-age >= castle-age and goal full-infantry-blacksmith-investment 1

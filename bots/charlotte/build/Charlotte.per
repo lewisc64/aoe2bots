@@ -2809,7 +2809,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 171)
+    (up-jump-rule 160)
 )
 (defrule
     (nand
@@ -3927,107 +3927,6 @@
     (building-type-count blacksmith >= 1)
 =>
     (research ri-plate-mail)
-)
-(defrule
-    (nand
-      (and
-        (research-completed ri-plate-mail)
-        (research-completed ri-blast-furnace)
-      )
-      (and
-        (civ-selected burgundians)
-        (and
-          (wood-amount >= 2000)
-          (and
-            (food-amount >= 2000)
-            (and
-              (gold-amount >= 2000)
-              (up-compare-goal population-space-remaining c:< 10)
-            )
-          )
-        )
-      )
-    )
-=>
-    (up-jump-rule 10)
-)
-(defrule
-    (nand
-      (not
-        (research-completed ri-flemish-revolution)
-      )
-      (civ-selected burgundians)
-    )
-=>
-    (up-jump-rule 6)
-)
-(defrule
-    (not
-      (building-type-count-total castle == 0)
-    )
-=>
-    (up-jump-rule 5)
-)
-(defrule
-    (can-build castle)
-    (up-pending-objects c: castle < 5)
-=>
-    (build castle)
-)
-(defrule
-    (not
-      (current-age >= castle-age)
-    )
-=>
-    (up-jump-rule 3)
-)
-(defrule
-    (stone-amount < 650)
-=>
-    (set-goal do-stone-mining 1)
-)
-(defrule
-    (can-build market)
-    (up-pending-objects c: market < 5)
-    (building-type-count-total market < 1)
-    (gold-amount > 300)
-    (stone-amount < 650)
-=>
-    (build market)
-)
-(defrule
-    (can-buy-commodity stone)
-    (gold-amount > 300)
-    (stone-amount < 650)
-=>
-    (buy-commodity stone)
-)
-(defrule
-    (nand
-      (not
-        (research-completed ri-flemish-revolution)
-      )
-      (civ-selected burgundians)
-    )
-=>
-    (up-jump-rule 2)
-)
-(defrule
-    (up-research-status c: ri-flemish-revolution < research-pending)
-    (research-available ri-flemish-revolution)
-    (building-type-count castle >= 1)
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-    (up-modify-goal attempted-researches-importance c:max importance-low)
-)
-(defrule
-    (can-research ri-flemish-revolution)
-    (goal do-research 1)
-    (up-compare-goal research-level c:<= importance-low)
-    (research-available ri-flemish-revolution)
-    (building-type-count castle >= 1)
-=>
-    (research ri-flemish-revolution)
 )
 (defrule
     (nand
