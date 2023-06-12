@@ -204,6 +204,14 @@ const importance-low = 1
   #end if
 #end template
 
+#template build-donjons
+  build donjon
+  
+  #if current-age >= castle-age
+    insert gather-stone(amount="175")
+  #end if
+#end template
+
 #template attempt-research
   #if research-available {research} and building-type-count {building} >= 1
     #if up-research-status c: {research} < research-pending

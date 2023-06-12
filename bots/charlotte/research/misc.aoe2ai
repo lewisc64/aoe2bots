@@ -41,3 +41,7 @@
     load "../research/castle/flemish_revolution.aoe2ai"
   #end if
 #end if
+
+#if current-age >= castle-age and goal full-infantry-blacksmith-investment 1
+  load "../research/castle/first_crusade.aoe2ai"
+#end if
