@@ -9,6 +9,7 @@ load "../research/barracks/prerequisites.aoe2ai"
   #else if current-age == imperial-age
     load "../research/barracks/champion.aoe2ai"
     load "../research/castle/forced_levy.aoe2ai"
+    load "../research/castle/comitatenses.aoe2ai"
   #end if
   
   #if current-age >= castle-age

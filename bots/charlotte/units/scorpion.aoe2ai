@@ -2,6 +2,11 @@
 load "../research/siege_workshop/prerequisites.aoe2ai"
 
 #if unit-available scorpion-line
+
+  #if current-age >= castle-age
+    load "../research/castle/ballistas.aoe2ai"
+  #end if
+
   #if current-age == imperial-age
     load "../research/siege_workshop/heavy_scorpion.aoe2ai"
     load "../research/castle/rocketry.aoe2ai"

@@ -34,7 +34,7 @@
   #if civ-selected briton or civ-selected chinese or civ-selected italian or civ-selected mayan or civ-selected vietnamese
     load "types/ranged.aoe2ai"
   #end if
-  #if civ-selected byzantine or civ-selected hun or civ-selected magyar or civ-selected persian or civ-selected saracen or civ-selected slavic or civ-selected lithuanians or civ-selected tatars or civ-selected burgundians
+  #if civ-selected byzantine or civ-selected hun or civ-selected magyar or civ-selected persian or civ-selected saracen or civ-selected slavic or civ-selected lithuanians or civ-selected tatars or civ-selected burgundians or civ-selected romans
     load "types/cavalry.aoe2ai"
   #end if
   
@@ -87,6 +87,10 @@
     
     #if civ-selected burmese
       load "../research/castle/manipur_cavalry.aoe2ai"
+    #end if
+    
+    #if civ-selected romans
+      load "../research/castle/comitatenses.aoe2ai"
     #end if
     
     #if civ-selected portuguese or civ-selected bohemians

@@ -13,6 +13,7 @@ load "../research/stable/prerequisites.aoe2ai"
 
   #if current-age == imperial-age
     load "../research/stable/paladin.aoe2ai"
+    load "../research/castle/comitatenses.aoe2ai"
   #end if
   
   load "types/cavalry.aoe2ai"

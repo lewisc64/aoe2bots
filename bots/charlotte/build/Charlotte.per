@@ -1775,6 +1775,14 @@
     (disable-self)
 )
 (defrule
+    (players-civ my-player-number romans)
+=>
+    (set-goal unique-unit-is-cavalry 1)
+    (set-goal unique-unit-is-expensive 1)
+    (set-goal unique-unit-counters-infantry 1)
+    (disable-self)
+)
+(defrule
     (players-civ my-player-number saracen)
 =>
     (set-goal unique-unit-is-cavalry 1)
@@ -4016,7 +4024,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 5204)
+    (up-jump-rule 5259)
 )
 (defrule
     (can-build town-center)
@@ -13038,7 +13046,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 209)
+    (up-jump-rule 220)
 )
 (defrule
     (goal produce-militia 1)
@@ -13069,7 +13077,7 @@
       (unit-available militiaman-line)
     )
 =>
-    (up-jump-rule 205)
+    (up-jump-rule 216)
 )
 (defrule
     (can-build barracks)
@@ -13478,6 +13486,102 @@
     (building-type-count castle >= 1)
 =>
     (research ri-forced-levy)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (and
+          (not
+            (current-age == castle-age)
+          )
+          (unit-available militiaman-line)
+        )
+      )
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-comitatenses)
+      )
+      (civ-selected romans)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-comitatenses)
+      )
+      (civ-selected romans)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-comitatenses < research-pending)
+    (research-available ri-comitatenses)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-comitatenses)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-comitatenses)
+    (building-type-count castle >= 1)
+=>
+    (research ri-comitatenses)
 )
 (defrule
     (nand
@@ -19874,7 +19978,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 191)
+    (up-jump-rule 202)
 )
 (defrule
     (goal produce-knights 1)
@@ -19905,7 +20009,7 @@
       (unit-available knight-line)
     )
 =>
-    (up-jump-rule 187)
+    (up-jump-rule 198)
 )
 (defrule
     (not
@@ -20193,6 +20297,92 @@
     (building-type-count stable >= 1)
 =>
     (research ri-paladin)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (unit-available knight-line)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-comitatenses)
+      )
+      (civ-selected romans)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-comitatenses)
+      )
+      (civ-selected romans)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-comitatenses < research-pending)
+    (research-available ri-comitatenses)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-comitatenses)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-comitatenses)
+    (building-type-count castle >= 1)
+=>
+    (research ri-comitatenses)
 )
 (defrule
     (not
@@ -28653,7 +28843,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 68)
+    (up-jump-rule 79)
 )
 (defrule
     (goal produce-scorpions 1)
@@ -28684,7 +28874,7 @@
       (unit-available scorpion-line)
     )
 =>
-    (up-jump-rule 64)
+    (up-jump-rule 75)
 )
 (defrule
     (not
@@ -28710,6 +28900,92 @@
     (building-type-count-total siege-workshop == 0)
 =>
     (build siege-workshop)
+)
+(defrule
+    (nand
+      (current-age >= castle-age)
+      (unit-available scorpion-line)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-ballistas)
+      )
+      (civ-selected romans)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-ballistas)
+      )
+      (civ-selected romans)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-ballistas < research-pending)
+    (research-available ri-ballistas)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-ballistas)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-ballistas)
+    (building-type-count castle >= 1)
+=>
+    (research ri-ballistas)
 )
 (defrule
     (nand
@@ -32029,7 +32305,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 935)
+    (up-jump-rule 946)
 )
 (defrule
     (goal produce-unique-units 1)
@@ -32060,7 +32336,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 931)
+    (up-jump-rule 942)
 )
 (defrule
     (current-age >= castle-age)
@@ -35866,7 +36142,10 @@
                     (civ-selected lithuanians)
                     (or
                       (civ-selected tatars)
-                      (civ-selected burgundians)
+                      (or
+                        (civ-selected burgundians)
+                        (civ-selected romans)
+                      )
                     )
                   )
                 )
@@ -38027,6 +38306,95 @@
     (building-type-count castle >= 1)
 =>
     (research ri-manipur-cavalry)
+)
+(defrule
+    (nand
+      (civ-selected romans)
+      (and
+        (current-age == imperial-age)
+        (unit-available my-unique-unit-line)
+      )
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-comitatenses)
+      )
+      (civ-selected romans)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-comitatenses)
+      )
+      (civ-selected romans)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-comitatenses < research-pending)
+    (research-available ri-comitatenses)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-comitatenses)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-comitatenses)
+    (building-type-count castle >= 1)
+=>
+    (research ri-comitatenses)
 )
 (defrule
     (nand
@@ -40762,7 +41130,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 122)
+    (up-jump-rule 133)
 )
 (defrule
     (goal produce-galleys 1)
@@ -40793,7 +41161,7 @@
       (unit-available galley-line)
     )
 =>
-    (up-jump-rule 118)
+    (up-jump-rule 129)
 )
 (defrule
     (can-build dock)
@@ -41309,6 +41677,92 @@
     (building-type-count university >= 1)
 =>
     (research ri-ballistics)
+)
+(defrule
+    (nand
+      (current-age >= castle-age)
+      (unit-available galley-line)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-ballistas)
+      )
+      (civ-selected romans)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-ballistas)
+      )
+      (civ-selected romans)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-ballistas < research-pending)
+    (research-available ri-ballistas)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-ballistas)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-ballistas)
+    (building-type-count castle >= 1)
+=>
+    (research ri-ballistas)
 )
 (defrule
     (not
@@ -43323,7 +43777,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1131)
+    (up-jump-rule 1132)
 )
 (defrule
     (true)
@@ -44370,7 +44824,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 45)
+    (up-jump-rule 46)
 )
 (defrule
     (true)
@@ -44813,6 +45267,18 @@
     (set-goal good-spearmen 1)
     (set-goal good-knights 1)
     (set-goal good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number romans)
+=>
+    (set-goal good-militia 1)
+    (set-goal good-spearmen 1)
+    (set-goal good-knights 1)
+    (set-goal good-battering-rams 1)
+    (set-goal good-scorpions 1)
+    (set-goal good-galleys 1)
+    (set-goal good-fire-ships 1)
     (disable-self)
 )
 (defrule
@@ -54733,7 +55199,11 @@
     (up-get-point position-object 342)
     (up-reset-search 1 1 0 0)
     (up-filter-distance c: -1 c: 4)
-    (up-find-local c: villager-class c: 4)
+    (up-find-local c: 590 c: 4)
+    (up-find-local c: 592 c: 4)
+    (up-find-local c: 354 c: 4)
+    (up-find-local c: 120 c: 4)
+    (up-remove-objects search-local -1 > 4)
     (up-find-remote c: 909 c: 100)
     (up-target-objects 0 action-default -1 -1)
 )
