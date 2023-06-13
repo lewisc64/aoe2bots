@@ -1,0 +1,8 @@
+#if not research-completed ri-legionary
+  load "../barracks/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+  
+  load "../barracks/longswordsman.aoe2ai"
+
+  insert attempt-research(research="ri-legionary",importance="importance-high",building="barracks")
+#end if

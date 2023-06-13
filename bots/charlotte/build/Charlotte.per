@@ -4020,7 +4020,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 5422)
+    (up-jump-rule 5440)
 )
 (defrule
     (can-build town-center)
@@ -13065,7 +13065,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 220)
+    (up-jump-rule 238)
 )
 (defrule
     (goal produce-militia 1)
@@ -13096,7 +13096,7 @@
       (unit-available militiaman-line)
     )
 =>
-    (up-jump-rule 216)
+    (up-jump-rule 234)
 )
 (defrule
     (can-build barracks)
@@ -13236,6 +13236,139 @@
     (building-type-count barracks >= 1)
 =>
     (research ri-long-swordsman)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (and
+          (not
+            (current-age == castle-age)
+          )
+          (unit-available militiaman-line)
+        )
+      )
+    )
+=>
+    (up-jump-rule 17)
+)
+(defrule
+    (research-completed ri-legionary)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+    (building-type-count-total barracks == 0)
+=>
+    (build barracks)
+)
+(defrule
+    (research-completed ri-legionary)
+=>
+    (up-jump-rule 11)
+)
+(defrule
+    (research-completed ri-long-swordsman)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+    (building-type-count-total barracks == 0)
+=>
+    (build barracks)
+)
+(defrule
+    (research-completed ri-long-swordsman)
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (research-completed ri-man-at-arms)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+    (building-type-count-total barracks == 0)
+=>
+    (build barracks)
+)
+(defrule
+    (research-completed ri-man-at-arms)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-man-at-arms < research-pending)
+    (research-available ri-man-at-arms)
+    (building-type-count barracks >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-man-at-arms)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-man-at-arms)
+    (building-type-count barracks >= 1)
+=>
+    (research ri-man-at-arms)
+)
+(defrule
+    (research-completed ri-long-swordsman)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-long-swordsman < research-pending)
+    (research-available ri-long-swordsman)
+    (building-type-count barracks >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-long-swordsman)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-long-swordsman)
+    (building-type-count barracks >= 1)
+=>
+    (research ri-long-swordsman)
+)
+(defrule
+    (research-completed ri-legionary)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-legionary < research-pending)
+    (research-available ri-legionary)
+    (building-type-count barracks >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-high)
+)
+(defrule
+    (can-research ri-legionary)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-high)
+    (research-available ri-legionary)
+    (building-type-count barracks >= 1)
+=>
+    (research ri-legionary)
 )
 (defrule
     (nand
