@@ -1,326 +1,1210 @@
-const ri-pavise = 494
-const ri-silk-road = 499
-
-const wood-threshold = 500
-const food-threshold = 500
-const gold-threshold = 500
-
-const max-villagers = 120
-const max-rams = 8
-
-#template production-goal-names
-  {before}villager-production{after}
-  {before}archer-production{after}
-  {before}skirmisher-production{after}
-  {before}battering-ram-production{after}
-  {before}scout-production{after}
-#end template
+const male-gold-miner = 579
+const female-gold-miner = 581
 
 #do once
   set name to "Artemis"
   set up basics
   
-  assign 4 builders to town-center-foundation
-  assign 8 builders to castle
+  assign 8 builders to town-center-foundation
   assign 2 builders to barracks
   assign 2 builders to archery-range
   assign 2 builders to stable
-  assign 2 builders to siege-workshop
-  
-  goal temp = 0
-  goal attacking = 0
-  goal do-auto-balance = 0
 #end do
 
-do basic targeting
-do basic diplomacy
+load "templates/basic_diplomacy.aoe2ai"
 
-load "charlotte/stats.aoe2ai"
+#template unit-names
+  {before}archer-line{after}
+  {before}skirmisher-line{after}
+  {before}knight-line{after}
+  {before}scout-cavalry-line{after}
+  {before}militiaman-line{after}
+  {before}spearman-line{after}
+#end template
 
-escrow 0 wood
-escrow 0 food
-escrow 0 gold
-escrow 0 stone
+#template units-with-ranged-blacksmith-benefit
+  {before}archer-line{after}
+  {before}skirmisher-line{after}
+#end template
 
-#template escrow-resources
-  #if escrow-amount wood < 300
-    escrow {percentage} wood
-  #else
-    escrow 0 wood
+#template units-with-cavalry-blacksmith-benefit
+  {before}knight-line{after}
+  {before}scout-cavalry-line{after}
+#end template
+
+#template units-with-infantry-blacksmith-benefit
+  {before}militiaman-line{after}
+  {before}spearman-line{after}
+#end template
+
+#template units-with-thumb-ring-benefit
+  {before}archer-line{after}
+  {before}skirmisher-line{after}
+#end template
+
+#template units-with-ballistics-benefit
+  {before}archer-line{after}
+  {before}skirmisher-line{after}
+#end template
+
+#template units-with-bloodlines-and-husbandry-benefit
+  {before}knight-line{after}
+  {before}scout-cavalry-line{after}
+#end template
+
+#template reset-unit-scores
+  insert unit-names(before="goal ",after="-score = 0")
+#end template
+
+const critical-research-available-modifier = 5000
+const critical-research-completed-modifier = 5010
+
+const important-research-available-modifier = 100
+const important-research-completed-modifier = 110
+
+const medium-research-available-modifier = 50
+const medium-research-completed-modifier = 60
+
+const low-research-available-modifier = 10
+const low-research-completed-modifier = 20
+
+const small-investment-modifier = 10
+const medium-investment-modifier = 20
+const large-investment-modifier = 30
+
+const minor-counter-detect-units = 5
+const minor-counter-modifier = 50
+const major-counter-detect-units = 10
+const major-counter-modifier = 100
+
+const trash-bias = 5
+
+insert reset-unit-scores
+#if current-age == feudal-age
+  goal archer-line-score += 5
+#end if
+
+// ranged blacksmith availability scoring
+
+#if research-completed feudal-age and not research-available ri-fletching and up-research-status c: ri-fletching < research-pending
+  insert units-with-ranged-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+
+#if research-completed feudal-age and not research-available ri-padded-archer-armor and up-research-status c: ri-padded-archer-armor < research-pending
+  insert units-with-ranged-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+
+#if research-completed castle-age and not research-available ri-bodkin-arrow and up-research-status c: ri-bodkin-arrow < research-pending
+  insert units-with-ranged-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+
+#if research-completed castle-age and not research-available ri-leather-archer-armor and up-research-status c: ri-leather-archer-armor < research-pending
+  insert units-with-ranged-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+
+#if research-completed imperial-age and not research-available ri-bracer and up-research-status c: ri-bracer < research-pending
+  insert units-with-ranged-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+
+#if research-completed imperial-age and not research-available ri-ring-archer-armor and up-research-status c: ri-ring-archer-armor < research-pending
+  insert units-with-ranged-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+
+// cavalry blacksmith availability scoring
+
+#if research-completed feudal-age and not research-available ri-scale-barding and up-research-status c: ri-scale-barding < research-pending
+  insert units-with-cavalry-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+
+#if research-completed castle-age and not research-available ri-chain-barding and up-research-status c: ri-chain-barding < research-pending
+  insert units-with-cavalry-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+
+#if research-completed imperial-age and not research-available ri-plate-barding and up-research-status c: ri-plate-barding < research-pending
+  insert units-with-cavalry-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+
+// infantry blacksmith availability scoring
+
+#if research-completed feudal-age and not research-available ri-scale-mail and up-research-status c: ri-scale-mail < research-pending
+  insert units-with-infantry-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+
+#if research-completed castle-age and not research-available ri-chain-mail and up-research-status c: ri-chain-mail < research-pending
+  insert units-with-infantry-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+
+#if not civ-selected romans
+  #if research-completed imperial-age and not research-available ri-plate-mail and up-research-status c: ri-plate-mail < research-pending
+    insert units-with-infantry-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
   #end if
-  #if escrow-amount food < 1300
-    escrow {percentage} food
-  #else
-    escrow 0 food
+#end if
+
+// cavalry+infantry blacksmith availability scoring
+
+#if research-completed feudal-age and not research-available ri-forging and up-research-status c: ri-forging < research-pending
+  insert units-with-cavalry-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+  insert units-with-infantry-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+
+#if research-completed castle-age and not research-available ri-iron-casting and up-research-status c: ri-iron-casting < research-pending
+  insert units-with-cavalry-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+  insert units-with-infantry-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+
+#if research-completed imperial-age and not research-available ri-blast-furnace and up-research-status c: ri-blast-furnace < research-pending
+  insert units-with-cavalry-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+  insert units-with-infantry-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+
+// ranged blacksmith completed scoring
+
+#if research-completed ri-fletching
+  insert units-with-ranged-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+#if research-completed ri-padded-archer-armor
+  insert units-with-ranged-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+#if research-completed ri-bodkin-arrow
+  insert units-with-ranged-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+#if research-completed ri-leather-archer-armor
+  insert units-with-ranged-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+#if research-completed ri-bracer
+  insert units-with-ranged-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+#if research-completed ri-ring-archer-armor
+  insert units-with-ranged-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+// cavalry blacksmith completed scoring
+
+#if research-completed ri-scale-barding
+  insert units-with-cavalry-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+#if research-completed ri-chain-barding
+  insert units-with-cavalry-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+#if research-completed ri-plate-barding
+  insert units-with-cavalry-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+// infantry blacksmith completed scoring
+
+#if research-completed ri-scale-mail
+  insert units-with-infantry-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+#if research-completed ri-chain-mail
+  insert units-with-infantry-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+#if research-completed ri-plate-mail
+  insert units-with-infantry-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+// cavalry+infantry blacksmith completed scoring
+
+#if research-completed ri-forging
+  insert units-with-cavalry-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+  insert units-with-infantry-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+#if research-completed ri-iron-casting
+  insert units-with-cavalry-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+  insert units-with-infantry-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+#if research-completed ri-blast-furnace
+  insert units-with-cavalry-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+  insert units-with-infantry-blacksmith-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+// other techs - ranged
+
+// thumb ring
+#if not civ-selected briton
+  #if research-completed castle-age and not research-available ri-thumb-ring and up-research-status c: ri-thumb-ring < research-pending
+    insert units-with-thumb-ring-benefit(before="goal ",after="-score -= medium-research-available-modifier")
   #end if
-  #if escrow-amount gold < 800
-    escrow {percentage} gold
-  #else
-    escrow 0 gold
+  #if research-completed ri-thumb-ring
+    insert units-with-thumb-ring-benefit(before="goal ",after="-score += small-investment-modifier")
+  #end if
+#end if
+
+// ballistics
+#if research-completed castle-age and not research-available ri-ballistics and up-research-status c: ri-ballistics < research-pending
+  insert units-with-ballistics-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+#if research-completed ri-ballistics
+  insert units-with-ballistics-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+// crossbow
+#if research-completed castle-age and not research-available ri-crossbow and up-research-status c: ri-crossbow < research-pending
+  goal archer-line-score -= critical-research-available-modifier
+#end if
+#if research-completed ri-crossbow
+  goal archer-line-score += small-investment-modifier
+#end if
+
+// arbalest
+#if research-completed imperial-age and not research-available ri-arbalest and up-research-status c: ri-arbalest < research-pending
+  goal archer-line-score -= important-research-available-modifier
+#end if
+#if research-completed ri-arbalest
+  goal archer-line-score += medium-investment-modifier
+#end if
+
+// elite skirmisher
+#if research-completed castle-age and not research-available ri-elite-skirmisher and up-research-status c: ri-elite-skirmisher < research-pending
+  goal skirmisher-line-score -= critical-research-available-modifier
+#end if
+#if research-completed ri-elite-skirmisher
+  goal skirmisher-line-score += small-investment-modifier
+#end if
+
+// other techs - cavalry
+
+// bloodlines
+#if not civ-selected frankish
+  #if research-completed feudal-age and not research-available ri-bloodlines and up-research-status c: ri-bloodlines < research-pending
+    insert units-with-bloodlines-and-husbandry-benefit(before="goal ",after="-score -= important-research-available-modifier")
+  #end if
+  #if research-completed ri-bloodlines
+    insert units-with-bloodlines-and-husbandry-benefit(before="goal ",after="-score += small-investment-modifier")
+  #end if
+#end if
+
+// husbandry
+#if research-completed feudal-age and not research-available ri-husbandry and up-research-status c: ri-husbandry < research-pending
+  insert units-with-bloodlines-and-husbandry-benefit(before="goal ",after="-score -= medium-research-available-modifier")
+#end if
+#if research-completed ri-husbandry
+  insert units-with-bloodlines-and-husbandry-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
+// cavalier
+#if research-completed imperial-age and not research-available ri-cavalier and up-research-status c: ri-cavalier < research-pending
+  goal knight-line-score -= critical-research-available-modifier
+#end if
+#if research-completed ri-cavalier
+  goal knight-line-score += medium-investment-modifier
+#end if
+
+// paladin
+#if research-completed ri-cavalier and research-completed imperial-age and not research-available ri-paladin and up-research-status c: ri-paladin < research-pending
+  goal knight-line-score -= medium-research-available-modifier
+#end if
+#if research-completed ri-paladin
+  goal knight-line-score += large-investment-modifier
+#end if
+
+// light cavalry
+#if research-completed castle-age and not research-available ri-light-cavalry and up-research-status c: ri-light-cavalry < research-pending
+  goal scout-cavalry-line-score -= critical-research-available-modifier
+#end if
+#if research-completed ri-light-cavalry
+  goal scout-cavalry-line-score += small-investment-modifier
+#end if
+
+#if not civ-selected lithuanians and not civ-selected poles
+  // hussar
+  #if research-completed ri-light-cavalry and research-completed imperial-age and not research-available ri-hussar and up-research-status c: ri-hussar < research-pending
+    goal scout-cavalry-line-score -= critical-research-available-modifier
+  #end if
+  #if research-completed ri-hussar
+    goal scout-cavalry-line-score += large-investment-modifier
+  #end if
+#else
+  // winged hussar
+  #if research-completed ri-light-cavalry and research-completed imperial-age and not research-available ri-winged-hussar and up-research-status c: ri-winged-hussar < research-pending
+    goal scout-cavalry-line-score -= critical-research-available-modifier
+  #end if
+  #if research-completed ri-winged-hussar
+    goal scout-cavalry-line-score += large-investment-modifier
+  #end if
+#end if
+
+// other techs - infantry
+
+#if not civ-selected gothic
+  // supplies
+  #if research-completed feudal-age and not research-available ri-supplies and up-research-status c: ri-supplies < research-pending
+    goal militiaman-line-score -= important-research-available-modifier
+  #end if
+  #if research-completed ri-supplies
+    goal militiaman-line-score += small-investment-modifier
+  #end if
+  
+  // gambesons
+  #if research-completed ri-supplies and research-completed castle-age and not research-available ri-gambesons and up-research-status c: ri-gambesons < research-pending
+    goal militiaman-line-score -= medium-research-available-modifier
+  #end if
+  #if research-completed ri-gambesons
+    goal militiaman-line-score += small-investment-modifier
+    insert units-with-bloodlines-and-husbandry-benefit(before="goal ",after="-score += small-investment-modifier")
+  #end if
+#end if
+
+// squires
+#if research-completed castle-age and not research-available ri-squires and up-research-status c: ri-squires < research-pending
+  goal militiaman-line-score -= low-research-available-modifier
+#end if
+#if research-completed ri-squires
+  goal militiaman-line-score += small-investment-modifier
+#end if
+
+// arson
+#if research-completed castle-age and not research-available ri-arson and up-research-status c: ri-arson < research-pending
+  goal militiaman-line-score -= low-research-available-modifier
+#end if
+#if research-completed ri-arson
+  goal militiaman-line-score += small-investment-modifier
+#end if
+
+// man at arms
+#if research-completed feudal-age and not research-available ri-man-at-arms and up-research-status c: ri-man-at-arms < research-pending
+  goal militiaman-line-score -= critical-research-available-modifier
+#end if
+#if research-completed ri-man-at-arms
+  goal militiaman-line-score += small-investment-modifier
+#end if
+
+// long swordsman
+#if research-completed ri-man-at-arms and research-completed castle-age and not research-available ri-long-swordsman and up-research-status c: ri-long-swordsman < research-pending
+  goal militiaman-line-score -= critical-research-available-modifier
+#end if
+#if research-completed ri-long-swordsman
+  goal militiaman-line-score += small-investment-modifier
+#end if
+
+// two handed swordsman
+#if not civ-selected romans
+  #if research-completed ri-long-swordsman and research-completed imperial-age and not research-available ri-two-handed-swordsman and up-research-status c: ri-two-handed-swordsman < research-pending
+    goal militiaman-line-score -= critical-research-available-modifier
+  #end if
+  #if research-completed ri-two-handed-swordsman
+    goal militiaman-line-score += medium-investment-modifier
+  #end if
+#end if
+
+// champion
+#if not civ-selected romans
+  #if research-completed ri-two-handed-swordsman and research-completed imperial-age and not research-available ri-champion and up-research-status c: ri-champion < research-pending
+    goal militiaman-line-score -= critical-research-available-modifier
+  #end if
+  #if research-completed ri-champion
+    goal militiaman-line-score += large-investment-modifier
+  #end if
+#end if
+
+// legionary
+#if civ-selected romans
+  #if research-completed ri-long-swordsman and research-completed imperial-age and not research-available ri-legionary and up-research-status c: ri-legionary < research-pending
+    goal militiaman-line-score -= critical-research-available-modifier
+  #end if
+  #if research-completed ri-legionary
+    goal militiaman-line-score += large-investment-modifier
+  #end if
+#end if
+
+// pikeman
+#if research-completed castle-age and not research-available ri-pikeman and up-research-status c: ri-pikeman < research-pending
+  goal spearman-line-score -= critical-research-available-modifier
+#end if
+#if research-completed ri-pikeman
+  goal spearman-line-score += small-investment-modifier
+#end if
+
+// halberdier
+#if research-completed ri-pikeman and research-completed imperial-age and not research-available ri-halberdier and up-research-status c: ri-halberdier < research-pending
+  goal spearman-line-score -= critical-research-available-modifier
+#end if
+#if research-completed ri-halberdier
+  goal spearman-line-score += large-investment-modifier
+#end if
+
+// trash bias
+
+goal spearman-line-score -= trash-bias
+goal skirmisher-line-score -= trash-bias
+goal scout-cavalry-line-score -= trash-bias
+
+// counters
+
+// skirmishers
+#if players-unit-type-count target-player skirmisher-line >= 5
+  goal archer-line-score -= major-counter-modifier
+  goal spearman-line-score -= major-counter-modifier
+  goal knight-line-score += major-counter-modifier
+  goal scout-cavalry-line-score += major-counter-modifier
+#end if
+
+// archers
+#if players-unit-type-count target-player archer-line >= 5
+  goal militiaman-line-score -= minor-counter-modifier
+  goal spearman-line-score -= major-counter-modifier
+  goal skirmisher-line-score += major-counter-modifier
+  goal knight-line-score += minor-counter-modifier
+  goal scout-cavalry-line-score += minor-counter-modifier
+#end if
+
+// cavalry archers
+#if players-unit-type-count target-player cavalry-archer-line >= 5
+  goal militiaman-line-score -= minor-counter-modifier
+  goal skirmisher-line-score += major-counter-modifier
+#end if
+
+// elephant archers
+#if players-unit-type-count target-player elephant-archer-line >= 3
+  goal archer-line-score -= minor-counter-modifier
+  goal militiaman-line-score -= minor-counter-modifier
+  goal skirmisher-line-score += minor-counter-modifier
+#end if
+
+// hand cannoneers
+#if players-unit-type-count target-player hand-cannoneer >= 5
+  goal militiaman-line -= major-counter-modifier
+  goal spearman-line -= major-counter-modifier
+  goal archer-line += major-counter-modifier
+  goal skirmisher-line += major-counter-modifier
+#end if
+
+// militia
+#if players-unit-type-count target-player militiaman-line >= 5
+  goal skirmisher-line-score -= major-counter-modifier
+  goal archer-line-score += major-counter-modifier
+#end if
+
+// spearman
+#if players-unit-type-count target-player spearman-line >= 5
+  goal knight-line-score -= major-counter-modifier
+  goal scout-cavalry-line-score -= major-counter-modifier
+  goal archer-line-score += major-counter-modifier
+  goal skirmisher-line-score += major-counter-modifier
+#end if
+
+// eagles
+#if players-unit-type-count target-player eagle-warrior-line >= 5
+  goal skirmisher-line-score -= minor-counter-modifier
+  goal archer-line-score -= minor-counter-modifier
+  goal militiaman-line-score += major-counter-modifier
+#end if
+
+// scouts
+#if players-unit-type-count target-player scout-cavalry-line >= 5
+  goal skirmisher-line-score -= major-counter-modifier
+  goal archer-line-score -= minor-counter-modifier
+  goal spearman-line-score += major-counter-modifier
+#end if
+
+// knights
+#if players-unit-type-count target-player knight-line >= 3
+  goal skirmisher-line-score -= major-counter-modifier
+  goal archer-line-score -= minor-counter-modifier
+  goal spearman-line-score += major-counter-modifier
+#end if
+
+// camels
+#if players-unit-type-count target-player camel-line >= 3
+  goal skirmisher-line-score -= minor-counter-modifier
+  goal knight-line-score -= minor-counter-modifier
+  goal scout-cavalry-line-score -= major-counter-modifier
+#end if
+
+// battle elephants
+#if players-unit-type-count target-player battle-elephant-line >= 3
+  goal skirmisher-line-score -= major-counter-modifier
+  goal archer-line-score -= minor-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal spearman-line += major-counter-modifier
+#end if
+
+// steppe lancers
+#if players-unit-type-count target-player steppe-lancer-line >= 3
+  goal skirmisher-line-score -= major-counter-modifier
+  goal archer-line-score += major-counter-modifier
+  goal spearman-line-score += major-counter-modifier
+#end if
+
+// mangonels
+#if players-unit-type-count target-player mangonel-line >= 3
+  goal skirmisher-line-score -= major-counter-modifier
+  goal archer-line-score -= minor-counter-modifier
+  goal knight-line-score += major-counter-modifier
+  goal scout-cavalry-line-score += major-counter-modifier
+#end if
+
+// scorpions
+#if players-unit-type-count target-player scorpion-line >= 3
+  goal archer-line-score -= major-counter-modifier
+  goal skirmisher-line-score -= major-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal spearman-line-score -= major-counter-modifier
+  goal knight-line-score += major-counter-modifier
+  goal scout-cavalry-line-score += major-counter-modifier
+#end if
+
+// monks
+#if players-unit-type-count target-player monk-set >= 5
+  goal knight-line-score -= major-counter-modifier
+  goal scout-cavalry-line-score += major-counter-modifier
+  goal archer-line-score += major-counter-modifier
+  goal skirmisher-line-score += minor-counter-modifier
+#end if
+
+// counters - UU
+
+// jaguar warriors
+#if players-unit-type-count target-player jaguar-man-line >= 3
+  goal spearman-line-score -= major-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal archer-line-score += major-counter-modifier
+#end if
+
+// ratha
+#if players-unit-type-count target-player ratha-set >= 3
+  goal spearman-line-score -= major-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal skirmisher-line-score += major-counter-modifier
+#end if
+
+// camel archers
+#if players-unit-type-count target-player camel-archer-line >= 3
+  goal militiaman-line-score -= major-counter-modifier
+  goal spearman-line-score += major-counter-modifier
+  goal skirmisher-line-score += major-counter-modifier
+#end if
+
+// hussite wagons
+#if players-unit-type-count target-player hussite-wagon-line >= 3
+  goal archer-line-score -= major-counter-modifier
+#end if
+
+// longbows
+#if players-unit-type-count target-player longbowman-line >= 3
+  goal spearman-line-score -= major-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal skirmisher-line-score += major-counter-modifier
+  goal knight-line-score += major-counter-modifier
+  goal scout-cavalry-line-score += major-counter-modifier
+#end if
+
+// konnik
+#if players-unit-type-count target-player konnik-set >= 3
+  goal spearman-line-score -= minor-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal archer-line-score -= major-counter-modifier
+#end if
+
+// coustillier
+#if players-unit-type-count target-player coustillier-line >= 3
+  goal spearman-line-score -= minor-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal archer-line-score -= major-counter-modifier
+#end if
+
+// arambai
+// not sure I care.
+
+// cataphract
+#if players-unit-type-count target-player cataphract-line >= 3
+  goal spearman-line-score -= minor-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal archer-line-score += minor-counter-modifier
+#end if
+
+// woad raiders
+#if players-unit-type-count target-player woad-raider-line >= 3
+  goal spearman-line-score -= minor-counter-modifier
+  goal militiaman-line-score -= minor-counter-modifier
+  goal archer-line-score += major-counter-modifier
+  goal knight-line-score += minor-counter-modifier
+  goal scout-cavalry-line-score += minor-counter-modifier
+#end if
+
+// chu ko nu
+#if players-unit-type-count target-player chu-ko-nu-line >= 3
+  goal spearman-line-score -= major-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal archer-line-score += major-counter-modifier
+  goal skirmisher-line-score += minor-counter-modifier
+#end if
+
+// kipchak
+#if players-unit-type-count target-player kipchak-set >= 3
+  goal spearman-line-score -= major-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal skirmisher-line-score += major-counter-modifier
+#end if
+
+// urumi swordsman
+#if players-unit-type-count target-player urumi-swordsman-line >= 3
+  goal spearman-line-score -= minor-counter-modifier
+  goal militiaman-line-score -= minor-counter-modifier
+  goal archer-line-score += major-counter-modifier
+#end if
+
+// shotel warriors
+#if players-unit-type-count target-player shotel-warrior-line >= 3
+  goal spearman-line-score -= major-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal archer-line-score += major-counter-modifier
+#end if
+
+// throwing axe people
+#if players-unit-type-count target-player throwing-axeman-line >= 3
+  goal spearman-line-score -= major-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal archer-line-score += major-counter-modifier
+#end if
+
+// huskarls
+#if players-unit-type-count target-player huskarl-set >= 3
+  goal archer-line-score -= major-counter-modifier
+  goal skirmisher-line-score -= major-counter-modifier
+  goal knight-line-score += minor-counter-modifier
+  goal scout-cavalry-line-score += minor-counter-modifier
+#end if
+
+// Qi'Tara
+#if players-unit-type-count target-player chakram-thrower-line >= 3
+  goal spearman-line-score -= major-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal archer-line-score += major-counter-modifier
+#end if
+
+// ghulam
+#if players-unit-type-count target-player ghulam-line >= 3
+  goal archer-line-score -= major-counter-modifier
+  goal skirmisher-line-score -= minor-counter-modifier
+  goal knight-line-score += minor-counter-modifier
+  goal scout-cavalry-line-score += minor-counter-modifier
+#end if
+
+// tarkan
+#if players-unit-type-count target-player tarkan-line >= 3
+  goal archer-line-score -= major-counter-modifier
+  goal skirmisher-line-score -= major-counter-modifier
+  goal spearman-line-score += major-counter-modifier
+#end if
+
+// kamayuk
+#if players-unit-type-count target-player kamayuk-line >= 3
+  goal knight-line-score -= major-counter-modifier
+  goal scout-cavalry-line-score -= major-counter-modifier
+  goal archer-line-score += major-counter-modifier
+#end if
+
+// genoese crossbows
+#if players-unit-type-count target-player genoese-crossbowman-line >= 3
+  goal knight-line-score -= major-counter-modifier
+  goal scout-cavalry-line-score -= major-counter-modifier
+  goal archer-line-score += minor-counter-modifier
+  goal skirmisher-line-score += major-counter-modifier
+#end if
+
+// samurai
+#if players-unit-type-count target-player samurai-line >= 3
+  goal archer-line-score += minor-counter-modifier
+#end if
+
+// ballista elephant
+#if players-unit-type-count target-player ballista-elephant-line >= 3
+  goal spearman-line-score -= major-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal archer-line-score -= major-counter-modifier
+  goal knight-line-score += major-counter-modifier
+  goal scout-cavalry-line-score += major-counter-modifier
+#end if
+
+// war wagon
+#if players-unit-type-count target-player war-wagon-line >= 3
+  goal militiaman-line-score -= major-counter-modifier
+  goal archer-line-score -= major-counter-modifier
+  goal skirmisher-line-score += major-counter-modifier
+#end if
+
+// leitis
+#if players-unit-type-count target-player leitis-line >= 3
+  goal militiaman-line-score -= major-counter-modifier
+  goal knight-line-score -= major-counter-modifier
+  goal spearman-line-score += major-counter-modifier
+#end if
+
+// magyar huszar
+#if players-unit-type-count target-player magyar-huszar-line >= 3
+  goal skirmisher-line-score -= major-counter-modifier
+  goal archer-line-score -= minor-counter-modifier
+  goal spearman-line-score += major-counter-modifier
+#end if
+
+// karambit warrior
+#if players-unit-type-count target-player karambit-warrior-line >= 3
+  goal archer-line-score += minor-counter-modifier
+  goal knight-line-score += minor-counter-modifier
+#end if
+
+// gbeto
+#if players-unit-type-count target-player gbeto-line >= 3
+  goal spearman-line-score -= major-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal archer-line-score += major-counter-modifier
+#end if
+
+// plumed archer
+#if players-unit-type-count target-player plumed-archer-line >= 3
+  goal archer-line-score -= minor-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal spearman-line-score -= major-counter-modifier
+  goal skirmisher-line-score += major-counter-modifier
+  goal knight-line-score += major-counter-modifier
+  goal scout-cavalry-line-score += major-counter-modifier
+#end if
+
+// mangudai
+#if players-unit-type-count target-player mangudai-line >= 3
+  goal archer-line-score -= minor-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal spearman-line-score -= minor-counter-modifier
+  goal skirmisher-line-score += major-counter-modifier
+#end if
+
+// war elephant
+#if players-unit-type-count target-player war-elephant-line >= 3
+  goal militiaman-line-score -= major-counter-modifier
+  goal spearman-line-score += minor-counter-modifier
+#end if
+
+// obuch
+#if players-unit-type-count target-player obuch-line >= 3
+  goal militiaman-line-score -= minor-counter-modifier
+  goal spearman-line-score -= minor-counter-modifier
+  goal archer-line-score += major-counter-modifier
+#end if
+
+// organ gun
+// not sure I care.
+
+// centurion
+#if players-unit-type-count target-player centurion-line >= 3
+  goal militiaman-line-score -= minor-counter-modifier
+  goal spearman-line-score += major-counter-modifier
+#end if
+
+// mameluke
+#if players-unit-type-count target-player mameluke-line >= 3
+  goal knight-line-score -= minor-counter-modifier
+  goal scout-cavalry-line-score -= minor-counter-modifier
+  goal archer-line-score += major-counter-modifier
+  goal spearman-line-score += minor-counter-modifier
+#end if
+
+// serjeant
+#if players-unit-type-count target-player serjeant-set >= 3
+  goal archer-line-score += minor-counter-modifier
+#end if
+
+// boyar
+#if players-unit-type-count target-player boyar-line >= 3
+  goal skirmisher-line-score -= major-counter-modifier
+  goal spearman-line-score += major-counter-modifier
+#end if
+
+// conquistador
+#if players-unit-type-count target-player conquistador-line >= 3
+  goal militiaman-line-score -= major-counter-modifier
+  goal spearman-line-score -= minor-counter-modifier
+  goal skirmisher-line-score += minor-counter-modifier
+#end if
+
+// keshik
+#if players-unit-type-count target-player keshik-line >= 3
+  goal skirmisher-line-score -= major-counter-modifier
+  goal spearman-line-score += major-counter-modifier
+#end if
+
+// teutonic knight
+#if players-unit-type-count target-player teutonic-knight-line >= 3
+  goal militiaman-line-score -= major-counter-modifier
+  goal spearman-line-score -= major-counter-modifier
+  goal knight-line-score -= minor-counter-modifier
+  goal scout-cavalry-line-score -= minor-counter-modifier
+  goal archer-line-score += major-counter-modifier
+#end if
+
+// janissary
+#if players-unit-type-count target-player janissary-line >= 3
+  goal militiaman-line-score -= major-counter-modifier
+  goal spearman-line-score -= major-counter-modifier
+  goal archer-line-score += major-counter-modifier
+#end if
+
+// rattan archers
+#if players-unit-type-count target-player rattan-archer-line >= 3
+  goal archer-line-score -= major-counter-modifier
+  goal militiaman-line-score -= major-counter-modifier
+  goal spearman-line-score -= major-counter-modifier
+  goal knight-line-score += major-counter-modifier
+  goal scout-cavalry-line-score += major-counter-modifier
+  goal skirmisher-line-score += major-counter-modifier
+#end if
+
+// berserks
+#if players-unit-type-count target-player berserk-line >= 3
+  goal militiaman-line-score -= minor-counter-modifier
+  goal spearman-line-score -= major-counter-modifier
+  goal archer-line-score += major-counter-modifier
+#end if
+
+// filter off impossible units
+
+#template tank-score-if-not-available
+  #if not unit-available {unit}
+    goal {unit}-score = -99999
   #end if
 #end template
 
-#if unit-type-count-total archer-line < 10 or up-research-status c: ri-arbalest >= research-pending and up-research-status c: ri-ring-archer-armor >= research-pending and up-research-status c: ri-bracer >= research-pending
-  insert escrow-resources(percentage=0)
-#else if unit-type-count-total archer-line < 20
-  insert escrow-resources(percentage=10)
-#else if unit-type-count-total archer-line < 30
-  insert escrow-resources(percentage=20)
-#else
-  insert escrow-resources(percentage=40)
-#end if
+insert unit-names(before="insert tank-score-if-not-available(unit=\"",after="\")")
 
-lure boars
+// get top unit
 
-#if current-age == dark-age
-  build 2 house
-  build houses with 5 headroom
-#else
-  build houses with 10 headroom
-#end if
+goal top-unit-score = -99999
+goal top-unit = -1
 
-#if game-time > 60
-  build lumber camps
-#end if
-#template build-mining-camps
-  #if strategic-number sn-{resource}-gatherer-percentage > 0
-    #when
-      build {resource} mining camps
-    #then
-      sn-camp-max-distance += 5
-    #end when
+#template find-top-fragment
+  #if up-compare-goal {unit}-score g:>= top-unit-score
+    @up-modify-goal top-unit-score g:= {unit}-score
+    goal top-unit = {unit}
+    //chat to all "top unit is {unit}"
   #end if
 #end template
-insert build-mining-camps(resource="gold")
-insert build-mining-camps(resource="stone")
 
-#if up-research-status c: feudal-age >= research-pending
-  build 1 mining-camp with wood escrow
-#end if
+#template find-top-unit
+  insert unit-names(before="insert find-top-fragment(unit=\"",after="\")")
+#end template
 
-#if building-type-count lumber-camp >= 1
-  #if wood-amount >= 100 and current-age == dark-age or wood-amount >= 200
-    build mills
-    build farms
-  #end if
-#end if
+insert find-top-unit
 
-build castle
-
-// the plan
+// now for the actual bot that plays the game
 
 #do once
-  insert production-goal-names(before="goal ",after=" = 0")
+  goal production-scale = 2
 #end do
 
-#if up-research-status c: feudal-age < research-pending
-  distribute villagers 20 80 0 0
-  goal villager-production = 1
-  goal archer-production = 0
-#else if up-research-status c: castle-age < research-pending
-  #do once
-    distribute villagers 40 40 20 0
-    scout opposite
-  #end do
-  goal do-auto-balance = 1
-  goal villager-production = 1
-  goal archer-production = 2
-#else if up-research-status c: imperial-age < research-pending
-  goal do-auto-balance = 1
-  goal villager-production = 4
-  goal battering-ram-production = 1
-  goal archer-production = 4
-#else
-  #do once
-    goal do-auto-balance = 1
-    goal archer-production = 8
-    goal battering-ram-production = 3
-    goal villager-production = 4
-  #end do
-  #repeat every 5 minutes
-    #if wood-amount > 1000 and food-amount > 1000 and gold-amount > 1000
-      goal archer-production += 1
-    #end if
-  #end repeat
-#end if
-
-#if up-compare-goal target-military-percentage c:>= 110
-  goal attacking = 1
-#else if up-compare-goal target-military-percentage c:< 100
-  goal attacking = 0
-#end if
-
-// research
-
-research ri-loom with gold escrow
-research ri-double-bit-axe with wood and food escrow
-research ri-bow-saw with wood and food escrow
-research ri-two-man-saw with wood and food escrow
-
-research ri-horse-collar with wood and food escrow
-research ri-heavy-plow with wood and food escrow
-research ri-crop-rotation with wood and food escrow
-
-research ri-gold-mining with wood and food escrow
-research ri-gold-shaft-mining with wood and food escrow
-research feudal-age with food escrow
-
-research castle-age with food and gold escrow
-build 1 university
-build 1 siege-workshop
-research imperial-age with food and gold escrow
-
-// unit research
-
-#template research-ranged-upgrades
-  build 1 blacksmith
-  research ranged blacksmith upgrades with food and gold escrow
-  build 1 university
-  research ri-ballistics with wood and gold escrow
-  research ri-chemistry with food and gold escrow
-#end template
-
-#template research-foot-archer-upgrades
-  build 1 archery-range
-  research ri-thumb-ring
-  #if civ-selected italian
-    build 1 castle
-    research ri-pavise with food and gold escrow
-  #end if
-#end template
-
-#template research-cavalry-upgrades
-  build 1 blacksmith
-  research cavalry blacksmith upgrades with food and gold escrow
-  build 1 stable
-  research ri-bloodlines with food and gold escrow
-  research ri-husbandry with food escrow
-#end template
-
-#if not goal archer-production 0
-  build 1 archery-range
-  research ri-crossbow with food and gold escrow
-  research ri-arbalest with food and gold escrow
-  insert research-ranged-upgrades
-  insert research-foot-archer-upgrades
-#end if
-
-#if not goal skirmisher-production 0
-  build 1 archery-range
-  research ri-elite-skirmisher with wood and gold escrow
-  research ri-imperial-skirmisher with wood and gold escrow
-  insert research-ranged-upgrades
-#end if
-
-#if not goal battering-ram-production 0
-  build 1 siege-workshop
-  research ri-capped-ram with food escrow
-  research ri-siege-ram with food escrow
-#end if
-
-#if not goal scout-production 0
-  build 1 stable
-  research ri-light-cavalry with food and gold escrow
-  research ri-hussar with food and gold escrow
-  insert research-cavalry-upgrades
-#end if
-
-// unit buildings
-
-@up-get-fact building-type-count-total town-center temp
-#if up-compare-goal temp g:< villager-production
-  #if goal under-attack 0
-    escrow 90 wood
-    escrow 90 stone
-  #end if
-  buy stone when stone < 100
-  build town-center with wood and stone escrow
-#end if
-
-@up-get-fact building-type-count-total archery-range temp
-goal total-production = 0
-@up-modify-goal total-production g:+ archer-production
-@up-modify-goal total-production g:+ skirmisher-production
-#if up-compare-goal temp g:< total-production
-  #if goal under-attack 0
-    escrow 90 wood
-  #end if
-  build 1 barracks with wood escrow
-  build archery-range with wood escrow
-#end if
-
-@up-get-fact building-type-count-total stable temp
-goal total-production = 0
-@up-modify-goal total-production g:+ scout-production
-#if up-compare-goal temp g:< total-production
-  #if goal under-attack 0
-    escrow 90 wood
-  #end if
-  build 1 barracks with wood escrow
-  build stable with wood escrow
-#end if
-
-@up-get-fact building-type-count-total siege-workshop temp
-goal total-production = 0
-@up-modify-goal total-production g:+ battering-ram-production
-#if up-compare-goal temp g:< total-production
-  #if goal under-attack 0
-    escrow 90 wood
-  #end if
-  build 1 blacksmith with wood escrow
-  build siege-workshop with wood escrow
-#end if
-
-// unit production
-
 #template train-unit-internal
-  #if goal {production_goal} {number} and up-pending-objects c: {unit} < {number}
+  #if goal production-scale {number} and up-pending-objects c: {unit} < {number}
     train {unit}
   #end if
 #end template
 
 #template train-unit
-  insert train-unit-internal(production_goal="{production_goal}",unit="{unit}",number=1)
-  insert train-unit-internal(production_goal="{production_goal}",unit="{unit}",number=2)
-  insert train-unit-internal(production_goal="{production_goal}",unit="{unit}",number=3)
-  insert train-unit-internal(production_goal="{production_goal}",unit="{unit}",number=4)
-  insert train-unit-internal(production_goal="{production_goal}",unit="{unit}",number=5)
-  insert train-unit-internal(production_goal="{production_goal}",unit="{unit}",number=6)
-  insert train-unit-internal(production_goal="{production_goal}",unit="{unit}",number=7)
-  insert train-unit-internal(production_goal="{production_goal}",unit="{unit}",number=8)
+  insert train-unit-internal(unit="{unit}",number=1)
+  insert train-unit-internal(unit="{unit}",number=2)
+  insert train-unit-internal(unit="{unit}",number=3)
+  insert train-unit-internal(unit="{unit}",number=4)
+  insert train-unit-internal(unit="{unit}",number=5)
+  insert train-unit-internal(unit="{unit}",number=6)
+  insert train-unit-internal(unit="{unit}",number=7)
+  insert train-unit-internal(unit="{unit}",number=8)
 #end template
 
-#if unit-type-count-total villager < max-villagers
-  insert train-unit(production_goal="villager-production",unit="villager")
-#end if
-#if unit-type-count-total battering-ram-line < max-rams
-  insert train-unit(production_goal="battering-ram-production",unit="battering-ram-line")
+#template build-production-building
+  goal temp = 0
+  @up-get-fact building-type-count-total {building} temp
+  #if up-compare-goal temp g:< production-scale
+    build {building}
+  #end if
+#end template
+
+#do once
+  #if current-age == dark-age
+    goal production-scale = 0
+  #else if current-age == feudal-age
+    goal production-scale = 2
+  #else if current-age == castle-age
+    goal production-scale = 3
+  #else if current-age == imperial-age
+    goal production-scale = 5
+  #end if
+#end do
+
+manage scouting
+do basic targeting
+lure boars
+#if game-time < 600
+  push deer
 #end if
 
-#if building-type-count siege-workshop == 0 or goal battering-ram-production 0 or up-pending-objects c: battering-ram-line > 0 or unit-type-count-total battering-ram-line >= max-rams or (goal under-attack 1 and not goal threat-source castle)
-  insert train-unit(production_goal="archer-production",unit="archer-line")
-  insert train-unit(production_goal="skirmisher-production",unit="skirmisher-line")
-  insert train-unit(production_goal="scout-production",unit="scout-cavalry-line")
+#if building-type-count-total town-center == 0
+  build 1 town-center
+#end if
+
+build lumber camps
+#if building-type-count-total lumber-camp >= 1
+  build mills
+#end if
+build houses
+
+#if wood-amount >= 200
+  build farms
+#end if
+
+#if strategic-number sn-gold-gatherer-percentage > 0
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 1
+  #end when
+#end if
+
+#if strategic-number sn-stone-gatherer-percentage > 0
+  #when
+    build stone mining camps
+  #then
+    sn-camp-max-distance += 1
+  #end when
+#end if
+
+research feudal-age
+research castle-age
+research imperial-age
+
+#if current-age-time >= 120
+  research ri-horse-collar
+  research ri-heavy-plow
+  research ri-crop-rotation
+  research ri-double-bit-axe
+  research ri-bow-saw
+  research ri-two-man-saw
+  research ri-gold-mining
+  research ri-gold-shaft-mining
+  #if unit-type-count villager >= 50
+    research ri-wheel-barrow
+  #end if
+  #if unit-type-count villager >= 80
+    research ri-hand-cart
+  #end if
+#end if
+
+train 120 villager
+#if game-time > 60
+  research ri-loom
+#end if
+
+build 1 siege-workshop
+train 5 battering-ram-line
+
+research ri-capped-ram
+research ri-siege-ram
+
+#if building-type-count siege-workshop >= 1 and unit-type-count-total battering-ram-line < 10 and up-pending-objects c: battering-ram-line == 0 and military-population >= 20
+  train battering-ram-line
+#else
+  #if goal top-unit skirmisher-line
+    build 1 barracks
+    insert build-production-building(building="archery-range")
+    
+    #if building-type-count-total archery-range >= 1
+      build 1 blacksmith
+    #end if
+    research ri-fletching
+    research ri-padded-archer-armor
+    research ri-bodkin-arrow
+    research ri-leather-archer-armor
+    research ri-bracer
+    research ri-ring-archer-armor
+    research ri-elite-skirmisher
+    build 1 university
+    research ri-ballistics
+    research ri-chemistry
+    
+    distribute villagers 45 45 10 0
+    insert train-unit(unit="skirmisher-line")
+  #end if
+
+  #if goal top-unit archer-line
+    build 1 barracks
+    insert build-production-building(building="archery-range")
+    
+    #if building-type-count-total archery-range >= 1
+      build 1 blacksmith
+    #end if
+    research ri-fletching
+    research ri-padded-archer-armor
+    research ri-bodkin-arrow
+    research ri-leather-archer-armor
+    research ri-bracer
+    research ri-ring-archer-armor
+    research ri-crossbow
+    research ri-arbalest
+    research ri-thumb-ring
+    build 1 university
+    research ri-ballistics
+    research ri-chemistry
+    
+    distribute villagers 45 30 25 0
+    insert train-unit(unit="archer-line")
+  #end if
+
+  #if goal top-unit knight-line
+    build 1 barracks
+    insert build-production-building(building="stable")
+    
+    #if building-type-count-total stable >= 1
+      build 1 blacksmith
+    #end if
+    research ri-forging
+    research ri-scale-barding
+    research ri-iron-casting
+    research ri-chain-barding
+    research ri-blast-furnace
+    research ri-plate-barding
+    research ri-bloodlines
+    research ri-husbandry
+    research ri-cavalier
+    research ri-paladin
+    
+    distribute villagers 20 50 30 0
+    insert train-unit(unit="knight-line")
+  #end if
+
+  #if goal top-unit scout-cavalry-line
+    build 1 barracks
+    insert build-production-building(building="stable")
+    
+    #if building-type-count-total stable >= 1
+      build 1 blacksmith
+    #end if
+    research ri-forging
+    research ri-scale-barding
+    research ri-iron-casting
+    research ri-chain-barding
+    research ri-blast-furnace
+    research ri-plate-barding
+    research ri-bloodlines
+    research ri-husbandry
+    research ri-light-cavalry
+    research ri-hussar
+    research ri-winged-hussar
+    
+    distribute villagers 20 70 10 0
+    insert train-unit(unit="scout-cavalry-line")
+  #end if
+
+  #if goal top-unit militiaman-line
+    insert build-production-building(building="barracks")
+    
+    #if building-type-count-total barracks >= 1
+      build 1 blacksmith
+    #end if
+    research ri-forging
+    research ri-scale-mail
+    research ri-iron-casting
+    research ri-chain-mail
+    research ri-blast-furnace
+    research ri-plate-mail
+    research ri-supplies
+    research ri-gambesons
+    research ri-squires
+    research ri-arson
+    research ri-man-at-arms
+    research ri-long-swordsman
+    research ri-two-handed-swordsman
+    research ri-champion
+    research ri-legionary
+    
+    distribute villagers 20 60 20 0
+    insert train-unit(unit="militiaman-line")
+  #end if
+
+  #if goal top-unit spearman-line
+    insert build-production-building(building="barracks")
+    
+    #if building-type-count-total barracks >= 1
+      build 1 blacksmith
+    #end if
+    research ri-forging
+    research ri-scale-mail
+    research ri-iron-casting
+    research ri-chain-mail
+    research ri-blast-furnace
+    research ri-plate-mail
+    research ri-squires
+    research ri-arson
+    research ri-pikeman
+    research ri-halberdier
+    
+    distribute villagers 40 50 10 0
+    insert train-unit(unit="spearman-line")
+  #end if
 #end if
 
 build 1 market
-#if goal under-attack 1
-  trade excess wood and food and gold at 300
+#if gold-amount < 2000
+  sell wood when wood > 2000
+  sell food when food > 2000
 #end if
-trade excess wood and food and gold at 2000
+build 1 university
+build 1 monastery
+train 1 monk
 
-#if goal do-auto-balance 1
-  auto balance wood and food and gold
+#if up-research-status c: feudal-age < research-pending
+  distribute villagers 20 80 0 0
 #end if
 
-// attacking and town size
+#if up-research-status c: feudal-age == research-pending
+  build 1 barracks
+  distribute villagers 60 30 10 0
+#end if
 
-#if goal attacking 0
-  #if strategic-number sn-maximum-town-size > 30
-    sn-maximum-town-size = 30
-  #end if
-  auto expand town size to 30
+goal my-military-population = 0
+goal their-military-population = 0
+@up-get-fact military-population 0 my-military-population
+@up-get-player-fact target-player military-population 0 their-military-population
+
+#if military-population >= 5 and up-compare-goal my-military-population g:> their-military-population
+  sn-number-attack-groups = 200
 #else
-  sn-maximum-town-size = 255
-  trade excess wood and food and gold at 500
+  sn-number-attack-groups = 0
 #end if
+
+#template keep-away
+  #if unit-type-count {unit} >= 1
+    keep {unit} 12 tiles away from enemy town-center
+    keep {unit} 15 tiles away from enemy castle
+  #end if
+#end template
+
+#if military-population < 40
+  insert unit-names(before="insert keep-away(unit=\"",after="\")")
+#end if
+
+#if current-age >= feudal-age
+  #do once
+    scout enemy
+  #end do
+#end if
+
+#if town-under-attack and military-population < 15
+  @up-gather-inside c: archery-range c: 1
+  @up-gather-inside c: barracks c: 1
+  @up-gather-inside c: stable c: 1
+#end if   
+
+#if military-population >= 15 or up-compare-goal my-military-population g:> their-military-population
+  @up-gather-inside c: archery-range c: 0
+  @up-gather-inside c: barracks c: 0
+  @up-gather-inside c: stable c: 0
+#end if
+
+auto expand town size to 30
