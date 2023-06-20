@@ -895,75 +895,67 @@ goal top-unit = -1
 
 insert find-top-unit
 
-// now for the actual bot that plays the game
+// military pops
 
-#do once
-  goal production-scale = 2
-#end do
+goal my-military-population = 0
+goal their-military-population = 0
+@up-get-fact military-population 0 my-military-population
+@up-get-player-fact target-player military-population 0 their-military-population
 
-#template train-unit-internal
-  #if goal production-scale {number} and up-pending-objects c: {unit} < {number}
+// production templates
+
+goal halt-production = 0
+
+#template train-unit
+  #if up-pending-objects c: {unit} < {production} and goal halt-production 0
     train {unit}
   #end if
 #end template
 
-#template train-unit
-  insert train-unit-internal(unit="{unit}",number=1)
-  insert train-unit-internal(unit="{unit}",number=2)
-  insert train-unit-internal(unit="{unit}",number=3)
-  insert train-unit-internal(unit="{unit}",number=4)
-  insert train-unit-internal(unit="{unit}",number=5)
-  insert train-unit-internal(unit="{unit}",number=6)
-  insert train-unit-internal(unit="{unit}",number=7)
-  insert train-unit-internal(unit="{unit}",number=8)
-#end template
-
-#template build-production-building
-  goal temp = 0
-  @up-get-fact building-type-count-total {building} temp
-  #if up-compare-goal temp g:< production-scale
+#template build-required-building
+  #if building-type-count-total {building} < {amount}
+    distribute villagers 50 30 20 0
     build {building}
   #end if
 #end template
 
-#do once
-  #if current-age == dark-age
-    goal production-scale = 0
-  #else if current-age == feudal-age
-    goal production-scale = 2
-  #else if current-age == castle-age
-    goal production-scale = 3
-  #else if current-age == imperial-age
-    goal production-scale = 5
+#template build-required-stone-building
+  #if building-type-count-total {building} < {amount}
+    distribute villagers 25 30 20 25
+    build {building}
   #end if
-#end do
+#end template
+
+#template attempt-research-with-halt
+  #if research-available {research} and up-research-status c: {research} < research-pending and not town-under-attack
+    goal halt-production = 1
+    research {research}
+  #end if
+#end template
+
+// basic stuff
 
 manage scouting
 do basic targeting
-lure boars
-#if game-time < 600
-  push deer
-#end if
 
-#if building-type-count-total town-center == 0
-  build 1 town-center
-#end if
+build 1 town-center
 
-build lumber camps
-#if building-type-count-total lumber-camp >= 1
-  build mills
+#if building-type-count-total house == 0
+  assign 2 builders to house
+#else
+  assign 1 builder to house
 #end if
 build houses
 
-#if wood-amount >= 200
-  build farms
+#if strategic-number sn-wood-gatherer-percentage > 0
+  build lumber camps
 #end if
 
 #if strategic-number sn-gold-gatherer-percentage > 0
   #when
     build gold mining camps
   #then
-    sn-camp-max-distance += 1
+    sn-camp-max-distance += 6
   #end when
 #end if
 
@@ -971,206 +963,129 @@ build houses
   #when
     build stone mining camps
   #then
-    sn-camp-max-distance += 1
+    sn-camp-max-distance += 6
   #end when
 #end if
 
-research feudal-age
-research castle-age
-research imperial-age
-
-#if current-age-time >= 120
-  research ri-horse-collar
-  research ri-heavy-plow
-  research ri-crop-rotation
-  research ri-double-bit-axe
-  research ri-bow-saw
-  research ri-two-man-saw
-  research ri-gold-mining
-  research ri-gold-shaft-mining
-  #if unit-type-count villager >= 50
-    research ri-wheel-barrow
-  #end if
-  #if unit-type-count villager >= 80
-    research ri-hand-cart
-  #end if
-#end if
-
-train 120 villager
-#if game-time > 60
-  research ri-loom
-#end if
-
-build 1 siege-workshop
-train 5 battering-ram-line
-
-research ri-capped-ram
-research ri-siege-ram
-
-#if building-type-count siege-workshop >= 1 and unit-type-count-total battering-ram-line < 10 and up-pending-objects c: battering-ram-line == 0 and military-population >= 20
-  train battering-ram-line
+// hunt
+#if game-time < 600
+  push deer
 #else
-  #if goal top-unit skirmisher-line
-    build 1 barracks
-    insert build-production-building(building="archery-range")
-    
-    #if building-type-count-total archery-range >= 1
-      build 1 blacksmith
-    #end if
-    research ri-fletching
-    research ri-padded-archer-armor
-    research ri-bodkin-arrow
-    research ri-leather-archer-armor
-    research ri-bracer
-    research ri-ring-archer-armor
-    research ri-elite-skirmisher
-    build 1 university
-    research ri-ballistics
-    research ri-chemistry
-    
-    distribute villagers 45 45 10 0
-    insert train-unit(unit="skirmisher-line")
-  #end if
+  #do once
+    scout enemy
+  #end do
+#end if
+#if unit-type-count villager >= 8
+  lure boars
+#end if
+micro sheep
 
-  #if goal top-unit archer-line
-    build 1 barracks
-    insert build-production-building(building="archery-range")
-    
-    #if building-type-count-total archery-range >= 1
-      build 1 blacksmith
-    #end if
-    research ri-fletching
-    research ri-padded-archer-armor
-    research ri-bodkin-arrow
-    research ri-leather-archer-armor
-    research ri-bracer
-    research ri-ring-archer-armor
-    research ri-crossbow
-    research ri-arbalest
-    research ri-thumb-ring
-    build 1 university
-    research ri-ballistics
-    research ri-chemistry
-    
-    distribute villagers 45 30 25 0
-    insert train-unit(unit="archer-line")
-  #end if
-
-  #if goal top-unit knight-line
-    build 1 barracks
-    insert build-production-building(building="stable")
-    
-    #if building-type-count-total stable >= 1
-      build 1 blacksmith
-    #end if
-    research ri-forging
-    research ri-scale-barding
-    research ri-iron-casting
-    research ri-chain-barding
-    research ri-blast-furnace
-    research ri-plate-barding
-    research ri-bloodlines
-    research ri-husbandry
-    research ri-cavalier
-    research ri-paladin
-    
-    distribute villagers 20 50 30 0
-    insert train-unit(unit="knight-line")
-  #end if
-
-  #if goal top-unit scout-cavalry-line
-    build 1 barracks
-    insert build-production-building(building="stable")
-    
-    #if building-type-count-total stable >= 1
-      build 1 blacksmith
-    #end if
-    research ri-forging
-    research ri-scale-barding
-    research ri-iron-casting
-    research ri-chain-barding
-    research ri-blast-furnace
-    research ri-plate-barding
-    research ri-bloodlines
-    research ri-husbandry
-    research ri-light-cavalry
-    research ri-hussar
-    research ri-winged-hussar
-    
-    distribute villagers 20 70 10 0
-    insert train-unit(unit="scout-cavalry-line")
-  #end if
-
-  #if goal top-unit militiaman-line
-    insert build-production-building(building="barracks")
-    
-    #if building-type-count-total barracks >= 1
-      build 1 blacksmith
-    #end if
-    research ri-forging
-    research ri-scale-mail
-    research ri-iron-casting
-    research ri-chain-mail
-    research ri-blast-furnace
-    research ri-plate-mail
-    research ri-supplies
-    research ri-gambesons
-    research ri-squires
-    research ri-arson
-    research ri-man-at-arms
-    research ri-long-swordsman
-    research ri-two-handed-swordsman
-    research ri-champion
-    research ri-legionary
-    
-    distribute villagers 20 60 20 0
-    insert train-unit(unit="militiaman-line")
-  #end if
-
-  #if goal top-unit spearman-line
-    insert build-production-building(building="barracks")
-    
-    #if building-type-count-total barracks >= 1
-      build 1 blacksmith
-    #end if
-    research ri-forging
-    research ri-scale-mail
-    research ri-iron-casting
-    research ri-chain-mail
-    research ri-blast-furnace
-    research ri-plate-mail
-    research ri-squires
-    research ri-arson
-    research ri-pikeman
-    research ri-halberdier
-    
-    distribute villagers 40 50 10 0
-    insert train-unit(unit="spearman-line")
-  #end if
+// farms
+#if building-type-count-total lumber-camp >= 1
+  build mills
+#end if
+#if wood-amount >= 200
+  build farms
 #end if
 
-build 1 market
-#if gold-amount < 2000
-  sell wood when wood > 2000
-  sell food when food > 2000
-#end if
-build 1 university
-build 1 monastery
-train 1 monk
+// decisions
 
+// dark age
 #if up-research-status c: feudal-age < research-pending
-  distribute villagers 20 80 0 0
+  #if unit-type-count villager <= 8
+    distribute villagers 0 100 0 0
+  #else if unit-type-count villager <= 16
+    distribute villagers 20 80 0 0
+  #else if unit-type-count villager <= 30
+    distribute villagers 30 50 20 0
+  #else
+    distribute villagers 40 40 20 0
+  #end if
+  research feudal-age
+  train villager
+  #if game-time >= 60 or civ-selected mayan or civ-selected chinese
+    research ri-loom
+  #end if
 #end if
 
+// dark->feudal
 #if up-research-status c: feudal-age == research-pending
+  distribute villagers 50 30 20 0
   build 1 barracks
-  distribute villagers 60 30 10 0
 #end if
 
-goal my-military-population = 0
-goal their-military-population = 0
-@up-get-fact military-population 0 my-military-population
-@up-get-player-fact target-player military-population 0 their-military-population
+// feudal age
+#if current-age == feudal-age
+  research castle-age
+  insert attempt-research-with-halt(research="ri-loom")
+  insert build-required-building(building="barracks",amount="1")
+  insert build-required-building(building="archery-range",amount="2")
+  #if building-type-count-total archery-range >= 2
+    #if up-compare-goal archer-line-score g:>= skirmisher-line-score
+      distribute villagers 40 30 30 0
+      build 1 blacksmith
+      #if unit-type-count-total archer-line < 4 or town-under-attack
+        insert train-unit(unit="archer-line",production="2")
+      #else
+        research ri-fletching
+        #if up-research-status c: ri-fletching >= research-pending
+          insert train-unit(unit="archer-line",production="2")
+        #end if
+      #end if
+    #else
+      distribute villagers 50 40 10 0
+      insert train-unit(unit="skirmisher-line",production="2")
+    #end if
+  #end if
+  
+  #if players-current-age target-player <= feudal-age
+    insert train-unit(unit="villager",production="1")
+  #else
+    #if unit-type-count-total villager < 40
+      insert train-unit(unit="villager",production="1")
+    #end if
+  #end if
+#end if
+
+// castle age
+#if current-age == castle-age
+  research imperial-age
+
+  #if up-compare-goal archer-line-score g:>= knight-line-score or true
+    distribute villagers 40 25 35 0
+    build 1 blacksmith
+    build 1 barracks
+    build 3 archery-range
+    
+    insert attempt-research-with-halt(research="ri-fletching")
+    insert attempt-research-with-halt(research="ri-crossbow")
+    #if unit-type-count-total archer-line >= 10
+      insert attempt-research-with-halt(research="ri-bodkin-arrow")
+      insert attempt-research-with-halt(research="ri-padded-archer-armor")
+    #end if
+    #if unit-type-count-total archer-line >= 20
+      insert attempt-research-with-halt(research="ri-leather-archer-armor")
+    #end if
+    
+    #if building-type-count-total archery-range >= 3
+      build houses with 10 headroom
+      #if unit-type-count-total archer-line < 20 or up-compare-goal my-military-population g:< their-military-population or unit-type-count-total villager >= 120
+        insert train-unit(unit="archer-line",production="3")
+      #else
+        build 3 town-center
+        distribute villagers 35 40 25 0
+        insert train-unit(unit="villager",production="3")
+        #if wood-amount >= 300 and gold-amount >= 300 and food-amount < 1000
+          insert train-unit(unit="archer-line",production="3")
+        #end if
+      #end if
+    #end if
+  #end if
+  
+  #if unit-type-count-total villager < 120
+    insert train-unit(unit="villager",production="1")
+  #end if
+#end if
 
 #if military-population >= 5 and up-compare-goal my-military-population g:> their-military-population
   sn-number-attack-groups = 200
@@ -1182,6 +1097,7 @@ goal their-military-population = 0
   #if unit-type-count {unit} >= 1
     keep {unit} 12 tiles away from enemy town-center
     keep {unit} 15 tiles away from enemy castle
+    keep {unit} 12 tiles away from enemy watch-tower-line
   #end if
 #end template
 
@@ -1207,4 +1123,5 @@ goal their-military-population = 0
   @up-gather-inside c: stable c: 0
 #end if
 
+// town size
 auto expand town size to 30
