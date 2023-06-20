@@ -71,7 +71,7 @@ goal did-tribute = 0
 #end if
 
 #if goal under-attack 1
-  trade excess wood and food and gold at gold-threshold
+  // trade excess wood and food and gold at gold-threshold
 #else
   #if commodity-buying-price wood <= excellent-wood-price and (up-compare-goal non-escrowed-wood c:< wood-threshold or up-compare-goal non-escrowed-gold c:> gold-threshold) and up-compare-goal non-escrowed-gold c:> gold-threshold and wood-amount < half-max-wood
     chat to self "buy wood, excellent price."
