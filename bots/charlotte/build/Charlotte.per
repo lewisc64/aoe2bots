@@ -56612,7 +56612,7 @@
     (building-type-count town-center > 0)
     (civ-selected gurjaras)
 =>
-    (up-jump-rule 6)
+    (up-jump-rule 7)
 )
 (defrule
     (true)
@@ -56623,6 +56623,13 @@
     (up-modify-sn sn-focus-player-number c:= 0)
     (up-filter-distance c: -1 c: 10)
     (up-filter-status c: 5 c: 0)
+    (up-find-status-remote c: livestock-class c: 1)
+    (up-get-search-state 353)
+)
+(defrule
+    (goal 355 0)
+=>
+    (up-filter-status c: 4 c: 0)
     (up-find-status-remote c: livestock-class c: 1)
     (up-get-search-state 353)
 )
@@ -56655,9 +56662,9 @@
     (up-remove-objects search-local -1 == 0)
     (up-find-remote c: town-center c: 1)
     (up-set-target-object search-remote c: 0)
-    (up-get-point 357 position-object)
-    (up-get-point 359 position-center)
-    (up-lerp-tiles 357 359 c: -5)
+    (up-get-point position-object 357)
+    (up-get-point position-center 359)
+    (up-lerp-tiles 357 359 c: -3)
     (up-target-point 357 action-default -1 -1)
 )
 (defrule
