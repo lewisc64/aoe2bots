@@ -34,7 +34,8 @@ const diplo-mute-period = 120
   goal diplo-accept-alliances = 1
   
   goal diplo-game-time-goal = 0
-  goal diplo-my-player-number-guess = 1
+  goal diplo-my-player-number = -1
+  @up-get-fact player-number 0 diplo-my-player-number
   goal temp = 0
   goal temp2 = 0
 #end do
@@ -47,32 +48,13 @@ const diplo-mute-period = 120
   #end if
 #end do
 
-#template diplo-compare-score
-  #if player-in-game {player}
-    @up-get-player-fact {player} current-score 0 temp
-    @up-get-fact current-score 0 temp2
-    #if up-compare-goal temp g:== temp2
-      goal diplo-my-player-number-guess = {player}
-    #end if
-  #end if
-#end template
-
-insert diplo-compare-score(player=1)
-insert diplo-compare-score(player=2)
-insert diplo-compare-score(player=3)
-insert diplo-compare-score(player=4)
-insert diplo-compare-score(player=5)
-insert diplo-compare-score(player=6)
-insert diplo-compare-score(player=7)
-insert diplo-compare-score(player=8)
-
 @up-get-fact game-time 0 diplo-game-time-goal
 
 goal diplo-enemy-count = 0
 goal diplo-ally-count = 0
 
 #template diplo-count-stances
-  #if player-in-game {player}
+  #if player-in-game {player} and not goal diplo-my-player-number {player}
     #if stance-toward {player} ally
       goal diplo-ally-count += 1
     #else if stance-toward {player} enemy
@@ -89,12 +71,6 @@ insert diplo-count-stances(player=5)
 insert diplo-count-stances(player=6)
 insert diplo-count-stances(player=7)
 insert diplo-count-stances(player=8)
-
-#if stance-toward my-player-number enemy
-  goal diplo-enemy-count -= 1
-#else if stance-toward my-player-number ally
-  goal diplo-ally-count -= 1
-#end if
 
 #template diplo-set-future-stamp
   @up-get-fact game-time 0 {goal}
@@ -119,7 +95,7 @@ insert diplo-count-stances(player=8)
 #end template
 
 #template diplo-mark-ally
-  #if players-stance {player} ally and stance-toward {player} ally and not goal diplo-my-player-number-guess {player}
+  #if players-stance {player} ally and stance-toward {player} ally and not goal diplo-my-player-number {player}
     goal diplo-player-{player}-is-marked = 1
   #end if
 #end template
@@ -155,7 +131,7 @@ insert diplo-count-stances(player=8)
     goal diplo-player-{player}-is-marked = 0
   #end do
   
-  #if player-in-game {player} and not goal diplo-my-player-number-guess {player}
+  #if player-in-game {player} and not goal diplo-my-player-number {player}
   
     insert diplo-should-player-be-marked(marked_goal="diplo-player-{player}-is-marked",player={player})
   
