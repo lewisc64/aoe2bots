@@ -32,13 +32,6 @@ goal passive-override = 0
       chat to self "massive lead, do techs."
     #end repeat
   #end if
-
-  #if up-compare-goal largest-enemy-military-percentage c:< 33
-    goal aggressive-override = 1
-    #repeat every 30 seconds
-      chat to self "not enough military!"
-    #end repeat
-  #end if
 #end if
 
 #if (goal balanced-aggressive 1 or goal aggressive-override 1) and goal passive-override 0
