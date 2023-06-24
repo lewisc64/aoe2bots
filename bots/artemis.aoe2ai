@@ -911,8 +911,6 @@ goal second-unit = -1
 #end template
 
 insert find-top-unit
-chat goal to all "top unit: %d" top-unit
-chat goal to all "second unit: %d" second-unit
 
 // now for the actual bot that plays the game
 
