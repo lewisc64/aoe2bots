@@ -26,12 +26,14 @@
 
 const diplo-alliance-timeout = 60
 const diplo-mute-period = 120
+const diplo-total-warnings = 1
 
 #do once
   @set-stance every-enemy ally
   goal diplo-locked-teams = 1
   
   goal diplo-accept-alliances = 1
+  goal diplo-auto-resign = 1
   
   goal diplo-game-time-goal = 0
   goal diplo-my-player-number = -1
@@ -125,7 +127,7 @@ insert diplo-count-stances(player=8)
 #template handle-diplomacy
 
   #do once
-    goal diplo-player-{player}-warnings = 1
+    goal diplo-player-{player}-warnings = diplo-total-warnings
     goal diplo-player-{player}-alliance-offer-expire-at = -1
     goal diplo-trying-to-ally-{player} = 0
     goal diplo-player-{player}-is-marked = 0
@@ -136,7 +138,7 @@ insert diplo-count-stances(player=8)
     insert diplo-should-player-be-marked(marked_goal="diplo-player-{player}-is-marked",player={player})
   
     // enemy allies who threaten us
-    #ifg goal diplo-action-done 0 and goal threat-player {player} and players-stance {player} ally and up-compare-goal threat-time c:< 5000
+    #ifg goal diplo-action-done 0 and goal threat-player {player} and players-stance {player} ally and stance-toward {player} ally and up-compare-goal threat-time c:< 5000
       chat to self "threatened by ally {player}"
       #ifg goal diplo-player-{player}-warnings 0
         @set-stance {player} enemy
@@ -195,6 +197,7 @@ insert diplo-count-stances(player=8)
         #end if
         @set-stance {player} ally
         goal diplo-player-{player}-alliance-offer-expire-at = -1
+        goal diplo-player-{player}-warnings = diplo-total-warnings
         goal diplo-action-done = 1
       #end if
       
@@ -218,6 +221,7 @@ insert diplo-count-stances(player=8)
         #end if
         goal diplo-trying-to-ally-{player} = 0
         goal diplo-player-{player}-alliance-offer-expire-at = -1
+        goal diplo-player-{player}-warnings = diplo-total-warnings
         goal diplo-action-done = 1
       #end if
       
@@ -236,9 +240,10 @@ insert diplo-count-stances(player=8)
   #end if
   
   #if not player-in-game {player}
-    goal diplo-player-{player}-is-marked = 0
     #if players-stance {player} ally
       @set-stance {player} ally
+    #else
+      @set-stance {player} enemy
     #end if
   #end if
   
@@ -275,7 +280,7 @@ insert diplo-count-stances(player=8)
   #end repeat
 #end if
 
-#if game-time >= 1800 and civilian-population <= 10
+#if goal diplo-auto-resign 1 and game-time >= 1800 and civilian-population <= 10
   insert diplo-chat-resign
   @set-stance every-enemy ally
   @set-stance every-neutral ally

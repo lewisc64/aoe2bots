@@ -11,7 +11,7 @@
     sn-enable-training-queue = 1
   #end do
   
-  #if unit-type-count-total villager >= 25
+  #if unit-type-count-total villager >= 26
     sn-enable-training-queue = 0
   #end if
   
@@ -32,9 +32,11 @@
     build farms
   #end if
   
-  research feudal-age
+  #if unit-type-count-total villager >= 26
+    research feudal-age
+  #end if
   
-  train 27 villager
+  train 26 villager
   #if game-time >= 60 or civ-selected mayan or civ-selected chinese
     research ri-loom
   #end if
@@ -69,6 +71,6 @@
   research ri-loom
   research castle-age
   
-  train 29 villager
+  train 28 villager
   
 #end if
