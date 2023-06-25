@@ -66,6 +66,7 @@ load "templates/basic_diplomacy.aoe2ai"
 
 #template clear-production-goals
   insert unit-names(before="goal ",after="-production = 0")
+  goal battering-ram-line-production = 0
 #end template
 
 const critical-research-available-modifier = 5000
