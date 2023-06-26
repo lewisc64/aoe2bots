@@ -8,15 +8,19 @@ const ri-grand-trunk-road = 506
 
 #template diplo-chat-alliance-offer
   @up-get-player-color {player} -1
-  #select random
-    chat const to all "%s, join me in worship." 7031232
-  #randor
-    chat const to all "An alliance, %s?" 7031232
-  #randor
-    chat const to all "Shall we join forces in the name of God, %s?" 7031232
-  #randor
-    chat const to all "We will be stronger together, %s." 7031232
-  #end select
+  #if goal player-{player}-is-heretic 0
+    #select random
+      chat const to all "%s, join me in worship." 7031232
+    #randor
+      chat const to all "An alliance, %s?" 7031232
+    #randor
+      chat const to all "Shall we join forces in the name of God, %s?" 7031232
+    #randor
+      chat const to all "We will be stronger together, %s." 7031232
+    #end select
+  #else
+    chat const to all "A temporary truce, %s?" 7031232
+  #end if
 #end template
 
 #template diplo-chat-our-betrayal
@@ -32,50 +36,86 @@ const ri-grand-trunk-road = 506
 
 #template diplo-chat-their-betrayal
   @up-get-player-color {player} -1
-  #select random
-    chat const to all "%s? Did you dislike the peace?" 7031232
-  #randor
-    chat const to all "Unfortunate. I wished for nothing but peace, %s." 7031232
-  #randor
-    chat const to all "I should have known. I was blinded by love." 7031232
-  #randor
-    chat const to all "I will miss our friendship, %s." 7031232
-  #end select
+  #if goal player-{player}-is-heretic 0
+    #select random
+      chat const to all "%s? Did you dislike the peace?" 7031232
+    #randor
+      chat const to all "Unfortunate. I wished for nothing but peace, %s." 7031232
+    #randor
+      chat const to all "I should have known. I was blinded by love." 7031232
+    #randor
+      chat const to all "I will miss our friendship, %s." 7031232
+    #end select
+  #else
+    #select random
+      chat const to all "I have god on my side, %s. I do not fear you." 7031232
+    #randor
+      chat const to all "%s, you seek your own annihilation?" 7031232
+    #randor
+      chat const to all "You need a lesson in humility, %s." 7031232
+    #randor
+      chat const to all "%s. You pathetic miserable wretch." 7031232
+    #end select
+  #end if
 #end template
 
 #template diplo-chat-accepted-our-alliance
   @up-get-player-color {player} -1
-  #select random
-    chat const to all "An excellent choice, %s." 7031232
-  #randor
-    chat const to all "Wonderful. Let us study together %s." 7031232
-  #randor
-    chat const to all "Excellent, %s. A blessed day." 7031232
-  #randor
-    chat const to all "Most wise, %s." 7031232
-  #end select
+  #if goal player-{player}-is-heretic 0
+    #select random
+      chat const to all "An excellent choice, %s." 7031232
+    #randor
+      chat const to all "Wonderful. Let us study together %s." 7031232
+    #randor
+      chat const to all "Excellent, %s. A blessed day." 7031232
+    #randor
+      chat const to all "Most wise, %s." 7031232
+    #end select
+  #else
+    chat const to all "Good. Know that this is not over, %s." 7031232
+  #end if
 #end template
 
 #template diplo-chat-accepted-their-alliance
   @up-get-player-color {player} -1
-  #select random
-    chat const to all "Of course %s, let us have peace." 7031232
-  #randor
-    chat const to all "Your letter was most moving, %s. I accept." 7031232
-  #randor
-    chat const to all "%s? Hm. I suppose friendship knows no bounds." 7031232
-  #end select
+  #if goal player-{player}-is-heretic 0
+    #select random
+      chat const to all "Of course %s, let us have peace." 7031232
+    #randor
+      chat const to all "Your letter was most moving, %s. I accept." 7031232
+    #randor
+      chat const to all "%s? Hm. I suppose friendship knows no bounds." 7031232
+    #end select
+  #else
+    #select random
+      chat const to all "Fine, %s. For now." 7031232
+    #randor
+      chat const to all "The agreement is acceptable, %s." 7031232
+    #randor
+      chat const to all "Though it pains me, %s, this is the only way." 7031232
+    #end select
+  #end if
 #end template
 
 #template diplo-chat-refused-our-alliance
   @up-get-player-color {player} -1
-  #select random
-    chat const to all "Your desire for bloodshed is sickening, %s." 7031232
-  #randor
-    chat const to all "Alas, we are doomed to be enemies %s." 7031232
-  #randor
-    chat const to all "Reconsider my offer soon, %s." 7031232
-  #end select
+  #if goal player-{player}-is-heretic 0
+    #select random
+      chat const to all "Your desire for bloodshed is sickening, %s." 7031232
+    #randor
+      chat const to all "Alas, we are doomed to be enemies %s." 7031232
+    #randor
+      chat const to all "Reconsider my offer soon, %s." 7031232
+    #end select
+  #else
+    #select random
+      chat const to all "My mistake, %s. Bloodshed it is." 7031232
+    #randor
+      chat const to all "Of course not, %s." 7031232
+    #randor
+      chat const to all "Ah, how foolish of me to negotiate with animals." 7031232
+    #end select
+  #end if
 #end template
 
 #template diplo-chat-refused-their-alliance
@@ -149,6 +189,7 @@ const ri-grand-trunk-road = 506
   #do once
     goal player-{player}-has-donated = 0
     goal player-{player}-donation-expire-at = -1
+    goal player-{player}-is-heretic = 0
   #end do
   
   #if up-compare-goal diplo-game-time-goal g:> player-{player}-donation-expire-at
@@ -160,6 +201,7 @@ const ri-grand-trunk-road = 506
   #ifg goal player-{player}-has-donated 0 and up-allied-resource-amount {player} gold > 1000 and goal {marked_goal} 0 and players-building-type-count {player} monastery < 3
     chat to self "marked {player}"
     goal {marked_goal} = 1
+    goal player-{player}-is-heretic = 1
     @clear-tribute-memory {player} gold
     insert chat-heretic(player={player})
   #end if
@@ -168,6 +210,7 @@ const ri-grand-trunk-road = 506
   #ifg (players-tribute-memory {player} gold > 0 or players-building-type-count {player} monastery >= 3) and goal {marked_goal} 1
     chat to self "unmarked {player}"
     goal {marked_goal} = 0
+    goal player-{player}-is-heretic = 0
     insert diplo-set-future-stamp(goal="player-{player}-donation-expire-at",seconds="1200")
     goal player-{player}-has-donated = 1
     @clear-tribute-memory {player} gold
