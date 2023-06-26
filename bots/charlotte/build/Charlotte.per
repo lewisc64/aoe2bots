@@ -48974,6 +48974,7 @@
 =>
     (up-chat-data-to-self "Retargeting to player %d" s: sn-target-player-number)
     (up-send-scout group-type-land-explore scout-enemy)
+    (up-update-targets)
 )
 (defrule
     (true)
@@ -49028,6 +49029,7 @@
     (up-modify-sn sn-focus-player-number g:= threat-player)
     (up-reset-unit c: -1)
     (up-retreat-now)
+    (up-update-targets)
     (up-modify-goal next-retarget g:= game-time-goal)
     (up-modify-goal next-retarget c:+ retarget-interval)
     (up-chat-data-to-self "Retaliating against player %d" g: threat-player)
@@ -56549,19 +56551,8 @@
     (up-research-status c: feudal-age < research-pending)
     (building-type-count town-center > 0)
 =>
-    (set-strategic-number sn-wood-gatherer-percentage 25)
-    (set-strategic-number sn-food-gatherer-percentage 75)
-    (set-strategic-number sn-gold-gatherer-percentage 0)
-    (set-strategic-number sn-stone-gatherer-percentage 0)
-    (disable-self)
-)
-(defrule
-    (civilian-population >= 18)
-    (up-research-status c: feudal-age < research-pending)
-    (building-type-count town-center > 0)
-=>
-    (set-strategic-number sn-wood-gatherer-percentage 30)
-    (set-strategic-number sn-food-gatherer-percentage 70)
+    (set-strategic-number sn-wood-gatherer-percentage 40)
+    (set-strategic-number sn-food-gatherer-percentage 60)
     (set-strategic-number sn-gold-gatherer-percentage 0)
     (set-strategic-number sn-stone-gatherer-percentage 0)
     (disable-self)

@@ -9,6 +9,7 @@ const retarget-interval = 300
   #if strategic-number sn-target-player-number != -1
     @up-chat-data-to-self "Retargeting to player %d" s: sn-target-player-number
     scout enemy
+    @up-update-targets
   #end if
 #end if
 
@@ -30,6 +31,7 @@ goal threatening-important = 0
     @up-modify-sn sn-focus-player-number g:= threat-player
     @up-reset-unit c: -1
     retreat
+    @up-update-targets
     @up-modify-goal next-retarget g:= game-time-goal
     @up-modify-goal next-retarget c:+ retarget-interval
     @up-chat-data-to-self "Retaliating against player %d" g: threat-player
