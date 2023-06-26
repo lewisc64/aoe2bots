@@ -132,8 +132,7 @@ const ri-grand-trunk-road = 506
   #randor
     chat const to all "%s you are a lecherous animal." 7031232
   #end select
-  chat to all "Donate and be cleansed of sin."
-  chat to {player} "5"
+  chat to {player} "5Donate and be cleansed of sin."
   goal chat-heretic = -1
 #end template
 
