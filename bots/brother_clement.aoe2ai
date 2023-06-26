@@ -458,7 +458,7 @@ load "templates/lightning_castle.aoe2ai"
     goal attacking = 0
   #end if
   
-  #if goal attacking 1 and players-stance any-enemy enemy
+  #if goal attacking 1 and player-in-game any-enemy
     sn-number-attack-groups = 200
   #else
     sn-number-attack-groups = 0
