@@ -240,6 +240,7 @@ insert diplo-count-stances(player=8)
   #end if
   
   #if not player-in-game {player}
+    goal diplo-player-{player}-is-marked = 0
     #if players-stance {player} ally
       @set-stance {player} ally
     #else
