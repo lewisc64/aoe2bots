@@ -7,7 +7,13 @@
   manage scouting
 
   #do once
-    distribute villagers 30 70 0 0
+    #if unit-type-count villager < 8
+      distribute villagers 0 100 0 0
+    #else if unit-type-count villager < 16
+      distribute villagers 30 70 0 0
+    #else
+      distribute villagers 40 60 0 0
+    #end if
     sn-enable-training-queue = 1
   #end do
   
