@@ -96,3 +96,18 @@
     @up-modify-goal desired-town-centers c:max 6
   #end do
 #end if
+
+// avoid TCs and castles
+#do once
+  goal do-fortification-dodging = 1
+#end do
+#if military-population >= 30
+  goal do-fortification-dodging = 0
+#end if
+#if military-population < 25
+  goal do-fortification-dodging = 1
+#end if
+#if goal do-fortification-dodging 1
+  dodge fortifications
+#end if
+
