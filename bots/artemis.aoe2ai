@@ -1351,15 +1351,8 @@ goal their-military-population = 0
   sn-number-attack-groups = 0
 #end if
 
-#template keep-away
-  #if unit-type-count {unit} >= 1
-    keep {unit} 12 tiles away from enemy town-center
-    keep {unit} 15 tiles away from enemy castle
-  #end if
-#end template
-
 #if military-population < 40
-  insert unit-names(before="insert keep-away(unit=\"",after="\")")
+  dodge fortifications
 #end if
 
 #if current-age >= feudal-age
