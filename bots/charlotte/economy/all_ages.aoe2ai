@@ -28,13 +28,13 @@ build 1 town-center with wood and stone escrow
     lure boars
   #end if
   
-  // deer pushing
-  #if game-time < 600
-    push deer
-  #end if
-  
   // sheep micro
   micro sheep
+  
+  // deer pushing
+  #if game-time >= 360 and game-time < 600
+    push deer
+  #end if
   
   // relic gathering
   build 1 monastery

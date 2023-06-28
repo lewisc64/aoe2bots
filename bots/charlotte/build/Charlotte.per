@@ -25,7 +25,7 @@
 (defconst excellent-food-price 50)
 (defconst excellent-wood-sell-price 200)
 (defconst excellent-food-sell-price 200)
-(defconst did-tribute 374)
+(defconst did-tribute 375)
 (defconst chat-c16cc99892e60a495525ca01fdef862c1af9487e "sending wood to ally")
 (defconst chat-ccdd2139b41000710da3064889e4b1ae35562704 "sending food to ally")
 (defconst chat-c8395566c9f14bcc1ba9ca2f7a7ef0841786ca33 "sending gold to ally")
@@ -45159,7 +45159,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1141)
+    (up-jump-rule 1151)
 )
 (defrule
     (true)
@@ -49136,7 +49136,7 @@
       )
     )
 =>
-    (up-jump-rule 695)
+    (up-jump-rule 705)
 )
 (defrule
     (true)
@@ -50993,6 +50993,19 @@
     (set-goal allied-with-8 0)
 )
 (defrule
+    (true)
+=>
+    (enable-timer 8 1)
+    (disable-self)
+)
+(defrule
+    (not
+      (timer-triggered 8)
+    )
+=>
+    (up-jump-rule 57)
+)
+(defrule
     (up-compare-goal game-time-goal g:>= player-1-bad-egg-expires-at)
     (goal player-1-is-bad-egg 1)
     (not
@@ -51505,6 +51518,13 @@
     )
 =>
     (set-stance 1 ally)
+)
+(defrule
+    (not
+      (timer-triggered 8)
+    )
+=>
+    (up-jump-rule 57)
 )
 (defrule
     (up-compare-goal game-time-goal g:>= player-2-bad-egg-expires-at)
@@ -52021,6 +52041,13 @@
     (set-stance 2 ally)
 )
 (defrule
+    (not
+      (timer-triggered 8)
+    )
+=>
+    (up-jump-rule 57)
+)
+(defrule
     (up-compare-goal game-time-goal g:>= player-3-bad-egg-expires-at)
     (goal player-3-is-bad-egg 1)
     (not
@@ -52533,6 +52560,13 @@
     )
 =>
     (set-stance 3 ally)
+)
+(defrule
+    (not
+      (timer-triggered 8)
+    )
+=>
+    (up-jump-rule 57)
 )
 (defrule
     (up-compare-goal game-time-goal g:>= player-4-bad-egg-expires-at)
@@ -53049,6 +53083,13 @@
     (set-stance 4 ally)
 )
 (defrule
+    (not
+      (timer-triggered 8)
+    )
+=>
+    (up-jump-rule 57)
+)
+(defrule
     (up-compare-goal game-time-goal g:>= player-5-bad-egg-expires-at)
     (goal player-5-is-bad-egg 1)
     (not
@@ -53561,6 +53602,13 @@
     )
 =>
     (set-stance 5 ally)
+)
+(defrule
+    (not
+      (timer-triggered 8)
+    )
+=>
+    (up-jump-rule 57)
 )
 (defrule
     (up-compare-goal game-time-goal g:>= player-6-bad-egg-expires-at)
@@ -54077,6 +54125,13 @@
     (set-stance 6 ally)
 )
 (defrule
+    (not
+      (timer-triggered 8)
+    )
+=>
+    (up-jump-rule 57)
+)
+(defrule
     (up-compare-goal game-time-goal g:>= player-7-bad-egg-expires-at)
     (goal player-7-is-bad-egg 1)
     (not
@@ -54591,6 +54646,13 @@
     (set-stance 7 ally)
 )
 (defrule
+    (not
+      (timer-triggered 8)
+    )
+=>
+    (up-jump-rule 57)
+)
+(defrule
     (up-compare-goal game-time-goal g:>= player-8-bad-egg-expires-at)
     (goal player-8-is-bad-egg 1)
     (not
@@ -55103,6 +55165,12 @@
     )
 =>
     (set-stance 8 ally)
+)
+(defrule
+    (timer-triggered 8)
+=>
+    (disable-timer 8)
+    (enable-timer 8 1)
 )
 (defrule
     (true)
@@ -55798,7 +55866,7 @@
 (defrule
     (goal locked-teams 1)
 =>
-    (enable-timer 8 1800)
+    (enable-timer 9 1800)
     (disable-self)
 )
 (defrule
@@ -55807,7 +55875,7 @@
       (and
         (up-compare-goal score-percentage c:<= 70)
         (and
-          (timer-triggered 8)
+          (timer-triggered 9)
           (goal locked-teams 1)
         )
       )
@@ -55857,7 +55925,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 8)
+            (timer-triggered 9)
             (goal locked-teams 1)
           )
         )
@@ -55910,7 +55978,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 8)
+            (timer-triggered 9)
             (goal locked-teams 1)
           )
         )
@@ -55973,7 +56041,7 @@
             (up-compare-goal score-percentage c:<= 70)
           )
           (and
-            (timer-triggered 8)
+            (timer-triggered 9)
             (goal locked-teams 1)
           )
         )
@@ -56022,7 +56090,7 @@
               (up-compare-goal score-percentage c:<= 70)
             )
             (and
-              (timer-triggered 8)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
@@ -56054,7 +56122,7 @@
               (up-compare-goal score-percentage c:<= 70)
             )
             (and
-              (timer-triggered 8)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
@@ -56079,7 +56147,7 @@
       (and
         (military-population >= 20)
         (and
-          (timer-triggered 8)
+          (timer-triggered 9)
           (goal locked-teams 1)
         )
       )
@@ -56166,7 +56234,7 @@
           (and
             (military-population >= 20)
             (and
-              (timer-triggered 8)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
@@ -56295,7 +56363,7 @@
           (and
             (military-population >= 20)
             (and
-              (timer-triggered 8)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
@@ -56608,95 +56676,32 @@
     (up-drop-resources c: boar-food 10)
 )
 (defrule
-    (dropsite-min-distance deer-hunting != 255)
-    (dropsite-min-distance deer-hunting != -1)
-    (game-time < 600)
-    (building-type-count town-center > 0)
-=>
-    (up-full-reset-search)
-    (up-get-point position-self 355)
-    (up-set-target-point 355)
-    (up-modify-goal 355 c:* 100)
-    (up-modify-goal 356 c:* 100)
-    (set-strategic-number sn-focus-player-number 0)
-    (up-filter-distance c: -1 c: 30)
-    (up-find-remote c: 909 c: 100)
-    (up-get-search-state 359)
-)
-(defrule
-    (dropsite-min-distance deer-hunting != 255)
-    (dropsite-min-distance deer-hunting != -1)
-    (up-compare-goal 361 c:>= 1)
-    (game-time < 600)
-    (building-type-count town-center > 0)
-=>
-    (up-clean-search search-remote 44 1)
-    (up-set-target-object search-remote c: 0)
-    (up-get-object-data 38 357)
-    (up-get-object-data 39 358)
-    (up-lerp-tiles 357 355 c: -150)
-    (up-reset-filters)
-    (up-find-local c: scout-cavalry-line c: 1)
-    (up-find-local c: eagle-warrior-line c: 1)
-    (up-find-local c: camel-line c: 1)
-    (set-strategic-number sn-target-point-adjustment 6)
-    (up-target-point 357 action-default -1 -1)
-    (set-strategic-number sn-target-point-adjustment 0)
-)
-(defrule
-    (dropsite-min-distance deer-hunting <= 4)
-    (dropsite-min-distance deer-hunting != -1)
-    (game-time < 600)
-    (building-type-count town-center > 0)
-=>
-    (up-full-reset-search)
-    (up-find-local c: town-center c: 1)
-    (up-set-target-object search-local c: 0)
-    (up-get-point position-object 355)
-    (up-set-target-point 355)
-    (up-reset-search 1 1 0 0)
-    (up-filter-distance c: -1 c: 4)
-    (up-find-local c: villager-class c: 4)
-    (up-remove-objects search-local object-data-target == 909)
-    (up-find-remote c: 909 c: 1)
-    (up-get-search-state 359)
-)
-(defrule
-    (up-compare-goal 359 >= 1)
-    (up-compare-goal 361 >= 1)
-    (game-time < 600)
-    (building-type-count town-center > 0)
-=>
-    (up-target-objects 0 action-default -1 -1)
-    (up-send-scout group-type-land-explore scout-border)
-)
-(defrule
     (building-type-count town-center > 0)
     (civ-selected gurjaras)
 =>
-    (up-jump-rule 7)
+    (up-jump-rule 9)
 )
 (defrule
     (true)
 =>
     (up-full-reset-search)
-    (up-get-point position-self 367)
-    (up-set-target-point 367)
+    (up-get-point position-self 359)
+    (up-set-target-point 359)
     (up-modify-sn sn-focus-player-number c:= 0)
     (up-filter-distance c: -1 c: 10)
     (up-filter-status c: 5 c: 0)
     (up-find-status-remote c: livestock-class c: 1)
-    (up-get-search-state 363)
+    (up-get-search-state 355)
 )
 (defrule
-    (goal 365 0)
+    (goal 357 0)
 =>
     (up-filter-status c: 4 c: 0)
     (up-find-status-remote c: livestock-class c: 1)
-    (up-get-search-state 363)
+    (up-get-search-state 355)
 )
 (defrule
-    (up-compare-goal 365 c:>= 1)
+    (up-compare-goal 357 c:>= 1)
 =>
     (up-reset-filters)
     (up-find-local c: 592 c: 255)
@@ -56704,7 +56709,7 @@
     (up-target-objects 0 action-default -1 -1)
 )
 (defrule
-    (goal 365 0)
+    (goal 357 0)
 =>
     (up-full-reset-search)
     (up-get-fact player-number 0 9)
@@ -56724,10 +56729,10 @@
     (up-remove-objects search-local -1 == 0)
     (up-find-remote c: town-center c: 1)
     (up-set-target-object search-remote c: 0)
-    (up-get-point position-object 367)
-    (up-get-point position-center 369)
-    (up-lerp-tiles 367 369 c: -3)
-    (up-target-point 367 action-default -1 -1)
+    (up-get-point position-object 359)
+    (up-get-point position-center 361)
+    (up-lerp-tiles 359 361 c: -3)
+    (up-target-point 359 action-default -1 -1)
 )
 (defrule
     (true)
@@ -56739,10 +56744,10 @@
     (up-find-status-remote c: livestock-class c: 1)
     (up-find-local c: livestock-class c: 1)
     (up-remove-objects search-remote object-data-carry > 30)
-    (up-get-search-state 363)
+    (up-get-search-state 355)
 )
 (defrule
-    (up-compare-goal 365 c:>= 1)
+    (up-compare-goal 357 c:>= 1)
 =>
     (up-full-reset-search)
     (up-get-fact player-number 0 9)
@@ -56752,6 +56757,24 @@
     (set-strategic-number sn-target-point-adjustment 5)
     (up-target-objects 0 action-move -1 -1)
     (set-strategic-number sn-target-point-adjustment 0)
+)
+(defrule
+    (true)
+=>
+    (up-get-fact unit-type-count 592 208)
+    (up-get-fact unit-type-count 590 9)
+    (up-modify-goal 208 g:+ 9)
+)
+(defrule
+    (up-compare-goal 208 c:> 6)
+=>
+    (up-full-reset-search)
+    (up-modify-sn sn-focus-player-number c:= 0)
+    (up-find-local c: 592 c: 1)
+    (up-find-local c: 590 c: 1)
+    (up-remove-objects search-local -1 >= 1)
+    (up-find-remote c: 907 c: 255)
+    (up-target-objects 0 action-default -1 -1)
 )
 (defrule
     (building-type-count town-center > 0)
@@ -56768,8 +56791,8 @@
     (up-modify-sn sn-focus-player-number c:= 0)
     (up-find-local c: town-center c: 1)
     (up-set-target-object search-local c: 0)
-    (up-get-point position-object 367)
-    (up-set-target-point 367)
+    (up-get-point position-object 359)
+    (up-set-target-point 359)
     (up-reset-search 1 1 0 0)
     (up-find-local c: 592 c: 255)
     (up-find-local c: 590 c: 255)
@@ -56786,6 +56809,73 @@
     (up-reset-search 1 1 0 0)
     (up-find-local c: mill c: 1)
     (up-target-objects 0 action-gather -1 -1)
+)
+(defrule
+    (dropsite-min-distance deer-hunting != 255)
+    (dropsite-min-distance deer-hunting != -1)
+    (game-time >= 360)
+    (game-time < 600)
+    (building-type-count town-center > 0)
+=>
+    (up-full-reset-search)
+    (up-get-point position-self 363)
+    (up-set-target-point 363)
+    (up-modify-goal 363 c:* 100)
+    (up-modify-goal 364 c:* 100)
+    (set-strategic-number sn-focus-player-number 0)
+    (up-filter-distance c: -1 c: 30)
+    (up-find-remote c: 909 c: 100)
+    (up-get-search-state 367)
+)
+(defrule
+    (dropsite-min-distance deer-hunting != 255)
+    (dropsite-min-distance deer-hunting != -1)
+    (up-compare-goal 369 c:>= 1)
+    (game-time >= 360)
+    (game-time < 600)
+    (building-type-count town-center > 0)
+=>
+    (up-clean-search search-remote 44 1)
+    (up-set-target-object search-remote c: 0)
+    (up-get-object-data 38 365)
+    (up-get-object-data 39 366)
+    (up-lerp-tiles 365 363 c: -150)
+    (up-reset-filters)
+    (up-find-local c: scout-cavalry-line c: 1)
+    (up-find-local c: eagle-warrior-line c: 1)
+    (up-find-local c: camel-line c: 1)
+    (set-strategic-number sn-target-point-adjustment 6)
+    (up-target-point 365 action-default -1 -1)
+    (set-strategic-number sn-target-point-adjustment 0)
+)
+(defrule
+    (dropsite-min-distance deer-hunting <= 4)
+    (dropsite-min-distance deer-hunting != -1)
+    (game-time >= 360)
+    (game-time < 600)
+    (building-type-count town-center > 0)
+=>
+    (up-full-reset-search)
+    (up-find-local c: town-center c: 1)
+    (up-set-target-object search-local c: 0)
+    (up-get-point position-object 363)
+    (up-set-target-point 363)
+    (up-reset-search 1 1 0 0)
+    (up-filter-distance c: -1 c: 4)
+    (up-find-local c: villager-class c: 4)
+    (up-remove-objects search-local object-data-target == 909)
+    (up-find-remote c: 909 c: 1)
+    (up-get-search-state 367)
+)
+(defrule
+    (up-compare-goal 367 >= 1)
+    (up-compare-goal 369 >= 1)
+    (game-time >= 360)
+    (game-time < 600)
+    (building-type-count town-center > 0)
+=>
+    (up-target-objects 0 action-default -1 -1)
+    (up-send-scout group-type-land-explore scout-border)
 )
 (defrule
     (can-build monastery)
@@ -56867,13 +56957,13 @@
     (building-type-count town-center > 0)
 =>
     (set-goal 9 0)
-    (up-get-fact building-type-count-total town-center 208)
-    (up-modify-goal 208 c:* 9)
-    (up-modify-goal 9 g:+ 208)
-    (up-get-fact building-type-count-total mill 208)
-    (up-modify-goal 208 c:* 6)
-    (up-modify-goal 9 g:+ 208)
-    (up-get-fact building-type-count-total farm 208)
+    (up-get-fact building-type-count-total town-center 372)
+    (up-modify-goal 372 c:* 9)
+    (up-modify-goal 9 g:+ 372)
+    (up-get-fact building-type-count-total mill 372)
+    (up-modify-goal 372 c:* 6)
+    (up-modify-goal 9 g:+ 372)
+    (up-get-fact building-type-count-total farm 372)
 )
 (defrule
     (or
@@ -56882,7 +56972,7 @@
         (not
           (civ-selected khmer)
         )
-        (up-compare-goal 208 g:>= 9)
+        (up-compare-goal 372 g:>= 9)
       )
     )
     (or
@@ -56932,20 +57022,20 @@
     (up-pending-objects c: castle == 0)
     (building-type-count town-center > 0)
 =>
-    (set-goal 372 0)
+    (set-goal 373 0)
     (generate-random-number 2)
-    (up-get-fact random-number 0 372)
-    (up-get-precise-time 0 208)
-    (up-modify-goal 372 g:+ 208)
-    (up-modify-goal 372 c:mod 2)
-    (up-modify-goal 372 c:+ 2)
-    (up-modify-goal 372 c:mod 2)
-    (up-modify-goal 372 c:+ 1)
+    (up-get-fact random-number 0 373)
+    (up-get-precise-time 0 372)
+    (up-modify-goal 373 g:+ 372)
+    (up-modify-goal 373 c:mod 2)
+    (up-modify-goal 373 c:+ 2)
+    (up-modify-goal 373 c:mod 2)
+    (up-modify-goal 373 c:+ 1)
 )
 (defrule
     (can-build castle)
     (up-pending-objects c: castle < 5)
-    (goal 372 1)
+    (goal 373 1)
     (up-pending-objects c: castle == 0)
     (building-type-count town-center > 0)
 =>
@@ -56955,7 +57045,7 @@
     (can-build castle)
     (up-pending-objects c: castle < 5)
     (goal attacking 1)
-    (goal 372 2)
+    (goal 373 2)
     (up-pending-objects c: castle == 0)
     (building-type-count town-center > 0)
 =>
@@ -56964,7 +57054,7 @@
 (defrule
     (true)
 =>
-    (set-goal 373 0)
+    (set-goal 374 0)
     (disable-self)
 )
 (defrule
@@ -56986,7 +57076,7 @@
     (building-type-count town-center > 0)
 =>
     (build mining-camp)
-    (set-goal 373 1)
+    (set-goal 374 1)
 )
 (defrule
     (dropsite-min-distance stone > 3)
@@ -56998,10 +57088,10 @@
     (building-type-count town-center > 0)
 =>
     (build mining-camp)
-    (set-goal 373 1)
+    (set-goal 374 1)
 )
 (defrule
-    (goal 373 1)
+    (goal 374 1)
     (building-type-count town-center > 0)
 =>
     (up-modify-sn sn-camp-max-distance c:+ 4)
@@ -57009,7 +57099,7 @@
 (defrule
     (true)
 =>
-    (set-goal 373 0)
+    (set-goal 374 0)
 )
 (defrule
     (wood-amount >= 150)
@@ -57017,13 +57107,13 @@
     (up-research-status c: feudal-age < research-pending)
     (building-type-count town-center > 0)
 =>
-    (up-get-fact unit-type-count villager 208)
-    (up-modify-goal 208 s:* sn-food-gatherer-percentage)
-    (up-modify-goal 208 c:/ 100)
+    (up-get-fact unit-type-count villager 372)
+    (up-modify-goal 372 s:* sn-food-gatherer-percentage)
+    (up-modify-goal 372 c:/ 100)
     (up-get-fact building-type-count-total farm 9)
 )
 (defrule
-    (up-compare-goal 9 g:< 208)
+    (up-compare-goal 9 g:< 372)
     (can-build farm)
     (wood-amount >= 150)
     (up-pending-objects c: farm == 0)
@@ -57049,13 +57139,13 @@
     )
     (building-type-count town-center > 0)
 =>
-    (up-get-fact unit-type-count villager 208)
-    (up-modify-goal 208 s:* sn-food-gatherer-percentage)
-    (up-modify-goal 208 c:/ 100)
+    (up-get-fact unit-type-count villager 372)
+    (up-modify-goal 372 s:* sn-food-gatherer-percentage)
+    (up-modify-goal 372 c:/ 100)
     (up-get-fact building-type-count-total farm 9)
 )
 (defrule
-    (up-compare-goal 9 g:< 208)
+    (up-compare-goal 9 g:< 372)
     (can-build farm)
     (up-research-status c: ri-horse-collar != research-pending)
     (up-research-status c: ri-heavy-plow != research-pending)
@@ -57188,28 +57278,28 @@
 (defrule
     (true)
 =>
-    (set-goal 375 0)
+    (set-goal 376 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 375)
+    (up-get-fact random-number 0 376)
     (up-get-precise-time 0 9)
-    (up-modify-goal 375 g:+ 9)
-    (up-modify-goal 375 c:mod 3)
-    (up-modify-goal 375 c:+ 3)
-    (up-modify-goal 375 c:mod 3)
-    (up-modify-goal 375 c:+ 1)
+    (up-modify-goal 376 g:+ 9)
+    (up-modify-goal 376 c:mod 3)
+    (up-modify-goal 376 c:+ 3)
+    (up-modify-goal 376 c:mod 3)
+    (up-modify-goal 376 c:+ 1)
 )
 (defrule
-    (goal 375 1)
+    (goal 376 1)
 =>
     (chat-to-player every-ally chat-d70e126bdbfa17c210e069ec4095fd43cf3c84ec)
 )
 (defrule
-    (goal 375 2)
+    (goal 376 2)
 =>
     (chat-to-player every-ally chat-240eb2776efd751ff3abc7e50068b9d40675aba1)
 )
 (defrule
-    (goal 375 3)
+    (goal 376 3)
 =>
     (chat-to-player every-ally chat-59b165c02042977bdaf7087bdf3887eb9f20a828)
 )
@@ -57227,28 +57317,28 @@
 (defrule
     (true)
 =>
-    (set-goal 376 0)
+    (set-goal 377 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 376)
-    (up-get-precise-time 0 208)
-    (up-modify-goal 376 g:+ 208)
-    (up-modify-goal 376 c:mod 3)
-    (up-modify-goal 376 c:+ 3)
-    (up-modify-goal 376 c:mod 3)
-    (up-modify-goal 376 c:+ 1)
+    (up-get-fact random-number 0 377)
+    (up-get-precise-time 0 372)
+    (up-modify-goal 377 g:+ 372)
+    (up-modify-goal 377 c:mod 3)
+    (up-modify-goal 377 c:+ 3)
+    (up-modify-goal 377 c:mod 3)
+    (up-modify-goal 377 c:+ 1)
 )
 (defrule
-    (goal 376 1)
+    (goal 377 1)
 =>
     (chat-to-player every-ally chat-adce784ed342763397f2d5c5567de3da43ad274c)
 )
 (defrule
-    (goal 376 2)
+    (goal 377 2)
 =>
     (chat-to-player every-ally chat-39c49ff4279bb5160e5406ffd1627ea17127aab9)
 )
 (defrule
-    (goal 376 3)
+    (goal 377 3)
 =>
     (chat-to-player every-ally chat-4f5a3f8e7707db677e3935f1ab3f9fa22019323e)
 )
@@ -57286,28 +57376,28 @@
 (defrule
     (true)
 =>
-    (set-goal 377 0)
+    (set-goal 378 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 377)
-    (up-get-precise-time 0 208)
-    (up-modify-goal 377 g:+ 208)
-    (up-modify-goal 377 c:mod 3)
-    (up-modify-goal 377 c:+ 3)
-    (up-modify-goal 377 c:mod 3)
-    (up-modify-goal 377 c:+ 1)
+    (up-get-fact random-number 0 378)
+    (up-get-precise-time 0 372)
+    (up-modify-goal 378 g:+ 372)
+    (up-modify-goal 378 c:mod 3)
+    (up-modify-goal 378 c:+ 3)
+    (up-modify-goal 378 c:mod 3)
+    (up-modify-goal 378 c:+ 1)
 )
 (defrule
-    (goal 377 1)
+    (goal 378 1)
 =>
     (chat-to-player every-ally chat-d70e126bdbfa17c210e069ec4095fd43cf3c84ec)
 )
 (defrule
-    (goal 377 2)
+    (goal 378 2)
 =>
     (chat-to-player every-ally chat-240eb2776efd751ff3abc7e50068b9d40675aba1)
 )
 (defrule
-    (goal 377 3)
+    (goal 378 3)
 =>
     (chat-to-player every-ally chat-59b165c02042977bdaf7087bdf3887eb9f20a828)
 )
@@ -57325,28 +57415,28 @@
 (defrule
     (true)
 =>
-    (set-goal 378 0)
+    (set-goal 379 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 378)
+    (up-get-fact random-number 0 379)
     (up-get-precise-time 0 9)
-    (up-modify-goal 378 g:+ 9)
-    (up-modify-goal 378 c:mod 3)
-    (up-modify-goal 378 c:+ 3)
-    (up-modify-goal 378 c:mod 3)
-    (up-modify-goal 378 c:+ 1)
+    (up-modify-goal 379 g:+ 9)
+    (up-modify-goal 379 c:mod 3)
+    (up-modify-goal 379 c:+ 3)
+    (up-modify-goal 379 c:mod 3)
+    (up-modify-goal 379 c:+ 1)
 )
 (defrule
-    (goal 378 1)
+    (goal 379 1)
 =>
     (chat-to-player every-ally chat-adce784ed342763397f2d5c5567de3da43ad274c)
 )
 (defrule
-    (goal 378 2)
+    (goal 379 2)
 =>
     (chat-to-player every-ally chat-39c49ff4279bb5160e5406ffd1627ea17127aab9)
 )
 (defrule
-    (goal 378 3)
+    (goal 379 3)
 =>
     (chat-to-player every-ally chat-4f5a3f8e7707db677e3935f1ab3f9fa22019323e)
 )
@@ -57384,28 +57474,28 @@
 (defrule
     (true)
 =>
-    (set-goal 379 0)
+    (set-goal 380 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 379)
+    (up-get-fact random-number 0 380)
     (up-get-precise-time 0 9)
-    (up-modify-goal 379 g:+ 9)
-    (up-modify-goal 379 c:mod 3)
-    (up-modify-goal 379 c:+ 3)
-    (up-modify-goal 379 c:mod 3)
-    (up-modify-goal 379 c:+ 1)
+    (up-modify-goal 380 g:+ 9)
+    (up-modify-goal 380 c:mod 3)
+    (up-modify-goal 380 c:+ 3)
+    (up-modify-goal 380 c:mod 3)
+    (up-modify-goal 380 c:+ 1)
 )
 (defrule
-    (goal 379 1)
+    (goal 380 1)
 =>
     (chat-to-player every-ally chat-d70e126bdbfa17c210e069ec4095fd43cf3c84ec)
 )
 (defrule
-    (goal 379 2)
+    (goal 380 2)
 =>
     (chat-to-player every-ally chat-240eb2776efd751ff3abc7e50068b9d40675aba1)
 )
 (defrule
-    (goal 379 3)
+    (goal 380 3)
 =>
     (chat-to-player every-ally chat-59b165c02042977bdaf7087bdf3887eb9f20a828)
 )
@@ -57423,28 +57513,28 @@
 (defrule
     (true)
 =>
-    (set-goal 380 0)
+    (set-goal 381 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 380)
-    (up-get-precise-time 0 208)
-    (up-modify-goal 380 g:+ 208)
-    (up-modify-goal 380 c:mod 3)
-    (up-modify-goal 380 c:+ 3)
-    (up-modify-goal 380 c:mod 3)
-    (up-modify-goal 380 c:+ 1)
+    (up-get-fact random-number 0 381)
+    (up-get-precise-time 0 372)
+    (up-modify-goal 381 g:+ 372)
+    (up-modify-goal 381 c:mod 3)
+    (up-modify-goal 381 c:+ 3)
+    (up-modify-goal 381 c:mod 3)
+    (up-modify-goal 381 c:+ 1)
 )
 (defrule
-    (goal 380 1)
+    (goal 381 1)
 =>
     (chat-to-player every-ally chat-adce784ed342763397f2d5c5567de3da43ad274c)
 )
 (defrule
-    (goal 380 2)
+    (goal 381 2)
 =>
     (chat-to-player every-ally chat-39c49ff4279bb5160e5406ffd1627ea17127aab9)
 )
 (defrule
-    (goal 380 3)
+    (goal 381 3)
 =>
     (chat-to-player every-ally chat-4f5a3f8e7707db677e3935f1ab3f9fa22019323e)
 )
@@ -57482,28 +57572,28 @@
 (defrule
     (true)
 =>
-    (set-goal 381 0)
+    (set-goal 382 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 381)
-    (up-get-precise-time 0 208)
-    (up-modify-goal 381 g:+ 208)
-    (up-modify-goal 381 c:mod 3)
-    (up-modify-goal 381 c:+ 3)
-    (up-modify-goal 381 c:mod 3)
-    (up-modify-goal 381 c:+ 1)
+    (up-get-fact random-number 0 382)
+    (up-get-precise-time 0 372)
+    (up-modify-goal 382 g:+ 372)
+    (up-modify-goal 382 c:mod 3)
+    (up-modify-goal 382 c:+ 3)
+    (up-modify-goal 382 c:mod 3)
+    (up-modify-goal 382 c:+ 1)
 )
 (defrule
-    (goal 381 1)
+    (goal 382 1)
 =>
     (chat-to-player every-ally chat-d70e126bdbfa17c210e069ec4095fd43cf3c84ec)
 )
 (defrule
-    (goal 381 2)
+    (goal 382 2)
 =>
     (chat-to-player every-ally chat-240eb2776efd751ff3abc7e50068b9d40675aba1)
 )
 (defrule
-    (goal 381 3)
+    (goal 382 3)
 =>
     (chat-to-player every-ally chat-59b165c02042977bdaf7087bdf3887eb9f20a828)
 )
@@ -57521,28 +57611,28 @@
 (defrule
     (true)
 =>
-    (set-goal 382 0)
+    (set-goal 383 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 382)
+    (up-get-fact random-number 0 383)
     (up-get-precise-time 0 9)
-    (up-modify-goal 382 g:+ 9)
-    (up-modify-goal 382 c:mod 3)
-    (up-modify-goal 382 c:+ 3)
-    (up-modify-goal 382 c:mod 3)
-    (up-modify-goal 382 c:+ 1)
+    (up-modify-goal 383 g:+ 9)
+    (up-modify-goal 383 c:mod 3)
+    (up-modify-goal 383 c:+ 3)
+    (up-modify-goal 383 c:mod 3)
+    (up-modify-goal 383 c:+ 1)
 )
 (defrule
-    (goal 382 1)
+    (goal 383 1)
 =>
     (chat-to-player every-ally chat-adce784ed342763397f2d5c5567de3da43ad274c)
 )
 (defrule
-    (goal 382 2)
+    (goal 383 2)
 =>
     (chat-to-player every-ally chat-39c49ff4279bb5160e5406ffd1627ea17127aab9)
 )
 (defrule
-    (goal 382 3)
+    (goal 383 3)
 =>
     (chat-to-player every-ally chat-4f5a3f8e7707db677e3935f1ab3f9fa22019323e)
 )
@@ -57557,20 +57647,20 @@
       (goal did-tribute 0)
     )
 =>
-    (up-get-fact resource-amount wood 208)
+    (up-get-fact resource-amount wood 372)
     (up-get-fact escrow-amount wood 9)
-    (up-modify-goal 208 g:- 9)
-    (up-get-fact resource-amount food 383)
+    (up-modify-goal 372 g:- 9)
+    (up-get-fact resource-amount food 384)
     (up-get-fact escrow-amount food 9)
-    (up-modify-goal 383 g:- 9)
-    (up-get-fact resource-amount gold 384)
-    (up-get-fact escrow-amount gold 9)
     (up-modify-goal 384 g:- 9)
+    (up-get-fact resource-amount gold 385)
+    (up-get-fact escrow-amount gold 9)
+    (up-modify-goal 385 g:- 9)
 )
 (defrule
-    (up-compare-goal 208 c:> max-gold)
+    (up-compare-goal 372 c:> max-gold)
     (can-sell-commodity wood)
-    (up-compare-goal 384 c:< max-gold)
+    (up-compare-goal 385 c:< max-gold)
     (or
       (goal team-game 0)
       (goal did-tribute 0)
@@ -57579,9 +57669,9 @@
     (sell-commodity wood)
 )
 (defrule
-    (up-compare-goal 383 c:> max-gold)
+    (up-compare-goal 384 c:> max-gold)
     (can-sell-commodity food)
-    (up-compare-goal 384 c:< max-gold)
+    (up-compare-goal 385 c:< max-gold)
     (or
       (goal team-game 0)
       (goal did-tribute 0)
@@ -57590,8 +57680,8 @@
     (sell-commodity food)
 )
 (defrule
-    (up-compare-goal 208 c:< max-gold)
-    (up-compare-goal 384 c:> max-gold)
+    (up-compare-goal 372 c:< max-gold)
+    (up-compare-goal 385 c:> max-gold)
     (can-buy-commodity wood)
     (or
       (goal team-game 0)
@@ -57601,8 +57691,8 @@
     (buy-commodity wood)
 )
 (defrule
-    (up-compare-goal 383 c:< max-gold)
-    (up-compare-goal 384 c:> max-gold)
+    (up-compare-goal 384 c:< max-gold)
+    (up-compare-goal 385 c:> max-gold)
     (can-buy-commodity food)
     (or
       (goal team-game 0)
@@ -57822,7 +57912,7 @@
 (defrule
     (true)
 =>
-    (enable-timer 9 60)
+    (enable-timer 10 60)
     (disable-self)
 )
 (defrule
@@ -57832,7 +57922,7 @@
     (up-compare-goal non-escrowed-food c:> food-threshold)
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-34f8609760258d82ecc3e0146f981c1ec0725afb)
 )
@@ -57846,7 +57936,7 @@
     (up-compare-goal non-escrowed-food c:> food-threshold)
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 2)
     (up-modify-sn sn-food-gatherer-percentage c:- 2)
@@ -57859,7 +57949,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-19b22c4216400b4ac44cedd180de15040bba208a)
 )
@@ -57873,7 +57963,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 2)
     (up-modify-sn sn-gold-gatherer-percentage c:- 2)
@@ -57888,7 +57978,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-7f1eda05222ecfc6817de23caf16247e9200bb91)
 )
@@ -57904,7 +57994,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 4)
     (up-modify-sn sn-food-gatherer-percentage c:+ 2)
@@ -57917,7 +58007,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-852bc71dbe1d5f015c304fd5abc8ff06a003dc65)
 )
@@ -57931,7 +58021,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-food-gatherer-percentage c:- 2)
     (up-modify-sn sn-gold-gatherer-percentage c:- 2)
@@ -57946,7 +58036,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-bd7c8904ccd4165da66d7d9cecb51f8500c6890b)
 )
@@ -57962,7 +58052,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-food-gatherer-percentage c:- 4)
     (up-modify-sn sn-wood-gatherer-percentage c:+ 2)
@@ -57977,7 +58067,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-822e28c24c9ecfade87e50563a2fda287b1d3e41)
 )
@@ -57993,7 +58083,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-gold-gatherer-percentage c:- 4)
     (up-modify-sn sn-wood-gatherer-percentage c:+ 2)
@@ -58007,7 +58097,7 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-d94b5a6ca271d8c89b20340814572189d3edf11b)
 )
@@ -58021,7 +58111,7 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 4)
     (up-modify-sn sn-food-gatherer-percentage c:+ 4)
@@ -58034,7 +58124,7 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-5910be933cb49a20786061b35fa87af01792653d)
 )
@@ -58048,16 +58138,16 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-food-gatherer-percentage c:- 4)
     (up-modify-sn sn-wood-gatherer-percentage c:+ 4)
 )
 (defrule
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
-    (disable-timer 9)
-    (enable-timer 9 60)
+    (disable-timer 10)
+    (enable-timer 10 60)
 )
 (defrule
     (strategic-number sn-wood-gatherer-percentage < minimum-wood-gatherer-percentage)
@@ -58197,53 +58287,53 @@
 (defrule
     (true)
 =>
-    (set-goal 385 0)
-)
-(defrule
-    (up-compare-goal desired-trade-carts g:< max-desired-trade-carts)
-=>
-    (set-goal 385 1)
-)
-(defrule
-    (goal 385 1)
-=>
-    (enable-timer 10 300)
-    (disable-self)
-)
-(defrule
-    (timer-triggered 10)
-    (goal 385 1)
-=>
     (set-goal 386 0)
 )
 (defrule
-    (up-compare-goal total-trade-carts g:>= desired-trade-carts)
-    (up-compare-goal non-escrowed-gold c:<= gold-threshold)
-    (timer-triggered 10)
-    (goal 385 1)
+    (up-compare-goal desired-trade-carts g:< max-desired-trade-carts)
 =>
     (set-goal 386 1)
 )
 (defrule
     (goal 386 1)
-    (timer-triggered 10)
-    (goal 385 1)
+=>
+    (enable-timer 11 300)
+    (disable-self)
+)
+(defrule
+    (timer-triggered 11)
+    (goal 386 1)
+=>
+    (set-goal 387 0)
+)
+(defrule
+    (up-compare-goal total-trade-carts g:>= desired-trade-carts)
+    (up-compare-goal non-escrowed-gold c:<= gold-threshold)
+    (timer-triggered 11)
+    (goal 386 1)
+=>
+    (set-goal 387 1)
+)
+(defrule
+    (goal 387 1)
+    (timer-triggered 11)
+    (goal 386 1)
 =>
     (up-modify-goal desired-trade-carts c:+ 5)
     (up-modify-goal desired-trade-carts g:min max-desired-trade-carts)
     (chat-local-to-self chat-9c1fa295fbd8be460841820389f2c1c66e60be8c)
 )
 (defrule
-    (timer-triggered 10)
-    (goal 385 1)
+    (timer-triggered 11)
+    (goal 386 1)
 =>
-    (disable-timer 10)
-    (enable-timer 10 300)
+    (disable-timer 11)
+    (enable-timer 11 300)
 )
 (defrule
     (strategic-number sn-maximum-town-size <= 30)
 =>
-    (set-goal 387 0)
+    (set-goal 388 0)
     (set-strategic-number sn-maximum-town-size 8)
     (set-strategic-number sn-minimum-town-size 8)
     (set-strategic-number sn-safe-town-size 8)
@@ -58290,12 +58380,12 @@
         )
       )
     )
-    (goal 387 0)
+    (goal 388 0)
     (strategic-number sn-maximum-town-size <= 30)
 =>
     (set-strategic-number sn-maximum-town-size 8)
     (set-strategic-number sn-safe-town-size 8)
-    (set-goal 387 1)
+    (set-goal 388 1)
 )
 (defrule
     (nor
@@ -58338,10 +58428,10 @@
         )
       )
     )
-    (goal 387 1)
+    (goal 388 1)
     (strategic-number sn-maximum-town-size <= 30)
 =>
-    (set-goal 387 0)
+    (set-goal 388 0)
 )
 (defrule
     (strategic-number sn-maximum-town-size <= 30)
@@ -58353,36 +58443,36 @@
 (defrule
     (true)
 =>
-    (enable-timer 11 60)
+    (enable-timer 12 60)
     (disable-self)
 )
 (defrule
     (goal research-level importance-critical)
-    (timer-triggered 11)
+    (timer-triggered 12)
 =>
     (chat-local-to-self chat-02a44b954882b7be12972680db2dfdb8d3573037)
 )
 (defrule
     (goal research-level importance-high)
-    (timer-triggered 11)
+    (timer-triggered 12)
 =>
     (chat-local-to-self chat-84675dc7c0b9c4fa2bae6118449907b7018c7fcd)
 )
 (defrule
     (goal research-level importance-medium)
-    (timer-triggered 11)
+    (timer-triggered 12)
 =>
     (chat-local-to-self chat-ebae1d86c02c2920af25f66bb982462bf689d398)
 )
 (defrule
     (goal research-level importance-low)
-    (timer-triggered 11)
+    (timer-triggered 12)
 =>
     (chat-local-to-self chat-b8998735697e4cd38237f8411e4d40e06cbbc790)
 )
 (defrule
-    (timer-triggered 11)
+    (timer-triggered 12)
 =>
-    (disable-timer 11)
-    (enable-timer 11 60)
+    (disable-timer 12)
+    (enable-timer 12 60)
 )

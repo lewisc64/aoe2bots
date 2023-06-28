@@ -216,13 +216,15 @@ const bad-egg-expiry = 600
   #end select
 #end if
 
-insert handle-stance-changes(player=1)
-insert handle-stance-changes(player=2)
-insert handle-stance-changes(player=3)
-insert handle-stance-changes(player=4)
-insert handle-stance-changes(player=5)
-insert handle-stance-changes(player=6)
-insert handle-stance-changes(player=7)
-insert handle-stance-changes(player=8)
+#repeat every 1 second
+  insert handle-stance-changes(player=1)
+  insert handle-stance-changes(player=2)
+  insert handle-stance-changes(player=3)
+  insert handle-stance-changes(player=4)
+  insert handle-stance-changes(player=5)
+  insert handle-stance-changes(player=6)
+  insert handle-stance-changes(player=7)
+  insert handle-stance-changes(player=8)
+#end repeat
 
 @set-stance my-player-number ally
