@@ -1,4 +1,4 @@
-// specify templates with param player_goal (containing the player number to talk to):
+// specify templates with param player (containing the player number to talk to):
 // * diplo-chat-alliance-offer
 // * diplo-chat-our-betrayal
 // * diplo-chat-their-betrayal
@@ -11,7 +11,7 @@
 
 // specify templates with param player and modifies marked_goal param:
 // * diplo-should-player-be-marked
-// will not accept alliances from marked players
+// will not accept alliances from marked players if they are the only enemy.
 // players we betray are automatically marked, but this could be overridden immediately by this template.
 // marked players will be betrayed if there are no enemies.
 
@@ -142,6 +142,7 @@ insert diplo-count-stances(player=8)
       chat to self "threatened by ally {player}"
       #ifg goal diplo-player-{player}-warnings 0
         @set-stance {player} enemy
+        goal diplo-player-{player}-is-marked = 1
         #if game-time >= diplo-mute-period
           insert diplo-chat-friendly-fire-betrayal(player={player})
         #end if
