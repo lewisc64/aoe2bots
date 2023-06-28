@@ -64,6 +64,12 @@
     load "../research/castle/paiks.aoe2ai"
   #end if
   
+  #if civ-selected burmese
+    #respond to 2 archer-line
+      load "../research/castle/manipur_cavalry.aoe2ai"
+    #end respond
+  #end if
+  
   #if current-age == imperial-age
     #if civ-selected byzantine
       load "../research/castle/logistica.aoe2ai"
@@ -83,10 +89,6 @@
     
     #if civ-selected khmer
       load "../research/castle/double_crossbow.aoe2ai"
-    #end if
-    
-    #if civ-selected burmese
-      load "../research/castle/manipur_cavalry.aoe2ai"
     #end if
     
     #if civ-selected romans

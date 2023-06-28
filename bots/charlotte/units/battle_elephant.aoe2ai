@@ -4,7 +4,6 @@ load "../research/stable/prerequisites.aoe2ai"
 #if unit-available battle-elephant-line
 
   #if current-age >= castle-age
-    load "../research/castle/howdah.aoe2ai"
     load "../research/castle/tusk_swords.aoe2ai"
     load "../research/castle/chatras.aoe2ai"
     load "../research/castle/paiks.aoe2ai"
@@ -13,6 +12,7 @@ load "../research/stable/prerequisites.aoe2ai"
 
   #if current-age == imperial-age
     load "../research/stable/elite_battle_elephant.aoe2ai"
+    load "../research/castle/howdah.aoe2ai"
   #end if
   
   load "types/cavalry.aoe2ai"

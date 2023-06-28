@@ -17,14 +17,14 @@
   load "../../research/stable/husbandry.aoe2ai"
   load "../../research/castle/chivalry.aoe2ai"
   load "../../research/castle/stirrups.aoe2ai"
+  #respond to 2 archer-line
+    load "../../research/castle/manipur_cavalry.aoe2ai"
+  #end respond
 #end if
 
 #if current-age == imperial-age
   load "../../research/castle/farimba.aoe2ai"
   load "../../research/castle/wootz_steel.aoe2ai"
-  #respond to 2 archer-line
-    load "../../research/castle/manipur_cavalry.aoe2ai"
-  #end respond
 #end if
 
 build 1 barracks
