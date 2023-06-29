@@ -5128,6 +5128,10 @@
 (defrule
     (can-train villager)
     (up-compare-goal total-villagers g:< desired-villagers-with-subtractions)
+    (or
+      (goal under-attack 0)
+      (up-compare-goal non-escrowed-food c:>= 200)
+    )
     (unit-available villager)
 =>
     (train villager)
@@ -5135,8 +5139,12 @@
 (defrule
     (up-compare-goal total-villagers g:> desired-villagers-with-subtractions)
     (up-compare-goal population-space-remaining c:<= 10)
-    (not
+    (nand
       (up-compare-goal total-villagers g:< desired-villagers-with-subtractions)
+      (or
+        (goal under-attack 0)
+        (up-compare-goal non-escrowed-food c:>= 200)
+      )
     )
     (unit-available villager)
 =>
@@ -45471,7 +45479,7 @@
     (up-get-object-data 39 205)
     (up-reset-filters)
     (up-get-object-data object-data-range 208)
-    (up-modify-goal 208 c:+ 5)
+    (up-modify-goal 208 c:+ 6)
     (up-filter-distance c: -1 g: 208)
     (up-filter-exclude -1 -1 orderid-move -1)
     (up-filter-include cmdid-military -1 -1 -1)
@@ -45481,7 +45489,8 @@
     (up-set-target-object search-local c: 0)
     (up-get-object-data 38 206)
     (up-get-object-data 39 207)
-    (up-lerp-tiles 206 204 c: -500)
+    (up-lerp-tiles 206 204 c: -200)
+    (up-cross-tiles 206 204 c: 500)
     (set-strategic-number sn-target-point-adjustment 6)
     (up-target-point 206 action-default -1 -1)
     (set-strategic-number sn-target-point-adjustment 0)
@@ -56773,6 +56782,7 @@
     (up-find-local c: 592 c: 1)
     (up-find-local c: 590 c: 1)
     (up-remove-objects search-local -1 >= 1)
+    (up-filter-distance c: -1 c: 20)
     (up-find-remote c: 907 c: 255)
     (up-target-objects 0 action-default -1 -1)
 )

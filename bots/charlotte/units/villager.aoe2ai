@@ -66,7 +66,7 @@ load "../research/town_center/prerequisites.aoe2ai"
     @up-modify-goal desired-villagers-with-subtractions g:- feitoria-pop-usage
   #end if
 
-  #if up-compare-goal total-villagers g:< desired-villagers-with-subtractions
+  #if up-compare-goal total-villagers g:< desired-villagers-with-subtractions and (goal under-attack 0 or up-compare-goal non-escrowed-food c:>= 200)
     train villager
   #else if up-compare-goal total-villagers g:> desired-villagers-with-subtractions and up-compare-goal population-space-remaining c:<= 10
     delete unit villager
