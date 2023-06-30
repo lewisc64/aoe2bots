@@ -60,6 +60,16 @@ load "templates/basic_diplomacy.aoe2ai"
   {before}scout-cavalry-line{after}
 #end template
 
+#template units-with-arson-benefit
+  {before}militiaman-line{after}
+  {before}spearman-line{after}
+#end template
+
+#template units-with-squires-benefit
+  {before}militiaman-line{after}
+  {before}spearman-line{after}
+#end template
+
 #template reset-unit-scores
   insert unit-names(before="goal ",after="-score = 0")
 #end template
@@ -67,28 +77,37 @@ load "templates/basic_diplomacy.aoe2ai"
 #template clear-production-goals
   insert unit-names(before="goal ",after="-production = 0")
   goal battering-ram-line-production = 0
+  goal armored-elephant-line-production = 0
 #end template
 
-const critical-research-available-modifier = 5000
-const critical-research-completed-modifier = 5010
+#template modify-score-for-player-unit
+  #if players-unit-type-count {player} {unit} >= 15
+    goal {score_goal} {sign}= {severity}
+    goal {score_goal} {sign}= {severity}
+  #else if players-unit-type-count {player} {unit} >= 3
+    goal {score_goal} {sign}= {severity}
+  #end if
+#end template
 
-const important-research-available-modifier = 100
-const important-research-completed-modifier = 110
+#template do-unit-countered-score
+  insert modify-score-for-player-unit(player="target-player",unit="{unit}",score_goal="{score_goal}",sign="-",severity="{severity}")
+#end template
 
-const medium-research-available-modifier = 50
-const medium-research-completed-modifier = 60
+#template do-unit-counter-score
+  insert modify-score-for-player-unit(player="target-player",unit="{unit}",score_goal="{score_goal}",sign="+",severity="{severity}")
+#end template
 
+const critical-research-available-modifier = 99999
+const important-research-available-modifier = 30
+const medium-research-available-modifier = 20
 const low-research-available-modifier = 10
-const low-research-completed-modifier = 20
 
-const small-investment-modifier = 10
-const medium-investment-modifier = 20
-const large-investment-modifier = 30
+const small-investment-modifier = 2
+const medium-investment-modifier = 4
+const large-investment-modifier = 8
 
-const minor-counter-detect-units = 5
-const minor-counter-modifier = 50
-const major-counter-detect-units = 10
-const major-counter-modifier = 100
+const minor-counter-modifier = 10
+const major-counter-modifier = 20
 
 const trash-bias = 5
 
@@ -371,18 +390,18 @@ insert clear-production-goals
 
 // squires
 #if research-completed castle-age and not research-available ri-squires and up-research-status c: ri-squires < research-pending
-  goal militiaman-line-score -= low-research-available-modifier
+  insert units-with-squires-benefit(before="goal ",after="-score -= low-research-available-modifier")
 #end if
 #if research-completed ri-squires
-  goal militiaman-line-score += small-investment-modifier
+  insert units-with-squires-benefit(before="goal ",after="-score += small-investment-modifier")
 #end if
 
 // arson
 #if research-completed castle-age and not research-available ri-arson and up-research-status c: ri-arson < research-pending
-  goal militiaman-line-score -= low-research-available-modifier
+  insert units-with-arson-benefit(before="goal ",after="-score -= low-research-available-modifier")
 #end if
 #if research-completed ri-arson
-  goal militiaman-line-score += small-investment-modifier
+  insert units-with-arson-benefit(before="goal ",after="-score += small-investment-modifier")
 #end if
 
 // man at arms
@@ -456,429 +475,315 @@ goal scout-cavalry-line-score -= trash-bias
 // counters
 
 // skirmishers
-#if players-unit-type-count target-player skirmisher-line >= 5
-  goal archer-line-score -= major-counter-modifier
-  goal spearman-line-score -= major-counter-modifier
-  goal knight-line-score += major-counter-modifier
-  goal scout-cavalry-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="archer-line-score",unit="skirmisher-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="skirmisher-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="knight-line-score",unit="skirmisher-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="skirmisher-line",severity="major-counter-modifier")
 
 // archers
-#if players-unit-type-count target-player archer-line >= 5
-  goal militiaman-line-score -= minor-counter-modifier
-  goal spearman-line-score -= major-counter-modifier
-  goal skirmisher-line-score += major-counter-modifier
-  goal knight-line-score += minor-counter-modifier
-  goal scout-cavalry-line-score += minor-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="archer-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="archer-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="archer-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="knight-line-score",unit="archer-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="archer-line",severity="minor-counter-modifier")
 
 // cavalry archers
-#if players-unit-type-count target-player cavalry-archer-line >= 5
-  goal militiaman-line-score -= minor-counter-modifier
-  goal skirmisher-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="cavalry-archer-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="cavalry-archer-line",severity="major-counter-modifier")
 
 // elephant archers
-#if players-unit-type-count target-player elephant-archer-line >= 3
-  goal archer-line-score -= minor-counter-modifier
-  goal militiaman-line-score -= minor-counter-modifier
-  goal skirmisher-line-score += minor-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="archer-line-score",unit="elephant-archer-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="elephant-archer-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="elephant-archer-line",severity="minor-counter-modifier")
 
 // hand cannoneers
-#if players-unit-type-count target-player hand-cannoneer >= 5
-  goal militiaman-line -= major-counter-modifier
-  goal spearman-line -= major-counter-modifier
-  goal archer-line += major-counter-modifier
-  goal skirmisher-line += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="militiaman-line",unit="hand-cannoneer",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="spearman-line",unit="hand-cannoneer",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line",unit="hand-cannoneer",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line",unit="hand-cannoneer",severity="major-counter-modifier")
 
 // militia
-#if players-unit-type-count target-player militiaman-line >= 5
-  goal skirmisher-line-score -= major-counter-modifier
-  goal archer-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="militiaman-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="militiaman-line",severity="major-counter-modifier")
 
 // spearman
-#if players-unit-type-count target-player spearman-line >= 5
-  goal knight-line-score -= major-counter-modifier
-  goal scout-cavalry-line-score -= major-counter-modifier
-  goal archer-line-score += major-counter-modifier
-  goal skirmisher-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="knight-line-score",unit="spearman-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="scout-cavalry-line-score",unit="spearman-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="spearman-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="spearman-line",severity="major-counter-modifier")
 
 // eagles
-#if players-unit-type-count target-player eagle-warrior-line >= 5
-  goal skirmisher-line-score -= minor-counter-modifier
-  goal archer-line-score -= minor-counter-modifier
-  goal militiaman-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="eagle-warrior-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="archer-line-score",unit="eagle-warrior-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="militiaman-line-score",unit="eagle-warrior-line",severity="major-counter-modifier")
 
 // scouts
-#if players-unit-type-count target-player scout-cavalry-line >= 5
-  goal skirmisher-line-score -= major-counter-modifier
-  goal archer-line-score -= minor-counter-modifier
-  goal spearman-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="scout-cavalry-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="archer-line-score",unit="scout-cavalry-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="spearman-line-score",unit="scout-cavalry-line",severity="major-counter-modifier")
 
 // knights
-#if players-unit-type-count target-player knight-line >= 3
-  goal skirmisher-line-score -= major-counter-modifier
-  goal archer-line-score -= minor-counter-modifier
-  goal spearman-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="knight-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="archer-line-score",unit="knight-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="spearman-line-score",unit="knight-line",severity="major-counter-modifier")
 
 // camels
-#if players-unit-type-count target-player camel-line >= 3
-  goal skirmisher-line-score -= minor-counter-modifier
-  goal knight-line-score -= minor-counter-modifier
-  goal scout-cavalry-line-score -= major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="camel-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="knight-line-score",unit="camel-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="scout-cavalry-line-score",unit="camel-line",severity="major-counter-modifier")
 
 // battle elephants
-#if players-unit-type-count target-player battle-elephant-line >= 3
-  goal skirmisher-line-score -= major-counter-modifier
-  goal archer-line-score -= minor-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal spearman-line += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="battle-elephant-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="archer-line-score",unit="battle-elephant-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="battle-elephant-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="spearman-line",unit="battle-elephant-line",severity="major-counter-modifier")
 
 // steppe lancers
-#if players-unit-type-count target-player steppe-lancer-line >= 3
-  goal skirmisher-line-score -= major-counter-modifier
-  goal archer-line-score += major-counter-modifier
-  goal spearman-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="steppe-lancer-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="steppe-lancer-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="spearman-line-score",unit="steppe-lancer-line",severity="major-counter-modifier")
 
 // mangonels
-#if players-unit-type-count target-player mangonel-line >= 3
-  goal skirmisher-line-score -= major-counter-modifier
-  goal archer-line-score -= minor-counter-modifier
-  goal knight-line-score += major-counter-modifier
-  goal scout-cavalry-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="mangonel-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="archer-line-score",unit="mangonel-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="knight-line-score",unit="mangonel-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="mangonel-line",severity="major-counter-modifier")
 
 // scorpions
-#if players-unit-type-count target-player scorpion-line >= 3
-  goal archer-line-score -= major-counter-modifier
-  goal skirmisher-line-score -= major-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal spearman-line-score -= major-counter-modifier
-  goal knight-line-score += major-counter-modifier
-  goal scout-cavalry-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="archer-line-score",unit="scorpion-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="scorpion-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="scorpion-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="scorpion-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="knight-line-score",unit="scorpion-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="scorpion-line",severity="major-counter-modifier")
 
 // monks
-#if players-unit-type-count target-player monk-set >= 5
-  goal knight-line-score -= major-counter-modifier
-  goal scout-cavalry-line-score += major-counter-modifier
-  goal archer-line-score += major-counter-modifier
-  goal skirmisher-line-score += minor-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="knight-line-score",unit="monk-set",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="monk-set",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="monk-set",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="monk-set",severity="minor-counter-modifier")
 
 // counters - UU
 
 // jaguar warriors
-#if players-unit-type-count target-player jaguar-man-line >= 3
-  goal spearman-line-score -= major-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal archer-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="jaguar-man-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="jaguar-man-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="jaguar-man-line",severity="major-counter-modifier")
 
 // ratha
-#if players-unit-type-count target-player ratha-set >= 3
-  goal spearman-line-score -= major-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal skirmisher-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="ratha-set",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="ratha-set",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="ratha-set",severity="major-counter-modifier")
 
 // camel archers
-#if players-unit-type-count target-player camel-archer-line >= 3
-  goal militiaman-line-score -= major-counter-modifier
-  goal spearman-line-score += major-counter-modifier
-  goal skirmisher-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="camel-archer-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="spearman-line-score",unit="camel-archer-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="camel-archer-line",severity="major-counter-modifier")
 
 // hussite wagons
-#if players-unit-type-count target-player hussite-wagon-line >= 3
-  goal archer-line-score -= major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="archer-line-score",unit="hussite-wagon-line",severity="major-counter-modifier")
 
 // longbows
-#if players-unit-type-count target-player longbowman-line >= 3
-  goal spearman-line-score -= major-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal skirmisher-line-score += major-counter-modifier
-  goal knight-line-score += major-counter-modifier
-  goal scout-cavalry-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="longbowman-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="longbowman-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="longbowman-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="knight-line-score",unit="longbowman-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="longbowman-line",severity="major-counter-modifier")
 
 // konnik
-#if players-unit-type-count target-player konnik-set >= 3
-  goal spearman-line-score -= minor-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal archer-line-score -= major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="konnik-set",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="konnik-set",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="archer-line-score",unit="konnik-set",severity="major-counter-modifier")
 
 // coustillier
-#if players-unit-type-count target-player coustillier-line >= 3
-  goal spearman-line-score -= minor-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal archer-line-score -= major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="coustillier-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="coustillier-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="archer-line-score",unit="coustillier-line",severity="major-counter-modifier")
 
 // arambai
 // not sure I care.
 
 // cataphract
-#if players-unit-type-count target-player cataphract-line >= 3
-  goal spearman-line-score -= minor-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal archer-line-score += minor-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="cataphract-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="cataphract-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="cataphract-line",severity="minor-counter-modifier")
 
 // woad raiders
-#if players-unit-type-count target-player woad-raider-line >= 3
-  goal spearman-line-score -= minor-counter-modifier
-  goal militiaman-line-score -= minor-counter-modifier
-  goal archer-line-score += major-counter-modifier
-  goal knight-line-score += minor-counter-modifier
-  goal scout-cavalry-line-score += minor-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="woad-raider-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="woad-raider-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="woad-raider-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="knight-line-score",unit="woad-raider-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="woad-raider-line",severity="minor-counter-modifier")
 
 // chu ko nu
-#if players-unit-type-count target-player chu-ko-nu-line >= 3
-  goal spearman-line-score -= major-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal archer-line-score += major-counter-modifier
-  goal skirmisher-line-score += minor-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="chu-ko-nu-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="chu-ko-nu-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="chu-ko-nu-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="chu-ko-nu-line",severity="minor-counter-modifier")
 
 // kipchak
-#if players-unit-type-count target-player kipchak-set >= 3
-  goal spearman-line-score -= major-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal skirmisher-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="kipchak-set",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="kipchak-set",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="kipchak-set",severity="major-counter-modifier")
 
 // urumi swordsman
-#if players-unit-type-count target-player urumi-swordsman-line >= 3
-  goal spearman-line-score -= minor-counter-modifier
-  goal militiaman-line-score -= minor-counter-modifier
-  goal archer-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="urumi-swordsman-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="urumi-swordsman-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="urumi-swordsman-line",severity="major-counter-modifier")
 
 // shotel warriors
-#if players-unit-type-count target-player shotel-warrior-line >= 3
-  goal spearman-line-score -= major-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal archer-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="shotel-warrior-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="shotel-warrior-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="shotel-warrior-line",severity="major-counter-modifier")
 
 // throwing axe people
-#if players-unit-type-count target-player throwing-axeman-line >= 3
-  goal spearman-line-score -= major-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal archer-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="throwing-axeman-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="throwing-axeman-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="throwing-axeman-line",severity="major-counter-modifier")
 
 // huskarls
-#if players-unit-type-count target-player huskarl-set >= 3
-  goal archer-line-score -= major-counter-modifier
-  goal skirmisher-line-score -= major-counter-modifier
-  goal knight-line-score += minor-counter-modifier
-  goal scout-cavalry-line-score += minor-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="archer-line-score",unit="huskarl-set",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="huskarl-set",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="knight-line-score",unit="huskarl-set",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="huskarl-set",severity="minor-counter-modifier")
 
 // Qi'Tara
-#if players-unit-type-count target-player chakram-thrower-line >= 3
-  goal spearman-line-score -= major-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal archer-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="chakram-thrower-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="chakram-thrower-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="chakram-thrower-line",severity="major-counter-modifier")
 
 // ghulam
-#if players-unit-type-count target-player ghulam-line >= 3
-  goal archer-line-score -= major-counter-modifier
-  goal skirmisher-line-score -= minor-counter-modifier
-  goal knight-line-score += minor-counter-modifier
-  goal scout-cavalry-line-score += minor-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="archer-line-score",unit="ghulam-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="ghulam-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="knight-line-score",unit="ghulam-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="ghulam-line",severity="minor-counter-modifier")
 
 // tarkan
-#if players-unit-type-count target-player tarkan-line >= 3
-  goal archer-line-score -= major-counter-modifier
-  goal skirmisher-line-score -= major-counter-modifier
-  goal spearman-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="archer-line-score",unit="tarkan-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="tarkan-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="spearman-line-score",unit="tarkan-line",severity="major-counter-modifier")
 
 // kamayuk
-#if players-unit-type-count target-player kamayuk-line >= 3
-  goal knight-line-score -= major-counter-modifier
-  goal scout-cavalry-line-score -= major-counter-modifier
-  goal archer-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="knight-line-score",unit="kamayuk-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="scout-cavalry-line-score",unit="kamayuk-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="kamayuk-line",severity="major-counter-modifier")
 
 // genoese crossbows
-#if players-unit-type-count target-player genoese-crossbowman-line >= 3
-  goal knight-line-score -= major-counter-modifier
-  goal scout-cavalry-line-score -= major-counter-modifier
-  goal archer-line-score += minor-counter-modifier
-  goal skirmisher-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="knight-line-score",unit="genoese-crossbowman-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="scout-cavalry-line-score",unit="genoese-crossbowman-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="genoese-crossbowman-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="genoese-crossbowman-line",severity="major-counter-modifier")
 
 // samurai
-#if players-unit-type-count target-player samurai-line >= 3
-  goal archer-line-score += minor-counter-modifier
-#end if
+insert do-unit-counter-score(score_goal="archer-line-score",unit="samurai-line",severity="minor-counter-modifier")
 
 // ballista elephant
-#if players-unit-type-count target-player ballista-elephant-line >= 3
-  goal spearman-line-score -= major-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal archer-line-score -= major-counter-modifier
-  goal knight-line-score += major-counter-modifier
-  goal scout-cavalry-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="ballista-elephant-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="ballista-elephant-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="archer-line-score",unit="ballista-elephant-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="knight-line-score",unit="ballista-elephant-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="ballista-elephant-line",severity="major-counter-modifier")
 
 // war wagon
-#if players-unit-type-count target-player war-wagon-line >= 3
-  goal militiaman-line-score -= major-counter-modifier
-  goal archer-line-score -= major-counter-modifier
-  goal skirmisher-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="war-wagon-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="archer-line-score",unit="war-wagon-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="war-wagon-line",severity="major-counter-modifier")
 
 // leitis
-#if players-unit-type-count target-player leitis-line >= 3
-  goal militiaman-line-score -= major-counter-modifier
-  goal knight-line-score -= major-counter-modifier
-  goal spearman-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="leitis-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="knight-line-score",unit="leitis-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="spearman-line-score",unit="leitis-line",severity="major-counter-modifier")
 
 // magyar huszar
-#if players-unit-type-count target-player magyar-huszar-line >= 3
-  goal skirmisher-line-score -= major-counter-modifier
-  goal archer-line-score -= minor-counter-modifier
-  goal spearman-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="magyar-huszar-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="archer-line-score",unit="magyar-huszar-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="spearman-line-score",unit="magyar-huszar-line",severity="major-counter-modifier")
 
 // karambit warrior
-#if players-unit-type-count target-player karambit-warrior-line >= 3
-  goal archer-line-score += minor-counter-modifier
-  goal knight-line-score += minor-counter-modifier
-#end if
+insert do-unit-counter-score(score_goal="archer-line-score",unit="karambit-warrior-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="knight-line-score",unit="karambit-warrior-line",severity="minor-counter-modifier")
 
 // gbeto
-#if players-unit-type-count target-player gbeto-line >= 3
-  goal spearman-line-score -= major-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal archer-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="gbeto-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="gbeto-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="gbeto-line",severity="major-counter-modifier")
 
 // plumed archer
-#if players-unit-type-count target-player plumed-archer-line >= 3
-  goal archer-line-score -= minor-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal spearman-line-score -= major-counter-modifier
-  goal skirmisher-line-score += major-counter-modifier
-  goal knight-line-score += major-counter-modifier
-  goal scout-cavalry-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="archer-line-score",unit="plumed-archer-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="plumed-archer-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="plumed-archer-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="plumed-archer-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="knight-line-score",unit="plumed-archer-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="plumed-archer-line",severity="major-counter-modifier")
 
 // mangudai
-#if players-unit-type-count target-player mangudai-line >= 3
-  goal archer-line-score -= minor-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal spearman-line-score -= minor-counter-modifier
-  goal skirmisher-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="archer-line-score",unit="mangudai-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="mangudai-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="mangudai-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="mangudai-line",severity="major-counter-modifier")
 
 // war elephant
-#if players-unit-type-count target-player war-elephant-line >= 3
-  goal militiaman-line-score -= major-counter-modifier
-  goal spearman-line-score += minor-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="war-elephant-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="spearman-line-score",unit="war-elephant-line",severity="minor-counter-modifier")
 
 // obuch
-#if players-unit-type-count target-player obuch-line >= 3
-  goal militiaman-line-score -= minor-counter-modifier
-  goal spearman-line-score -= minor-counter-modifier
-  goal archer-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="obuch-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="obuch-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="obuch-line",severity="major-counter-modifier")
 
 // organ gun
 // not sure I care.
 
 // centurion
-#if players-unit-type-count target-player centurion-line >= 3
-  goal militiaman-line-score -= minor-counter-modifier
-  goal spearman-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="centurion-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="spearman-line-score",unit="centurion-line",severity="major-counter-modifier")
 
 // mameluke
-#if players-unit-type-count target-player mameluke-line >= 3
-  goal knight-line-score -= minor-counter-modifier
-  goal scout-cavalry-line-score -= minor-counter-modifier
-  goal archer-line-score += major-counter-modifier
-  goal spearman-line-score += minor-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="knight-line-score",unit="mameluke-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="scout-cavalry-line-score",unit="mameluke-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="mameluke-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="spearman-line-score",unit="mameluke-line",severity="minor-counter-modifier")
 
 // serjeant
-#if players-unit-type-count target-player serjeant-set >= 3
-  goal archer-line-score += minor-counter-modifier
-#end if
+insert do-unit-counter-score(score_goal="archer-line-score",unit="serjeant-set",severity="minor-counter-modifier")
 
 // boyar
-#if players-unit-type-count target-player boyar-line >= 3
-  goal skirmisher-line-score -= major-counter-modifier
-  goal spearman-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="boyar-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="spearman-line-score",unit="boyar-line",severity="major-counter-modifier")
 
 // conquistador
-#if players-unit-type-count target-player conquistador-line >= 3
-  goal militiaman-line-score -= major-counter-modifier
-  goal spearman-line-score -= minor-counter-modifier
-  goal skirmisher-line-score += minor-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="conquistador-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="conquistador-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="conquistador-line",severity="minor-counter-modifier")
 
 // keshik
-#if players-unit-type-count target-player keshik-line >= 3
-  goal skirmisher-line-score -= major-counter-modifier
-  goal spearman-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="keshik-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="spearman-line-score",unit="keshik-line",severity="major-counter-modifier")
 
 // teutonic knight
-#if players-unit-type-count target-player teutonic-knight-line >= 3
-  goal militiaman-line-score -= major-counter-modifier
-  goal spearman-line-score -= major-counter-modifier
-  goal knight-line-score -= minor-counter-modifier
-  goal scout-cavalry-line-score -= minor-counter-modifier
-  goal archer-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="teutonic-knight-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="teutonic-knight-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="knight-line-score",unit="teutonic-knight-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="scout-cavalry-line-score",unit="teutonic-knight-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="teutonic-knight-line",severity="major-counter-modifier")
 
 // janissary
-#if players-unit-type-count target-player janissary-line >= 3
-  goal militiaman-line-score -= major-counter-modifier
-  goal spearman-line-score -= major-counter-modifier
-  goal archer-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="janissary-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="janissary-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="janissary-line",severity="major-counter-modifier")
 
 // rattan archers
-#if players-unit-type-count target-player rattan-archer-line >= 3
-  goal archer-line-score -= major-counter-modifier
-  goal militiaman-line-score -= major-counter-modifier
-  goal spearman-line-score -= major-counter-modifier
-  goal knight-line-score += major-counter-modifier
-  goal scout-cavalry-line-score += major-counter-modifier
-  goal skirmisher-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="archer-line-score",unit="rattan-archer-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="rattan-archer-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="rattan-archer-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="knight-line-score",unit="rattan-archer-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="rattan-archer-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="rattan-archer-line",severity="major-counter-modifier")
 
 // berserks
-#if players-unit-type-count target-player berserk-line >= 3
-  goal militiaman-line-score -= minor-counter-modifier
-  goal spearman-line-score -= major-counter-modifier
-  goal archer-line-score += major-counter-modifier
-#end if
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="berserk-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="berserk-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="berserk-line",severity="major-counter-modifier")
 
 // filter off impossible units
 
@@ -1066,6 +971,8 @@ research imperial-age
 
 #if unit-available battering-ram-line and unit-type-count-total battering-ram-line < 10 and up-pending-objects c: battering-ram-line == 0 and military-population >= 20
   goal battering-ram-line-production = 1
+#else if unit-available armored-elephant-line and unit-type-count-total armored-elephant-line < 10 and up-pending-objects c: armored-elephant-line == 0 and military-population >= 20
+  goal armored-elephant-line-production = 1
 #else
   insert unit-names(before="insert make-unit-if-top(unit=\"",after="\")")
 #end if
@@ -1162,19 +1069,28 @@ research imperial-age
   research ri-siege-ram
 #end if
 
+#if unit-type-count armored-elephant-line >= 5
+  research ri-siege-elephant
+#end if
+
 goal unit-wood = 8 // default for random buildings
 goal unit-food = 18 // default for villagers
 goal unit-gold = 0
 
 #if goal battering-ram-line-production 1
   build 1 blacksmith
-  //insert build-production-building(building="siege-workshop")
   build 1 siege-workshop
   insert train-unit(unit="battering-ram-line")
-  //goal unit-wood += 35
-  //goal unit-gold += 17
   goal unit-wood += 12
   goal unit-gold += 6
+#end if
+
+#if goal armored-elephant-line-production 1
+  build 1 blacksmith
+  build 1 siege-workshop
+  insert train-unit(unit="armored-elephant-line")
+  goal unit-food += 11
+  goal unit-gold += 7
 #end if
 
 #if goal skirmisher-line-production 1
