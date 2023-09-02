@@ -45479,7 +45479,7 @@
     (up-get-object-data 39 205)
     (up-reset-filters)
     (up-get-object-data object-data-range 208)
-    (up-modify-goal 208 c:+ 6)
+    (up-modify-goal 208 c:+ 8)
     (up-filter-distance c: -1 g: 208)
     (up-filter-exclude -1 -1 orderid-move -1)
     (up-filter-include cmdid-military -1 -1 -1)
@@ -56686,10 +56686,17 @@
     (up-drop-resources c: boar-food 10)
 )
 (defrule
-    (building-type-count town-center > 0)
-    (civ-selected gurjaras)
+    (or
+      (or
+        (not
+          (building-type-count town-center > 0)
+        )
+        (unit-type-count livestock-class >= 10)
+      )
+      (civ-selected gurjaras)
+    )
 =>
-    (up-jump-rule 9)
+    (up-jump-rule 10)
 )
 (defrule
     (true)
@@ -56717,6 +56724,19 @@
     (up-find-local c: 592 c: 255)
     (up-find-local c: 590 c: 255)
     (up-target-objects 0 action-default -1 -1)
+)
+(defrule
+    (up-compare-goal 357 c:>= 1)
+=>
+    (up-full-reset-search)
+    (up-get-fact player-number 0 9)
+    (up-modify-sn sn-focus-player-number g:= 9)
+    (up-find-remote c: livestock-class c: 1)
+    (up-find-local c: 592 c: 255)
+    (up-find-local c: 590 c: 255)
+    (set-strategic-number sn-keystates 1)
+    (up-target-objects 0 action-default -1 -1)
+    (set-strategic-number sn-keystates 0)
 )
 (defrule
     (goal 357 0)
@@ -56788,9 +56808,16 @@
     (up-target-objects 0 action-default -1 -1)
 )
 (defrule
-    (building-type-count town-center > 0)
-    (not
-      (civ-selected gurjaras)
+    (or
+      (or
+        (not
+          (building-type-count town-center > 0)
+        )
+        (unit-type-count livestock-class >= 10)
+      )
+      (not
+        (civ-selected gurjaras)
+      )
     )
 =>
     (up-jump-rule 1)
