@@ -1,3 +1,6 @@
+const object-data-train-site = 56
+const object-data-train-time = 57
+
 const male-gold-miner = 579
 const female-gold-miner = 581
 
@@ -27,6 +30,12 @@ load "templates/basic_diplomacy.aoe2ai"
   {before}knight-line{after}
   {before}scout-cavalry-line{after}
   {before}militiaman-line{after}
+  {before}spearman-line{after}
+#end template
+
+#template units-that-are-trash
+  {before}skirmisher-line{after}
+  {before}scout-cavalry-line{after}
   {before}spearman-line{after}
 #end template
 
@@ -75,6 +84,7 @@ load "templates/basic_diplomacy.aoe2ai"
 #end template
 
 #template clear-production-goals
+  goal villager-production = 0
   insert unit-names(before="goal ",after="-production = 0")
   goal battering-ram-line-production = 0
   goal armored-elephant-line-production = 0
@@ -109,12 +119,13 @@ const large-investment-modifier = 8
 const minor-counter-modifier = 10
 const major-counter-modifier = 20
 
-const trash-bias = 5
+const trash-bias = 10
 
 insert reset-unit-scores
-#if current-age == feudal-age
-  goal archer-line-score += 5
-#end if
+
+goal archer-line-score += 5
+insert units-that-are-trash(before="goal ",after="-score -= trash-bias")
+
 insert clear-production-goals
 
 // ranged blacksmith availability scoring
@@ -384,7 +395,6 @@ insert clear-production-goals
   #end if
   #if research-completed ri-gambesons
     goal militiaman-line-score += small-investment-modifier
-    insert units-with-bloodlines-and-husbandry-benefit(before="goal ",after="-score += small-investment-modifier")
   #end if
 #end if
 
@@ -465,12 +475,6 @@ insert clear-production-goals
 #if research-completed ri-halberdier
   goal spearman-line-score += large-investment-modifier
 #end if
-
-// trash bias
-
-goal spearman-line-score -= trash-bias
-goal skirmisher-line-score -= trash-bias
-goal scout-cavalry-line-score -= trash-bias
 
 // counters
 
@@ -827,7 +831,7 @@ insert find-top-unit
 goal halt-production = 0
 
 #template train-unit-internal
-  #if goal production-scale {number} and up-pending-objects c: {unit} < {number}
+  #if goal {unit}-production {number} and up-pending-objects c: {unit} < {number}
     train {unit}
   #end if
 #end template
@@ -845,12 +849,23 @@ goal halt-production = 0
   #end if
 #end template
 
-#template build-production-building
-  goal temp = 0
-  @up-get-fact building-type-count-total {building} temp
-  #if up-compare-goal temp g:< production-scale
-    build {building}
+#template build-production-building-internal
+  #if goal {production_goal} {amount}
+    #if up-can-build 0 g: {building_id_goal} and up-object-type-count-total g: {building_id_goal} < {amount}
+      @up-build place-normal 0 g: {building_id_goal}
+    #end if
   #end if
+#end template
+
+#template build-production-building
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=1)
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=2)
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=3)
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=4)
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=5)
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=6)
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=7)
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=8)
 #end template
 
 #template research-with-halt
@@ -908,7 +923,7 @@ build houses
   #when
     build gold mining camps
   #then
-    sn-camp-max-distance += 1
+    sn-camp-max-distance += 3
   #end when
 #end if
 
@@ -952,20 +967,11 @@ research imperial-age
   #end if
 #end if
 
-#if current-age == imperial-age
-  train 120 villager with 30 trade
-#else
-  train 120 villager
-#end if
-#if game-time > 60
-  research ri-loom
-#end if
-
 // it's unit decision time
 
 #template make-unit-if-top
   #if goal top-unit {unit} or goal second-unit {unit} and current-age >= castle-age
-    goal {unit}-production = 1
+    @up-modify-goal {unit}-production g:= production-scale
   #end if
 #end template
 
@@ -977,7 +983,15 @@ research imperial-age
   insert unit-names(before="insert make-unit-if-top(unit=\"",after="\")")
 #end if
 
+#if unit-type-count-total villager < 120
+  goal villager-production = 1
+#end if
+
 // it's research time
+
+#if current-age >= feudal-age
+  research ri-loom
+#end if
 
 #template do-common-ranged-upgrades-for-unit
   insert research-with-halt(research="ri-fletching",building="blacksmith")
@@ -1020,18 +1034,18 @@ research imperial-age
   #end if
 #end template
 
-#if unit-type-count-total archer-line >= 4 and (goal archer-line-production 1 or unit-type-count-total archer-line >= 20)
+#if unit-type-count-total archer-line >= 4 and (not goal archer-line-production 0 or unit-type-count-total archer-line >= 20)
   insert research-with-halt(research="ri-crossbow",building="archery-range")
   insert research-with-halt(research="ri-arbalest",building="archery-range")
   insert do-common-ranged-upgrades-for-unit(unit="archer-line",other_tech_threshold="15")
 #end if
 
-#if unit-type-count-total skirmisher-line >= 4 and (goal skirmisher-line-production 1 or unit-type-count-total skirmisher-line >= 20)
+#if unit-type-count-total skirmisher-line >= 4 and (not goal skirmisher-line-production 0 or unit-type-count-total skirmisher-line >= 20)
   insert research-with-halt(research="ri-elite-skirmisher",building="archery-range")
   insert do-common-ranged-upgrades-for-unit(unit="skirmisher-line",other_tech_threshold="15")
 #end if
 
-#if unit-type-count-total knight-line >= 4 and (goal knight-line-production 1 or unit-type-count-total knight-line >= 10)
+#if unit-type-count-total knight-line >= 4 and (not goal knight-line-production 0 or unit-type-count-total knight-line >= 10)
   insert research-with-halt(research="ri-cavalier",building="stable")
   #if unit-type-count-total knight-line >= 20
     insert research-with-halt(research="ri-paladin",building="stable")
@@ -1039,13 +1053,13 @@ research imperial-age
   insert do-common-cavalry-upgrades-for-unit(unit="knight-line",other_tech_threshold="10")
 #end if
 
-#if unit-type-count-total scout-cavalry-line >= 4 and (goal scout-cavalry-line-production 1 or unit-type-count-total scout-cavalry-line >= 15)
+#if unit-type-count-total scout-cavalry-line >= 4 and (not goal scout-cavalry-line-production 0 or unit-type-count-total scout-cavalry-line >= 15)
   insert research-with-halt(research="ri-light-cavalry",building="stable")
   insert research-with-halt(research="ri-hussar",building="stable")
   insert do-common-cavalry-upgrades-for-unit(unit="scout-cavalry-line",other_tech_threshold="15")
 #end if
 
-#if unit-type-count-total militiaman-line >= 4 and (goal militiaman-line-production 1 or unit-type-count-total militiaman-line >= 15)
+#if unit-type-count-total militiaman-line >= 4 and (not goal militiaman-line-production 0 or unit-type-count-total militiaman-line >= 15)
   insert research-with-halt(research="ri-man-at-arms",building="barracks")
   #if unit-type-count-total militiaman-line >= 10
     insert research-with-halt(research="ri-supplies",building="barracks")
@@ -1058,7 +1072,7 @@ research imperial-age
   insert do-common-infantry-upgrades-for-unit(unit="militiaman-line",other_tech_threshold="15")
 #end if
 
-#if unit-type-count-total spearman-line >= 4 and (goal spearman-line-production 1 or unit-type-count-total spearman-line >= 15)
+#if unit-type-count-total spearman-line >= 4 and (not goal spearman-line-production 0 or unit-type-count-total spearman-line >= 15)
   insert research-with-halt(research="ri-pikeman",building="barracks")
   insert research-with-halt(research="ri-halberdier",building="barracks")
   insert do-common-infantry-upgrades-for-unit(unit="spearman-line",other_tech_threshold="15")
@@ -1073,70 +1087,61 @@ research imperial-age
   research ri-siege-elephant
 #end if
 
-goal unit-wood = 8 // default for random buildings
-goal unit-food = 18 // default for villagers
-goal unit-gold = 0
+goals unit-food, unit-wood, unit-stone, unit-gold = 0
+goals tfood, twood, tstone, tgold = 0
 
-#if goal battering-ram-line-production 1
-  build 1 blacksmith
-  build 1 siege-workshop
-  insert train-unit(unit="battering-ram-line")
-  goal unit-wood += 12
-  goal unit-gold += 6
-#end if
+#template do-production
+  #if not goal {unit}-production 0
+  
+    goal building-id = -1
+    goal train-time = 1
+    @up-get-object-type-data c: {unit} object-data-train-site building-id
+    @up-get-object-type-data c: {unit} object-data-train-time train-time
+    
+    insert build-production-building(production_goal="{unit}-production",building_id_goal="building-id")
+    insert train-unit(unit="{unit}")
+    
+    @up-setup-cost-data 1 tfood
+    @up-add-object-cost c: {unit} g: {unit}-production
+    @up-modify-goal tfood g:* {unit}-production
+    @up-modify-goal twood g:* {unit}-production
+    @up-modify-goal tstone g:* {unit}-production
+    @up-modify-goal tgold g:* {unit}-production
+    @up-modify-goal tfood c:* 5000
+    @up-modify-goal twood c:* 5000
+    @up-modify-goal tstone c:* 5000
+    @up-modify-goal tgold c:* 5000
+    @up-modify-goal tfood g:/ train-time
+    @up-modify-goal twood g:/ train-time
+    @up-modify-goal tstone g:/ train-time
+    @up-modify-goal tgold g:/ train-time
+    @up-modify-goal unit-food g:+ tfood
+    @up-modify-goal unit-wood g:+ twood
+    @up-modify-goal unit-stone g:+ tstone
+    @up-modify-goal unit-gold g:+ tgold
+  #end if
+#end template
 
-#if goal armored-elephant-line-production 1
-  build 1 blacksmith
-  build 1 siege-workshop
-  insert train-unit(unit="armored-elephant-line")
-  goal unit-food += 11
-  goal unit-gold += 7
+insert do-production(unit="villager")
+#if up-pending-objects c: villager == 0
+  research ri-loom
 #end if
+insert do-production(unit="battering-ram-line")
+insert do-production(unit="armored-elephant-line")
+insert do-production(unit="skirmisher-line")
+insert do-production(unit="archer-line")
+insert do-production(unit="knight-line")
+insert do-production(unit="scout-cavalry-line")
+insert do-production(unit="militiaman-line")
+insert do-production(unit="spearman-line")
 
-#if goal skirmisher-line-production 1
-  build 1 barracks
-  insert build-production-building(building="archery-range")
-  insert train-unit(unit="skirmisher-line")
-  goal unit-wood += 13
-  goal unit-food += 11
-#end if
+//chat goal to all "unitwood: %d" unit-wood
+//chat goal to all "unitfood: %d" unit-food
+//chat goal to all "unitgold: %d" unit-gold
+//chat goal to all "unitstone: %d" unit-stone
 
-#if goal archer-line-production 1
-  build 1 barracks
-  insert build-production-building(building="archery-range")
-  insert train-unit(unit="archer-line")
-  goal unit-wood += 6
-  goal unit-gold += 11
-#end if
-
-#if goal knight-line-production 1
-  build 1 barracks
-  insert build-production-building(building="stable")
-  insert train-unit(unit="knight-line")
-  goal unit-food += 18
-  goal unit-gold += 20
-#end if
-
-#if goal scout-cavalry-line-production 1
-  build 1 barracks
-  insert build-production-building(building="stable")
-  insert train-unit(unit="scout-cavalry-line")
-  goal unit-food += 24
-#end if
-
-#if goal militiaman-line-production 1
-  insert build-production-building(building="barracks")
-  insert train-unit(unit="militiaman-line")
-  goal unit-food += 26
-  goal unit-gold += 8
-#end if
-
-#if goal spearman-line-production 1
-  insert build-production-building(building="barracks")
-  insert train-unit(unit="spearman-line")
-  goal unit-wood += 9
-  goal unit-food += 15
-#end if
+// gold collects quickly, reduce its influence
+@up-modify-goal unit-gold c:/ 3
 
 // adjust for farm cost
 goal temp = 0
@@ -1161,30 +1166,22 @@ goal unit-resource-total = 0
 @up-modify-sn sn-food-gatherer-percentage g:= unit-food
 @up-modify-sn sn-gold-gatherer-percentage g:= unit-gold
 
-#if current-age-time >= 120
+#if current-age-time >= 300
   build 1 market
   #if gold-amount < 2000
     sell wood when wood > 2000
     sell food when food > 2000
+  #else
+    buy food when food < 300
+    buy wood when wood < 300
   #end if
   build 1 university
   build 1 monastery
   train 1 monk
 #end if
 
-#if up-research-status c: feudal-age < research-pending
-  #if unit-type-count villager < 8
-    distribute villagers 0 100 0 0
-  #else if unit-type-count villager < 16
-    distribute villagers 20 80 0 0
-  #else if unit-type-count villager < 20
-    distribute villagers 40 60 0 0
-  #end if
-#end if
-
-#if up-research-status c: feudal-age == research-pending
+#if up-research-status c: feudal-age >= research-pending
   build 1 barracks
-  distribute villagers 60 30 10 0
 #end if
 
 #if current-age >= feudal-age
@@ -1247,7 +1244,7 @@ goal unit-resource-total = 0
   @up-modify-sn sn-wood-gatherer-percentage g:+ wood-adjustment
   @up-modify-sn sn-food-gatherer-percentage g:+ food-adjustment
   @up-modify-sn sn-gold-gatherer-percentage g:+ gold-adjustment
-
+  
   #if strategic-number sn-wood-gatherer-percentage < min-wood-percent
     goal wood-adjustment += 2
     goal food-adjustment -= 1
@@ -1265,11 +1262,26 @@ goal unit-resource-total = 0
     goal wood-adjustment -= 1
     goal food-adjustment -= 1
   #end if
-
-  //chat sn to all "wood: %d" sn-wood-gatherer-percentage
-  //chat sn to all "food: %d" sn-food-gatherer-percentage
-  //chat sn to all "gold: %d" sn-gold-gatherer-percentage
 #end if
+
+// eco overrides
+
+#if unit-type-count villager < 8
+  distribute villagers 0 100 0 0
+#else if unit-type-count villager < 12
+  distribute villagers 20 80 0 0
+#else if unit-type-count villager < 17
+  distribute villagers 40 60 0 0
+#end if
+
+#if up-research-status c: feudal-age == research-pending
+  distribute villagers 40 50 10 0
+#end if
+
+//chat sn to all "wood: %d" sn-wood-gatherer-percentage
+//chat sn to all "food: %d" sn-food-gatherer-percentage
+//chat sn to all "gold: %d" sn-gold-gatherer-percentage
+//chat sn to all "stone: %d" sn-stone-gatherer-percentage
 
 goal my-military-population = 0
 goal their-military-population = 0
@@ -1290,18 +1302,6 @@ goal their-military-population = 0
   #do once
     scout enemy
   #end do
-#end if
-
-#if town-under-attack and military-population < 15
-  @up-gather-inside c: archery-range c: 1
-  @up-gather-inside c: barracks c: 1
-  @up-gather-inside c: stable c: 1
-#end if   
-
-#if military-population >= 15 or up-compare-goal my-military-population g:> their-military-population
-  @up-gather-inside c: archery-range c: 0
-  @up-gather-inside c: barracks c: 0
-  @up-gather-inside c: stable c: 0
 #end if
 
 auto expand town size to 30
