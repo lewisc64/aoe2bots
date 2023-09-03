@@ -167,6 +167,14 @@ insert get-enemy-population-stats(type="warboat",fact="warboat-count")
   goal under-attack = 0
 #end if
 
+// treaty data
+
+#do once
+  goal treaty-time-left = 0
+#end do
+
+@up-get-treaty-data treaty-time-left
+
 // unit class investment
 
 goal ranged-blacksmith-techs-done = 0

@@ -67,7 +67,10 @@ load "unit_selection/trading.aoe2ai"
   load "attack_decision/aggressive.aoe2ai"
   load "pacing/balanced_random.aoe2ai"
   
-  #if goal full-water-map 1
+  #if up-compare-goal treaty-time-left >= 600
+    load "land_control/passive.aoe2ai"
+    load "water_control/passive.aoe2ai"
+  #else if goal full-water-map 1
     load "land_control/passive.aoe2ai"
     load "water_control/aggressive.aoe2ai"
   #else
