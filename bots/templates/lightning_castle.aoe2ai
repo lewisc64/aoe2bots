@@ -2,6 +2,11 @@
   set up basics
 #end do
 
+#if up-research-status c: castle-age < research-pending
+  build mule carts
+  micro mule carts
+#end if
+
 #if up-research-status c: feudal-age < research-pending
 
   manage scouting
@@ -30,7 +35,7 @@
   #if game-time >= 60
     build lumber camps
   #end if
-  #if building-type-count lumber-camp >= 1
+  #if building-type-count lumber-camp >= 1 or building-type-count mule-cart >= 1
     build mills
   #end if
   

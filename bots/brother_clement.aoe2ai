@@ -1,6 +1,7 @@
 const ri-herbal-medicine = 441
 const ri-inquisition = 492
 const ri-grand-trunk-road = 506
+const ri-bimaristan = 28
 
 #do once
   set name to "Brother Clement"
@@ -286,6 +287,8 @@ load "templates/lightning_castle.aoe2ai"
   #end if
   
   build lumber camps
+  build mule carts
+  micro mule carts
   #when
     build gold mining camps
     #if strategic-number sn-stone-gatherer-percentage > 0
@@ -336,6 +339,7 @@ load "templates/lightning_castle.aoe2ai"
   
   research ri-inquisition
   research ri-grand-trunk-road
+  research ri-bimaristan
   
   // redemption
   #if research-available ri-redemption
