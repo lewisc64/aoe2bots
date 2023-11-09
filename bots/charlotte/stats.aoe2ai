@@ -354,6 +354,9 @@ insert decide-blacksmith-investment(type="infantry")
   #if players-civ {player} frankish
     goal {prefix}unique-unit-is-infantry = 1
   #end if
+  #if players-civ {player} georgians
+    goal {prefix}unique-unit-is-cavalry = 1
+  #end if
   #if players-civ {player} gothic
     goal {prefix}unique-unit-is-infantry = 1
   #end if

@@ -1,0 +1,6 @@
+#if not research-completed ri-svan-towers and civ-selected georgians
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
+
+  insert attempt-research(research="ri-svan-towers",importance="importance-low",building="castle")
+#end if

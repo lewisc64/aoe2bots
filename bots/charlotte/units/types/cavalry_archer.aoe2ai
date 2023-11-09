@@ -10,6 +10,10 @@ load "ranged.aoe2ai"
   load "../../research/castle/steppe_husbandry.aoe2ai"
 #end if
 
+#if current-age == imperial-age and up-compare-goal population-space-remaining c:< 10
+  load "../../research/castle/aznauri_cavalry.aoe2ai"
+#end if
+
 #if current-age == imperial-age or civ-selected persian and current-age >= castle-age
   load "../../research/archery_range/parthian_tactics.aoe2ai"
 #end if

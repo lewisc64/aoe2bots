@@ -372,6 +372,8 @@
 (defconst ri-fereters 921)
 (defconst ri-cilician-fleet 922)
 (defconst ri-bimaristan 28)
+(defconst ri-svan-towers 923)
+(defconst ri-aznauri-cavalry 924)
 (defconst ri-elite-genitour 599)
 (defconst genitour-line 1079)
 (defconst condottiero 184)
@@ -1682,6 +1684,12 @@
     (players-civ my-player-number frankish)
 =>
     (set-goal unique-unit-is-infantry 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number georgians)
+=>
+    (set-goal unique-unit-is-cavalry 1)
     (disable-self)
 )
 (defrule
@@ -4066,7 +4074,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 5799)
+    (up-jump-rule 6090)
 )
 (defrule
     (can-build town-center)
@@ -9571,7 +9579,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 159)
+    (up-jump-rule 170)
 )
 (defrule
     (goal produce-genitours 1)
@@ -9602,7 +9610,7 @@
       (unit-available genitour-line)
     )
 =>
-    (up-jump-rule 155)
+    (up-jump-rule 166)
 )
 (defrule
     (nand
@@ -9694,7 +9702,7 @@
       (unit-available genitour-line)
     )
 =>
-    (up-jump-rule 142)
+    (up-jump-rule 153)
 )
 (defrule
     (not
@@ -10685,6 +10693,92 @@
     (research ri-steppe-husbandry)
 )
 (defrule
+    (nand
+      (current-age == imperial-age)
+      (up-compare-goal population-space-remaining c:< 10)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-aznauri-cavalry < research-pending)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-aznauri-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (research ri-aznauri-cavalry)
+)
+(defrule
     (nor
       (current-age == imperial-age)
       (and
@@ -10767,7 +10861,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 181)
+    (up-jump-rule 192)
 )
 (defrule
     (goal produce-cavalry-archers 1)
@@ -10798,7 +10892,7 @@
       (unit-available cavalry-archer-line)
     )
 =>
-    (up-jump-rule 177)
+    (up-jump-rule 188)
 )
 (defrule
     (nand
@@ -11062,7 +11156,7 @@
       (unit-available cavalry-archer-line)
     )
 =>
-    (up-jump-rule 142)
+    (up-jump-rule 153)
 )
 (defrule
     (not
@@ -12053,6 +12147,92 @@
     (research ri-steppe-husbandry)
 )
 (defrule
+    (nand
+      (current-age == imperial-age)
+      (up-compare-goal population-space-remaining c:< 10)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-aznauri-cavalry < research-pending)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-aznauri-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (research ri-aznauri-cavalry)
+)
+(defrule
     (nor
       (current-age == imperial-age)
       (and
@@ -12135,7 +12315,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 192)
+    (up-jump-rule 203)
 )
 (defrule
     (goal produce-elephant-archers 1)
@@ -12166,7 +12346,7 @@
       (unit-available elephant-archer-line)
     )
 =>
-    (up-jump-rule 188)
+    (up-jump-rule 199)
 )
 (defrule
     (nand
@@ -12516,7 +12696,7 @@
       (unit-available elephant-archer-line)
     )
 =>
-    (up-jump-rule 142)
+    (up-jump-rule 153)
 )
 (defrule
     (not
@@ -13505,6 +13685,92 @@
     (building-type-count castle >= 1)
 =>
     (research ri-steppe-husbandry)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (up-compare-goal population-space-remaining c:< 10)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-aznauri-cavalry < research-pending)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-aznauri-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (research ri-aznauri-cavalry)
 )
 (defrule
     (nor
@@ -19738,7 +20004,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 229)
+    (up-jump-rule 240)
 )
 (defrule
     (goal produce-scouts 1)
@@ -19769,7 +20035,7 @@
       (unit-available scout-cavalry-line)
     )
 =>
-    (up-jump-rule 225)
+    (up-jump-rule 236)
 )
 (defrule
     (not
@@ -20357,7 +20623,7 @@
       (unit-available scout-cavalry-line)
     )
 =>
-    (up-jump-rule 147)
+    (up-jump-rule 158)
 )
 (defrule
     (not
@@ -21428,6 +21694,92 @@
     (research ri-wootz-steel)
 )
 (defrule
+    (nand
+      (up-compare-goal population-space-remaining c:< 10)
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-aznauri-cavalry < research-pending)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-aznauri-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (research ri-aznauri-cavalry)
+)
+(defrule
     (can-build barracks)
     (up-pending-objects c: barracks < 5)
     (building-type-count-total barracks < 1)
@@ -21471,7 +21823,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 229)
+    (up-jump-rule 240)
 )
 (defrule
     (goal produce-knights 1)
@@ -21502,7 +21854,7 @@
       (unit-available knight-line)
     )
 =>
-    (up-jump-rule 225)
+    (up-jump-rule 236)
 )
 (defrule
     (not
@@ -22083,7 +22435,7 @@
       (unit-available knight-line)
     )
 =>
-    (up-jump-rule 147)
+    (up-jump-rule 158)
 )
 (defrule
     (not
@@ -23154,6 +23506,92 @@
     (research ri-wootz-steel)
 )
 (defrule
+    (nand
+      (up-compare-goal population-space-remaining c:< 10)
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-aznauri-cavalry < research-pending)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-aznauri-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (research ri-aznauri-cavalry)
+)
+(defrule
     (can-build barracks)
     (up-pending-objects c: barracks < 5)
     (building-type-count-total barracks < 1)
@@ -23198,7 +23636,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 191)
+    (up-jump-rule 202)
 )
 (defrule
     (goal produce-camels 1)
@@ -23229,7 +23667,7 @@
       (unit-available camel-line)
     )
 =>
-    (up-jump-rule 187)
+    (up-jump-rule 198)
 )
 (defrule
     (not
@@ -23520,7 +23958,7 @@
       (unit-available camel-line)
     )
 =>
-    (up-jump-rule 147)
+    (up-jump-rule 158)
 )
 (defrule
     (not
@@ -24591,6 +25029,92 @@
     (research ri-wootz-steel)
 )
 (defrule
+    (nand
+      (up-compare-goal population-space-remaining c:< 10)
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-aznauri-cavalry < research-pending)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-aznauri-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (research ri-aznauri-cavalry)
+)
+(defrule
     (can-build barracks)
     (up-pending-objects c: barracks < 5)
     (building-type-count-total barracks < 1)
@@ -24635,7 +25159,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 164)
+    (up-jump-rule 175)
 )
 (defrule
     (goal produce-shrivamsha-riders 1)
@@ -24666,7 +25190,7 @@
       (unit-available shrivamsha-rider-line)
     )
 =>
-    (up-jump-rule 160)
+    (up-jump-rule 171)
 )
 (defrule
     (not
@@ -24756,7 +25280,7 @@
       (unit-available shrivamsha-rider-line)
     )
 =>
-    (up-jump-rule 147)
+    (up-jump-rule 158)
 )
 (defrule
     (not
@@ -25827,6 +26351,92 @@
     (research ri-wootz-steel)
 )
 (defrule
+    (nand
+      (up-compare-goal population-space-remaining c:< 10)
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-aznauri-cavalry < research-pending)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-aznauri-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (research ri-aznauri-cavalry)
+)
+(defrule
     (can-build barracks)
     (up-pending-objects c: barracks < 5)
     (building-type-count-total barracks < 1)
@@ -25871,7 +26481,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 219)
+    (up-jump-rule 230)
 )
 (defrule
     (goal produce-battle-elephants 1)
@@ -25902,7 +26512,7 @@
       (unit-available battle-elephant-line)
     )
 =>
-    (up-jump-rule 215)
+    (up-jump-rule 226)
 )
 (defrule
     (not
@@ -26422,7 +27032,7 @@
       (unit-available battle-elephant-line)
     )
 =>
-    (up-jump-rule 147)
+    (up-jump-rule 158)
 )
 (defrule
     (not
@@ -27493,6 +28103,92 @@
     (research ri-wootz-steel)
 )
 (defrule
+    (nand
+      (up-compare-goal population-space-remaining c:< 10)
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-aznauri-cavalry < research-pending)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-aznauri-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (research ri-aznauri-cavalry)
+)
+(defrule
     (can-build barracks)
     (up-pending-objects c: barracks < 5)
     (building-type-count-total barracks < 1)
@@ -27537,7 +28233,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 186)
+    (up-jump-rule 197)
 )
 (defrule
     (goal produce-steppe-lancers 1)
@@ -27568,7 +28264,7 @@
       (unit-available steppe-lancer-line)
     )
 =>
-    (up-jump-rule 182)
+    (up-jump-rule 193)
 )
 (defrule
     (not
@@ -27830,7 +28526,7 @@
       (unit-available steppe-lancer-line)
     )
 =>
-    (up-jump-rule 147)
+    (up-jump-rule 158)
 )
 (defrule
     (not
@@ -28899,6 +29595,92 @@
     (building-type-count castle >= 1)
 =>
     (research ri-wootz-steel)
+)
+(defrule
+    (nand
+      (up-compare-goal population-space-remaining c:< 10)
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-aznauri-cavalry < research-pending)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-aznauri-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (research ri-aznauri-cavalry)
 )
 (defrule
     (can-build barracks)
@@ -31677,7 +32459,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 308)
+    (up-jump-rule 319)
 )
 (defrule
     (goal produce-unique-units 1)
@@ -31708,7 +32490,7 @@
       (unit-available konnik-set)
     )
 =>
-    (up-jump-rule 304)
+    (up-jump-rule 315)
 )
 (defrule
     (true)
@@ -32865,7 +33647,7 @@
       (unit-available krepost-konnik-line)
     )
 =>
-    (up-jump-rule 147)
+    (up-jump-rule 158)
 )
 (defrule
     (not
@@ -33934,6 +34716,92 @@
     (building-type-count castle >= 1)
 =>
     (research ri-wootz-steel)
+)
+(defrule
+    (nand
+      (up-compare-goal population-space-remaining c:< 10)
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-aznauri-cavalry < research-pending)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-aznauri-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (research ri-aznauri-cavalry)
 )
 (defrule
     (can-build barracks)
@@ -35242,7 +36110,7 @@
       )
     )
 =>
-    (up-jump-rule 946)
+    (up-jump-rule 1127)
 )
 (defrule
     (goal produce-unique-units 1)
@@ -35273,7 +36141,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 942)
+    (up-jump-rule 1123)
 )
 (defrule
     (current-age >= castle-age)
@@ -37476,7 +38344,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 142)
+    (up-jump-rule 153)
 )
 (defrule
     (not
@@ -38467,6 +39335,92 @@
     (research ri-steppe-husbandry)
 )
 (defrule
+    (nand
+      (current-age == imperial-age)
+      (up-compare-goal population-space-remaining c:< 10)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-aznauri-cavalry < research-pending)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-aznauri-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (research ri-aznauri-cavalry)
+)
+(defrule
     (nor
       (current-age == imperial-age)
       (and
@@ -39287,7 +40241,7 @@
       (unit-available my-unique-unit-line)
     )
 =>
-    (up-jump-rule 147)
+    (up-jump-rule 158)
 )
 (defrule
     (not
@@ -40356,6 +41310,1279 @@
     (building-type-count castle >= 1)
 =>
     (research ri-wootz-steel)
+)
+(defrule
+    (nand
+      (up-compare-goal population-space-remaining c:< 10)
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-aznauri-cavalry < research-pending)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-aznauri-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (research ri-aznauri-cavalry)
+)
+(defrule
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+=>
+    (build barracks)
+)
+(defrule
+    (true)
+=>
+    (set-goal stable-count 0)
+    (disable-self)
+)
+(defrule
+    (true)
+=>
+    (up-get-fact building-type-count-total stable stable-count)
+)
+(defrule
+    (can-build stable)
+    (up-pending-objects c: stable < 5)
+    (up-compare-goal stable-count g:< desired-military-buildings-per-type)
+=>
+    (build stable)
+)
+(defrule
+    (nand
+      (civ-selected georgians)
+      (unit-available my-unique-unit-line)
+    )
+=>
+    (up-jump-rule 158)
+)
+(defrule
+    (not
+      (current-age == feudal-age)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-forging)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-forging)
+)
+(defrule
+    (not
+      (current-age == feudal-age)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (research-completed ri-scale-barding)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-scale-barding)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-scale-barding < research-pending)
+    (research-available ri-scale-barding)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-scale-barding)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-scale-barding)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-scale-barding)
+)
+(defrule
+    (nand
+      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
+    )
+=>
+    (up-jump-rule 11)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-forging)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-forging)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-iron-casting)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-iron-casting)
+)
+(defrule
+    (nand
+      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
+    )
+=>
+    (up-jump-rule 11)
+)
+(defrule
+    (research-completed ri-chain-barding)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-chain-barding)
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (research-completed ri-scale-barding)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-scale-barding)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-scale-barding < research-pending)
+    (research-available ri-scale-barding)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-scale-barding)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-scale-barding)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-scale-barding)
+)
+(defrule
+    (research-completed ri-chain-barding)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-chain-barding < research-pending)
+    (research-available ri-chain-barding)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-chain-barding)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-chain-barding)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-chain-barding)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 17)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 11)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-forging)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-forging < research-pending)
+    (research-available ri-forging)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-forging)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-forging)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-forging)
+)
+(defrule
+    (research-completed ri-iron-casting)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-iron-casting < research-pending)
+    (research-available ri-iron-casting)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-iron-casting)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-iron-casting)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-iron-casting)
+)
+(defrule
+    (research-completed ri-blast-furnace)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-blast-furnace < research-pending)
+    (research-available ri-blast-furnace)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-blast-furnace)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-blast-furnace)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-blast-furnace)
+)
+(defrule
+    (nand
+      (current-age == imperial-age)
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (not
+          (current-age == castle-age)
+        )
+      )
+    )
+=>
+    (up-jump-rule 17)
+)
+(defrule
+    (research-completed ri-plate-barding)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-plate-barding)
+=>
+    (up-jump-rule 11)
+)
+(defrule
+    (research-completed ri-chain-barding)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-chain-barding)
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (research-completed ri-scale-barding)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build blacksmith)
+    (up-pending-objects c: blacksmith < 5)
+    (building-type-count-total blacksmith < 1)
+    (wood-amount >= 200)
+    (building-type-count-total blacksmith == 0)
+=>
+    (build blacksmith)
+)
+(defrule
+    (research-completed ri-scale-barding)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-scale-barding < research-pending)
+    (research-available ri-scale-barding)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-scale-barding)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-scale-barding)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-scale-barding)
+)
+(defrule
+    (research-completed ri-chain-barding)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-chain-barding < research-pending)
+    (research-available ri-chain-barding)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-chain-barding)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-chain-barding)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-chain-barding)
+)
+(defrule
+    (research-completed ri-plate-barding)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-plate-barding < research-pending)
+    (research-available ri-plate-barding)
+    (building-type-count blacksmith >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-plate-barding)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-plate-barding)
+    (building-type-count blacksmith >= 1)
+=>
+    (research ri-plate-barding)
+)
+(defrule
+    (not
+      (current-age >= feudal-age)
+    )
+=>
+    (up-jump-rule 7)
+)
+(defrule
+    (research-completed ri-bloodlines)
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (not
+      (building-type-count-total stable == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+    (building-type-count-total barracks == 0)
+=>
+    (build barracks)
+)
+(defrule
+    (can-build stable)
+    (up-pending-objects c: stable < 5)
+    (building-type-count-total stable < 1)
+    (building-type-count barracks >= 1)
+    (building-type-count-total stable == 0)
+=>
+    (build stable)
+)
+(defrule
+    (research-completed ri-bloodlines)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-bloodlines < research-pending)
+    (research-available ri-bloodlines)
+    (building-type-count stable >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-high)
+)
+(defrule
+    (can-research ri-bloodlines)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-high)
+    (research-available ri-bloodlines)
+    (building-type-count stable >= 1)
+=>
+    (research ri-bloodlines)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 7)
+)
+(defrule
+    (research-completed ri-husbandry)
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (not
+      (building-type-count-total stable == 0)
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build barracks)
+    (up-pending-objects c: barracks < 5)
+    (building-type-count-total barracks < 1)
+    (building-type-count-total barracks == 0)
+=>
+    (build barracks)
+)
+(defrule
+    (can-build stable)
+    (up-pending-objects c: stable < 5)
+    (building-type-count-total stable < 1)
+    (building-type-count barracks >= 1)
+    (building-type-count-total stable == 0)
+=>
+    (build stable)
+)
+(defrule
+    (research-completed ri-husbandry)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-husbandry < research-pending)
+    (research-available ri-husbandry)
+    (building-type-count stable >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-husbandry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-husbandry)
+    (building-type-count stable >= 1)
+=>
+    (research ri-husbandry)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-chivalry)
+      )
+      (civ-selected frankish)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-chivalry)
+      )
+      (civ-selected frankish)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-chivalry < research-pending)
+    (research-available ri-chivalry)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-chivalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-chivalry)
+    (building-type-count castle >= 1)
+=>
+    (research ri-chivalry)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-stirrups)
+      )
+      (civ-selected bulgarians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-stirrups)
+      )
+      (civ-selected bulgarians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-stirrups < research-pending)
+    (research-available ri-stirrups)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-high)
+)
+(defrule
+    (can-research ri-stirrups)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-high)
+    (research-available ri-stirrups)
+    (building-type-count castle >= 1)
+=>
+    (research ri-stirrups)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy archer-line >= 2)
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-manipur-cavalry)
+      )
+      (civ-selected burmese)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-manipur-cavalry)
+      )
+      (civ-selected burmese)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-manipur-cavalry < research-pending)
+    (research-available ri-manipur-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-manipur-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-manipur-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (research ri-manipur-cavalry)
+)
+(defrule
+    (not
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-farimba)
+      )
+      (civ-selected malian)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-farimba)
+      )
+      (civ-selected malian)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-farimba < research-pending)
+    (research-available ri-farimba)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-farimba)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-farimba)
+    (building-type-count castle >= 1)
+=>
+    (research ri-farimba)
+)
+(defrule
+    (not
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-wootz-steel)
+      )
+      (civ-selected dravidians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-wootz-steel < research-pending)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-wootz-steel)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-wootz-steel)
+    (building-type-count castle >= 1)
+=>
+    (research ri-wootz-steel)
+)
+(defrule
+    (nand
+      (up-compare-goal population-space-remaining c:< 10)
+      (current-age == imperial-age)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-aznauri-cavalry)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-aznauri-cavalry < research-pending)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-aznauri-cavalry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-aznauri-cavalry)
+    (building-type-count castle >= 1)
+=>
+    (research ri-aznauri-cavalry)
 )
 (defrule
     (can-build barracks)
@@ -48086,7 +50313,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1172)
+    (up-jump-rule 1184)
 )
 (defrule
     (true)
@@ -48423,8 +50650,8 @@
     (set-goal 210 0)
     (generate-random-number 2)
     (up-get-fact random-number 0 210)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 210 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 210 g:+ 209)
     (up-modify-goal 210 c:mod 2)
     (up-modify-goal 210 c:+ 2)
     (up-modify-goal 210 c:mod 2)
@@ -48436,7 +50663,7 @@
       (goal 210 1)
     )
 =>
-    (up-jump-rule 90)
+    (up-jump-rule 101)
 )
 (defrule
     (nand
@@ -49029,14 +51256,100 @@
     (research ri-murder-holes)
 )
 (defrule
+    (nand
+      (current-age >= castle-age)
+      (building-type-count castle >= 1)
+    )
+=>
+    (up-jump-rule 10)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-svan-towers)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 6)
+)
+(defrule
+    (not
+      (building-type-count-total castle == 0)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (can-build castle)
+    (up-pending-objects c: castle < 5)
+=>
+    (build castle)
+)
+(defrule
+    (not
+      (current-age >= castle-age)
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (stone-amount < 650)
+=>
+    (set-goal do-stone-mining 1)
+)
+(defrule
+    (can-build market)
+    (up-pending-objects c: market < 5)
+    (building-type-count-total market < 1)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (build market)
+)
+(defrule
+    (can-buy-commodity stone)
+    (gold-amount > 300)
+    (stone-amount < 650)
+=>
+    (buy-commodity stone)
+)
+(defrule
+    (nand
+      (not
+        (research-completed ri-svan-towers)
+      )
+      (civ-selected georgians)
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-svan-towers < research-pending)
+    (research-available ri-svan-towers)
+    (building-type-count castle >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-low)
+)
+(defrule
+    (can-research ri-svan-towers)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-low)
+    (research-available ri-svan-towers)
+    (building-type-count castle >= 1)
+=>
+    (research ri-svan-towers)
+)
+(defrule
     (strategic-number sn-stone-gatherer-percentage > 0)
     (false)
 =>
     (set-goal 211 0)
     (generate-random-number 2)
     (up-get-fact random-number 0 211)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 211 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 211 g:+ 9)
     (up-modify-goal 211 c:mod 2)
     (up-modify-goal 211 c:+ 2)
     (up-modify-goal 211 c:mod 2)
@@ -49316,7 +51629,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 48)
+    (up-jump-rule 49)
 )
 (defrule
     (true)
@@ -49549,6 +51862,21 @@
     (set-goal good-militia 1)
     (set-goal good-spearmen 1)
     (set-goal good-knights 1)
+    (set-goal good-scorpions 1)
+    (set-goal good-fire-ships 1)
+    (set-goal good-galleys 1)
+    (disable-self)
+)
+(defrule
+    (players-civ my-player-number georgians)
+=>
+    (set-goal good-cavalry-archers 1)
+    (set-goal good-militia 1)
+    (set-goal good-spearmen 1)
+    (set-goal good-scouts 1)
+    (set-goal good-knights 1)
+    (set-goal good-battering-rams 1)
+    (set-goal good-mangonels 1)
     (set-goal good-scorpions 1)
     (set-goal good-fire-ships 1)
     (set-goal good-galleys 1)
@@ -50208,8 +52536,8 @@
     (set-goal 218 0)
     (generate-random-number 22)
     (up-get-fact random-number 0 218)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 218 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 218 g:+ 9)
     (up-modify-goal 218 c:mod 22)
     (up-modify-goal 218 c:+ 22)
     (up-modify-goal 218 c:mod 22)
@@ -50375,8 +52703,8 @@
     (set-goal 219 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 219)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 219 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 219 g:+ 9)
     (up-modify-goal 219 c:mod 3)
     (up-modify-goal 219 c:+ 3)
     (up-modify-goal 219 c:mod 3)
@@ -51672,8 +54000,8 @@
     (disable-self)
     (generate-random-number 2)
     (up-get-fact random-number 0 225)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 225 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 225 g:+ 209)
     (up-modify-goal 225 c:mod 2)
     (up-modify-goal 225 c:+ 2)
     (up-modify-goal 225 c:mod 2)
@@ -51709,8 +54037,8 @@
     (set-goal 229 0)
     (generate-random-number 2)
     (up-get-fact random-number 0 229)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 229 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 229 g:+ 209)
     (up-modify-goal 229 c:mod 2)
     (up-modify-goal 229 c:+ 2)
     (up-modify-goal 229 c:mod 2)
@@ -52052,8 +54380,8 @@
 (defrule
     (true)
 =>
-    (up-find-player enemy find-closest 209)
-    (up-modify-sn sn-target-player-number g:= 209)
+    (up-find-player enemy find-closest 9)
+    (up-modify-sn sn-target-player-number g:= 9)
     (up-send-scout group-type-land-explore scout-enemy)
     (disable-self)
 )
@@ -52067,8 +54395,8 @@
       )
     )
 =>
-    (up-find-player enemy find-closest 209)
-    (up-modify-sn sn-target-player-number g:= 209)
+    (up-find-player enemy find-closest 9)
+    (up-modify-sn sn-target-player-number g:= 9)
 )
 (defrule
     (strategic-number sn-target-player-number != -1)
@@ -52302,8 +54630,8 @@
     (set-goal 276 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 276)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 276 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 276 g:+ 9)
     (up-modify-goal 276 c:mod 3)
     (up-modify-goal 276 c:+ 3)
     (up-modify-goal 276 c:mod 3)
@@ -52505,8 +54833,8 @@
     (set-goal 277 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 277)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 277 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 277 g:+ 209)
     (up-modify-goal 277 c:mod 3)
     (up-modify-goal 277 c:+ 3)
     (up-modify-goal 277 c:mod 3)
@@ -52555,8 +54883,8 @@
     (set-goal 278 0)
     (generate-random-number 8)
     (up-get-fact random-number 0 278)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 278 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 278 g:+ 209)
     (up-modify-goal 278 c:mod 8)
     (up-modify-goal 278 c:+ 8)
     (up-modify-goal 278 c:mod 8)
@@ -52592,8 +54920,8 @@
     (set-goal 279 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 279)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 279 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 279 g:+ 209)
     (up-modify-goal 279 c:mod 3)
     (up-modify-goal 279 c:+ 3)
     (up-modify-goal 279 c:mod 3)
@@ -52656,8 +54984,8 @@
     (set-goal 280 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 280)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 280 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 280 g:+ 209)
     (up-modify-goal 280 c:mod 3)
     (up-modify-goal 280 c:+ 3)
     (up-modify-goal 280 c:mod 3)
@@ -52720,8 +55048,8 @@
     (set-goal 281 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 281)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 281 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 281 g:+ 209)
     (up-modify-goal 281 c:mod 3)
     (up-modify-goal 281 c:+ 3)
     (up-modify-goal 281 c:mod 3)
@@ -52784,8 +55112,8 @@
     (set-goal 282 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 282)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 282 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 282 g:+ 209)
     (up-modify-goal 282 c:mod 3)
     (up-modify-goal 282 c:+ 3)
     (up-modify-goal 282 c:mod 3)
@@ -52848,8 +55176,8 @@
     (set-goal 283 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 283)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 283 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 283 g:+ 209)
     (up-modify-goal 283 c:mod 3)
     (up-modify-goal 283 c:+ 3)
     (up-modify-goal 283 c:mod 3)
@@ -52912,8 +55240,8 @@
     (set-goal 284 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 284)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 284 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 284 g:+ 209)
     (up-modify-goal 284 c:mod 3)
     (up-modify-goal 284 c:+ 3)
     (up-modify-goal 284 c:mod 3)
@@ -52976,8 +55304,8 @@
     (set-goal 285 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 285)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 285 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 285 g:+ 209)
     (up-modify-goal 285 c:mod 3)
     (up-modify-goal 285 c:+ 3)
     (up-modify-goal 285 c:mod 3)
@@ -53040,8 +55368,8 @@
     (set-goal 286 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 286)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 286 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 286 g:+ 209)
     (up-modify-goal 286 c:mod 3)
     (up-modify-goal 286 c:+ 3)
     (up-modify-goal 286 c:mod 3)
@@ -53081,8 +55409,8 @@
     (set-goal 287 0)
     (generate-random-number 8)
     (up-get-fact random-number 0 287)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 287 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 287 g:+ 209)
     (up-modify-goal 287 c:mod 8)
     (up-modify-goal 287 c:+ 8)
     (up-modify-goal 287 c:mod 8)
@@ -53238,8 +55566,8 @@
     (set-goal 288 0)
     (generate-random-number 8)
     (up-get-fact random-number 0 288)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 288 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 288 g:+ 209)
     (up-modify-goal 288 c:mod 8)
     (up-modify-goal 288 c:+ 8)
     (up-modify-goal 288 c:mod 8)
@@ -53268,8 +55596,8 @@
     (set-goal 289 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 289)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 289 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 289 g:+ 209)
     (up-modify-goal 289 c:mod 10)
     (up-modify-goal 289 c:+ 10)
     (up-modify-goal 289 c:mod 10)
@@ -53375,8 +55703,8 @@
     (set-goal 290 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 290)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 290 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 290 g:+ 9)
     (up-modify-goal 290 c:mod 10)
     (up-modify-goal 290 c:+ 10)
     (up-modify-goal 290 c:mod 10)
@@ -53482,8 +55810,8 @@
     (set-goal 291 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 291)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 291 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 291 g:+ 209)
     (up-modify-goal 291 c:mod 10)
     (up-modify-goal 291 c:+ 10)
     (up-modify-goal 291 c:mod 10)
@@ -53589,8 +55917,8 @@
     (set-goal 292 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 292)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 292 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 292 g:+ 9)
     (up-modify-goal 292 c:mod 10)
     (up-modify-goal 292 c:+ 10)
     (up-modify-goal 292 c:mod 10)
@@ -53696,8 +56024,8 @@
     (set-goal 293 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 293)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 293 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 293 g:+ 209)
     (up-modify-goal 293 c:mod 10)
     (up-modify-goal 293 c:+ 10)
     (up-modify-goal 293 c:mod 10)
@@ -53803,8 +56131,8 @@
     (set-goal 294 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 294)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 294 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 294 g:+ 9)
     (up-modify-goal 294 c:mod 10)
     (up-modify-goal 294 c:+ 10)
     (up-modify-goal 294 c:mod 10)
@@ -53910,8 +56238,8 @@
     (set-goal 295 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 295)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 295 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 295 g:+ 209)
     (up-modify-goal 295 c:mod 10)
     (up-modify-goal 295 c:+ 10)
     (up-modify-goal 295 c:mod 10)
@@ -54017,8 +56345,8 @@
     (set-goal 296 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 296)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 296 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 296 g:+ 9)
     (up-modify-goal 296 c:mod 10)
     (up-modify-goal 296 c:+ 10)
     (up-modify-goal 296 c:mod 10)
@@ -54155,8 +56483,8 @@
     (set-goal 297 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 297)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 297 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 297 g:+ 209)
     (up-modify-goal 297 c:mod 3)
     (up-modify-goal 297 c:+ 3)
     (up-modify-goal 297 c:mod 3)
@@ -54222,8 +56550,8 @@
     (set-goal 298 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 298)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 298 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 298 g:+ 9)
     (up-modify-goal 298 c:mod 3)
     (up-modify-goal 298 c:+ 3)
     (up-modify-goal 298 c:mod 3)
@@ -54279,8 +56607,8 @@
     (set-goal 299 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 299)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 299 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 299 g:+ 209)
     (up-modify-goal 299 c:mod 11)
     (up-modify-goal 299 c:+ 11)
     (up-modify-goal 299 c:mod 11)
@@ -54407,8 +56735,8 @@
     (set-goal 300 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 300)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 300 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 300 g:+ 209)
     (up-modify-goal 300 c:mod 11)
     (up-modify-goal 300 c:+ 11)
     (up-modify-goal 300 c:mod 11)
@@ -54583,8 +56911,8 @@
     (set-goal 301 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 301)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 301 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 301 g:+ 9)
     (up-modify-goal 301 c:mod 3)
     (up-modify-goal 301 c:+ 3)
     (up-modify-goal 301 c:mod 3)
@@ -54676,8 +57004,8 @@
     (set-goal 302 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 302)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 302 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 302 g:+ 9)
     (up-modify-goal 302 c:mod 3)
     (up-modify-goal 302 c:+ 3)
     (up-modify-goal 302 c:mod 3)
@@ -54743,8 +57071,8 @@
     (set-goal 303 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 303)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 303 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 303 g:+ 209)
     (up-modify-goal 303 c:mod 3)
     (up-modify-goal 303 c:+ 3)
     (up-modify-goal 303 c:mod 3)
@@ -54800,8 +57128,8 @@
     (set-goal 304 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 304)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 304 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 304 g:+ 9)
     (up-modify-goal 304 c:mod 11)
     (up-modify-goal 304 c:+ 11)
     (up-modify-goal 304 c:mod 11)
@@ -54928,8 +57256,8 @@
     (set-goal 305 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 305)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 305 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 305 g:+ 9)
     (up-modify-goal 305 c:mod 11)
     (up-modify-goal 305 c:+ 11)
     (up-modify-goal 305 c:mod 11)
@@ -55104,8 +57432,8 @@
     (set-goal 306 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 306)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 306 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 306 g:+ 209)
     (up-modify-goal 306 c:mod 3)
     (up-modify-goal 306 c:+ 3)
     (up-modify-goal 306 c:mod 3)
@@ -55197,8 +57525,8 @@
     (set-goal 307 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 307)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 307 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 307 g:+ 209)
     (up-modify-goal 307 c:mod 3)
     (up-modify-goal 307 c:+ 3)
     (up-modify-goal 307 c:mod 3)
@@ -55264,8 +57592,8 @@
     (set-goal 308 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 308)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 308 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 308 g:+ 9)
     (up-modify-goal 308 c:mod 3)
     (up-modify-goal 308 c:+ 3)
     (up-modify-goal 308 c:mod 3)
@@ -55321,8 +57649,8 @@
     (set-goal 309 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 309)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 309 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 309 g:+ 209)
     (up-modify-goal 309 c:mod 11)
     (up-modify-goal 309 c:+ 11)
     (up-modify-goal 309 c:mod 11)
@@ -55449,8 +57777,8 @@
     (set-goal 310 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 310)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 310 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 310 g:+ 209)
     (up-modify-goal 310 c:mod 11)
     (up-modify-goal 310 c:+ 11)
     (up-modify-goal 310 c:mod 11)
@@ -55625,8 +57953,8 @@
     (set-goal 311 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 311)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 311 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 311 g:+ 9)
     (up-modify-goal 311 c:mod 3)
     (up-modify-goal 311 c:+ 3)
     (up-modify-goal 311 c:mod 3)
@@ -55718,8 +58046,8 @@
     (set-goal 312 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 312)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 312 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 312 g:+ 9)
     (up-modify-goal 312 c:mod 3)
     (up-modify-goal 312 c:+ 3)
     (up-modify-goal 312 c:mod 3)
@@ -55785,8 +58113,8 @@
     (set-goal 313 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 313)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 313 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 313 g:+ 209)
     (up-modify-goal 313 c:mod 3)
     (up-modify-goal 313 c:+ 3)
     (up-modify-goal 313 c:mod 3)
@@ -55842,8 +58170,8 @@
     (set-goal 314 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 314)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 314 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 314 g:+ 9)
     (up-modify-goal 314 c:mod 11)
     (up-modify-goal 314 c:+ 11)
     (up-modify-goal 314 c:mod 11)
@@ -55970,8 +58298,8 @@
     (set-goal 315 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 315)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 315 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 315 g:+ 9)
     (up-modify-goal 315 c:mod 11)
     (up-modify-goal 315 c:+ 11)
     (up-modify-goal 315 c:mod 11)
@@ -56146,8 +58474,8 @@
     (set-goal 316 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 316)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 316 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 316 g:+ 209)
     (up-modify-goal 316 c:mod 3)
     (up-modify-goal 316 c:+ 3)
     (up-modify-goal 316 c:mod 3)
@@ -56239,8 +58567,8 @@
     (set-goal 317 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 317)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 317 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 317 g:+ 209)
     (up-modify-goal 317 c:mod 3)
     (up-modify-goal 317 c:+ 3)
     (up-modify-goal 317 c:mod 3)
@@ -56306,8 +58634,8 @@
     (set-goal 318 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 318)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 318 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 318 g:+ 9)
     (up-modify-goal 318 c:mod 3)
     (up-modify-goal 318 c:+ 3)
     (up-modify-goal 318 c:mod 3)
@@ -56363,8 +58691,8 @@
     (set-goal 319 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 319)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 319 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 319 g:+ 209)
     (up-modify-goal 319 c:mod 11)
     (up-modify-goal 319 c:+ 11)
     (up-modify-goal 319 c:mod 11)
@@ -56491,8 +58819,8 @@
     (set-goal 320 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 320)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 320 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 320 g:+ 209)
     (up-modify-goal 320 c:mod 11)
     (up-modify-goal 320 c:+ 11)
     (up-modify-goal 320 c:mod 11)
@@ -56667,8 +58995,8 @@
     (set-goal 321 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 321)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 321 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 321 g:+ 9)
     (up-modify-goal 321 c:mod 3)
     (up-modify-goal 321 c:+ 3)
     (up-modify-goal 321 c:mod 3)
@@ -56760,8 +59088,8 @@
     (set-goal 322 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 322)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 322 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 322 g:+ 9)
     (up-modify-goal 322 c:mod 3)
     (up-modify-goal 322 c:+ 3)
     (up-modify-goal 322 c:mod 3)
@@ -56827,8 +59155,8 @@
     (set-goal 323 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 323)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 323 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 323 g:+ 209)
     (up-modify-goal 323 c:mod 3)
     (up-modify-goal 323 c:+ 3)
     (up-modify-goal 323 c:mod 3)
@@ -56884,8 +59212,8 @@
     (set-goal 324 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 324)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 324 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 324 g:+ 9)
     (up-modify-goal 324 c:mod 11)
     (up-modify-goal 324 c:+ 11)
     (up-modify-goal 324 c:mod 11)
@@ -57012,8 +59340,8 @@
     (set-goal 325 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 325)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 325 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 325 g:+ 9)
     (up-modify-goal 325 c:mod 11)
     (up-modify-goal 325 c:+ 11)
     (up-modify-goal 325 c:mod 11)
@@ -57188,8 +59516,8 @@
     (set-goal 326 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 326)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 326 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 326 g:+ 209)
     (up-modify-goal 326 c:mod 3)
     (up-modify-goal 326 c:+ 3)
     (up-modify-goal 326 c:mod 3)
@@ -57281,8 +59609,8 @@
     (set-goal 327 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 327)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 327 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 327 g:+ 209)
     (up-modify-goal 327 c:mod 3)
     (up-modify-goal 327 c:+ 3)
     (up-modify-goal 327 c:mod 3)
@@ -57348,8 +59676,8 @@
     (set-goal 328 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 328)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 328 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 328 g:+ 9)
     (up-modify-goal 328 c:mod 3)
     (up-modify-goal 328 c:+ 3)
     (up-modify-goal 328 c:mod 3)
@@ -57405,8 +59733,8 @@
     (set-goal 329 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 329)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 329 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 329 g:+ 209)
     (up-modify-goal 329 c:mod 11)
     (up-modify-goal 329 c:+ 11)
     (up-modify-goal 329 c:mod 11)
@@ -57533,8 +59861,8 @@
     (set-goal 330 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 330)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 330 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 330 g:+ 209)
     (up-modify-goal 330 c:mod 11)
     (up-modify-goal 330 c:+ 11)
     (up-modify-goal 330 c:mod 11)
@@ -57709,8 +60037,8 @@
     (set-goal 331 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 331)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 331 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 331 g:+ 9)
     (up-modify-goal 331 c:mod 3)
     (up-modify-goal 331 c:+ 3)
     (up-modify-goal 331 c:mod 3)
@@ -57802,8 +60130,8 @@
     (set-goal 332 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 332)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 332 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 332 g:+ 9)
     (up-modify-goal 332 c:mod 3)
     (up-modify-goal 332 c:+ 3)
     (up-modify-goal 332 c:mod 3)
@@ -57869,8 +60197,8 @@
     (set-goal 333 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 333)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 333 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 333 g:+ 209)
     (up-modify-goal 333 c:mod 3)
     (up-modify-goal 333 c:+ 3)
     (up-modify-goal 333 c:mod 3)
@@ -57926,8 +60254,8 @@
     (set-goal 334 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 334)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 334 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 334 g:+ 9)
     (up-modify-goal 334 c:mod 11)
     (up-modify-goal 334 c:+ 11)
     (up-modify-goal 334 c:mod 11)
@@ -58054,8 +60382,8 @@
     (set-goal 335 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 335)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 335 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 335 g:+ 9)
     (up-modify-goal 335 c:mod 11)
     (up-modify-goal 335 c:+ 11)
     (up-modify-goal 335 c:mod 11)
@@ -58230,8 +60558,8 @@
     (set-goal 336 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 336)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 336 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 336 g:+ 209)
     (up-modify-goal 336 c:mod 3)
     (up-modify-goal 336 c:+ 3)
     (up-modify-goal 336 c:mod 3)
@@ -58329,8 +60657,8 @@
     (set-goal 337 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 337)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 337 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 337 g:+ 209)
     (up-modify-goal 337 c:mod 3)
     (up-modify-goal 337 c:+ 3)
     (up-modify-goal 337 c:mod 3)
@@ -58377,8 +60705,8 @@
     (set-goal 338 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 338)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 338 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 338 g:+ 9)
     (up-modify-goal 338 c:mod 3)
     (up-modify-goal 338 c:+ 3)
     (up-modify-goal 338 c:mod 3)
@@ -58415,8 +60743,8 @@
     (set-goal 339 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 339)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 339 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 339 g:+ 209)
     (up-modify-goal 339 c:mod 3)
     (up-modify-goal 339 c:+ 3)
     (up-modify-goal 339 c:mod 3)
@@ -58598,8 +60926,8 @@
     (set-goal 340 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 340)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 340 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 340 g:+ 209)
     (up-modify-goal 340 c:mod 3)
     (up-modify-goal 340 c:+ 3)
     (up-modify-goal 340 c:mod 3)
@@ -58639,8 +60967,8 @@
     (set-goal 341 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 341)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 341 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 341 g:+ 9)
     (up-modify-goal 341 c:mod 3)
     (up-modify-goal 341 c:+ 3)
     (up-modify-goal 341 c:mod 3)
@@ -58679,8 +61007,8 @@
     (set-goal 342 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 342)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 342 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 342 g:+ 209)
     (up-modify-goal 342 c:mod 3)
     (up-modify-goal 342 c:+ 3)
     (up-modify-goal 342 c:mod 3)
@@ -58722,8 +61050,8 @@
     (set-goal 343 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 343)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 343 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 343 g:+ 9)
     (up-modify-goal 343 c:mod 4)
     (up-modify-goal 343 c:+ 4)
     (up-modify-goal 343 c:mod 4)
@@ -58795,8 +61123,8 @@
     (set-goal 344 0)
     (generate-random-number 7)
     (up-get-fact random-number 0 344)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 344 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 344 g:+ 9)
     (up-modify-goal 344 c:mod 7)
     (up-modify-goal 344 c:+ 7)
     (up-modify-goal 344 c:mod 7)
@@ -58910,8 +61238,8 @@
     (set-goal 345 0)
     (generate-random-number 2)
     (up-get-fact random-number 0 345)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 345 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 345 g:+ 209)
     (up-modify-goal 345 c:mod 2)
     (up-modify-goal 345 c:+ 2)
     (up-modify-goal 345 c:mod 2)
@@ -58940,8 +61268,8 @@
     (set-goal 346 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 346)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 346 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 346 g:+ 209)
     (up-modify-goal 346 c:mod 3)
     (up-modify-goal 346 c:+ 3)
     (up-modify-goal 346 c:mod 3)
@@ -59001,8 +61329,8 @@
     (set-goal 347 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 347)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 347 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 347 g:+ 9)
     (up-modify-goal 347 c:mod 3)
     (up-modify-goal 347 c:+ 3)
     (up-modify-goal 347 c:mod 3)
@@ -59052,8 +61380,8 @@
     (set-goal 348 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 348)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 348 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 348 g:+ 209)
     (up-modify-goal 348 c:mod 3)
     (up-modify-goal 348 c:+ 3)
     (up-modify-goal 348 c:mod 3)
@@ -59105,8 +61433,8 @@
     (set-goal 349 0)
     (generate-random-number 5)
     (up-get-fact random-number 0 349)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 349 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 349 g:+ 9)
     (up-modify-goal 349 c:mod 5)
     (up-modify-goal 349 c:+ 5)
     (up-modify-goal 349 c:mod 5)
@@ -59168,8 +61496,8 @@
     (set-goal 350 0)
     (generate-random-number 2)
     (up-get-fact random-number 0 350)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 350 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 350 g:+ 209)
     (up-modify-goal 350 c:mod 2)
     (up-modify-goal 350 c:+ 2)
     (up-modify-goal 350 c:mod 2)
@@ -59273,8 +61601,8 @@
     (set-goal 351 0)
     (generate-random-number 6)
     (up-get-fact random-number 0 351)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 351 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 351 g:+ 9)
     (up-modify-goal 351 c:mod 6)
     (up-modify-goal 351 c:+ 6)
     (up-modify-goal 351 c:mod 6)
@@ -59362,8 +61690,8 @@
     (set-goal 352 0)
     (generate-random-number 8)
     (up-get-fact random-number 0 352)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 352 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 352 g:+ 209)
     (up-modify-goal 352 c:mod 8)
     (up-modify-goal 352 c:+ 8)
     (up-modify-goal 352 c:mod 8)
@@ -59491,8 +61819,8 @@
     (set-goal 353 0)
     (generate-random-number 5)
     (up-get-fact random-number 0 353)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 353 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 353 g:+ 9)
     (up-modify-goal 353 c:mod 5)
     (up-modify-goal 353 c:+ 5)
     (up-modify-goal 353 c:mod 5)
@@ -59558,8 +61886,8 @@
     (set-goal 354 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 354)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 354 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 354 g:+ 209)
     (up-modify-goal 354 c:mod 4)
     (up-modify-goal 354 c:+ 4)
     (up-modify-goal 354 c:mod 4)
@@ -59603,8 +61931,8 @@
     (set-goal 355 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 355)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 355 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 355 g:+ 9)
     (up-modify-goal 355 c:mod 3)
     (up-modify-goal 355 c:+ 3)
     (up-modify-goal 355 c:mod 3)
@@ -59649,8 +61977,8 @@
     (set-goal 356 0)
     (generate-random-number 5)
     (up-get-fact random-number 0 356)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 356 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 356 g:+ 209)
     (up-modify-goal 356 c:mod 5)
     (up-modify-goal 356 c:+ 5)
     (up-modify-goal 356 c:mod 5)
@@ -59831,8 +62159,8 @@
     (up-compare-goal 359 c:>= 1)
 =>
     (up-full-reset-search)
-    (up-get-fact player-number 0 209)
-    (up-modify-sn sn-focus-player-number g:= 209)
+    (up-get-fact player-number 0 9)
+    (up-modify-sn sn-focus-player-number g:= 9)
     (up-find-remote c: livestock-class c: 1)
     (up-find-local c: 592 c: 255)
     (up-find-local c: 590 c: 255)
@@ -59844,8 +62172,8 @@
     (goal 359 0)
 =>
     (up-full-reset-search)
-    (up-get-fact player-number 0 209)
-    (up-modify-sn sn-focus-player-number g:= 209)
+    (up-get-fact player-number 0 9)
+    (up-modify-sn sn-focus-player-number g:= 9)
     (up-find-remote c: livestock-class c: 1)
     (up-find-local c: 592 c: 255)
     (up-find-local c: 590 c: 255)
@@ -59855,8 +62183,8 @@
     (true)
 =>
     (up-full-reset-search)
-    (up-get-fact player-number 0 209)
-    (up-modify-sn sn-focus-player-number g:= 209)
+    (up-get-fact player-number 0 9)
+    (up-modify-sn sn-focus-player-number g:= 9)
     (up-find-local c: livestock-class c: 255)
     (up-remove-objects search-local -1 == 0)
     (up-find-remote c: town-center c: 1)
@@ -59882,8 +62210,8 @@
     (up-compare-goal 359 c:>= 1)
 =>
     (up-full-reset-search)
-    (up-get-fact player-number 0 209)
-    (up-modify-sn sn-focus-player-number g:= 209)
+    (up-get-fact player-number 0 9)
+    (up-modify-sn sn-focus-player-number g:= 9)
     (up-find-local c: livestock-class c: 1)
     (up-find-remote c: town-center c: 1)
     (set-strategic-number sn-target-point-adjustment 5)
@@ -59893,12 +62221,12 @@
 (defrule
     (true)
 =>
-    (up-get-fact unit-type-count 592 9)
-    (up-get-fact unit-type-count 590 209)
-    (up-modify-goal 9 g:+ 209)
+    (up-get-fact unit-type-count 592 209)
+    (up-get-fact unit-type-count 590 9)
+    (up-modify-goal 209 g:+ 9)
 )
 (defrule
-    (up-compare-goal 9 c:> 6)
+    (up-compare-goal 209 c:> 6)
 =>
     (up-full-reset-search)
     (up-modify-sn sn-focus-player-number c:= 0)
@@ -59940,8 +62268,8 @@
     (up-find-remote c: 907 c: 255)
     (up-target-objects 0 action-default -1 -1)
     (up-reset-search 1 1 1 1)
-    (up-get-fact player-number 0 209)
-    (up-modify-sn sn-focus-player-number g:= 209)
+    (up-get-fact player-number 0 9)
+    (up-modify-sn sn-focus-player-number g:= 9)
     (up-reset-filters)
     (up-find-local c: livestock-class c: 255)
     (up-find-remote c: mill c: 1)
@@ -59958,10 +62286,10 @@
     (building-type-count town-center > 0)
 =>
     (up-full-reset-search)
-    (up-get-point position-self 207)
-    (up-set-target-point 207)
-    (up-modify-goal 207 c:* 100)
-    (up-modify-goal 208 c:* 100)
+    (up-get-point position-self 41)
+    (up-set-target-point 41)
+    (up-modify-goal 41 c:* 100)
+    (up-modify-goal 42 c:* 100)
     (set-strategic-number sn-focus-player-number 0)
     (up-filter-distance c: -1 c: 30)
     (up-find-remote c: 909 c: 100)
@@ -59977,15 +62305,15 @@
 =>
     (up-clean-search search-remote 44 1)
     (up-set-target-object search-remote c: 0)
-    (up-get-object-data 38 41)
-    (up-get-object-data 39 42)
-    (up-lerp-tiles 41 207 c: -150)
+    (up-get-object-data 38 207)
+    (up-get-object-data 39 208)
+    (up-lerp-tiles 207 41 c: -150)
     (up-reset-filters)
     (up-find-local c: scout-cavalry-line c: 1)
     (up-find-local c: eagle-warrior-line c: 1)
     (up-find-local c: camel-line c: 1)
     (set-strategic-number sn-target-point-adjustment 6)
-    (up-target-point 41 action-default -1 -1)
+    (up-target-point 207 action-default -1 -1)
     (set-strategic-number sn-target-point-adjustment 0)
 )
 (defrule
@@ -59998,8 +62326,8 @@
     (up-full-reset-search)
     (up-find-local c: town-center c: 1)
     (up-set-target-object search-local c: 0)
-    (up-get-point position-object 207)
-    (up-set-target-point 207)
+    (up-get-point position-object 41)
+    (up-set-target-point 41)
     (up-reset-search 1 1 0 0)
     (up-filter-distance c: -1 c: 4)
     (up-find-local c: villager-class c: 4)
@@ -60099,13 +62427,13 @@
     )
     (building-type-count town-center > 0)
 =>
-    (set-goal 209 0)
+    (set-goal 9 0)
     (up-get-fact building-type-count-total town-center 370)
     (up-modify-goal 370 c:* 9)
-    (up-modify-goal 209 g:+ 370)
+    (up-modify-goal 9 g:+ 370)
     (up-get-fact building-type-count-total mill 370)
     (up-modify-goal 370 c:* 6)
-    (up-modify-goal 209 g:+ 370)
+    (up-modify-goal 9 g:+ 370)
     (up-get-fact building-type-count-total farm 370)
 )
 (defrule
@@ -60115,7 +62443,7 @@
         (not
           (civ-selected khmer)
         )
-        (up-compare-goal 370 g:>= 209)
+        (up-compare-goal 370 g:>= 9)
       )
     )
     (or
@@ -60253,10 +62581,10 @@
     (up-get-fact unit-type-count villager 370)
     (up-modify-goal 370 c:/ 10)
     (up-modify-goal 370 c:+ 1)
-    (up-get-fact unit-type-count-total mule-cart 209)
+    (up-get-fact unit-type-count-total mule-cart 9)
 )
 (defrule
-    (up-compare-goal 209 g:< 370)
+    (up-compare-goal 9 g:< 370)
     (can-build mule-cart)
     (up-pending-objects c: mule-cart == 0)
     (building-type-count town-center > 0)
@@ -60275,8 +62603,8 @@
 =>
     (set-strategic-number sn-defer-dropsite-update 0)
     (up-full-reset-search)
-    (up-get-fact player-number 0 209)
-    (up-modify-sn sn-focus-player-number g:= 209)
+    (up-get-fact player-number 0 9)
+    (up-modify-sn sn-focus-player-number g:= 9)
     (up-find-remote c: mule-cart c: 255)
     (up-get-search-state 373)
 )
@@ -60296,18 +62624,18 @@
     (building-type-count town-center > 0)
 =>
     (up-set-target-object search-remote g: 370)
-    (up-get-point position-object 41)
-    (up-set-target-point 41)
-    (up-get-object-data 38 41)
-    (up-get-object-data 39 42)
+    (up-get-point position-object 207)
+    (up-set-target-point 207)
+    (up-get-object-data 38 207)
+    (up-get-object-data 39 208)
     (up-reset-search 1 1 0 0)
     (up-find-local c: mule-cart c: 255)
     (up-set-target-object search-local c: 0)
-    (up-get-object-data 38 207)
-    (up-get-object-data 39 208)
-    (up-lerp-tiles 207 41 c: -500)
+    (up-get-object-data 38 41)
+    (up-get-object-data 39 42)
+    (up-lerp-tiles 41 207 c: -500)
     (set-strategic-number sn-target-point-adjustment 6)
-    (up-target-point 207 action-default -1 -1)
+    (up-target-point 41 action-default -1 -1)
     (set-strategic-number sn-target-point-adjustment 0)
     (up-modify-goal 370 c:+ 1)
     (up-jump-rule -1)
@@ -60318,7 +62646,7 @@
     (building-type-count town-center > 0)
 =>
     (up-full-reset-search)
-    (up-modify-sn sn-focus-player-number g:= 209)
+    (up-modify-sn sn-focus-player-number g:= 9)
     (up-filter-exclude -1 -1 orderid-move -1)
     (up-find-local c: mule-cart c: 255)
     (up-set-target-object search-local c: 0)
@@ -60397,13 +62725,13 @@
     (up-research-status c: feudal-age < research-pending)
     (building-type-count town-center > 0)
 =>
-    (up-get-fact unit-type-count villager 209)
-    (up-modify-goal 209 s:* sn-food-gatherer-percentage)
-    (up-modify-goal 209 c:/ 100)
+    (up-get-fact unit-type-count villager 9)
+    (up-modify-goal 9 s:* sn-food-gatherer-percentage)
+    (up-modify-goal 9 c:/ 100)
     (up-get-fact building-type-count-total farm 370)
 )
 (defrule
-    (up-compare-goal 370 g:< 209)
+    (up-compare-goal 370 g:< 9)
     (can-build farm)
     (wood-amount >= 150)
     (up-pending-objects c: farm == 0)
@@ -60429,13 +62757,13 @@
     )
     (building-type-count town-center > 0)
 =>
-    (up-get-fact unit-type-count villager 209)
-    (up-modify-goal 209 s:* sn-food-gatherer-percentage)
-    (up-modify-goal 209 c:/ 100)
+    (up-get-fact unit-type-count villager 9)
+    (up-modify-goal 9 s:* sn-food-gatherer-percentage)
+    (up-modify-goal 9 c:/ 100)
     (up-get-fact building-type-count-total farm 370)
 )
 (defrule
-    (up-compare-goal 370 g:< 209)
+    (up-compare-goal 370 g:< 9)
     (can-build farm)
     (up-research-status c: ri-horse-collar != research-pending)
     (up-research-status c: ri-heavy-plow != research-pending)
@@ -60610,8 +62938,8 @@
     (set-goal 379 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 379)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 379 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 379 g:+ 9)
     (up-modify-goal 379 c:mod 3)
     (up-modify-goal 379 c:+ 3)
     (up-modify-goal 379 c:mod 3)
@@ -60669,8 +62997,8 @@
     (set-goal 380 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 380)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 380 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 380 g:+ 9)
     (up-modify-goal 380 c:mod 3)
     (up-modify-goal 380 c:+ 3)
     (up-modify-goal 380 c:mod 3)
@@ -60806,8 +63134,8 @@
     (set-goal 383 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 383)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 383 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 383 g:+ 9)
     (up-modify-goal 383 c:mod 3)
     (up-modify-goal 383 c:+ 3)
     (up-modify-goal 383 c:mod 3)
@@ -60865,8 +63193,8 @@
     (set-goal 384 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 384)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 384 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 384 g:+ 9)
     (up-modify-goal 384 c:mod 3)
     (up-modify-goal 384 c:+ 3)
     (up-modify-goal 384 c:mod 3)
@@ -60937,9 +63265,9 @@
       (goal did-tribute 0)
     )
 =>
-    (up-get-fact resource-amount wood 209)
+    (up-get-fact resource-amount wood 9)
     (up-get-fact escrow-amount wood 370)
-    (up-modify-goal 209 g:- 370)
+    (up-modify-goal 9 g:- 370)
     (up-get-fact resource-amount food 386)
     (up-get-fact escrow-amount food 370)
     (up-modify-goal 386 g:- 370)
@@ -60948,7 +63276,7 @@
     (up-modify-goal 387 g:- 370)
 )
 (defrule
-    (up-compare-goal 209 c:> max-gold)
+    (up-compare-goal 9 c:> max-gold)
     (can-sell-commodity wood)
     (up-compare-goal 387 c:< max-gold)
     (or
@@ -60970,7 +63298,7 @@
     (sell-commodity food)
 )
 (defrule
-    (up-compare-goal 209 c:< max-gold)
+    (up-compare-goal 9 c:< max-gold)
     (up-compare-goal 387 c:> max-gold)
     (can-buy-commodity wood)
     (or

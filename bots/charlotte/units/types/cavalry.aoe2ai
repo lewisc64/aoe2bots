@@ -25,6 +25,9 @@
 #if current-age == imperial-age
   load "../../research/castle/farimba.aoe2ai"
   load "../../research/castle/wootz_steel.aoe2ai"
+  #if up-compare-goal population-space-remaining c:< 10
+    load "../../research/castle/aznauri_cavalry.aoe2ai"
+  #end if
 #end if
 
 build 1 barracks

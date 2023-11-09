@@ -37,6 +37,9 @@
   #if civ-selected byzantine or civ-selected hun or civ-selected magyar or civ-selected persian or civ-selected saracen or civ-selected slavic or civ-selected lithuanians or civ-selected tatars or civ-selected burgundians or civ-selected romans
     load "types/cavalry.aoe2ai"
   #end if
+  #if civ-selected georgians
+    load "types/cavalry.aoe2ai"
+  #end if
   
   @up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type
   
