@@ -22,7 +22,15 @@ build 2 blacksmith
   goal monk-trash = 0
 #end if
 
-goal produce-archers = 0
+#if civ-selected persian and research-completed ri-kamandaran
+  goal archer-trash = 1
+#else
+  goal archer-trash = 0
+#end if
+
+#if goal archer-trash 0
+  goal produce-archers = 0
+#end if
 goal produce-hand-cannoneers = 0
 goal produce-cavalry-archers = 0
 #if goal militia-trash 0

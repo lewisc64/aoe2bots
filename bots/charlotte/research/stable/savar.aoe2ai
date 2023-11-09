@@ -1,0 +1,7 @@
+#if not research-completed ri-savar
+  load "../stable/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+  load "../stable/cavalier.aoe2ai"
+
+  insert attempt-research(research="ri-savar",importance="importance-medium",building="stable")
+#end if

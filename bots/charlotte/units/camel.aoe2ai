@@ -8,10 +8,6 @@ load "../research/stable/prerequisites.aoe2ai"
     load "../research/castle/frontier_guards.aoe2ai"
   #end if
   
-  #if current-age >= castle-age
-    load "../research/castle/zealotry.aoe2ai"
-  #end if
-  
   load "types/cavalry.aoe2ai"
   
   #if goal produce-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1

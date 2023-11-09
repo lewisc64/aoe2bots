@@ -1,6 +1,0 @@
-#if not research-completed ri-zealotry and civ-selected saracen
-  load "../castle/prerequisites.aoe2ai"
-  //load "../town_center/castle_age.aoe2ai"
-
-  insert attempt-research(research="ri-zealotry",importance="importance-medium",building="castle")
-#end if

@@ -1,0 +1,6 @@
+#if not research-completed ri-kamandaran and civ-selected persian
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/castle_age.aoe2ai"
+
+  insert attempt-research(research="ri-kamandaran",importance="importance-high",building="castle")
+#end if

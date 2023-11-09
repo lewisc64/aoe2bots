@@ -56,10 +56,6 @@
     load "../research/castle/fabric_shields.aoe2ai"
   #end if
   
-  #if civ-selected saracen
-    load "../research/castle/zealotry.aoe2ai"
-  #end if
-  
   #if civ-selected bengalis
     load "../research/castle/paiks.aoe2ai"
   #end if
@@ -73,10 +69,6 @@
   #if current-age == imperial-age
     #if civ-selected byzantine
       load "../research/castle/logistica.aoe2ai"
-    #end if
-    
-    #if civ-selected persian
-      load "../research/castle/mahouts.aoe2ai"
     #end if
     
     #if civ-selected chinese

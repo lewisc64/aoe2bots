@@ -2,6 +2,10 @@ load "../research/monastery/prerequisites.aoe2ai"
 
 #if unit-available monk
 
+  #if current-age >= castle-age
+    load "../research/castle/bimaristan.aoe2ai"
+  #end if
+
   #if current-age == imperial-age
     load "../research/castle/hussite_reforms.aoe2ai"
   #end if
