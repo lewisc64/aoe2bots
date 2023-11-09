@@ -3,6 +3,11 @@ load "../research/barracks/prerequisites.aoe2ai"
 
 #if unit-available warrior-priest
 
+  #if current-age >= castle-age
+    load "../research/monastery/sanctity.aoe2ai"
+    load "../research/monastery/fervor.aoe2ai"
+  #end if
+
   #do once
     goal old-desired-military-buildings-per-type = 0
   #end do

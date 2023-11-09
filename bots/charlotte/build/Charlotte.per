@@ -4065,7 +4065,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 5782)
+    (up-jump-rule 5794)
 )
 (defrule
     (can-build town-center)
@@ -43690,7 +43690,7 @@
       (goal allow-land-units 1)
     )
 =>
-    (up-jump-rule 144)
+    (up-jump-rule 156)
 )
 (defrule
     (goal produce-warrior-priests 1)
@@ -43721,7 +43721,7 @@
       (unit-available warrior-priest)
     )
 =>
-    (up-jump-rule 140)
+    (up-jump-rule 152)
 )
 (defrule
     (can-build barracks)
@@ -43730,6 +43730,92 @@
     (building-type-count-total barracks == 0)
 =>
     (build barracks)
+)
+(defrule
+    (nand
+      (current-age >= castle-age)
+      (unit-available warrior-priest)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (research-completed ri-sanctity)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build monastery)
+    (up-pending-objects c: monastery < 5)
+    (building-type-count-total monastery < 1)
+    (building-type-count-total monastery == 0)
+=>
+    (build monastery)
+)
+(defrule
+    (research-completed ri-sanctity)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-sanctity < research-pending)
+    (research-available ri-sanctity)
+    (building-type-count monastery >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-sanctity)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-sanctity)
+    (building-type-count monastery >= 1)
+=>
+    (research ri-sanctity)
+)
+(defrule
+    (nand
+      (current-age >= castle-age)
+      (unit-available warrior-priest)
+    )
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (research-completed ri-fervor)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build monastery)
+    (up-pending-objects c: monastery < 5)
+    (building-type-count-total monastery < 1)
+    (building-type-count-total monastery == 0)
+=>
+    (build monastery)
+)
+(defrule
+    (research-completed ri-fervor)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-fervor < research-pending)
+    (research-available ri-fervor)
+    (building-type-count monastery >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-fervor)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-fervor)
+    (building-type-count monastery >= 1)
+=>
+    (research ri-fervor)
 )
 (defrule
     (unit-available warrior-priest)
