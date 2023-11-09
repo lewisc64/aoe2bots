@@ -296,6 +296,9 @@ insert decide-blacksmith-investment(type="infantry")
   goal {prefix}unique-unit-counters-cavalry-archer = 0
   goal {prefix}unique-unit-counters-unique-unit = 0
 
+  #if players-civ {player} armenians
+    goal {prefix}unique-unit-is-ranged = 1
+  #end if
   #if players-civ {player} aztec
     goal {prefix}unique-unit-is-infantry = 1
     goal {prefix}unique-unit-counters-infantry = 1

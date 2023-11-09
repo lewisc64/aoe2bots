@@ -1,6 +1,12 @@
 #if not research-completed ri-gold-shaft-mining
   load "../mining_camp/prerequisites.aoe2ai"
   load "../mining_camp/gold_mining.aoe2ai"
-
-  insert attempt-research(research="ri-gold-shaft-mining",importance="importance-medium",building="mining-camp")
+  
+  #if building-available mining-camp
+    insert attempt-research(research="ri-gold-shaft-mining",importance="importance-medium",building="mining-camp")
+  #end if
+  
+  #if building-available mule-cart
+    insert attempt-research(research="ri-gold-shaft-mining",importance="importance-medium",building="mule-cart")
+  #end if
 #end if

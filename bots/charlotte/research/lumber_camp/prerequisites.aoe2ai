@@ -1,3 +1,7 @@
 #if building-type-count-total lumber-camp == 0
   build 1 lumber-camp
 #end if
+
+#if building-type-count-total mule-cart == 0
+  build 1 mule-cart
+#end if

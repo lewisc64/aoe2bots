@@ -34,6 +34,8 @@ const ri-orthodoxy = 512
 const ri-hulche-javelineers = 485
 const ri-zealotry = 9
 const ri-paper-money = 629
+const ri-fereters = 921
+const ri-cilician-fleet = 922
 
 const ri-elite-genitour = 599
 const genitour-line = 1079
@@ -88,6 +90,7 @@ const importance-low = 1
   {before}spearmen{after}
   {before}eagles{after}
   {before}condottiero{after}
+  {before}warrior-priests{after}
 #end template
 
 #template all-land-cavalry-unit-goal-names

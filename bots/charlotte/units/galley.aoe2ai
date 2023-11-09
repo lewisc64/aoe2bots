@@ -17,6 +17,7 @@ load "../research/dock/prerequisites.aoe2ai"
   #if current-age >= castle-age
     load "../research/university/ballistics.aoe2ai"
     load "../research/castle/ballistas.aoe2ai"
+    load "../research/castle/cilician_fleet.aoe2ai"
   #end if
   
   load "types/ship.aoe2ai"

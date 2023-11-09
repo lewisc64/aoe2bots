@@ -2,13 +2,26 @@
 load "../research/barracks/prerequisites.aoe2ai"
 
 #if unit-available militiaman-line
-  #if current-age == feudal-age
-    load "../research/barracks/man_at_arms.aoe2ai"
-  #else if current-age == castle-age
-    load "../research/barracks/longswordsman.aoe2ai"
-  #else if current-age == imperial-age
-    load "../research/barracks/legionary.aoe2ai"
-    load "../research/barracks/champion.aoe2ai"
+
+  #if civ-selected armenians
+    #if current-age == feudal-age
+      load "../research/barracks/man_at_arms.aoe2ai"
+      load "../research/barracks/longswordsman.aoe2ai"
+    #else if current-age >= castle-age
+      load "../research/barracks/champion.aoe2ai"
+    #end if
+  #else
+    #if current-age == feudal-age
+      load "../research/barracks/man_at_arms.aoe2ai"
+    #else if current-age == castle-age
+      load "../research/barracks/longswordsman.aoe2ai"
+    #else if current-age == imperial-age
+      load "../research/barracks/legionary.aoe2ai"
+      load "../research/barracks/champion.aoe2ai"
+    #end if
+  #end if
+
+  #if current-age == imperial-age
     load "../research/castle/forced_levy.aoe2ai"
     load "../research/castle/comitatenses.aoe2ai"
   #end if

@@ -1,0 +1,6 @@
+#if not research-completed ri-fereters and civ-selected armenians
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/imperial_age.aoe2ai"
+
+  insert attempt-research(research="ri-fereters",importance="importance-high",building="castle")
+#end if

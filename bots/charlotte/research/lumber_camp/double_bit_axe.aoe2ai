@@ -1,5 +1,11 @@
 #if not research-completed ri-double-bit-axe
   load "../lumber_camp/prerequisites.aoe2ai"
-
-  insert attempt-research(research="ri-double-bit-axe",importance="importance-critical",building="lumber-camp")
+  
+  #if building-available lumber-camp
+    insert attempt-research(research="ri-double-bit-axe",importance="importance-critical",building="lumber-camp")
+  #end if
+  
+  #if building-available mule-cart
+    insert attempt-research(research="ri-double-bit-axe",importance="importance-critical",building="mule-cart")
+  #end if
 #end if

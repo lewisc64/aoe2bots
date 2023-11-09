@@ -1,0 +1,27 @@
+//load "../research/town_center/imperial_age.aoe2ai"
+load "../research/barracks/prerequisites.aoe2ai"
+
+#if unit-available warrior-priest
+
+  #do once
+    goal old-desired-military-buildings-per-type = 0
+  #end do
+  @up-modify-goal old-desired-military-buildings-per-type g:= desired-military-buildings-per-type
+  goal desired-military-buildings-per-type = 0
+  
+  load "types/infantry.aoe2ai"
+  
+  @up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type
+  
+  #do once
+  goal monastery-count = 0
+  #end do
+  @up-get-fact building-type-count-total monastery monastery-count
+  #if up-compare-goal monastery-count g:< desired-military-buildings-per-type
+    build monastery
+  #end if
+  
+  #if goal produce-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1
+    train warrior-priest
+  #end if
+#end if

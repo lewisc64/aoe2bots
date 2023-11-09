@@ -2,5 +2,11 @@
   load "../lumber_camp/prerequisites.aoe2ai"
   load "../lumber_camp/bow_saw.aoe2ai"
 
-  insert attempt-research(research="ri-two-man-saw",importance="importance-medium",building="lumber-camp")
+  #if building-available lumber-camp
+    insert attempt-research(research="ri-two-man-saw",importance="importance-medium",building="lumber-camp")
+  #end if
+  
+  #if building-available mule-cart
+    insert attempt-research(research="ri-two-man-saw",importance="importance-medium",building="mule-cart")
+  #end if
 #end if

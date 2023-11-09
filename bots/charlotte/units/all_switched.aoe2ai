@@ -61,6 +61,7 @@ goal total-type-production = 0
   
   insert add-to-total-type-production(unit="monk",goal="produce-monks")
   insert add-to-total-type-production(unit="missionary",goal="produce-missionaries")
+  insert add-to-total-type-production(unit="warrior-priest",goal="produce-warrior-priests")
 #end if
 
 #if goal allow-naval-units 1
@@ -130,6 +131,7 @@ load "prerequisites.aoe2ai"
 
   insert load-unit(production_goal="produce-monks",unit="monk-set",unit_path="monk.aoe2ai")
   insert load-unit(production_goal="produce-missionaries",unit="missionary",unit_path="missionary.aoe2ai")
+  insert load-unit(production_goal="produce-warrior-priests",unit="warrior-priest",unit_path="warrior_priest.aoe2ai")
 #end if
 
 #if goal allow-naval-units 1

@@ -3,7 +3,14 @@
   insert clear-good-units(prefix="{prefix}")
 
   goal {prefix}good-unique-units = 1
-
+  
+  #if players-civ {player} armenians
+    goal {prefix}good-warrior-priests = 1
+    goal {prefix}good-monks = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-spearmen = 1
+    goal {prefix}good-galleys = 1
+  #end if
   #if players-civ {player} aztec
     goal {prefix}good-eagles = 1
     goal {prefix}good-monks = 1

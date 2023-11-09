@@ -95,6 +95,10 @@ build 1 town-center with wood and stone escrow
     sn-camp-max-distance += 4
   #end when
   
+  // mule carts
+  build mule carts
+  micro mule carts
+  
   // farms
   #if up-research-status c: feudal-age < research-pending
     #if wood-amount >= 150 and up-pending-objects c: farm == 0
