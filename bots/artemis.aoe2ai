@@ -901,7 +901,9 @@ lure boars
 #end if
 
 build lumber camps
-#if building-type-count-total lumber-camp >= 1
+build mule carts
+micro mule carts
+#if building-type-count-total lumber-camp >= 1 or building-type-count-total mule-cart >= 1
   build mills
 #end if
 #if building-type-count house == 0
