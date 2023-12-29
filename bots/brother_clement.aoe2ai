@@ -386,6 +386,15 @@ load "templates/lightning_castle.aoe2ai"
     #end respond
   #end if
   
+  #if research-available ri-devotion
+    #respond to 5 monk-set
+      research ri-devotion
+      #if up-research-status c: ri-devotion < research-pending
+        goal cap-monks = 1
+      #end if
+    #end respond
+  #end if
+  
   #if research-available ri-faith
     #respond to 5 monk-set
       research ri-faith
@@ -401,6 +410,7 @@ load "templates/lightning_castle.aoe2ai"
     research ri-herbal-medicine
     research ri-atonement
     research ri-heresy
+    research ri-devotion
     research ri-faith
   #end if
   
