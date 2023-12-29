@@ -68,7 +68,8 @@ research ri-fervor with gold escrow
 #end respond
 #if gold-amount >= 1000
   research ri-atonement with gold escrow
-  research ri-faith with gold escrow
+  research ri-devotion with food and gold escrow
+  research ri-faith with food and gold escrow
   research ri-herbal-medicine with gold escrow
   research ri-heresy with gold escrow
 #end if
@@ -82,7 +83,8 @@ research ri-theocracy with gold escrow
     chat to all "Shall it be a war of words, then? So be it."
   #end do once
   research ri-heresy with gold escrow
-  research ri-faith with gold escrow
+  research ri-devotion with food and gold escrow
+  research ri-faith with food and gold escrow
 #end respond
 
 research ri-masonry
