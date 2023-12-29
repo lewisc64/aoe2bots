@@ -29,7 +29,9 @@ build 1 town-center with wood and stone escrow
   #end if
   
   // sheep micro
-  micro sheep
+  #if population < 30
+    micro sheep
+  #end if
   
   // deer pushing
   #if game-time >= 360 and game-time < 600

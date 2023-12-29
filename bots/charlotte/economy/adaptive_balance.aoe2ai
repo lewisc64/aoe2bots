@@ -9,7 +9,7 @@ const half-max-wood = 800
 const half-max-food = 800
 const half-max-gold = 800
 
-const minimum-wood-gatherer-percentage = 30
+const minimum-wood-gatherer-percentage = 20
 const minimum-food-gatherer-percentage = 30
 const minimum-gold-gatherer-percentage = 10
 
@@ -186,7 +186,8 @@ goal did-tribute = 0
   distribute 2 villagers from wood and gold to food
 #end if
 
-#if dropsite-min-distance gold >= 0
+// pre-placed mining camps do not update the dropsite-min-distance.
+#if dropsite-min-distance gold >= 0 or game-type == scenario
   #if strategic-number sn-gold-gatherer-percentage < minimum-gold-gatherer-percentage
     chat to self "rebalance: minimum gold hit"
     distribute 2 villagers from wood and food to gold

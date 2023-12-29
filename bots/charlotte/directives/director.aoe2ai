@@ -61,7 +61,9 @@ load "unit_selection/trading.aoe2ai"
     #end if
   #end if
   
-  load "unit_selection/mandatory_siege.aoe2ai"
+  #if players-building-count any-enemy >= 1
+    load "unit_selection/mandatory_siege.aoe2ai"
+  #end if
   load "unit_selection/transporting.aoe2ai"
   
   load "attack_decision/aggressive.aoe2ai"
