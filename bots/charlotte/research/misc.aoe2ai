@@ -2,15 +2,21 @@
   load "../research/castle/conscription.aoe2ai"
 #end if
 
+goal misc-tech-anti-monk = 0
 #respond to 10 monk-set
-  load "../research/monastery/heresy.aoe2ai"
-  load "../research/monastery/faith.aoe2ai"
+  goal misc-tech-anti-monk = 1
 #end respond
-
 #respond to 10 missionary
-  load "../research/monastery/heresy.aoe2ai"
-  load "../research/monastery/faith.aoe2ai"
+  goal misc-tech-anti-monk = 1
 #end respond
+#if goal misc-tech-anti-monk 1
+  load "../research/monastery/heresy.aoe2ai"
+  #if current-age == castle-age
+    load "../research/monastery/devotion.aoe2ai"
+  #else if current-age == imperial-age
+    load "../research/monastery/faith.aoe2ai"
+  #end if
+#end if
 
 #if current-age == imperial-age and goal team-game 1
   load "../research/market/banking.aoe2ai"
