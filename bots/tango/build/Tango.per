@@ -4034,7 +4034,7 @@
       (goal militant 1)
     )
 =>
-    (up-jump-rule 393)
+    (up-jump-rule 394)
 )
 (defrule
     (true)
@@ -5679,6 +5679,14 @@
 =>
     (release-escrow gold)
     (research ri-heresy)
+)
+(defrule
+    (can-research-with-escrow ri-devotion)
+    (players-unit-type-count any-enemy monk >= 10)
+=>
+    (release-escrow food)
+    (release-escrow gold)
+    (research ri-devotion)
 )
 (defrule
     (can-research-with-escrow ri-faith)
