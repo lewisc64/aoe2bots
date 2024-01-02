@@ -109,7 +109,7 @@
   $find local 255 archery-class
   $find local 255 cavalry-class
   $remove from local where 75 != 1 // object-data-hero
-  $remove from local where 10 > 500 // object-data-hitpoints
+  $remove from local where 10 > 150 // object-data-hitpoints
   $set goal hero-count to local list length
   #if not goal hero-count 0
     //@up-chat-data-to-all "hero count: %d" g: hero-count

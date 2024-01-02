@@ -50,6 +50,10 @@ goal produce-condottiero = 0
 #if goal unique-unit-cavalry-trash 0
   goal produce-unique-units = 0
 #end if
+goal produce-elephant-archers = 0
+goal produce-warrior-priests = 0
+goal produce-shrivamsha-riders = 0
+goal produce-steppe-lancers = 0
 
 #if goal full-water-map 0
   goal produce-galleys = 0

@@ -50335,7 +50335,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1183)
+    (up-jump-rule 1184)
 )
 (defrule
     (true)
@@ -50662,7 +50662,7 @@
     (up-reset-filters)
     (up-find-local c: cavalry-class c: 255)
     (up-remove-objects search-local 75 != 1)
-    (up-remove-objects search-local 10 > 500)
+    (up-remove-objects search-local 10 > 150)
     (up-get-search-state 210)
 )
 (defrule
@@ -52296,7 +52296,6 @@
     (goal full-water-map 0)
     (gold-amount < 3000)
     (up-compare-goal no-gold-mining-time c:>= 120)
-    (resource-found gold)
     (unit-type-count trade-cart < 10)
     (game-time >= 1800)
     (goal attack-ready 1)
@@ -52315,7 +52314,7 @@
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 30)
+    (up-jump-rule 31)
 )
 (defrule
     (true)
@@ -52427,6 +52426,14 @@
     (goal unique-unit-cavalry-trash 0)
 =>
     (set-goal produce-unique-units 0)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-elephant-archers 0)
+    (set-goal produce-warrior-priests 0)
+    (set-goal produce-shrivamsha-riders 0)
+    (set-goal produce-steppe-lancers 0)
 )
 (defrule
     (goal full-water-map 0)
@@ -54403,7 +54410,7 @@
     (set-goal allow-naval-units 1)
 )
 (defrule
-    (up-compare-goal largest-enemy-warboat-percentage c:>= 200)
+    (up-compare-goal largest-enemy-warboat-percentage c:>= 150)
     (warboat-count >= 10)
 =>
     (set-goal allow-naval-units 0)

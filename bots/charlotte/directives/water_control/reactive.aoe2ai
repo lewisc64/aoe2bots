@@ -12,6 +12,6 @@ goal allow-naval-units = 0
   goal allow-naval-units = 1
 #end if
 
-#if up-compare-goal largest-enemy-warboat-percentage c:>= 200 and warboat-count >= 10
+#if up-compare-goal largest-enemy-warboat-percentage c:>= 150 and warboat-count >= 10
   goal allow-naval-units = 0
 #end if
