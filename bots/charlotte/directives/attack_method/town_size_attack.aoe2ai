@@ -4,7 +4,7 @@ sn-number-attack-groups = 0
   #if strategic-number sn-maximum-town-size <= 30
     sn-maximum-town-size = 50
   #end if
-  #if enemy-buildings-in-town
+  #if up-building-type-in-town c: castle >= 1 or up-building-type-in-town c: town-center >= 1
     sn-maximum-town-size -= 1
   #else
     sn-maximum-town-size += 5

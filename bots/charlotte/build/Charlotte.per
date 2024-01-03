@@ -597,7 +597,7 @@
     (set-strategic-number sn-livestock-to-town-center 1)
     (set-strategic-number sn-enable-patrol-attack 1)
     (set-strategic-number sn-attack-intelligence 0)
-    (set-strategic-number sn-local-targeting-mode 0)
+    (set-strategic-number sn-local-targeting-mode 1)
     (set-strategic-number sn-percent-enemy-sighted-response 100)
     (set-strategic-number sn-task-ungrouped-soldiers 0)
     (set-strategic-number sn-gather-defense-units 1)
@@ -50333,7 +50333,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1273)
+    (up-jump-rule 1276)
 )
 (defrule
     (true)
@@ -54579,28 +54579,52 @@
       )
     )
 =>
-    (up-jump-rule 3)
+    (up-jump-rule 6)
 )
 (defrule
-    (strategic-number sn-maximum-town-size > 30)
+    (true)
 =>
-    (up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size)
+    (set-strategic-number sn-number-attack-groups 0)
+)
+(defrule
+    (strategic-number sn-maximum-town-size <= 30)
+    (goal attacking 1)
+=>
+    (set-strategic-number sn-maximum-town-size 50)
+)
+(defrule
+    (or
+      (up-building-type-in-town c: castle >= 1)
+      (up-building-type-in-town c: town-center >= 1)
+    )
+    (goal attacking 1)
+=>
+    (up-modify-sn sn-maximum-town-size c:- 1)
+)
+(defrule
+    (not
+      (up-building-type-in-town c: castle >= 1)
+    )
+    (not
+      (up-building-type-in-town c: town-center >= 1)
+    )
+    (goal attacking 1)
+=>
+    (up-modify-sn sn-maximum-town-size c:+ 5)
 )
 (defrule
     (goal attacking 1)
 =>
-    (set-strategic-number sn-number-attack-groups 200)
     (set-strategic-number sn-number-boat-attack-groups 200)
 )
 (defrule
     (not
       (goal attacking 1)
     )
-    (strategic-number sn-number-attack-groups == 200)
+    (strategic-number sn-maximum-town-size > 30)
 =>
-    (set-strategic-number sn-number-attack-groups 0)
+    (up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size)
     (set-strategic-number sn-number-boat-attack-groups 0)
-    (up-reset-unit c: -1)
 )
 (defrule
     (not
