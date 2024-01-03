@@ -20,6 +20,8 @@ const min-gold-percent = 10
   assign 2 builders to barracks
   assign 2 builders to archery-range
   assign 2 builders to stable
+  
+  goal temp = 0
 #end do
 
 load "templates/basic_diplomacy.aoe2ai"
@@ -91,12 +93,11 @@ load "templates/basic_diplomacy.aoe2ai"
 #end template
 
 #template modify-score-for-player-unit
-  #if players-unit-type-count {player} {unit} >= 15
-    goal {score_goal} {sign}= {severity}
-    goal {score_goal} {sign}= {severity}
-  #else if players-unit-type-count {player} {unit} >= 3
-    goal {score_goal} {sign}= {severity}
-  #end if
+  goal score-modifier = 0
+  @up-get-player-fact {player} unit-type-count {unit} score-modifier
+  @up-modify-goal score-modifier c:* {severity}
+  @up-modify-goal score-modifier c:/ 15
+  @up-modify-goal {score_goal} g:{sign} score-modifier
 #end template
 
 #template do-unit-countered-score
@@ -866,6 +867,14 @@ goal halt-production = 0
   insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=6)
   insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=7)
   insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=8)
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=9)
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=10)
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=11)
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=12)
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=13)
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=14)
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=15)
+  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=16)
 #end template
 
 #template research-with-halt
@@ -972,7 +981,10 @@ research imperial-age
 // it's unit decision time
 
 #template make-unit-if-top
-  #if goal top-unit {unit} or goal second-unit {unit} and current-age >= castle-age
+  #if goal top-unit {unit}
+    @up-modify-goal {unit}-production g:= production-scale
+  #end if
+  #if current-age >= castle-age and goal second-unit {unit}
     @up-modify-goal {unit}-production g:= production-scale
   #end if
 #end template
@@ -986,7 +998,11 @@ research imperial-age
 #end if
 
 #if unit-type-count-total villager < 120
-  goal villager-production = 1
+  #if current-age <= feudal-age
+    goal villager-production = 1
+  #else
+    goal villager-production = 3
+  #end if
 #end if
 
 // it's research time
@@ -1130,12 +1146,7 @@ insert do-production(unit="villager")
 #end if
 insert do-production(unit="battering-ram-line")
 insert do-production(unit="armored-elephant-line")
-insert do-production(unit="skirmisher-line")
-insert do-production(unit="archer-line")
-insert do-production(unit="knight-line")
-insert do-production(unit="scout-cavalry-line")
-insert do-production(unit="militiaman-line")
-insert do-production(unit="spearman-line")
+insert unit-names(before="insert do-production(unit=\"",after="\")")
 
 //chat goal to all "unitwood: %d" unit-wood
 //chat goal to all "unitfood: %d" unit-food
@@ -1272,7 +1283,7 @@ goal unit-resource-total = 0
   distribute villagers 0 100 0 0
 #else if unit-type-count villager < 12
   distribute villagers 20 80 0 0
-#else if unit-type-count villager < 17
+#else if unit-type-count villager < 16
   distribute villagers 40 60 0 0
 #end if
 
