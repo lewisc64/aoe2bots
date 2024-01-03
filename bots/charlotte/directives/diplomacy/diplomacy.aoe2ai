@@ -20,8 +20,8 @@ const bad-egg-expiry = 300
   #if player-in-game {player} and not goal diplo-my-player-number {player}
     
     // players who have been bad eggs for a while are forgiven
-    #if goal player-{player}-is-bad-egg 1 and not goal player-{player}-bad-egg-expires-at -1
-      #if up-compare-goal game-time-goal g:>= player-{player}-bad-egg-expires-at
+    #ifg goal player-{player}-is-bad-egg 1 and not goal player-{player}-bad-egg-expires-at -1
+      #ifg up-compare-goal game-time-goal g:>= player-{player}-bad-egg-expires-at
         goal player-{player}-is-bad-egg = 0
         goal player-{player}-bad-egg-expires-at = -1
         chat to self "player {player} is no longer a bad egg"
@@ -29,7 +29,7 @@ const bad-egg-expiry = 300
     #end if
     
     // accept alliances
-    #if goal player-{player}-is-bad-egg 0 and goal allied-with-{player} 0
+    #ifg goal player-{player}-is-bad-egg 0 and goal allied-with-{player} 0
       #if players-stance {player} ally
         #if stance-toward {player} enemy or stance-toward {player} neutral
           #if goal accept-alliance-requests 1
@@ -47,7 +47,7 @@ const bad-egg-expiry = 300
     #end if
     
     // we are betrayed, in a declared way
-    #if goal allied-with-{player} 1 and not players-stance {player} ally
+    #ifg goal allied-with-{player} 1 and not players-stance {player} ally
       insert say-alliance-betrayal-line-to-all(player={player})
       insert set-bad-egg(player={player})
       goal allied-with-{player} = 0
@@ -55,7 +55,7 @@ const bad-egg-expiry = 300
     #end if
     
     // we are attacked by a neutral or an ally without a stance change
-    #if goal threat-player {player} and up-compare-goal threat-time c:< 1000 and not stance-toward {player} enemy
+    #ifg goal threat-player {player} and up-compare-goal threat-time c:< 1000 and not stance-toward {player} enemy
       chat to self "attacked by player {player}"
       #if goal allied-with-{player} 1
         insert say-alliance-betrayal-line-to-all(player={player})
@@ -68,7 +68,7 @@ const bad-egg-expiry = 300
     #end if
     
     // time out alliance requests
-    #if goal allied-with-{player} 0 and stance-toward {player} ally and goal player-{player}-is-bad-egg 0 and goal tried-alliance-with-{player} 0
+    #ifg goal allied-with-{player} 0 and stance-toward {player} ally and goal player-{player}-is-bad-egg 0 and goal tried-alliance-with-{player} 0
       @up-modify-goal temp g:= game-time-goal
       @up-modify-goal temp g:- player-{player}-alliance-request-time-stamp
       #if up-compare-goal temp c:>= alliance-request-timeout

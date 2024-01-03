@@ -1374,10 +1374,10 @@
     (set-goal partial-ranged-blacksmith-investment 1)
 )
 (defrule
-    (goal ranged-blacksmith-techs-done 2)
     (not
       (goal ranged-blacksmith-techs-done 1)
     )
+    (goal ranged-blacksmith-techs-done 2)
     (current-age == feudal-age)
 =>
     (set-goal partial-ranged-blacksmith-investment 1)
@@ -1385,50 +1385,50 @@
 )
 (defrule
     (goal ranged-blacksmith-techs-done 3)
-    (current-age == castle-age)
     (not
       (current-age == feudal-age)
     )
+    (current-age == castle-age)
 =>
     (set-goal partial-ranged-blacksmith-investment 1)
 )
 (defrule
-    (goal ranged-blacksmith-techs-done 4)
     (not
       (goal ranged-blacksmith-techs-done 3)
     )
-    (current-age == castle-age)
+    (goal ranged-blacksmith-techs-done 4)
     (not
       (current-age == feudal-age)
     )
+    (current-age == castle-age)
 =>
     (set-goal partial-ranged-blacksmith-investment 1)
     (set-goal full-ranged-blacksmith-investment 1)
 )
 (defrule
     (goal ranged-blacksmith-techs-done 5)
-    (current-age == imperial-age)
     (not
       (current-age == feudal-age)
     )
     (not
       (current-age == castle-age)
     )
+    (current-age == imperial-age)
 =>
     (set-goal partial-ranged-blacksmith-investment 1)
 )
 (defrule
-    (goal ranged-blacksmith-techs-done 6)
     (not
       (goal ranged-blacksmith-techs-done 5)
     )
-    (current-age == imperial-age)
+    (goal ranged-blacksmith-techs-done 6)
     (not
       (current-age == feudal-age)
     )
     (not
       (current-age == castle-age)
     )
+    (current-age == imperial-age)
 =>
     (set-goal partial-ranged-blacksmith-investment 1)
     (set-goal full-ranged-blacksmith-investment 1)
@@ -1440,10 +1440,10 @@
     (set-goal partial-cavalry-blacksmith-investment 1)
 )
 (defrule
-    (goal cavalry-blacksmith-techs-done 2)
     (not
       (goal cavalry-blacksmith-techs-done 1)
     )
+    (goal cavalry-blacksmith-techs-done 2)
     (current-age == feudal-age)
 =>
     (set-goal partial-cavalry-blacksmith-investment 1)
@@ -1451,50 +1451,50 @@
 )
 (defrule
     (goal cavalry-blacksmith-techs-done 3)
-    (current-age == castle-age)
     (not
       (current-age == feudal-age)
     )
+    (current-age == castle-age)
 =>
     (set-goal partial-cavalry-blacksmith-investment 1)
 )
 (defrule
-    (goal cavalry-blacksmith-techs-done 4)
     (not
       (goal cavalry-blacksmith-techs-done 3)
     )
-    (current-age == castle-age)
+    (goal cavalry-blacksmith-techs-done 4)
     (not
       (current-age == feudal-age)
     )
+    (current-age == castle-age)
 =>
     (set-goal partial-cavalry-blacksmith-investment 1)
     (set-goal full-cavalry-blacksmith-investment 1)
 )
 (defrule
     (goal cavalry-blacksmith-techs-done 5)
-    (current-age == imperial-age)
     (not
       (current-age == feudal-age)
     )
     (not
       (current-age == castle-age)
     )
+    (current-age == imperial-age)
 =>
     (set-goal partial-cavalry-blacksmith-investment 1)
 )
 (defrule
-    (goal cavalry-blacksmith-techs-done 6)
     (not
       (goal cavalry-blacksmith-techs-done 5)
     )
-    (current-age == imperial-age)
+    (goal cavalry-blacksmith-techs-done 6)
     (not
       (current-age == feudal-age)
     )
     (not
       (current-age == castle-age)
     )
+    (current-age == imperial-age)
 =>
     (set-goal partial-cavalry-blacksmith-investment 1)
     (set-goal full-cavalry-blacksmith-investment 1)
@@ -1506,10 +1506,10 @@
     (set-goal partial-infantry-blacksmith-investment 1)
 )
 (defrule
-    (goal infantry-blacksmith-techs-done 2)
     (not
       (goal infantry-blacksmith-techs-done 1)
     )
+    (goal infantry-blacksmith-techs-done 2)
     (current-age == feudal-age)
 =>
     (set-goal partial-infantry-blacksmith-investment 1)
@@ -1517,50 +1517,50 @@
 )
 (defrule
     (goal infantry-blacksmith-techs-done 3)
-    (current-age == castle-age)
     (not
       (current-age == feudal-age)
     )
+    (current-age == castle-age)
 =>
     (set-goal partial-infantry-blacksmith-investment 1)
 )
 (defrule
-    (goal infantry-blacksmith-techs-done 4)
     (not
       (goal infantry-blacksmith-techs-done 3)
     )
-    (current-age == castle-age)
+    (goal infantry-blacksmith-techs-done 4)
     (not
       (current-age == feudal-age)
     )
+    (current-age == castle-age)
 =>
     (set-goal partial-infantry-blacksmith-investment 1)
     (set-goal full-infantry-blacksmith-investment 1)
 )
 (defrule
     (goal infantry-blacksmith-techs-done 5)
-    (current-age == imperial-age)
     (not
       (current-age == feudal-age)
     )
     (not
       (current-age == castle-age)
     )
+    (current-age == imperial-age)
 =>
     (set-goal partial-infantry-blacksmith-investment 1)
 )
 (defrule
-    (goal infantry-blacksmith-techs-done 6)
     (not
       (goal infantry-blacksmith-techs-done 5)
     )
-    (current-age == imperial-age)
+    (goal infantry-blacksmith-techs-done 6)
     (not
       (current-age == feudal-age)
     )
     (not
       (current-age == castle-age)
     )
+    (current-age == imperial-age)
 =>
     (set-goal partial-infantry-blacksmith-investment 1)
     (set-goal full-infantry-blacksmith-investment 1)
@@ -1892,22 +1892,22 @@
     (up-modify-goal ally-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 1 neutral)
     (not
       (stance-toward 1 ally)
     )
+    (stance-toward 1 neutral)
     (player-in-game 1)
 =>
     (up-modify-goal neutral-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 1 enemy)
     (not
       (stance-toward 1 ally)
     )
     (not
       (stance-toward 1 neutral)
     )
+    (stance-toward 1 enemy)
     (player-in-game 1)
 =>
     (up-modify-goal enemy-players-count c:+ 1)
@@ -1919,22 +1919,22 @@
     (up-modify-goal ally-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 2 neutral)
     (not
       (stance-toward 2 ally)
     )
+    (stance-toward 2 neutral)
     (player-in-game 2)
 =>
     (up-modify-goal neutral-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 2 enemy)
     (not
       (stance-toward 2 ally)
     )
     (not
       (stance-toward 2 neutral)
     )
+    (stance-toward 2 enemy)
     (player-in-game 2)
 =>
     (up-modify-goal enemy-players-count c:+ 1)
@@ -1946,22 +1946,22 @@
     (up-modify-goal ally-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 3 neutral)
     (not
       (stance-toward 3 ally)
     )
+    (stance-toward 3 neutral)
     (player-in-game 3)
 =>
     (up-modify-goal neutral-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 3 enemy)
     (not
       (stance-toward 3 ally)
     )
     (not
       (stance-toward 3 neutral)
     )
+    (stance-toward 3 enemy)
     (player-in-game 3)
 =>
     (up-modify-goal enemy-players-count c:+ 1)
@@ -1973,22 +1973,22 @@
     (up-modify-goal ally-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 4 neutral)
     (not
       (stance-toward 4 ally)
     )
+    (stance-toward 4 neutral)
     (player-in-game 4)
 =>
     (up-modify-goal neutral-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 4 enemy)
     (not
       (stance-toward 4 ally)
     )
     (not
       (stance-toward 4 neutral)
     )
+    (stance-toward 4 enemy)
     (player-in-game 4)
 =>
     (up-modify-goal enemy-players-count c:+ 1)
@@ -2000,22 +2000,22 @@
     (up-modify-goal ally-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 5 neutral)
     (not
       (stance-toward 5 ally)
     )
+    (stance-toward 5 neutral)
     (player-in-game 5)
 =>
     (up-modify-goal neutral-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 5 enemy)
     (not
       (stance-toward 5 ally)
     )
     (not
       (stance-toward 5 neutral)
     )
+    (stance-toward 5 enemy)
     (player-in-game 5)
 =>
     (up-modify-goal enemy-players-count c:+ 1)
@@ -2027,22 +2027,22 @@
     (up-modify-goal ally-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 6 neutral)
     (not
       (stance-toward 6 ally)
     )
+    (stance-toward 6 neutral)
     (player-in-game 6)
 =>
     (up-modify-goal neutral-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 6 enemy)
     (not
       (stance-toward 6 ally)
     )
     (not
       (stance-toward 6 neutral)
     )
+    (stance-toward 6 enemy)
     (player-in-game 6)
 =>
     (up-modify-goal enemy-players-count c:+ 1)
@@ -2054,22 +2054,22 @@
     (up-modify-goal ally-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 7 neutral)
     (not
       (stance-toward 7 ally)
     )
+    (stance-toward 7 neutral)
     (player-in-game 7)
 =>
     (up-modify-goal neutral-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 7 enemy)
     (not
       (stance-toward 7 ally)
     )
     (not
       (stance-toward 7 neutral)
     )
+    (stance-toward 7 enemy)
     (player-in-game 7)
 =>
     (up-modify-goal enemy-players-count c:+ 1)
@@ -2081,22 +2081,22 @@
     (up-modify-goal ally-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 8 neutral)
     (not
       (stance-toward 8 ally)
     )
+    (stance-toward 8 neutral)
     (player-in-game 8)
 =>
     (up-modify-goal neutral-players-count c:+ 1)
 )
 (defrule
-    (stance-toward 8 enemy)
     (not
       (stance-toward 8 ally)
     )
     (not
       (stance-toward 8 neutral)
     )
+    (stance-toward 8 enemy)
     (player-in-game 8)
 =>
     (up-modify-goal enemy-players-count c:+ 1)
@@ -2107,21 +2107,21 @@
     (up-modify-goal ally-players-count c:- 1)
 )
 (defrule
-    (stance-toward my-player-number neutral)
     (not
       (stance-toward my-player-number ally)
     )
+    (stance-toward my-player-number neutral)
 =>
     (up-modify-goal neutral-players-count c:- 1)
 )
 (defrule
-    (stance-toward my-player-number enemy)
     (not
       (stance-toward my-player-number ally)
     )
     (not
       (stance-toward my-player-number neutral)
     )
+    (stance-toward my-player-number enemy)
 =>
     (up-modify-goal enemy-players-count c:- 1)
 )
@@ -2172,18 +2172,16 @@
     (set-goal desired-military-buildings-per-type dark-age-military-buildings)
 )
 (defrule
-    (current-age == feudal-age)
-    (up-compare-goal desired-military-buildings-per-type c:< feudal-age-military-buildings)
     (nand
       (current-age == dark-age)
       (up-compare-goal desired-military-buildings-per-type c:< dark-age-military-buildings)
     )
+    (current-age == feudal-age)
+    (up-compare-goal desired-military-buildings-per-type c:< feudal-age-military-buildings)
 =>
     (set-goal desired-military-buildings-per-type feudal-age-military-buildings)
 )
 (defrule
-    (current-age == castle-age)
-    (up-compare-goal desired-military-buildings-per-type c:< castle-age-military-buildings)
     (nand
       (current-age == dark-age)
       (up-compare-goal desired-military-buildings-per-type c:< dark-age-military-buildings)
@@ -2192,24 +2190,26 @@
       (current-age == feudal-age)
       (up-compare-goal desired-military-buildings-per-type c:< feudal-age-military-buildings)
     )
+    (current-age == castle-age)
+    (up-compare-goal desired-military-buildings-per-type c:< castle-age-military-buildings)
 =>
     (set-goal desired-military-buildings-per-type castle-age-military-buildings)
 )
 (defrule
-    (current-age == imperial-age)
-    (up-compare-goal desired-military-buildings-per-type c:< imperial-age-military-buildings)
-    (nand
-      (current-age == feudal-age)
-      (up-compare-goal desired-military-buildings-per-type c:< feudal-age-military-buildings)
-    )
     (nand
       (current-age == dark-age)
       (up-compare-goal desired-military-buildings-per-type c:< dark-age-military-buildings)
+    )
+    (nand
+      (current-age == feudal-age)
+      (up-compare-goal desired-military-buildings-per-type c:< feudal-age-military-buildings)
     )
     (nand
       (current-age == castle-age)
       (up-compare-goal desired-military-buildings-per-type c:< castle-age-military-buildings)
     )
+    (current-age == imperial-age)
+    (up-compare-goal desired-military-buildings-per-type c:< imperial-age-military-buildings)
 =>
     (set-goal desired-military-buildings-per-type imperial-age-military-buildings)
 )
@@ -3043,11 +3043,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (goal misc-tech-anti-monk 1)
       )
     )
@@ -4301,21 +4301,21 @@
 )
 (defrule
     (nand
-      (or
-        (current-age == castle-age)
-        (and
-          (civ-selected burgundians)
+      (and
+        (not
           (current-age == feudal-age)
+        )
+        (nand
+          (civ-selected burgundians)
+          (current-age == dark-age)
         )
       )
       (and
-        (and
-          (not
-            (current-age == feudal-age)
-          )
-          (nand
+        (or
+          (current-age == castle-age)
+          (and
             (civ-selected burgundians)
-            (current-age == dark-age)
+            (current-age == feudal-age)
           )
         )
         (and
@@ -4487,21 +4487,21 @@
 )
 (defrule
     (nand
-      (or
-        (current-age == castle-age)
-        (and
-          (civ-selected burgundians)
+      (and
+        (not
           (current-age == feudal-age)
+        )
+        (nand
+          (civ-selected burgundians)
+          (current-age == dark-age)
         )
       )
       (and
-        (and
-          (not
-            (current-age == feudal-age)
-          )
-          (nand
+        (or
+          (current-age == castle-age)
+          (and
             (civ-selected burgundians)
-            (current-age == dark-age)
+            (current-age == feudal-age)
           )
         )
         (and
@@ -4593,31 +4593,31 @@
 )
 (defrule
     (nand
-      (or
-        (current-age == imperial-age)
-        (and
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (nand
           (civ-selected burgundians)
-          (current-age >= castle-age)
+          (current-age == dark-age)
         )
       )
       (and
         (and
           (not
-            (current-age == feudal-age)
+            (current-age == castle-age)
           )
           (nand
             (civ-selected burgundians)
-            (current-age == dark-age)
+            (current-age == feudal-age)
           )
         )
         (and
-          (and
-            (not
-              (current-age == castle-age)
-            )
-            (nand
+          (or
+            (current-age == imperial-age)
+            (and
               (civ-selected burgundians)
-              (current-age == feudal-age)
+              (current-age >= castle-age)
             )
           )
           (and
@@ -4870,31 +4870,31 @@
 )
 (defrule
     (nand
-      (or
-        (current-age == imperial-age)
-        (and
+      (and
+        (not
+          (current-age == feudal-age)
+        )
+        (nand
           (civ-selected burgundians)
-          (current-age >= castle-age)
+          (current-age == dark-age)
         )
       )
       (and
         (and
           (not
-            (current-age == feudal-age)
+            (current-age == castle-age)
           )
           (nand
             (civ-selected burgundians)
-            (current-age == dark-age)
+            (current-age == feudal-age)
           )
         )
         (and
-          (and
-            (not
-              (current-age == castle-age)
-            )
-            (nand
+          (or
+            (current-age == imperial-age)
+            (and
               (civ-selected burgundians)
-              (current-age == feudal-age)
+              (current-age >= castle-age)
             )
           )
           (and
@@ -5570,8 +5570,6 @@
     (train villager)
 )
 (defrule
-    (up-compare-goal total-villagers g:> desired-villagers-with-subtractions)
-    (up-compare-goal population-space-remaining c:<= 10)
     (nand
       (up-compare-goal total-villagers g:< desired-villagers-with-subtractions)
       (or
@@ -5579,6 +5577,8 @@
         (up-compare-goal non-escrowed-food c:>= 200)
       )
     )
+    (up-compare-goal total-villagers g:> desired-villagers-with-subtractions)
+    (up-compare-goal population-space-remaining c:<= 10)
     (unit-available villager)
 =>
     (delete-unit villager)
@@ -6276,11 +6276,11 @@
 )
 (defrule
     (nand
-      (civ-selected sicilians)
+      (not
+        (civ-selected bulgarians)
+      )
       (and
-        (not
-          (civ-selected bulgarians)
-        )
+        (civ-selected sicilians)
         (goal allow-land-units 1)
       )
     )
@@ -6674,11 +6674,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (unit-available archer-line)
       )
     )
@@ -6796,11 +6796,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (unit-available archer-line)
       )
     )
@@ -7238,10 +7238,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -7325,10 +7325,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -7412,14 +7412,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -7545,14 +7545,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -7678,14 +7678,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -8401,11 +8401,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (unit-available skirmisher-line)
       )
     )
@@ -8523,11 +8523,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (unit-available skirmisher-line)
       )
     )
@@ -8965,10 +8965,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -9052,10 +9052,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -9139,14 +9139,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -9272,14 +9272,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -9405,14 +9405,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -9812,10 +9812,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -9899,10 +9899,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -9986,14 +9986,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -10119,14 +10119,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -10252,14 +10252,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -11266,10 +11266,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -11353,10 +11353,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -11440,14 +11440,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -11573,14 +11573,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -11706,14 +11706,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -12806,10 +12806,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -12893,10 +12893,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -12980,14 +12980,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -13113,14 +13113,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -13246,14 +13246,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -14050,11 +14050,11 @@
 )
 (defrule
     (nand
-      (current-age >= castle-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
+        (current-age >= castle-age)
         (and
           (civ-selected armenians)
           (unit-available militiaman-line)
@@ -14269,11 +14269,11 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
+        (current-age == castle-age)
         (and
           (not
             (civ-selected armenians)
@@ -14362,15 +14362,15 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
         (not
-          (current-age == feudal-age)
+          (current-age == castle-age)
         )
         (and
-          (not
-            (current-age == castle-age)
-          )
+          (current-age == imperial-age)
           (and
             (not
               (civ-selected armenians)
@@ -14500,15 +14500,15 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
         (not
-          (current-age == feudal-age)
+          (current-age == castle-age)
         )
         (and
-          (not
-            (current-age == castle-age)
-          )
+          (current-age == imperial-age)
           (and
             (not
               (civ-selected armenians)
@@ -15157,10 +15157,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -15244,10 +15244,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -15331,14 +15331,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -15464,14 +15464,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -15597,14 +15597,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -15690,14 +15690,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -15783,14 +15783,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -16217,10 +16217,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -16304,10 +16304,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -16391,14 +16391,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -16524,14 +16524,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -16657,14 +16657,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -16750,14 +16750,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -16843,14 +16843,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -17316,11 +17316,11 @@
 )
 (defrule
     (nand
-      (current-age >= castle-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
+        (current-age >= castle-age)
         (and
           (civ-selected armenians)
           (unit-available spearman-line)
@@ -17455,11 +17455,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (and
           (not
             (civ-selected armenians)
@@ -17727,10 +17727,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -17814,10 +17814,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -17901,14 +17901,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -18034,14 +18034,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -18167,14 +18167,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -18260,14 +18260,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -18353,14 +18353,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -18737,11 +18737,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (unit-available eagle-warrior-line)
       )
     )
@@ -18825,11 +18825,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (unit-available eagle-warrior-line)
       )
     )
@@ -18916,11 +18916,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (unit-available eagle-warrior-line)
       )
     )
@@ -19100,10 +19100,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -19187,10 +19187,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -19274,14 +19274,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -19407,14 +19407,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -19540,14 +19540,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -19633,14 +19633,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -19726,14 +19726,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -20142,11 +20142,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (unit-available scout-cavalry-line)
       )
     )
@@ -20262,11 +20262,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (unit-available scout-cavalry-line)
       )
     )
@@ -20733,10 +20733,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -20820,10 +20820,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -20907,14 +20907,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -21040,14 +21040,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -22545,10 +22545,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -22632,10 +22632,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -22719,14 +22719,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -22852,14 +22852,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -24068,10 +24068,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -24155,10 +24155,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -24242,14 +24242,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -24375,14 +24375,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -25390,10 +25390,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -25477,10 +25477,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -25564,14 +25564,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -25697,14 +25697,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -27142,10 +27142,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -27229,10 +27229,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -27316,14 +27316,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -27449,14 +27449,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -28636,10 +28636,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -28723,10 +28723,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -28810,14 +28810,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -28943,14 +28943,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -32757,10 +32757,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -32844,10 +32844,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -32931,14 +32931,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -33064,14 +33064,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -33197,14 +33197,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -33290,14 +33290,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -33383,14 +33383,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -33757,10 +33757,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -33844,10 +33844,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -33931,14 +33931,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -34064,14 +34064,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -34888,11 +34888,11 @@
 )
 (defrule
     (nand
-      (civ-selected sicilians)
+      (not
+        (civ-selected bulgarians)
+      )
       (and
-        (not
-          (civ-selected bulgarians)
-        )
+        (civ-selected sicilians)
         (goal allow-land-units 1)
       )
     )
@@ -35175,10 +35175,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -35262,10 +35262,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -35349,14 +35349,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -35482,14 +35482,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -35615,14 +35615,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -35708,14 +35708,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -35801,14 +35801,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -36421,10 +36421,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -36508,10 +36508,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -36595,14 +36595,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -36728,14 +36728,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -36861,14 +36861,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -36954,14 +36954,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -37047,14 +37047,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -37439,10 +37439,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -37526,10 +37526,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -37613,14 +37613,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -37746,14 +37746,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -37879,14 +37879,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -37972,14 +37972,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -38065,14 +38065,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -38454,10 +38454,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -38541,10 +38541,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -38628,14 +38628,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -38761,14 +38761,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -38894,14 +38894,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -39614,10 +39614,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -39701,10 +39701,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -39788,14 +39788,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -39921,14 +39921,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -40054,14 +40054,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -40351,10 +40351,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -40438,10 +40438,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -40525,14 +40525,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -40658,14 +40658,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -41538,10 +41538,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -41625,10 +41625,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -41712,14 +41712,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -41845,14 +41845,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -46214,10 +46214,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -46301,10 +46301,10 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
       (not
         (current-age == feudal-age)
       )
+      (current-age == castle-age)
     )
 =>
     (up-jump-rule 11)
@@ -46388,14 +46388,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -46521,14 +46521,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -46654,14 +46654,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -46747,14 +46747,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -46840,14 +46840,14 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
         (not
           (current-age == castle-age)
         )
+        (current-age == imperial-age)
       )
     )
 =>
@@ -47255,11 +47255,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (building-type-count dock >= 1)
       )
     )
@@ -47343,11 +47343,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (building-type-count dock >= 1)
       )
     )
@@ -47687,11 +47687,11 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
+        (current-age == castle-age)
         (unit-available galley-line)
       )
     )
@@ -47777,11 +47777,11 @@
 )
 (defrule
     (nand
-      (current-age == castle-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
-        (not
-          (current-age == feudal-age)
-        )
+        (current-age == castle-age)
         (unit-available galley-line)
       )
     )
@@ -47825,15 +47825,15 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
         (not
-          (current-age == feudal-age)
+          (current-age == castle-age)
         )
         (and
-          (not
-            (current-age == castle-age)
-          )
+          (current-age == imperial-age)
           (unit-available galley-line)
         )
       )
@@ -47961,15 +47961,15 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
         (not
-          (current-age == feudal-age)
+          (current-age == castle-age)
         )
         (and
-          (not
-            (current-age == castle-age)
-          )
+          (current-age == imperial-age)
           (unit-available galley-line)
         )
       )
@@ -48014,15 +48014,15 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == feudal-age)
+      )
       (and
         (not
-          (current-age == feudal-age)
+          (current-age == castle-age)
         )
         (and
-          (not
-            (current-age == castle-age)
-          )
+          (current-age == imperial-age)
           (unit-available galley-line)
         )
       )
@@ -48372,11 +48372,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (building-type-count dock >= 1)
       )
     )
@@ -48460,11 +48460,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (building-type-count dock >= 1)
       )
     )
@@ -48803,11 +48803,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (unit-available fire-ship-line)
       )
     )
@@ -49027,11 +49027,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (building-type-count dock >= 1)
       )
     )
@@ -49115,11 +49115,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (building-type-count dock >= 1)
       )
     )
@@ -49465,11 +49465,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (building-type-count dock >= 1)
       )
     )
@@ -49553,11 +49553,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (building-type-count dock >= 1)
       )
     )
@@ -49989,11 +49989,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (building-type-count dock >= 1)
       )
     )
@@ -50077,11 +50077,11 @@
 )
 (defrule
     (nand
-      (current-age == imperial-age)
+      (not
+        (current-age == castle-age)
+      )
       (and
-        (not
-          (current-age == castle-age)
-        )
+        (current-age == imperial-age)
         (building-type-count dock >= 1)
       )
     )
@@ -50333,7 +50333,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1177)
+    (up-jump-rule 1273)
 )
 (defrule
     (true)
@@ -50404,10 +50404,10 @@
     (set-strategic-number sn-percent-building-cancellation 100)
 )
 (defrule
-    (up-compare-goal dead-builders c:>= 1)
     (not
       (up-compare-goal dead-builders c:>= 8)
     )
+    (up-compare-goal dead-builders c:>= 1)
 =>
     (set-strategic-number sn-percent-building-cancellation 20)
 )
@@ -50518,10 +50518,10 @@
     (up-reset-scouts)
 )
 (defrule
-    (strategic-number sn-number-explore-groups == 0)
     (not
       (town-under-attack)
     )
+    (strategic-number sn-number-explore-groups == 0)
 =>
     (set-strategic-number sn-number-explore-groups 1)
     (set-strategic-number sn-total-number-explorers 1)
@@ -53925,7 +53925,6 @@
 (defrule
     (unit-type-count-total trebuchet-set < max-trebs)
     (up-pending-objects c: trebuchet-set == 0)
-    (current-age == imperial-age)
     (not
       (current-age == castle-age)
     )
@@ -53939,6 +53938,7 @@
         )
       )
     )
+    (current-age == imperial-age)
     (nand
       (goal attacking 0)
       (and
@@ -54006,8 +54006,6 @@
     (set-goal attacking 1)
 )
 (defrule
-    (up-compare-goal target-military-percentage c:<= 80)
-    (goal attacking 1)
     (nand
       (or
         (up-compare-goal target-military-percentage c:>= 110)
@@ -54018,6 +54016,8 @@
         (goal attacking 0)
       )
     )
+    (up-compare-goal target-military-percentage c:<= 80)
+    (goal attacking 1)
 =>
     (set-goal attacking 0)
 )
@@ -54315,11 +54315,11 @@
 )
 (defrule
     (nand
-      (goal full-water-map 1)
+      (not
+        (up-compare-goal treaty-time-left >= 600)
+      )
       (and
-        (not
-          (up-compare-goal treaty-time-left >= 600)
-        )
+        (goal full-water-map 1)
         (goal attack-ready 1)
       )
     )
@@ -54333,11 +54333,11 @@
 )
 (defrule
     (nand
-      (goal full-water-map 1)
+      (not
+        (up-compare-goal treaty-time-left >= 600)
+      )
       (and
-        (not
-          (up-compare-goal treaty-time-left >= 600)
-        )
+        (goal full-water-map 1)
         (goal attack-ready 1)
       )
     )
@@ -54558,10 +54558,10 @@
     (set-goal did-reset 0)
 )
 (defrule
-    (goal did-reset 0)
     (not
       (goal attacking 1)
     )
+    (goal did-reset 0)
 =>
     (up-reset-unit c: -1)
     (set-goal did-reset 1)
@@ -54593,10 +54593,10 @@
     (set-strategic-number sn-number-boat-attack-groups 200)
 )
 (defrule
-    (strategic-number sn-number-attack-groups == 200)
     (not
       (goal attacking 1)
     )
+    (strategic-number sn-number-attack-groups == 200)
 =>
     (set-strategic-number sn-number-attack-groups 0)
     (set-strategic-number sn-number-boat-attack-groups 0)
@@ -54622,7 +54622,7 @@
       )
     )
 =>
-    (up-jump-rule 698)
+    (up-jump-rule 794)
 )
 (defrule
     (true)
@@ -54721,10 +54721,10 @@
     (set-goal accept-alliance-requests 1)
 )
 (defrule
-    (goal neutral-or-enemy-players-count 0)
     (not
       (up-compare-goal neutral-or-enemy-players-count c:>= 2)
     )
+    (goal neutral-or-enemy-players-count 0)
     (not
       (military-population < 30)
     )
@@ -54768,34 +54768,34 @@
     (set-goal want-alliance 1)
 )
 (defrule
-    (up-compare-goal neutral-or-enemy-players-count c:> 2)
     (not
       (up-compare-goal ally-players-count c:== 0)
     )
+    (up-compare-goal neutral-or-enemy-players-count c:> 2)
 =>
     (set-goal accept-alliance-requests 1)
     (set-goal want-alliance 0)
 )
 (defrule
-    (goal neutral-or-enemy-players-count 0)
-    (up-compare-goal ally-players-count c:>= 2)
-    (military-population >= 30)
     (not
       (up-compare-goal ally-players-count c:== 0)
     )
     (not
       (up-compare-goal neutral-or-enemy-players-count c:> 2)
     )
+    (goal neutral-or-enemy-players-count 0)
+    (up-compare-goal ally-players-count c:>= 2)
+    (military-population >= 30)
 =>
     (set-goal accept-alliance-requests 0)
     (set-goal want-alliance -1)
 )
 (defrule
     (not
-      (up-compare-goal neutral-or-enemy-players-count c:> 2)
+      (up-compare-goal ally-players-count c:== 0)
     )
     (not
-      (up-compare-goal ally-players-count c:== 0)
+      (up-compare-goal neutral-or-enemy-players-count c:> 2)
     )
     (nand
       (goal neutral-or-enemy-players-count 0)
@@ -54830,11 +54830,11 @@
     (set-goal want-alliance 0)
 )
 (defrule
-    (goal neutral-or-enemy-players-count 0)
-    (military-population >= 30)
     (not
       (up-compare-goal neutral-or-enemy-players-count c:<= 1)
     )
+    (goal neutral-or-enemy-players-count 0)
+    (military-population >= 30)
 =>
     (set-goal accept-alliance-requests 0)
     (set-goal want-alliance -1)
@@ -56427,10 +56427,17 @@
       (timer-triggered 8)
     )
 =>
-    (up-jump-rule 57)
+    (up-jump-rule 69)
 )
 (defrule
-    (up-compare-goal game-time-goal g:>= player-1-bad-egg-expires-at)
+    (player-in-game 1)
+    (not
+      (goal diplo-my-player-number 1)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
     (goal player-1-is-bad-egg 1)
     (not
       (goal player-1-bad-egg-expires-at -1)
@@ -56440,9 +56447,56 @@
       (goal diplo-my-player-number 1)
     )
 =>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
+    (player-in-game 1)
+    (not
+      (goal diplo-my-player-number 1)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-1-bad-egg-expires-at)
+    (goal 209 1)
+    (player-in-game 1)
+    (not
+      (goal diplo-my-player-number 1)
+    )
+=>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
+    (goal 209 1)
+    (player-in-game 1)
+    (not
+      (goal diplo-my-player-number 1)
+    )
+=>
     (set-goal player-1-is-bad-egg 0)
     (set-goal player-1-bad-egg-expires-at -1)
     (chat-local-to-self chat-625aa2158a8e10e2f23af1b781c6c5688fed55e8)
+)
+(defrule
+    (player-in-game 1)
+    (not
+      (goal diplo-my-player-number 1)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
+    (goal player-1-is-bad-egg 0)
+    (goal allied-with-1 0)
+    (player-in-game 1)
+    (not
+      (goal diplo-my-player-number 1)
+    )
+=>
+    (set-goal 209 1)
 )
 (defrule
     (nand
@@ -56455,10 +56509,7 @@
         (and
           (players-stance 1 ally)
           (and
-            (and
-              (goal player-1-is-bad-egg 0)
-              (goal allied-with-1 0)
-            )
+            (goal 209 1)
             (and
               (player-in-game 1)
               (not
@@ -56507,8 +56558,7 @@
       (stance-toward 1 neutral)
     )
     (players-stance 1 ally)
-    (goal player-1-is-bad-egg 0)
-    (goal allied-with-1 0)
+    (goal 209 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -56531,10 +56581,7 @@
       (and
         (players-stance 1 ally)
         (and
-          (and
-            (goal player-1-is-bad-egg 0)
-            (goal allied-with-1 0)
-          )
+          (goal 209 1)
           (and
             (player-in-game 1)
             (not
@@ -56553,8 +56600,8 @@
     (set-goal 302 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 302)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 302 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 302 g:+ 9)
     (up-modify-goal 302 c:mod 3)
     (up-modify-goal 302 c:+ 3)
     (up-modify-goal 302 c:mod 3)
@@ -56583,8 +56630,7 @@
       (stance-toward 1 neutral)
     )
     (players-stance 1 ally)
-    (goal player-1-is-bad-egg 0)
-    (goal allied-with-1 0)
+    (goal 209 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -56594,13 +56640,28 @@
     (set-goal allied-with-1 1)
 )
 (defrule
+    (player-in-game 1)
+    (not
+      (goal diplo-my-player-number 1)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
+    (goal allied-with-1 1)
+    (not
+      (players-stance 1 ally)
+    )
+    (player-in-game 1)
+    (not
+      (goal diplo-my-player-number 1)
+    )
+=>
+    (set-goal 209 1)
+)
+(defrule
     (nand
-      (and
-        (goal allied-with-1 1)
-        (not
-          (players-stance 1 ally)
-        )
-      )
+      (goal 209 1)
       (and
         (player-in-game 1)
         (not
@@ -56682,12 +56743,7 @@
 )
 (defrule
     (nand
-      (and
-        (goal allied-with-1 1)
-        (not
-          (players-stance 1 ally)
-        )
-      )
+      (goal 209 1)
       (and
         (player-in-game 1)
         (not
@@ -56706,10 +56762,7 @@
     (up-modify-goal player-1-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal allied-with-1 1)
-    (not
-      (players-stance 1 ally)
-    )
+    (goal 209 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -56717,6 +56770,14 @@
 =>
     (set-goal allied-with-1 0)
     (set-stance 1 enemy)
+)
+(defrule
+    (player-in-game 1)
+    (not
+      (goal diplo-my-player-number 1)
+    )
+=>
+    (set-goal 209 0)
 )
 (defrule
     (goal threat-player 1)
@@ -56729,21 +56790,22 @@
       (goal diplo-my-player-number 1)
     )
 =>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
+    (player-in-game 1)
+    (not
+      (goal diplo-my-player-number 1)
+    )
+=>
     (chat-local-to-self chat-7e6a680c96f5ebc7c72001bf5a70a615cc4daa7e)
 )
 (defrule
     (nand
       (goal allied-with-1 1)
       (and
-        (and
-          (goal threat-player 1)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 1 enemy)
-            )
-          )
-        )
+        (goal 209 1)
         (and
           (player-in-game 1)
           (not
@@ -56826,11 +56888,7 @@
 )
 (defrule
     (goal allied-with-1 1)
-    (goal threat-player 1)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 1 enemy)
-    )
+    (goal 209 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -56842,15 +56900,7 @@
     (nand
       (goal allied-with-1 1)
       (and
-        (and
-          (goal threat-player 1)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 1 enemy)
-            )
-          )
-        )
+        (goal 209 1)
         (and
           (player-in-game 1)
           (not
@@ -56871,21 +56921,13 @@
 )
 (defrule
     (nand
-      (stance-toward 1 ally)
+      (not
+        (goal allied-with-1 1)
+      )
       (and
-        (not
-          (goal allied-with-1 1)
-        )
+        (stance-toward 1 ally)
         (and
-          (and
-            (goal threat-player 1)
-            (and
-              (up-compare-goal threat-time c:< 1000)
-              (not
-                (stance-toward 1 enemy)
-              )
-            )
-          )
+          (goal 209 1)
           (and
             (player-in-game 1)
             (not
@@ -56906,11 +56948,7 @@
     (up-modify-goal player-1-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal threat-player 1)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 1 enemy)
-    )
+    (goal 209 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -56919,10 +56957,27 @@
     (set-stance 1 enemy)
 )
 (defrule
+    (player-in-game 1)
+    (not
+      (goal diplo-my-player-number 1)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
     (goal allied-with-1 0)
     (stance-toward 1 ally)
     (goal player-1-is-bad-egg 0)
     (goal tried-alliance-with-1 0)
+    (player-in-game 1)
+    (not
+      (goal diplo-my-player-number 1)
+    )
+=>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -56935,16 +56990,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (and
-          (goal allied-with-1 0)
-          (and
-            (stance-toward 1 ally)
-            (and
-              (goal player-1-is-bad-egg 0)
-              (goal tried-alliance-with-1 0)
-            )
-          )
-        )
+        (goal 209 1)
         (and
           (player-in-game 1)
           (not
@@ -56962,8 +57008,8 @@
     (set-goal 305 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 305)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 305 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 305 g:+ 9)
     (up-modify-goal 305 c:mod 3)
     (up-modify-goal 305 c:+ 3)
     (up-modify-goal 305 c:mod 3)
@@ -56986,10 +57032,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal allied-with-1 0)
-    (stance-toward 1 ally)
-    (goal player-1-is-bad-egg 0)
-    (goal tried-alliance-with-1 0)
+    (goal 209 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -57000,15 +57043,15 @@
     (set-goal tried-alliance-with-1 1)
 )
 (defrule
-    (players-stance 1 ally)
-    (not
-      (stance-toward 1 ally)
-    )
     (nand
       (player-in-game 1)
       (not
         (goal diplo-my-player-number 1)
       )
+    )
+    (players-stance 1 ally)
+    (not
+      (stance-toward 1 ally)
     )
 =>
     (set-stance 1 ally)
@@ -57018,10 +57061,17 @@
       (timer-triggered 8)
     )
 =>
-    (up-jump-rule 57)
+    (up-jump-rule 69)
 )
 (defrule
-    (up-compare-goal game-time-goal g:>= player-2-bad-egg-expires-at)
+    (player-in-game 2)
+    (not
+      (goal diplo-my-player-number 2)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
     (goal player-2-is-bad-egg 1)
     (not
       (goal player-2-bad-egg-expires-at -1)
@@ -57031,9 +57081,56 @@
       (goal diplo-my-player-number 2)
     )
 =>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
+    (player-in-game 2)
+    (not
+      (goal diplo-my-player-number 2)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-2-bad-egg-expires-at)
+    (goal 9 1)
+    (player-in-game 2)
+    (not
+      (goal diplo-my-player-number 2)
+    )
+=>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
+    (goal 9 1)
+    (player-in-game 2)
+    (not
+      (goal diplo-my-player-number 2)
+    )
+=>
     (set-goal player-2-is-bad-egg 0)
     (set-goal player-2-bad-egg-expires-at -1)
     (chat-local-to-self chat-cae7444347e8f1878ab694150cf0a449e1b19fbb)
+)
+(defrule
+    (player-in-game 2)
+    (not
+      (goal diplo-my-player-number 2)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
+    (goal player-2-is-bad-egg 0)
+    (goal allied-with-2 0)
+    (player-in-game 2)
+    (not
+      (goal diplo-my-player-number 2)
+    )
+=>
+    (set-goal 9 1)
 )
 (defrule
     (nand
@@ -57046,10 +57143,7 @@
         (and
           (players-stance 2 ally)
           (and
-            (and
-              (goal player-2-is-bad-egg 0)
-              (goal allied-with-2 0)
-            )
+            (goal 9 1)
             (and
               (player-in-game 2)
               (not
@@ -57098,8 +57192,7 @@
       (stance-toward 2 neutral)
     )
     (players-stance 2 ally)
-    (goal player-2-is-bad-egg 0)
-    (goal allied-with-2 0)
+    (goal 9 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57122,10 +57215,7 @@
       (and
         (players-stance 2 ally)
         (and
-          (and
-            (goal player-2-is-bad-egg 0)
-            (goal allied-with-2 0)
-          )
+          (goal 9 1)
           (and
             (player-in-game 2)
             (not
@@ -57144,8 +57234,8 @@
     (set-goal 307 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 307)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 307 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 307 g:+ 209)
     (up-modify-goal 307 c:mod 3)
     (up-modify-goal 307 c:+ 3)
     (up-modify-goal 307 c:mod 3)
@@ -57174,8 +57264,7 @@
       (stance-toward 2 neutral)
     )
     (players-stance 2 ally)
-    (goal player-2-is-bad-egg 0)
-    (goal allied-with-2 0)
+    (goal 9 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57185,13 +57274,28 @@
     (set-goal allied-with-2 1)
 )
 (defrule
+    (player-in-game 2)
+    (not
+      (goal diplo-my-player-number 2)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
+    (goal allied-with-2 1)
+    (not
+      (players-stance 2 ally)
+    )
+    (player-in-game 2)
+    (not
+      (goal diplo-my-player-number 2)
+    )
+=>
+    (set-goal 9 1)
+)
+(defrule
     (nand
-      (and
-        (goal allied-with-2 1)
-        (not
-          (players-stance 2 ally)
-        )
-      )
+      (goal 9 1)
       (and
         (player-in-game 2)
         (not
@@ -57273,12 +57377,7 @@
 )
 (defrule
     (nand
-      (and
-        (goal allied-with-2 1)
-        (not
-          (players-stance 2 ally)
-        )
-      )
+      (goal 9 1)
       (and
         (player-in-game 2)
         (not
@@ -57297,10 +57396,7 @@
     (up-modify-goal player-2-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal allied-with-2 1)
-    (not
-      (players-stance 2 ally)
-    )
+    (goal 9 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57308,6 +57404,14 @@
 =>
     (set-goal allied-with-2 0)
     (set-stance 2 enemy)
+)
+(defrule
+    (player-in-game 2)
+    (not
+      (goal diplo-my-player-number 2)
+    )
+=>
+    (set-goal 9 0)
 )
 (defrule
     (goal threat-player 2)
@@ -57320,21 +57424,22 @@
       (goal diplo-my-player-number 2)
     )
 =>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
+    (player-in-game 2)
+    (not
+      (goal diplo-my-player-number 2)
+    )
+=>
     (chat-local-to-self chat-fd31965fd7bd8017f4bc4ce2e429ae212acef5dc)
 )
 (defrule
     (nand
       (goal allied-with-2 1)
       (and
-        (and
-          (goal threat-player 2)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 2 enemy)
-            )
-          )
-        )
+        (goal 9 1)
         (and
           (player-in-game 2)
           (not
@@ -57417,11 +57522,7 @@
 )
 (defrule
     (goal allied-with-2 1)
-    (goal threat-player 2)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 2 enemy)
-    )
+    (goal 9 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57433,15 +57534,7 @@
     (nand
       (goal allied-with-2 1)
       (and
-        (and
-          (goal threat-player 2)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 2 enemy)
-            )
-          )
-        )
+        (goal 9 1)
         (and
           (player-in-game 2)
           (not
@@ -57462,21 +57555,13 @@
 )
 (defrule
     (nand
-      (stance-toward 2 ally)
+      (not
+        (goal allied-with-2 1)
+      )
       (and
-        (not
-          (goal allied-with-2 1)
-        )
+        (stance-toward 2 ally)
         (and
-          (and
-            (goal threat-player 2)
-            (and
-              (up-compare-goal threat-time c:< 1000)
-              (not
-                (stance-toward 2 enemy)
-              )
-            )
-          )
+          (goal 9 1)
           (and
             (player-in-game 2)
             (not
@@ -57497,11 +57582,7 @@
     (up-modify-goal player-2-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal threat-player 2)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 2 enemy)
-    )
+    (goal 9 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57510,10 +57591,27 @@
     (set-stance 2 enemy)
 )
 (defrule
+    (player-in-game 2)
+    (not
+      (goal diplo-my-player-number 2)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
     (goal allied-with-2 0)
     (stance-toward 2 ally)
     (goal player-2-is-bad-egg 0)
     (goal tried-alliance-with-2 0)
+    (player-in-game 2)
+    (not
+      (goal diplo-my-player-number 2)
+    )
+=>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57526,16 +57624,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (and
-          (goal allied-with-2 0)
-          (and
-            (stance-toward 2 ally)
-            (and
-              (goal player-2-is-bad-egg 0)
-              (goal tried-alliance-with-2 0)
-            )
-          )
-        )
+        (goal 9 1)
         (and
           (player-in-game 2)
           (not
@@ -57553,8 +57642,8 @@
     (set-goal 310 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 310)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 310 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 310 g:+ 209)
     (up-modify-goal 310 c:mod 3)
     (up-modify-goal 310 c:+ 3)
     (up-modify-goal 310 c:mod 3)
@@ -57577,10 +57666,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal allied-with-2 0)
-    (stance-toward 2 ally)
-    (goal player-2-is-bad-egg 0)
-    (goal tried-alliance-with-2 0)
+    (goal 9 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57591,15 +57677,15 @@
     (set-goal tried-alliance-with-2 1)
 )
 (defrule
-    (players-stance 2 ally)
-    (not
-      (stance-toward 2 ally)
-    )
     (nand
       (player-in-game 2)
       (not
         (goal diplo-my-player-number 2)
       )
+    )
+    (players-stance 2 ally)
+    (not
+      (stance-toward 2 ally)
     )
 =>
     (set-stance 2 ally)
@@ -57609,10 +57695,17 @@
       (timer-triggered 8)
     )
 =>
-    (up-jump-rule 57)
+    (up-jump-rule 69)
 )
 (defrule
-    (up-compare-goal game-time-goal g:>= player-3-bad-egg-expires-at)
+    (player-in-game 3)
+    (not
+      (goal diplo-my-player-number 3)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
     (goal player-3-is-bad-egg 1)
     (not
       (goal player-3-bad-egg-expires-at -1)
@@ -57622,9 +57715,56 @@
       (goal diplo-my-player-number 3)
     )
 =>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
+    (player-in-game 3)
+    (not
+      (goal diplo-my-player-number 3)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-3-bad-egg-expires-at)
+    (goal 209 1)
+    (player-in-game 3)
+    (not
+      (goal diplo-my-player-number 3)
+    )
+=>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
+    (goal 209 1)
+    (player-in-game 3)
+    (not
+      (goal diplo-my-player-number 3)
+    )
+=>
     (set-goal player-3-is-bad-egg 0)
     (set-goal player-3-bad-egg-expires-at -1)
     (chat-local-to-self chat-8594f65dab922519b58986ad1f5c4853490f706e)
+)
+(defrule
+    (player-in-game 3)
+    (not
+      (goal diplo-my-player-number 3)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
+    (goal player-3-is-bad-egg 0)
+    (goal allied-with-3 0)
+    (player-in-game 3)
+    (not
+      (goal diplo-my-player-number 3)
+    )
+=>
+    (set-goal 209 1)
 )
 (defrule
     (nand
@@ -57637,10 +57777,7 @@
         (and
           (players-stance 3 ally)
           (and
-            (and
-              (goal player-3-is-bad-egg 0)
-              (goal allied-with-3 0)
-            )
+            (goal 209 1)
             (and
               (player-in-game 3)
               (not
@@ -57689,8 +57826,7 @@
       (stance-toward 3 neutral)
     )
     (players-stance 3 ally)
-    (goal player-3-is-bad-egg 0)
-    (goal allied-with-3 0)
+    (goal 209 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -57713,10 +57849,7 @@
       (and
         (players-stance 3 ally)
         (and
-          (and
-            (goal player-3-is-bad-egg 0)
-            (goal allied-with-3 0)
-          )
+          (goal 209 1)
           (and
             (player-in-game 3)
             (not
@@ -57735,8 +57868,8 @@
     (set-goal 312 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 312)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 312 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 312 g:+ 9)
     (up-modify-goal 312 c:mod 3)
     (up-modify-goal 312 c:+ 3)
     (up-modify-goal 312 c:mod 3)
@@ -57765,8 +57898,7 @@
       (stance-toward 3 neutral)
     )
     (players-stance 3 ally)
-    (goal player-3-is-bad-egg 0)
-    (goal allied-with-3 0)
+    (goal 209 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -57776,13 +57908,28 @@
     (set-goal allied-with-3 1)
 )
 (defrule
+    (player-in-game 3)
+    (not
+      (goal diplo-my-player-number 3)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
+    (goal allied-with-3 1)
+    (not
+      (players-stance 3 ally)
+    )
+    (player-in-game 3)
+    (not
+      (goal diplo-my-player-number 3)
+    )
+=>
+    (set-goal 209 1)
+)
+(defrule
     (nand
-      (and
-        (goal allied-with-3 1)
-        (not
-          (players-stance 3 ally)
-        )
-      )
+      (goal 209 1)
       (and
         (player-in-game 3)
         (not
@@ -57864,12 +58011,7 @@
 )
 (defrule
     (nand
-      (and
-        (goal allied-with-3 1)
-        (not
-          (players-stance 3 ally)
-        )
-      )
+      (goal 209 1)
       (and
         (player-in-game 3)
         (not
@@ -57888,10 +58030,7 @@
     (up-modify-goal player-3-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal allied-with-3 1)
-    (not
-      (players-stance 3 ally)
-    )
+    (goal 209 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -57899,6 +58038,14 @@
 =>
     (set-goal allied-with-3 0)
     (set-stance 3 enemy)
+)
+(defrule
+    (player-in-game 3)
+    (not
+      (goal diplo-my-player-number 3)
+    )
+=>
+    (set-goal 209 0)
 )
 (defrule
     (goal threat-player 3)
@@ -57911,21 +58058,22 @@
       (goal diplo-my-player-number 3)
     )
 =>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
+    (player-in-game 3)
+    (not
+      (goal diplo-my-player-number 3)
+    )
+=>
     (chat-local-to-self chat-1062b2c8150cadf4f44729f3bf5a41ddcda43f06)
 )
 (defrule
     (nand
       (goal allied-with-3 1)
       (and
-        (and
-          (goal threat-player 3)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 3 enemy)
-            )
-          )
-        )
+        (goal 209 1)
         (and
           (player-in-game 3)
           (not
@@ -58008,11 +58156,7 @@
 )
 (defrule
     (goal allied-with-3 1)
-    (goal threat-player 3)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 3 enemy)
-    )
+    (goal 209 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -58024,15 +58168,7 @@
     (nand
       (goal allied-with-3 1)
       (and
-        (and
-          (goal threat-player 3)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 3 enemy)
-            )
-          )
-        )
+        (goal 209 1)
         (and
           (player-in-game 3)
           (not
@@ -58053,21 +58189,13 @@
 )
 (defrule
     (nand
-      (stance-toward 3 ally)
+      (not
+        (goal allied-with-3 1)
+      )
       (and
-        (not
-          (goal allied-with-3 1)
-        )
+        (stance-toward 3 ally)
         (and
-          (and
-            (goal threat-player 3)
-            (and
-              (up-compare-goal threat-time c:< 1000)
-              (not
-                (stance-toward 3 enemy)
-              )
-            )
-          )
+          (goal 209 1)
           (and
             (player-in-game 3)
             (not
@@ -58088,11 +58216,7 @@
     (up-modify-goal player-3-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal threat-player 3)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 3 enemy)
-    )
+    (goal 209 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -58101,10 +58225,27 @@
     (set-stance 3 enemy)
 )
 (defrule
+    (player-in-game 3)
+    (not
+      (goal diplo-my-player-number 3)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
     (goal allied-with-3 0)
     (stance-toward 3 ally)
     (goal player-3-is-bad-egg 0)
     (goal tried-alliance-with-3 0)
+    (player-in-game 3)
+    (not
+      (goal diplo-my-player-number 3)
+    )
+=>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -58117,16 +58258,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (and
-          (goal allied-with-3 0)
-          (and
-            (stance-toward 3 ally)
-            (and
-              (goal player-3-is-bad-egg 0)
-              (goal tried-alliance-with-3 0)
-            )
-          )
-        )
+        (goal 209 1)
         (and
           (player-in-game 3)
           (not
@@ -58144,8 +58276,8 @@
     (set-goal 315 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 315)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 315 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 315 g:+ 9)
     (up-modify-goal 315 c:mod 3)
     (up-modify-goal 315 c:+ 3)
     (up-modify-goal 315 c:mod 3)
@@ -58168,10 +58300,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal allied-with-3 0)
-    (stance-toward 3 ally)
-    (goal player-3-is-bad-egg 0)
-    (goal tried-alliance-with-3 0)
+    (goal 209 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -58182,15 +58311,15 @@
     (set-goal tried-alliance-with-3 1)
 )
 (defrule
-    (players-stance 3 ally)
-    (not
-      (stance-toward 3 ally)
-    )
     (nand
       (player-in-game 3)
       (not
         (goal diplo-my-player-number 3)
       )
+    )
+    (players-stance 3 ally)
+    (not
+      (stance-toward 3 ally)
     )
 =>
     (set-stance 3 ally)
@@ -58200,10 +58329,17 @@
       (timer-triggered 8)
     )
 =>
-    (up-jump-rule 57)
+    (up-jump-rule 69)
 )
 (defrule
-    (up-compare-goal game-time-goal g:>= player-4-bad-egg-expires-at)
+    (player-in-game 4)
+    (not
+      (goal diplo-my-player-number 4)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
     (goal player-4-is-bad-egg 1)
     (not
       (goal player-4-bad-egg-expires-at -1)
@@ -58213,9 +58349,56 @@
       (goal diplo-my-player-number 4)
     )
 =>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
+    (player-in-game 4)
+    (not
+      (goal diplo-my-player-number 4)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-4-bad-egg-expires-at)
+    (goal 9 1)
+    (player-in-game 4)
+    (not
+      (goal diplo-my-player-number 4)
+    )
+=>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
+    (goal 9 1)
+    (player-in-game 4)
+    (not
+      (goal diplo-my-player-number 4)
+    )
+=>
     (set-goal player-4-is-bad-egg 0)
     (set-goal player-4-bad-egg-expires-at -1)
     (chat-local-to-self chat-abf508ba3a4719c6a1adfd5aad724b36f94116ea)
+)
+(defrule
+    (player-in-game 4)
+    (not
+      (goal diplo-my-player-number 4)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
+    (goal player-4-is-bad-egg 0)
+    (goal allied-with-4 0)
+    (player-in-game 4)
+    (not
+      (goal diplo-my-player-number 4)
+    )
+=>
+    (set-goal 9 1)
 )
 (defrule
     (nand
@@ -58228,10 +58411,7 @@
         (and
           (players-stance 4 ally)
           (and
-            (and
-              (goal player-4-is-bad-egg 0)
-              (goal allied-with-4 0)
-            )
+            (goal 9 1)
             (and
               (player-in-game 4)
               (not
@@ -58280,8 +58460,7 @@
       (stance-toward 4 neutral)
     )
     (players-stance 4 ally)
-    (goal player-4-is-bad-egg 0)
-    (goal allied-with-4 0)
+    (goal 9 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -58304,10 +58483,7 @@
       (and
         (players-stance 4 ally)
         (and
-          (and
-            (goal player-4-is-bad-egg 0)
-            (goal allied-with-4 0)
-          )
+          (goal 9 1)
           (and
             (player-in-game 4)
             (not
@@ -58326,8 +58502,8 @@
     (set-goal 317 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 317)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 317 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 317 g:+ 209)
     (up-modify-goal 317 c:mod 3)
     (up-modify-goal 317 c:+ 3)
     (up-modify-goal 317 c:mod 3)
@@ -58356,8 +58532,7 @@
       (stance-toward 4 neutral)
     )
     (players-stance 4 ally)
-    (goal player-4-is-bad-egg 0)
-    (goal allied-with-4 0)
+    (goal 9 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -58367,13 +58542,28 @@
     (set-goal allied-with-4 1)
 )
 (defrule
+    (player-in-game 4)
+    (not
+      (goal diplo-my-player-number 4)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
+    (goal allied-with-4 1)
+    (not
+      (players-stance 4 ally)
+    )
+    (player-in-game 4)
+    (not
+      (goal diplo-my-player-number 4)
+    )
+=>
+    (set-goal 9 1)
+)
+(defrule
     (nand
-      (and
-        (goal allied-with-4 1)
-        (not
-          (players-stance 4 ally)
-        )
-      )
+      (goal 9 1)
       (and
         (player-in-game 4)
         (not
@@ -58455,12 +58645,7 @@
 )
 (defrule
     (nand
-      (and
-        (goal allied-with-4 1)
-        (not
-          (players-stance 4 ally)
-        )
-      )
+      (goal 9 1)
       (and
         (player-in-game 4)
         (not
@@ -58479,10 +58664,7 @@
     (up-modify-goal player-4-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal allied-with-4 1)
-    (not
-      (players-stance 4 ally)
-    )
+    (goal 9 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -58490,6 +58672,14 @@
 =>
     (set-goal allied-with-4 0)
     (set-stance 4 enemy)
+)
+(defrule
+    (player-in-game 4)
+    (not
+      (goal diplo-my-player-number 4)
+    )
+=>
+    (set-goal 9 0)
 )
 (defrule
     (goal threat-player 4)
@@ -58502,21 +58692,22 @@
       (goal diplo-my-player-number 4)
     )
 =>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
+    (player-in-game 4)
+    (not
+      (goal diplo-my-player-number 4)
+    )
+=>
     (chat-local-to-self chat-e83a4ecd69f3c41b09a0a1236e7aa0581ac00f34)
 )
 (defrule
     (nand
       (goal allied-with-4 1)
       (and
-        (and
-          (goal threat-player 4)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 4 enemy)
-            )
-          )
-        )
+        (goal 9 1)
         (and
           (player-in-game 4)
           (not
@@ -58599,11 +58790,7 @@
 )
 (defrule
     (goal allied-with-4 1)
-    (goal threat-player 4)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 4 enemy)
-    )
+    (goal 9 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -58615,15 +58802,7 @@
     (nand
       (goal allied-with-4 1)
       (and
-        (and
-          (goal threat-player 4)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 4 enemy)
-            )
-          )
-        )
+        (goal 9 1)
         (and
           (player-in-game 4)
           (not
@@ -58644,21 +58823,13 @@
 )
 (defrule
     (nand
-      (stance-toward 4 ally)
+      (not
+        (goal allied-with-4 1)
+      )
       (and
-        (not
-          (goal allied-with-4 1)
-        )
+        (stance-toward 4 ally)
         (and
-          (and
-            (goal threat-player 4)
-            (and
-              (up-compare-goal threat-time c:< 1000)
-              (not
-                (stance-toward 4 enemy)
-              )
-            )
-          )
+          (goal 9 1)
           (and
             (player-in-game 4)
             (not
@@ -58679,11 +58850,7 @@
     (up-modify-goal player-4-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal threat-player 4)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 4 enemy)
-    )
+    (goal 9 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -58692,10 +58859,27 @@
     (set-stance 4 enemy)
 )
 (defrule
+    (player-in-game 4)
+    (not
+      (goal diplo-my-player-number 4)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
     (goal allied-with-4 0)
     (stance-toward 4 ally)
     (goal player-4-is-bad-egg 0)
     (goal tried-alliance-with-4 0)
+    (player-in-game 4)
+    (not
+      (goal diplo-my-player-number 4)
+    )
+=>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -58708,16 +58892,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (and
-          (goal allied-with-4 0)
-          (and
-            (stance-toward 4 ally)
-            (and
-              (goal player-4-is-bad-egg 0)
-              (goal tried-alliance-with-4 0)
-            )
-          )
-        )
+        (goal 9 1)
         (and
           (player-in-game 4)
           (not
@@ -58735,8 +58910,8 @@
     (set-goal 320 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 320)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 320 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 320 g:+ 209)
     (up-modify-goal 320 c:mod 3)
     (up-modify-goal 320 c:+ 3)
     (up-modify-goal 320 c:mod 3)
@@ -58759,10 +58934,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal allied-with-4 0)
-    (stance-toward 4 ally)
-    (goal player-4-is-bad-egg 0)
-    (goal tried-alliance-with-4 0)
+    (goal 9 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -58773,15 +58945,15 @@
     (set-goal tried-alliance-with-4 1)
 )
 (defrule
-    (players-stance 4 ally)
-    (not
-      (stance-toward 4 ally)
-    )
     (nand
       (player-in-game 4)
       (not
         (goal diplo-my-player-number 4)
       )
+    )
+    (players-stance 4 ally)
+    (not
+      (stance-toward 4 ally)
     )
 =>
     (set-stance 4 ally)
@@ -58791,10 +58963,17 @@
       (timer-triggered 8)
     )
 =>
-    (up-jump-rule 57)
+    (up-jump-rule 69)
 )
 (defrule
-    (up-compare-goal game-time-goal g:>= player-5-bad-egg-expires-at)
+    (player-in-game 5)
+    (not
+      (goal diplo-my-player-number 5)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
     (goal player-5-is-bad-egg 1)
     (not
       (goal player-5-bad-egg-expires-at -1)
@@ -58804,9 +58983,56 @@
       (goal diplo-my-player-number 5)
     )
 =>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
+    (player-in-game 5)
+    (not
+      (goal diplo-my-player-number 5)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-5-bad-egg-expires-at)
+    (goal 209 1)
+    (player-in-game 5)
+    (not
+      (goal diplo-my-player-number 5)
+    )
+=>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
+    (goal 209 1)
+    (player-in-game 5)
+    (not
+      (goal diplo-my-player-number 5)
+    )
+=>
     (set-goal player-5-is-bad-egg 0)
     (set-goal player-5-bad-egg-expires-at -1)
     (chat-local-to-self chat-e5e799bb57b080e85534d5c5d7946731946daf70)
+)
+(defrule
+    (player-in-game 5)
+    (not
+      (goal diplo-my-player-number 5)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
+    (goal player-5-is-bad-egg 0)
+    (goal allied-with-5 0)
+    (player-in-game 5)
+    (not
+      (goal diplo-my-player-number 5)
+    )
+=>
+    (set-goal 209 1)
 )
 (defrule
     (nand
@@ -58819,10 +59045,7 @@
         (and
           (players-stance 5 ally)
           (and
-            (and
-              (goal player-5-is-bad-egg 0)
-              (goal allied-with-5 0)
-            )
+            (goal 209 1)
             (and
               (player-in-game 5)
               (not
@@ -58871,8 +59094,7 @@
       (stance-toward 5 neutral)
     )
     (players-stance 5 ally)
-    (goal player-5-is-bad-egg 0)
-    (goal allied-with-5 0)
+    (goal 209 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -58895,10 +59117,7 @@
       (and
         (players-stance 5 ally)
         (and
-          (and
-            (goal player-5-is-bad-egg 0)
-            (goal allied-with-5 0)
-          )
+          (goal 209 1)
           (and
             (player-in-game 5)
             (not
@@ -58917,8 +59136,8 @@
     (set-goal 322 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 322)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 322 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 322 g:+ 9)
     (up-modify-goal 322 c:mod 3)
     (up-modify-goal 322 c:+ 3)
     (up-modify-goal 322 c:mod 3)
@@ -58947,8 +59166,7 @@
       (stance-toward 5 neutral)
     )
     (players-stance 5 ally)
-    (goal player-5-is-bad-egg 0)
-    (goal allied-with-5 0)
+    (goal 209 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -58958,13 +59176,28 @@
     (set-goal allied-with-5 1)
 )
 (defrule
+    (player-in-game 5)
+    (not
+      (goal diplo-my-player-number 5)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
+    (goal allied-with-5 1)
+    (not
+      (players-stance 5 ally)
+    )
+    (player-in-game 5)
+    (not
+      (goal diplo-my-player-number 5)
+    )
+=>
+    (set-goal 209 1)
+)
+(defrule
     (nand
-      (and
-        (goal allied-with-5 1)
-        (not
-          (players-stance 5 ally)
-        )
-      )
+      (goal 209 1)
       (and
         (player-in-game 5)
         (not
@@ -59046,12 +59279,7 @@
 )
 (defrule
     (nand
-      (and
-        (goal allied-with-5 1)
-        (not
-          (players-stance 5 ally)
-        )
-      )
+      (goal 209 1)
       (and
         (player-in-game 5)
         (not
@@ -59070,10 +59298,7 @@
     (up-modify-goal player-5-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal allied-with-5 1)
-    (not
-      (players-stance 5 ally)
-    )
+    (goal 209 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -59081,6 +59306,14 @@
 =>
     (set-goal allied-with-5 0)
     (set-stance 5 enemy)
+)
+(defrule
+    (player-in-game 5)
+    (not
+      (goal diplo-my-player-number 5)
+    )
+=>
+    (set-goal 209 0)
 )
 (defrule
     (goal threat-player 5)
@@ -59093,21 +59326,22 @@
       (goal diplo-my-player-number 5)
     )
 =>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
+    (player-in-game 5)
+    (not
+      (goal diplo-my-player-number 5)
+    )
+=>
     (chat-local-to-self chat-f120f59c5092ae5e71f5b3e761c95b0594d41efc)
 )
 (defrule
     (nand
       (goal allied-with-5 1)
       (and
-        (and
-          (goal threat-player 5)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 5 enemy)
-            )
-          )
-        )
+        (goal 209 1)
         (and
           (player-in-game 5)
           (not
@@ -59190,11 +59424,7 @@
 )
 (defrule
     (goal allied-with-5 1)
-    (goal threat-player 5)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 5 enemy)
-    )
+    (goal 209 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -59206,15 +59436,7 @@
     (nand
       (goal allied-with-5 1)
       (and
-        (and
-          (goal threat-player 5)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 5 enemy)
-            )
-          )
-        )
+        (goal 209 1)
         (and
           (player-in-game 5)
           (not
@@ -59235,21 +59457,13 @@
 )
 (defrule
     (nand
-      (stance-toward 5 ally)
+      (not
+        (goal allied-with-5 1)
+      )
       (and
-        (not
-          (goal allied-with-5 1)
-        )
+        (stance-toward 5 ally)
         (and
-          (and
-            (goal threat-player 5)
-            (and
-              (up-compare-goal threat-time c:< 1000)
-              (not
-                (stance-toward 5 enemy)
-              )
-            )
-          )
+          (goal 209 1)
           (and
             (player-in-game 5)
             (not
@@ -59270,11 +59484,7 @@
     (up-modify-goal player-5-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal threat-player 5)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 5 enemy)
-    )
+    (goal 209 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -59283,10 +59493,27 @@
     (set-stance 5 enemy)
 )
 (defrule
+    (player-in-game 5)
+    (not
+      (goal diplo-my-player-number 5)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
     (goal allied-with-5 0)
     (stance-toward 5 ally)
     (goal player-5-is-bad-egg 0)
     (goal tried-alliance-with-5 0)
+    (player-in-game 5)
+    (not
+      (goal diplo-my-player-number 5)
+    )
+=>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -59299,16 +59526,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (and
-          (goal allied-with-5 0)
-          (and
-            (stance-toward 5 ally)
-            (and
-              (goal player-5-is-bad-egg 0)
-              (goal tried-alliance-with-5 0)
-            )
-          )
-        )
+        (goal 209 1)
         (and
           (player-in-game 5)
           (not
@@ -59326,8 +59544,8 @@
     (set-goal 325 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 325)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 325 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 325 g:+ 9)
     (up-modify-goal 325 c:mod 3)
     (up-modify-goal 325 c:+ 3)
     (up-modify-goal 325 c:mod 3)
@@ -59350,10 +59568,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal allied-with-5 0)
-    (stance-toward 5 ally)
-    (goal player-5-is-bad-egg 0)
-    (goal tried-alliance-with-5 0)
+    (goal 209 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -59364,15 +59579,15 @@
     (set-goal tried-alliance-with-5 1)
 )
 (defrule
-    (players-stance 5 ally)
-    (not
-      (stance-toward 5 ally)
-    )
     (nand
       (player-in-game 5)
       (not
         (goal diplo-my-player-number 5)
       )
+    )
+    (players-stance 5 ally)
+    (not
+      (stance-toward 5 ally)
     )
 =>
     (set-stance 5 ally)
@@ -59382,10 +59597,17 @@
       (timer-triggered 8)
     )
 =>
-    (up-jump-rule 57)
+    (up-jump-rule 69)
 )
 (defrule
-    (up-compare-goal game-time-goal g:>= player-6-bad-egg-expires-at)
+    (player-in-game 6)
+    (not
+      (goal diplo-my-player-number 6)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
     (goal player-6-is-bad-egg 1)
     (not
       (goal player-6-bad-egg-expires-at -1)
@@ -59395,9 +59617,56 @@
       (goal diplo-my-player-number 6)
     )
 =>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
+    (player-in-game 6)
+    (not
+      (goal diplo-my-player-number 6)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-6-bad-egg-expires-at)
+    (goal 9 1)
+    (player-in-game 6)
+    (not
+      (goal diplo-my-player-number 6)
+    )
+=>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
+    (goal 9 1)
+    (player-in-game 6)
+    (not
+      (goal diplo-my-player-number 6)
+    )
+=>
     (set-goal player-6-is-bad-egg 0)
     (set-goal player-6-bad-egg-expires-at -1)
     (chat-local-to-self chat-3bc7aa8c06652eb2594dce3bad6b029ce0b326e2)
+)
+(defrule
+    (player-in-game 6)
+    (not
+      (goal diplo-my-player-number 6)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
+    (goal player-6-is-bad-egg 0)
+    (goal allied-with-6 0)
+    (player-in-game 6)
+    (not
+      (goal diplo-my-player-number 6)
+    )
+=>
+    (set-goal 9 1)
 )
 (defrule
     (nand
@@ -59410,10 +59679,7 @@
         (and
           (players-stance 6 ally)
           (and
-            (and
-              (goal player-6-is-bad-egg 0)
-              (goal allied-with-6 0)
-            )
+            (goal 9 1)
             (and
               (player-in-game 6)
               (not
@@ -59462,8 +59728,7 @@
       (stance-toward 6 neutral)
     )
     (players-stance 6 ally)
-    (goal player-6-is-bad-egg 0)
-    (goal allied-with-6 0)
+    (goal 9 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -59486,10 +59751,7 @@
       (and
         (players-stance 6 ally)
         (and
-          (and
-            (goal player-6-is-bad-egg 0)
-            (goal allied-with-6 0)
-          )
+          (goal 9 1)
           (and
             (player-in-game 6)
             (not
@@ -59508,8 +59770,8 @@
     (set-goal 327 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 327)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 327 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 327 g:+ 209)
     (up-modify-goal 327 c:mod 3)
     (up-modify-goal 327 c:+ 3)
     (up-modify-goal 327 c:mod 3)
@@ -59538,8 +59800,7 @@
       (stance-toward 6 neutral)
     )
     (players-stance 6 ally)
-    (goal player-6-is-bad-egg 0)
-    (goal allied-with-6 0)
+    (goal 9 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -59549,13 +59810,28 @@
     (set-goal allied-with-6 1)
 )
 (defrule
+    (player-in-game 6)
+    (not
+      (goal diplo-my-player-number 6)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
+    (goal allied-with-6 1)
+    (not
+      (players-stance 6 ally)
+    )
+    (player-in-game 6)
+    (not
+      (goal diplo-my-player-number 6)
+    )
+=>
+    (set-goal 9 1)
+)
+(defrule
     (nand
-      (and
-        (goal allied-with-6 1)
-        (not
-          (players-stance 6 ally)
-        )
-      )
+      (goal 9 1)
       (and
         (player-in-game 6)
         (not
@@ -59637,12 +59913,7 @@
 )
 (defrule
     (nand
-      (and
-        (goal allied-with-6 1)
-        (not
-          (players-stance 6 ally)
-        )
-      )
+      (goal 9 1)
       (and
         (player-in-game 6)
         (not
@@ -59661,10 +59932,7 @@
     (up-modify-goal player-6-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal allied-with-6 1)
-    (not
-      (players-stance 6 ally)
-    )
+    (goal 9 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -59672,6 +59940,14 @@
 =>
     (set-goal allied-with-6 0)
     (set-stance 6 enemy)
+)
+(defrule
+    (player-in-game 6)
+    (not
+      (goal diplo-my-player-number 6)
+    )
+=>
+    (set-goal 9 0)
 )
 (defrule
     (goal threat-player 6)
@@ -59684,21 +59960,22 @@
       (goal diplo-my-player-number 6)
     )
 =>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
+    (player-in-game 6)
+    (not
+      (goal diplo-my-player-number 6)
+    )
+=>
     (chat-local-to-self chat-53567c58d5c94e135fe952436954bf043a31e01f)
 )
 (defrule
     (nand
       (goal allied-with-6 1)
       (and
-        (and
-          (goal threat-player 6)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 6 enemy)
-            )
-          )
-        )
+        (goal 9 1)
         (and
           (player-in-game 6)
           (not
@@ -59781,11 +60058,7 @@
 )
 (defrule
     (goal allied-with-6 1)
-    (goal threat-player 6)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 6 enemy)
-    )
+    (goal 9 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -59797,15 +60070,7 @@
     (nand
       (goal allied-with-6 1)
       (and
-        (and
-          (goal threat-player 6)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 6 enemy)
-            )
-          )
-        )
+        (goal 9 1)
         (and
           (player-in-game 6)
           (not
@@ -59826,21 +60091,13 @@
 )
 (defrule
     (nand
-      (stance-toward 6 ally)
+      (not
+        (goal allied-with-6 1)
+      )
       (and
-        (not
-          (goal allied-with-6 1)
-        )
+        (stance-toward 6 ally)
         (and
-          (and
-            (goal threat-player 6)
-            (and
-              (up-compare-goal threat-time c:< 1000)
-              (not
-                (stance-toward 6 enemy)
-              )
-            )
-          )
+          (goal 9 1)
           (and
             (player-in-game 6)
             (not
@@ -59861,11 +60118,7 @@
     (up-modify-goal player-6-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal threat-player 6)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 6 enemy)
-    )
+    (goal 9 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -59874,10 +60127,27 @@
     (set-stance 6 enemy)
 )
 (defrule
+    (player-in-game 6)
+    (not
+      (goal diplo-my-player-number 6)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
     (goal allied-with-6 0)
     (stance-toward 6 ally)
     (goal player-6-is-bad-egg 0)
     (goal tried-alliance-with-6 0)
+    (player-in-game 6)
+    (not
+      (goal diplo-my-player-number 6)
+    )
+=>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -59890,16 +60160,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (and
-          (goal allied-with-6 0)
-          (and
-            (stance-toward 6 ally)
-            (and
-              (goal player-6-is-bad-egg 0)
-              (goal tried-alliance-with-6 0)
-            )
-          )
-        )
+        (goal 9 1)
         (and
           (player-in-game 6)
           (not
@@ -59917,8 +60178,8 @@
     (set-goal 330 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 330)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 330 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 330 g:+ 209)
     (up-modify-goal 330 c:mod 3)
     (up-modify-goal 330 c:+ 3)
     (up-modify-goal 330 c:mod 3)
@@ -59941,10 +60202,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal allied-with-6 0)
-    (stance-toward 6 ally)
-    (goal player-6-is-bad-egg 0)
-    (goal tried-alliance-with-6 0)
+    (goal 9 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -59955,15 +60213,15 @@
     (set-goal tried-alliance-with-6 1)
 )
 (defrule
-    (players-stance 6 ally)
-    (not
-      (stance-toward 6 ally)
-    )
     (nand
       (player-in-game 6)
       (not
         (goal diplo-my-player-number 6)
       )
+    )
+    (players-stance 6 ally)
+    (not
+      (stance-toward 6 ally)
     )
 =>
     (set-stance 6 ally)
@@ -59973,10 +60231,17 @@
       (timer-triggered 8)
     )
 =>
-    (up-jump-rule 57)
+    (up-jump-rule 69)
 )
 (defrule
-    (up-compare-goal game-time-goal g:>= player-7-bad-egg-expires-at)
+    (player-in-game 7)
+    (not
+      (goal diplo-my-player-number 7)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
     (goal player-7-is-bad-egg 1)
     (not
       (goal player-7-bad-egg-expires-at -1)
@@ -59986,9 +60251,56 @@
       (goal diplo-my-player-number 7)
     )
 =>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
+    (player-in-game 7)
+    (not
+      (goal diplo-my-player-number 7)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-7-bad-egg-expires-at)
+    (goal 209 1)
+    (player-in-game 7)
+    (not
+      (goal diplo-my-player-number 7)
+    )
+=>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
+    (goal 209 1)
+    (player-in-game 7)
+    (not
+      (goal diplo-my-player-number 7)
+    )
+=>
     (set-goal player-7-is-bad-egg 0)
     (set-goal player-7-bad-egg-expires-at -1)
     (chat-local-to-self chat-394d0dfc698bda587775c81bb0f30b0d5526a13f)
+)
+(defrule
+    (player-in-game 7)
+    (not
+      (goal diplo-my-player-number 7)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
+    (goal player-7-is-bad-egg 0)
+    (goal allied-with-7 0)
+    (player-in-game 7)
+    (not
+      (goal diplo-my-player-number 7)
+    )
+=>
+    (set-goal 209 1)
 )
 (defrule
     (nand
@@ -60001,10 +60313,7 @@
         (and
           (players-stance 7 ally)
           (and
-            (and
-              (goal player-7-is-bad-egg 0)
-              (goal allied-with-7 0)
-            )
+            (goal 209 1)
             (and
               (player-in-game 7)
               (not
@@ -60053,8 +60362,7 @@
       (stance-toward 7 neutral)
     )
     (players-stance 7 ally)
-    (goal player-7-is-bad-egg 0)
-    (goal allied-with-7 0)
+    (goal 209 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -60077,10 +60385,7 @@
       (and
         (players-stance 7 ally)
         (and
-          (and
-            (goal player-7-is-bad-egg 0)
-            (goal allied-with-7 0)
-          )
+          (goal 209 1)
           (and
             (player-in-game 7)
             (not
@@ -60099,8 +60404,8 @@
     (set-goal 332 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 332)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 332 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 332 g:+ 9)
     (up-modify-goal 332 c:mod 3)
     (up-modify-goal 332 c:+ 3)
     (up-modify-goal 332 c:mod 3)
@@ -60129,8 +60434,7 @@
       (stance-toward 7 neutral)
     )
     (players-stance 7 ally)
-    (goal player-7-is-bad-egg 0)
-    (goal allied-with-7 0)
+    (goal 209 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -60140,13 +60444,28 @@
     (set-goal allied-with-7 1)
 )
 (defrule
+    (player-in-game 7)
+    (not
+      (goal diplo-my-player-number 7)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
+    (goal allied-with-7 1)
+    (not
+      (players-stance 7 ally)
+    )
+    (player-in-game 7)
+    (not
+      (goal diplo-my-player-number 7)
+    )
+=>
+    (set-goal 209 1)
+)
+(defrule
     (nand
-      (and
-        (goal allied-with-7 1)
-        (not
-          (players-stance 7 ally)
-        )
-      )
+      (goal 209 1)
       (and
         (player-in-game 7)
         (not
@@ -60228,12 +60547,7 @@
 )
 (defrule
     (nand
-      (and
-        (goal allied-with-7 1)
-        (not
-          (players-stance 7 ally)
-        )
-      )
+      (goal 209 1)
       (and
         (player-in-game 7)
         (not
@@ -60252,10 +60566,7 @@
     (up-modify-goal player-7-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal allied-with-7 1)
-    (not
-      (players-stance 7 ally)
-    )
+    (goal 209 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -60263,6 +60574,14 @@
 =>
     (set-goal allied-with-7 0)
     (set-stance 7 enemy)
+)
+(defrule
+    (player-in-game 7)
+    (not
+      (goal diplo-my-player-number 7)
+    )
+=>
+    (set-goal 209 0)
 )
 (defrule
     (goal threat-player 7)
@@ -60275,21 +60594,22 @@
       (goal diplo-my-player-number 7)
     )
 =>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
+    (player-in-game 7)
+    (not
+      (goal diplo-my-player-number 7)
+    )
+=>
     (chat-local-to-self chat-4ed8c17a5c5ebe44478b112d0504cf7503a6feb4)
 )
 (defrule
     (nand
       (goal allied-with-7 1)
       (and
-        (and
-          (goal threat-player 7)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 7 enemy)
-            )
-          )
-        )
+        (goal 209 1)
         (and
           (player-in-game 7)
           (not
@@ -60372,11 +60692,7 @@
 )
 (defrule
     (goal allied-with-7 1)
-    (goal threat-player 7)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 7 enemy)
-    )
+    (goal 209 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -60388,15 +60704,7 @@
     (nand
       (goal allied-with-7 1)
       (and
-        (and
-          (goal threat-player 7)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 7 enemy)
-            )
-          )
-        )
+        (goal 209 1)
         (and
           (player-in-game 7)
           (not
@@ -60417,21 +60725,13 @@
 )
 (defrule
     (nand
-      (stance-toward 7 ally)
+      (not
+        (goal allied-with-7 1)
+      )
       (and
-        (not
-          (goal allied-with-7 1)
-        )
+        (stance-toward 7 ally)
         (and
-          (and
-            (goal threat-player 7)
-            (and
-              (up-compare-goal threat-time c:< 1000)
-              (not
-                (stance-toward 7 enemy)
-              )
-            )
-          )
+          (goal 209 1)
           (and
             (player-in-game 7)
             (not
@@ -60452,11 +60752,7 @@
     (up-modify-goal player-7-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal threat-player 7)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 7 enemy)
-    )
+    (goal 209 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -60465,10 +60761,27 @@
     (set-stance 7 enemy)
 )
 (defrule
+    (player-in-game 7)
+    (not
+      (goal diplo-my-player-number 7)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
     (goal allied-with-7 0)
     (stance-toward 7 ally)
     (goal player-7-is-bad-egg 0)
     (goal tried-alliance-with-7 0)
+    (player-in-game 7)
+    (not
+      (goal diplo-my-player-number 7)
+    )
+=>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -60481,16 +60794,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (and
-          (goal allied-with-7 0)
-          (and
-            (stance-toward 7 ally)
-            (and
-              (goal player-7-is-bad-egg 0)
-              (goal tried-alliance-with-7 0)
-            )
-          )
-        )
+        (goal 209 1)
         (and
           (player-in-game 7)
           (not
@@ -60508,8 +60812,8 @@
     (set-goal 335 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 335)
-    (up-get-precise-time 0 209)
-    (up-modify-goal 335 g:+ 209)
+    (up-get-precise-time 0 9)
+    (up-modify-goal 335 g:+ 9)
     (up-modify-goal 335 c:mod 3)
     (up-modify-goal 335 c:+ 3)
     (up-modify-goal 335 c:mod 3)
@@ -60532,10 +60836,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal allied-with-7 0)
-    (stance-toward 7 ally)
-    (goal player-7-is-bad-egg 0)
-    (goal tried-alliance-with-7 0)
+    (goal 209 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -60546,15 +60847,15 @@
     (set-goal tried-alliance-with-7 1)
 )
 (defrule
-    (players-stance 7 ally)
-    (not
-      (stance-toward 7 ally)
-    )
     (nand
       (player-in-game 7)
       (not
         (goal diplo-my-player-number 7)
       )
+    )
+    (players-stance 7 ally)
+    (not
+      (stance-toward 7 ally)
     )
 =>
     (set-stance 7 ally)
@@ -60564,10 +60865,17 @@
       (timer-triggered 8)
     )
 =>
-    (up-jump-rule 57)
+    (up-jump-rule 69)
 )
 (defrule
-    (up-compare-goal game-time-goal g:>= player-8-bad-egg-expires-at)
+    (player-in-game 8)
+    (not
+      (goal diplo-my-player-number 8)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
     (goal player-8-is-bad-egg 1)
     (not
       (goal player-8-bad-egg-expires-at -1)
@@ -60577,9 +60885,56 @@
       (goal diplo-my-player-number 8)
     )
 =>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
+    (player-in-game 8)
+    (not
+      (goal diplo-my-player-number 8)
+    )
+=>
+    (set-goal 209 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-8-bad-egg-expires-at)
+    (goal 9 1)
+    (player-in-game 8)
+    (not
+      (goal diplo-my-player-number 8)
+    )
+=>
+    (set-goal 209 1)
+)
+(defrule
+    (goal 209 1)
+    (goal 9 1)
+    (player-in-game 8)
+    (not
+      (goal diplo-my-player-number 8)
+    )
+=>
     (set-goal player-8-is-bad-egg 0)
     (set-goal player-8-bad-egg-expires-at -1)
     (chat-local-to-self chat-eff6100e64480d30af47207c5d14fa0bb2446c86)
+)
+(defrule
+    (player-in-game 8)
+    (not
+      (goal diplo-my-player-number 8)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
+    (goal player-8-is-bad-egg 0)
+    (goal allied-with-8 0)
+    (player-in-game 8)
+    (not
+      (goal diplo-my-player-number 8)
+    )
+=>
+    (set-goal 9 1)
 )
 (defrule
     (nand
@@ -60592,10 +60947,7 @@
         (and
           (players-stance 8 ally)
           (and
-            (and
-              (goal player-8-is-bad-egg 0)
-              (goal allied-with-8 0)
-            )
+            (goal 9 1)
             (and
               (player-in-game 8)
               (not
@@ -60644,8 +60996,7 @@
       (stance-toward 8 neutral)
     )
     (players-stance 8 ally)
-    (goal player-8-is-bad-egg 0)
-    (goal allied-with-8 0)
+    (goal 9 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -60668,10 +61019,7 @@
       (and
         (players-stance 8 ally)
         (and
-          (and
-            (goal player-8-is-bad-egg 0)
-            (goal allied-with-8 0)
-          )
+          (goal 9 1)
           (and
             (player-in-game 8)
             (not
@@ -60690,8 +61038,8 @@
     (set-goal 337 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 337)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 337 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 337 g:+ 209)
     (up-modify-goal 337 c:mod 3)
     (up-modify-goal 337 c:+ 3)
     (up-modify-goal 337 c:mod 3)
@@ -60720,8 +61068,7 @@
       (stance-toward 8 neutral)
     )
     (players-stance 8 ally)
-    (goal player-8-is-bad-egg 0)
-    (goal allied-with-8 0)
+    (goal 9 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -60731,13 +61078,28 @@
     (set-goal allied-with-8 1)
 )
 (defrule
+    (player-in-game 8)
+    (not
+      (goal diplo-my-player-number 8)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
+    (goal allied-with-8 1)
+    (not
+      (players-stance 8 ally)
+    )
+    (player-in-game 8)
+    (not
+      (goal diplo-my-player-number 8)
+    )
+=>
+    (set-goal 9 1)
+)
+(defrule
     (nand
-      (and
-        (goal allied-with-8 1)
-        (not
-          (players-stance 8 ally)
-        )
-      )
+      (goal 9 1)
       (and
         (player-in-game 8)
         (not
@@ -60819,12 +61181,7 @@
 )
 (defrule
     (nand
-      (and
-        (goal allied-with-8 1)
-        (not
-          (players-stance 8 ally)
-        )
-      )
+      (goal 9 1)
       (and
         (player-in-game 8)
         (not
@@ -60843,10 +61200,7 @@
     (up-modify-goal player-8-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal allied-with-8 1)
-    (not
-      (players-stance 8 ally)
-    )
+    (goal 9 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -60854,6 +61208,14 @@
 =>
     (set-goal allied-with-8 0)
     (set-stance 8 enemy)
+)
+(defrule
+    (player-in-game 8)
+    (not
+      (goal diplo-my-player-number 8)
+    )
+=>
+    (set-goal 9 0)
 )
 (defrule
     (goal threat-player 8)
@@ -60866,21 +61228,22 @@
       (goal diplo-my-player-number 8)
     )
 =>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
+    (player-in-game 8)
+    (not
+      (goal diplo-my-player-number 8)
+    )
+=>
     (chat-local-to-self chat-0f45c15df8f4b98f45e76a193f81ee06c4264160)
 )
 (defrule
     (nand
       (goal allied-with-8 1)
       (and
-        (and
-          (goal threat-player 8)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 8 enemy)
-            )
-          )
-        )
+        (goal 9 1)
         (and
           (player-in-game 8)
           (not
@@ -60963,11 +61326,7 @@
 )
 (defrule
     (goal allied-with-8 1)
-    (goal threat-player 8)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 8 enemy)
-    )
+    (goal 9 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -60979,15 +61338,7 @@
     (nand
       (goal allied-with-8 1)
       (and
-        (and
-          (goal threat-player 8)
-          (and
-            (up-compare-goal threat-time c:< 1000)
-            (not
-              (stance-toward 8 enemy)
-            )
-          )
-        )
+        (goal 9 1)
         (and
           (player-in-game 8)
           (not
@@ -61008,21 +61359,13 @@
 )
 (defrule
     (nand
-      (stance-toward 8 ally)
+      (not
+        (goal allied-with-8 1)
+      )
       (and
-        (not
-          (goal allied-with-8 1)
-        )
+        (stance-toward 8 ally)
         (and
-          (and
-            (goal threat-player 8)
-            (and
-              (up-compare-goal threat-time c:< 1000)
-              (not
-                (stance-toward 8 enemy)
-              )
-            )
-          )
+          (goal 9 1)
           (and
             (player-in-game 8)
             (not
@@ -61043,11 +61386,7 @@
     (up-modify-goal player-8-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal threat-player 8)
-    (up-compare-goal threat-time c:< 1000)
-    (not
-      (stance-toward 8 enemy)
-    )
+    (goal 9 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -61056,10 +61395,27 @@
     (set-stance 8 enemy)
 )
 (defrule
+    (player-in-game 8)
+    (not
+      (goal diplo-my-player-number 8)
+    )
+=>
+    (set-goal 9 0)
+)
+(defrule
     (goal allied-with-8 0)
     (stance-toward 8 ally)
     (goal player-8-is-bad-egg 0)
     (goal tried-alliance-with-8 0)
+    (player-in-game 8)
+    (not
+      (goal diplo-my-player-number 8)
+    )
+=>
+    (set-goal 9 1)
+)
+(defrule
+    (goal 9 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -61072,16 +61428,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (and
-          (goal allied-with-8 0)
-          (and
-            (stance-toward 8 ally)
-            (and
-              (goal player-8-is-bad-egg 0)
-              (goal tried-alliance-with-8 0)
-            )
-          )
-        )
+        (goal 9 1)
         (and
           (player-in-game 8)
           (not
@@ -61099,8 +61446,8 @@
     (set-goal 340 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 340)
-    (up-get-precise-time 0 9)
-    (up-modify-goal 340 g:+ 9)
+    (up-get-precise-time 0 209)
+    (up-modify-goal 340 g:+ 209)
     (up-modify-goal 340 c:mod 3)
     (up-modify-goal 340 c:+ 3)
     (up-modify-goal 340 c:mod 3)
@@ -61123,10 +61470,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal allied-with-8 0)
-    (stance-toward 8 ally)
-    (goal player-8-is-bad-egg 0)
-    (goal tried-alliance-with-8 0)
+    (goal 9 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -61137,15 +61481,15 @@
     (set-goal tried-alliance-with-8 1)
 )
 (defrule
-    (players-stance 8 ally)
-    (not
-      (stance-toward 8 ally)
-    )
     (nand
       (player-in-game 8)
       (not
         (goal diplo-my-player-number 8)
       )
+    )
+    (players-stance 8 ally)
+    (not
+      (stance-toward 8 ally)
     )
 =>
     (set-stance 8 ally)
@@ -61162,7 +61506,6 @@
     (set-stance my-player-number ally)
 )
 (defrule
-    (goal resign 1)
     (nand
       (goal resign 0)
       (and
@@ -61173,6 +61516,7 @@
         )
       )
     )
+    (goal resign 1)
 =>
     (set-stance every-enemy ally)
     (set-stance every-neutral ally)
@@ -61363,43 +61707,39 @@
     (chat-to-player every-ally chat-3157faa10ad8f4349ca9a0f430e2020480a2924d)
 )
 (defrule
-    (up-research-status c: feudal-age == research-pending)
     (not
       (up-research-status c: feudal-age < research-pending)
     )
+    (up-research-status c: feudal-age == research-pending)
 =>
     (chat-to-player every-ally chat-8c1add5792f06349834823be7af5388dd18dc6e5)
 )
 (defrule
-    (up-research-status c: castle-age < research-pending)
     (not
       (up-research-status c: feudal-age < research-pending)
     )
     (not
       (up-research-status c: feudal-age == research-pending)
     )
+    (up-research-status c: castle-age < research-pending)
 =>
     (chat-to-player every-ally chat-1b168fc75d0dccead31debc6304ae90e62b85346)
 )
 (defrule
-    (up-research-status c: castle-age == research-pending)
-    (not
-      (up-research-status c: feudal-age == research-pending)
-    )
     (not
       (up-research-status c: feudal-age < research-pending)
     )
     (not
+      (up-research-status c: feudal-age == research-pending)
+    )
+    (not
       (up-research-status c: castle-age < research-pending)
     )
+    (up-research-status c: castle-age == research-pending)
 =>
     (chat-to-player every-ally chat-8e47476ff2d44144fef9f4c3b25acadc9b58ade1)
 )
 (defrule
-    (up-research-status c: imperial-age < research-pending)
-    (not
-      (up-research-status c: castle-age < research-pending)
-    )
     (not
       (up-research-status c: feudal-age < research-pending)
     )
@@ -61407,46 +61747,50 @@
       (up-research-status c: feudal-age == research-pending)
     )
     (not
+      (up-research-status c: castle-age < research-pending)
+    )
+    (not
       (up-research-status c: castle-age == research-pending)
     )
+    (up-research-status c: imperial-age < research-pending)
 =>
     (chat-to-player every-ally chat-3e71608742dd8317c17d7aad90031f4ca2f4e31e)
 )
 (defrule
-    (up-research-status c: imperial-age == research-pending)
     (not
-      (up-research-status c: castle-age == research-pending)
+      (up-research-status c: feudal-age < research-pending)
     )
     (not
       (up-research-status c: feudal-age == research-pending)
     )
     (not
-      (up-research-status c: feudal-age < research-pending)
+      (up-research-status c: castle-age < research-pending)
     )
     (not
-      (up-research-status c: castle-age < research-pending)
+      (up-research-status c: castle-age == research-pending)
     )
     (not
       (up-research-status c: imperial-age < research-pending)
     )
+    (up-research-status c: imperial-age == research-pending)
 =>
     (chat-to-player every-ally chat-6aa194c8364dcbf888b9f71dddead1b65e2a18b1)
 )
 (defrule
     (not
-      (up-research-status c: imperial-age < research-pending)
-    )
-    (not
-      (up-research-status c: castle-age < research-pending)
-    )
-    (not
       (up-research-status c: feudal-age < research-pending)
     )
     (not
       (up-research-status c: feudal-age == research-pending)
     )
     (not
+      (up-research-status c: castle-age < research-pending)
+    )
+    (not
       (up-research-status c: castle-age == research-pending)
+    )
+    (not
+      (up-research-status c: imperial-age < research-pending)
     )
     (not
       (up-research-status c: imperial-age == research-pending)
@@ -61904,11 +62248,11 @@
 )
 (defrule
     (nand
-      (goal team-game 1)
+      (not
+        (goal free-for-all 1)
+      )
       (and
-        (not
-          (goal free-for-all 1)
-        )
+        (goal team-game 1)
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
@@ -62022,11 +62366,11 @@
     (nand
       (goal free-for-all 1)
       (and
-        (up-compare-goal score-percentage c:>= 140)
+        (not
+          (up-compare-goal score-percentage c:<= 70)
+        )
         (and
-          (not
-            (up-compare-goal score-percentage c:<= 70)
-          )
+          (up-compare-goal score-percentage c:>= 140)
           (and
             (timer-triggered 9)
             (goal locked-teams 1)
@@ -62065,17 +62409,17 @@
 )
 (defrule
     (nand
-      (goal team-game 1)
+      (not
+        (goal free-for-all 1)
+      )
       (and
-        (not
-          (goal free-for-all 1)
-        )
+        (goal team-game 1)
         (and
-          (up-compare-goal score-percentage c:>= 140)
+          (not
+            (up-compare-goal score-percentage c:<= 70)
+          )
           (and
-            (not
-              (up-compare-goal score-percentage c:<= 70)
-            )
+            (up-compare-goal score-percentage c:>= 140)
             (and
               (timer-triggered 9)
               (goal locked-teams 1)
@@ -62103,11 +62447,11 @@
           (goal team-game 1)
         )
         (and
-          (up-compare-goal score-percentage c:>= 140)
+          (not
+            (up-compare-goal score-percentage c:<= 70)
+          )
           (and
-            (not
-              (up-compare-goal score-percentage c:<= 70)
-            )
+            (up-compare-goal score-percentage c:>= 140)
             (and
               (timer-triggered 9)
               (goal locked-teams 1)
@@ -62212,12 +62556,12 @@
     (nand
       (goal attacking 1)
       (and
-        (up-compare-goal largest-enemy-military-percentage c:>= 170)
+        (nand
+          (up-compare-goal largest-enemy-military-percentage c:<= 50)
+          (goal attacking 0)
+        )
         (and
-          (nand
-            (up-compare-goal largest-enemy-military-percentage c:<= 50)
-            (goal attacking 0)
-          )
+          (up-compare-goal largest-enemy-military-percentage c:>= 170)
           (and
             (military-population >= 20)
             (and
@@ -62341,12 +62685,12 @@
         (goal attacking 1)
       )
       (and
-        (up-compare-goal largest-enemy-military-percentage c:>= 170)
+        (nand
+          (up-compare-goal largest-enemy-military-percentage c:<= 50)
+          (goal attacking 0)
+        )
         (and
-          (nand
-            (up-compare-goal largest-enemy-military-percentage c:<= 50)
-            (goal attacking 0)
-          )
+          (up-compare-goal largest-enemy-military-percentage c:>= 170)
           (and
             (military-population >= 20)
             (and
@@ -64469,37 +64813,37 @@
 (defrule
     (true)
 =>
-    (set-goal 392 0)
+    (set-goal 391 0)
 )
 (defrule
     (up-compare-goal desired-trade-carts g:< max-desired-trade-carts)
 =>
-    (set-goal 392 1)
+    (set-goal 391 1)
 )
 (defrule
-    (goal 392 1)
+    (goal 391 1)
 =>
     (enable-timer 11 300)
     (disable-self)
 )
 (defrule
     (timer-triggered 11)
-    (goal 392 1)
+    (goal 391 1)
 =>
-    (set-goal 393 0)
+    (set-goal 390 0)
 )
 (defrule
     (up-compare-goal total-trade-carts g:>= desired-trade-carts)
     (up-compare-goal non-escrowed-gold c:<= gold-threshold)
     (timer-triggered 11)
-    (goal 392 1)
+    (goal 391 1)
 =>
-    (set-goal 393 1)
+    (set-goal 390 1)
 )
 (defrule
-    (goal 393 1)
+    (goal 390 1)
     (timer-triggered 11)
-    (goal 392 1)
+    (goal 391 1)
 =>
     (up-modify-goal desired-trade-carts c:+ 5)
     (up-modify-goal desired-trade-carts g:min max-desired-trade-carts)
@@ -64507,7 +64851,7 @@
 )
 (defrule
     (timer-triggered 11)
-    (goal 392 1)
+    (goal 391 1)
 =>
     (disable-timer 11)
     (enable-timer 11 300)
@@ -64515,7 +64859,7 @@
 (defrule
     (strategic-number sn-maximum-town-size <= 30)
 =>
-    (set-goal 394 0)
+    (set-goal 392 0)
     (set-strategic-number sn-maximum-town-size 8)
     (set-strategic-number sn-minimum-town-size 8)
     (set-strategic-number sn-safe-town-size 8)
@@ -64562,12 +64906,12 @@
         )
       )
     )
-    (goal 394 0)
+    (goal 392 0)
     (strategic-number sn-maximum-town-size <= 30)
 =>
     (set-strategic-number sn-maximum-town-size 8)
     (set-strategic-number sn-safe-town-size 8)
-    (set-goal 394 1)
+    (set-goal 392 1)
 )
 (defrule
     (nor
@@ -64610,10 +64954,10 @@
         )
       )
     )
-    (goal 394 1)
+    (goal 392 1)
     (strategic-number sn-maximum-town-size <= 30)
 =>
-    (set-goal 394 0)
+    (set-goal 392 0)
 )
 (defrule
     (strategic-number sn-maximum-town-size <= 30)
