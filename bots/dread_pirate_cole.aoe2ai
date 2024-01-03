@@ -4,10 +4,8 @@ const sea-fish = 905
 
 #do once
   set name to "Dread Pirate Cole"
-  set up basics
-  
-  #if not civ-selected italian
-    chat to all "I be not the right civ."
+  #if not civ-selected bohemians
+    chat to all "I be not the right civ. Bohemia is where me heart lie."
   #else
     chat to all "Take what ye can, give nothin' back."
   #end if
@@ -31,8 +29,6 @@ const sea-fish = 905
     goal water-map = 0
   #end if
 #end do
-
-do basic targeting
 
 // diplomacy
 
@@ -94,178 +90,151 @@ do basic targeting
 #end template
 
 #template diplo-should-player-be-marked
-  #if players-unit-type-count {player} dock >= 1
+  #if players-building-type-count {player} dock >= 1
     goal {marked_goal} = 1
   #end if
 #end template
 
 load "templates/diplomacy_engine.aoe2ai"
+load "templates/fast_castle.aoe2ai"
 
-// common stuff
+#if up-research-status c: castle-age >= research-pending
 
-build 1 town-center
-
-lure boars
-
-#if current-age == dark-age
-  build houses with 5 headroom
-#else
-  build houses with 10 headroom
-#end if
-
-#if game-time > 60
-  build lumber camps
-#end if
-
-#template build-mining-camps
-  #if strategic-number sn-{resource}-gatherer-percentage > 0
-    #when
-      build {resource} mining camps
-    #then
-      sn-camp-max-distance += 5
-    #end when
-  #end if
-#end template
-insert build-mining-camps(resource="gold")
-insert build-mining-camps(resource="stone")
-
-#if building-type-count lumber-camp >= 1
-  build mills
-  #if wood-amount > 200
-    build farms
-  #end if
-#end if
-
-#if current-age >= feudal-age
   #do once
-    distribute villagers 40 40 20 0
+    set up basics
+    distribute villagers 40 30 30 0
+    sn-maximum-attack-group-size = 1
+    sn-minimum-attack-group-size = 1
   #end do
-  auto balance wood and food and gold
-#else
-  distribute villagers 20 80 0 0
-#end if
-
-#if current-age == feudal-age and up-research-status c: castle-age < research-pending
-  buy food when gold > 400
-  sell food when food > 900
-#end if
-
-#if current-age == castle-age and up-research-status c: imperial-age < research-pending
-  buy food when gold > 1000
-  sell food when food > 1200
-#end if
-
-sell stone when stone > 400
-
-trade excess wood and food and gold at 2000
-
-research feudal-age
-build 1 blacksmith
-build 1 market
-research castle-age
-build 1 university
-build 1 monastery
-build 1 siege-workshop
-research imperial-age
-research ri-chemistry
-
-research ri-loom
-research ri-wheel-barrow
-research ri-hand-cart
-research mill upgrades
-research lumber camp upgrades
-research gold mining camp upgrades
-
-#if goal water-map 1
-  #if building-type-count lumber-camp >= 1
-    build 1 dock
+  
+  #if up-research-status c: ri-houfnice < research-pending
+    #if military-population < 10
+      escrow 10 wood
+      escrow 10 food
+      escrow 10 gold
+    #else if military-population < 20
+      escrow 20 wood
+      escrow 20 food
+      escrow 20 gold
+    #else if military-population < 30
+      escrow 40 wood
+      escrow 40 food
+      escrow 40 gold
+    #else
+      escrow 60 wood
+      escrow 60 food
+      escrow 60 gold
+    #end if
+  #else
+    escrow 0 wood
+    escrow 0 food
+    escrow 0 gold
+    @release-escrow wood
+    @release-escrow food
+    @release-escrow gold
   #end if
-  research ri-careening
-  research ri-dry-dock
-  research ri-shipwright
-  research ri-war-galley
-  research ri-fast-fire-ship
-  research ri-cannon-galleon
-#end if
+  
+  manage scouting
+  do basic targeting
+  auto balance wood and food and gold
 
-#if goal full-water-map 0
+  build 1 town-center
   build 1 blacksmith
-  research ri-padded-archer-armor
-  research ri-leather-archer-armor
-  research ri-ring-archer-armor
-  research ri-siege-engineers
-#end if
+  build 1 university
+  build 1 siege-workshop
+  build 1 monastery
+  #if current-age == imperial-age
+    build 2 siege-workshop
+  #end if
+  #if goal water-map 1
+    build 3 dock
+  #end if
+  #if goal full-water-map 0
+    build 1 barracks
+    build 3 archery-range
+  #end if
+  build lumber camps
+  #when
+    build gold mining camps
+  #then
+    sn-camp-max-distance += 8
+  #end when
+  build houses with 15 headroom
+  build farms
+  
+  research ri-loom with gold escrow
+  research lumber camp upgrades with wood and food escrow
+  research gold mining camp upgrades with wood and food escrow
+  research mill upgrades with wood and food escrow
+  
+  research imperial-age with food and gold escrow
+  research ri-chemistry with food and gold escrow
+  #if goal water-map 1 and building-type-count dock >= 1
+    research ri-fletching with food and gold escrow
+    research ri-bodkin-arrow with food and gold escrow
+    research ri-bracer with food and gold escrow
+    research ri-gillnets with wood and food escrow
+    research ri-careening with food and gold escrow
+    research ri-war-galley with food and gold escrow
+    research ri-galleon with wood and food escrow
+    research ri-deck-guns with wood and food escrow
+  #end if
+  #if goal full-water-map 0
+    research ri-padded-archer-armor with food and gold escrow
+    research ri-leather-archer-armor with food and gold escrow
+    research ri-ring-archer-armor with food and gold escrow
+    research ri-houfnice with food and gold escrow
+  #end if
+  
+  goal warboat-count-goal = 0
+  goal soldier-count-goal = 0
+  @up-get-fact warboat-count 0 warboat-count-goal
+  @up-get-fact soldier-count 0 soldier-count-goal
+  
+  #if goal full-water-map 0 and up-compare-goal soldier-count-goal g:<= warboat-count-goal or building-type-count dock == 0 or goal water-map 0
+    train hand-cannoneer
+    #if research-completed ri-houfnice
+      train houfnice
+    #else
+      train bombard-cannon
+    #end if
+  #else
+    train galley-line
+    train cannon-galleon-line
+  #end if
 
-train 1 monk
-
-#if goal water-map 1 and (goal full-water-map 1 or warboat-count < 30)
-  #if current-age < castle-age or up-research-status c: ri-war-galley >= research-pending
-    #if current-age < imperial-age or up-research-status c: ri-fast-fire-ship >= research-pending
-      #if current-age < imperial-age or up-research-status c: ri-cannon-galleon >= research-pending
-        #if current-age == feudal-age
-          build 2 dock
-        #else if current-age == castle-age
-          build 4 dock
-        #else if current-age == imperial-age
-          build 8 dock
-        #end if
-        #if research-completed ri-cannon-galleon
-          train fire-ship-line => train cannon-galleon-line
-        #else
-          train 40 fire-ship-line
-        #end if
+  #if current-age == imperial-age
+    #if goal water-map 0
+      train 120 villagers with 40 trade
+    #else
+      train 100 villager
+      #if players-building-type-count any-ally dock >= 1 and warboat-count >= 10
+        train 20 trade-cog
       #end if
     #end if
-  #end if
-#end if
-
-#if goal full-water-map 0
-  #if up-research-status c: ri-ring-archer-armor >= research-pending
-    build 1 siege-workshop
-    build 1 barracks
-    train 10 bombard-cannon
-    #if unit-type-count-total bombard-cannon >= 10 or up-pending-objects c: bombard-cannon >= 1
-      build 8 archery-range
-      train hand-cannoneer
-    #end if
-  #end if
-#end if
-
-#if current-age == imperial-age
-  #if goal water-map 0
-    train 120 villagers with 40 trade
   #else
-    train 100 villager
-    #if players-building-type-count any-ally dock >= 1 and warboat-count >= 10
-      train 20 trade-cog
-    #end if
+    train 120 villager
   #end if
-#else
-  train 120 villager
-#end if
-train 10 fishing-ship
+  train 10 fishing-ship
 
-#if military-population >= 30
-  #do once
-    #if goal water-map 1
-      chat to all "Avast, ye! Ready the guns! Stay the mainsail!"
-    #else
-      chat to all "Avast, ye! Ready the guns!"
-    #end if
-  #end do
-  #if goal full-water-map 0
-    sn-maximum-town-size = 255
+  #if military-population >= 30
+    #do once
+      #if goal water-map 1
+        chat to all "Avast, ye! Ready the guns! Stay the mainsail!"
+      #else
+        chat to all "Avast, ye! Ready the guns!"
+      #end if
+    #end do
+    sn-number-boat-attack-groups = 200
+    sn-number-attack-groups = 200
+    insert diplo-mark-random-ally-if-no-enemies
   #else
-    auto expand town size to 30
+    sn-number-boat-attack-groups = 0
+    sn-number-attack-groups = 0
   #end if
-  sn-number-boat-attack-groups = 200
-  insert diplo-mark-random-ally-if-no-enemies
-#else
-  sn-number-boat-attack-groups = 0
-  #if strategic-number sn-maximum-town-size > 30
-    sn-maximum-town-size = 30
-  #end if
+
   auto expand town size to 30
+
 #end if
 
 // misc dialog
