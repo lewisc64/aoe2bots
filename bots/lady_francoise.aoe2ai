@@ -12,7 +12,7 @@ load "templates/fast_castle.aoe2ai"
 #template diplo-chat-alliance-offer
   @up-get-player-color {player} -1
   #select random
-    chat const to all "Take my hand, %s." 7031232
+    chat const to all "An alliance, %s?" 7031232
   #randor
     chat const to all "We should ally, %s. For the sake of both of us." 7031232
   #randor
@@ -84,13 +84,16 @@ load "templates/fast_castle.aoe2ai"
 #end template
 
 #template diplo-should-player-be-marked
+  #if military-population >= 10
+    goal temp = 0
+    @up-get-player-fact {player} military-population 0 temp
+    #if up-compare-goal temp c:>= 5
+      goal {marked_goal} = 1
+    #end if
+  #end if
 #end template
 
 load "templates/diplomacy_engine.aoe2ai"
-
-#if unit-type-count knight-line >= minimum-army
-  insert diplo-mark-random-ally-if-no-enemies
-#end if
 
 #template escrow-resources
   #if escrow-amount food < 1300
@@ -268,7 +271,7 @@ load "templates/diplomacy_engine.aoe2ai"
   #else
     sn-number-attack-groups = 0
     #if goal attacking 1
-      sn-maximum-town-size = 255
+      town size attack
     #else
       auto expand town size
     #end if
