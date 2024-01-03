@@ -1,6 +1,6 @@
 const alliance-request-timeout = 60
 const allied-victory-timeout = 120
-const bad-egg-expiry = 600
+const bad-egg-expiry = 300
 
 #template diplo-set-up-player-goals
   goal player-{player}-is-bad-egg = 0
@@ -17,7 +17,7 @@ const bad-egg-expiry = 600
 #end template
 
 #template handle-stance-changes
-  #if player-in-game {player}
+  #if player-in-game {player} and not goal diplo-my-player-number {player}
     
     // players who have been bad eggs for a while are forgiven
     #if goal player-{player}-is-bad-egg 1 and not goal player-{player}-bad-egg-expires-at -1
@@ -122,6 +122,8 @@ const bad-egg-expiry = 600
   insert diplo-set-up-player-goals(player=8)
   @set-stance every-enemy neutral
   goal no-enemies-stamp = 0
+  goal diplo-my-player-number = -1
+  @up-get-fact player-number 0 diplo-my-player-number
 #end do
 
 #select random persistant
@@ -134,26 +136,6 @@ const bad-egg-expiry = 600
 
 #if not (goal enemy-players-count 0 and goal neutral-players-count 0) or (up-compare-goal population-space-remaining c:> 5)
   @up-modify-goal no-enemies-stamp g:= game-time-goal
-#end if
-
-@up-modify-goal temp g:= game-time-goal
-@up-modify-goal temp g:- no-enemies-stamp
-#if up-compare-goal temp c:>= allied-victory-timeout and game-time >= 2400 // the final betrayal.
-  #do once
-    insert say-no-allied-victory-line
-    goal player-1-is-bad-egg = 1
-    goal player-2-is-bad-egg = 1
-    goal player-3-is-bad-egg = 1
-    goal player-4-is-bad-egg = 1
-    goal player-5-is-bad-egg = 1
-    goal player-6-is-bad-egg = 1
-    goal player-7-is-bad-egg = 1
-    goal player-8-is-bad-egg = 1
-    goal team-game = 0
-    goal free-for-all = 1
-    goal locked-teams = 1
-    @set-stance every-ally enemy
-  #end do
 #end if
 
 #if goal want-alliance 1

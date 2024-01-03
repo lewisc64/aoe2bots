@@ -359,13 +359,3 @@
     chat to all "I'm itching for a fight."
   #end select
 #end template
-
-#template say-no-allied-victory-line
-  #select random
-    chat to all "We aren't winning togther, then? What a shame."
-  #randor
-    chat to all "I suppose now we should fight."
-  #randor
-    chat to all "We did it, but the game is not over. This is just the beginning."
-  #end select
-#end template

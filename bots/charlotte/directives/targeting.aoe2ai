@@ -4,7 +4,7 @@ const retarget-interval = 300
   target closest enemy
   scout enemy
 #end do
-#if not player-in-game target-player or not stance-toward target-player enemy
+#if strategic-number sn-target-player-number <= 0 or not player-in-game target-player or not stance-toward target-player enemy
   target closest enemy
   #if strategic-number sn-target-player-number != -1
     @up-chat-data-to-self "Retargeting to player %d" s: sn-target-player-number
