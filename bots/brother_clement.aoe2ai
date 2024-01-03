@@ -156,6 +156,7 @@ const ri-bimaristan = 28
   #randor
     chat const to all "We are done, %s!" 7031232
   #end select
+  goal player-{player}-is-heretic = 1
 #end template
 
 #template diplo-chat-resign
@@ -174,7 +175,6 @@ const ri-bimaristan = 28
     chat const to all "%s you are a lecherous animal." 7031232
   #end select
   chat to {player} "5Donate and be cleansed of sin."
-  goal chat-heretic = -1
 #end template
 
 #template chat-forgive
@@ -191,6 +191,7 @@ const ri-bimaristan = 28
     goal player-{player}-has-donated = 0
     goal player-{player}-donation-expire-at = -1
     goal player-{player}-is-heretic = 0
+    goal player-{player}-mark-after = 0
   #end do
   
   #if up-compare-goal diplo-game-time-goal g:> player-{player}-donation-expire-at
@@ -198,28 +199,29 @@ const ri-bimaristan = 28
     goal player-{player}-has-donated = 0
   #end if
   
-  // those who do not donate gold and have lots of it are marked
-  #ifg goal player-{player}-has-donated 0 and up-allied-resource-amount {player} gold > 1000 and goal {marked_goal} 0 and players-building-type-count {player} monastery < 3
-    chat to self "marked {player}"
-    goal {marked_goal} = 1
+  // those who do not donate gold and have lots of it are heretics
+  #ifg goal player-{player}-has-donated 0 and up-allied-resource-amount {player} gold > 1000 and goal player-{player}-is-heretic 0 and players-building-type-count {player} monastery < 3
+    chat to self "heretic {player}"
+    goal player-{player}-is-heretic = 1
+    insert diplo-set-future-stamp(goal="player-{player}-mark-after",seconds="60")
     @clear-tribute-memory {player} gold
     insert chat-heretic(player={player})
   #end if
   
   // those who donate gold are no longer heretics
-  #ifg (players-tribute-memory {player} gold > 0 or players-building-type-count {player} monastery >= 3) and goal {marked_goal} 1
-    chat to self "unmarked {player}"
-    goal {marked_goal} = 0
+  #ifg (players-tribute-memory {player} gold > 0 or players-building-type-count {player} monastery >= 3) and goal player-{player}-is-heretic 1
+    chat to self "unheretic {player}"
+    goal player-{player}-is-heretic = 0
     insert diplo-set-future-stamp(goal="player-{player}-donation-expire-at",seconds="1200")
     goal player-{player}-has-donated = 1
     @clear-tribute-memory {player} gold
     insert chat-forgive(player={player})
   #end if
   
-  #if goal {marked_goal} 1
-    goal player-{player}-is-heretic = 1
+  #if goal player-{player}-is-heretic 1 and up-compare-goal diplo-game-time-goal g:>= player-{player}-mark-after
+    goal {marked_goal} = 1
   #else
-    goal player-{player}-is-heretic = 0
+    goal {marked_goal} = 0
   #end if
 #end template
 
@@ -519,16 +521,15 @@ load "templates/lightning_castle.aoe2ai"
     goal attacking = 0
   #end if
   
-  #if goal attacking 1 and player-in-game any-enemy
-    sn-number-attack-groups = 200
-  #else
-    sn-number-attack-groups = 0
-  #end if
-  
   keep monk 15 tiles away from enemy castle
   keep monk 10 tiles away from enemy town-center
   
-  auto expand town size to 30
+  #if goal attacking 1 and player-in-game any-enemy
+    town size attack
+  #else
+    auto expand town size to 30
+  #end if
+  
   delete building feitoria
 #end if
 
