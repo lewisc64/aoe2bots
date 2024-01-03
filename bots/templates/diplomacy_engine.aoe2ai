@@ -27,6 +27,7 @@
 const diplo-alliance-timeout = 60
 const diplo-mute-period = 120
 const diplo-total-warnings = 1
+const diplo-minimum-war-time = 300
 
 #do once
   @set-stance every-enemy ally
@@ -51,6 +52,12 @@ const diplo-total-warnings = 1
 #end do
 
 @up-get-fact game-time 0 diplo-game-time-goal
+
+goal diplo-threat-time = 0
+goal diplo-threat-player = 0
+goal diplo-threat-source = 0
+goal diplo-threat-target = 0
+@up-get-threat-data diplo-threat-time diplo-threat-player diplo-threat-source diplo-threat-target
 
 goal diplo-enemy-count = 0
 goal diplo-ally-count = 0
@@ -129,20 +136,21 @@ insert diplo-count-stances(player=8)
   #do once
     goal diplo-player-{player}-warnings = diplo-total-warnings
     goal diplo-player-{player}-alliance-offer-expire-at = -1
-    goal diplo-trying-to-ally-{player} = 0
+    goal diplo-trying-to-ally-{player} = 1
     goal diplo-player-{player}-is-marked = 0
+    goal diplo-disregard-player-{player}-until = 0
   #end do
   
-  #if player-in-game {player} and not goal diplo-my-player-number {player}
+  #ifg player-in-game {player} and not goal diplo-my-player-number {player} and up-compare-goal diplo-game-time-goal g:>= diplo-disregard-player-{player}-until
   
     insert diplo-should-player-be-marked(marked_goal="diplo-player-{player}-is-marked",player={player})
   
     // enemy allies who threaten us
-    #ifg goal diplo-action-done 0 and goal threat-player {player} and players-stance {player} ally and stance-toward {player} ally and up-compare-goal threat-time c:< 5000
+    #ifg goal diplo-action-done 0 and goal diplo-threat-player {player} and players-stance {player} ally and stance-toward {player} ally and up-compare-goal diplo-threat-time c:< 5000
       chat to self "threatened by ally {player}"
       #ifg goal diplo-player-{player}-warnings 0
         @set-stance {player} enemy
-        goal diplo-player-{player}-is-marked = 1
+        insert diplo-set-future-stamp(goal="diplo-disregard-player-{player}-until",seconds="diplo-minimum-war-time")
         #if game-time >= diplo-mute-period
           insert diplo-chat-friendly-fire-betrayal(player={player})
         #end if
@@ -178,6 +186,7 @@ insert diplo-count-stances(player=8)
             insert diplo-chat-their-betrayal(player={player})
           #end if
           goal diplo-player-{player}-alliance-offer-expire-at = 0
+          insert diplo-set-future-stamp(goal="diplo-disregard-player-{player}-until",seconds="diplo-minimum-war-time")
         #end if
         @set-stance {player} enemy
         goal diplo-action-done = 1
