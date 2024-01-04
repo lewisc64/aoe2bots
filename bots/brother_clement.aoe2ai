@@ -525,7 +525,7 @@ load "templates/lightning_castle.aoe2ai"
   keep monk 10 tiles away from enemy town-center
   
   #if goal attacking 1 and player-in-game any-enemy
-    town size attack
+    attack
   #else
     auto expand town size to 30
   #end if
