@@ -1004,8 +1004,13 @@
 )
 (defrule
     (goal no-gold-mining-start -1)
-    (unit-type-count 579 == 0)
-    (unit-type-count 581 == 0)
+    (or
+      (and
+        (unit-type-count 579 == 0)
+        (unit-type-count 581 == 0)
+      )
+      (dropsite-min-distance gold > 10)
+    )
 =>
     (up-get-fact game-time 0 no-gold-mining-start)
 )
@@ -1013,6 +1018,9 @@
     (nand
       (unit-type-count 579 == 0)
       (unit-type-count 581 == 0)
+    )
+    (not
+      (dropsite-min-distance gold > 10)
     )
 =>
     (set-goal no-gold-mining-start -1)
@@ -6459,95 +6467,6 @@
     (building-type-count university >= 1)
 =>
     (research ri-chemistry)
-)
-(defrule
-    (nand
-      (and
-        (goal produce-cannon-galleons 1)
-        (and
-          (goal enough-wood-for-units 1)
-          (goal enough-gold-for-units 1)
-        )
-      )
-      (goal allow-naval-units 1)
-    )
-=>
-    (up-jump-rule 11)
-)
-(defrule
-    (research-completed ri-cannon-galleon)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build dock)
-    (up-pending-objects c: dock < 5)
-    (building-type-count-total dock < 1)
-    (building-type-count-total dock == 0)
-=>
-    (build dock)
-)
-(defrule
-    (research-completed ri-cannon-galleon)
-=>
-    (up-jump-rule 5)
-)
-(defrule
-    (research-completed ri-chemistry)
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (can-build university)
-    (up-pending-objects c: university < 5)
-    (building-type-count-total university < 1)
-    (building-type-count-total university == 0)
-=>
-    (build university)
-)
-(defrule
-    (research-completed ri-chemistry)
-=>
-    (up-jump-rule 2)
-)
-(defrule
-    (up-research-status c: ri-chemistry < research-pending)
-    (research-available ri-chemistry)
-    (building-type-count university >= 1)
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-    (up-modify-goal attempted-researches-importance c:max importance-medium)
-)
-(defrule
-    (can-research ri-chemistry)
-    (goal do-research 1)
-    (up-compare-goal research-level c:<= importance-medium)
-    (research-available ri-chemistry)
-    (building-type-count university >= 1)
-=>
-    (research ri-chemistry)
-)
-(defrule
-    (research-completed ri-cannon-galleon)
-=>
-    (up-jump-rule 2)
-)
-(defrule
-    (up-research-status c: ri-cannon-galleon < research-pending)
-    (research-available ri-cannon-galleon)
-    (building-type-count dock >= 1)
-=>
-    (up-modify-goal attempted-researches c:+ 1)
-    (up-modify-goal attempted-researches-importance c:max importance-medium)
-)
-(defrule
-    (can-research ri-cannon-galleon)
-    (goal do-research 1)
-    (up-compare-goal research-level c:<= importance-medium)
-    (research-available ri-cannon-galleon)
-    (building-type-count dock >= 1)
-=>
-    (research ri-cannon-galleon)
 )
 (defrule
     (not
@@ -49372,7 +49291,7 @@
       (goal allow-naval-units 1)
     )
 =>
-    (up-jump-rule 56)
+    (up-jump-rule 68)
 )
 (defrule
     (goal produce-cannon-galleons 1)
@@ -49403,7 +49322,7 @@
       (unit-available cannon-galleon-line)
     )
 =>
-    (up-jump-rule 52)
+    (up-jump-rule 64)
 )
 (defrule
     (can-build dock)
@@ -49789,6 +49708,88 @@
     (up-pending-objects c: dock < 1)
 =>
     (build dock)
+)
+(defrule
+    (not
+      (unit-available cannon-galleon-line)
+    )
+=>
+    (up-jump-rule 11)
+)
+(defrule
+    (research-completed ri-deck-guns)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build dock)
+    (up-pending-objects c: dock < 5)
+    (building-type-count-total dock < 1)
+    (building-type-count-total dock == 0)
+=>
+    (build dock)
+)
+(defrule
+    (research-completed ri-deck-guns)
+=>
+    (up-jump-rule 5)
+)
+(defrule
+    (research-completed ri-chemistry)
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (can-build university)
+    (up-pending-objects c: university < 5)
+    (building-type-count-total university < 1)
+    (building-type-count-total university == 0)
+=>
+    (build university)
+)
+(defrule
+    (research-completed ri-chemistry)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-chemistry < research-pending)
+    (research-available ri-chemistry)
+    (building-type-count university >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-chemistry)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-chemistry)
+    (building-type-count university >= 1)
+=>
+    (research ri-chemistry)
+)
+(defrule
+    (research-completed ri-deck-guns)
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (up-research-status c: ri-deck-guns < research-pending)
+    (research-available ri-deck-guns)
+    (building-type-count dock >= 1)
+=>
+    (up-modify-goal attempted-researches c:+ 1)
+    (up-modify-goal attempted-researches-importance c:max importance-medium)
+)
+(defrule
+    (can-research ri-deck-guns)
+    (goal do-research 1)
+    (up-compare-goal research-level c:<= importance-medium)
+    (research-available ri-deck-guns)
+    (building-type-count dock >= 1)
+=>
+    (research ri-deck-guns)
 )
 (defrule
     (can-train cannon-galleon-line)

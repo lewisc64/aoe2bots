@@ -38,7 +38,7 @@
   goal no-gold-mining-start = -1
 #end do
 
-#if unit-type-count 579 == 0 and unit-type-count 581 == 0
+#if unit-type-count 579 == 0 and unit-type-count 581 == 0 or dropsite-min-distance gold > 10
   #if goal no-gold-mining-start -1
     @up-get-fact game-time 0 no-gold-mining-start
   #end if

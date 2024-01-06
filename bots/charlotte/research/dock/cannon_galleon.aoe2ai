@@ -1,7 +1,0 @@
-#if not research-completed ri-cannon-galleon
-  load "../dock/prerequisites.aoe2ai"
-  //load "../town_center/imperial_age.aoe2ai"
-  load "../university/chemistry.aoe2ai"
-
-  insert attempt-research(research="ri-cannon-galleon",importance="importance-medium",building="dock")
-#end if
