@@ -102,29 +102,13 @@ load "templates/fast_castle.aoe2ai"
 
   #do once
     set up basics
-    distribute villagers 40 30 30 0
-    sn-maximum-attack-group-size = 1
-    sn-minimum-attack-group-size = 1
+    distribute villagers 35 30 35 0
   #end do
   
   #if up-research-status c: ri-houfnice < research-pending
-    #if military-population < 10
-      escrow 10 wood
-      escrow 10 food
-      escrow 10 gold
-    #else if military-population < 20
-      escrow 20 wood
-      escrow 20 food
-      escrow 20 gold
-    #else if military-population < 30
-      escrow 40 wood
-      escrow 40 food
-      escrow 40 gold
-    #else
-      escrow 60 wood
-      escrow 60 food
-      escrow 60 gold
-    #end if
+    escrow 10 wood
+    escrow 10 food
+    escrow 10 gold
   #else
     escrow 0 wood
     escrow 0 food
@@ -137,6 +121,7 @@ load "templates/fast_castle.aoe2ai"
   manage scouting
   do basic targeting
   auto balance wood and food and gold
+  trade excess wood and food and gold at 2000
 
   build 1 town-center
   build 1 blacksmith
@@ -161,11 +146,19 @@ load "templates/fast_castle.aoe2ai"
   #end when
   build houses with 15 headroom
   build farms
+  build mills
   
   research ri-loom with gold escrow
   research lumber camp upgrades with wood and food escrow
   research gold mining camp upgrades with wood and food escrow
   research mill upgrades with wood and food escrow
+  research ri-fervor with gold escrow
+  research ri-sanctity with gold escrow
+  #respond to 10 monk-set
+    research ri-heresy with gold escrow
+    research ri-devotion with food and gold escrow
+    research ri-faith with food and gold escrow
+  #end respond
   
   research imperial-age with food and gold escrow
   research ri-chemistry with food and gold escrow
@@ -192,15 +185,17 @@ load "templates/fast_castle.aoe2ai"
   @up-get-fact soldier-count 0 soldier-count-goal
   
   #if goal full-water-map 0 and up-compare-goal soldier-count-goal g:<= warboat-count-goal or building-type-count dock == 0 or goal water-map 0
-    train hand-cannoneer
-    #if research-completed ri-houfnice
-      train houfnice
+    #if unit-available bombard-cannon-line
+      train balanced 3 hand-cannoneer 1 bombard-cannon-line
     #else
-      train bombard-cannon
+      train 20 hand-cannoneer
     #end if
   #else
-    train galley-line
-    train cannon-galleon-line
+    #if unit-available cannon-galleon-line
+      train balanced 1 galley-line 1 cannon-galleon-line
+    #else
+      train galley-line
+    #end if
   #end if
 
   #if current-age == imperial-age
@@ -226,33 +221,31 @@ load "templates/fast_castle.aoe2ai"
       #end if
     #end do
     sn-number-boat-attack-groups = 200
-    sn-number-attack-groups = 200
+    town size attack
     insert diplo-mark-random-ally-if-no-enemies
   #else
     sn-number-boat-attack-groups = 0
-    sn-number-attack-groups = 0
+    auto expand town size to 30
   #end if
-
-  auto expand town size to 30
 
 #end if
 
 // misc dialog
 
 #do once
-  #if unit-type-count fire-ship-line >= 10
+  #if unit-type-count galley-line >= 1
     chat to all "The sea beckons, and I be heeding her call."
   #end if
   
-  #if unit-type-count fire-ship-line >= 50
+  #if unit-type-count galley-line >= 20
     chat to all "I be the scourge of the seven seas, know it well."
   #end if
 
-  #if unit-type-count cannon-galleon-line >= 10
-    chat to all "The finest cannons in all the world!"
+  #if unit-type-count cannon-galleon-line >= 1
+    chat to all "Fire the cannons!"
   #end if
 
-  #if unit-type-count bombard-cannon >= 1 and goal water-map 0
+  #if unit-type-count bombard-cannon-line >= 1 and goal water-map 0
     chat to all "I miss the sea..."
   #end if
   
