@@ -66,7 +66,7 @@ load "unit_selection/trading.aoe2ai"
   #end if
   load "unit_selection/transporting.aoe2ai"
   
-  load "attack_decision/aggressive.aoe2ai"
+  load "attack_decision/cautious.aoe2ai"
   load "pacing/balanced_random.aoe2ai"
   
   #if up-compare-goal treaty-time-left >= 600

@@ -275,6 +275,8 @@
     chat to {player} "I was hoping you'd do that!"
   #randor
     chat to {player} "I agree, let's be friends."
+  #randor
+    chat to {player} "You know what? Sure."
   #end select
 #end template
 
@@ -285,6 +287,8 @@
     chat to {player} "Want to work together?"
   #randor
     chat to {player} "Want to team up?"
+  #randor
+    chat to {player} "Alliance?"
   #end select
 #end template
 
@@ -300,11 +304,13 @@
 
 #template say-alliance-begin-line
   #select random
-    chat to {player} "Let's do this. Together."
+    chat to {player} "Awesome!"
   #randor
-    chat to {player} "Nice to have you with me."
+    chat to {player} "Good choice!"
   #randor
-    chat to {player} "Unstoppable team!"
+    chat to {player} "This is the way."
+  #randor
+    chat to {player} "I like your style."
   #end select
 #end template
 

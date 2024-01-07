@@ -11,6 +11,28 @@ load "villager.aoe2ai"
 train mercenary-kipchak
 
 #do once
+  goal all-switched-warboat-count = 0
+  goal all-switched-soldier-count = 0
+  goal all-switched-focus-land = 0
+  goal all-switched-focus-navy = 0
+#end do
+
+#if goal produce-units 0 or goal allow-land-units 0 or goal allow-naval-units 0
+  goal all-switched-focus-land = 1
+  goal all-switched-focus-navy = 1
+#else
+  @up-get-fact warboat-count 0 all-switched-warboat-count
+  @up-get-fact soldier-count 0 all-switched-soldier-count
+  #if up-compare-goal all-switched-soldier-count g:<= all-switched-warboat-count
+    goal all-switched-focus-land = 1
+    goal all-switched-focus-navy = 0
+  #else
+    goal all-switched-focus-land = 0
+    goal all-switched-focus-navy = 1
+  #end if
+#end if
+
+#do once
   goal old-produce-units = 0
   goal current-unit-amount = 0
   goal expected-units-per-type = 0
@@ -24,7 +46,7 @@ goal total-type-production = 0
   #end if
 #end template
 
-#if goal allow-land-units 1
+#if goal allow-land-units 1 and goal all-switched-focus-land 1
   insert add-to-total-type-production(unit="archer-line",goal="produce-archers")
   insert add-to-total-type-production(unit="hand-cannoneer",goal="produce-hand-cannoneers")
   insert add-to-total-type-production(unit="skirmisher-line",goal="produce-skirmishers")
@@ -64,7 +86,7 @@ goal total-type-production = 0
   insert add-to-total-type-production(unit="warrior-priest",goal="produce-warrior-priests")
 #end if
 
-#if goal allow-naval-units 1
+#if goal allow-naval-units 1 and goal all-switched-focus-navy 1
   insert add-to-total-type-production(unit="transport-ship",goal="produce-transport-ships")
   insert add-to-total-type-production(unit="galley-line",goal="produce-galleys")
   insert add-to-total-type-production(unit="fire-ship-line",goal="produce-fire-ships")
@@ -94,7 +116,7 @@ load "prerequisites.aoe2ai"
   #end if
 #end template
 
-#if goal allow-land-units 1
+#if goal allow-land-units 1 and goal all-switched-focus-land 1
   insert load-unit(production_goal="produce-archers",unit="archer-line",unit_path="archer.aoe2ai")
   insert load-unit(production_goal="produce-hand-cannoneers",unit="hand-cannoneer",unit_path="hand_cannoneer.aoe2ai")
   insert load-unit(production_goal="produce-skirmishers",unit="skirmisher-line",unit_path="skirmisher.aoe2ai")
@@ -134,7 +156,7 @@ load "prerequisites.aoe2ai"
   insert load-unit(production_goal="produce-warrior-priests",unit="warrior-priest",unit_path="warrior_priest.aoe2ai")
 #end if
 
-#if goal allow-naval-units 1
+#if goal allow-naval-units 1 and goal all-switched-focus-navy 1
   insert load-unit(production_goal="produce-transport-ships",unit="transport-ship",unit_path="transport_ship.aoe2ai")
   insert load-unit(production_goal="produce-galleys",unit="galley-line",unit_path="galley.aoe2ai")
   insert load-unit(production_goal="produce-fire-ships",unit="fire-ship-line",unit_path="fire_ship.aoe2ai")
