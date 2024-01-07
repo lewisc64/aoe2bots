@@ -186,7 +186,7 @@ load "templates/fast_castle.aoe2ai"
   
   #if goal full-water-map 0 and up-compare-goal soldier-count-goal g:<= warboat-count-goal or building-type-count dock == 0 or goal water-map 0
     #if unit-available bombard-cannon-line
-      train balanced 3 hand-cannoneer 1 bombard-cannon-line
+      train balanced 5 hand-cannoneer 1 bombard-cannon-line
     #else
       train 20 hand-cannoneer
     #end if
