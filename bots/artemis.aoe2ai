@@ -21,6 +21,9 @@ const min-gold-percent = 10
   assign 2 builders to archery-range
   assign 2 builders to stable
   
+  sn-minimum-attack-group-size = 1
+  sn-maximum-attack-group-size = 1
+  
   goal temp = 0
 #end do
 
@@ -109,9 +112,9 @@ load "templates/basic_diplomacy.aoe2ai"
 #end template
 
 const critical-research-available-modifier = 99999
-const important-research-available-modifier = 30
-const medium-research-available-modifier = 20
-const low-research-available-modifier = 10
+const important-research-available-modifier = 50
+const medium-research-available-modifier = 30
+const low-research-available-modifier = 20
 
 const small-investment-modifier = 2
 const medium-investment-modifier = 4
@@ -790,6 +793,17 @@ insert do-unit-countered-score(score_goal="militiaman-line-score",unit="berserk-
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="berserk-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="archer-line-score",unit="berserk-line",severity="major-counter-modifier")
 
+// composite bowman
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="composite-bowman-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="composite-bowman-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="scout-cavalry-line-score",unit="composite-bowman-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="knight-line-score",unit="composite-bowman-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="composite-bowman-line",severity="minor-counter-modifier")
+
+// monaspa
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="monaspa-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="spearman-line-score",unit="monaspa-line",severity="major-counter-modifier")
+
 // filter off impossible units
 
 #template tank-score-if-not-available
@@ -838,7 +852,7 @@ goal halt-production = 0
 #end template
 
 #template train-unit
-  #if goal halt-production 0
+  #if goal halt-production 0 or up-compare-const {unit} c:== villager
     insert train-unit-internal(unit="{unit}",number=1)
     insert train-unit-internal(unit="{unit}",number=2)
     insert train-unit-internal(unit="{unit}",number=3)
@@ -881,7 +895,9 @@ goal halt-production = 0
   build 1 {building}
   #if research-available {research} and building-type-count {building} >= 1 and up-research-status c: {research} < research-pending
     research {research}
-    goal halt-production = 1
+    #if military-population >= 30 and not town-under-attack
+      goal halt-production = 1
+    #end if
   #end if
 #end template
 
@@ -946,17 +962,16 @@ build houses
   #end when
 #end if
 
-research feudal-age
-research castle-age
-research imperial-age
+research feudal-age with food escrow
+insert research-with-halt(research="castle-age",building="town-center")
+research imperial-age with food and gold escrow
+#if military-population >= 50
+  insert research-with-halt(research="imperial-age",building="town-center")
+#end if
 
 #if current-age-time >= 120
-  research ri-horse-collar
-  research ri-heavy-plow
-  research ri-crop-rotation
-  research ri-double-bit-axe
-  research ri-bow-saw
-  research ri-two-man-saw
+  research mill upgrades with wood and food escrow
+  research lumber camp upgrades with wood and food escrow
   
   goal gold-miners = 0
   goal temp = 0
@@ -964,17 +979,17 @@ research imperial-age
   @up-get-fact unit-type-count female-gold-miner temp
   @up-modify-goal gold-miners g:+ temp
   #if up-compare-goal gold-miners c:>= 12
-    research ri-gold-mining
+    research ri-gold-mining with wood and food escrow
   #end if
   #if up-compare-goal gold-miners c:>= 20
-    research ri-gold-shaft-mining
+    research ri-gold-shaft-mining with wood and food escrow
   #end if
   
   #if unit-type-count villager >= 50
-    research ri-wheel-barrow
+    research ri-wheel-barrow with wood and food escrow
   #end if
   #if unit-type-count villager >= 80
-    research ri-hand-cart
+    research ri-hand-cart with wood and food escrow
   #end if
 #end if
 
@@ -984,7 +999,7 @@ research imperial-age
   #if goal top-unit {unit}
     @up-modify-goal {unit}-production g:= production-scale
   #end if
-  #if current-age >= castle-age and goal second-unit {unit}
+  #if (current-age >= castle-age or goal second-unit skirmisher-line or goal second-unit spearman-line) and goal second-unit {unit}
     @up-modify-goal {unit}-production g:= production-scale
   #end if
 #end template
@@ -1001,14 +1016,14 @@ research imperial-age
   #if current-age <= feudal-age
     goal villager-production = 1
   #else
-    goal villager-production = 3
+    goal villager-production = 1
   #end if
 #end if
 
 // it's research time
 
 #if current-age >= feudal-age
-  research ri-loom
+  research ri-loom with gold escrow
 #end if
 
 #template do-common-ranged-upgrades-for-unit
@@ -1097,12 +1112,12 @@ research imperial-age
 #end if
 
 #if unit-type-count battering-ram-line >= 5
-  research ri-capped-ram
-  research ri-siege-ram
+  research ri-capped-ram with food escrow
+  research ri-siege-ram with food escrow
 #end if
 
 #if unit-type-count armored-elephant-line >= 5
-  research ri-siege-elephant
+  research ri-siege-elephant with food escrow
 #end if
 
 goals unit-food, unit-wood, unit-stone, unit-gold = 0
@@ -1296,15 +1311,9 @@ goal unit-resource-total = 0
 //chat sn to all "gold: %d" sn-gold-gatherer-percentage
 //chat sn to all "stone: %d" sn-stone-gatherer-percentage
 
-goal my-military-population = 0
-goal their-military-population = 0
-@up-get-fact military-population 0 my-military-population
-@up-get-player-fact target-player military-population 0 their-military-population
-
-#if military-population >= 5 and up-compare-goal my-military-population g:> their-military-population
-  sn-number-attack-groups = 200
-#else
-  sn-number-attack-groups = 0
+trade excess wood and food and gold at 2000
+#if town-under-attack
+  trade excess wood and food and gold at 200
 #end if
 
 #if military-population < 40
@@ -1315,6 +1324,19 @@ goal their-military-population = 0
   #do once
     scout enemy
   #end do
+#end if
+
+goal my-military-population = 0
+goal military-required = 0
+@up-get-fact military-population 0 my-military-population
+@up-get-player-fact target-player military-population 0 military-required
+@up-modify-goal military-required c:* 15
+@up-modify-goal military-required c:/ 10
+
+#if military-population >= 5 and up-compare-goal my-military-population g:> military-required
+  sn-number-attack-groups = 200
+#else
+  sn-number-attack-groups = 0
 #end if
 
 auto expand town size to 30
