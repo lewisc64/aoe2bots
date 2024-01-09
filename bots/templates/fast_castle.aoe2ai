@@ -24,7 +24,9 @@
 
   build 1 town-center
   build houses
-  build lumber camps
+  #if game-time > 60
+    build lumber camps
+  #end if
   build mule carts
   micro mule carts
   #if building-type-count lumber-camp >= 1 or building-type-count mule-cart >= 1
