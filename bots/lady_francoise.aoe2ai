@@ -151,7 +151,7 @@ load "templates/diplomacy_engine.aoe2ai"
       distribute 2 villagers from wood and food to gold
     #end if
     #if strategic-number sn-food-gatherer-percentage < 40
-      distribute 2 villagers from food and gold to food
+      distribute 2 villagers from wood and gold to food
     #end if
   #else
     #do once
