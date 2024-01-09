@@ -19,7 +19,9 @@
   #end if
   
   micro sheep
-  lure boars
+  #if unit-type-count villager >= 10
+    lure boars
+  #end if
   push deer
 
   build 1 town-center
