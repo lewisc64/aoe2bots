@@ -1,5 +1,3 @@
-const condottiero = 184
-
 #do once
   set name to "Marley's Arms"
 #end do
@@ -74,7 +72,7 @@ load "charlotte/stats.aoe2ai"
   
   #if up-compare-goal target-military-percentage c:>= 100 or up-compare-goal population-space-remaining c:< 10
     trade excess wood and food and gold at 500
-    sn-maximum-town-size = 255
+    town size attack
   #else
     auto expand town size to 30
   #end if
