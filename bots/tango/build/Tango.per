@@ -1,6 +1,6 @@
 ;Translated by https://github.com/lewisc64/aoe2ai
 (defconst chat-d7012f8470b17ca97ea6cffc5ab124bd893c9226 "I'm not making any villagers!")
-(defconst out-count 117)
+(defconst out-count 120)
 (defconst chat-0cccec670386b467c91aa785be1da8c93b2df9a6 "1Help is on the way!")
 (defconst chat-d5c5dbfd928deef533a0d03fee5d0b1f95ff70a2 "Already attacking!")
 (defconst chat-1e68557cb3a751e4168c0ab38b3b4e96a5a8d303 "Nice moves! I could do with some lessons!")
@@ -12,7 +12,7 @@
 (defconst chat-63539ed9156eb6843685979d45e9c9f61eceed91 "Start the music!")
 (defconst chat-eec0222a3c2635db93e2edb9f489caf901393185 "Let's turn it up a notch.")
 (defconst chat-7f15733a1a6b905879663b619d9c6b412049e596 "Turn up the volume!")
-(defconst taunt-enemies 107)
+(defconst taunt-enemies 110)
 (defconst chat-46ac43f7e6b0ae5ce5f964045b04c1abb08f6fc0 "This party's getting a bit stale...")
 (defconst chat-e5aca3c0d428ea629876fa092922bd3133be5112 "I'm getting a little tired...")
 (defconst chat-196f5c1d91dc8099050c5a736992d83b356240cc "It's been a long night...")
@@ -45,19 +45,19 @@
 (defconst chat-d2dfe5867d53126e1c87cdffd0244fcf6b10f961 "I can send you the resources when I have enough.")
 (defconst chat-60a59a7fdeaf805a4de0f4ea30b4769001485d1a "I'm fast castling. Well, I *say* fast...")
 (defconst chat-30f1aaa162016aa62cc384655607a7cdd32a399c "I'm going to be aggressive in the feudal age.")
-(defconst choose-initial-balance 105)
-(defconst score-additions-count 104)
-(defconst gold-score-subtotal 103)
-(defconst food-score-subtotal 102)
-(defconst wood-score-subtotal 101)
-(defconst multiplier 100)
-(defconst resource-multiplier 99)
-(defconst current-score 98)
-(defconst creation-time 97)
-(defconst gold-score 96)
-(defconst food-score 95)
-(defconst wood-score 94)
-(defconst total-score 93)
+(defconst choose-initial-balance 106)
+(defconst score-additions-count 105)
+(defconst gold-score-subtotal 104)
+(defconst food-score-subtotal 103)
+(defconst wood-score-subtotal 102)
+(defconst multiplier 101)
+(defconst resource-multiplier 100)
+(defconst current-score 99)
+(defconst creation-time 98)
+(defconst gold-score 97)
+(defconst food-score 96)
+(defconst wood-score 95)
+(defconst total-score 94)
 (defconst focus-player-military-population 55)
 (defconst own-military-population 56)
 (defconst temp 57)
@@ -4034,7 +4034,7 @@
       (goal militant 1)
     )
 =>
-    (up-jump-rule 394)
+    (up-jump-rule 398)
 )
 (defrule
     (true)
@@ -7484,7 +7484,7 @@
       (true)
     )
 =>
-    (up-jump-rule 20)
+    (up-jump-rule 24)
 )
 (defrule
     (true)
@@ -7741,7 +7741,45 @@
     )
 =>
     (set-goal taunt-allies 31)
+)
+(defrule
+    (timer-triggered 6)
+    (goal attacking 1)
+    (not
+      (goal use-town-size-attack 1)
+    )
+=>
+    (set-goal 93 0)
+    (disable-self)
+)
+(defrule
+    (timer-triggered 6)
+    (goal attacking 1)
+    (not
+      (goal use-town-size-attack 1)
+    )
+=>
+    (up-get-fact game-time 0 8)
+)
+(defrule
+    (up-compare-goal 8 g:>= 93)
+    (timer-triggered 6)
+    (goal attacking 1)
+    (not
+      (goal use-town-size-attack 1)
+    )
+=>
     (attack-now)
+    (up-modify-goal 93 g:= 8)
+    (up-modify-goal 93 c:+ 60)
+)
+(defrule
+    (timer-triggered 6)
+    (goal attacking 1)
+    (not
+      (goal use-town-size-attack 1)
+    )
+=>
     (chat-local-to-self chat-73c3942e655022a22106ca880be2cf0d33b8d6c9)
     (disable-timer 6)
     (enable-timer 6 60)
@@ -8913,7 +8951,7 @@
       (goal team-game 1)
     )
 =>
-    (up-jump-rule 19)
+    (up-jump-rule 26)
 )
 (defrule
     (taunt-detected any-ally 31)
@@ -8939,7 +8977,46 @@
     (false)
 =>
     (set-goal taunt-allies 1)
+)
+(defrule
+    (not
+      (goal attacking 1)
+    )
+    (goal militant 1)
+    (military-population > 5)
+    (goal use-town-size-attack 0)
+    (taunt-detected any-ally 31)
+    (false)
+=>
+    (set-goal 107 0)
+    (disable-self)
+)
+(defrule
+    (not
+      (goal attacking 1)
+    )
+    (goal militant 1)
+    (military-population > 5)
+    (goal use-town-size-attack 0)
+    (taunt-detected any-ally 31)
+    (false)
+=>
+    (up-get-fact game-time 0 8)
+)
+(defrule
+    (up-compare-goal 8 g:>= 107)
+    (not
+      (goal attacking 1)
+    )
+    (goal militant 1)
+    (military-population > 5)
+    (goal use-town-size-attack 0)
+    (taunt-detected any-ally 31)
+    (false)
+=>
     (attack-now)
+    (up-modify-goal 107 g:= 8)
+    (up-modify-goal 107 c:+ 60)
 )
 (defrule
     (not
@@ -8968,7 +9045,33 @@
     (false)
 =>
     (set-strategic-number sn-target-player-number -1)
+)
+(defrule
+    (taunt-detected any-ally 12)
+    (false)
+=>
+    (set-goal 108 0)
+    (disable-self)
+)
+(defrule
+    (taunt-detected any-ally 12)
+    (false)
+=>
+    (up-get-fact game-time 0 8)
+)
+(defrule
+    (up-compare-goal 8 g:>= 108)
+    (taunt-detected any-ally 12)
+    (false)
+=>
     (attack-now)
+    (up-modify-goal 108 g:= 8)
+    (up-modify-goal 108 c:+ 60)
+)
+(defrule
+    (taunt-detected any-ally 12)
+    (false)
+=>
     (chat-to-allies chat-0cccec670386b467c91aa785be1da8c93b2df9a6)
     (acknowledge-taunt this-any-ally 12)
 )
@@ -9074,68 +9177,68 @@
 (defrule
     (game-time < 5)
 =>
-    (set-goal 106 0)
+    (set-goal 109 0)
     (disable-self)
     (generate-random-number 8)
-    (up-get-fact random-number 0 106)
+    (up-get-fact random-number 0 109)
     (up-get-precise-time 0 8)
-    (up-modify-goal 106 g:+ 8)
-    (up-modify-goal 106 c:mod 8)
-    (up-modify-goal 106 c:+ 8)
-    (up-modify-goal 106 c:mod 8)
-    (up-modify-goal 106 c:+ 1)
+    (up-modify-goal 109 g:+ 8)
+    (up-modify-goal 109 c:mod 8)
+    (up-modify-goal 109 c:+ 8)
+    (up-modify-goal 109 c:mod 8)
+    (up-modify-goal 109 c:+ 1)
 )
 (defrule
-    (goal 106 1)
+    (goal 109 1)
     (game-time < 5)
 =>
     (chat-to-all chat-9e302f1435b6dcace320e320d120b98920c4a95f)
     (disable-self)
 )
 (defrule
-    (goal 106 2)
+    (goal 109 2)
     (game-time < 5)
 =>
     (chat-to-all chat-a6e3a0111582b61f846fa4e86c9595da7dcc09fb)
     (disable-self)
 )
 (defrule
-    (goal 106 3)
+    (goal 109 3)
     (game-time < 5)
 =>
     (chat-to-all chat-012a48b2b42594bd076f129ed65d30e1d7536aee)
     (disable-self)
 )
 (defrule
-    (goal 106 4)
+    (goal 109 4)
     (game-time < 5)
 =>
     (chat-to-all chat-862fae72355bf64d3f65ce410f26d4325e562b89)
     (disable-self)
 )
 (defrule
-    (goal 106 5)
+    (goal 109 5)
     (game-time < 5)
 =>
     (chat-to-all chat-25810c507aa83718313838dce1f1d34fb688d19f)
     (disable-self)
 )
 (defrule
-    (goal 106 6)
+    (goal 109 6)
     (game-time < 5)
 =>
     (chat-to-all chat-63539ed9156eb6843685979d45e9c9f61eceed91)
     (disable-self)
 )
 (defrule
-    (goal 106 7)
+    (goal 109 7)
     (game-time < 5)
 =>
     (chat-to-all chat-eec0222a3c2635db93e2edb9f489caf901393185)
     (disable-self)
 )
 (defrule
-    (goal 106 8)
+    (goal 109 8)
     (game-time < 5)
 =>
     (chat-to-all chat-7f15733a1a6b905879663b619d9c6b412049e596)
@@ -9152,40 +9255,40 @@
 (defrule
     (timer-triggered 9)
 =>
-    (set-goal 108 0)
+    (set-goal 111 0)
     (disable-self)
     (generate-random-number 4)
-    (up-get-fact random-number 0 108)
+    (up-get-fact random-number 0 111)
     (up-get-precise-time 0 8)
-    (up-modify-goal 108 g:+ 8)
-    (up-modify-goal 108 c:mod 4)
-    (up-modify-goal 108 c:+ 4)
-    (up-modify-goal 108 c:mod 4)
-    (up-modify-goal 108 c:+ 1)
+    (up-modify-goal 111 g:+ 8)
+    (up-modify-goal 111 c:mod 4)
+    (up-modify-goal 111 c:+ 4)
+    (up-modify-goal 111 c:mod 4)
+    (up-modify-goal 111 c:+ 1)
 )
 (defrule
-    (goal 108 1)
+    (goal 111 1)
     (timer-triggered 9)
 =>
     (chat-to-all chat-46ac43f7e6b0ae5ce5f964045b04c1abb08f6fc0)
     (disable-self)
 )
 (defrule
-    (goal 108 2)
+    (goal 111 2)
     (timer-triggered 9)
 =>
     (chat-to-all chat-e5aca3c0d428ea629876fa092922bd3133be5112)
     (disable-self)
 )
 (defrule
-    (goal 108 3)
+    (goal 111 3)
     (timer-triggered 9)
 =>
     (chat-to-all chat-196f5c1d91dc8099050c5a736992d83b356240cc)
     (disable-self)
 )
 (defrule
-    (goal 108 4)
+    (goal 111 4)
     (timer-triggered 9)
 =>
     (chat-to-all chat-ab5edeaef630d8d7b56fefef47876cc2d39c98ef)
@@ -9194,30 +9297,30 @@
 (defrule
     (goal taunt-allies 1)
 =>
-    (set-goal 109 0)
+    (set-goal 112 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 109)
+    (up-get-fact random-number 0 112)
     (up-get-precise-time 0 8)
-    (up-modify-goal 109 g:+ 8)
-    (up-modify-goal 109 c:mod 3)
-    (up-modify-goal 109 c:+ 3)
-    (up-modify-goal 109 c:mod 3)
-    (up-modify-goal 109 c:+ 1)
+    (up-modify-goal 112 g:+ 8)
+    (up-modify-goal 112 c:mod 3)
+    (up-modify-goal 112 c:+ 3)
+    (up-modify-goal 112 c:mod 3)
+    (up-modify-goal 112 c:+ 1)
 )
 (defrule
-    (goal 109 1)
+    (goal 112 1)
     (goal taunt-allies 1)
 =>
     (chat-to-allies chat-573d07f054e25c6a1be98dd3d019f7d849be5b30)
 )
 (defrule
-    (goal 109 2)
+    (goal 112 2)
     (goal taunt-allies 1)
 =>
     (chat-to-allies chat-a18a4ebf9551792441f2d56574ecfdbf4c2822fe)
 )
 (defrule
-    (goal 109 3)
+    (goal 112 3)
     (goal taunt-allies 1)
 =>
     (chat-to-allies chat-49d8263a5eb48a6b02521202b3379cc2ab1073f5)
@@ -9230,30 +9333,30 @@
 (defrule
     (goal taunt-allies 2)
 =>
-    (set-goal 110 0)
+    (set-goal 113 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 110)
+    (up-get-fact random-number 0 113)
     (up-get-precise-time 0 8)
-    (up-modify-goal 110 g:+ 8)
-    (up-modify-goal 110 c:mod 3)
-    (up-modify-goal 110 c:+ 3)
-    (up-modify-goal 110 c:mod 3)
-    (up-modify-goal 110 c:+ 1)
+    (up-modify-goal 113 g:+ 8)
+    (up-modify-goal 113 c:mod 3)
+    (up-modify-goal 113 c:+ 3)
+    (up-modify-goal 113 c:mod 3)
+    (up-modify-goal 113 c:+ 1)
 )
 (defrule
-    (goal 110 1)
+    (goal 113 1)
     (goal taunt-allies 2)
 =>
     (chat-to-allies chat-7951e682d99349849c0b8f6d532792ec7b5389ba)
 )
 (defrule
-    (goal 110 2)
+    (goal 113 2)
     (goal taunt-allies 2)
 =>
     (chat-to-allies chat-21c103fc315890be4685378e0edcf2bb22385bb9)
 )
 (defrule
-    (goal 110 3)
+    (goal 113 3)
     (goal taunt-allies 2)
 =>
     (chat-to-allies chat-1ef6222feb6bfe03b756638e78b0747130db8e83)
@@ -9266,30 +9369,30 @@
 (defrule
     (goal taunt-allies 3)
 =>
-    (set-goal 111 0)
+    (set-goal 114 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 111)
+    (up-get-fact random-number 0 114)
     (up-get-precise-time 0 8)
-    (up-modify-goal 111 g:+ 8)
-    (up-modify-goal 111 c:mod 3)
-    (up-modify-goal 111 c:+ 3)
-    (up-modify-goal 111 c:mod 3)
-    (up-modify-goal 111 c:+ 1)
+    (up-modify-goal 114 g:+ 8)
+    (up-modify-goal 114 c:mod 3)
+    (up-modify-goal 114 c:+ 3)
+    (up-modify-goal 114 c:mod 3)
+    (up-modify-goal 114 c:+ 1)
 )
 (defrule
-    (goal 111 1)
+    (goal 114 1)
     (goal taunt-allies 3)
 =>
     (chat-to-allies chat-5f18ff15fb2138ca9ab6ecee8f84bac629110faa)
 )
 (defrule
-    (goal 111 2)
+    (goal 114 2)
     (goal taunt-allies 3)
 =>
     (chat-to-allies chat-629f862c9fd71b8356bf949e19483e04af96b574)
 )
 (defrule
-    (goal 111 3)
+    (goal 114 3)
     (goal taunt-allies 3)
 =>
     (chat-to-allies chat-07a0584dd72d68f6e200d8e43946ad111b6e46b5)
@@ -9302,24 +9405,24 @@
 (defrule
     (goal taunt-allies 4)
 =>
-    (set-goal 112 0)
+    (set-goal 115 0)
     (generate-random-number 2)
-    (up-get-fact random-number 0 112)
+    (up-get-fact random-number 0 115)
     (up-get-precise-time 0 8)
-    (up-modify-goal 112 g:+ 8)
-    (up-modify-goal 112 c:mod 2)
-    (up-modify-goal 112 c:+ 2)
-    (up-modify-goal 112 c:mod 2)
-    (up-modify-goal 112 c:+ 1)
+    (up-modify-goal 115 g:+ 8)
+    (up-modify-goal 115 c:mod 2)
+    (up-modify-goal 115 c:+ 2)
+    (up-modify-goal 115 c:mod 2)
+    (up-modify-goal 115 c:+ 1)
 )
 (defrule
-    (goal 112 1)
+    (goal 115 1)
     (goal taunt-allies 4)
 =>
     (chat-to-allies chat-87894780931fdc90a726966caf654f2c3fc10033)
 )
 (defrule
-    (goal 112 2)
+    (goal 115 2)
     (goal taunt-allies 4)
 =>
     (chat-to-allies chat-ceb2461dd026c94f28b8f86064c9c8f79872b642)
@@ -9332,24 +9435,24 @@
 (defrule
     (goal taunt-allies 5)
 =>
-    (set-goal 113 0)
+    (set-goal 116 0)
     (generate-random-number 2)
-    (up-get-fact random-number 0 113)
+    (up-get-fact random-number 0 116)
     (up-get-precise-time 0 8)
-    (up-modify-goal 113 g:+ 8)
-    (up-modify-goal 113 c:mod 2)
-    (up-modify-goal 113 c:+ 2)
-    (up-modify-goal 113 c:mod 2)
-    (up-modify-goal 113 c:+ 1)
+    (up-modify-goal 116 g:+ 8)
+    (up-modify-goal 116 c:mod 2)
+    (up-modify-goal 116 c:+ 2)
+    (up-modify-goal 116 c:mod 2)
+    (up-modify-goal 116 c:+ 1)
 )
 (defrule
-    (goal 113 1)
+    (goal 116 1)
     (goal taunt-allies 5)
 =>
     (chat-to-allies chat-1d362d276f7bb069d51ac82a19f6fc1d4eea2cfd)
 )
 (defrule
-    (goal 113 2)
+    (goal 116 2)
     (goal taunt-allies 5)
 =>
     (chat-to-allies chat-180538df85fb5e56c743d34a9c719f1477c36732)
@@ -9362,24 +9465,24 @@
 (defrule
     (goal taunt-allies 6)
 =>
-    (set-goal 114 0)
+    (set-goal 117 0)
     (generate-random-number 2)
-    (up-get-fact random-number 0 114)
+    (up-get-fact random-number 0 117)
     (up-get-precise-time 0 8)
-    (up-modify-goal 114 g:+ 8)
-    (up-modify-goal 114 c:mod 2)
-    (up-modify-goal 114 c:+ 2)
-    (up-modify-goal 114 c:mod 2)
-    (up-modify-goal 114 c:+ 1)
+    (up-modify-goal 117 g:+ 8)
+    (up-modify-goal 117 c:mod 2)
+    (up-modify-goal 117 c:+ 2)
+    (up-modify-goal 117 c:mod 2)
+    (up-modify-goal 117 c:+ 1)
 )
 (defrule
-    (goal 114 1)
+    (goal 117 1)
     (goal taunt-allies 6)
 =>
     (chat-to-allies chat-97ba38f1af74fae61f04901af4f855f5d8a7b48a)
 )
 (defrule
-    (goal 114 2)
+    (goal 117 2)
     (goal taunt-allies 6)
 =>
     (chat-to-allies chat-89357b8f665602afc596212a534517a76ca18b07)
@@ -9392,30 +9495,30 @@
 (defrule
     (goal taunt-allies 12)
 =>
-    (set-goal 115 0)
+    (set-goal 118 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 115)
+    (up-get-fact random-number 0 118)
     (up-get-precise-time 0 8)
-    (up-modify-goal 115 g:+ 8)
-    (up-modify-goal 115 c:mod 3)
-    (up-modify-goal 115 c:+ 3)
-    (up-modify-goal 115 c:mod 3)
-    (up-modify-goal 115 c:+ 1)
+    (up-modify-goal 118 g:+ 8)
+    (up-modify-goal 118 c:mod 3)
+    (up-modify-goal 118 c:+ 3)
+    (up-modify-goal 118 c:mod 3)
+    (up-modify-goal 118 c:+ 1)
 )
 (defrule
-    (goal 115 1)
+    (goal 118 1)
     (goal taunt-allies 12)
 =>
     (chat-to-allies chat-965a0f00cfd0bf1021c398e6319d0076f86aa350)
 )
 (defrule
-    (goal 115 2)
+    (goal 118 2)
     (goal taunt-allies 12)
 =>
     (chat-to-allies chat-b2230605d3679d364f8a43049ab880d9a03ac391)
 )
 (defrule
-    (goal 115 3)
+    (goal 118 3)
     (goal taunt-allies 12)
 =>
     (chat-to-allies chat-dcbac7d6f6f5a6201591400f7044386b6e5367c0)
@@ -9428,30 +9531,30 @@
 (defrule
     (goal taunt-allies 31)
 =>
-    (set-goal 116 0)
+    (set-goal 119 0)
     (generate-random-number 3)
-    (up-get-fact random-number 0 116)
+    (up-get-fact random-number 0 119)
     (up-get-precise-time 0 8)
-    (up-modify-goal 116 g:+ 8)
-    (up-modify-goal 116 c:mod 3)
-    (up-modify-goal 116 c:+ 3)
-    (up-modify-goal 116 c:mod 3)
-    (up-modify-goal 116 c:+ 1)
+    (up-modify-goal 119 g:+ 8)
+    (up-modify-goal 119 c:mod 3)
+    (up-modify-goal 119 c:+ 3)
+    (up-modify-goal 119 c:mod 3)
+    (up-modify-goal 119 c:+ 1)
 )
 (defrule
-    (goal 116 1)
+    (goal 119 1)
     (goal taunt-allies 31)
 =>
     (chat-to-allies chat-16b1f5319bb20e80b6daae909b196f9fee2cad2f)
 )
 (defrule
-    (goal 116 2)
+    (goal 119 2)
     (goal taunt-allies 31)
 =>
     (chat-to-allies chat-73a552cc05bd0ea09568e916b9be1b9c3ffae505)
 )
 (defrule
-    (goal 116 3)
+    (goal 119 3)
     (goal taunt-allies 31)
 =>
     (chat-to-allies chat-6f5d7483f2a3888a96a984d93f24813260cc1920)
