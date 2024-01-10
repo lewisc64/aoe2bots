@@ -1,0 +1,178 @@
+const siege-tower = 1105
+const flemish-militia = 169
+
+#do once
+  set name to "Marcellus the All-Knowing"
+  chat to all "Welcome friends! My name is Marcellus. Feel at ease to be captivated and enraptured by my godly visage!"
+#end do
+
+#template diplo-chat-alliance-offer
+  @up-get-player-color {player} -1
+  #select random
+    chat const to all "An alliance with the great Marcellus %s?!" 7031232
+  #randor
+    chat const to all "The unconfoundable Marcellus wishes to ally you %s!" 7031232
+  #randor
+    chat const to all "I, Marcellus, the mighty and magnanimous, wish to ally you %s!" 7031232
+  #end select
+#end template
+
+#template diplo-chat-our-betrayal
+  @up-get-player-color {player} -1
+  #select random
+    chat const to all "%s! Tremble before the holy and complete empire of Marcellus!" 7031232
+  #randor
+    chat const to all "The intrepid and intricate web-weaving of I, Marcellus, determines should be eliminated %s!" 7031232
+  #randor
+    chat const to all "%s! A great honour is bestowed upon you know! War! With I, the omnipotent and superior Marcellus the master strategist!" 7031232
+  #end select
+#end template
+
+#template diplo-chat-their-betrayal
+  @up-get-player-color {player} -1
+  #select random
+    chat const to all "I, the great and mighty Marcellus, expected this incursion, %s! Prepare to be buffeted by my world-class professional troops!" 7031232
+  #randor
+    chat const to all "%s thinks they can take down the immovable and permanent Marcellus?! The height of foolishness! A jester amongst kings!" 7031232
+  #randor
+    chat const to all "Betraying the incredibly handsome and strong Marcellus %s?! One should stifle their foolish acts of jealousy...!" 7031232
+  #end select
+#end template
+
+#template diplo-chat-accepted-our-alliance
+  @up-get-player-color {player} -1
+  #select random
+    chat const to all "Oh wonderful %s, just wonderful! You are welcome at my court any time!" 7031232
+  #randor
+    chat const to all "A fine response %s! We should taste some wine together, and sample the finest meats and jellies!" 7031232
+  #randor
+    chat const to all "I, the powerful and humble Marcellus, already knew you would accept %s." 7031232
+  #end select
+#end template
+
+#template diplo-chat-accepted-their-alliance
+  @up-get-player-color {player} -1
+  chat const to all "The generous Marcellus spares your life %s." 7031232
+#end template
+
+#template diplo-chat-refused-our-alliance
+  @up-get-player-color {player} -1
+  #select random
+    chat const to all "All part of the plan, %s! Merely a chance to renounce your savagery!" 7031232
+  #randor
+    chat const to all "%s! You dare refuse such a generous and kind offer?! I, Marcellus the patient and devoted, pity you." 7031232
+  #end select
+#end template
+
+#template diplo-chat-refused-their-alliance
+#end template
+
+#template diplo-chat-friendly-fire-warning
+  @up-get-player-color {player} -1
+  chat const to all "An order %s! Stop these acts of war at once! This is the first and last warning the captivating Marcellus will grant you." 7031232
+#end template
+
+#template diplo-chat-friendly-fire-betrayal
+  chat to all "%s! You were warned!"
+#end template
+
+#template diplo-chat-resign
+  chat to all "This cannot be...!"
+#end template
+
+#template diplo-should-player-be-marked
+#end template
+
+load "templates/diplomacy_engine.aoe2ai"
+
+#if military-population >= 30
+  insert diplo-mark-random-ally-if-no-enemies
+#end if
+
+load "templates/fast_castle.aoe2ai"
+
+#if up-research-status c: castle-age >= research-pending
+  #do once
+    set up basics
+    assign 8 builders to castle
+    assign 8 builders to krepost
+    assign 4 builders to donjon
+    assign 4 builders to town-center
+  #end do
+
+  #if civilian-population < 30
+    distribute villagers 20 80 0 0
+  #else
+    distribute villagers 30 30 10 10
+  #end if
+  
+  lure boars
+  
+  trade excess wood and food and gold at 2000
+
+  build 1 town-center
+
+  build lumber camps
+  #when
+    #if strategic-number sn-gold-gatherer-percentage > 0
+      build gold mining camps
+    #end if
+    #if strategic-number sn-stone-gatherer-percentage > 0
+      build stone mining camps
+    #end if
+  #then
+    sn-camp-max-distance += 8
+  #end when
+
+  #if current-age == dark-age
+    build houses with 5 headroom
+  #else
+    build houses with 20 headroom
+  #end if
+  build mills
+  build mule carts
+  micro mule carts
+  #if wood-amount >= 200
+    build farms
+  #end if
+
+  build castle
+  build 3 town-center
+  build 3 siege-workshop
+  build 2 barracks
+  build 2 archery-range
+  build 2 stable
+  build 2 dock
+  build 2 monastery
+
+  build 1 university
+  build 1 blacksmith
+  build 1 market
+
+  research all upgrades
+
+  #if current-age == imperial-age
+    train 120 villager with 30 trade
+  #else
+    train 120 villager
+  #end if
+
+  #do once
+    goal enable-training = 0
+  #end do
+
+  #repeat every 5 minutes
+    #ifg goal enable-training 1
+      goal enable-training = 0
+    #else
+      goal enable-training = 1
+    #end if
+  #end repeat
+
+  #if goal enable-training 1 and food-amount > 50 or town-under-attack or wood-amount >= 2000 and food-amount >= 2000 and gold-amount >= 2000
+    train balanced 1 archer-line 1 skirmisher-line 1 genitour-line 1 cavalry-archer-line 1 elephant-archer-line 1 hand-cannoneer 1 slinger 1 militiaman-line 1 spearman-line 1 eagle-warrior-line 1 condottiero 1 flemish-militia 1 scout-cavalry-line 1 knight-line 1 camel-line 1 battle-elephant-line 1 steppe-lancer-line 1 shrivamsha-rider-line 1 battering-ram-line 1 armored-elephant-line 1 mangonel-line 1 scorpion-line 1 siege-tower 1 bombard-cannon-line 1 fire-ship-line 1 galley-line 1 demolition-ship-line 1 cannon-galleon-line 1 longboat-line 1 caravel-line 1 thirisadai 1 turtle-ship-line 1 dromon 1 my-unique-unit-line 1 petard 1 flaming-camel 1 trebuchet 1 monk 1 missionary 1 warrior-priest
+  #end if
+  attack with 30 units
+  
+  auto expand town size
+#end if
