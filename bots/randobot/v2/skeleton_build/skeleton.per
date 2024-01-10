@@ -1,8 +1,20 @@
 ;Translated by https://github.com/lewisc64/aoe2ai
-(defconst threat-target 10)
-(defconst threat-source 9)
-(defconst threat-player 8)
-(defconst threat-time 7)
+(defconst threat-target 11)
+(defconst threat-source 10)
+(defconst threat-player 9)
+(defconst threat-time 8)
+(defrule
+    (true)
+=>
+    (up-get-precise-time 0 1)
+    (up-modify-goal 1 g:- 2)
+    (up-modify-goal 2 g:+ 1)
+)
+(defrule
+    (up-compare-goal 1 c:< 300)
+=>
+    (up-jump-rule 10000)
+)
 (defrule
     (true)
 =>
@@ -85,13 +97,13 @@
     (building-type-count lumber-camp >= 1)
 =>
     (set-goal 1 0)
-    (up-get-fact building-type-count-total town-center 2)
-    (up-modify-goal 2 c:* 9)
-    (up-modify-goal 1 g:+ 2)
-    (up-get-fact building-type-count-total mill 2)
-    (up-modify-goal 2 c:* 6)
-    (up-modify-goal 1 g:+ 2)
-    (up-get-fact building-type-count-total farm 2)
+    (up-get-fact building-type-count-total town-center 3)
+    (up-modify-goal 3 c:* 9)
+    (up-modify-goal 1 g:+ 3)
+    (up-get-fact building-type-count-total mill 3)
+    (up-modify-goal 3 c:* 6)
+    (up-modify-goal 1 g:+ 3)
+    (up-get-fact building-type-count-total farm 3)
 )
 (defrule
     (or
@@ -100,7 +112,7 @@
         (not
           (civ-selected khmer)
         )
-        (up-compare-goal 2 g:>= 1)
+        (up-compare-goal 3 g:>= 1)
       )
     )
     (or
@@ -120,13 +132,13 @@
 (defrule
     (building-type-count lumber-camp >= 1)
 =>
-    (up-get-fact unit-type-count villager 2)
-    (up-modify-goal 2 s:* sn-food-gatherer-percentage)
-    (up-modify-goal 2 c:/ 100)
+    (up-get-fact unit-type-count villager 3)
+    (up-modify-goal 3 s:* sn-food-gatherer-percentage)
+    (up-modify-goal 3 c:/ 100)
     (up-get-fact building-type-count-total farm 1)
 )
 (defrule
-    (up-compare-goal 1 g:< 2)
+    (up-compare-goal 1 g:< 3)
     (can-build farm)
     (building-type-count lumber-camp >= 1)
 =>
@@ -135,7 +147,7 @@
 (defrule
     (true)
 =>
-    (set-goal 3 0)
+    (set-goal 4 0)
     (disable-self)
 )
 (defrule
@@ -156,10 +168,10 @@
     (strategic-number sn-gold-gatherer-percentage > 0)
 =>
     (build mining-camp)
-    (set-goal 3 1)
+    (set-goal 4 1)
 )
 (defrule
-    (goal 3 1)
+    (goal 4 1)
     (strategic-number sn-gold-gatherer-percentage > 0)
 =>
     (up-modify-sn sn-camp-max-distance c:+ 8)
@@ -167,12 +179,12 @@
 (defrule
     (true)
 =>
-    (set-goal 3 0)
+    (set-goal 4 0)
 )
 (defrule
     (true)
 =>
-    (set-goal 4 0)
+    (set-goal 5 0)
     (disable-self)
 )
 (defrule
@@ -184,10 +196,10 @@
     (strategic-number sn-stone-gatherer-percentage > 0)
 =>
     (build mining-camp)
-    (set-goal 4 1)
+    (set-goal 5 1)
 )
 (defrule
-    (goal 4 1)
+    (goal 5 1)
     (strategic-number sn-stone-gatherer-percentage > 0)
 =>
     (up-modify-sn sn-camp-max-distance c:+ 8)
@@ -195,7 +207,7 @@
 (defrule
     (true)
 =>
-    (set-goal 4 0)
+    (set-goal 5 0)
 )
 (defrule
     (dropsite-min-distance live-boar != -1)
@@ -337,22 +349,22 @@
     (current-age >= feudal-age)
 =>
     (up-get-fact resource-amount wood 1)
-    (up-get-fact escrow-amount wood 2)
-    (up-modify-goal 1 g:- 2)
-    (up-get-fact resource-amount food 5)
-    (up-get-fact escrow-amount food 2)
-    (up-modify-goal 5 g:- 2)
-    (up-get-fact resource-amount gold 6)
-    (up-get-fact escrow-amount gold 2)
-    (up-modify-goal 6 g:- 2)
+    (up-get-fact escrow-amount wood 3)
+    (up-modify-goal 1 g:- 3)
+    (up-get-fact resource-amount food 6)
+    (up-get-fact escrow-amount food 3)
+    (up-modify-goal 6 g:- 3)
+    (up-get-fact resource-amount gold 7)
+    (up-get-fact escrow-amount gold 3)
+    (up-modify-goal 7 g:- 3)
 )
 (defrule
     (strategic-number sn-wood-gatherer-percentage >= 2)
     (up-compare-goal 1 c:> 300)
     (strategic-number sn-food-gatherer-percentage >= 2)
-    (up-compare-goal 5 c:> 300)
+    (up-compare-goal 6 c:> 300)
     (strategic-number sn-gold-gatherer-percentage <= 96)
-    (up-compare-goal 6 c:<= 300)
+    (up-compare-goal 7 c:<= 300)
     (timer-triggered 1)
     (current-age >= feudal-age)
 =>
@@ -364,9 +376,9 @@
     (strategic-number sn-wood-gatherer-percentage >= 2)
     (up-compare-goal 1 c:> 300)
     (strategic-number sn-gold-gatherer-percentage >= 2)
-    (up-compare-goal 6 c:> 300)
+    (up-compare-goal 7 c:> 300)
     (strategic-number sn-food-gatherer-percentage <= 96)
-    (up-compare-goal 5 c:<= 300)
+    (up-compare-goal 6 c:<= 300)
     (timer-triggered 1)
     (current-age >= feudal-age)
 =>
@@ -378,9 +390,9 @@
     (strategic-number sn-wood-gatherer-percentage >= 4)
     (up-compare-goal 1 c:> 300)
     (strategic-number sn-food-gatherer-percentage <= 98)
-    (up-compare-goal 5 c:<= 300)
-    (strategic-number sn-gold-gatherer-percentage <= 98)
     (up-compare-goal 6 c:<= 300)
+    (strategic-number sn-gold-gatherer-percentage <= 98)
+    (up-compare-goal 7 c:<= 300)
     (timer-triggered 1)
     (current-age >= feudal-age)
 =>
@@ -390,9 +402,9 @@
 )
 (defrule
     (strategic-number sn-food-gatherer-percentage >= 2)
-    (up-compare-goal 5 c:> 300)
-    (strategic-number sn-gold-gatherer-percentage >= 2)
     (up-compare-goal 6 c:> 300)
+    (strategic-number sn-gold-gatherer-percentage >= 2)
+    (up-compare-goal 7 c:> 300)
     (strategic-number sn-wood-gatherer-percentage <= 96)
     (up-compare-goal 1 c:<= 300)
     (timer-triggered 1)
@@ -404,11 +416,11 @@
 )
 (defrule
     (strategic-number sn-food-gatherer-percentage >= 4)
-    (up-compare-goal 5 c:> 300)
+    (up-compare-goal 6 c:> 300)
     (strategic-number sn-wood-gatherer-percentage <= 98)
     (up-compare-goal 1 c:<= 300)
     (strategic-number sn-gold-gatherer-percentage <= 98)
-    (up-compare-goal 6 c:<= 300)
+    (up-compare-goal 7 c:<= 300)
     (timer-triggered 1)
     (current-age >= feudal-age)
 =>
@@ -418,11 +430,11 @@
 )
 (defrule
     (strategic-number sn-gold-gatherer-percentage >= 4)
-    (up-compare-goal 6 c:> 300)
+    (up-compare-goal 7 c:> 300)
     (strategic-number sn-wood-gatherer-percentage <= 98)
     (up-compare-goal 1 c:<= 300)
     (strategic-number sn-food-gatherer-percentage <= 98)
-    (up-compare-goal 5 c:<= 300)
+    (up-compare-goal 6 c:<= 300)
     (timer-triggered 1)
     (current-age >= feudal-age)
 =>
