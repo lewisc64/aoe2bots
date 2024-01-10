@@ -1,0 +1,217 @@
+#do once
+  set name to "Exiled Knight Harriet"
+  set up basics
+  assign 4 builders to town-center-foundation
+  assign 8 builders to castle
+  assign 8 builders to krepost
+  sn-minimum-attack-group-size = 1
+  sn-maximum-attack-group-size = 1
+  #if not civ-selected bulgarians
+    chat to all "I need to play as the Bulgarians."
+  #end if
+#end do
+
+#template diplo-chat-alliance-offer
+  @up-get-player-color {player} -1
+  #select random
+    chat const to all "We should join forces %s." 7031232
+  #randor
+    chat const to all "Don't be afraid %s, you can trust me." 7031232
+  #randor
+    chat const to all "%s, let's ally." 7031232
+  #randor
+    chat const to all "%s, think of all we could do together." 7031232
+  #end select
+#end template
+
+#template diplo-chat-our-betrayal
+  @up-get-player-color {player} -1
+  #select random
+    chat const to all "I'm sorry %s." 7031232
+  #randor
+    chat const to all "Prepare yourself, %s." 7031232
+  #randor
+    chat const to all "Forgive me for this %s." 7031232
+  #randor
+    chat const to all "Unfortunately %s, times change." 7031232
+  #end select
+#end template
+
+#template diplo-chat-their-betrayal
+  @up-get-player-color {player} -1
+  #select random
+    chat const to all "Oh, %s..." 7031232
+  #randor
+    chat const to all "%s? This was not part of the plan." 7031232
+  #randor
+    chat const to all "I suppose it's understandable %s." 7031232
+  #end select
+#end template
+
+#template diplo-chat-accepted-our-alliance
+  @up-get-player-color {player} -1
+  chat const to all "Thank you %s." 7031232
+#end template
+
+#template diplo-chat-accepted-their-alliance
+  @up-get-player-color {player} -1
+  chat const to all "Agreed %s." 7031232
+#end template
+
+#template diplo-chat-refused-our-alliance
+  @up-get-player-color {player} -1
+  #select random
+    chat const to all "You will see one day, %s." 7031232
+  #randor
+    chat const to all "Perhaps next time." 7031232
+  #end select
+#end template
+
+#template diplo-chat-refused-their-alliance
+  @up-get-player-color {player} -1
+  chat const to all "I can't do that %s." 7031232
+#end template
+
+#template diplo-chat-friendly-fire-warning
+  @up-get-player-color {player} -1
+  chat const to all "%s? Was that a mistake?" 7031232
+#end template
+
+#template diplo-chat-friendly-fire-betrayal
+  chat to all "Oh souls, you mean to do me harm."
+#end template
+
+#template diplo-chat-resign
+  chat to all "Until we meet again."
+#end template
+
+#template diplo-should-player-be-marked
+  #if military-population >= 30
+    goal {marked_goal} = 1
+  #else if military-population < 10
+    goal {marked_goal} = 0
+  #end if
+#end template
+
+load "templates/diplomacy_engine.aoe2ai"
+
+load "templates/fast_castle.aoe2ai"
+
+#if up-research-status c: castle-age >= research-pending
+  #do once
+    distribute villagers 30 35 25 10
+    goal limit-konniks = 1
+  #end do
+  auto balance wood and food and gold
+  #if strategic-number sn-wood-gatherer-percentage < 20
+    distribute 2 villagers from food and gold to wood
+  #end if
+  #if strategic-number sn-food-gatherer-percentage < 35
+    distribute 2 villagers from wood and gold to food
+  #end if
+  #if strategic-number sn-gold-gatherer-percentage < 15
+    distribute 2 villagers from wood and food to gold
+  #end if
+  trade excess wood and food and gold at 2000
+  
+  build 1 town-center
+  build lumber camps
+  #when
+    build gold mining camps
+    build stone mining camps
+  #then
+    sn-camp-max-distance += 8
+  #end when
+  #if wood-amount >= 200
+    build farms
+  #end if
+  build houses with 20 headroom
+  build houses with 20 headroom
+  build 1 barracks
+  build 1 stable
+  build 1 blacksmith
+  build 1 monastery
+  train 1 monk
+  #if building-type-count-total krepost < 3 or building-type-count-total castle < 1
+    build 1 market
+    buy stone when gold > 500
+  #end if
+  build 1 castle
+  #if building-type-count-total castle >= 1
+    build 3 town-center
+    #if building-type-count-total town-center >= 3
+      build krepost
+    #end if
+  #end if
+  build 2 siege-workshop
+  
+  research lumber camp upgrades
+  research mill upgrades
+  research ri-wheel-barrow
+  research ri-bloodlines
+  research ri-husbandry
+  #if current-age == imperial-age
+    research ri-hand-cart
+  #end if
+  research cavalry blacksmith upgrades
+  #if up-research-status c: ri-scale-barding >= research-pending
+    research ri-scale-mail
+  #end if
+  #if up-research-status c: ri-chain-barding >= research-pending
+    research ri-chain-mail
+  #end if
+  #if up-research-status c: ri-plate-barding >= research-pending
+    research ri-plate-mail
+  #end if
+  research imperial-age
+  research ri-stirrups
+  research my-unique-unit-upgrade
+  research ri-capped-ram
+  research ri-siege-ram
+  research ri-onager
+  research ri-siege-onager
+  research ri-siege-engineers
+  research ri-light-cavalry
+  research ri-hussar
+  
+  #if research-completed my-unique-unit-upgrade and research-completed ri-siege-ram and research-completed ri-onager and research-completed ri-hussar
+    research ri-conscription
+    build 4 siege-workshop
+    build 12 stable
+    goal limit-konniks = 0
+  #end if
+  
+  #if goal limit-konniks 0 or up-pending-objects c: scout-cavalry-line < 1 and up-pending-objects c: krepost-konnik-line < 1 and military-population < 45 or (town-under-attack and military-population < 30)
+    #if gold-amount >= 70
+      #if building-type-count krepost == 0
+        train balanced 5 konnik-line 1 mangonel-line 1 battering-ram-line
+      #else
+        train balanced 5 krepost-konnik-line 1 mangonel-line 1 battering-ram-line
+      #end if
+    #else
+      train scout-cavalry-line
+    #end if
+  #end if
+  train mercenary-kipchak
+  
+  #if current-age == imperial-age
+    train 120 villager with 40 trade
+  #else
+    train 120 villager
+  #end if
+  
+  goal my-military-population = 0
+  goal military-required = 0
+  @up-get-fact military-population 0 my-military-population
+  @up-get-player-fact target-player military-population 0 military-required
+  @up-modify-goal military-required c:* 15
+  @up-modify-goal military-required c:/ 10
+
+  #if military-population >= 20 and up-compare-goal my-military-population g:> military-required or population >= 195 and player-in-game any-enemy
+    sn-number-attack-groups = 200
+  #else
+    sn-number-attack-groups = 0
+  #end if
+  
+  auto expand town size
+#end if
