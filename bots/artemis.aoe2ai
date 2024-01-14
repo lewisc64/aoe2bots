@@ -29,6 +29,13 @@ const min-gold-percent = 10
 
 load "templates/basic_diplomacy.aoe2ai"
 
+#template scaled-production-buildings
+  {before}barracks{after}
+  {before}archery-range{after}
+  {before}stable{after}
+  {before}siege-workshop{after}
+#end template
+
 #template unit-names
   {before}archer-line{after}
   {before}skirmisher-line{after}
@@ -120,10 +127,10 @@ const small-investment-modifier = 2
 const medium-investment-modifier = 4
 const large-investment-modifier = 8
 
-const minor-counter-modifier = 10
-const major-counter-modifier = 20
+const minor-counter-modifier = 20
+const major-counter-modifier = 40
 
-const trash-bias = 10
+const trash-bias = 40
 
 insert reset-unit-scores
 
@@ -445,7 +452,7 @@ insert clear-production-goals
 #end if
 
 // champion
-#if not civ-selected romans
+#if not civ-selected romans and not civ-selected bulgarians
   #if research-completed ri-two-handed-swordsman and research-completed imperial-age and not research-available ri-champion and up-research-status c: ri-champion < research-pending
     goal militiaman-line-score -= critical-research-available-modifier
   #end if
@@ -844,6 +851,7 @@ insert find-top-unit
 #end do
 
 goal halt-production = 0
+insert scaled-production-buildings(before="goal cumulative-",after=" = 0")
 
 #template train-unit-internal
   #if goal {unit}-production {number} and up-pending-objects c: {unit} < {number}
@@ -861,6 +869,14 @@ goal halt-production = 0
     insert train-unit-internal(unit="{unit}",number=6)
     insert train-unit-internal(unit="{unit}",number=7)
     insert train-unit-internal(unit="{unit}",number=8)
+    insert train-unit-internal(unit="{unit}",number=9)
+    insert train-unit-internal(unit="{unit}",number=10)
+    insert train-unit-internal(unit="{unit}",number=11)
+    insert train-unit-internal(unit="{unit}",number=12)
+    insert train-unit-internal(unit="{unit}",number=13)
+    insert train-unit-internal(unit="{unit}",number=14)
+    insert train-unit-internal(unit="{unit}",number=15)
+    insert train-unit-internal(unit="{unit}",number=16)
   #end if
 #end template
 
@@ -873,22 +889,47 @@ goal halt-production = 0
 #end template
 
 #template build-production-building
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=1)
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=2)
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=3)
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=4)
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=5)
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=6)
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=7)
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=8)
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=9)
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=10)
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=11)
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=12)
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=13)
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=14)
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=15)
-  insert build-production-building-internal(production_goal="{production_goal}",building_id_goal="{building_id_goal}",amount=16)
+  goal new-prod = 0
+  #if goal {building_id_goal} barracks
+    @up-modify-goal cumulative-barracks g:+ {production_goal}
+    @up-modify-goal new-prod g:= cumulative-barracks
+  #else if goal {building_id_goal} stable
+    @up-modify-goal cumulative-stable g:+ {production_goal}
+    @up-modify-goal new-prod g:= cumulative-stable
+  #else if goal {building_id_goal} archery-range
+    @up-modify-goal cumulative-archery-range g:+ {production_goal}
+    @up-modify-goal new-prod g:= cumulative-archery-range
+  #else if goal {building_id_goal} siege-workshop
+    @up-modify-goal cumulative-siege-workshop g:+ {production_goal}
+    @up-modify-goal new-prod g:= cumulative-siege-workshop
+  #else
+    @up-modify-goal new-prod g:= {production_goal}
+  #end if
+  
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=1)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=2)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=3)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=4)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=5)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=6)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=7)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=8)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=9)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=10)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=11)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=12)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=13)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=14)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=15)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=16)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=17)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=18)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=19)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=20)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=21)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=22)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=23)
+  insert build-production-building-internal(production_goal="new-prod",building_id_goal="{building_id_goal}",amount=24)
 #end template
 
 #template research-with-halt
@@ -909,7 +950,7 @@ goal halt-production = 0
   #else if current-age == castle-age
     goal production-scale = 3
   #else if current-age == imperial-age
-    goal production-scale = 5
+    goal production-scale = 12
   #end if
 #end do
 
@@ -925,7 +966,9 @@ lure boars
   build 1 town-center
 #end if
 
-build lumber camps
+#if game-time > 60
+  build lumber camps
+#end if
 build mule carts
 micro mule carts
 #if building-type-count-total lumber-camp >= 1 or building-type-count-total mule-cart >= 1
@@ -942,7 +985,7 @@ micro mule carts
 #end if
 build houses
 
-#if wood-amount >= 200
+#if wood-amount >= 200 or building-type-count-total farm < 6 and (building-type-count-total archery-range >= 2 or building-type-count-total barracks >= 2 or building-type-count-total barracks >= 2)
   build farms
 #end if
 
@@ -999,7 +1042,7 @@ research imperial-age with food and gold escrow
   #if goal top-unit {unit}
     @up-modify-goal {unit}-production g:= production-scale
   #end if
-  #if (current-age >= castle-age or goal second-unit skirmisher-line or goal second-unit spearman-line) and goal second-unit {unit}
+  #if (goal second-unit skirmisher-line or goal second-unit spearman-line or goal second-unit scout-cavalry-line) and goal second-unit {unit}
     @up-modify-goal {unit}-production g:= production-scale
   #end if
 #end template
@@ -1013,11 +1056,7 @@ research imperial-age with food and gold escrow
 #end if
 
 #if unit-type-count-total villager < 120
-  #if current-age <= feudal-age
-    goal villager-production = 1
-  #else
-    goal villager-production = 1
-  #end if
+  goal villager-production = 1
 #end if
 
 // it's research time
@@ -1160,8 +1199,10 @@ insert do-production(unit="villager")
   research ri-loom
 #end if
 insert do-production(unit="battering-ram-line")
-insert do-production(unit="armored-elephant-line")
-insert unit-names(before="insert do-production(unit=\"",after="\")")
+#if food-amount > 50
+  insert do-production(unit="armored-elephant-line")
+  insert unit-names(before="insert do-production(unit=\"",after="\")")
+#end if
 
 //chat goal to all "unitwood: %d" unit-wood
 //chat goal to all "unitfood: %d" unit-food
@@ -1333,10 +1374,10 @@ goal military-required = 0
 @up-modify-goal military-required c:* 15
 @up-modify-goal military-required c:/ 10
 
-#if military-population >= 5 and up-compare-goal my-military-population g:> military-required
+#if military-population >= 5 and up-compare-goal my-military-population g:> military-required or population >= 195
   sn-number-attack-groups = 200
 #else
   sn-number-attack-groups = 0
 #end if
 
-auto expand town size to 30
+auto expand town size
