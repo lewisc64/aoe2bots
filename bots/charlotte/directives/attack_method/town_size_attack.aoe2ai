@@ -1,7 +1,8 @@
 sn-number-attack-groups = 0
 
 #if goal attacking 1
-  #if strategic-number sn-maximum-town-size <= 30
+  goal disable-town-size-management = 1
+  #if strategic-number sn-maximum-town-size < 50
     sn-maximum-town-size = 50
   #end if
   #if up-building-type-in-town c: castle >= 1 or up-building-type-in-town c: town-center >= 1
@@ -13,7 +14,8 @@ sn-number-attack-groups = 0
   // boats do not behave well under TSA
   sn-number-boat-attack-groups = 200
   
-#else if strategic-number sn-maximum-town-size > 30
+#else if strategic-number sn-maximum-town-size >= 50
+  goal disable-town-size-management = 0
   @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
   sn-number-boat-attack-groups = 0
 #end if

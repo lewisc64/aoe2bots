@@ -18,7 +18,7 @@ load "economy/all_ages.aoe2ai"
   load "economy/adaptive_balance.aoe2ai"
 #end if
 
-#if strategic-number sn-maximum-town-size <= 30
+#if goal disable-town-size-management 0
   auto expand town size to 30
 #end if
 
