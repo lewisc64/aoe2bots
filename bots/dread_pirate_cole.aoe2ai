@@ -106,9 +106,9 @@ load "templates/fast_castle.aoe2ai"
   #end do
   
   #if up-research-status c: ri-houfnice < research-pending
-    escrow 10 wood
-    escrow 10 food
-    escrow 10 gold
+    escrow 20 wood with maximum 200
+    escrow 20 food with maximum 1100
+    escrow 20 gold with maximum 800
   #else
     escrow 0 wood
     escrow 0 food
@@ -128,15 +128,19 @@ load "templates/fast_castle.aoe2ai"
   build 1 university
   build 1 siege-workshop
   build 1 monastery
-  #if current-age == imperial-age
-    build 2 siege-workshop
-  #end if
+  train 1 monk
   #if goal water-map 1
     build 3 dock
   #end if
   #if goal full-water-map 0
-    build 1 barracks
-    build 3 archery-range
+    #if current-age == castle-age
+      build 2 barracks
+      build 3 archery-range
+    #else if current-age == imperial-age
+      build 4 barracks
+      build 8 archery-range
+      build 2 siege-workshop
+    #end if
   #end if
   build lumber camps
   #when
@@ -177,6 +181,11 @@ load "templates/fast_castle.aoe2ai"
     research ri-leather-archer-armor with food and gold escrow
     research ri-ring-archer-armor with food and gold escrow
     research ri-houfnice with food and gold escrow
+    
+    research ri-squires with food escrow
+    research ri-pikeman with food and gold escrow
+    research ri-halberdier with food and gold escrow
+    research infantry blacksmith upgrades with food and gold escrow
   #end if
   
   goal warboat-count-goal = 0
@@ -185,17 +194,9 @@ load "templates/fast_castle.aoe2ai"
   @up-get-fact soldier-count 0 soldier-count-goal
   
   #if goal full-water-map 0 and up-compare-goal soldier-count-goal g:<= warboat-count-goal or building-type-count dock == 0 or goal water-map 0
-    #if unit-available bombard-cannon-line
-      train balanced 5 hand-cannoneer 1 bombard-cannon-line
-    #else
-      train 20 hand-cannoneer
-    #end if
+    train balanced 10 hand-cannoneer 6 spearman-line 2 bombard-cannon-line
   #else
-    #if unit-available cannon-galleon-line
-      train balanced 1 galley-line 1 cannon-galleon-line
-    #else
-      train galley-line
-    #end if
+    train balanced 1 galley-line 1 cannon-galleon-line
   #end if
 
   #if current-age == imperial-age
