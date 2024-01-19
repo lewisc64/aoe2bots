@@ -176,7 +176,7 @@ load "templates/fast_castle.aoe2ai"
     research ri-galleon with wood and food escrow
     research ri-deck-guns with wood and food escrow
   #end if
-  #if goal full-water-map 0
+  #if goal full-water-map 0 and up-research-status c: ri-chemistry >= research-pending
     research ri-padded-archer-armor with food and gold escrow
     research ri-leather-archer-armor with food and gold escrow
     research ri-ring-archer-armor with food and gold escrow
@@ -194,7 +194,9 @@ load "templates/fast_castle.aoe2ai"
   @up-get-fact soldier-count 0 soldier-count-goal
   
   #if goal full-water-map 0 and up-compare-goal soldier-count-goal g:<= warboat-count-goal or building-type-count dock == 0 or goal water-map 0
-    train balanced 10 hand-cannoneer 6 spearman-line 2 bombard-cannon-line
+    #if up-research-status c: ri-chemistry >= research-pending
+      train balanced 10 hand-cannoneer 6 spearman-line 2 bombard-cannon-line
+    #end if
   #else
     train balanced 1 galley-line 1 cannon-galleon-line
   #end if
