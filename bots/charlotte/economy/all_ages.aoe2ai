@@ -45,6 +45,8 @@ build 1 town-center with wood and stone escrow
   // houses
   #if up-research-status c: feudal-age < research-pending
     build houses with 5 headroom
+  #else if up-research-status c: castle-age < research-pending
+    build houses with 10 headroom
   #else
     build houses with 20 headroom
   #end if

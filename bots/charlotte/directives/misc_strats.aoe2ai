@@ -23,7 +23,7 @@
 #end if
 
 // increase production over time
-#if up-compare-goal population-space-remaining c:> 10 and wood-amount >= 1000 and food-amount >= 1000 and gold-amount >= 1000
+#if wood-amount >= 1000 and food-amount >= 1000 and gold-amount >= 1000
   #repeat every 10 minutes
     goal desired-military-buildings-per-type += 1
     goal desired-town-centers += 1
@@ -45,14 +45,14 @@
 #if strategic-number sn-task-ungrouped-soldiers == 1
   sn-task-ungrouped-soldiers = 0
 #end if
-#repeat every 30 seconds
+#repeat every 60 seconds
   #if goal attacking 0
     sn-task-ungrouped-soldiers = 1
   #end if
 #end repeat
 
-// walls are bad
-#if current-age >= castle-age and game-type != scenario
+// delete walls if boxed in
+#if current-age >= castle-age and building-type-count gate-class == 0
   delete walls
 #end if
 

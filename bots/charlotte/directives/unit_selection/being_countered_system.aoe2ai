@@ -28,7 +28,7 @@ insert all-land-cavalry-unit-goal-names(before="#if goal produce-",after=" 1; go
   goal produce-hand-cannoneers = 0
   goal produce-monks = 0
   goal produce-missionaries = 0
-  #if goal unique-unit-is-infantry 1 and not (civ-selected gothic or civ-selected malay or civ-selected celtic or civ-selected bulgarians)
+  #if goal unique-unit-is-infantry 1 and goal unique-unit-counters-ranged 0 and not (civ-selected malay or civ-selected celtic or civ-selected bulgarians)
     goal produce-unique-units = 0
   #end if
 #end template
@@ -76,53 +76,55 @@ insert all-land-cavalry-unit-goal-names(before="#if goal produce-",after=" 1; go
   goal produce-scouts = 0
 #end template
 
-#respond to min-detection-units monk-set
-  insert turn-off-for-monks
-#end respond
+// if we are not making anti-monk
+#if goal produce-archers 0 and goal produce-skirmishers 0 and goal produce-scouts 0
+  #respond to min-detection-units monk-set
+    insert turn-off-for-monks
+  #end respond
 
-#respond to min-detection-units missionary
-  insert turn-off-for-monks
-#end respond
+  #respond to min-detection-units missionary
+    insert turn-off-for-monks
+  #end respond
+#end if
 
-#respond to min-detection-units archer
-  goal produce-spearmen = 0
-#end respond
+// if we are not making anti-cavalry
+#if goal produce-spearmen 0 and goal produce-camels 0 and (goal produce-unique-units 0 or goal unique-unit-counters-cavalry 0)
 
-#respond to min-detection-units cavalry-archer-line
-  goal produce-spearmen = 0
-#end respond
+  #respond to min-detection-units scout-cavalry-line
+    insert turn-off-siege-for-cavalry
+  #end respond
 
-#respond to min-detection-units mangonel-line
-  goal produce-scorpions = 0
-  goal produce-skirmishers = 0
-#end respond
+  // ...and not anti-expensive
+  #if goal produce-monks 0
+    #respond to min-detection-units knight-line
+      insert turn-off-siege-for-cavalry
+    #end respond
+    
+    #respond to min-detection-units camel-line
+      insert turn-off-siege-for-cavalry
+    #end respond
 
-#respond to min-detection-units bombard-cannon
-  goal produce-scorpions = 0
-#end respond
+    #respond to min-detection-units battle-elephant-line
+      insert turn-off-for-elephants
+      insert turn-off-siege-for-cavalry
+    #end respond
+    
+    #respond to min-detection-units war-elephant-line
+      insert turn-off-for-elephants
+      insert turn-off-siege-for-cavalry
+    #end respond
+  #end if
+#end if
 
-#respond to min-detection-units knight-line
-  insert turn-off-siege-for-cavalry
-#end respond
-
-#respond to min-detection-units scout-cavalry-line
-  insert turn-off-siege-for-cavalry
-#end respond
-
-#respond to min-detection-units camel-line
-  insert turn-off-siege-for-cavalry
-#end respond
-
-#respond to min-detection-units battle-elephant-line
-  insert turn-off-siege-for-cavalry
-#end respond
-
-#respond to min-detection-units war-elephant-line
-  insert turn-off-siege-for-cavalry
-#end respond
+// if we are not making ranged
+#if goal bcs-making-ranged 0
+  #respond to min-detection-units militiaman-line
+    goal produce-eagles = 0
+  #end respond
+#end if
 
 // if we are only making infantry
-#if goal desired-units-per-type 1 or goal bcs-making-infantry 1 and goal bcs-making-ranged 0 and goal bcs-making-cavalry 0
+#if goal bcs-making-infantry 1 and goal bcs-making-ranged 0 and goal bcs-making-cavalry 0 and (goal produce-unique-units 1)
   #respond to min-detection-units archer
     insert turn-off-for-archers
   #end respond
@@ -132,6 +134,10 @@ insert all-land-cavalry-unit-goal-names(before="#if goal produce-",after=" 1; go
   #end respond
   
   #respond to min-detection-units plumed-archer-line
+    insert turn-off-for-archers
+  #end respond
+  
+  #respond to min-detection-units composite-bowman-line
     insert turn-off-for-archers
   #end respond
   
@@ -159,12 +165,14 @@ insert all-land-cavalry-unit-goal-names(before="#if goal produce-",after=" 1; go
   #end respond
 #end if
 
-#if goal desired-units-per-type 1
-  #respond to min-detection-units battle-elephant-line
-    insert turn-off-for-elephants
+// if we are not making any cavalry
+#if goal bcs-making-cavalry 0
+  #respond to min-detection-units bombard-cannon
+    goal produce-scorpions = 0
   #end respond
   
-  #respond to min-detection-units war-elephant-line
-    insert turn-off-for-elephants
+  #respond to min-detection-units mangonel-line
+    goal produce-scorpions = 0
+    goal produce-skirmishers = 0
   #end respond
 #end if

@@ -666,6 +666,7 @@
     (building-type-count stone-wall-line == 0)
     (building-type-count palisade-wall == 0)
     (wall-completed-percentage 2 == 100)
+    (building-type-count town-center >= 1)
     (cc-players-unit-type-count 0 sea-fish >= 1)
     (game-time < 5)
     (goal 3 1)
@@ -678,7 +679,10 @@
       (building-type-count stone-wall-line == 0)
       (and
         (building-type-count palisade-wall == 0)
-        (wall-completed-percentage 2 == 100)
+        (and
+          (wall-completed-percentage 2 == 100)
+          (building-type-count town-center >= 1)
+        )
       )
     )
     (cc-players-unit-type-count 0 sea-fish >= 1)
@@ -1722,6 +1726,7 @@
     (players-civ my-player-number gothic)
 =>
     (set-goal unique-unit-is-infantry 1)
+    (set-goal unique-unit-counters-ranged 1)
     (disable-self)
 )
 (defrule
@@ -50491,7 +50496,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1297)
+    (up-jump-rule 1299)
 )
 (defrule
     (true)
@@ -50580,7 +50585,6 @@
     (set-strategic-number sn-percent-building-cancellation 0)
 )
 (defrule
-    (up-compare-goal population-space-remaining c:> 10)
     (wood-amount >= 1000)
     (food-amount >= 1000)
     (gold-amount >= 1000)
@@ -50590,7 +50594,6 @@
 )
 (defrule
     (timer-triggered 1)
-    (up-compare-goal population-space-remaining c:> 10)
     (wood-amount >= 1000)
     (food-amount >= 1000)
     (gold-amount >= 1000)
@@ -50622,7 +50625,7 @@
 (defrule
     (true)
 =>
-    (enable-timer 2 30)
+    (enable-timer 2 60)
     (disable-self)
 )
 (defrule
@@ -50635,11 +50638,11 @@
     (timer-triggered 2)
 =>
     (disable-timer 2)
-    (enable-timer 2 30)
+    (enable-timer 2 60)
 )
 (defrule
     (current-age >= castle-age)
-    (game-type != scenario)
+    (building-type-count gate-class == 0)
 =>
     (delete-building stone-wall-line)
     (delete-building palisade-wall)
@@ -52840,6 +52843,7 @@
     (up-modify-goal produce-battle-elephants g:= good-battle-elephants)
 )
 (defrule
+    (up-compare-goal total-units-selected c:>= 1)
     (goal 228 14)
     (up-compare-goal total-units-selected g:< desired-units-per-type)
 =>
@@ -52945,7 +52949,7 @@
       )
     )
 =>
-    (up-jump-rule 75)
+    (up-jump-rule 77)
 )
 (defrule
     (true)
@@ -53059,8 +53063,15 @@
     (set-goal bcs-making-cavalry 1)
 )
 (defrule
-    (not
+    (nand
       (players-unit-type-count any-enemy monk-set >= min-detection-units)
+      (and
+        (goal produce-archers 0)
+        (and
+          (goal produce-skirmishers 0)
+          (goal produce-scouts 0)
+        )
+      )
     )
 =>
     (up-jump-rule 3)
@@ -53083,8 +53094,15 @@
     (set-goal produce-mangonels 0)
 )
 (defrule
-    (not
+    (nand
       (players-unit-type-count any-enemy missionary >= min-detection-units)
+      (and
+        (goal produce-archers 0)
+        (and
+          (goal produce-skirmishers 0)
+          (goal produce-scouts 0)
+        )
+      )
     )
 =>
     (up-jump-rule 3)
@@ -53107,81 +53125,18 @@
     (set-goal produce-mangonels 0)
 )
 (defrule
-    (players-unit-type-count any-enemy archer >= min-detection-units)
-=>
-    (set-goal produce-spearmen 0)
-)
-(defrule
-    (players-unit-type-count any-enemy cavalry-archer-line >= min-detection-units)
-=>
-    (set-goal produce-spearmen 0)
-)
-(defrule
-    (players-unit-type-count any-enemy mangonel-line >= min-detection-units)
-=>
-    (set-goal produce-scorpions 0)
-    (set-goal produce-skirmishers 0)
-)
-(defrule
-    (players-unit-type-count any-enemy bombard-cannon >= min-detection-units)
-=>
-    (set-goal produce-scorpions 0)
-)
-(defrule
-    (not
-      (players-unit-type-count any-enemy knight-line >= min-detection-units)
-    )
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (true)
-=>
-    (set-goal produce-scorpions 0)
-    (set-goal produce-mangonels 0)
-)
-(defrule
-    (not
+    (nand
       (players-unit-type-count any-enemy scout-cavalry-line >= min-detection-units)
-    )
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (true)
-=>
-    (set-goal produce-scorpions 0)
-    (set-goal produce-mangonels 0)
-)
-(defrule
-    (not
-      (players-unit-type-count any-enemy camel-line >= min-detection-units)
-    )
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (true)
-=>
-    (set-goal produce-scorpions 0)
-    (set-goal produce-mangonels 0)
-)
-(defrule
-    (not
-      (players-unit-type-count any-enemy battle-elephant-line >= min-detection-units)
-    )
-=>
-    (up-jump-rule 1)
-)
-(defrule
-    (true)
-=>
-    (set-goal produce-scorpions 0)
-    (set-goal produce-mangonels 0)
-)
-(defrule
-    (not
-      (players-unit-type-count any-enemy war-elephant-line >= min-detection-units)
+      (and
+        (goal produce-spearmen 0)
+        (and
+          (goal produce-camels 0)
+          (or
+            (goal produce-unique-units 0)
+            (goal unique-unit-counters-cavalry 0)
+          )
+        )
+      )
     )
 =>
     (up-jump-rule 1)
@@ -53194,14 +53149,200 @@
 )
 (defrule
     (nand
-      (players-unit-type-count any-enemy archer >= min-detection-units)
-      (or
-        (goal desired-units-per-type 1)
+      (players-unit-type-count any-enemy knight-line >= min-detection-units)
+      (and
+        (goal produce-monks 0)
         (and
-          (goal bcs-making-infantry 1)
+          (goal produce-spearmen 0)
           (and
-            (goal bcs-making-ranged 0)
+            (goal produce-camels 0)
+            (or
+              (goal produce-unique-units 0)
+              (goal unique-unit-counters-cavalry 0)
+            )
+          )
+        )
+      )
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-scorpions 0)
+    (set-goal produce-mangonels 0)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy camel-line >= min-detection-units)
+      (and
+        (goal produce-monks 0)
+        (and
+          (goal produce-spearmen 0)
+          (and
+            (goal produce-camels 0)
+            (or
+              (goal produce-unique-units 0)
+              (goal unique-unit-counters-cavalry 0)
+            )
+          )
+        )
+      )
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-scorpions 0)
+    (set-goal produce-mangonels 0)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy battle-elephant-line >= min-detection-units)
+      (and
+        (goal produce-monks 0)
+        (and
+          (goal produce-spearmen 0)
+          (and
+            (goal produce-camels 0)
+            (or
+              (goal produce-unique-units 0)
+              (goal unique-unit-counters-cavalry 0)
+            )
+          )
+        )
+      )
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-eagles 0)
+    (set-goal produce-militia 0)
+    (set-goal produce-condottiero 0)
+)
+(defrule
+    (goal unique-unit-is-infantry 1)
+    (goal unique-unit-counters-cavalry 0)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-scouts 0)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy battle-elephant-line >= min-detection-units)
+      (and
+        (goal produce-monks 0)
+        (and
+          (goal produce-spearmen 0)
+          (and
+            (goal produce-camels 0)
+            (or
+              (goal produce-unique-units 0)
+              (goal unique-unit-counters-cavalry 0)
+            )
+          )
+        )
+      )
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-scorpions 0)
+    (set-goal produce-mangonels 0)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy war-elephant-line >= min-detection-units)
+      (and
+        (goal produce-monks 0)
+        (and
+          (goal produce-spearmen 0)
+          (and
+            (goal produce-camels 0)
+            (or
+              (goal produce-unique-units 0)
+              (goal unique-unit-counters-cavalry 0)
+            )
+          )
+        )
+      )
+    )
+=>
+    (up-jump-rule 3)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-eagles 0)
+    (set-goal produce-militia 0)
+    (set-goal produce-condottiero 0)
+)
+(defrule
+    (goal unique-unit-is-infantry 1)
+    (goal unique-unit-counters-cavalry 0)
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-scouts 0)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy war-elephant-line >= min-detection-units)
+      (and
+        (goal produce-monks 0)
+        (and
+          (goal produce-spearmen 0)
+          (and
+            (goal produce-camels 0)
+            (or
+              (goal produce-unique-units 0)
+              (goal unique-unit-counters-cavalry 0)
+            )
+          )
+        )
+      )
+    )
+=>
+    (up-jump-rule 1)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-scorpions 0)
+    (set-goal produce-mangonels 0)
+)
+(defrule
+    (players-unit-type-count any-enemy militiaman-line >= min-detection-units)
+    (goal bcs-making-ranged 0)
+=>
+    (set-goal produce-eagles 0)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy archer >= min-detection-units)
+      (and
+        (goal bcs-making-infantry 1)
+        (and
+          (goal bcs-making-ranged 0)
+          (and
             (goal bcs-making-cavalry 0)
+            (goal produce-unique-units 1)
           )
         )
       )
@@ -53220,15 +53361,13 @@
 )
 (defrule
     (goal unique-unit-is-infantry 1)
+    (goal unique-unit-counters-ranged 0)
     (not
       (or
-        (civ-selected gothic)
+        (civ-selected malay)
         (or
-          (civ-selected malay)
-          (or
-            (civ-selected celtic)
-            (civ-selected bulgarians)
-          )
+          (civ-selected celtic)
+          (civ-selected bulgarians)
         )
       )
     )
@@ -53238,13 +53377,13 @@
 (defrule
     (nand
       (players-unit-type-count any-enemy chu-ko-nu-line >= min-detection-units)
-      (or
-        (goal desired-units-per-type 1)
+      (and
+        (goal bcs-making-infantry 1)
         (and
-          (goal bcs-making-infantry 1)
+          (goal bcs-making-ranged 0)
           (and
-            (goal bcs-making-ranged 0)
             (goal bcs-making-cavalry 0)
+            (goal produce-unique-units 1)
           )
         )
       )
@@ -53263,15 +53402,13 @@
 )
 (defrule
     (goal unique-unit-is-infantry 1)
+    (goal unique-unit-counters-ranged 0)
     (not
       (or
-        (civ-selected gothic)
+        (civ-selected malay)
         (or
-          (civ-selected malay)
-          (or
-            (civ-selected celtic)
-            (civ-selected bulgarians)
-          )
+          (civ-selected celtic)
+          (civ-selected bulgarians)
         )
       )
     )
@@ -53281,13 +53418,13 @@
 (defrule
     (nand
       (players-unit-type-count any-enemy plumed-archer-line >= min-detection-units)
-      (or
-        (goal desired-units-per-type 1)
+      (and
+        (goal bcs-making-infantry 1)
         (and
-          (goal bcs-making-infantry 1)
+          (goal bcs-making-ranged 0)
           (and
-            (goal bcs-making-ranged 0)
             (goal bcs-making-cavalry 0)
+            (goal produce-unique-units 1)
           )
         )
       )
@@ -53306,15 +53443,54 @@
 )
 (defrule
     (goal unique-unit-is-infantry 1)
+    (goal unique-unit-counters-ranged 0)
     (not
       (or
-        (civ-selected gothic)
+        (civ-selected malay)
         (or
-          (civ-selected malay)
-          (or
-            (civ-selected celtic)
-            (civ-selected bulgarians)
+          (civ-selected celtic)
+          (civ-selected bulgarians)
+        )
+      )
+    )
+=>
+    (set-goal produce-unique-units 0)
+)
+(defrule
+    (nand
+      (players-unit-type-count any-enemy composite-bowman-line >= min-detection-units)
+      (and
+        (goal bcs-making-infantry 1)
+        (and
+          (goal bcs-making-ranged 0)
+          (and
+            (goal bcs-making-cavalry 0)
+            (goal produce-unique-units 1)
           )
+        )
+      )
+    )
+=>
+    (up-jump-rule 2)
+)
+(defrule
+    (true)
+=>
+    (set-goal produce-militia 0)
+    (set-goal produce-condottiero 0)
+    (set-goal produce-hand-cannoneers 0)
+    (set-goal produce-monks 0)
+    (set-goal produce-missionaries 0)
+)
+(defrule
+    (goal unique-unit-is-infantry 1)
+    (goal unique-unit-counters-ranged 0)
+    (not
+      (or
+        (civ-selected malay)
+        (or
+          (civ-selected celtic)
+          (civ-selected bulgarians)
         )
       )
     )
@@ -53324,13 +53500,13 @@
 (defrule
     (nand
       (players-unit-type-count any-enemy hand-cannoneer >= min-detection-units)
-      (or
-        (goal desired-units-per-type 1)
+      (and
+        (goal bcs-making-infantry 1)
         (and
-          (goal bcs-making-infantry 1)
+          (goal bcs-making-ranged 0)
           (and
-            (goal bcs-making-ranged 0)
             (goal bcs-making-cavalry 0)
+            (goal produce-unique-units 1)
           )
         )
       )
@@ -53364,13 +53540,13 @@
 (defrule
     (nand
       (players-unit-type-count any-enemy scorpion-line >= min-detection-units)
-      (or
-        (goal desired-units-per-type 1)
+      (and
+        (goal bcs-making-infantry 1)
         (and
-          (goal bcs-making-infantry 1)
+          (goal bcs-making-ranged 0)
           (and
-            (goal bcs-making-ranged 0)
             (goal bcs-making-cavalry 0)
+            (goal produce-unique-units 1)
           )
         )
       )
@@ -53404,13 +53580,13 @@
 (defrule
     (nand
       (players-unit-type-count any-enemy jaguar-man-line >= min-detection-units)
-      (or
-        (goal desired-units-per-type 1)
+      (and
+        (goal bcs-making-infantry 1)
         (and
-          (goal bcs-making-infantry 1)
+          (goal bcs-making-ranged 0)
           (and
-            (goal bcs-making-ranged 0)
             (goal bcs-making-cavalry 0)
+            (goal produce-unique-units 1)
           )
         )
       )
@@ -53444,13 +53620,13 @@
 (defrule
     (nand
       (players-unit-type-count any-enemy teutonic-knight-line >= min-detection-units)
-      (or
-        (goal desired-units-per-type 1)
+      (and
+        (goal bcs-making-infantry 1)
         (and
-          (goal bcs-making-infantry 1)
+          (goal bcs-making-ranged 0)
           (and
-            (goal bcs-making-ranged 0)
             (goal bcs-making-cavalry 0)
+            (goal produce-unique-units 1)
           )
         )
       )
@@ -53516,56 +53692,17 @@
     (set-goal produce-unique-units 0)
 )
 (defrule
-    (nand
-      (players-unit-type-count any-enemy battle-elephant-line >= min-detection-units)
-      (goal desired-units-per-type 1)
-    )
+    (players-unit-type-count any-enemy bombard-cannon >= min-detection-units)
+    (goal bcs-making-cavalry 0)
 =>
-    (up-jump-rule 3)
+    (set-goal produce-scorpions 0)
 )
 (defrule
-    (true)
+    (players-unit-type-count any-enemy mangonel-line >= min-detection-units)
+    (goal bcs-making-cavalry 0)
 =>
-    (set-goal produce-eagles 0)
-    (set-goal produce-militia 0)
-    (set-goal produce-condottiero 0)
-)
-(defrule
-    (goal unique-unit-is-infantry 1)
-    (goal unique-unit-counters-cavalry 0)
-=>
-    (set-goal produce-unique-units 0)
-)
-(defrule
-    (true)
-=>
-    (set-goal produce-scouts 0)
-)
-(defrule
-    (nand
-      (players-unit-type-count any-enemy war-elephant-line >= min-detection-units)
-      (goal desired-units-per-type 1)
-    )
-=>
-    (up-jump-rule 3)
-)
-(defrule
-    (true)
-=>
-    (set-goal produce-eagles 0)
-    (set-goal produce-militia 0)
-    (set-goal produce-condottiero 0)
-)
-(defrule
-    (goal unique-unit-is-infantry 1)
-    (goal unique-unit-counters-cavalry 0)
-=>
-    (set-goal produce-unique-units 0)
-)
-(defrule
-    (true)
-=>
-    (set-goal produce-scouts 0)
+    (set-goal produce-scorpions 0)
+    (set-goal produce-skirmishers 0)
 )
 (defrule
     (nand
@@ -54190,8 +54327,8 @@
     (disable-self)
     (generate-random-number 2)
     (up-get-fact random-number 0 235)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 235 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 235 g:+ 1)
     (up-modify-goal 235 c:mod 2)
     (up-modify-goal 235 c:+ 2)
     (up-modify-goal 235 c:mod 2)
@@ -54227,8 +54364,8 @@
     (set-goal 239 0)
     (generate-random-number 2)
     (up-get-fact random-number 0 239)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 239 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 239 g:+ 1)
     (up-modify-goal 239 c:mod 2)
     (up-modify-goal 239 c:+ 2)
     (up-modify-goal 239 c:mod 2)
@@ -54570,8 +54707,8 @@
 (defrule
     (true)
 =>
-    (up-find-player enemy find-closest 1)
-    (up-modify-sn sn-target-player-number g:= 1)
+    (up-find-player enemy find-closest 215)
+    (up-modify-sn sn-target-player-number g:= 215)
     (up-send-scout group-type-land-explore scout-enemy)
     (disable-self)
 )
@@ -54588,8 +54725,8 @@
       )
     )
 =>
-    (up-find-player enemy find-closest 1)
-    (up-modify-sn sn-target-player-number g:= 1)
+    (up-find-player enemy find-closest 215)
+    (up-modify-sn sn-target-player-number g:= 215)
 )
 (defrule
     (strategic-number sn-target-player-number != -1)
@@ -54694,14 +54831,14 @@
 (defrule
     (goal attacking 1)
 =>
-    (up-get-fact game-time 0 215)
+    (up-get-fact game-time 0 1)
 )
 (defrule
-    (up-compare-goal 215 g:>= 242)
+    (up-compare-goal 1 g:>= 242)
     (goal attacking 1)
 =>
     (attack-now)
-    (up-modify-goal 242 g:= 215)
+    (up-modify-goal 242 g:= 1)
     (up-modify-goal 242 c:+ 60)
 )
 (defrule
@@ -54834,8 +54971,8 @@
     (set-goal 288 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 288)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 288 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 288 g:+ 215)
     (up-modify-goal 288 c:mod 3)
     (up-modify-goal 288 c:+ 3)
     (up-modify-goal 288 c:mod 3)
@@ -55023,8 +55160,8 @@
     (set-goal 289 0)
     (generate-random-number 8)
     (up-get-fact random-number 0 289)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 289 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 289 g:+ 215)
     (up-modify-goal 289 c:mod 8)
     (up-modify-goal 289 c:+ 8)
     (up-modify-goal 289 c:mod 8)
@@ -55060,8 +55197,8 @@
     (set-goal 290 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 290)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 290 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 290 g:+ 215)
     (up-modify-goal 290 c:mod 4)
     (up-modify-goal 290 c:+ 4)
     (up-modify-goal 290 c:mod 4)
@@ -55129,8 +55266,8 @@
     (set-goal 291 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 291)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 291 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 291 g:+ 215)
     (up-modify-goal 291 c:mod 4)
     (up-modify-goal 291 c:+ 4)
     (up-modify-goal 291 c:mod 4)
@@ -55198,8 +55335,8 @@
     (set-goal 292 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 292)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 292 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 292 g:+ 215)
     (up-modify-goal 292 c:mod 4)
     (up-modify-goal 292 c:+ 4)
     (up-modify-goal 292 c:mod 4)
@@ -55267,8 +55404,8 @@
     (set-goal 293 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 293)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 293 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 293 g:+ 215)
     (up-modify-goal 293 c:mod 4)
     (up-modify-goal 293 c:+ 4)
     (up-modify-goal 293 c:mod 4)
@@ -55336,8 +55473,8 @@
     (set-goal 294 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 294)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 294 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 294 g:+ 215)
     (up-modify-goal 294 c:mod 4)
     (up-modify-goal 294 c:+ 4)
     (up-modify-goal 294 c:mod 4)
@@ -55405,8 +55542,8 @@
     (set-goal 295 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 295)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 295 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 295 g:+ 215)
     (up-modify-goal 295 c:mod 4)
     (up-modify-goal 295 c:+ 4)
     (up-modify-goal 295 c:mod 4)
@@ -55474,8 +55611,8 @@
     (set-goal 296 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 296)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 296 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 296 g:+ 215)
     (up-modify-goal 296 c:mod 4)
     (up-modify-goal 296 c:+ 4)
     (up-modify-goal 296 c:mod 4)
@@ -55543,8 +55680,8 @@
     (set-goal 297 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 297)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 297 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 297 g:+ 215)
     (up-modify-goal 297 c:mod 4)
     (up-modify-goal 297 c:+ 4)
     (up-modify-goal 297 c:mod 4)
@@ -55589,8 +55726,8 @@
     (set-goal 298 0)
     (generate-random-number 8)
     (up-get-fact random-number 0 298)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 298 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 298 g:+ 215)
     (up-modify-goal 298 c:mod 8)
     (up-modify-goal 298 c:+ 8)
     (up-modify-goal 298 c:mod 8)
@@ -55746,8 +55883,8 @@
     (set-goal 299 0)
     (generate-random-number 8)
     (up-get-fact random-number 0 299)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 299 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 299 g:+ 215)
     (up-modify-goal 299 c:mod 8)
     (up-modify-goal 299 c:+ 8)
     (up-modify-goal 299 c:mod 8)
@@ -55776,8 +55913,8 @@
     (set-goal 300 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 300)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 300 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 300 g:+ 215)
     (up-modify-goal 300 c:mod 10)
     (up-modify-goal 300 c:+ 10)
     (up-modify-goal 300 c:mod 10)
@@ -55883,8 +56020,8 @@
     (set-goal 301 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 301)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 301 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 301 g:+ 1)
     (up-modify-goal 301 c:mod 10)
     (up-modify-goal 301 c:+ 10)
     (up-modify-goal 301 c:mod 10)
@@ -55990,8 +56127,8 @@
     (set-goal 302 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 302)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 302 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 302 g:+ 215)
     (up-modify-goal 302 c:mod 10)
     (up-modify-goal 302 c:+ 10)
     (up-modify-goal 302 c:mod 10)
@@ -56097,8 +56234,8 @@
     (set-goal 303 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 303)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 303 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 303 g:+ 1)
     (up-modify-goal 303 c:mod 10)
     (up-modify-goal 303 c:+ 10)
     (up-modify-goal 303 c:mod 10)
@@ -56204,8 +56341,8 @@
     (set-goal 304 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 304)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 304 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 304 g:+ 215)
     (up-modify-goal 304 c:mod 10)
     (up-modify-goal 304 c:+ 10)
     (up-modify-goal 304 c:mod 10)
@@ -56311,8 +56448,8 @@
     (set-goal 305 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 305)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 305 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 305 g:+ 1)
     (up-modify-goal 305 c:mod 10)
     (up-modify-goal 305 c:+ 10)
     (up-modify-goal 305 c:mod 10)
@@ -56418,8 +56555,8 @@
     (set-goal 306 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 306)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 306 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 306 g:+ 215)
     (up-modify-goal 306 c:mod 10)
     (up-modify-goal 306 c:+ 10)
     (up-modify-goal 306 c:mod 10)
@@ -56525,8 +56662,8 @@
     (set-goal 307 0)
     (generate-random-number 10)
     (up-get-fact random-number 0 307)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 307 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 307 g:+ 1)
     (up-modify-goal 307 c:mod 10)
     (up-modify-goal 307 c:+ 10)
     (up-modify-goal 307 c:mod 10)
@@ -56628,7 +56765,7 @@
       (goal diplo-my-player-number 1)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal player-1-is-bad-egg 1)
@@ -56640,30 +56777,30 @@
       (goal diplo-my-player-number 1)
     )
 =>
-    (set-goal 215 1)
-)
-(defrule
-    (goal 215 1)
-    (player-in-game 1)
-    (not
-      (goal diplo-my-player-number 1)
-    )
-=>
-    (set-goal 1 0)
-)
-(defrule
-    (up-compare-goal game-time-goal g:>= player-1-bad-egg-expires-at)
-    (goal 215 1)
-    (player-in-game 1)
-    (not
-      (goal diplo-my-player-number 1)
-    )
-=>
     (set-goal 1 1)
 )
 (defrule
     (goal 1 1)
+    (player-in-game 1)
+    (not
+      (goal diplo-my-player-number 1)
+    )
+=>
+    (set-goal 215 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-1-bad-egg-expires-at)
+    (goal 1 1)
+    (player-in-game 1)
+    (not
+      (goal diplo-my-player-number 1)
+    )
+=>
+    (set-goal 215 1)
+)
+(defrule
     (goal 215 1)
+    (goal 1 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -56679,7 +56816,7 @@
       (goal diplo-my-player-number 1)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal player-1-is-bad-egg 0)
@@ -56689,7 +56826,7 @@
       (goal diplo-my-player-number 1)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
     (nand
@@ -56702,7 +56839,7 @@
         (and
           (players-stance 1 ally)
           (and
-            (goal 215 1)
+            (goal 1 1)
             (and
               (player-in-game 1)
               (not
@@ -56722,8 +56859,8 @@
     (set-goal 308 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 308)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 308 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 308 g:+ 215)
     (up-modify-goal 308 c:mod 4)
     (up-modify-goal 308 c:+ 4)
     (up-modify-goal 308 c:mod 4)
@@ -56756,7 +56893,7 @@
       (stance-toward 1 neutral)
     )
     (players-stance 1 ally)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -56779,7 +56916,7 @@
       (and
         (players-stance 1 ally)
         (and
-          (goal 215 1)
+          (goal 1 1)
           (and
             (player-in-game 1)
             (not
@@ -56798,8 +56935,8 @@
     (set-goal 309 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 309)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 309 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 309 g:+ 215)
     (up-modify-goal 309 c:mod 4)
     (up-modify-goal 309 c:+ 4)
     (up-modify-goal 309 c:mod 4)
@@ -56833,7 +56970,7 @@
       (stance-toward 1 neutral)
     )
     (players-stance 1 ally)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -56848,7 +56985,7 @@
       (goal diplo-my-player-number 1)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal allied-with-1 1)
@@ -56860,11 +56997,11 @@
       (goal diplo-my-player-number 1)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
     (nand
-      (goal 215 1)
+      (goal 1 1)
       (and
         (player-in-game 1)
         (not
@@ -56882,8 +57019,8 @@
     (set-goal 310 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 310)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 310 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 310 g:+ 215)
     (up-modify-goal 310 c:mod 11)
     (up-modify-goal 310 c:+ 11)
     (up-modify-goal 310 c:mod 11)
@@ -56946,7 +57083,7 @@
 )
 (defrule
     (nand
-      (goal 215 1)
+      (goal 1 1)
       (and
         (player-in-game 1)
         (not
@@ -56965,7 +57102,7 @@
     (up-modify-goal player-1-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -56980,7 +57117,7 @@
       (goal diplo-my-player-number 1)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal threat-player 1)
@@ -56993,10 +57130,10 @@
       (goal diplo-my-player-number 1)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -57008,7 +57145,7 @@
     (nand
       (goal allied-with-1 1)
       (and
-        (goal 215 1)
+        (goal 1 1)
         (and
           (player-in-game 1)
           (not
@@ -57027,8 +57164,8 @@
     (set-goal 311 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 311)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 311 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 311 g:+ 215)
     (up-modify-goal 311 c:mod 11)
     (up-modify-goal 311 c:+ 11)
     (up-modify-goal 311 c:mod 11)
@@ -57091,7 +57228,7 @@
 )
 (defrule
     (goal allied-with-1 1)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -57103,7 +57240,7 @@
     (nand
       (goal allied-with-1 1)
       (and
-        (goal 215 1)
+        (goal 1 1)
         (and
           (player-in-game 1)
           (not
@@ -57130,7 +57267,7 @@
       (and
         (stance-toward 1 ally)
         (and
-          (goal 215 1)
+          (goal 1 1)
           (and
             (player-in-game 1)
             (not
@@ -57151,7 +57288,7 @@
     (up-modify-goal player-1-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -57165,7 +57302,7 @@
       (goal diplo-my-player-number 1)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal allied-with-1 0)
@@ -57177,10 +57314,10 @@
       (goal diplo-my-player-number 1)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -57193,7 +57330,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (goal 215 1)
+        (goal 1 1)
         (and
           (player-in-game 1)
           (not
@@ -57211,8 +57348,8 @@
     (set-goal 312 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 312)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 312 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 312 g:+ 215)
     (up-modify-goal 312 c:mod 3)
     (up-modify-goal 312 c:+ 3)
     (up-modify-goal 312 c:mod 3)
@@ -57235,7 +57372,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 1)
     (not
       (goal diplo-my-player-number 1)
@@ -57272,7 +57409,7 @@
       (goal diplo-my-player-number 2)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal player-2-is-bad-egg 1)
@@ -57284,30 +57421,30 @@
       (goal diplo-my-player-number 2)
     )
 =>
-    (set-goal 1 1)
-)
-(defrule
-    (goal 1 1)
-    (player-in-game 2)
-    (not
-      (goal diplo-my-player-number 2)
-    )
-=>
-    (set-goal 215 0)
-)
-(defrule
-    (up-compare-goal game-time-goal g:>= player-2-bad-egg-expires-at)
-    (goal 1 1)
-    (player-in-game 2)
-    (not
-      (goal diplo-my-player-number 2)
-    )
-=>
     (set-goal 215 1)
 )
 (defrule
     (goal 215 1)
+    (player-in-game 2)
+    (not
+      (goal diplo-my-player-number 2)
+    )
+=>
+    (set-goal 1 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-2-bad-egg-expires-at)
+    (goal 215 1)
+    (player-in-game 2)
+    (not
+      (goal diplo-my-player-number 2)
+    )
+=>
+    (set-goal 1 1)
+)
+(defrule
     (goal 1 1)
+    (goal 215 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57323,7 +57460,7 @@
       (goal diplo-my-player-number 2)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal player-2-is-bad-egg 0)
@@ -57333,7 +57470,7 @@
       (goal diplo-my-player-number 2)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
     (nand
@@ -57346,7 +57483,7 @@
         (and
           (players-stance 2 ally)
           (and
-            (goal 1 1)
+            (goal 215 1)
             (and
               (player-in-game 2)
               (not
@@ -57366,8 +57503,8 @@
     (set-goal 313 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 313)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 313 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 313 g:+ 1)
     (up-modify-goal 313 c:mod 4)
     (up-modify-goal 313 c:+ 4)
     (up-modify-goal 313 c:mod 4)
@@ -57400,7 +57537,7 @@
       (stance-toward 2 neutral)
     )
     (players-stance 2 ally)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57423,7 +57560,7 @@
       (and
         (players-stance 2 ally)
         (and
-          (goal 1 1)
+          (goal 215 1)
           (and
             (player-in-game 2)
             (not
@@ -57442,8 +57579,8 @@
     (set-goal 314 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 314)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 314 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 314 g:+ 1)
     (up-modify-goal 314 c:mod 4)
     (up-modify-goal 314 c:+ 4)
     (up-modify-goal 314 c:mod 4)
@@ -57477,7 +57614,7 @@
       (stance-toward 2 neutral)
     )
     (players-stance 2 ally)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57492,7 +57629,7 @@
       (goal diplo-my-player-number 2)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal allied-with-2 1)
@@ -57504,11 +57641,11 @@
       (goal diplo-my-player-number 2)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
     (nand
-      (goal 1 1)
+      (goal 215 1)
       (and
         (player-in-game 2)
         (not
@@ -57526,8 +57663,8 @@
     (set-goal 315 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 315)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 315 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 315 g:+ 1)
     (up-modify-goal 315 c:mod 11)
     (up-modify-goal 315 c:+ 11)
     (up-modify-goal 315 c:mod 11)
@@ -57590,7 +57727,7 @@
 )
 (defrule
     (nand
-      (goal 1 1)
+      (goal 215 1)
       (and
         (player-in-game 2)
         (not
@@ -57609,7 +57746,7 @@
     (up-modify-goal player-2-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57624,7 +57761,7 @@
       (goal diplo-my-player-number 2)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal threat-player 2)
@@ -57637,10 +57774,10 @@
       (goal diplo-my-player-number 2)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57652,7 +57789,7 @@
     (nand
       (goal allied-with-2 1)
       (and
-        (goal 1 1)
+        (goal 215 1)
         (and
           (player-in-game 2)
           (not
@@ -57671,8 +57808,8 @@
     (set-goal 316 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 316)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 316 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 316 g:+ 1)
     (up-modify-goal 316 c:mod 11)
     (up-modify-goal 316 c:+ 11)
     (up-modify-goal 316 c:mod 11)
@@ -57735,7 +57872,7 @@
 )
 (defrule
     (goal allied-with-2 1)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57747,7 +57884,7 @@
     (nand
       (goal allied-with-2 1)
       (and
-        (goal 1 1)
+        (goal 215 1)
         (and
           (player-in-game 2)
           (not
@@ -57774,7 +57911,7 @@
       (and
         (stance-toward 2 ally)
         (and
-          (goal 1 1)
+          (goal 215 1)
           (and
             (player-in-game 2)
             (not
@@ -57795,7 +57932,7 @@
     (up-modify-goal player-2-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57809,7 +57946,7 @@
       (goal diplo-my-player-number 2)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal allied-with-2 0)
@@ -57821,10 +57958,10 @@
       (goal diplo-my-player-number 2)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57837,7 +57974,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (goal 1 1)
+        (goal 215 1)
         (and
           (player-in-game 2)
           (not
@@ -57855,8 +57992,8 @@
     (set-goal 317 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 317)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 317 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 317 g:+ 1)
     (up-modify-goal 317 c:mod 3)
     (up-modify-goal 317 c:+ 3)
     (up-modify-goal 317 c:mod 3)
@@ -57879,7 +58016,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 2)
     (not
       (goal diplo-my-player-number 2)
@@ -57916,7 +58053,7 @@
       (goal diplo-my-player-number 3)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal player-3-is-bad-egg 1)
@@ -57928,30 +58065,30 @@
       (goal diplo-my-player-number 3)
     )
 =>
-    (set-goal 215 1)
-)
-(defrule
-    (goal 215 1)
-    (player-in-game 3)
-    (not
-      (goal diplo-my-player-number 3)
-    )
-=>
-    (set-goal 1 0)
-)
-(defrule
-    (up-compare-goal game-time-goal g:>= player-3-bad-egg-expires-at)
-    (goal 215 1)
-    (player-in-game 3)
-    (not
-      (goal diplo-my-player-number 3)
-    )
-=>
     (set-goal 1 1)
 )
 (defrule
     (goal 1 1)
+    (player-in-game 3)
+    (not
+      (goal diplo-my-player-number 3)
+    )
+=>
+    (set-goal 215 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-3-bad-egg-expires-at)
+    (goal 1 1)
+    (player-in-game 3)
+    (not
+      (goal diplo-my-player-number 3)
+    )
+=>
+    (set-goal 215 1)
+)
+(defrule
     (goal 215 1)
+    (goal 1 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -57967,7 +58104,7 @@
       (goal diplo-my-player-number 3)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal player-3-is-bad-egg 0)
@@ -57977,7 +58114,7 @@
       (goal diplo-my-player-number 3)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
     (nand
@@ -57990,7 +58127,7 @@
         (and
           (players-stance 3 ally)
           (and
-            (goal 215 1)
+            (goal 1 1)
             (and
               (player-in-game 3)
               (not
@@ -58010,8 +58147,8 @@
     (set-goal 318 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 318)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 318 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 318 g:+ 215)
     (up-modify-goal 318 c:mod 4)
     (up-modify-goal 318 c:+ 4)
     (up-modify-goal 318 c:mod 4)
@@ -58044,7 +58181,7 @@
       (stance-toward 3 neutral)
     )
     (players-stance 3 ally)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -58067,7 +58204,7 @@
       (and
         (players-stance 3 ally)
         (and
-          (goal 215 1)
+          (goal 1 1)
           (and
             (player-in-game 3)
             (not
@@ -58086,8 +58223,8 @@
     (set-goal 319 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 319)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 319 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 319 g:+ 215)
     (up-modify-goal 319 c:mod 4)
     (up-modify-goal 319 c:+ 4)
     (up-modify-goal 319 c:mod 4)
@@ -58121,7 +58258,7 @@
       (stance-toward 3 neutral)
     )
     (players-stance 3 ally)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -58136,7 +58273,7 @@
       (goal diplo-my-player-number 3)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal allied-with-3 1)
@@ -58148,11 +58285,11 @@
       (goal diplo-my-player-number 3)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
     (nand
-      (goal 215 1)
+      (goal 1 1)
       (and
         (player-in-game 3)
         (not
@@ -58170,8 +58307,8 @@
     (set-goal 320 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 320)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 320 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 320 g:+ 215)
     (up-modify-goal 320 c:mod 11)
     (up-modify-goal 320 c:+ 11)
     (up-modify-goal 320 c:mod 11)
@@ -58234,7 +58371,7 @@
 )
 (defrule
     (nand
-      (goal 215 1)
+      (goal 1 1)
       (and
         (player-in-game 3)
         (not
@@ -58253,7 +58390,7 @@
     (up-modify-goal player-3-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -58268,7 +58405,7 @@
       (goal diplo-my-player-number 3)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal threat-player 3)
@@ -58281,10 +58418,10 @@
       (goal diplo-my-player-number 3)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -58296,7 +58433,7 @@
     (nand
       (goal allied-with-3 1)
       (and
-        (goal 215 1)
+        (goal 1 1)
         (and
           (player-in-game 3)
           (not
@@ -58315,8 +58452,8 @@
     (set-goal 321 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 321)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 321 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 321 g:+ 215)
     (up-modify-goal 321 c:mod 11)
     (up-modify-goal 321 c:+ 11)
     (up-modify-goal 321 c:mod 11)
@@ -58379,7 +58516,7 @@
 )
 (defrule
     (goal allied-with-3 1)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -58391,7 +58528,7 @@
     (nand
       (goal allied-with-3 1)
       (and
-        (goal 215 1)
+        (goal 1 1)
         (and
           (player-in-game 3)
           (not
@@ -58418,7 +58555,7 @@
       (and
         (stance-toward 3 ally)
         (and
-          (goal 215 1)
+          (goal 1 1)
           (and
             (player-in-game 3)
             (not
@@ -58439,7 +58576,7 @@
     (up-modify-goal player-3-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -58453,7 +58590,7 @@
       (goal diplo-my-player-number 3)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal allied-with-3 0)
@@ -58465,10 +58602,10 @@
       (goal diplo-my-player-number 3)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -58481,7 +58618,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (goal 215 1)
+        (goal 1 1)
         (and
           (player-in-game 3)
           (not
@@ -58499,8 +58636,8 @@
     (set-goal 322 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 322)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 322 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 322 g:+ 215)
     (up-modify-goal 322 c:mod 3)
     (up-modify-goal 322 c:+ 3)
     (up-modify-goal 322 c:mod 3)
@@ -58523,7 +58660,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 3)
     (not
       (goal diplo-my-player-number 3)
@@ -58560,7 +58697,7 @@
       (goal diplo-my-player-number 4)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal player-4-is-bad-egg 1)
@@ -58572,30 +58709,30 @@
       (goal diplo-my-player-number 4)
     )
 =>
-    (set-goal 1 1)
-)
-(defrule
-    (goal 1 1)
-    (player-in-game 4)
-    (not
-      (goal diplo-my-player-number 4)
-    )
-=>
-    (set-goal 215 0)
-)
-(defrule
-    (up-compare-goal game-time-goal g:>= player-4-bad-egg-expires-at)
-    (goal 1 1)
-    (player-in-game 4)
-    (not
-      (goal diplo-my-player-number 4)
-    )
-=>
     (set-goal 215 1)
 )
 (defrule
     (goal 215 1)
+    (player-in-game 4)
+    (not
+      (goal diplo-my-player-number 4)
+    )
+=>
+    (set-goal 1 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-4-bad-egg-expires-at)
+    (goal 215 1)
+    (player-in-game 4)
+    (not
+      (goal diplo-my-player-number 4)
+    )
+=>
+    (set-goal 1 1)
+)
+(defrule
     (goal 1 1)
+    (goal 215 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -58611,7 +58748,7 @@
       (goal diplo-my-player-number 4)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal player-4-is-bad-egg 0)
@@ -58621,7 +58758,7 @@
       (goal diplo-my-player-number 4)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
     (nand
@@ -58634,7 +58771,7 @@
         (and
           (players-stance 4 ally)
           (and
-            (goal 1 1)
+            (goal 215 1)
             (and
               (player-in-game 4)
               (not
@@ -58654,8 +58791,8 @@
     (set-goal 323 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 323)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 323 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 323 g:+ 1)
     (up-modify-goal 323 c:mod 4)
     (up-modify-goal 323 c:+ 4)
     (up-modify-goal 323 c:mod 4)
@@ -58688,7 +58825,7 @@
       (stance-toward 4 neutral)
     )
     (players-stance 4 ally)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -58711,7 +58848,7 @@
       (and
         (players-stance 4 ally)
         (and
-          (goal 1 1)
+          (goal 215 1)
           (and
             (player-in-game 4)
             (not
@@ -58730,8 +58867,8 @@
     (set-goal 324 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 324)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 324 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 324 g:+ 1)
     (up-modify-goal 324 c:mod 4)
     (up-modify-goal 324 c:+ 4)
     (up-modify-goal 324 c:mod 4)
@@ -58765,7 +58902,7 @@
       (stance-toward 4 neutral)
     )
     (players-stance 4 ally)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -58780,7 +58917,7 @@
       (goal diplo-my-player-number 4)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal allied-with-4 1)
@@ -58792,11 +58929,11 @@
       (goal diplo-my-player-number 4)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
     (nand
-      (goal 1 1)
+      (goal 215 1)
       (and
         (player-in-game 4)
         (not
@@ -58814,8 +58951,8 @@
     (set-goal 325 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 325)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 325 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 325 g:+ 1)
     (up-modify-goal 325 c:mod 11)
     (up-modify-goal 325 c:+ 11)
     (up-modify-goal 325 c:mod 11)
@@ -58878,7 +59015,7 @@
 )
 (defrule
     (nand
-      (goal 1 1)
+      (goal 215 1)
       (and
         (player-in-game 4)
         (not
@@ -58897,7 +59034,7 @@
     (up-modify-goal player-4-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -58912,7 +59049,7 @@
       (goal diplo-my-player-number 4)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal threat-player 4)
@@ -58925,10 +59062,10 @@
       (goal diplo-my-player-number 4)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -58940,7 +59077,7 @@
     (nand
       (goal allied-with-4 1)
       (and
-        (goal 1 1)
+        (goal 215 1)
         (and
           (player-in-game 4)
           (not
@@ -58959,8 +59096,8 @@
     (set-goal 326 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 326)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 326 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 326 g:+ 1)
     (up-modify-goal 326 c:mod 11)
     (up-modify-goal 326 c:+ 11)
     (up-modify-goal 326 c:mod 11)
@@ -59023,7 +59160,7 @@
 )
 (defrule
     (goal allied-with-4 1)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -59035,7 +59172,7 @@
     (nand
       (goal allied-with-4 1)
       (and
-        (goal 1 1)
+        (goal 215 1)
         (and
           (player-in-game 4)
           (not
@@ -59062,7 +59199,7 @@
       (and
         (stance-toward 4 ally)
         (and
-          (goal 1 1)
+          (goal 215 1)
           (and
             (player-in-game 4)
             (not
@@ -59083,7 +59220,7 @@
     (up-modify-goal player-4-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -59097,7 +59234,7 @@
       (goal diplo-my-player-number 4)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal allied-with-4 0)
@@ -59109,10 +59246,10 @@
       (goal diplo-my-player-number 4)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -59125,7 +59262,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (goal 1 1)
+        (goal 215 1)
         (and
           (player-in-game 4)
           (not
@@ -59143,8 +59280,8 @@
     (set-goal 327 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 327)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 327 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 327 g:+ 1)
     (up-modify-goal 327 c:mod 3)
     (up-modify-goal 327 c:+ 3)
     (up-modify-goal 327 c:mod 3)
@@ -59167,7 +59304,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 4)
     (not
       (goal diplo-my-player-number 4)
@@ -59204,7 +59341,7 @@
       (goal diplo-my-player-number 5)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal player-5-is-bad-egg 1)
@@ -59216,30 +59353,30 @@
       (goal diplo-my-player-number 5)
     )
 =>
-    (set-goal 215 1)
-)
-(defrule
-    (goal 215 1)
-    (player-in-game 5)
-    (not
-      (goal diplo-my-player-number 5)
-    )
-=>
-    (set-goal 1 0)
-)
-(defrule
-    (up-compare-goal game-time-goal g:>= player-5-bad-egg-expires-at)
-    (goal 215 1)
-    (player-in-game 5)
-    (not
-      (goal diplo-my-player-number 5)
-    )
-=>
     (set-goal 1 1)
 )
 (defrule
     (goal 1 1)
+    (player-in-game 5)
+    (not
+      (goal diplo-my-player-number 5)
+    )
+=>
+    (set-goal 215 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-5-bad-egg-expires-at)
+    (goal 1 1)
+    (player-in-game 5)
+    (not
+      (goal diplo-my-player-number 5)
+    )
+=>
+    (set-goal 215 1)
+)
+(defrule
     (goal 215 1)
+    (goal 1 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -59255,7 +59392,7 @@
       (goal diplo-my-player-number 5)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal player-5-is-bad-egg 0)
@@ -59265,7 +59402,7 @@
       (goal diplo-my-player-number 5)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
     (nand
@@ -59278,7 +59415,7 @@
         (and
           (players-stance 5 ally)
           (and
-            (goal 215 1)
+            (goal 1 1)
             (and
               (player-in-game 5)
               (not
@@ -59298,8 +59435,8 @@
     (set-goal 328 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 328)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 328 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 328 g:+ 215)
     (up-modify-goal 328 c:mod 4)
     (up-modify-goal 328 c:+ 4)
     (up-modify-goal 328 c:mod 4)
@@ -59332,7 +59469,7 @@
       (stance-toward 5 neutral)
     )
     (players-stance 5 ally)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -59355,7 +59492,7 @@
       (and
         (players-stance 5 ally)
         (and
-          (goal 215 1)
+          (goal 1 1)
           (and
             (player-in-game 5)
             (not
@@ -59374,8 +59511,8 @@
     (set-goal 329 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 329)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 329 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 329 g:+ 215)
     (up-modify-goal 329 c:mod 4)
     (up-modify-goal 329 c:+ 4)
     (up-modify-goal 329 c:mod 4)
@@ -59409,7 +59546,7 @@
       (stance-toward 5 neutral)
     )
     (players-stance 5 ally)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -59424,7 +59561,7 @@
       (goal diplo-my-player-number 5)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal allied-with-5 1)
@@ -59436,11 +59573,11 @@
       (goal diplo-my-player-number 5)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
     (nand
-      (goal 215 1)
+      (goal 1 1)
       (and
         (player-in-game 5)
         (not
@@ -59458,8 +59595,8 @@
     (set-goal 330 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 330)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 330 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 330 g:+ 215)
     (up-modify-goal 330 c:mod 11)
     (up-modify-goal 330 c:+ 11)
     (up-modify-goal 330 c:mod 11)
@@ -59522,7 +59659,7 @@
 )
 (defrule
     (nand
-      (goal 215 1)
+      (goal 1 1)
       (and
         (player-in-game 5)
         (not
@@ -59541,7 +59678,7 @@
     (up-modify-goal player-5-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -59556,7 +59693,7 @@
       (goal diplo-my-player-number 5)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal threat-player 5)
@@ -59569,10 +59706,10 @@
       (goal diplo-my-player-number 5)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -59584,7 +59721,7 @@
     (nand
       (goal allied-with-5 1)
       (and
-        (goal 215 1)
+        (goal 1 1)
         (and
           (player-in-game 5)
           (not
@@ -59603,8 +59740,8 @@
     (set-goal 331 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 331)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 331 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 331 g:+ 215)
     (up-modify-goal 331 c:mod 11)
     (up-modify-goal 331 c:+ 11)
     (up-modify-goal 331 c:mod 11)
@@ -59667,7 +59804,7 @@
 )
 (defrule
     (goal allied-with-5 1)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -59679,7 +59816,7 @@
     (nand
       (goal allied-with-5 1)
       (and
-        (goal 215 1)
+        (goal 1 1)
         (and
           (player-in-game 5)
           (not
@@ -59706,7 +59843,7 @@
       (and
         (stance-toward 5 ally)
         (and
-          (goal 215 1)
+          (goal 1 1)
           (and
             (player-in-game 5)
             (not
@@ -59727,7 +59864,7 @@
     (up-modify-goal player-5-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -59741,7 +59878,7 @@
       (goal diplo-my-player-number 5)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal allied-with-5 0)
@@ -59753,10 +59890,10 @@
       (goal diplo-my-player-number 5)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -59769,7 +59906,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (goal 215 1)
+        (goal 1 1)
         (and
           (player-in-game 5)
           (not
@@ -59787,8 +59924,8 @@
     (set-goal 332 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 332)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 332 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 332 g:+ 215)
     (up-modify-goal 332 c:mod 3)
     (up-modify-goal 332 c:+ 3)
     (up-modify-goal 332 c:mod 3)
@@ -59811,7 +59948,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 5)
     (not
       (goal diplo-my-player-number 5)
@@ -59848,7 +59985,7 @@
       (goal diplo-my-player-number 6)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal player-6-is-bad-egg 1)
@@ -59860,30 +59997,30 @@
       (goal diplo-my-player-number 6)
     )
 =>
-    (set-goal 1 1)
-)
-(defrule
-    (goal 1 1)
-    (player-in-game 6)
-    (not
-      (goal diplo-my-player-number 6)
-    )
-=>
-    (set-goal 215 0)
-)
-(defrule
-    (up-compare-goal game-time-goal g:>= player-6-bad-egg-expires-at)
-    (goal 1 1)
-    (player-in-game 6)
-    (not
-      (goal diplo-my-player-number 6)
-    )
-=>
     (set-goal 215 1)
 )
 (defrule
     (goal 215 1)
+    (player-in-game 6)
+    (not
+      (goal diplo-my-player-number 6)
+    )
+=>
+    (set-goal 1 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-6-bad-egg-expires-at)
+    (goal 215 1)
+    (player-in-game 6)
+    (not
+      (goal diplo-my-player-number 6)
+    )
+=>
+    (set-goal 1 1)
+)
+(defrule
     (goal 1 1)
+    (goal 215 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -59899,7 +60036,7 @@
       (goal diplo-my-player-number 6)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal player-6-is-bad-egg 0)
@@ -59909,7 +60046,7 @@
       (goal diplo-my-player-number 6)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
     (nand
@@ -59922,7 +60059,7 @@
         (and
           (players-stance 6 ally)
           (and
-            (goal 1 1)
+            (goal 215 1)
             (and
               (player-in-game 6)
               (not
@@ -59942,8 +60079,8 @@
     (set-goal 333 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 333)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 333 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 333 g:+ 1)
     (up-modify-goal 333 c:mod 4)
     (up-modify-goal 333 c:+ 4)
     (up-modify-goal 333 c:mod 4)
@@ -59976,7 +60113,7 @@
       (stance-toward 6 neutral)
     )
     (players-stance 6 ally)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -59999,7 +60136,7 @@
       (and
         (players-stance 6 ally)
         (and
-          (goal 1 1)
+          (goal 215 1)
           (and
             (player-in-game 6)
             (not
@@ -60018,8 +60155,8 @@
     (set-goal 334 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 334)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 334 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 334 g:+ 1)
     (up-modify-goal 334 c:mod 4)
     (up-modify-goal 334 c:+ 4)
     (up-modify-goal 334 c:mod 4)
@@ -60053,7 +60190,7 @@
       (stance-toward 6 neutral)
     )
     (players-stance 6 ally)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -60068,7 +60205,7 @@
       (goal diplo-my-player-number 6)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal allied-with-6 1)
@@ -60080,11 +60217,11 @@
       (goal diplo-my-player-number 6)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
     (nand
-      (goal 1 1)
+      (goal 215 1)
       (and
         (player-in-game 6)
         (not
@@ -60102,8 +60239,8 @@
     (set-goal 335 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 335)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 335 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 335 g:+ 1)
     (up-modify-goal 335 c:mod 11)
     (up-modify-goal 335 c:+ 11)
     (up-modify-goal 335 c:mod 11)
@@ -60166,7 +60303,7 @@
 )
 (defrule
     (nand
-      (goal 1 1)
+      (goal 215 1)
       (and
         (player-in-game 6)
         (not
@@ -60185,7 +60322,7 @@
     (up-modify-goal player-6-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -60200,7 +60337,7 @@
       (goal diplo-my-player-number 6)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal threat-player 6)
@@ -60213,10 +60350,10 @@
       (goal diplo-my-player-number 6)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -60228,7 +60365,7 @@
     (nand
       (goal allied-with-6 1)
       (and
-        (goal 1 1)
+        (goal 215 1)
         (and
           (player-in-game 6)
           (not
@@ -60247,8 +60384,8 @@
     (set-goal 336 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 336)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 336 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 336 g:+ 1)
     (up-modify-goal 336 c:mod 11)
     (up-modify-goal 336 c:+ 11)
     (up-modify-goal 336 c:mod 11)
@@ -60311,7 +60448,7 @@
 )
 (defrule
     (goal allied-with-6 1)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -60323,7 +60460,7 @@
     (nand
       (goal allied-with-6 1)
       (and
-        (goal 1 1)
+        (goal 215 1)
         (and
           (player-in-game 6)
           (not
@@ -60350,7 +60487,7 @@
       (and
         (stance-toward 6 ally)
         (and
-          (goal 1 1)
+          (goal 215 1)
           (and
             (player-in-game 6)
             (not
@@ -60371,7 +60508,7 @@
     (up-modify-goal player-6-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -60385,7 +60522,7 @@
       (goal diplo-my-player-number 6)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal allied-with-6 0)
@@ -60397,10 +60534,10 @@
       (goal diplo-my-player-number 6)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -60413,7 +60550,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (goal 1 1)
+        (goal 215 1)
         (and
           (player-in-game 6)
           (not
@@ -60431,8 +60568,8 @@
     (set-goal 337 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 337)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 337 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 337 g:+ 1)
     (up-modify-goal 337 c:mod 3)
     (up-modify-goal 337 c:+ 3)
     (up-modify-goal 337 c:mod 3)
@@ -60455,7 +60592,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 6)
     (not
       (goal diplo-my-player-number 6)
@@ -60492,7 +60629,7 @@
       (goal diplo-my-player-number 7)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal player-7-is-bad-egg 1)
@@ -60504,30 +60641,30 @@
       (goal diplo-my-player-number 7)
     )
 =>
-    (set-goal 215 1)
-)
-(defrule
-    (goal 215 1)
-    (player-in-game 7)
-    (not
-      (goal diplo-my-player-number 7)
-    )
-=>
-    (set-goal 1 0)
-)
-(defrule
-    (up-compare-goal game-time-goal g:>= player-7-bad-egg-expires-at)
-    (goal 215 1)
-    (player-in-game 7)
-    (not
-      (goal diplo-my-player-number 7)
-    )
-=>
     (set-goal 1 1)
 )
 (defrule
     (goal 1 1)
+    (player-in-game 7)
+    (not
+      (goal diplo-my-player-number 7)
+    )
+=>
+    (set-goal 215 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-7-bad-egg-expires-at)
+    (goal 1 1)
+    (player-in-game 7)
+    (not
+      (goal diplo-my-player-number 7)
+    )
+=>
+    (set-goal 215 1)
+)
+(defrule
     (goal 215 1)
+    (goal 1 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -60543,7 +60680,7 @@
       (goal diplo-my-player-number 7)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal player-7-is-bad-egg 0)
@@ -60553,7 +60690,7 @@
       (goal diplo-my-player-number 7)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
     (nand
@@ -60566,7 +60703,7 @@
         (and
           (players-stance 7 ally)
           (and
-            (goal 215 1)
+            (goal 1 1)
             (and
               (player-in-game 7)
               (not
@@ -60586,8 +60723,8 @@
     (set-goal 338 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 338)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 338 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 338 g:+ 215)
     (up-modify-goal 338 c:mod 4)
     (up-modify-goal 338 c:+ 4)
     (up-modify-goal 338 c:mod 4)
@@ -60620,7 +60757,7 @@
       (stance-toward 7 neutral)
     )
     (players-stance 7 ally)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -60643,7 +60780,7 @@
       (and
         (players-stance 7 ally)
         (and
-          (goal 215 1)
+          (goal 1 1)
           (and
             (player-in-game 7)
             (not
@@ -60662,8 +60799,8 @@
     (set-goal 339 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 339)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 339 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 339 g:+ 215)
     (up-modify-goal 339 c:mod 4)
     (up-modify-goal 339 c:+ 4)
     (up-modify-goal 339 c:mod 4)
@@ -60697,7 +60834,7 @@
       (stance-toward 7 neutral)
     )
     (players-stance 7 ally)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -60712,7 +60849,7 @@
       (goal diplo-my-player-number 7)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal allied-with-7 1)
@@ -60724,11 +60861,11 @@
       (goal diplo-my-player-number 7)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
     (nand
-      (goal 215 1)
+      (goal 1 1)
       (and
         (player-in-game 7)
         (not
@@ -60746,8 +60883,8 @@
     (set-goal 340 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 340)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 340 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 340 g:+ 215)
     (up-modify-goal 340 c:mod 11)
     (up-modify-goal 340 c:+ 11)
     (up-modify-goal 340 c:mod 11)
@@ -60810,7 +60947,7 @@
 )
 (defrule
     (nand
-      (goal 215 1)
+      (goal 1 1)
       (and
         (player-in-game 7)
         (not
@@ -60829,7 +60966,7 @@
     (up-modify-goal player-7-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -60844,7 +60981,7 @@
       (goal diplo-my-player-number 7)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal threat-player 7)
@@ -60857,10 +60994,10 @@
       (goal diplo-my-player-number 7)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -60872,7 +61009,7 @@
     (nand
       (goal allied-with-7 1)
       (and
-        (goal 215 1)
+        (goal 1 1)
         (and
           (player-in-game 7)
           (not
@@ -60891,8 +61028,8 @@
     (set-goal 341 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 341)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 341 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 341 g:+ 215)
     (up-modify-goal 341 c:mod 11)
     (up-modify-goal 341 c:+ 11)
     (up-modify-goal 341 c:mod 11)
@@ -60955,7 +61092,7 @@
 )
 (defrule
     (goal allied-with-7 1)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -60967,7 +61104,7 @@
     (nand
       (goal allied-with-7 1)
       (and
-        (goal 215 1)
+        (goal 1 1)
         (and
           (player-in-game 7)
           (not
@@ -60994,7 +61131,7 @@
       (and
         (stance-toward 7 ally)
         (and
-          (goal 215 1)
+          (goal 1 1)
           (and
             (player-in-game 7)
             (not
@@ -61015,7 +61152,7 @@
     (up-modify-goal player-7-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -61029,7 +61166,7 @@
       (goal diplo-my-player-number 7)
     )
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
 )
 (defrule
     (goal allied-with-7 0)
@@ -61041,10 +61178,10 @@
       (goal diplo-my-player-number 7)
     )
 =>
-    (set-goal 215 1)
+    (set-goal 1 1)
 )
 (defrule
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -61057,7 +61194,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (goal 215 1)
+        (goal 1 1)
         (and
           (player-in-game 7)
           (not
@@ -61075,8 +61212,8 @@
     (set-goal 342 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 342)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 342 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 342 g:+ 215)
     (up-modify-goal 342 c:mod 3)
     (up-modify-goal 342 c:+ 3)
     (up-modify-goal 342 c:mod 3)
@@ -61099,7 +61236,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal 215 1)
+    (goal 1 1)
     (player-in-game 7)
     (not
       (goal diplo-my-player-number 7)
@@ -61136,7 +61273,7 @@
       (goal diplo-my-player-number 8)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal player-8-is-bad-egg 1)
@@ -61148,30 +61285,30 @@
       (goal diplo-my-player-number 8)
     )
 =>
-    (set-goal 1 1)
-)
-(defrule
-    (goal 1 1)
-    (player-in-game 8)
-    (not
-      (goal diplo-my-player-number 8)
-    )
-=>
-    (set-goal 215 0)
-)
-(defrule
-    (up-compare-goal game-time-goal g:>= player-8-bad-egg-expires-at)
-    (goal 1 1)
-    (player-in-game 8)
-    (not
-      (goal diplo-my-player-number 8)
-    )
-=>
     (set-goal 215 1)
 )
 (defrule
     (goal 215 1)
+    (player-in-game 8)
+    (not
+      (goal diplo-my-player-number 8)
+    )
+=>
+    (set-goal 1 0)
+)
+(defrule
+    (up-compare-goal game-time-goal g:>= player-8-bad-egg-expires-at)
+    (goal 215 1)
+    (player-in-game 8)
+    (not
+      (goal diplo-my-player-number 8)
+    )
+=>
+    (set-goal 1 1)
+)
+(defrule
     (goal 1 1)
+    (goal 215 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -61187,7 +61324,7 @@
       (goal diplo-my-player-number 8)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal player-8-is-bad-egg 0)
@@ -61197,7 +61334,7 @@
       (goal diplo-my-player-number 8)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
     (nand
@@ -61210,7 +61347,7 @@
         (and
           (players-stance 8 ally)
           (and
-            (goal 1 1)
+            (goal 215 1)
             (and
               (player-in-game 8)
               (not
@@ -61230,8 +61367,8 @@
     (set-goal 343 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 343)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 343 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 343 g:+ 1)
     (up-modify-goal 343 c:mod 4)
     (up-modify-goal 343 c:+ 4)
     (up-modify-goal 343 c:mod 4)
@@ -61264,7 +61401,7 @@
       (stance-toward 8 neutral)
     )
     (players-stance 8 ally)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -61287,7 +61424,7 @@
       (and
         (players-stance 8 ally)
         (and
-          (goal 1 1)
+          (goal 215 1)
           (and
             (player-in-game 8)
             (not
@@ -61306,8 +61443,8 @@
     (set-goal 344 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 344)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 344 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 344 g:+ 1)
     (up-modify-goal 344 c:mod 4)
     (up-modify-goal 344 c:+ 4)
     (up-modify-goal 344 c:mod 4)
@@ -61341,7 +61478,7 @@
       (stance-toward 8 neutral)
     )
     (players-stance 8 ally)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -61356,7 +61493,7 @@
       (goal diplo-my-player-number 8)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal allied-with-8 1)
@@ -61368,11 +61505,11 @@
       (goal diplo-my-player-number 8)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
     (nand
-      (goal 1 1)
+      (goal 215 1)
       (and
         (player-in-game 8)
         (not
@@ -61390,8 +61527,8 @@
     (set-goal 345 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 345)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 345 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 345 g:+ 1)
     (up-modify-goal 345 c:mod 11)
     (up-modify-goal 345 c:+ 11)
     (up-modify-goal 345 c:mod 11)
@@ -61454,7 +61591,7 @@
 )
 (defrule
     (nand
-      (goal 1 1)
+      (goal 215 1)
       (and
         (player-in-game 8)
         (not
@@ -61473,7 +61610,7 @@
     (up-modify-goal player-8-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -61488,7 +61625,7 @@
       (goal diplo-my-player-number 8)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal threat-player 8)
@@ -61501,10 +61638,10 @@
       (goal diplo-my-player-number 8)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -61516,7 +61653,7 @@
     (nand
       (goal allied-with-8 1)
       (and
-        (goal 1 1)
+        (goal 215 1)
         (and
           (player-in-game 8)
           (not
@@ -61535,8 +61672,8 @@
     (set-goal 346 0)
     (generate-random-number 11)
     (up-get-fact random-number 0 346)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 346 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 346 g:+ 1)
     (up-modify-goal 346 c:mod 11)
     (up-modify-goal 346 c:+ 11)
     (up-modify-goal 346 c:mod 11)
@@ -61599,7 +61736,7 @@
 )
 (defrule
     (goal allied-with-8 1)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -61611,7 +61748,7 @@
     (nand
       (goal allied-with-8 1)
       (and
-        (goal 1 1)
+        (goal 215 1)
         (and
           (player-in-game 8)
           (not
@@ -61638,7 +61775,7 @@
       (and
         (stance-toward 8 ally)
         (and
-          (goal 1 1)
+          (goal 215 1)
           (and
             (player-in-game 8)
             (not
@@ -61659,7 +61796,7 @@
     (up-modify-goal player-8-bad-egg-expires-at c:+ bad-egg-expiry)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -61673,7 +61810,7 @@
       (goal diplo-my-player-number 8)
     )
 =>
-    (set-goal 1 0)
+    (set-goal 215 0)
 )
 (defrule
     (goal allied-with-8 0)
@@ -61685,10 +61822,10 @@
       (goal diplo-my-player-number 8)
     )
 =>
-    (set-goal 1 1)
+    (set-goal 215 1)
 )
 (defrule
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -61701,7 +61838,7 @@
     (nand
       (up-compare-goal temp c:>= alliance-request-timeout)
       (and
-        (goal 1 1)
+        (goal 215 1)
         (and
           (player-in-game 8)
           (not
@@ -61719,8 +61856,8 @@
     (set-goal 347 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 347)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 347 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 347 g:+ 1)
     (up-modify-goal 347 c:mod 3)
     (up-modify-goal 347 c:+ 3)
     (up-modify-goal 347 c:mod 3)
@@ -61743,7 +61880,7 @@
 )
 (defrule
     (up-compare-goal temp c:>= alliance-request-timeout)
-    (goal 1 1)
+    (goal 215 1)
     (player-in-game 8)
     (not
       (goal diplo-my-player-number 8)
@@ -61821,8 +61958,8 @@
     (set-goal 348 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 348)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 348 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 348 g:+ 215)
     (up-modify-goal 348 c:mod 3)
     (up-modify-goal 348 c:+ 3)
     (up-modify-goal 348 c:mod 3)
@@ -61869,8 +62006,8 @@
     (set-goal 349 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 349)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 349 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 349 g:+ 1)
     (up-modify-goal 349 c:mod 3)
     (up-modify-goal 349 c:+ 3)
     (up-modify-goal 349 c:mod 3)
@@ -61907,8 +62044,8 @@
     (set-goal 350 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 350)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 350 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 350 g:+ 215)
     (up-modify-goal 350 c:mod 3)
     (up-modify-goal 350 c:+ 3)
     (up-modify-goal 350 c:mod 3)
@@ -62090,8 +62227,8 @@
     (set-goal 351 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 351)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 351 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 351 g:+ 215)
     (up-modify-goal 351 c:mod 3)
     (up-modify-goal 351 c:+ 3)
     (up-modify-goal 351 c:mod 3)
@@ -62131,8 +62268,8 @@
     (set-goal 352 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 352)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 352 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 352 g:+ 1)
     (up-modify-goal 352 c:mod 3)
     (up-modify-goal 352 c:+ 3)
     (up-modify-goal 352 c:mod 3)
@@ -62171,8 +62308,8 @@
     (set-goal 353 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 353)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 353 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 353 g:+ 215)
     (up-modify-goal 353 c:mod 3)
     (up-modify-goal 353 c:+ 3)
     (up-modify-goal 353 c:mod 3)
@@ -62214,8 +62351,8 @@
     (set-goal 354 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 354)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 354 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 354 g:+ 1)
     (up-modify-goal 354 c:mod 4)
     (up-modify-goal 354 c:+ 4)
     (up-modify-goal 354 c:mod 4)
@@ -62287,8 +62424,8 @@
     (set-goal 355 0)
     (generate-random-number 7)
     (up-get-fact random-number 0 355)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 355 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 355 g:+ 1)
     (up-modify-goal 355 c:mod 7)
     (up-modify-goal 355 c:+ 7)
     (up-modify-goal 355 c:mod 7)
@@ -62402,8 +62539,8 @@
     (set-goal 356 0)
     (generate-random-number 2)
     (up-get-fact random-number 0 356)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 356 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 356 g:+ 215)
     (up-modify-goal 356 c:mod 2)
     (up-modify-goal 356 c:+ 2)
     (up-modify-goal 356 c:mod 2)
@@ -62432,8 +62569,8 @@
     (set-goal 357 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 357)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 357 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 357 g:+ 215)
     (up-modify-goal 357 c:mod 3)
     (up-modify-goal 357 c:+ 3)
     (up-modify-goal 357 c:mod 3)
@@ -62493,8 +62630,8 @@
     (set-goal 358 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 358)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 358 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 358 g:+ 1)
     (up-modify-goal 358 c:mod 3)
     (up-modify-goal 358 c:+ 3)
     (up-modify-goal 358 c:mod 3)
@@ -62544,8 +62681,8 @@
     (set-goal 359 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 359)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 359 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 359 g:+ 215)
     (up-modify-goal 359 c:mod 3)
     (up-modify-goal 359 c:+ 3)
     (up-modify-goal 359 c:mod 3)
@@ -62597,8 +62734,8 @@
     (set-goal 360 0)
     (generate-random-number 5)
     (up-get-fact random-number 0 360)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 360 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 360 g:+ 1)
     (up-modify-goal 360 c:mod 5)
     (up-modify-goal 360 c:+ 5)
     (up-modify-goal 360 c:mod 5)
@@ -62660,8 +62797,8 @@
     (set-goal 361 0)
     (generate-random-number 2)
     (up-get-fact random-number 0 361)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 361 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 361 g:+ 215)
     (up-modify-goal 361 c:mod 2)
     (up-modify-goal 361 c:+ 2)
     (up-modify-goal 361 c:mod 2)
@@ -62765,8 +62902,8 @@
     (set-goal 362 0)
     (generate-random-number 6)
     (up-get-fact random-number 0 362)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 362 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 362 g:+ 1)
     (up-modify-goal 362 c:mod 6)
     (up-modify-goal 362 c:+ 6)
     (up-modify-goal 362 c:mod 6)
@@ -62854,8 +62991,8 @@
     (set-goal 363 0)
     (generate-random-number 8)
     (up-get-fact random-number 0 363)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 363 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 363 g:+ 215)
     (up-modify-goal 363 c:mod 8)
     (up-modify-goal 363 c:+ 8)
     (up-modify-goal 363 c:mod 8)
@@ -62983,8 +63120,8 @@
     (set-goal 364 0)
     (generate-random-number 5)
     (up-get-fact random-number 0 364)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 364 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 364 g:+ 1)
     (up-modify-goal 364 c:mod 5)
     (up-modify-goal 364 c:+ 5)
     (up-modify-goal 364 c:mod 5)
@@ -63050,8 +63187,8 @@
     (set-goal 365 0)
     (generate-random-number 4)
     (up-get-fact random-number 0 365)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 365 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 365 g:+ 215)
     (up-modify-goal 365 c:mod 4)
     (up-modify-goal 365 c:+ 4)
     (up-modify-goal 365 c:mod 4)
@@ -63095,8 +63232,8 @@
     (set-goal 366 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 366)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 366 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 366 g:+ 1)
     (up-modify-goal 366 c:mod 3)
     (up-modify-goal 366 c:+ 3)
     (up-modify-goal 366 c:mod 3)
@@ -63141,8 +63278,8 @@
     (set-goal 367 0)
     (generate-random-number 5)
     (up-get-fact random-number 0 367)
-    (up-get-precise-time 0 1)
-    (up-modify-goal 367 g:+ 1)
+    (up-get-precise-time 0 215)
+    (up-modify-goal 367 g:+ 215)
     (up-modify-goal 367 c:mod 5)
     (up-modify-goal 367 c:+ 5)
     (up-modify-goal 367 c:mod 5)
@@ -63324,8 +63461,8 @@
     (up-compare-goal 370 c:>= 1)
 =>
     (up-full-reset-search)
-    (up-get-fact player-number 0 215)
-    (up-modify-sn sn-focus-player-number g:= 215)
+    (up-get-fact player-number 0 1)
+    (up-modify-sn sn-focus-player-number g:= 1)
     (up-find-remote c: livestock-class c: 1)
     (up-find-local c: 592 c: 255)
     (up-find-local c: 590 c: 255)
@@ -63337,8 +63474,8 @@
     (goal 370 0)
 =>
     (up-full-reset-search)
-    (up-get-fact player-number 0 215)
-    (up-modify-sn sn-focus-player-number g:= 215)
+    (up-get-fact player-number 0 1)
+    (up-modify-sn sn-focus-player-number g:= 1)
     (up-find-remote c: livestock-class c: 1)
     (up-find-local c: 592 c: 255)
     (up-find-local c: 590 c: 255)
@@ -63348,8 +63485,8 @@
     (true)
 =>
     (up-full-reset-search)
-    (up-get-fact player-number 0 215)
-    (up-modify-sn sn-focus-player-number g:= 215)
+    (up-get-fact player-number 0 1)
+    (up-modify-sn sn-focus-player-number g:= 1)
     (up-find-local c: livestock-class c: 255)
     (up-remove-objects search-local -1 == 0)
     (up-find-remote c: town-center c: 1)
@@ -63375,8 +63512,8 @@
     (up-compare-goal 370 c:>= 1)
 =>
     (up-full-reset-search)
-    (up-get-fact player-number 0 215)
-    (up-modify-sn sn-focus-player-number g:= 215)
+    (up-get-fact player-number 0 1)
+    (up-modify-sn sn-focus-player-number g:= 1)
     (up-find-local c: livestock-class c: 1)
     (up-find-remote c: town-center c: 1)
     (set-strategic-number sn-target-point-adjustment 5)
@@ -63386,12 +63523,12 @@
 (defrule
     (true)
 =>
-    (up-get-fact unit-type-count 592 1)
-    (up-get-fact unit-type-count 590 215)
-    (up-modify-goal 1 g:+ 215)
+    (up-get-fact unit-type-count 592 215)
+    (up-get-fact unit-type-count 590 1)
+    (up-modify-goal 215 g:+ 1)
 )
 (defrule
-    (up-compare-goal 1 c:> 6)
+    (up-compare-goal 215 c:> 6)
 =>
     (up-full-reset-search)
     (up-modify-sn sn-focus-player-number c:= 0)
@@ -63434,8 +63571,8 @@
     (up-find-remote c: 907 c: 255)
     (up-target-objects 0 action-default -1 -1)
     (up-reset-search 1 1 1 1)
-    (up-get-fact player-number 0 215)
-    (up-modify-sn sn-focus-player-number g:= 215)
+    (up-get-fact player-number 0 1)
+    (up-modify-sn sn-focus-player-number g:= 1)
     (up-reset-filters)
     (up-find-local c: livestock-class c: 255)
     (up-find-remote c: mill c: 1)
@@ -63452,10 +63589,10 @@
     (building-type-count town-center > 0)
 =>
     (up-full-reset-search)
-    (up-get-point position-self 213)
-    (up-set-target-point 213)
-    (up-modify-goal 213 c:* 100)
-    (up-modify-goal 214 c:* 100)
+    (up-get-point position-self 41)
+    (up-set-target-point 41)
+    (up-modify-goal 41 c:* 100)
+    (up-modify-goal 42 c:* 100)
     (set-strategic-number sn-focus-player-number 0)
     (up-filter-distance c: -1 c: 30)
     (up-find-remote c: 909 c: 100)
@@ -63471,15 +63608,15 @@
 =>
     (up-clean-search search-remote 44 1)
     (up-set-target-object search-remote c: 0)
-    (up-get-object-data 38 41)
-    (up-get-object-data 39 42)
-    (up-lerp-tiles 41 213 c: -150)
+    (up-get-object-data 38 213)
+    (up-get-object-data 39 214)
+    (up-lerp-tiles 213 41 c: -150)
     (up-reset-filters)
     (up-find-local c: scout-cavalry-line c: 1)
     (up-find-local c: eagle-warrior-line c: 1)
     (up-find-local c: camel-line c: 1)
     (set-strategic-number sn-target-point-adjustment 6)
-    (up-target-point 41 action-default -1 -1)
+    (up-target-point 213 action-default -1 -1)
     (set-strategic-number sn-target-point-adjustment 0)
 )
 (defrule
@@ -63492,8 +63629,8 @@
     (up-full-reset-search)
     (up-find-local c: town-center c: 1)
     (up-set-target-object search-local c: 0)
-    (up-get-point position-object 213)
-    (up-set-target-point 213)
+    (up-get-point position-object 41)
+    (up-set-target-point 41)
     (up-reset-search 1 1 0 0)
     (up-filter-distance c: -1 c: 4)
     (up-find-local c: villager-class c: 4)
@@ -63540,9 +63677,25 @@
     (population-headroom != 0)
     (up-pending-objects c: house < 2)
     (can-build house)
+    (housing-headroom < 10)
+    (not
+      (up-research-status c: feudal-age < research-pending)
+    )
+    (up-research-status c: castle-age < research-pending)
+    (building-type-count town-center > 0)
+=>
+    (build house)
+)
+(defrule
+    (population-headroom != 0)
+    (up-pending-objects c: house < 2)
+    (can-build house)
     (housing-headroom < 20)
     (not
       (up-research-status c: feudal-age < research-pending)
+    )
+    (not
+      (up-research-status c: castle-age < research-pending)
     )
     (building-type-count town-center > 0)
 =>
@@ -63593,13 +63746,13 @@
     )
     (building-type-count town-center > 0)
 =>
-    (set-goal 215 0)
+    (set-goal 1 0)
     (up-get-fact building-type-count-total town-center 381)
     (up-modify-goal 381 c:* 9)
-    (up-modify-goal 215 g:+ 381)
+    (up-modify-goal 1 g:+ 381)
     (up-get-fact building-type-count-total mill 381)
     (up-modify-goal 381 c:* 6)
-    (up-modify-goal 215 g:+ 381)
+    (up-modify-goal 1 g:+ 381)
     (up-get-fact building-type-count-total farm 381)
 )
 (defrule
@@ -63609,7 +63762,7 @@
         (not
           (civ-selected khmer)
         )
-        (up-compare-goal 381 g:>= 215)
+        (up-compare-goal 381 g:>= 1)
       )
     )
     (or
@@ -63747,10 +63900,10 @@
     (up-get-fact unit-type-count villager 381)
     (up-modify-goal 381 c:/ 10)
     (up-modify-goal 381 c:+ 1)
-    (up-get-fact unit-type-count-total mule-cart 215)
+    (up-get-fact unit-type-count-total mule-cart 1)
 )
 (defrule
-    (up-compare-goal 215 g:< 381)
+    (up-compare-goal 1 g:< 381)
     (can-build mule-cart)
     (up-pending-objects c: mule-cart == 0)
     (building-type-count town-center > 0)
@@ -63769,8 +63922,8 @@
 =>
     (set-strategic-number sn-defer-dropsite-update 0)
     (up-full-reset-search)
-    (up-get-fact player-number 0 215)
-    (up-modify-sn sn-focus-player-number g:= 215)
+    (up-get-fact player-number 0 1)
+    (up-modify-sn sn-focus-player-number g:= 1)
     (up-find-remote c: mule-cart c: 255)
     (up-get-search-state 384)
 )
@@ -63790,18 +63943,18 @@
     (building-type-count town-center > 0)
 =>
     (up-set-target-object search-remote g: 381)
-    (up-get-point position-object 41)
-    (up-set-target-point 41)
-    (up-get-object-data 38 41)
-    (up-get-object-data 39 42)
+    (up-get-point position-object 213)
+    (up-set-target-point 213)
+    (up-get-object-data 38 213)
+    (up-get-object-data 39 214)
     (up-reset-search 1 1 0 0)
     (up-find-local c: mule-cart c: 255)
     (up-set-target-object search-local c: 0)
-    (up-get-object-data 38 213)
-    (up-get-object-data 39 214)
-    (up-lerp-tiles 213 41 c: -500)
+    (up-get-object-data 38 41)
+    (up-get-object-data 39 42)
+    (up-lerp-tiles 41 213 c: -500)
     (set-strategic-number sn-target-point-adjustment 6)
-    (up-target-point 213 action-default -1 -1)
+    (up-target-point 41 action-default -1 -1)
     (set-strategic-number sn-target-point-adjustment 0)
     (up-modify-goal 381 c:+ 1)
     (up-jump-rule -1)
@@ -63812,7 +63965,7 @@
     (building-type-count town-center > 0)
 =>
     (up-full-reset-search)
-    (up-modify-sn sn-focus-player-number g:= 215)
+    (up-modify-sn sn-focus-player-number g:= 1)
     (up-filter-exclude -1 -1 orderid-move -1)
     (up-find-local c: mule-cart c: 255)
     (up-set-target-object search-local c: 0)
@@ -63891,13 +64044,13 @@
     (up-research-status c: feudal-age < research-pending)
     (building-type-count town-center > 0)
 =>
-    (up-get-fact unit-type-count villager 215)
-    (up-modify-goal 215 s:* sn-food-gatherer-percentage)
-    (up-modify-goal 215 c:/ 100)
+    (up-get-fact unit-type-count villager 1)
+    (up-modify-goal 1 s:* sn-food-gatherer-percentage)
+    (up-modify-goal 1 c:/ 100)
     (up-get-fact building-type-count-total farm 381)
 )
 (defrule
-    (up-compare-goal 381 g:< 215)
+    (up-compare-goal 381 g:< 1)
     (can-build farm)
     (wood-amount >= 150)
     (up-pending-objects c: farm == 0)
@@ -63923,13 +64076,13 @@
     )
     (building-type-count town-center > 0)
 =>
-    (up-get-fact unit-type-count villager 215)
-    (up-modify-goal 215 s:* sn-food-gatherer-percentage)
-    (up-modify-goal 215 c:/ 100)
+    (up-get-fact unit-type-count villager 1)
+    (up-modify-goal 1 s:* sn-food-gatherer-percentage)
+    (up-modify-goal 1 c:/ 100)
     (up-get-fact building-type-count-total farm 381)
 )
 (defrule
-    (up-compare-goal 381 g:< 215)
+    (up-compare-goal 381 g:< 1)
     (can-build farm)
     (up-research-status c: ri-horse-collar != research-pending)
     (up-research-status c: ri-heavy-plow != research-pending)
@@ -64104,8 +64257,8 @@
     (set-goal 390 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 390)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 390 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 390 g:+ 1)
     (up-modify-goal 390 c:mod 3)
     (up-modify-goal 390 c:+ 3)
     (up-modify-goal 390 c:mod 3)
@@ -64163,8 +64316,8 @@
     (set-goal 391 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 391)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 391 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 391 g:+ 1)
     (up-modify-goal 391 c:mod 3)
     (up-modify-goal 391 c:+ 3)
     (up-modify-goal 391 c:mod 3)
@@ -64300,8 +64453,8 @@
     (set-goal 394 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 394)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 394 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 394 g:+ 1)
     (up-modify-goal 394 c:mod 3)
     (up-modify-goal 394 c:+ 3)
     (up-modify-goal 394 c:mod 3)
@@ -64359,8 +64512,8 @@
     (set-goal 395 0)
     (generate-random-number 3)
     (up-get-fact random-number 0 395)
-    (up-get-precise-time 0 215)
-    (up-modify-goal 395 g:+ 215)
+    (up-get-precise-time 0 1)
+    (up-modify-goal 395 g:+ 1)
     (up-modify-goal 395 c:mod 3)
     (up-modify-goal 395 c:+ 3)
     (up-modify-goal 395 c:mod 3)
@@ -64431,9 +64584,9 @@
       (goal did-tribute 0)
     )
 =>
-    (up-get-fact resource-amount wood 215)
+    (up-get-fact resource-amount wood 1)
     (up-get-fact escrow-amount wood 381)
-    (up-modify-goal 215 g:- 381)
+    (up-modify-goal 1 g:- 381)
     (up-get-fact resource-amount food 397)
     (up-get-fact escrow-amount food 381)
     (up-modify-goal 397 g:- 381)
@@ -64442,7 +64595,7 @@
     (up-modify-goal 398 g:- 381)
 )
 (defrule
-    (up-compare-goal 215 c:> max-gold)
+    (up-compare-goal 1 c:> max-gold)
     (can-sell-commodity wood)
     (up-compare-goal 398 c:< max-gold)
     (or
@@ -64464,7 +64617,7 @@
     (sell-commodity food)
 )
 (defrule
-    (up-compare-goal 215 c:< max-gold)
+    (up-compare-goal 1 c:< max-gold)
     (up-compare-goal 398 c:> max-gold)
     (can-buy-commodity wood)
     (or

@@ -85,7 +85,9 @@ insert random-unit-selection-count-units-selected(goal="total-units-selected")
     #end if
     
   #randor
-    @up-modify-goal produce-mangonels g:= good-mangonels
+    #if up-compare-goal total-units-selected c:>= 1
+      @up-modify-goal produce-mangonels g:= good-mangonels
+    #end if
     
   #randor
     @up-modify-goal produce-scorpions g:= good-scorpions

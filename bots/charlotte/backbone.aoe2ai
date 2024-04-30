@@ -247,7 +247,7 @@ const importance-low = 1
   goal partial-water-map = 0
   
   #if cc-players-unit-type-count 0 sea-fish >= 1 and game-time < 5
-    #if building-type-count stone-wall-line == 0 and building-type-count palisade-wall == 0 and wall-completed-percentage 2 == 100
+    #if building-type-count stone-wall-line == 0 and building-type-count palisade-wall == 0 and wall-completed-percentage 2 == 100 and building-type-count town-center >= 1
       goal full-water-map = 1
     #else
       goal partial-water-map = 1
