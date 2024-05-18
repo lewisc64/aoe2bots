@@ -63,10 +63,7 @@
 @up-get-fact population-cap 0 population-space-remaining
 @up-get-fact population 0 current-population-goal
 @up-modify-goal population-space-remaining g:- current-population-goal
-
-// gatherer numbers
-
-
+@up-modify-goal population-space-remaining c:max 0
 
 // counts as goals
 

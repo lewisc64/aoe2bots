@@ -97,11 +97,6 @@
   #end do
 #end if
 
-// avoid TCs and castles
-#if military-population < 10
-  dodge fortifications
-#end if
-
 // heroes will flee!
 #if game-type == scenario
   $clear

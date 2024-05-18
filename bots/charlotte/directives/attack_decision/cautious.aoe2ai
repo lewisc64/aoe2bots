@@ -1,9 +1,18 @@
 #do once
   chat to self "attacking cautiously"
+  goal ad-cautious-capped = 0
 #end do
 
-#if (up-compare-goal target-military-percentage c:>= 150 or up-compare-goal population-space-remaining c:<= 5) and goal attacking 0
+#if up-compare-goal population-space-remaining c:<= 5 and goal attempted-researches 0
+  goal ad-cautious-capped = 1
+#else
+  goal ad-cautious-capped = 0
+#end if
+
+#if (up-compare-goal target-military-percentage c:>= 150 or goal ad-cautious-capped 1) and goal attacking 0
   goal attacking = 1
-#else if up-compare-goal target-military-percentage c:< 100 and goal attacking 1
+#end if
+
+#if up-compare-goal target-military-percentage c:< 100 and goal ad-cautious-capped 0 and goal attacking 1
   goal attacking = 0
 #end if

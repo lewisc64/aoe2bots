@@ -66,7 +66,11 @@ load "unit_selection/trading.aoe2ai"
   #end if
   load "unit_selection/transporting.aoe2ai"
   
-  load "attack_decision/cautious.aoe2ai"
+  #if goal enemy-players-count 0
+    goal attacking = 0
+  #else
+    load "attack_decision/cautious.aoe2ai"
+  #end if
   load "pacing/balanced_random.aoe2ai"
   
   #if up-compare-goal treaty-time-left >= 600
@@ -82,12 +86,10 @@ load "unit_selection/trading.aoe2ai"
   
   load "targeting.aoe2ai"
   
-  #if not goal enemy-players-count 0
-    #if unit-type-count transport-ship > 0
-      load "attack_method/attack_now.aoe2ai"
-    #else
-      load "attack_method/attack_groups.aoe2ai"
-    #end if
+  #if unit-type-count transport-ship > 0
+    load "attack_method/attack_now.aoe2ai"
+  #else
+    load "attack_method/attack_groups.aoe2ai"
   #end if
 #else
   goal do-research = 1
