@@ -4,7 +4,9 @@
 #end if
 
 #if goal attacking 1
-  attack
+  #repeat every 60 seconds
+    attack
+  #end repeat
   goal did-reset = 0
 #else if goal did-reset 0
   @up-reset-attack-now

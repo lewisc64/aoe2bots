@@ -86,7 +86,8 @@ load "unit_selection/trading.aoe2ai"
   
   load "targeting.aoe2ai"
   
-  #if unit-type-count transport-ship > 0
+  // monks sometimes don't join attack groups
+  #if unit-type-count transport-ship > 0 or unit-type-count monk-set >= 5
     load "attack_method/attack_now.aoe2ai"
   #else
     load "attack_method/attack_groups.aoe2ai"

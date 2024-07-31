@@ -50498,7 +50498,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1294)
+    (up-jump-rule 1296)
 )
 (defrule
     (true)
@@ -54748,11 +54748,14 @@
 )
 (defrule
     (nand
-      (unit-type-count transport-ship > 0)
+      (or
+        (unit-type-count transport-ship > 0)
+        (unit-type-count monk-set >= 5)
+      )
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 6)
+    (up-jump-rule 8)
 )
 (defrule
     (strategic-number sn-maximum-town-size > 30)
@@ -54762,21 +54765,37 @@
 (defrule
     (goal attacking 1)
 =>
+    (enable-timer 7 60)
+    (disable-self)
+)
+(defrule
+    (timer-triggered 7)
+    (goal attacking 1)
+=>
     (set-goal 236 0)
     (disable-self)
 )
 (defrule
+    (timer-triggered 7)
     (goal attacking 1)
 =>
     (up-get-fact game-time 0 1)
 )
 (defrule
     (up-compare-goal 1 g:>= 236)
+    (timer-triggered 7)
     (goal attacking 1)
 =>
     (attack-now)
     (up-modify-goal 236 g:= 1)
     (up-modify-goal 236 c:+ 60)
+)
+(defrule
+    (timer-triggered 7)
+    (goal attacking 1)
+=>
+    (disable-timer 7)
+    (enable-timer 7 60)
 )
 (defrule
     (goal attacking 1)
@@ -54795,8 +54814,13 @@
 )
 (defrule
     (nand
-      (not
-        (unit-type-count transport-ship > 0)
+      (and
+        (not
+          (unit-type-count transport-ship > 0)
+        )
+        (not
+          (unit-type-count monk-set >= 5)
+        )
       )
       (goal attack-ready 1)
     )
@@ -56681,12 +56705,12 @@
 (defrule
     (true)
 =>
-    (enable-timer 7 1)
+    (enable-timer 8 1)
     (disable-self)
 )
 (defrule
     (not
-      (timer-triggered 7)
+      (timer-triggered 8)
     )
 =>
     (up-jump-rule 71)
@@ -57330,7 +57354,7 @@
 )
 (defrule
     (not
-      (timer-triggered 7)
+      (timer-triggered 8)
     )
 =>
     (up-jump-rule 71)
@@ -57974,7 +57998,7 @@
 )
 (defrule
     (not
-      (timer-triggered 7)
+      (timer-triggered 8)
     )
 =>
     (up-jump-rule 71)
@@ -58618,7 +58642,7 @@
 )
 (defrule
     (not
-      (timer-triggered 7)
+      (timer-triggered 8)
     )
 =>
     (up-jump-rule 71)
@@ -59262,7 +59286,7 @@
 )
 (defrule
     (not
-      (timer-triggered 7)
+      (timer-triggered 8)
     )
 =>
     (up-jump-rule 71)
@@ -59906,7 +59930,7 @@
 )
 (defrule
     (not
-      (timer-triggered 7)
+      (timer-triggered 8)
     )
 =>
     (up-jump-rule 71)
@@ -60550,7 +60574,7 @@
 )
 (defrule
     (not
-      (timer-triggered 7)
+      (timer-triggered 8)
     )
 =>
     (up-jump-rule 71)
@@ -61194,7 +61218,7 @@
 )
 (defrule
     (not
-      (timer-triggered 7)
+      (timer-triggered 8)
     )
 =>
     (up-jump-rule 71)
@@ -61837,10 +61861,10 @@
     (set-stance 8 ally)
 )
 (defrule
-    (timer-triggered 7)
+    (timer-triggered 8)
 =>
-    (disable-timer 7)
-    (enable-timer 7 1)
+    (disable-timer 8)
+    (enable-timer 8 1)
 )
 (defrule
     (true)
@@ -62539,7 +62563,7 @@
 (defrule
     (goal locked-teams 1)
 =>
-    (enable-timer 8 1800)
+    (enable-timer 9 1800)
     (disable-self)
 )
 (defrule
@@ -62548,7 +62572,7 @@
       (and
         (up-compare-goal score-percentage c:<= 70)
         (and
-          (timer-triggered 8)
+          (timer-triggered 9)
           (goal locked-teams 1)
         )
       )
@@ -62598,7 +62622,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 8)
+            (timer-triggered 9)
             (goal locked-teams 1)
           )
         )
@@ -62651,7 +62675,7 @@
         (and
           (up-compare-goal score-percentage c:<= 70)
           (and
-            (timer-triggered 8)
+            (timer-triggered 9)
             (goal locked-teams 1)
           )
         )
@@ -62714,7 +62738,7 @@
         (and
           (up-compare-goal score-percentage c:>= 140)
           (and
-            (timer-triggered 8)
+            (timer-triggered 9)
             (goal locked-teams 1)
           )
         )
@@ -62763,7 +62787,7 @@
           (and
             (up-compare-goal score-percentage c:>= 140)
             (and
-              (timer-triggered 8)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
@@ -62795,7 +62819,7 @@
           (and
             (up-compare-goal score-percentage c:>= 140)
             (and
-              (timer-triggered 8)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
@@ -62820,7 +62844,7 @@
       (and
         (military-population >= 20)
         (and
-          (timer-triggered 8)
+          (timer-triggered 9)
           (goal locked-teams 1)
         )
       )
@@ -62907,7 +62931,7 @@
           (and
             (military-population >= 20)
             (and
-              (timer-triggered 8)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
@@ -63036,7 +63060,7 @@
           (and
             (military-population >= 20)
             (and
-              (timer-triggered 8)
+              (timer-triggered 9)
               (goal locked-teams 1)
             )
           )
@@ -64781,7 +64805,7 @@
 (defrule
     (true)
 =>
-    (enable-timer 9 60)
+    (enable-timer 10 60)
     (disable-self)
 )
 (defrule
@@ -64791,7 +64815,7 @@
     (up-compare-goal non-escrowed-food c:> food-threshold)
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-34f8609760258d82ecc3e0146f981c1ec0725afb)
 )
@@ -64805,7 +64829,7 @@
     (up-compare-goal non-escrowed-food c:> food-threshold)
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 2)
     (up-modify-sn sn-food-gatherer-percentage c:- 2)
@@ -64818,7 +64842,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-19b22c4216400b4ac44cedd180de15040bba208a)
 )
@@ -64832,7 +64856,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 2)
     (up-modify-sn sn-gold-gatherer-percentage c:- 2)
@@ -64847,7 +64871,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-7f1eda05222ecfc6817de23caf16247e9200bb91)
 )
@@ -64863,7 +64887,7 @@
     )
     (up-compare-goal non-escrowed-wood c:> wood-threshold)
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 4)
     (up-modify-sn sn-food-gatherer-percentage c:+ 2)
@@ -64876,7 +64900,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-852bc71dbe1d5f015c304fd5abc8ff06a003dc65)
 )
@@ -64890,7 +64914,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-food-gatherer-percentage c:- 2)
     (up-modify-sn sn-gold-gatherer-percentage c:- 2)
@@ -64905,7 +64929,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-bd7c8904ccd4165da66d7d9cecb51f8500c6890b)
 )
@@ -64921,7 +64945,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-food-gatherer-percentage c:- 4)
     (up-modify-sn sn-wood-gatherer-percentage c:+ 2)
@@ -64936,7 +64960,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-822e28c24c9ecfade87e50563a2fda287b1d3e41)
 )
@@ -64952,7 +64976,7 @@
       (up-compare-goal non-escrowed-wood c:> wood-threshold)
     )
     (dropsite-min-distance gold >= 0)
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-gold-gatherer-percentage c:- 4)
     (up-modify-sn sn-wood-gatherer-percentage c:+ 2)
@@ -64966,7 +64990,7 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-d94b5a6ca271d8c89b20340814572189d3edf11b)
 )
@@ -64980,7 +65004,7 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-wood-gatherer-percentage c:- 4)
     (up-modify-sn sn-food-gatherer-percentage c:+ 4)
@@ -64993,7 +65017,7 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (chat-local-to-self chat-5910be933cb49a20786061b35fa87af01792653d)
 )
@@ -65007,16 +65031,16 @@
     (not
       (dropsite-min-distance gold >= 0)
     )
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
     (up-modify-sn sn-food-gatherer-percentage c:- 4)
     (up-modify-sn sn-wood-gatherer-percentage c:+ 4)
 )
 (defrule
-    (timer-triggered 9)
+    (timer-triggered 10)
 =>
-    (disable-timer 9)
-    (enable-timer 9 60)
+    (disable-timer 10)
+    (enable-timer 10 60)
 )
 (defrule
     (strategic-number sn-wood-gatherer-percentage < minimum-wood-gatherer-percentage)
@@ -65181,11 +65205,11 @@
 (defrule
     (goal 395 1)
 =>
-    (enable-timer 10 300)
+    (enable-timer 11 300)
     (disable-self)
 )
 (defrule
-    (timer-triggered 10)
+    (timer-triggered 11)
     (goal 395 1)
 =>
     (set-goal 394 0)
@@ -65193,14 +65217,14 @@
 (defrule
     (up-compare-goal total-trade-carts g:>= desired-trade-carts)
     (up-compare-goal non-escrowed-gold c:<= gold-threshold)
-    (timer-triggered 10)
+    (timer-triggered 11)
     (goal 395 1)
 =>
     (set-goal 394 1)
 )
 (defrule
     (goal 394 1)
-    (timer-triggered 10)
+    (timer-triggered 11)
     (goal 395 1)
 =>
     (up-modify-goal desired-trade-carts c:+ 5)
@@ -65208,11 +65232,11 @@
     (chat-local-to-self chat-9c1fa295fbd8be460841820389f2c1c66e60be8c)
 )
 (defrule
-    (timer-triggered 10)
+    (timer-triggered 11)
     (goal 395 1)
 =>
-    (disable-timer 10)
-    (enable-timer 10 300)
+    (disable-timer 11)
+    (enable-timer 11 300)
 )
 (defrule
     (goal disable-town-size-management 0)
@@ -65420,36 +65444,36 @@
 (defrule
     (true)
 =>
-    (enable-timer 11 60)
+    (enable-timer 12 60)
     (disable-self)
 )
 (defrule
     (goal research-level importance-critical)
-    (timer-triggered 11)
+    (timer-triggered 12)
 =>
     (chat-local-to-self chat-02a44b954882b7be12972680db2dfdb8d3573037)
 )
 (defrule
     (goal research-level importance-high)
-    (timer-triggered 11)
+    (timer-triggered 12)
 =>
     (chat-local-to-self chat-84675dc7c0b9c4fa2bae6118449907b7018c7fcd)
 )
 (defrule
     (goal research-level importance-medium)
-    (timer-triggered 11)
+    (timer-triggered 12)
 =>
     (chat-local-to-self chat-ebae1d86c02c2920af25f66bb982462bf689d398)
 )
 (defrule
     (goal research-level importance-low)
-    (timer-triggered 11)
+    (timer-triggered 12)
 =>
     (chat-local-to-self chat-b8998735697e4cd38237f8411e4d40e06cbbc790)
 )
 (defrule
-    (timer-triggered 11)
+    (timer-triggered 12)
 =>
-    (disable-timer 11)
-    (enable-timer 11 60)
+    (disable-timer 12)
+    (enable-timer 12 60)
 )
