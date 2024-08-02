@@ -50498,7 +50498,7 @@
       (game-time >= 8)
     )
 =>
-    (up-jump-rule 1296)
+    (up-jump-rule 1306)
 )
 (defrule
     (true)
@@ -54748,19 +54748,21 @@
 )
 (defrule
     (nand
-      (or
-        (unit-type-count transport-ship > 0)
-        (unit-type-count monk-set >= 5)
-      )
+      (unit-type-count transport-ship > 0)
       (goal attack-ready 1)
     )
 =>
-    (up-jump-rule 8)
+    (up-jump-rule 9)
 )
 (defrule
     (strategic-number sn-maximum-town-size > 30)
 =>
     (up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size)
+)
+(defrule
+    (true)
+=>
+    (set-goal disable-town-size-management 0)
 )
 (defrule
     (goal attacking 1)
@@ -54814,23 +54816,100 @@
 )
 (defrule
     (nand
-      (and
-        (not
-          (unit-type-count transport-ship > 0)
-        )
-        (not
-          (unit-type-count monk-set >= 5)
-        )
+      (not
+        (unit-type-count transport-ship > 0)
       )
-      (goal attack-ready 1)
+      (and
+        (or
+          (unit-type-count monk-set >= 5)
+          (unit-type-count missionary >= 1)
+        )
+        (goal attack-ready 1)
+      )
     )
 =>
-    (up-jump-rule 3)
+    (up-jump-rule 7)
+)
+(defrule
+    (true)
+=>
+    (set-strategic-number sn-number-attack-groups 0)
+)
+(defrule
+    (goal attacking 1)
+=>
+    (set-goal disable-town-size-management 1)
+)
+(defrule
+    (strategic-number sn-maximum-town-size < 50)
+    (goal attacking 1)
+=>
+    (set-strategic-number sn-maximum-town-size 50)
+)
+(defrule
+    (or
+      (up-building-type-in-town c: castle >= 1)
+      (up-building-type-in-town c: town-center >= 1)
+    )
+    (goal attacking 1)
+=>
+    (up-modify-sn sn-maximum-town-size c:- 1)
+)
+(defrule
+    (not
+      (up-building-type-in-town c: castle >= 1)
+    )
+    (not
+      (up-building-type-in-town c: town-center >= 1)
+    )
+    (goal attacking 1)
+=>
+    (up-modify-sn sn-maximum-town-size c:+ 5)
+)
+(defrule
+    (goal attacking 1)
+=>
+    (set-strategic-number sn-number-boat-attack-groups 200)
+)
+(defrule
+    (not
+      (goal attacking 1)
+    )
+    (strategic-number sn-maximum-town-size >= 50)
+=>
+    (set-goal disable-town-size-management 0)
+    (up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size)
+    (set-strategic-number sn-number-boat-attack-groups 0)
+)
+(defrule
+    (nand
+      (not
+        (unit-type-count transport-ship > 0)
+      )
+      (and
+        (and
+          (not
+            (unit-type-count monk-set >= 5)
+          )
+          (not
+            (unit-type-count missionary >= 1)
+          )
+        )
+        (goal attack-ready 1)
+      )
+    )
+=>
+    (up-jump-rule 4)
 )
 (defrule
     (strategic-number sn-maximum-town-size > 30)
 =>
     (up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size)
+)
+(defrule
+    (true)
+=>
+    (set-goal disable-town-size-management 0)
 )
 (defrule
     (goal attacking 1)
