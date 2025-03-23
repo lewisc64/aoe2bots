@@ -106,7 +106,7 @@ load "templates/basic_diplomacy.aoe2ai"
   goal score-modifier = 0
   @up-get-player-fact {player} unit-type-count {unit} score-modifier
   @up-modify-goal score-modifier c:* {severity}
-  @up-modify-goal score-modifier c:/ 15
+  @up-modify-goal score-modifier c:/ 8
   @up-modify-goal {score_goal} g:{sign} score-modifier
 #end template
 
@@ -119,8 +119,8 @@ load "templates/basic_diplomacy.aoe2ai"
 #end template
 
 const critical-research-available-modifier = 99999
-const important-research-available-modifier = 50
-const medium-research-available-modifier = 30
+const important-research-available-modifier = 80
+const medium-research-available-modifier = 40
 const low-research-available-modifier = 20
 
 const small-investment-modifier = 2
@@ -130,11 +130,11 @@ const large-investment-modifier = 8
 const minor-counter-modifier = 20
 const major-counter-modifier = 40
 
-const trash-bias = 40
+const trash-bias = 160
 
 insert reset-unit-scores
 
-goal archer-line-score += 5
+//goal archer-line-score += 5
 insert units-that-are-trash(before="goal ",after="-score -= trash-bias")
 
 insert clear-production-goals
@@ -983,7 +983,13 @@ micro mule carts
     assign 1 builder to house
   #end do
 #end if
-build houses
+#if current-age == dark-age
+  build houses with 5 headroom
+#else if current-age == feudal-age
+  build houses with 10 headroom
+#else
+  build houses with 20 headroom
+#end if
 
 #if wood-amount >= 200 or building-type-count-total farm < 6 and (building-type-count-total archery-range >= 2 or building-type-count-total barracks >= 2 or building-type-count-total barracks >= 2)
   build farms
@@ -1052,7 +1058,22 @@ research imperial-age with food and gold escrow
 #else if unit-available armored-elephant-line and unit-type-count-total armored-elephant-line < 10 and up-pending-objects c: armored-elephant-line == 0 and military-population >= 20
   goal armored-elephant-line-production = 1
 #else
-  insert unit-names(before="insert make-unit-if-top(unit=\"",after="\")")
+  #if current-age >= castle-age
+    insert unit-names(before="insert make-unit-if-top(unit=\"",after="\")")
+  #else
+    #if players-building-type-count target-player archery-range >= 1 or players-unit-type-count target-player archer-line >= 1 or players-unit-type-count target-player skirmisher-line >= 1
+      goal skirmisher-line-production = 2
+    #else
+      goal archer-line-production = 2
+    #end if
+    #if players-building-type-count target-player stable >= 1 or players-unit-type-count target-player scout-cavalry-line >= 2 or players-unit-type-count target-player camel-line >= 2
+      goal spearman-line-production = 1
+    #end if
+    #if goal skirmisher-line-production 2 and players-unit-type-count target-player militiaman-line >= 1
+      goal archer-line-production = 1
+      goal skirmisher-line-production = 1
+    #end if
+  #end if
 #end if
 
 #if unit-type-count-total villager < 120
@@ -1114,6 +1135,7 @@ research imperial-age with food and gold escrow
 
 #if unit-type-count-total skirmisher-line >= 4 and (not goal skirmisher-line-production 0 or unit-type-count-total skirmisher-line >= 20)
   insert research-with-halt(research="ri-elite-skirmisher",building="archery-range")
+  insert research-with-halt(research="ri-imperial-skirmisher",building="archery-range")
   insert do-common-ranged-upgrades-for-unit(unit="skirmisher-line",other_tech_threshold="15")
 #end if
 
