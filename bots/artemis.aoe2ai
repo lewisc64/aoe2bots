@@ -118,19 +118,19 @@ load "templates/basic_diplomacy.aoe2ai"
   insert modify-score-for-player-unit(player="target-player",unit="{unit}",score_goal="{score_goal}",sign="+",severity="{severity}")
 #end template
 
-const critical-research-available-modifier = 99999
+const critical-research-available-modifier = 1000
 const important-research-available-modifier = 80
 const medium-research-available-modifier = 40
 const low-research-available-modifier = 20
 
-const small-investment-modifier = 2
-const medium-investment-modifier = 4
-const large-investment-modifier = 8
+const small-investment-modifier = 5
+const medium-investment-modifier = 10
+const large-investment-modifier = 20
 
 const minor-counter-modifier = 20
 const major-counter-modifier = 40
 
-const trash-bias = 160
+const trash-bias = 20
 
 insert reset-unit-scores
 
@@ -399,7 +399,7 @@ insert clear-production-goals
   #if research-completed ri-supplies
     goal militiaman-line-score += small-investment-modifier
   #end if
-  
+
   // gambesons
   #if research-completed ri-supplies and research-completed castle-age and not research-available ri-gambesons and up-research-status c: ri-gambesons < research-pending
     goal militiaman-line-score -= medium-research-available-modifier
@@ -494,6 +494,9 @@ insert do-unit-countered-score(score_goal="archer-line-score",unit="skirmisher-l
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="skirmisher-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="knight-line-score",unit="skirmisher-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="skirmisher-line",severity="major-counter-modifier")
+
+// genitour
+insert do-unit-countered-score(score_goal="archer-line-score",unit="genitour-line",severity="major-counter-modifier")
 
 // archers
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="archer-line",severity="minor-counter-modifier")
@@ -815,7 +818,7 @@ insert do-unit-counter-score(score_goal="spearman-line-score",unit="monaspa-line
 
 #template tank-score-if-not-available
   #if not unit-available {unit}
-    goal {unit}-score = -99999
+    @up-modify-goal {unit}-score c:min -10000
   #end if
 #end template
 
@@ -823,13 +826,14 @@ insert unit-names(before="insert tank-score-if-not-available(unit=\"",after="\")
 
 // get top unit
 
-goal top-unit-score = -99999
+goal top-unit-score = -10000
 goal top-unit = -1
-goal second-unit-score = -99999
+goal second-unit-score = -10000
 goal second-unit = -1
 
 #template find-top-fragment
   #if up-compare-goal {unit}-score g:> top-unit-score
+    @up-chat-data-to-all "{unit} is highest with %d" g: {unit}-score
     @up-modify-goal top-unit-score g:= {unit}-score
     goal top-unit = {unit}
   #else if up-compare-goal {unit}-score g:> second-unit-score and not goal top-unit {unit}
@@ -1046,6 +1050,7 @@ research imperial-age with food and gold escrow
 
 #template make-unit-if-top
   #if goal top-unit {unit}
+    @up-chat-data-to-all "{unit} is top, with score %d" g: {unit}-score
     @up-modify-goal {unit}-production g:= production-scale
   #end if
   #if (goal second-unit skirmisher-line or goal second-unit spearman-line or goal second-unit scout-cavalry-line) and goal second-unit {unit}
@@ -1077,7 +1082,11 @@ research imperial-age with food and gold escrow
 #end if
 
 #if unit-type-count-total villager < 120
-  goal villager-production = 1
+  #if current-age >= castle-age
+    goal villager-production = 3
+  #else
+    goal villager-production = 1
+  #end if
 #end if
 
 // it's research time
@@ -1379,7 +1388,7 @@ trade excess wood and food and gold at 2000
   trade excess wood and food and gold at 200
 #end if
 
-#if military-population < 40
+#if military-population < 40 and current-age == feudal-age
   dodge fortifications
 #end if
 
