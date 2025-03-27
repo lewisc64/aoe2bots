@@ -106,7 +106,7 @@ load "templates/basic_diplomacy.aoe2ai"
   goal score-modifier = 0
   @up-get-player-fact {player} unit-type-count {unit} score-modifier
   @up-modify-goal score-modifier c:* {severity}
-  @up-modify-goal score-modifier c:/ 8
+  @up-modify-goal score-modifier c:/ seen-units-divisor
   @up-modify-goal {score_goal} g:{sign} score-modifier
 #end template
 
@@ -127,10 +127,11 @@ const small-investment-modifier = 5
 const medium-investment-modifier = 10
 const large-investment-modifier = 20
 
-const minor-counter-modifier = 20
-const major-counter-modifier = 40
+const minor-counter-modifier = 5
+const major-counter-modifier = 10
+const seen-units-divisor = 8
 
-const trash-bias = 20
+const trash-bias = 10
 
 insert reset-unit-scores
 
@@ -718,13 +719,12 @@ insert do-unit-countered-score(score_goal="archer-line-score",unit="magyar-husza
 insert do-unit-counter-score(score_goal="spearman-line-score",unit="magyar-huszar-line",severity="major-counter-modifier")
 
 // karambit warrior
-insert do-unit-counter-score(score_goal="archer-line-score",unit="karambit-warrior-line",severity="minor-counter-modifier")
-insert do-unit-counter-score(score_goal="knight-line-score",unit="karambit-warrior-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="karambit-warrior-line",severity="major-counter-modifier")
 
 // gbeto
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="gbeto-line",severity="major-counter-modifier")
-insert do-unit-countered-score(score_goal="militiaman-line-score",unit="gbeto-line",severity="major-counter-modifier")
-insert do-unit-counter-score(score_goal="archer-line-score",unit="gbeto-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="gbeto-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="gbeto-line",severity="minor-counter-modifier")
 
 // plumed archer
 insert do-unit-countered-score(score_goal="archer-line-score",unit="plumed-archer-line",severity="minor-counter-modifier")
@@ -754,6 +754,8 @@ insert do-unit-counter-score(score_goal="archer-line-score",unit="obuch-line",se
 
 // centurion
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="centurion-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="archer-line-score",unit="centurion-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="centurion-line",severity="minor-counter-modifier")
 insert do-unit-counter-score(score_goal="spearman-line-score",unit="centurion-line",severity="major-counter-modifier")
 
 // mameluke
