@@ -39,6 +39,7 @@ load "templates/basic_diplomacy.aoe2ai"
 #template unit-names
   {before}archer-line{after}
   {before}skirmisher-line{after}
+  {before}cavalry-archer-line{after}
   {before}knight-line{after}
   {before}scout-cavalry-line{after}
   {before}militiaman-line{after}
@@ -54,6 +55,7 @@ load "templates/basic_diplomacy.aoe2ai"
 #template units-with-ranged-blacksmith-benefit
   {before}archer-line{after}
   {before}skirmisher-line{after}
+  {before}cavalry-archer-line{after}
 #end template
 
 #template units-with-cavalry-blacksmith-benefit
@@ -69,16 +71,23 @@ load "templates/basic_diplomacy.aoe2ai"
 #template units-with-thumb-ring-benefit
   {before}archer-line{after}
   {before}skirmisher-line{after}
+  {before}cavalry-archer-line{after}
+#end template
+
+#template units-with-parthian-tactics-benefit
+  {before}cavalry-archer-line{after}
 #end template
 
 #template units-with-ballistics-benefit
   {before}archer-line{after}
   {before}skirmisher-line{after}
+  {before}cavalry-archer-line{after}
 #end template
 
 #template units-with-bloodlines-and-husbandry-benefit
   {before}knight-line{after}
   {before}scout-cavalry-line{after}
+  {before}cavalry-archer-line{after}
 #end template
 
 #template units-with-arson-benefit
@@ -162,8 +171,10 @@ insert clear-production-goals
   insert units-with-ranged-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
 #end if
 
-#if research-completed imperial-age and not research-available ri-ring-archer-armor and up-research-status c: ri-ring-archer-armor < research-pending
-  insert units-with-ranged-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#if not civ-selected hun
+  #if research-completed imperial-age and not research-available ri-ring-archer-armor and up-research-status c: ri-ring-archer-armor < research-pending
+    insert units-with-ranged-blacksmith-benefit(before="goal ",after="-score -= important-research-available-modifier")
+  #end if
 #end if
 
 // cavalry blacksmith availability scoring
@@ -296,6 +307,14 @@ insert clear-production-goals
   #end if
 #end if
 
+// parthian tactics
+#if research-completed imperial-age and not research-available ri-parthian-tactics and up-research-status c: ri-parthian-tactics < research-pending
+  insert units-with-parthian-tactics-benefit(before="goal ",after="-score -= important-research-available-modifier")
+#end if
+#if research-completed ri-parthian-tactics
+  insert units-with-parthian-tactics-benefit(before="goal ",after="-score += small-investment-modifier")
+#end if
+
 // ballistics
 #if research-completed castle-age and not research-available ri-ballistics and up-research-status c: ri-ballistics < research-pending
   insert units-with-ballistics-benefit(before="goal ",after="-score -= important-research-available-modifier")
@@ -326,6 +345,14 @@ insert clear-production-goals
 #end if
 #if research-completed ri-elite-skirmisher
   goal skirmisher-line-score += small-investment-modifier
+#end if
+
+// heavy cavalry archer
+#if research-completed imperial-age and not research-available ri-heavy-cavalry-archer and up-research-status c: ri-heavy-cavalry-archer < research-pending
+  goal cavalry-archer-line-score -= critical-research-available-modifier
+#end if
+#if research-completed ri-heavy-cavalry-archer
+  goal cavalry-archer-line-score += large-investment-modifier
 #end if
 
 // other techs - cavalry
@@ -492,12 +519,14 @@ insert clear-production-goals
 
 // skirmishers
 insert do-unit-countered-score(score_goal="archer-line-score",unit="skirmisher-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="cavalry-archer-line-score",unit="skirmisher-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="skirmisher-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="knight-line-score",unit="skirmisher-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="skirmisher-line",severity="major-counter-modifier")
 
 // genitour
 insert do-unit-countered-score(score_goal="archer-line-score",unit="genitour-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="cavalry-archer-line-score",unit="genitour-line",severity="major-counter-modifier")
 
 // archers
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="archer-line",severity="minor-counter-modifier")
@@ -512,18 +541,20 @@ insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="cavalry-ar
 
 // elephant archers
 insert do-unit-countered-score(score_goal="archer-line-score",unit="elephant-archer-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="cavalry-archer-line-score",unit="elephant-archer-line",severity="minor-counter-modifier")
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="elephant-archer-line",severity="minor-counter-modifier")
 insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="elephant-archer-line",severity="minor-counter-modifier")
 
 // hand cannoneers
-insert do-unit-countered-score(score_goal="militiaman-line",unit="hand-cannoneer",severity="major-counter-modifier")
-insert do-unit-countered-score(score_goal="spearman-line",unit="hand-cannoneer",severity="major-counter-modifier")
-insert do-unit-counter-score(score_goal="archer-line",unit="hand-cannoneer",severity="major-counter-modifier")
-insert do-unit-counter-score(score_goal="skirmisher-line",unit="hand-cannoneer",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="militiaman-line-score",unit="hand-cannoneer",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="spearman-line-score",unit="hand-cannoneer",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="hand-cannoneer",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="hand-cannoneer",severity="major-counter-modifier")
 
 // militia
 insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="militiaman-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="archer-line-score",unit="militiaman-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="cavalry-archer-line-score",unit="militiaman-line",severity="major-counter-modifier")
 
 // spearman
 insert do-unit-countered-score(score_goal="knight-line-score",unit="spearman-line",severity="major-counter-modifier")
@@ -534,6 +565,7 @@ insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="spearman-l
 // eagles
 insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="eagle-warrior-line",severity="minor-counter-modifier")
 insert do-unit-countered-score(score_goal="archer-line-score",unit="eagle-warrior-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="cavalry-archer-line-score",unit="eagle-warrior-line",severity="minor-counter-modifier")
 insert do-unit-counter-score(score_goal="militiaman-line-score",unit="eagle-warrior-line",severity="major-counter-modifier")
 
 // scouts
@@ -548,6 +580,7 @@ insert do-unit-counter-score(score_goal="spearman-line-score",unit="knight-line"
 
 // camels
 insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="camel-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="cavalry-archer-line-score",unit="camel-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="knight-line-score",unit="camel-line",severity="minor-counter-modifier")
 insert do-unit-countered-score(score_goal="scout-cavalry-line-score",unit="camel-line",severity="major-counter-modifier")
 
@@ -560,17 +593,20 @@ insert do-unit-counter-score(score_goal="spearman-line",unit="battle-elephant-li
 // steppe lancers
 insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="steppe-lancer-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="archer-line-score",unit="steppe-lancer-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="cavalry-archer-line-score",unit="steppe-lancer-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="spearman-line-score",unit="steppe-lancer-line",severity="major-counter-modifier")
 
 // mangonels
 insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="mangonel-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="archer-line-score",unit="mangonel-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="cavalry-archer-line-score",unit="mangonel-line",severity="minor-counter-modifier")
 insert do-unit-counter-score(score_goal="knight-line-score",unit="mangonel-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="mangonel-line",severity="major-counter-modifier")
 
 // scorpions
 insert do-unit-countered-score(score_goal="archer-line-score",unit="scorpion-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="scorpion-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="cavalry-archer-line-score",unit="scorpion-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="scorpion-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="scorpion-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="knight-line-score",unit="scorpion-line",severity="major-counter-modifier")
@@ -596,11 +632,13 @@ insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="ratha-set"
 
 // camel archers
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="camel-archer-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="cavalry-archer-line-score",unit="camel-archer-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="spearman-line-score",unit="camel-archer-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="camel-archer-line",severity="major-counter-modifier")
 
 // hussite wagons
 insert do-unit-countered-score(score_goal="archer-line-score",unit="hussite-wagon-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="cavalry-archer-line-score",unit="hussite-wagon-line",severity="major-counter-modifier")
 
 // longbows
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="longbowman-line",severity="major-counter-modifier")
@@ -626,18 +664,18 @@ insert do-unit-countered-score(score_goal="archer-line-score",unit="coustillier-
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="cataphract-line",severity="minor-counter-modifier")
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="cataphract-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="archer-line-score",unit="cataphract-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="cavalry-archer-line-score",unit="cataphract-line",severity="minor-counter-modifier")
 
 // woad raiders
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="woad-raider-line",severity="minor-counter-modifier")
-insert do-unit-countered-score(score_goal="militiaman-line-score",unit="woad-raider-line",severity="minor-counter-modifier")
 insert do-unit-counter-score(score_goal="archer-line-score",unit="woad-raider-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="cavalry-archer-line-score",unit="woad-raider-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="knight-line-score",unit="woad-raider-line",severity="minor-counter-modifier")
 insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="woad-raider-line",severity="minor-counter-modifier")
 
 // chu ko nu
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="chu-ko-nu-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="chu-ko-nu-line",severity="major-counter-modifier")
-insert do-unit-counter-score(score_goal="archer-line-score",unit="chu-ko-nu-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="chu-ko-nu-line",severity="minor-counter-modifier")
 
 // kipchak
@@ -649,19 +687,23 @@ insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="kipchak-se
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="urumi-swordsman-line",severity="minor-counter-modifier")
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="urumi-swordsman-line",severity="minor-counter-modifier")
 insert do-unit-counter-score(score_goal="archer-line-score",unit="urumi-swordsman-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="cavalry-archer-line-score",unit="urumi-swordsman-line",severity="major-counter-modifier")
 
 // shotel warriors
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="shotel-warrior-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="shotel-warrior-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="archer-line-score",unit="shotel-warrior-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="cavalry-archer-line-score",unit="shotel-warrior-line",severity="major-counter-modifier")
 
 // throwing axe people
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="throwing-axeman-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="throwing-axeman-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="archer-line-score",unit="throwing-axeman-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="cavalry-archer-line-score",unit="throwing-axeman-line",severity="minor-counter-modifier")
 
 // huskarls
 insert do-unit-countered-score(score_goal="archer-line-score",unit="huskarl-set",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="cavalry-archer-line-score",unit="huskarl-set",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="huskarl-set",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="knight-line-score",unit="huskarl-set",severity="minor-counter-modifier")
 insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="huskarl-set",severity="minor-counter-modifier")
@@ -670,9 +712,10 @@ insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="huskarl
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="chakram-thrower-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="chakram-thrower-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="archer-line-score",unit="chakram-thrower-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="cavalry-archer-line-score",unit="chakram-thrower-line",severity="minor-counter-modifier")
 
 // ghulam
-insert do-unit-countered-score(score_goal="archer-line-score",unit="ghulam-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="archer-line-score",unit="ghulam-line",severity="minor-counter-modifier")
 insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="ghulam-line",severity="minor-counter-modifier")
 insert do-unit-counter-score(score_goal="knight-line-score",unit="ghulam-line",severity="minor-counter-modifier")
 insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="ghulam-line",severity="minor-counter-modifier")
@@ -688,6 +731,7 @@ insert do-unit-countered-score(score_goal="scout-cavalry-line-score",unit="kamay
 insert do-unit-counter-score(score_goal="archer-line-score",unit="kamayuk-line",severity="major-counter-modifier")
 
 // genoese crossbows
+insert do-unit-countered-score(score_goal="cavalry-archer-line-score",unit="genoese-crossbowman-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="knight-line-score",unit="genoese-crossbowman-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="scout-cavalry-line-score",unit="genoese-crossbowman-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="archer-line-score",unit="genoese-crossbowman-line",severity="minor-counter-modifier")
@@ -695,6 +739,7 @@ insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="genoese-cr
 
 // samurai
 insert do-unit-counter-score(score_goal="archer-line-score",unit="samurai-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="cavalry-archer-line-score",unit="samurai-line",severity="minor-counter-modifier")
 
 // ballista elephant
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="ballista-elephant-line",severity="major-counter-modifier")
@@ -706,6 +751,7 @@ insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="ballist
 // war wagon
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="war-wagon-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="archer-line-score",unit="war-wagon-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="cavalry-archer-line-score",unit="war-wagon-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="war-wagon-line",severity="major-counter-modifier")
 
 // leitis
@@ -736,6 +782,7 @@ insert do-unit-counter-score(score_goal="scout-cavalry-line-score",unit="plumed-
 
 // mangudai
 insert do-unit-countered-score(score_goal="archer-line-score",unit="mangudai-line",severity="minor-counter-modifier")
+insert do-unit-countered-score(score_goal="cavalry-archer-line-score",unit="mangudai-line",severity="minor-counter-modifier")
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="mangudai-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="mangudai-line",severity="minor-counter-modifier")
 insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="mangudai-line",severity="major-counter-modifier")
@@ -748,6 +795,7 @@ insert do-unit-counter-score(score_goal="spearman-line-score",unit="war-elephant
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="obuch-line",severity="minor-counter-modifier")
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="obuch-line",severity="minor-counter-modifier")
 insert do-unit-counter-score(score_goal="archer-line-score",unit="obuch-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="cavalry-archer-line-score",unit="obuch-line",severity="major-counter-modifier")
 
 // organ gun
 // not sure I care.
@@ -766,6 +814,7 @@ insert do-unit-counter-score(score_goal="spearman-line-score",unit="mameluke-lin
 
 // serjeant
 insert do-unit-counter-score(score_goal="archer-line-score",unit="serjeant-set",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="cavalry-archer-line-score",unit="serjeant-set",severity="minor-counter-modifier")
 
 // boyar
 insert do-unit-countered-score(score_goal="skirmisher-line-score",unit="boyar-line",severity="major-counter-modifier")
@@ -794,6 +843,7 @@ insert do-unit-counter-score(score_goal="archer-line-score",unit="janissary-line
 
 // rattan archers
 insert do-unit-countered-score(score_goal="archer-line-score",unit="rattan-archer-line",severity="major-counter-modifier")
+insert do-unit-countered-score(score_goal="cavalry-archer-line-score",unit="rattan-archer-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="rattan-archer-line",severity="major-counter-modifier")
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="rattan-archer-line",severity="major-counter-modifier")
 insert do-unit-counter-score(score_goal="knight-line-score",unit="rattan-archer-line",severity="major-counter-modifier")
@@ -803,7 +853,8 @@ insert do-unit-counter-score(score_goal="skirmisher-line-score",unit="rattan-arc
 // berserks
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="berserk-line",severity="minor-counter-modifier")
 insert do-unit-countered-score(score_goal="spearman-line-score",unit="berserk-line",severity="major-counter-modifier")
-insert do-unit-counter-score(score_goal="archer-line-score",unit="berserk-line",severity="major-counter-modifier")
+insert do-unit-counter-score(score_goal="archer-line-score",unit="berserk-line",severity="minor-counter-modifier")
+insert do-unit-counter-score(score_goal="cavalry-archer-line-score",unit="berserk-line",severity="minor-counter-modifier")
 
 // composite bowman
 insert do-unit-countered-score(score_goal="militiaman-line-score",unit="composite-bowman-line",severity="major-counter-modifier")
@@ -1125,6 +1176,15 @@ research imperial-age with food and gold escrow
   #end if
 #end template
 
+#template do-common-cavalry-archer-upgrades-for-unit
+  insert do-common-ranged-upgrades-for-unit(unit="{unit}",other_tech_threshold="{other_tech_threshold}")
+  insert research-with-halt(research="ri-parthian-tactics",building="archery-range")
+  insert research-with-halt(research="ri-bloodlines",building="stable")
+  #if unit-type-count-total {unit} >= {other_tech_threshold}
+    insert research-with-halt(research="ri-husbandry",building="stable")
+  #end if
+#end template
+
 #template do-common-infantry-upgrades-for-unit
   insert research-with-halt(research="ri-forging",building="blacksmith")
   insert research-with-halt(research="ri-iron-casting",building="blacksmith")
@@ -1148,6 +1208,11 @@ research imperial-age with food and gold escrow
   insert research-with-halt(research="ri-elite-skirmisher",building="archery-range")
   insert research-with-halt(research="ri-imperial-skirmisher",building="archery-range")
   insert do-common-ranged-upgrades-for-unit(unit="skirmisher-line",other_tech_threshold="15")
+#end if
+
+#if unit-type-count-total cavalry-archer-line >= 4 and (not goal cavalry-archer-line-production 0 or unit-type-count-total cavalry-archer-line >= 20)
+  insert research-with-halt(research="ri-heavy-cavalry-archer",building="archery-range")
+  insert do-common-cavalry-archer-upgrades-for-unit(unit="cavalry-archer-line",other_tech_threshold="15")
 #end if
 
 #if unit-type-count-total knight-line >= 4 and (not goal knight-line-production 0 or unit-type-count-total knight-line >= 10)
