@@ -291,9 +291,9 @@ load "templates/diplomacy_engine.aoe2ai"
 
 #do once
 
-  #delay by 10 seconds
+  #delay by 4 real seconds
     chat to all "It is fate that we have met here, of all places."
-    #delay by 10 seconds
+    #delay by 4 real seconds
       chat to all "Let us weave tales of grandeur."
     #end delay
   #end delay
@@ -301,79 +301,79 @@ load "templates/diplomacy_engine.aoe2ai"
   #if research-completed ri-husbandry
     #select random persistant
       chat to all "A swift steed my father promised me. A thousand times I begged."
-      #delay by 16 seconds
+      #delay by 8 real seconds
         chat to all "He passed long ago. But while rotting in his grave, he kept his word."
-        #delay by 16 seconds
+        #delay by 8 real seconds
           chat to all "Now I understand."
         #end delay
       #end delay
     #randor
       chat to all "Only once have I encountered true tricksters"
-      #delay by 10 seconds
+      #delay by 5 real seconds
         chat to all "They smiled. They laughed. They pretended to care."
-        #delay by 11 seconds
+        #delay by 5 real seconds
           chat to all "Now their souls adorn the palace of my mind. All tortured."
         #end delay
       #end delay
     #randor
       chat to all "I took my vow at a young age."
-      #delay by 6 seconds
+      #delay by 3 real seconds
         chat to all "As I drank from the chalice, I told lies."
-        #delay by 8 seconds
+        #delay by 4 real seconds
           chat to all "They gorged on my sweetened words, and made me a lady."
-          #delay by 10 seconds
+          #delay by 5 real seconds
             chat to all "Drunk on their own reflections."
           #end delay
         #end delay
       #end delay
     #randor
       chat to all "A farmer once came to my court."
-      #delay by 8 seconds
+      #delay by 4 real seconds
         chat to all "Sickly and weak, he begged me for boon."
-        #delay by 16 seconds
+        #delay by 8 real seconds
           chat to all "Naturally I refused."
-          #delay by 5 seconds
+          #delay by 2 real seconds
             chat to all "Compassion only goes so far. Don't you think?"
           #end delay
         #end delay
       #end delay
     #randor
       chat to all "The sun glinted off my lance as I levelled it at my opponent."
-      #delay by 6 seconds
+      #delay by 3 real seconds
         chat to all "They held theirs, shaking with inexperience."
-        #delay by 6 seconds
+        #delay by 3 real seconds
           chat to all "We clashed and were both thrown from our mounts."
-          #delay by 7 seconds
+          #delay by 3 real seconds
             chat to all "I recovered quickly. They died the next day."
           #end delay
         #end delay
       #end delay
     #randor
       chat to all "Singing my praises, we made a toast."
-      #delay by 7 seconds
+      #delay by 3 real seconds
         chat to all "So cheerful. So fun."
-        #delay by 5 seconds
+        #delay by 2 real seconds
           chat to all "Not worth it."
         #end delay
       #end delay
     #randor
       chat to all "A slug of metal crunched against my ribcage, blood filling the cavity."
-      #delay by 7 seconds
+      #delay by 3 real seconds
         chat to all "I fell and hit the mud."
-        #delay by 5 seconds
+        #delay by 2 real seconds
           chat to all "He watched me from afar, disappointment written across his face."
-          #delay by 6 seconds
+          #delay by 3 real seconds
             chat to all "My one true love."
           #end delay
         #end delay
       #end delay
     #randor
       chat to all "He shot me a grin, and layed down his cards."
-      #delay by 6 seconds
+      #delay by 3 real seconds
         chat to all "Perhaps I reacted too passionately."
-        #delay by 6 seconds
+        #delay by 3 real seconds
           chat to all "The man screamed so much, I thought it almost impressive."
-          #delay by 10 seconds
+          #delay by 5 real seconds
             chat to all "Filthy cheat."
           #end delay
         #end delay
@@ -384,54 +384,54 @@ load "templates/diplomacy_engine.aoe2ai"
   #if research-completed ri-cavalier
     #select random persistant
       chat to all "As tears pooled up in his eyes, I grit my teeth."
-      #delay by 8 seconds
+      #delay by 4 real seconds
         chat to all "He asked what it was all for. What it all meant."
-        #delay by 7 seconds
+        #delay by 3 real seconds
           chat to all "I looked him in the eye, and severed him in twain."
         #end delay
       #end delay
     #randor
       chat to all "My head under a boot, I hear a scratchy voice worming into my thoughts:"
-      #delay by 10 seconds
+      #delay by 5 real seconds
         chat to all "'Hurts, doesn't it?'"
-        #delay by 7 seconds
+        #delay by 3 real seconds
           chat to all "'Feeling your skin bubble and your blood jet through your pores...'"
-          #delay by 10 seconds
+          #delay by 5 real seconds
             chat to all "It did not hurt."
           #end delay
         #end delay
       #end delay
     #randor
       chat to all "I never believed in goblins."
-      #delay by 5 seconds
+      #delay by 2 real seconds
         chat to all "Creatures of jealousy, I'm told. Born from your thoughts."
-        #delay by 12 seconds
+        #delay by 6 real seconds
           chat to all "They claimed to see them all around me."
-          #delay by 5 seconds
+          #delay by 2 real seconds
             chat to all "Perhaps their noses obscured their vision."
           #end delay
         #end delay
       #end delay
     #randor
       chat to all "Why do they read such fairytales?"
-      #delay by 6 seconds
+      #delay by 3 real seconds
         chat to all "The whims of some doddery fool?"
-        #delay by 6 seconds
+        #delay by 3 real seconds
           chat to all "Clinging to phantasms, casting aside the material."
-          #delay by 8 seconds
+          #delay by 4 real seconds
             chat to all "Time will forget them."
           #end delay
         #end delay
       #end delay
     #randor
       chat to all "Under dancing candlelight, my mother held me in her arms."
-      #delay by 8 seconds
+      #delay by 4 real seconds
         chat to all "Her eyes were cold. Expressionless."
-        #delay by 5 seconds
+        #delay by 2 real seconds
           chat to all "All that anger and pain, washed away by time."
-          #delay by 8 seconds
+          #delay by 4 real seconds
             chat to all "Only her shadow stayed with me."
-            #delay by 5 seconds
+            #delay by 2 real seconds
               chat to all "An unjudging echo of safety. It was perfect."
             #end delay
           #end delay
@@ -443,38 +443,38 @@ load "templates/diplomacy_engine.aoe2ai"
   #if research-completed ri-paladin
     #select random persistant
       chat to all "I had nightmares as a child."
-      #delay by 6 seconds
+      #delay by 3 real seconds
         chat to all "Demons crawling on my back, peeling off rolls of skin with their claws."
-        #delay by 16 seconds
+        #delay by 8 real seconds
           chat to all "The demons were saints, and I their lamb."
         #end delay
       #end delay
     #randor
       chat to all "People were born cruel, and people were born foolish. As was I."
-      #delay by 15 seconds
+      #delay by 7 real seconds
         chat to all "But I have changed."
-        #delay by 6 seconds
+        #delay by 3 real seconds
           chat to all "Go ahead. Lift up my veil. Watch my eyes sparkle."
         #end delay
       #end delay
     #randor
       chat to all "A wide-eyed girl looked up at the stars."
-      #delay by 10 seconds
+      #delay by 5 real seconds
         chat to all "Were they pretty?"
-        #delay by 4 seconds
+        #delay by 2 real seconds
           chat to all "Were they beautiful?"
-          #delay by 8 seconds
+          #delay by 3 real seconds
             chat to all "All she saw was fire."
           #end delay
         #end delay
       #end delay
     #randor
       chat to all "And for what? Altruistic virtues?"
-      #delay by 8 seconds
+      #delay by 4 real seconds
         chat to all "A thin guise."
-        #delay by 6 seconds
+        #delay by 3 real seconds
           chat to all "Look around you. Don't you see?"
-          #delay by 8 seconds
+          #delay by 4 real seconds
             chat to all "You are a foul monster."
           #end delay
         #end delay
