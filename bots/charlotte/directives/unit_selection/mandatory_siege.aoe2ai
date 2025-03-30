@@ -24,7 +24,7 @@ const max-demolition-ships = 5
       goal produce-cannon-galleons = 1
     #end if
 
-    #if up-compare-goal target-warboat-percentage c:<= 100 and up-compare-goal target-warboat-count c:>= 8 and unit-type-count-total demolition-ship-line < max-demolition-ships
+    #if up-compare-goal target-military-percentage c:<= 100 and up-compare-goal target-military-population c:>= 8 and unit-type-count-total demolition-ship-line < max-demolition-ships
       goal produce-demolition-ships = 1
     #end if
   #end if

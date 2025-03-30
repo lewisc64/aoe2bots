@@ -7,6 +7,7 @@ goal disable-town-size-management = 0
 #if goal attacking 1
   sn-number-attack-groups = 200
   sn-number-boat-attack-groups = 200
+  transport units
 #else if strategic-number sn-number-attack-groups == 200
   sn-number-attack-groups = 0
   sn-number-boat-attack-groups = 0

@@ -145,8 +145,6 @@ goal target-player-score-delta = 0
 #end template
 
 insert get-enemy-population-stats(type="military",fact="military-population")
-insert get-enemy-population-stats(type="civilian",fact="civilian-population")
-insert get-enemy-population-stats(type="warboat",fact="warboat-count")
 
 // threat data
 

@@ -77,7 +77,11 @@ load "unit_selection/trading.aoe2ai"
     load "land_control/passive.aoe2ai"
     load "water_control/passive.aoe2ai"
   #else if goal full-water-map 1
-    load "land_control/passive.aoe2ai"
+    #if current-age >= castle-age and up-compare-goal target-military-percentage c:>= 200
+      load "land_control/aggressive.aoe2ai"
+    #else
+      load "land_control/passive.aoe2ai"
+    #end if
     load "water_control/aggressive.aoe2ai"
   #else
     load "land_control/aggressive.aoe2ai"
@@ -85,14 +89,7 @@ load "unit_selection/trading.aoe2ai"
   #end if
   
   load "targeting.aoe2ai"
-  
-  #if unit-type-count transport-ship > 0
-    load "attack_method/attack_now.aoe2ai"
-  #else if unit-type-count monk-set >= 5 or unit-type-count missionary >= 1
-    load "attack_method/town_size_attack.aoe2ai"
-  #else
-    load "attack_method/attack_groups.aoe2ai"
-  #end if
+  load "attack_method/attack_groups.aoe2ai"
 #else
   goal do-research = 1
   goal produce-units = 0

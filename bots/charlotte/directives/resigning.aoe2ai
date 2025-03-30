@@ -7,7 +7,7 @@
     goal resign = 1
   #end if
   
-  #if goal full-water-map 1 and warboat-count == 0
+  #if goal full-water-map 1 and warboat-count == 0 and soldier-count < 5
     goal resign = 1
   #end if
 #end if

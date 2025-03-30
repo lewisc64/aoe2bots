@@ -14,7 +14,7 @@ load "backbone.aoe2ai"
 load "chat.aoe2ai"
 
 load "economy/all_ages.aoe2ai"
-#if current-age >= feudal-age and (building-type-count town-center > 0 or game-time >= 8)
+#if current-age >= feudal-age and game-time >= 8
   load "economy/adaptive_balance.aoe2ai"
 #end if
 

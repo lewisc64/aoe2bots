@@ -1,5 +1,0 @@
-#if up-compare-goal target-warboat-percentage c:>= 200
-  goal allow-land-units = 1
-#else
-  goal allow-land-units = 0
-#end if
