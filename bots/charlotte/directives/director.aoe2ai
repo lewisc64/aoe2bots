@@ -77,7 +77,7 @@ load "unit_selection/trading.aoe2ai"
     load "land_control/passive.aoe2ai"
     load "water_control/passive.aoe2ai"
   #else if goal full-water-map 1
-    #if current-age >= castle-age and up-compare-goal target-military-percentage c:>= 200
+    #if current-age >= castle-age and up-compare-goal target-military-percentage c:>= 200 and warboat-count >= 20
       load "land_control/aggressive.aoe2ai"
     #else
       load "land_control/passive.aoe2ai"
@@ -89,7 +89,7 @@ load "unit_selection/trading.aoe2ai"
   #end if
   
   load "targeting.aoe2ai"
-  load "attack_method/attack_groups.aoe2ai"
+  load "attack_method/with_duc.aoe2ai"
 #else
   goal do-research = 1
   goal produce-units = 0

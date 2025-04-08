@@ -1,0 +1,14 @@
+// reset town size if switching off TSA
+#if strategic-number sn-maximum-town-size > 30
+  @up-modify-sn sn-maximum-town-size s:= sn-minimum-town-size
+#end if
+goal disable-town-size-management = 0
+
+#if goal attacking 1
+  attack with duc
+  sn-number-boat-attack-groups = 200
+  transport units
+#else if strategic-number sn-number-boat-attack-groups == 200
+  retreat
+  sn-number-boat-attack-groups = 0
+#end if
