@@ -81,6 +81,9 @@ load "templates/fast_castle.aoe2ai"
   #end if
 
   research imperial-age
+  research gold mining camp upgrades
+  research lumber camp upgrades
+  research mill upgrades
 
   #if current-age >= imperial-age
     build 8 siege-workshop
