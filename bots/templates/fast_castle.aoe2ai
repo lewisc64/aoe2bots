@@ -49,11 +49,9 @@
       distribute villagers 40 60 0 0
     #end do
   #end if
-  
-  #if unit-type-count-total villager >= 23
-    sn-enable-training-queue = 0
-  #end if
+
   #if unit-type-count-total villager >= 24
+    sn-enable-training-queue = 0
     research feudal-age
   #end if
   

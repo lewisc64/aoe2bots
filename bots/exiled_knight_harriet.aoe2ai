@@ -115,21 +115,37 @@ load "templates/fast_castle.aoe2ai"
     distribute 2 villagers from wood and food to gold
   #end if
 
-  #if up-enemy-units-in-town > 10
+  #template get-non-escrowed-amount-goal
+    goal non-escrowed-{resource}-amount = 0
+    goal escrowed-{resource} = 0
+    @up-get-fact escrow-amount {resource} escrowed-{resource}
+    @up-get-fact {resource}-amount 0 non-escrowed-{resource}-amount
+    @up-modify-goal non-escrowed-{resource}-amount g:- escrowed-{resource}
+  #end template
+
+  insert get-non-escrowed-amount-goal(resource="wood")
+  insert get-non-escrowed-amount-goal(resource="food")
+  insert get-non-escrowed-amount-goal(resource="gold")
+  insert get-non-escrowed-amount-goal(resource="stone")
+
+  #if up-enemy-units-in-town > 10 and town-under-attack
     trade excess wood and food and gold at 300
   #end if
 
-  #if military-population < 10 or up-research-status c: ri-elite-konnik >= research-pending
+  #if up-research-status c: ri-elite-konnik >= research-pending
     escrow 0 food with maximum 0
     escrow 0 gold with maximum 0
+  #else if military-population < 10 or up-enemy-units-in-town >= 10 and town-under-attack
+    escrow 0 food with maximum 1000
+    escrow 0 gold with maximum 1000
   #else if military-population < 20
-    escrow 10 food with maximum 1500
+    escrow 10 food with maximum 1000
     escrow 10 gold with maximum 1000
   #else if military-population < 30
-    escrow 20 food with maximum 1500
+    escrow 20 food with maximum 1000
     escrow 20 gold with maximum 1000
   #else
-    escrow 40 food with maximum 1500
+    escrow 40 food with maximum 1000
     escrow 40 gold with maximum 1000
   #end if
   
@@ -141,19 +157,19 @@ load "templates/fast_castle.aoe2ai"
   #then
     sn-camp-max-distance += 8
   #end when
-  #if wood-amount >= 200
+  #if up-compare-goal non-escrowed-wood-amount c:>= 100
     build farms
+    build mills
   #end if
   build houses with 20 headroom
-  build houses with 20 headroom
-  build 1 barracks
+  build 2 barracks
   build 1 stable
   build 1 blacksmith
   build 1 monastery
   train 1 monk
-  #if building-type-count-total krepost < 3 or building-type-count-total castle < 1
+  #if (building-type-count-total krepost < 3 or building-type-count-total castle < 1) and up-compare-goal non-escrowed-stone-amount c:< 650 and up-compare-goal non-escrowed-gold-amount >= 1000
     build 1 market
-    buy stone when gold > 500
+    buy stone
   #end if
 
   build 1 krepost
@@ -182,6 +198,7 @@ load "templates/fast_castle.aoe2ai"
   
   research lumber camp upgrades with escrow
   research mill upgrades with escrow
+  research gold mining camp upgrades with escrow
   research ri-wheel-barrow with escrow
   research ri-bloodlines with escrow
   research ri-husbandry with escrow
@@ -204,51 +221,45 @@ load "templates/fast_castle.aoe2ai"
   research ri-capped-ram with escrow
   research ri-siege-ram with escrow
   research ri-siege-engineers with escrow
-  research ri-heavy-scorpion with escrow
   research ri-light-cavalry with escrow
   research ri-hussar with escrow
+  research ri-pikeman with escrow
+  research ri-halberdier with escrow
   
-  #if research-completed my-unique-unit-upgrade and research-completed ri-siege-ram and research-completed ri-heavy-scorpion and research-completed ri-hussar
-    research ri-conscription with escrow
+  #if current-age >= imperial-age
+    research ri-conscription
     build 6 siege-workshop
+    build 3 barracks
+    build 3 stable
+    build 12 barracks
     build 12 stable
   #end if
 
-  goal non-escrowed-food-amount = 0
-  goal escrowed-food = 0
-  @up-get-fact escrow-amount food escrowed-food
-  @up-get-fact food-amount 0 non-escrowed-food-amount
-  @up-modify-goal non-escrowed-food-amount g:- escrowed-food
-
-  goal non-escrowed-gold-amount = 0
-  goal escrowed-gold = 0
-  @up-get-fact escrow-amount gold escrowed-gold
-  @up-get-fact gold-amount 0 non-escrowed-gold-amount
-  @up-modify-goal non-escrowed-gold-amount g:- escrowed-gold
-
   #if up-compare-goal non-escrowed-gold-amount c:>= 70 and (building-type-count krepost >= 1 or building-type-count castle >= 1)
     #if town-under-attack and up-enemy-units-in-town > 0
-      train konnik-line
-      train krepost-konnik-line
-      train militiaman-line
-    #else
-      train 1 trebuchet
       #if building-type-count krepost == 0
-        train balanced 15 konnik-line 4 scorpion-line 1 battering-ram-line
+        train balanced 15 konnik-line 4 spearman-line
       #else
-        train balanced 15 krepost-konnik-line 4 scorpion-line 1 battering-ram-line
+        train balanced 15 krepost-konnik-line 4 spearman-line
+      #end if
+    #else
+      train 3 trebuchet
+      #if building-type-count krepost == 0
+        train balanced 15 konnik-line 4 spearman-line 1 battering-ram-line 1 trebuchet
+      #else
+        train balanced 15 krepost-konnik-line 4 spearman-line 1 battering-ram-line 1 trebuchet
       #end if
     #end if
   #else
-    train scout-cavalry-line
+    train balanced 1 scout-cavalry-line 1 spearman-line
   #end if
 
   train mercenary-kipchak
   
   #if current-age == imperial-age
-    train 120 villager with 40 trade
+    train 120 villager with 30 trade
   #else
-    train 120 villager
+    train 120 villager with escrow
   #end if
   
   goal my-military-population = 0
