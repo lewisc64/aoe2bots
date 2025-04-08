@@ -237,6 +237,7 @@
     (set-strategic-number sn-cap-civilian-explorers 0)
     (set-strategic-number sn-total-number-explorers 1)
     (set-strategic-number sn-number-explore-groups 1)
+    (set-strategic-number sn-number-boat-explore-groups 1)
     (set-strategic-number sn-initial-exploration-required 0)
     (disable-self)
 )
@@ -2566,35 +2567,41 @@
     (set-goal resign 0)
     (set-goal build-walls 0)
     (set-goal help-allies 1)
+    (set-strategic-number sn-enable-new-building-system 1)
+    (set-strategic-number sn-percent-building-cancellation 20)
+    (set-strategic-number sn-cap-civilian-builders 200)
     (disable-self)
 )
 (defrule
     (true)
 =>
-    (set-strategic-number sn-enable-new-building-system 1)
-    (set-strategic-number sn-percent-building-cancellation 20)
-    (set-strategic-number sn-cap-civilian-builders 200)
     (set-difficulty-parameter ability-to-maintain-distance 0)
     (set-difficulty-parameter ability-to-dodge-missiles 100)
     (set-strategic-number sn-percent-attack-soldiers 100)
     (set-strategic-number sn-percent-attack-boats 100)
     (set-strategic-number sn-livestock-to-town-center 1)
-    (set-strategic-number sn-enable-patrol-attack 1)
-    (set-strategic-number sn-attack-intelligence 0)
-    (set-strategic-number sn-local-targeting-mode 1)
-    (set-strategic-number sn-percent-enemy-sighted-response 100)
     (set-strategic-number sn-task-ungrouped-soldiers 0)
     (set-strategic-number sn-gather-defense-units 1)
     (set-strategic-number sn-defer-dropsite-update 1)
     (set-strategic-number sn-do-not-scale-for-difficulty-level 1)
     (set-strategic-number sn-dropsite-separation-distance 8)
-    (set-strategic-number sn-wall-targeting-mode 1)
-    (set-strategic-number sn-minimum-water-body-size-for-dock 999)
+    (set-strategic-number sn-minimum-water-body-size-for-dock 1000)
     (set-strategic-number sn-consecutive-idle-unit-limit 1)
-    (set-strategic-number sn-enable-offensive-priority 1)
     (set-strategic-number sn-zero-priority-distance 255)
     (set-strategic-number sn-scale-minimum-attack-group-size 0)
     (set-strategic-number sn-garrison-rams 0)
+    (set-strategic-number sn-disable-villager-garrison 2)
+    (set-strategic-number sn-disable-trade-evasion 1)
+    (set-strategic-number sn-ignore-tower-elevation 1)
+    (set-strategic-number sn-percent-enemy-sighted-response 100)
+    (set-strategic-number sn-attack-intelligence 1)
+    (set-strategic-number sn-wall-targeting-mode 1)
+    (set-strategic-number sn-local-targeting-mode 1)
+    (set-strategic-number sn-enable-patrol-attack 1)
+    (set-strategic-number sn-ttkfactor-scalar 300)
+    (set-strategic-number sn-disable-tower-priority 1)
+    (set-strategic-number sn-enable-offensive-priority 1)
+    (up-reset-target-priorities priority-offense 1)
     (disable-self)
 )
 (defrule
@@ -2614,6 +2621,7 @@
     (set-strategic-number sn-total-number-explorers 1)
     (set-strategic-number sn-number-explore-groups 1)
     (set-strategic-number sn-initial-exploration-required 0)
+    (set-strategic-number sn-wild-animal-exploration 1)
     (disable-self)
 )
 (defrule
@@ -3017,8 +3025,8 @@
     (can-research-with-escrow feudal-age)
     (goal age-up 1)
 =>
-    (release-escrow food)
-    (research feudal-age)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: feudal-age)
     (set-goal 49 1)
 )
 (defrule
@@ -3042,9 +3050,8 @@
     (can-research-with-escrow castle-age)
     (goal age-up 1)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research castle-age)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: castle-age)
     (set-goal 50 1)
 )
 (defrule
@@ -3068,9 +3075,8 @@
     (can-research-with-escrow imperial-age)
     (goal age-up 1)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research imperial-age)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: imperial-age)
     (set-goal 51 1)
 )
 (defrule
@@ -3140,8 +3146,8 @@
       )
     )
 =>
-    (release-escrow gold)
-    (research ri-loom)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-loom)
 )
 (defrule
     (can-research ri-wheel-barrow)
@@ -3160,27 +3166,24 @@
     (goal team-game 1)
     (unit-type-count-total trade-cart >= 1)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-caravan)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-caravan)
 )
 (defrule
     (can-research-with-escrow ri-coinage)
     (goal team-game 1)
     (unit-type-count-total trade-cart >= 1)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-coinage)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-coinage)
 )
 (defrule
     (can-research-with-escrow ri-banking)
     (goal team-game 1)
     (unit-type-count-total trade-cart >= 1)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-banking)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-banking)
 )
 (defrule
     (can-research ri-cartography)
@@ -3268,9 +3271,8 @@
 (defrule
     (can-research-with-escrow ri-chemistry)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-chemistry)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-chemistry)
 )
 (defrule
     (can-research ri-fortified-wall)
@@ -3301,9 +3303,8 @@
 (defrule
     (can-research-with-escrow ri-conscription)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-conscription)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-conscription)
 )
 (defrule
     (can-research ri-guard-tower)
@@ -3516,8 +3517,8 @@
     (building-type-count-total mill == 0)
     (game-time >= 360)
 =>
-    (release-escrow wood)
-    (build mill)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: mill)
 )
 (defrule
     (can-build wonder)
@@ -3533,9 +3534,8 @@
     (up-pending-objects c: town-center < 5)
     (building-type-count-total town-center < 1)
 =>
-    (release-escrow wood)
-    (release-escrow stone)
-    (build town-center)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: town-center)
 )
 (defrule
     (current-age >= castle-age)
@@ -3553,9 +3553,8 @@
     (goal boom 1)
     (goal should-make-villagers 1)
 =>
-    (release-escrow wood)
-    (release-escrow stone)
-    (build town-center)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: town-center)
 )
 (defrule
     (can-build town-center)
@@ -3585,8 +3584,8 @@
       (death-match-game)
     )
 =>
-    (release-escrow wood)
-    (build market)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: market)
 )
 (defrule
     (can-build university)
@@ -3644,9 +3643,8 @@
     (town-under-attack)
     (current-age <= feudal-age)
 =>
-    (release-escrow wood)
-    (release-escrow stone)
-    (build watch-tower-line)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: watch-tower-line)
 )
 (defrule
     (can-build farm)
@@ -3718,8 +3716,8 @@
     (up-research-status c: feudal-age >= research-pending)
     (up-research-status c: castle-age < research-pending)
 =>
-    (release-escrow wood)
-    (build mining-camp)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: mining-camp)
 )
 (defrule
     (wood-amount >= 400)
@@ -5689,32 +5687,28 @@
     (can-research-with-escrow ri-heresy)
     (players-unit-type-count any-enemy monk >= 10)
 =>
-    (release-escrow gold)
-    (research ri-heresy)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-heresy)
 )
 (defrule
     (can-research-with-escrow ri-devotion)
     (players-unit-type-count any-enemy monk >= 10)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-devotion)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-devotion)
 )
 (defrule
     (can-research-with-escrow ri-faith)
     (players-unit-type-count any-enemy monk >= 10)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-faith)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-faith)
 )
 (defrule
     (can-research-with-escrow my-unique-research)
 =>
-    (release-escrow wood)
-    (release-escrow food)
-    (release-escrow gold)
-    (research my-unique-research)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: my-unique-research)
 )
 (defrule
     (nor
@@ -5731,9 +5725,8 @@
       (unit-type-count militiaman-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-man-at-arms)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-man-at-arms)
 )
 (defrule
     (can-research-with-escrow ri-long-swordsman)
@@ -5742,9 +5735,8 @@
       (unit-type-count militiaman-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-long-swordsman)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-long-swordsman)
 )
 (defrule
     (can-research-with-escrow ri-two-handed-swordsman)
@@ -5753,9 +5745,8 @@
       (unit-type-count militiaman-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-two-handed-swordsman)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-two-handed-swordsman)
 )
 (defrule
     (can-research-with-escrow ri-champion)
@@ -5764,9 +5755,8 @@
       (unit-type-count militiaman-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-champion)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-champion)
 )
 (defrule
     (can-research-with-escrow ri-pikeman)
@@ -5775,9 +5765,8 @@
       (unit-type-count spearman-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-pikeman)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-pikeman)
 )
 (defrule
     (can-research-with-escrow ri-halberdier)
@@ -5786,9 +5775,8 @@
       (unit-type-count spearman-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-halberdier)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-halberdier)
 )
 (defrule
     (can-research-with-escrow ri-eagle-warrior)
@@ -5797,9 +5785,8 @@
       (unit-type-count eagle-warrior-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-eagle-warrior)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-eagle-warrior)
 )
 (defrule
     (can-research-with-escrow ri-elite-eagle-warrior)
@@ -5808,70 +5795,64 @@
       (unit-type-count eagle-warrior-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-elite-eagle-warrior)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-elite-eagle-warrior)
 )
 (defrule
     (can-research-with-escrow ri-forging)
 =>
-    (release-escrow food)
-    (research ri-forging)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-forging)
 )
 (defrule
     (can-research-with-escrow ri-scale-mail)
 =>
-    (release-escrow food)
-    (research ri-scale-mail)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-scale-mail)
 )
 (defrule
     (can-research-with-escrow ri-iron-casting)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-iron-casting)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-iron-casting)
 )
 (defrule
     (can-research-with-escrow ri-chain-mail)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-chain-mail)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-chain-mail)
 )
 (defrule
     (can-research-with-escrow ri-blast-furnace)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-blast-furnace)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-blast-furnace)
 )
 (defrule
     (can-research-with-escrow ri-plate-mail)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-plate-mail)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-plate-mail)
 )
 (defrule
     (can-research-with-escrow ri-squires)
 =>
-    (release-escrow food)
-    (research ri-squires)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-squires)
 )
 (defrule
     (can-research-with-escrow ri-tracking)
     (unit-type-count-total infantry-unit-class > max-basic-units)
 =>
-    (release-escrow food)
-    (research ri-tracking)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-tracking)
 )
 (defrule
     (can-research-with-escrow ri-arson)
     (unit-type-count-total infantry-unit-class > max-basic-units)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-arson)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-arson)
 )
 (defrule
     (can-build-with-escrow barracks)
@@ -5883,8 +5864,8 @@
     )
     (goal producing-infantry 1)
 =>
-    (release-escrow wood)
-    (build barracks)
+    (set-goal 9 with-escrow)
+    (up-build place-normal 9 c: barracks)
 )
 (defrule
     (can-build-with-escrow barracks)
@@ -5899,8 +5880,8 @@
     (current-age == castle-age)
     (goal producing-infantry 1)
 =>
-    (release-escrow wood)
-    (build barracks)
+    (set-goal 9 with-escrow)
+    (up-build place-normal 9 c: barracks)
 )
 (defrule
     (can-build-with-escrow barracks)
@@ -5919,8 +5900,8 @@
     )
     (goal producing-infantry 1)
 =>
-    (release-escrow wood)
-    (build barracks)
+    (set-goal 9 with-escrow)
+    (up-build place-normal 9 c: barracks)
 )
 (defrule
     (can-build-with-escrow barracks)
@@ -5943,8 +5924,8 @@
     )
     (goal producing-infantry 1)
 =>
-    (release-escrow wood)
-    (build barracks)
+    (set-goal 9 with-escrow)
+    (up-build place-normal 9 c: barracks)
 )
 (defrule
     (can-build-with-escrow barracks)
@@ -5969,8 +5950,8 @@
     )
     (goal producing-infantry 1)
 =>
-    (release-escrow wood)
-    (build barracks)
+    (set-goal 9 with-escrow)
+    (up-build place-normal 9 c: barracks)
 )
 (defrule
     (nor
@@ -5987,9 +5968,8 @@
       (unit-type-count archer-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-crossbow)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-crossbow)
 )
 (defrule
     (can-research-with-escrow ri-arbalest)
@@ -5998,9 +5978,8 @@
       (unit-type-count archer-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-arbalest)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-arbalest)
 )
 (defrule
     (can-research-with-escrow ri-elite-skirmisher)
@@ -6009,9 +5988,8 @@
       (unit-type-count skirmisher-line >= max-basic-units)
     )
 =>
-    (release-escrow wood)
-    (release-escrow gold)
-    (research ri-elite-skirmisher)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-elite-skirmisher)
 )
 (defrule
     (can-research-with-escrow ri-imperial-skirmisher)
@@ -6020,9 +5998,8 @@
       (unit-type-count skirmisher-line >= max-basic-units)
     )
 =>
-    (release-escrow wood)
-    (release-escrow gold)
-    (research ri-imperial-skirmisher)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-imperial-skirmisher)
 )
 (defrule
     (can-research-with-escrow ri-heavy-cavalry-archer)
@@ -6031,9 +6008,8 @@
       (unit-type-count cavalry-archer-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-heavy-cavalry-archer)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-heavy-cavalry-archer)
 )
 (defrule
     (can-research-with-escrow ri-parthian-tactics)
@@ -6042,9 +6018,8 @@
       (unit-type-count cavalry-archer-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-parthian-tactics)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-parthian-tactics)
 )
 (defrule
     (can-build-with-escrow stable)
@@ -6055,8 +6030,8 @@
       (unit-type-count cavalry-archer-line >= max-basic-units)
     )
 =>
-    (release-escrow wood)
-    (build stable)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: stable)
 )
 (defrule
     (can-research-with-escrow ri-bloodlines)
@@ -6065,9 +6040,8 @@
       (unit-type-count cavalry-archer-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-bloodlines)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-bloodlines)
 )
 (defrule
     (can-research-with-escrow ri-husbandry)
@@ -6076,8 +6050,8 @@
       (unit-type-count cavalry-archer-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (research ri-husbandry)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-husbandry)
 )
 (defrule
     (true)
@@ -6089,17 +6063,16 @@
     (can-research-with-escrow ri-padded-archer-armor)
     (goal 88 1)
 =>
-    (release-escrow food)
-    (research ri-padded-archer-armor)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-padded-archer-armor)
     (set-goal 88 0)
 )
 (defrule
     (can-research-with-escrow ri-fletching)
     (goal 88 0)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-fletching)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-fletching)
     (set-goal 88 1)
 )
 (defrule
@@ -6112,18 +6085,16 @@
     (can-research-with-escrow ri-leather-archer-armor)
     (goal 89 1)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-leather-archer-armor)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-leather-archer-armor)
     (set-goal 89 0)
 )
 (defrule
     (can-research-with-escrow ri-bodkin-arrow)
     (goal 89 0)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-bodkin-arrow)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-bodkin-arrow)
     (set-goal 89 1)
 )
 (defrule
@@ -6136,35 +6107,31 @@
     (can-research-with-escrow ri-ring-archer-armor)
     (goal 90 1)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-ring-archer-armor)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-ring-archer-armor)
     (set-goal 90 0)
 )
 (defrule
     (can-research-with-escrow ri-bracer)
     (goal 90 0)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-bracer)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-bracer)
     (set-goal 90 1)
 )
 (defrule
     (can-research-with-escrow ri-ballistics)
     (unit-type-count-total ranged-unit-class > max-basic-units)
 =>
-    (release-escrow wood)
-    (release-escrow gold)
-    (research ri-ballistics)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-ballistics)
 )
 (defrule
     (can-research-with-escrow ri-thumb-ring)
     (unit-type-count-total ranged-unit-class > max-basic-units)
 =>
-    (release-escrow food)
-    (release-escrow wood)
-    (research ri-thumb-ring)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-thumb-ring)
 )
 (defrule
     (can-build-with-escrow archery-range)
@@ -6176,8 +6143,8 @@
     )
     (goal producing-ranged 1)
 =>
-    (release-escrow wood)
-    (build archery-range)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: archery-range)
 )
 (defrule
     (can-build-with-escrow archery-range)
@@ -6192,8 +6159,8 @@
     (current-age == castle-age)
     (goal producing-ranged 1)
 =>
-    (release-escrow wood)
-    (build archery-range)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: archery-range)
 )
 (defrule
     (can-build-with-escrow archery-range)
@@ -6212,8 +6179,8 @@
     )
     (goal producing-ranged 1)
 =>
-    (release-escrow wood)
-    (build archery-range)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: archery-range)
 )
 (defrule
     (can-build-with-escrow archery-range)
@@ -6236,8 +6203,8 @@
     )
     (goal producing-ranged 1)
 =>
-    (release-escrow wood)
-    (build archery-range)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: archery-range)
 )
 (defrule
     (can-build-with-escrow archery-range)
@@ -6262,8 +6229,8 @@
     )
     (goal producing-ranged 1)
 =>
-    (release-escrow wood)
-    (build archery-range)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: archery-range)
 )
 (defrule
     (nor
@@ -6280,9 +6247,8 @@
       (unit-type-count knight-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-cavalier)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-cavalier)
 )
 (defrule
     (can-research-with-escrow ri-paladin)
@@ -6291,9 +6257,8 @@
       (unit-type-count knight-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-paladin)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-paladin)
 )
 (defrule
     (can-research-with-escrow ri-light-cavalry)
@@ -6302,9 +6267,8 @@
       (unit-type-count scout-cavalry-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-light-cavalry)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-light-cavalry)
 )
 (defrule
     (can-research-with-escrow ri-hussar)
@@ -6313,9 +6277,8 @@
       (unit-type-count scout-cavalry-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-hussar)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-hussar)
 )
 (defrule
     (can-research-with-escrow ri-elite-battle-elephant)
@@ -6324,9 +6287,8 @@
       (unit-type-count battle-elephant-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-elite-battle-elephant)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-elite-battle-elephant)
 )
 (defrule
     (can-research-with-escrow ri-heavy-camel)
@@ -6335,9 +6297,8 @@
       (unit-type-count camel-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-heavy-camel)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-heavy-camel)
 )
 (defrule
     (can-research-with-escrow ri-imperial-camel)
@@ -6346,62 +6307,56 @@
       (unit-type-count camel-line >= max-basic-units)
     )
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-imperial-camel)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-imperial-camel)
 )
 (defrule
     (can-research-with-escrow ri-forging)
 =>
-    (release-escrow food)
-    (research ri-forging)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-forging)
 )
 (defrule
     (can-research-with-escrow ri-scale-barding)
 =>
-    (release-escrow food)
-    (research ri-scale-barding)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-scale-barding)
 )
 (defrule
     (can-research-with-escrow ri-iron-casting)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-iron-casting)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-iron-casting)
 )
 (defrule
     (can-research-with-escrow ri-chain-barding)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-chain-barding)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-chain-barding)
 )
 (defrule
     (can-research-with-escrow ri-blast-furnace)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-blast-furnace)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-blast-furnace)
 )
 (defrule
     (can-research-with-escrow ri-plate-barding)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-plate-barding)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-plate-barding)
 )
 (defrule
     (can-research-with-escrow ri-bloodlines)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-bloodlines)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-bloodlines)
 )
 (defrule
     (can-research-with-escrow ri-husbandry)
 =>
-    (release-escrow food)
-    (research ri-husbandry)
+    (set-goal 9 with-escrow)
+    (up-research 9 c: ri-husbandry)
 )
 (defrule
     (can-build-with-escrow stable)
@@ -6413,8 +6368,8 @@
     )
     (goal producing-cavalry 1)
 =>
-    (release-escrow wood)
-    (build stable)
+    (set-goal 9 with-escrow)
+    (up-build place-normal 9 c: stable)
 )
 (defrule
     (can-build-with-escrow stable)
@@ -6429,8 +6384,8 @@
     (current-age == castle-age)
     (goal producing-cavalry 1)
 =>
-    (release-escrow wood)
-    (build stable)
+    (set-goal 9 with-escrow)
+    (up-build place-normal 9 c: stable)
 )
 (defrule
     (can-build-with-escrow stable)
@@ -6449,8 +6404,8 @@
     )
     (goal producing-cavalry 1)
 =>
-    (release-escrow wood)
-    (build stable)
+    (set-goal 9 with-escrow)
+    (up-build place-normal 9 c: stable)
 )
 (defrule
     (can-build-with-escrow stable)
@@ -6473,8 +6428,8 @@
     )
     (goal producing-cavalry 1)
 =>
-    (release-escrow wood)
-    (build stable)
+    (set-goal 9 with-escrow)
+    (up-build place-normal 9 c: stable)
 )
 (defrule
     (can-build-with-escrow stable)
@@ -6499,8 +6454,8 @@
     )
     (goal producing-cavalry 1)
 =>
-    (release-escrow wood)
-    (build stable)
+    (set-goal 9 with-escrow)
+    (up-build place-normal 9 c: stable)
 )
 (defrule
     (not
@@ -6513,46 +6468,42 @@
     (can-research-with-escrow ri-capped-ram)
     (goal produce-rams 1)
 =>
-    (release-escrow food)
-    (research ri-capped-ram)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-capped-ram)
 )
 (defrule
     (can-research-with-escrow ri-siege-ram)
     (goal produce-rams 1)
 =>
-    (release-escrow food)
-    (research ri-siege-ram)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-siege-ram)
 )
 (defrule
     (can-research-with-escrow ri-onager)
     (goal produce-mangonels 1)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-onager)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-onager)
 )
 (defrule
     (can-research-with-escrow ri-siege-onager)
     (goal produce-mangonels 1)
 =>
-    (release-escrow food)
-    (release-escrow gold)
-    (research ri-siege-onager)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-siege-onager)
 )
 (defrule
     (can-research-with-escrow ri-heavy-scorpion)
     (goal produce-scorpions 1)
 =>
-    (release-escrow food)
-    (release-escrow wood)
-    (research ri-heavy-scorpion)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-heavy-scorpion)
 )
 (defrule
     (can-research-with-escrow ri-siege-engineers)
 =>
-    (release-escrow wood)
-    (release-escrow food)
-    (research ri-siege-engineers)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-siege-engineers)
 )
 (defrule
     (can-build siege-workshop)
@@ -6570,58 +6521,58 @@
       (current-age == imperial-age)
     )
 =>
-    (release-escrow wood)
-    (build siege-workshop)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: siege-workshop)
 )
 (defrule
     (can-research-with-escrow ri-redemption)
     (goal produce-monks 1)
 =>
-    (release-escrow gold)
-    (research ri-redemption)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-redemption)
 )
 (defrule
     (can-research-with-escrow ri-sanctity)
     (goal produce-monks 1)
 =>
-    (release-escrow gold)
-    (research ri-sanctity)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-sanctity)
 )
 (defrule
     (can-research-with-escrow ri-fervor)
     (goal produce-monks 1)
 =>
-    (release-escrow gold)
-    (research ri-fervor)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-fervor)
 )
 (defrule
     (can-research-with-escrow ri-illumination)
     (goal produce-monks 1)
 =>
-    (release-escrow gold)
-    (research ri-illumination)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-illumination)
 )
 (defrule
     (can-research-with-escrow ri-block-printing)
     (goal produce-monks 1)
 =>
-    (release-escrow gold)
-    (research ri-block-printing)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-block-printing)
 )
 (defrule
     (can-research-with-escrow ri-theocracy)
     (goal produce-monks 1)
 =>
-    (release-escrow gold)
-    (research ri-theocracy)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-theocracy)
 )
 (defrule
     (can-research-with-escrow ri-atonement)
     (players-unit-type-count any-enemy monk >= 1)
     (goal produce-monks 1)
 =>
-    (release-escrow gold)
-    (research ri-atonement)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: ri-atonement)
 )
 (defrule
     (can-build monastery)
@@ -6635,10 +6586,8 @@
     (can-research-with-escrow my-unique-unit-upgrade)
     (goal produce-unique-unit 1)
 =>
-    (release-escrow wood)
-    (release-escrow food)
-    (release-escrow gold)
-    (research my-unique-unit-upgrade)
+    (set-goal 1 with-escrow)
+    (up-research 1 c: my-unique-unit-upgrade)
 )
 (defrule
     (not
@@ -6738,9 +6687,8 @@
     (goal produce-trebuchets 1)
     (military-population >= min-army)
 =>
-    (release-escrow wood)
-    (release-escrow gold)
-    (train trebuchet)
+    (set-goal 9 with-escrow)
+    (up-train 9 c: trebuchet)
 )
 (defrule
     (can-train trebuchet)
@@ -6807,9 +6755,8 @@
     (goal produce-rams 1)
     (military-population >= min-army)
 =>
-    (release-escrow wood)
-    (release-escrow gold)
-    (train battering-ram-line)
+    (set-goal 9 with-escrow)
+    (up-train 9 c: battering-ram-line)
 )
 (defrule
     (can-train battering-ram-line)
@@ -6987,8 +6934,8 @@
     (up-pending-objects c: barracks < 5)
     (building-type-count-total barracks < 1)
 =>
-    (release-escrow wood)
-    (build barracks)
+    (set-goal 9 with-escrow)
+    (up-build place-normal 9 c: barracks)
 )
 (defrule
     (can-build-with-escrow blacksmith)
@@ -7002,8 +6949,8 @@
       )
     )
 =>
-    (release-escrow wood)
-    (build blacksmith)
+    (set-goal 9 with-escrow)
+    (up-build place-normal 9 c: blacksmith)
 )
 (defrule
     (or
@@ -7093,8 +7040,8 @@
     (up-pending-objects c: siege-workshop < 5)
     (building-type-count-total siege-workshop < 1)
 =>
-    (release-escrow wood)
-    (build siege-workshop)
+    (set-goal 9 with-escrow)
+    (up-build place-normal 9 c: siege-workshop)
 )
 (defrule
     (true)
@@ -8869,8 +8816,8 @@
     (building-type-count-total mining-camp < 1)
     (up-research-status c: feudal-age >= research-pending)
 =>
-    (release-escrow wood)
-    (build mining-camp)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: mining-camp)
 )
 (defrule
     (or
@@ -8894,8 +8841,8 @@
     (building-type-count-total market < 1)
     (current-age == feudal-age)
 =>
-    (release-escrow wood)
-    (build market)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: market)
 )
 (defrule
     (can-build-with-escrow blacksmith)
@@ -8903,8 +8850,8 @@
     (building-type-count-total blacksmith < 1)
     (current-age == feudal-age)
 =>
-    (release-escrow wood)
-    (build blacksmith)
+    (set-goal 1 with-escrow)
+    (up-build place-normal 1 c: blacksmith)
 )
 (defrule
     (nand

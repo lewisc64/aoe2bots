@@ -1,5 +1,5 @@
 #if current-age >= feudal-age or up-pending-objects c: villager == 0 and food-amount < 50 and game-time >= 2
-  research ri-loom with gold escrow
+  research ri-loom with escrow
 #end if
 #if building-type-count-total town-center >= 2
   research ri-wheel-barrow
@@ -9,9 +9,9 @@
 #end if
 
 #if goal team-game 1 and unit-type-count-total trade-cart >= 1
-  research ri-caravan with food and gold escrow
-  research ri-coinage with food and gold escrow
-  research ri-banking with food and gold escrow
+  research ri-caravan with escrow
+  research ri-coinage with escrow
+  research ri-banking with escrow
 #end if
 
 research ri-cartography
@@ -29,7 +29,7 @@ research ri-cartography
 #if building-type-count-total castle >= 1
   research ri-murder-holes
 #end if
-research ri-chemistry with food and gold escrow
+research ri-chemistry with escrow
 #if building-type-count-total stone-wall-line > 0
   research ri-fortified-wall
 #end if
@@ -38,7 +38,7 @@ research ri-architecture
 research ri-bombard-tower
 
 research ri-hoardings
-research ri-conscription with food and gold escrow
+research ri-conscription with escrow
 
 #if building-type-count-total watch-tower-line >= 2
   research ri-guard-tower

@@ -45,7 +45,7 @@ manage scouting
 build 1 town-center
 
 #if current-age >= feudal-age
-  research ri-loom with gold escrow
+  research ri-loom with escrow
 #end if
 
 #when

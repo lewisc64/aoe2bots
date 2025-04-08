@@ -148,13 +148,13 @@ load "templates/diplomacy_engine.aoe2ai"
     trade excess wood and food and gold and stone at 2000
   #end stages
   
-  research imperial-age with food and gold escrow
-  research mill upgrades with wood and food escrow
-  research lumber camp upgrades with wood and food escrow
-  research ri-tigui with wood and food escrow
+  research imperial-age with escrow
+  research mill upgrades with escrow
+  research lumber camp upgrades with escrow
+  research ri-tigui with escrow
   
-  research blacksmith infantry upgrades with food and gold escrow
-  research my-unique-unit-upgrade with food and gold escrow
+  research blacksmith infantry upgrades with escrow
+  research my-unique-unit-upgrade with escrow
   
   #if goal purge 1
     insert purge

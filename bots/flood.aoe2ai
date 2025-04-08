@@ -22,34 +22,34 @@ do basic targeting
   escrow 10 gold
 #end if
 
-research feudal-age with food escrow
-research castle-age with food and gold escrow
+research feudal-age with escrow
+research castle-age with escrow
 
-research mill upgrades with food escrow
-research lumber camp upgrades with food escrow
-research ri-wheel-barrow with wood and food escrow
-research ri-hand-cart with wood and food escrow
+research mill upgrades with escrow
+research lumber camp upgrades with escrow
+research ri-wheel-barrow with escrow
+research ri-hand-cart with escrow
 
-research ri-man-at-arms with food and gold escrow
+research ri-man-at-arms with escrow
 
-research blacksmith infantry upgrades with food and gold escrow
+research blacksmith infantry upgrades with escrow
 
 #when
 
-  research ri-arson with food and gold escrow
+  research ri-arson with escrow
   
 #then always
 
-  research ri-pikeman with food and gold escrow
-  research ri-halberdier with food and gold escrow
+  research ri-pikeman with escrow
+  research ri-halberdier with escrow
   
-  research ri-long-swordsman with food and gold escrow
-  research ri-two-handed-swordsman with food and gold escrow
-  research ri-champion with food and gold escrow
+  research ri-long-swordsman with escrow
+  research ri-two-handed-swordsman with escrow
+  research ri-champion with escrow
   
-  research ri-tracking with food and gold escrow
+  research ri-tracking with escrow
   
-  research imperial-age with food and gold escrow
+  research imperial-age with escrow
   
 #end when
 
@@ -70,7 +70,7 @@ build 1 monastery
 #else
   train 120 villager
 #end if
-research ri-loom with gold escrow
+research ri-loom with escrow
 
 #if unit-type-count-total villager >= 90 or up-pending-objects c: villager >= 1
   train militiaman-line => train spearman-line

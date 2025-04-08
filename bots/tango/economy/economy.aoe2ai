@@ -53,27 +53,27 @@ goal should-make-villagers = 0
 
 build mills
 #if building-type-count-total mill == 0 and game-time >= 360
-  build 1 mill with wood escrow
+  build 1 mill with escrow
 #end if
 
 #if not death-match-game
   build wonder
 #end if
 
-build 1 town-center with wood and stone escrow
+build 1 town-center with escrow
 #if goal boom 1 and goal should-make-villagers 1
   #if current-age >= castle-age and building-type-count-total town-center < 3
     escrow 100 wood
     escrow 100 stone
   #end if
-  build 3 town-center with wood and stone escrow
+  build 3 town-center with escrow
 #end if
 build max-town-centers town-center
 
 #if civilian-population >= 20 or death-match-game
   build 1 blacksmith
   #if building-type-count-total blacksmith > 0
-    build 1 market with wood escrow
+    build 1 market with escrow
   #end if
 #end if
 
@@ -89,7 +89,7 @@ build 5 bombard-tower
 
 #if military-population < 5 and town-under-attack and current-age <= feudal-age
   assign 10 builders to watch-tower-line
-  build 3 watch-tower-line with wood and stone escrow
+  build 3 watch-tower-line with escrow
 #end if
 
 #if up-research-status c: feudal-age < research-pending
@@ -114,7 +114,7 @@ build 5 bombard-tower
   build 2 lumber-camp
   
   #if building-type-count-total barracks >= 1
-    build 1 mining-camp with wood escrow
+    build 1 mining-camp with escrow
   #end if
   
   // market abuse for castle

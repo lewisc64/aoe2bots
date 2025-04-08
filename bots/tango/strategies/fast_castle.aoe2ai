@@ -30,7 +30,7 @@
 
 #if up-research-status c: feudal-age >= research-pending
 
-  build 1 mining-camp with wood escrow
+  build 1 mining-camp with escrow
   
 #end if
 
@@ -44,7 +44,7 @@
     goal research-economy-upgrades = 0
   #end do
   
-  build 1 market with wood escrow
-  build 1 blacksmith with wood escrow
+  build 1 market with escrow
+  build 1 blacksmith with escrow
   
 #end if

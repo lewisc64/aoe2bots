@@ -1,21 +1,21 @@
 #if goal produce-rams 1
-  research ri-capped-ram with food escrow
-  research ri-siege-ram with food escrow
+  research ri-capped-ram with escrow
+  research ri-siege-ram with escrow
 #end if
 
 #if goal produce-mangonels 1
-  research ri-onager with food and gold escrow
-  research ri-siege-onager with food and gold escrow
+  research ri-onager with escrow
+  research ri-siege-onager with escrow
 #end if
 
 #if goal produce-scorpions 1
-  research ri-heavy-scorpion with food and wood escrow
+  research ri-heavy-scorpion with escrow
 #end if
 
-research ri-siege-engineers with wood and food escrow
+research ri-siege-engineers with escrow
 
 #if current-age == imperial-age
   build 2 siege-workshop
 #else
-  build 1 siege-workshop with wood escrow
+  build 1 siege-workshop with escrow
 #end if

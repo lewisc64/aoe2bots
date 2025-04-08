@@ -22,7 +22,7 @@
           escrow 100 gold
         #end if
       #end if
-      train trebuchet with wood and gold escrow
+      train trebuchet with escrow
     #end if
     #if unit-type-count-total trebuchet-set < max-trebuchets and goal make-wood-unit 1
       train trebuchet
@@ -40,7 +40,7 @@
           escrow 100 gold
         #end if
       #end if
-      train battering-ram-line with wood and gold escrow
+      train battering-ram-line with escrow
     #end if
     #if goal make-wood-unit 1
       train max-rams battering-ram-line

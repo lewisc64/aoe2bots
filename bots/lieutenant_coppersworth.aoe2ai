@@ -44,35 +44,35 @@ load "templates/fast_castle.aoe2ai"
   escrow 10 gold
   
   #when
-    research ri-bloodlines with food and gold escrow
+    research ri-bloodlines with escrow
   #then
     chat to all "I wish health upon both our houses."
     chat to all "I am not sure you feel the same way. Therefore there is blood."
     chat to all "War is a problematic but necessary endeavor."
   #end when
-  research ri-husbandry with food escrow
-  research ri-heavy-camel with food and gold escrow
-  research blacksmith cavalry upgrades with food and gold escrow
+  research ri-husbandry with escrow
+  research ri-heavy-camel with escrow
+  research blacksmith cavalry upgrades with escrow
 
   #when
-    research imperial-age with food and gold escrow
+    research imperial-age with escrow
   #then
     chat to all "[puffs pipe]"
     chat to all "I must say you aren't putting up much of a fight."
   #end when
   
   #when
-    research ri-theocracy with gold escrow
+    research ri-theocracy with escrow
   #then
     chat to all "When I was hired for this role, I was quite excited."
     chat to all "That ceased as soon as I was awoken to reality."
     chat to all "It's never quite as you expect, is it?"
   #end when
-  research ri-sanctity with gold escrow
+  research ri-sanctity with escrow
   
-  research lumber camp upgrades with food and gold escrow
-  research mill upgrades with food and gold escrow
-  research gold mining camp upgrades with food and gold escrow
+  research lumber camp upgrades with escrow
+  research mill upgrades with escrow
+  research gold mining camp upgrades with escrow
   
   #if current-age == imperial-age
     train 120 villager with 30 trade using escrow for caravan
@@ -82,7 +82,7 @@ load "templates/fast_castle.aoe2ai"
 
   train 10 monk
   train 60 camel-line
-  train 1 battering-ram-line with wood and gold escrow
+  train 1 battering-ram-line with escrow
   train 10 battering-ram-line
   
   #if military-population > 30
@@ -100,13 +100,13 @@ load "templates/fast_castle.aoe2ai"
     buy food when gold > 1000
   #end if
   
-  build 1 barracks with wood escrow
-  build 3 stable with wood escrow
+  build 1 barracks with escrow
+  build 3 stable with escrow
   #if current-age == imperial-age
-    build 4 stable with wood escrow
+    build 4 stable with escrow
   #end if
-  build 1 monastery with wood escrow
-  build 1 siege-workshop with wood escrow
+  build 1 monastery with escrow
+  build 1 siege-workshop with escrow
 
   build lumber camps
   #when
@@ -123,13 +123,13 @@ load "templates/fast_castle.aoe2ai"
   build 1 blacksmith
   #if building-type-count-total town-center < 3
     escrow 100 wood
-    build 3 town-center with wood and stone escrow
+    build 3 town-center with escrow
   #end if
   build houses with 15 headroom
 
   #if building-type-count-total market == 0
     escrow 100 wood
-    build 1 market with wood escrow
+    build 1 market with escrow
   #end if
   
 #end if

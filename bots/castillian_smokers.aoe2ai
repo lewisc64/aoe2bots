@@ -17,7 +17,7 @@ load "templates/fast_castle.aoe2ai"
   
   train 1 monk
   
-  research imperial-age with food and gold escrow
+  research imperial-age with escrow
   
   #do once
     distribute villagers 35 40 10 15
@@ -25,13 +25,13 @@ load "templates/fast_castle.aoe2ai"
   
   manage scouting
   
-  research ri-padded-archer-armor with food and gold escrow
-  research ri-leather-archer-armor with food and gold escrow
-  research ri-ring-archer-armor with food and gold escrow
+  research ri-padded-archer-armor with escrow
+  research ri-leather-archer-armor with escrow
+  research ri-ring-archer-armor with escrow
   
-  research lumber camp upgrades with food and gold escrow
-  research mining camp upgrades with food and gold escrow
-  research mill upgrades with food and gold escrow
+  research lumber camp upgrades with escrow
+  research mining camp upgrades with escrow
+  research mill upgrades with escrow
   
   build lumber camps
   #when
@@ -46,13 +46,13 @@ load "templates/fast_castle.aoe2ai"
   build 1 barracks
   build 1 stable
   
-  research ri-bloodlines with food and gold escrow
-  research ri-husbandry with food escrow
+  research ri-bloodlines with escrow
+  research ri-husbandry with escrow
   
   #if building-type-count-total town-center < 3
     escrow 100 wood
     escrow 100 stone
-    build 3 town-center with wood and stone escrow
+    build 3 town-center with escrow
   #else
     escrow 0 wood
     escrow 0 stone
@@ -117,10 +117,10 @@ load "templates/fast_castle.aoe2ai"
   
   auto balance wood and food and gold
   
-  research ri-chemistry with food and gold escrow
+  research ri-chemistry with escrow
   research ri-conscription
   
-  research my-unique-unit-upgrade with food and gold escrow
+  research my-unique-unit-upgrade with escrow
   research my-unique-research
   
   build 3 siege-workshop

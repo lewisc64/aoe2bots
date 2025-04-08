@@ -1,44 +1,44 @@
 #if goal produce-knights 1 or unit-type-count knight-line >= max-basic-units
-  research ri-cavalier with food and gold escrow
-  research ri-paladin with food and gold escrow
+  research ri-cavalier with escrow
+  research ri-paladin with escrow
 #end if
 
 #if goal produce-scouts 1 or unit-type-count scout-cavalry-line >= max-basic-units
-  research ri-light-cavalry with food and gold escrow
-  research ri-hussar with food and gold escrow
+  research ri-light-cavalry with escrow
+  research ri-hussar with escrow
 #end if
 
 #if goal produce-battle-elephants 1 or unit-type-count battle-elephant-line >= max-basic-units
-  research ri-elite-battle-elephant with food and gold escrow
+  research ri-elite-battle-elephant with escrow
 #end if
 
 #if goal produce-camels 1 or unit-type-count camel-line >= max-basic-units
-  research ri-heavy-camel with food and gold escrow
-  research ri-imperial-camel with food and gold escrow
+  research ri-heavy-camel with escrow
+  research ri-imperial-camel with escrow
 #end if
 
-research ri-forging with food escrow
-research ri-scale-barding with food escrow
-research ri-iron-casting with food and gold escrow
-research ri-chain-barding with food and gold escrow
-research ri-blast-furnace with food and gold escrow
-research ri-plate-barding with food and gold escrow
+research ri-forging with escrow
+research ri-scale-barding with escrow
+research ri-iron-casting with escrow
+research ri-chain-barding with escrow
+research ri-blast-furnace with escrow
+research ri-plate-barding with escrow
 
-research ri-bloodlines with food and gold escrow
-research ri-husbandry with food escrow
+research ri-bloodlines with escrow
+research ri-husbandry with escrow
 
 #if goal producing-cavalry 1
   #if current-age == imperial-age or death-match-game
-    build max-imperial-military-buildings stable with wood escrow
+    build max-imperial-military-buildings stable with escrow
   #else if current-age == castle-age
-    build max-castle-military-buildings stable with wood escrow
+    build max-castle-military-buildings stable with escrow
   #else
     #if goal producing-infantry 1 and building-type-count-total barracks >= 2
-      build 1 stable with wood escrow
+      build 1 stable with escrow
     #else if goal producing-ranged 1 and building-type-count-total archery-range >= 2
-      build 1 stable with wood escrow
+      build 1 stable with escrow
     #else
-      build max-feudal-military-buildings stable with wood escrow
+      build max-feudal-military-buildings stable with escrow
     #end if
   #end if
 #end if

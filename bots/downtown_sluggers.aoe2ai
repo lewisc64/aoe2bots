@@ -45,18 +45,18 @@ do basic diplomacy
     sn-camp-max-distance += 8
   #end when
   
-  research mill upgrades with wood and food escrow
-  research lumber camp upgrades with wood and food escrow
-  research stone mining camp upgrades with wood and food escrow
-  research gold mining camp upgrades with wood and food escrow
+  research mill upgrades with escrow
+  research lumber camp upgrades with escrow
+  research stone mining camp upgrades with escrow
+  research gold mining camp upgrades with escrow
   
-  research imperial-age with food and gold escrow
-  research blacksmith infantry upgrades with food and gold escrow
-  research ri-tracking with food and gold escrow
-  research ri-squires with food and gold escrow
-  research ri-arson with food and gold escrow
+  research imperial-age with escrow
+  research blacksmith infantry upgrades with escrow
+  research ri-tracking with escrow
+  research ri-squires with escrow
+  research ri-arson with escrow
   #when
-    research my-unique-unit-upgrade with food and gold escrow
+    research my-unique-unit-upgrade with escrow
   #then
     escrow 0 food
     escrow 0 gold

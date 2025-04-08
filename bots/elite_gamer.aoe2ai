@@ -38,39 +38,39 @@ escrow 0 gold
 #end if
 
 #if current-age >= feudal-age
-  research ri-loom with gold escrow
+  research ri-loom with escrow
 #end if
 
 #when
-  research feudal-age with food escrow
-  research castle-age with food and gold escrow
-  research imperial-age with food and gold escrow
+  research feudal-age with escrow
+  research castle-age with escrow
+  research imperial-age with escrow
 #then
   sn-maximum-town-size += 4
 #end when
 
-research mill upgrades with food and wood escrow
-research lumber camp upgrades with food and wood escrow
-research gold mining camp upgrades with food and wood escrow
+research mill upgrades with escrow
+research lumber camp upgrades with escrow
+research gold mining camp upgrades with escrow
 
 #if civilian-population >= 35
-  research ri-wheel-barrow with food and wood escrow
-  research ri-hand-cart with food and wood escrow
+  research ri-wheel-barrow with escrow
+  research ri-hand-cart with escrow
 #end if
 
-research ri-conscription with food and gold escrow
-research ri-hoardings with wood and food escrow
+research ri-conscription with escrow
+research ri-hoardings with escrow
 
-research ri-elite-skirmisher with wood and gold escrow => research ri-thumb-ring with food and wood escrow
-research ri-imperial-skirmisher with wood and gold escrow
+research ri-elite-skirmisher with escrow => research ri-thumb-ring with escrow
+research ri-imperial-skirmisher with escrow
 
-research ri-fletching with food escrow => research ri-padded-archer-armor with food and gold escrow
-research ri-bodkin-arrow with food and gold escrow => research ri-leather-archer-armor with food and gold escrow
-research ri-bracer with food and gold escrow => research ri-ring-archer-armor with food and gold escrow
+research ri-fletching with escrow => research ri-padded-archer-armor with escrow
+research ri-bodkin-arrow with escrow => research ri-leather-archer-armor with escrow
+research ri-bracer with escrow => research ri-ring-archer-armor with escrow
 
-research ri-ballistics with wood and gold escrow => research ri-chemistry with food and gold escrow
-research ri-masonry with food and wood escrow
-research ri-architecture with food and wood escrow
+research ri-ballistics with escrow => research ri-chemistry with escrow
+research ri-masonry with escrow
+research ri-architecture with escrow
 
 build mills
 build lumber camps
@@ -111,19 +111,19 @@ build lumber camps
   #then
     sn-camp-max-distance += 5
   #end when
-  build 1 barracks with wood escrow
+  build 1 barracks with escrow
   #if current-age == feudal-age
-    build 2 archery-range with wood escrow
+    build 2 archery-range with escrow
   #else if current-age == castle-age
-    build 3 archery-range with wood escrow
+    build 3 archery-range with escrow
   #else
-    build 4 archery-range with wood escrow
+    build 4 archery-range with escrow
   #end if
   #if building-type-count-total archery-range >= 2
-    build 1 blacksmith with wood escrow
-    build 1 market with wood escrow
-    build 1 siege-workshop with wood escrow
-    build 1 university with wood escrow
+    build 1 blacksmith with escrow
+    build 1 market with escrow
+    build 1 siege-workshop with escrow
+    build 1 university with escrow
   #end if
 #end if
 
@@ -167,12 +167,12 @@ research ri-loom
 #end if
 
 train trebuchet
-train 1 trebuchet with wood and gold escrow
+train 1 trebuchet with escrow
 #if current-age == castle-age or building-type-count castle == 0
-  research ri-capped-ram with food escrow
-  research ri-siege-ram with food escrow
+  research ri-capped-ram with escrow
+  research ri-siege-ram with escrow
   train 3 battering-ram-line
-  train 1 battering-ram-line with wood and gold escrow
+  train 1 battering-ram-line with escrow
 #end if
 
 train skirmisher-line

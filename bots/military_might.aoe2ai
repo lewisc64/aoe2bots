@@ -30,24 +30,24 @@ do basic diplomacy
   escrow 0 gold
 #end if
 
-research feudal-age with food escrow
-research castle-age with food and gold escrow
-research imperial-age with food and gold escrow
+research feudal-age with escrow
+research castle-age with escrow
+research imperial-age with escrow
 research ri-loom
 research ri-double-bit-axe
 research ri-two-man-saw
 research ri-horse-collar
 research ri-heavy-plow
 research ri-wheel-barrow
-research ri-man-at-arms with food and gold escrow
-research ri-long-swordsman with food and gold escrow
-research ri-two-handed-swordsman with food and gold escrow
+research ri-man-at-arms with escrow
+research ri-long-swordsman with escrow
+research ri-two-handed-swordsman with escrow
 #when
-  research ri-champion with food and gold escrow
+  research ri-champion with escrow
 #then
   chat to all "SOON YOU WILL TREMBLE IN FEAR OF THE MIGHTY CHAMPION!"
 #end when
-research blacksmith infantry upgrades with food and gold escrow
+research blacksmith infantry upgrades with escrow
 research ri-squires
 research ri-arson
 

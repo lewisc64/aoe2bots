@@ -152,40 +152,40 @@ load "templates/fast_castle.aoe2ai"
   build farms
   build mills
   
-  research ri-loom with gold escrow
-  research lumber camp upgrades with wood and food escrow
-  research gold mining camp upgrades with wood and food escrow
-  research mill upgrades with wood and food escrow
-  research ri-fervor with gold escrow
-  research ri-sanctity with gold escrow
+  research ri-loom with escrow
+  research lumber camp upgrades with escrow
+  research gold mining camp upgrades with escrow
+  research mill upgrades with escrow
+  research ri-fervor with escrow
+  research ri-sanctity with escrow
   #respond to 10 monk-set
-    research ri-heresy with gold escrow
-    research ri-devotion with food and gold escrow
-    research ri-faith with food and gold escrow
+    research ri-heresy with escrow
+    research ri-devotion with escrow
+    research ri-faith with escrow
   #end respond
   
-  research imperial-age with food and gold escrow
-  research ri-chemistry with food and gold escrow
+  research imperial-age with escrow
+  research ri-chemistry with escrow
   #if goal water-map 1 and building-type-count dock >= 1
-    research ri-fletching with food and gold escrow
-    research ri-bodkin-arrow with food and gold escrow
-    research ri-bracer with food and gold escrow
-    research ri-gillnets with wood and food escrow
-    research ri-careening with food and gold escrow
-    research ri-war-galley with food and gold escrow
-    research ri-galleon with wood and food escrow
-    research ri-deck-guns with wood and food escrow
+    research ri-fletching with escrow
+    research ri-bodkin-arrow with escrow
+    research ri-bracer with escrow
+    research ri-gillnets with escrow
+    research ri-careening with escrow
+    research ri-war-galley with escrow
+    research ri-galleon with escrow
+    research ri-deck-guns with escrow
   #end if
   #if goal full-water-map 0 and up-research-status c: ri-chemistry >= research-pending
-    research ri-padded-archer-armor with food and gold escrow
-    research ri-leather-archer-armor with food and gold escrow
-    research ri-ring-archer-armor with food and gold escrow
-    research ri-houfnice with food and gold escrow
+    research ri-padded-archer-armor with escrow
+    research ri-leather-archer-armor with escrow
+    research ri-ring-archer-armor with escrow
+    research ri-houfnice with escrow
     
-    research ri-squires with food escrow
-    research ri-pikeman with food and gold escrow
-    research ri-halberdier with food and gold escrow
-    research infantry blacksmith upgrades with food and gold escrow
+    research ri-squires with escrow
+    research ri-pikeman with escrow
+    research ri-halberdier with escrow
+    research infantry blacksmith upgrades with escrow
   #end if
   
   goal warboat-count-goal = 0

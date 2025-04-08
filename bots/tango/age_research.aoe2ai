@@ -25,17 +25,17 @@
   #end if
 
   #when
-    research feudal-age with food escrow
+    research feudal-age with escrow
   #then
     goal age-up-now = 0
   #end when
   #when
-    research castle-age with food and gold escrow
+    research castle-age with escrow
   #then
     goal age-up-now = 0
   #end when
   #when
-    research imperial-age with food and gold escrow
+    research imperial-age with escrow
   #then
     goal age-up-now = 0
   #end when

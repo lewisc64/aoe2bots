@@ -128,7 +128,7 @@ attack with 50 units
       escrow 20 wood
     #end if
     #when
-      build 1 blacksmith with wood escrow
+      build 1 blacksmith with escrow
     #then
       escrow 0 wood
     #end when

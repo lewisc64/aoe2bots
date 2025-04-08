@@ -21,17 +21,17 @@ manage scouting
 
 research feudal-age
 research castle-age
-research imperial-age with food escrow
-research my-unique-research with food and gold escrow
+research imperial-age with escrow
+research my-unique-research with escrow
 #when
-  research ri-heavy-scorpion with wood and food escrow
+  research ri-heavy-scorpion with escrow
 #then
   escrow 0 wood
   escrow 0 food
   escrow 0 gold
 #end when
-research ri-capped-ram with wood and food escrow
-research ri-siege-ram with wood and food escrow
+research ri-capped-ram with escrow
+research ri-siege-ram with escrow
 research ri-loom
 research ri-wheel-barrow
 research ri-hand-cart

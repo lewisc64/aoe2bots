@@ -37,28 +37,28 @@ load "charlotte/stats.aoe2ai"
   
   auto balance wood and food and gold
   
-  research imperial-age with food and gold escrow
+  research imperial-age with escrow
   
-  research lumber camp upgrades with food and gold escrow
-  research mill upgrades with food and gold escrow
-  research gold mining camp upgrades with food and gold escrow
+  research lumber camp upgrades with escrow
+  research mill upgrades with escrow
+  research gold mining camp upgrades with escrow
   
-  research ri-bloodlines with food and gold escrow
-  research ri-husbandry with food escrow
+  research ri-bloodlines with escrow
+  research ri-husbandry with escrow
   
-  research blacksmith ranged upgrades with food and gold escrow
-  research ri-heavy-cavalry-archer with food and gold escrow
+  research blacksmith ranged upgrades with escrow
+  research ri-heavy-cavalry-archer with escrow
   
-  research ri-thumb-ring with wood and food escrow
-  research ri-parthian-tactics with food and gold escrow
+  research ri-thumb-ring with escrow
+  research ri-parthian-tactics with escrow
   
-  research ri-ballistics with wood and gold escrow
-  research ri-chemistry with food and gold escrow
+  research ri-ballistics with escrow
+  research ri-chemistry with escrow
   #if building-type-count-total castle >= 1
-    research ri-murder-holes with food and stone escrow
+    research ri-murder-holes with escrow
   #end if
   
-  research ri-conscription with food and gold escrow
+  research ri-conscription with escrow
   
   build 1 barracks
   #if current-age <= castle-age

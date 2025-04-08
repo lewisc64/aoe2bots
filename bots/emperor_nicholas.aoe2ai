@@ -84,24 +84,24 @@ load "templates/fast_castle.aoe2ai"
   build 1 blacksmith
   
   #if current-age >= imperial-age
-    research ri-hand-cart with wood and food escrow
-    research ri-murder-holes with food and stone escrow
-    research ri-conscription with food and gold escrow
+    research ri-hand-cart with escrow
+    research ri-murder-holes with escrow
+    research ri-conscription with escrow
   #end if
   
-  research mill upgrades with wood and food escrow
-  research lumber camp upgrades with wood and food escrow
-  research mining camp upgrades with wood and food escrow
+  research mill upgrades with escrow
+  research lumber camp upgrades with escrow
+  research mining camp upgrades with escrow
   
-  research cavalry blacksmith upgrades with food and gold escrow
-  research ri-bloodlines with food and gold escrow
-  research ri-husbandry with food escrow
+  research cavalry blacksmith upgrades with escrow
+  research ri-bloodlines with escrow
+  research ri-husbandry with escrow
   
-  research imperial-age with food and gold escrow
-  research my-unique-unit-upgrade with food and gold escrow => research ri-logistica with food and gold escrow
+  research imperial-age with escrow
+  research my-unique-unit-upgrade with escrow => research ri-logistica with escrow
   
   #respond to 5 monk
-    research ri-heresy with gold escrow
+    research ri-heresy with escrow
   #end respond
   
   #if current-age >= imperial-age
@@ -124,8 +124,8 @@ load "templates/fast_castle.aoe2ai"
       train my-unique-unit
       #if up-compare-goal no-gold-mining-time c:>= 60
         build 6 stable
-        research ri-light-cavalry with food and gold escrow
-        research ri-hussar with food and gold escrow
+        research ri-light-cavalry with escrow
+        research ri-hussar with escrow
         #if gold-amount < 300
           train scout-cavalry-line
         #end if

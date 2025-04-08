@@ -53,12 +53,12 @@ load "unit_decisions.aoe2ai"
   //  sell food when food > 200
   //  escrow 100 gold
   //#end if
-  research ri-heresy with gold escrow
-  research ri-devotion with food and gold escrow
-  research ri-faith with food and gold escrow
+  research ri-heresy with escrow
+  research ri-devotion with escrow
+  research ri-faith with escrow
 #end respond
 
-research my-unique-research with wood and food and gold escrow
+research my-unique-research with escrow
 
 #if goal producing-infantry 1 or unit-type-count infantry-unit-class >= max-basic-units
   load "types/infantry.aoe2ai"
@@ -78,14 +78,14 @@ research my-unique-research with wood and food and gold escrow
 
 #if goal produce-monks 1
 
-  research ri-redemption with gold escrow
-  research ri-sanctity with gold escrow
-  research ri-fervor with gold escrow
-  research ri-illumination with gold escrow
-  research ri-block-printing with gold escrow
-  research ri-theocracy with gold escrow
+  research ri-redemption with escrow
+  research ri-sanctity with escrow
+  research ri-fervor with escrow
+  research ri-illumination with escrow
+  research ri-block-printing with escrow
+  research ri-theocracy with escrow
   #respond to monk
-    research ri-atonement with gold escrow
+    research ri-atonement with escrow
   #end respond
 
   build max-castle-military-buildings monastery
@@ -93,7 +93,7 @@ research my-unique-research with wood and food and gold escrow
 #end if
 
 #if goal produce-unique-unit 1
-  research my-unique-unit-upgrade with wood and food and gold escrow
+  research my-unique-unit-upgrade with escrow
 #end if
 
 #if military-population < max-army
@@ -103,9 +103,9 @@ research my-unique-research with wood and food and gold escrow
 #if building-type-count-total barracks == 0
   escrow 100 wood
 #end if
-build 1 barracks with wood escrow
+build 1 barracks with escrow
 #if building-type-count-total barracks >= 2 or building-type-count-total stable >= 2 or building-type-count-total archery-range >= 2
-  build 1 blacksmith with wood escrow
+  build 1 blacksmith with escrow
   #do once
     goal research-economy-upgrades = 1
   #end do
@@ -133,7 +133,7 @@ build 1 barracks with wood escrow
     //buy wood when wood < 175
   #end if
 #end if
-build 1 siege-workshop with wood escrow
+build 1 siege-workshop with escrow
 
 #repeat every 5 minutes
   load "training_queue.aoe2ai"

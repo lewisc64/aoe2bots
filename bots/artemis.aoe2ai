@@ -886,7 +886,7 @@ goal second-unit = -1
 
 #template find-top-fragment
   #if up-compare-goal {unit}-score g:> top-unit-score
-    @up-chat-data-to-all "{unit} is highest with %d" g: {unit}-score
+    // @up-chat-data-to-all "{unit} is highest with %d" g: {unit}-score
     @up-modify-goal top-unit-score g:= {unit}-score
     goal top-unit = {unit}
   #else if up-compare-goal {unit}-score g:> second-unit-score and not goal top-unit {unit}
@@ -1068,16 +1068,16 @@ micro mule carts
   #end when
 #end if
 
-research feudal-age with food escrow
+research feudal-age with escrow
 insert research-with-halt(research="castle-age",building="town-center")
-research imperial-age with food and gold escrow
+research imperial-age with escrow
 #if military-population >= 50
   insert research-with-halt(research="imperial-age",building="town-center")
 #end if
 
 #if current-age-time >= 120
-  research mill upgrades with wood and food escrow
-  research lumber camp upgrades with wood and food escrow
+  research mill upgrades with escrow
+  research lumber camp upgrades with escrow
   
   goal gold-miners = 0
   goal temp = 0
@@ -1085,17 +1085,17 @@ research imperial-age with food and gold escrow
   @up-get-fact unit-type-count female-gold-miner temp
   @up-modify-goal gold-miners g:+ temp
   #if up-compare-goal gold-miners c:>= 12
-    research ri-gold-mining with wood and food escrow
+    research ri-gold-mining with escrow
   #end if
   #if up-compare-goal gold-miners c:>= 20
-    research ri-gold-shaft-mining with wood and food escrow
+    research ri-gold-shaft-mining with escrow
   #end if
   
   #if unit-type-count villager >= 50
-    research ri-wheel-barrow with wood and food escrow
+    research ri-wheel-barrow with escrow
   #end if
   #if unit-type-count villager >= 80
-    research ri-hand-cart with wood and food escrow
+    research ri-hand-cart with escrow
   #end if
 #end if
 
@@ -1103,7 +1103,7 @@ research imperial-age with food and gold escrow
 
 #template make-unit-if-top
   #if goal top-unit {unit}
-    @up-chat-data-to-all "{unit} is top, with score %d" g: {unit}-score
+    // @up-chat-data-to-all "{unit} is top, with score %d" g: {unit}-score
     @up-modify-goal {unit}-production g:= production-scale
   #end if
   #if (goal second-unit skirmisher-line or goal second-unit spearman-line or goal second-unit scout-cavalry-line) and goal second-unit {unit}
@@ -1145,7 +1145,7 @@ research imperial-age with food and gold escrow
 // it's research time
 
 #if current-age >= feudal-age
-  research ri-loom with gold escrow
+  research ri-loom with escrow
 #end if
 
 #template do-common-ranged-upgrades-for-unit
@@ -1249,12 +1249,12 @@ research imperial-age with food and gold escrow
 #end if
 
 #if unit-type-count battering-ram-line >= 5
-  research ri-capped-ram with food escrow
-  research ri-siege-ram with food escrow
+  research ri-capped-ram with escrow
+  research ri-siege-ram with escrow
 #end if
 
 #if unit-type-count armored-elephant-line >= 5
-  research ri-siege-elephant with food escrow
+  research ri-siege-elephant with escrow
 #end if
 
 goals unit-food, unit-wood, unit-stone, unit-gold = 0
@@ -1473,9 +1473,7 @@ goal military-required = 0
 @up-modify-goal military-required c:/ 10
 
 #if military-population >= 5 and up-compare-goal my-military-population g:> military-required or population >= 195
-  sn-number-attack-groups = 200
-#else
-  sn-number-attack-groups = 0
+  attack with duc
 #end if
 
 auto expand town size
