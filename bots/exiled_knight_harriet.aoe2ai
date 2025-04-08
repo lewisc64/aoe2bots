@@ -1,11 +1,12 @@
+// plays as the bulgarians
+
 #do once
   set name to "Exiled Knight Harriet"
   set up basics
   assign 4 builders to town-center-foundation
   assign 8 builders to castle
   assign 8 builders to krepost
-  sn-minimum-attack-group-size = 1
-  sn-maximum-attack-group-size = 1
+  assign 4 builders to stone-wall-line
   #if not civ-selected bulgarians
     chat to all "I need to play as the Bulgarians."
   #end if
@@ -99,25 +100,26 @@ load "templates/fast_castle.aoe2ai"
 
 #if up-research-status c: castle-age >= research-pending
   #do once
-    distribute villagers 30 40 20 10
+    distribute villagers 20 45 25 10
   #end do
   auto balance wood and food and gold
+  trade excess wood and food and gold at 2000
+
   #if strategic-number sn-wood-gatherer-percentage < 10
     distribute 2 villagers from food and gold to wood
   #end if
-  #if strategic-number sn-food-gatherer-percentage < 40
+  #if strategic-number sn-food-gatherer-percentage < 30
     distribute 2 villagers from wood and gold to food
   #end if
   #if strategic-number sn-gold-gatherer-percentage < 10
     distribute 2 villagers from wood and food to gold
   #end if
-  trade excess wood and food and gold at 2000
 
   #if up-enemy-units-in-town > 10
     trade excess wood and food and gold at 300
   #end if
 
-  #if military-population < 10 or up-research-status c: ri-elite-konnik >= research-pending and up-research-status c: ri-siege-onager >= research-pending
+  #if military-population < 10 or up-research-status c: ri-elite-konnik >= research-pending
     escrow 0 food with maximum 0
     escrow 0 gold with maximum 0
   #else if military-population < 20
@@ -153,14 +155,18 @@ load "templates/fast_castle.aoe2ai"
     build 1 market
     buy stone when gold > 500
   #end if
-  build 1 castle
-  #if building-type-count-total castle >= 1
+
+  build 1 krepost
+  #if building-type-count krepost >= 1
     build 3 town-center
     #if building-type-count-total town-center >= 3
-      build krepost
+      build 3 siege-workshop
+      build 1 castle
+      #if building-type-count-total castle >= 1
+        build krepost
+      #end if
     #end if
   #end if
-  build 3 siege-workshop
 
   #respond to 10 monk-set
     research ri-heresy with escrow
@@ -197,17 +203,22 @@ load "templates/fast_castle.aoe2ai"
   research my-unique-unit-upgrade with escrow
   research ri-capped-ram with escrow
   research ri-siege-ram with escrow
-  research ri-onager with escrow
-  research ri-siege-onager with escrow
   research ri-siege-engineers with escrow
+  research ri-heavy-scorpion with escrow
   research ri-light-cavalry with escrow
   research ri-hussar with escrow
   
-  #if research-completed my-unique-unit-upgrade and research-completed ri-siege-ram and research-completed ri-onager and research-completed ri-hussar
+  #if research-completed my-unique-unit-upgrade and research-completed ri-siege-ram and research-completed ri-heavy-scorpion and research-completed ri-hussar
     research ri-conscription with escrow
     build 6 siege-workshop
     build 12 stable
   #end if
+
+  goal non-escrowed-food-amount = 0
+  goal escrowed-food = 0
+  @up-get-fact escrow-amount food escrowed-food
+  @up-get-fact food-amount 0 non-escrowed-food-amount
+  @up-modify-goal non-escrowed-food-amount g:- escrowed-food
 
   goal non-escrowed-gold-amount = 0
   goal escrowed-gold = 0
@@ -215,16 +226,17 @@ load "templates/fast_castle.aoe2ai"
   @up-get-fact gold-amount 0 non-escrowed-gold-amount
   @up-modify-goal non-escrowed-gold-amount g:- escrowed-gold
 
-  #if up-compare-goal non-escrowed-gold-amount c:>= 70
+  #if up-compare-goal non-escrowed-gold-amount c:>= 70 and (building-type-count krepost >= 1 or building-type-count castle >= 1)
     #if town-under-attack and up-enemy-units-in-town > 0
       train konnik-line
       train krepost-konnik-line
+      train militiaman-line
     #else
       train 1 trebuchet
       #if building-type-count krepost == 0
-        train balanced 5 konnik-line 1 mangonel-line 1 battering-ram-line
+        train balanced 15 konnik-line 4 scorpion-line 1 battering-ram-line
       #else
-        train balanced 5 krepost-konnik-line 1 mangonel-line 1 battering-ram-line
+        train balanced 15 krepost-konnik-line 4 scorpion-line 1 battering-ram-line
       #end if
     #end if
   #else
