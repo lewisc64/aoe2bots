@@ -99,20 +99,37 @@ load "templates/fast_castle.aoe2ai"
 
 #if up-research-status c: castle-age >= research-pending
   #do once
-    distribute villagers 30 35 25 10
-    goal limit-konniks = 1
+    distribute villagers 30 40 20 10
   #end do
   auto balance wood and food and gold
-  #if strategic-number sn-wood-gatherer-percentage < 20
+  #if strategic-number sn-wood-gatherer-percentage < 10
     distribute 2 villagers from food and gold to wood
   #end if
-  #if strategic-number sn-food-gatherer-percentage < 35
+  #if strategic-number sn-food-gatherer-percentage < 40
     distribute 2 villagers from wood and gold to food
   #end if
-  #if strategic-number sn-gold-gatherer-percentage < 15
+  #if strategic-number sn-gold-gatherer-percentage < 10
     distribute 2 villagers from wood and food to gold
   #end if
   trade excess wood and food and gold at 2000
+
+  #if up-enemy-units-in-town > 10
+    trade excess wood and food and gold at 300
+  #end if
+
+  #if military-population < 10 or up-research-status c: ri-elite-konnik >= research-pending and up-research-status c: ri-siege-onager >= research-pending
+    escrow 0 food with maximum 0
+    escrow 0 gold with maximum 0
+  #else if military-population < 20
+    escrow 10 food with maximum 1500
+    escrow 10 gold with maximum 1000
+  #else if military-population < 30
+    escrow 20 food with maximum 1500
+    escrow 20 gold with maximum 1000
+  #else
+    escrow 40 food with maximum 1500
+    escrow 40 gold with maximum 1000
+  #end if
   
   build 1 town-center
   build lumber camps
@@ -143,55 +160,77 @@ load "templates/fast_castle.aoe2ai"
       build krepost
     #end if
   #end if
-  build 2 siege-workshop
+  build 3 siege-workshop
+
+  #respond to 10 monk-set
+    research ri-heresy with escrow
+    research ri-devotion with escrow
+    research ri-faith with escrow
+  #end respond
+
+  #respond to 10 missionary
+    research ri-heresy with escrow
+    research ri-devotion with escrow
+    research ri-faith with escrow
+  #end respond
   
-  research lumber camp upgrades
-  research mill upgrades
-  research ri-wheel-barrow
-  research ri-bloodlines
-  research ri-husbandry
+  research lumber camp upgrades with escrow
+  research mill upgrades with escrow
+  research ri-wheel-barrow with escrow
+  research ri-bloodlines with escrow
+  research ri-husbandry with escrow
   #if current-age == imperial-age
-    research ri-hand-cart
+    research ri-hand-cart with escrow
   #end if
-  research cavalry blacksmith upgrades
+  research cavalry blacksmith upgrades with escrow
   #if up-research-status c: ri-scale-barding >= research-pending
-    research ri-scale-mail
+    research ri-scale-mail with escrow
   #end if
   #if up-research-status c: ri-chain-barding >= research-pending
-    research ri-chain-mail
+    research ri-chain-mail with escrow
   #end if
   #if up-research-status c: ri-plate-barding >= research-pending
-    research ri-plate-mail
+    research ri-plate-mail with escrow
   #end if
-  research imperial-age
-  research ri-stirrups
-  research my-unique-unit-upgrade
-  research ri-capped-ram
-  research ri-siege-ram
-  research ri-onager
-  research ri-siege-onager
-  research ri-siege-engineers
-  research ri-light-cavalry
-  research ri-hussar
+  research imperial-age with escrow
+  research ri-stirrups with escrow
+  research my-unique-unit-upgrade with escrow
+  research ri-capped-ram with escrow
+  research ri-siege-ram with escrow
+  research ri-onager with escrow
+  research ri-siege-onager with escrow
+  research ri-siege-engineers with escrow
+  research ri-light-cavalry with escrow
+  research ri-hussar with escrow
   
   #if research-completed my-unique-unit-upgrade and research-completed ri-siege-ram and research-completed ri-onager and research-completed ri-hussar
-    research ri-conscription
-    build 4 siege-workshop
+    research ri-conscription with escrow
+    build 6 siege-workshop
     build 12 stable
-    goal limit-konniks = 0
   #end if
-  
-  #if goal limit-konniks 0 or up-pending-objects c: scout-cavalry-line < 1 and up-pending-objects c: krepost-konnik-line < 1 and military-population < 45 or (town-under-attack and military-population < 30)
-    #if gold-amount >= 70
+
+  goal non-escrowed-gold-amount = 0
+  goal escrowed-gold = 0
+  @up-get-fact escrow-amount gold escrowed-gold
+  @up-get-fact gold-amount 0 non-escrowed-gold-amount
+  @up-modify-goal non-escrowed-gold-amount g:- escrowed-gold
+
+  #if up-compare-goal non-escrowed-gold-amount c:>= 70
+    #if town-under-attack and up-enemy-units-in-town > 0
+      train konnik-line
+      train krepost-konnik-line
+    #else
+      train 1 trebuchet
       #if building-type-count krepost == 0
         train balanced 5 konnik-line 1 mangonel-line 1 battering-ram-line
       #else
         train balanced 5 krepost-konnik-line 1 mangonel-line 1 battering-ram-line
       #end if
-    #else
-      train scout-cavalry-line
     #end if
+  #else
+    train scout-cavalry-line
   #end if
+
   train mercenary-kipchak
   
   #if current-age == imperial-age
@@ -207,10 +246,10 @@ load "templates/fast_castle.aoe2ai"
   @up-modify-goal military-required c:* 15
   @up-modify-goal military-required c:/ 10
 
+  do basic targeting
+
   #if military-population >= 20 and up-compare-goal my-military-population g:> military-required or population >= 195 and player-in-game any-enemy
-    sn-number-attack-groups = 200
-  #else
-    sn-number-attack-groups = 0
+    attack with duc
   #end if
   
   auto expand town size
