@@ -5,16 +5,14 @@
 #if up-research-status c: castle-age < research-pending
   
   manage scouting
-  
-  research ri-loom
+
   
   #if building-type-count-total market >= 1 and building-type-count-total blacksmith >= 1
     research ri-double-bit-axe
     research ri-horse-collar
-    research ri-wheel-barrow
   #end if
   
-  #if up-research-status c: ri-double-bit-axe >= research-pending and up-research-status c: ri-horse-collar >= research-pending and up-research-status c: ri-wheel-barrow >= research-pending
+  #if up-research-status c: ri-double-bit-axe >= research-pending and up-research-status c: ri-horse-collar >= research-pending
     research castle-age
   #end if
   
@@ -52,8 +50,10 @@
     #end do
   #end if
   
-  #if unit-type-count-total villager >= 27
+  #if unit-type-count-total villager >= 23
     sn-enable-training-queue = 0
+  #end if
+  #if unit-type-count-total villager >= 24
     research feudal-age
   #end if
   
@@ -70,6 +70,8 @@
   
 #else if up-research-status c: castle-age < research-pending
   
+  research ri-loom
+
   #when
     build gold mining camps
   #then
@@ -79,7 +81,7 @@
   #if wood-amount > 100
     build farms
   #end if
-  
+
   #do once
     distribute villagers 50 40 10 0
     #if building-type-count-total blacksmith >= 1 and building-type-count-total market >= 1
