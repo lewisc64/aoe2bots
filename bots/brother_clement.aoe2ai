@@ -257,8 +257,6 @@ load "templates/lightning_castle.aoe2ai"
 #if up-research-status c: castle-age >= research-pending
   #do once
     set up basics
-    sn-maximum-attack-group-size = 1
-    sn-minimum-attack-group-size = 1
     distribute villagers 30 30 40 0
     assign 8 builders to castle
     assign 2 builders to monastery
@@ -525,10 +523,10 @@ load "templates/lightning_castle.aoe2ai"
   keep monk 10 tiles away from enemy town-center
   
   #if goal attacking 1 and player-in-game any-enemy
-    attack
-  #else
-    auto expand town size to 30
+    attack with duc
   #end if
+
+  auto expand town size to 30
   
   delete building feitoria
 #end if
