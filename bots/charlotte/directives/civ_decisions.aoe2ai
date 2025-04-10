@@ -2,7 +2,7 @@
 #template get-good-units
   insert clear-good-units(prefix="{prefix}")
 
-  // goal {prefix}good-unique-units = 1
+  goal {prefix}good-unique-units = 1
   
   #if players-civ {player} armenians
     goal {prefix}good-warrior-priests = 1
