@@ -57,6 +57,8 @@ goal total-type-production = 0
   insert add-to-total-type-production(unit="militiaman-line",goal="produce-militia")
   insert add-to-total-type-production(unit="condottiero",goal="produce-condottiero")
   insert add-to-total-type-production(unit="spearman-line",goal="produce-spearmen")
+  insert add-to-total-type-production(unit="flemish-militia-set",goal="produce-flemish-militia")
+  insert add-to-total-type-production(unit="fire-lancer-line",goal="produce-fire-lancers")
   insert add-to-total-type-production(unit="eagle-warrior-line",goal="produce-eagles")
   
   insert add-to-total-type-production(unit="scout-cavalry-line",goal="produce-scouts")
@@ -69,6 +71,7 @@ goal total-type-production = 0
   insert add-to-total-type-production(unit="battering-ram-line",goal="produce-battering-rams")
   insert add-to-total-type-production(unit="armored-elephant-line",goal="produce-armored-elephants")
   insert add-to-total-type-production(unit="mangonel-line",goal="produce-mangonels")
+  insert add-to-total-type-production(unit="rocket-cart-line",goal="produce-rocket-carts")
   insert add-to-total-type-production(unit="scorpion-line",goal="produce-scorpions")
   insert add-to-total-type-production(unit="bombard-cannon",goal="produce-bombard-cannons")
   
@@ -128,6 +131,8 @@ load "prerequisites.aoe2ai"
   insert load-unit(production_goal="produce-militia",unit="militiaman-line",unit_path="militia.aoe2ai")
   insert load-unit(production_goal="produce-condottiero",unit="condottiero",unit_path="condottiero.aoe2ai")
   insert load-unit(production_goal="produce-spearmen",unit="spearman-line",unit_path="spearman.aoe2ai")
+  insert load-unit(production_goal="produce-flemish-militia",unit="flemish-militia",unit_path="flemish_militia.aoe2ai")
+  insert load-unit(production_goal="produce-fire-lancers",unit="fire-lancer-line",unit_path="fire_lancer.aoe2ai")
   insert load-unit(production_goal="produce-eagles",unit="eagle-warrior-line",unit_path="eagle_warrior.aoe2ai")
 
   insert load-unit(production_goal="produce-scouts",unit="scout-cavalry-line",unit_path="scout_cavalry.aoe2ai")
@@ -140,6 +145,7 @@ load "prerequisites.aoe2ai"
   insert load-unit(production_goal="produce-battering-rams",unit="battering-ram-line",unit_path="battering_ram.aoe2ai")
   insert load-unit(production_goal="produce-armored-elephants",unit="armored-elephant-line",unit_path="armored_elephant.aoe2ai")
   insert load-unit(production_goal="produce-mangonels",unit="mangonel-line",unit_path="mangonel.aoe2ai")
+  insert load-unit(production_goal="produce-rocket-carts",unit="rocket-cart-line",unit_path="rocket_cart.aoe2ai")
   insert load-unit(production_goal="produce-scorpions",unit="scorpion-line",unit_path="scorpion.aoe2ai")
   insert load-unit(production_goal="produce-bombard-cannons",unit="bombard-cannon",unit_path="bombard_cannon.aoe2ai")
 

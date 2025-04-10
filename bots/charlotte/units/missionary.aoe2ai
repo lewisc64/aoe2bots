@@ -3,6 +3,14 @@ load "../research/monastery/prerequisites.aoe2ai"
 #if unit-available missionary
 
   load "types/holy.aoe2ai"
+
+  #if current-age == feudal-age
+    load "../research/blacksmith/scale_barding.aoe2ai"
+  #else if current-age == castle-age
+    load "../research/blacksmith/chain_barding.aoe2ai"
+  #else if current-age == imperial-age
+    load "../research/blacksmith/plate_barding.aoe2ai"
+  #end if
   
   #if goal produce-units 1 and goal enough-gold-for-units 1
     train missionary

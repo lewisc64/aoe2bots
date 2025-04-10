@@ -38,6 +38,10 @@ const ri-cilician-fleet = 922
 const ri-bimaristan = 28
 const ri-svan-towers = 923
 const ri-aznauri-cavalry = 924
+const ri-pirotechnia = 902
+
+const ri-elite-fire-lancer = 982
+const ri-heavy-rocket-cart = 980
 
 const live-sheep = 958
 const sea-fish = 905
@@ -48,6 +52,8 @@ const castle-arrow-chemistry = 747
 const ranged-unit-class = 900
 const infantry-unit-class = 906
 const cavalry-unit-class = 912
+const flemish-militia-set = 989
+const flemish-militia = 1699
 const forage-class = 907
 const dead-trade-cart = 178
 const dead-trade-cart-loaded = 205
@@ -87,8 +93,10 @@ const importance-low = 1
 #template all-land-infantry-unit-goal-names
   {before}militia{after}
   {before}spearmen{after}
+  {before}flemish-militia{after}
   {before}eagles{after}
   {before}condottiero{after}
+  {before}fire-lancers{after}
   {before}warrior-priests{after}
 #end template
 
@@ -104,6 +112,7 @@ const importance-low = 1
 #template all-land-siege-unit-goal-names
   {before}battering-rams{after}
   {before}mangonels{after}
+  {before}rocket-carts{after}
   {before}scorpions{after}
   {before}bombard-cannons{after}
   {before}trebuchets{after}

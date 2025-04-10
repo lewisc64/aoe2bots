@@ -1,6 +1,0 @@
-#if not research-completed ri-pavise and civ-selected italian
-  load "../castle/prerequisites.aoe2ai"
-  //load "../town_center/castle_age.aoe2ai"
-
-  insert attempt-research(research="ri-pavise",importance="importance-medium",building="castle")
-#end if

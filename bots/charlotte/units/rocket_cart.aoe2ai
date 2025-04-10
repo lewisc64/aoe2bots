@@ -1,14 +1,16 @@
 //load "../research/town_center/castle_age.aoe2ai"
 load "../research/siege_workshop/prerequisites.aoe2ai"
 
-#if unit-available mangonel-line
+#if unit-available rocket-cart-line
   #if current-age == imperial-age
-    load "../research/siege_workshop/siege_onager.aoe2ai"
+    load "../research/siege_workshop/heavy_rocket_cart.aoe2ai"
+    load "../research/castle/rocketry.aoe2ai"
+    load "../research/castle/shinkichon.aoe2ai"
   #end if
   
   load "types/siege.aoe2ai"
   
   #if goal produce-units 1 and goal enough-wood-for-units 1 and goal enough-gold-for-units 1
-    train mangonel-line
+    train rocket-cart-line
   #end if
 #end if

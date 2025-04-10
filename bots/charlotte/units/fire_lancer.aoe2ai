@@ -1,0 +1,14 @@
+//load "../research/town_center/castle_age.aoe2ai"
+load "../research/barracks/prerequisites.aoe2ai"
+
+#if unit-available fire-lancer-line
+  load "types/infantry.aoe2ai"
+
+  #if current-age >= imperial-age
+    load "../research/barracks/elite_fire_lancer.aoe2ai"
+  #end if
+  
+  #if goal produce-units 1 and goal enough-wood-for-units 1 and goal enough-gold-for-units 1
+    train fire-lancer-line
+  #end if
+#end if

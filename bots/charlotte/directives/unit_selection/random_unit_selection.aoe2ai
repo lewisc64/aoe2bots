@@ -6,13 +6,16 @@
   @up-modify-goal {goal} g:+ produce-cavalry-archers
   @up-modify-goal {goal} g:+ produce-militia
   @up-modify-goal {goal} g:+ produce-spearmen
+  @up-modify-goal {goal} g:+ produce-flemish-militia
   @up-modify-goal {goal} g:+ produce-eagles
+  @up-modify-goal {goal} g:+ produce-fire-lancers
   @up-modify-goal {goal} g:+ produce-scouts
   @up-modify-goal {goal} g:+ produce-knights
   @up-modify-goal {goal} g:+ produce-camels
   @up-modify-goal {goal} g:+ produce-battle-elephants
   @up-modify-goal {goal} g:+ produce-steppe-lancers
   @up-modify-goal {goal} g:+ produce-mangonels
+  @up-modify-goal {goal} g:+ produce-rocket-carts
   @up-modify-goal {goal} g:+ produce-scorpions
   @up-modify-goal {goal} g:+ produce-unique-units
   @up-modify-goal {goal} g:+ produce-monks
@@ -54,10 +57,20 @@ insert random-unit-selection-count-units-selected(goal="total-units-selected")
     #if goal produce-eagles 0
       @up-modify-goal produce-spearmen g:= good-spearmen
     #end if
+
+  #randor
+    #if goal produce-eagles 0
+      @up-modify-goal produce-flemish-militia g:= good-flemish-militia
+    #end if
     
   #randor
     #if goal produce-spearmen 0 and goal produce-militia 0
       @up-modify-goal produce-eagles g:= good-eagles
+    #end if
+
+  #randor
+    #if goal produce-spearmen 0
+      @up-modify-goal produce-fire-lancers g:= good-fire-lancers
     #end if
     
   #randor
@@ -87,6 +100,11 @@ insert random-unit-selection-count-units-selected(goal="total-units-selected")
   #randor
     #if up-compare-goal total-units-selected c:>= 1
       @up-modify-goal produce-mangonels g:= good-mangonels
+    #end if
+
+  #randor
+    #if up-compare-goal total-units-selected c:>= 1
+      @up-modify-goal produce-rocket-carts g:= good-rocket-carts
     #end if
     
   #randor

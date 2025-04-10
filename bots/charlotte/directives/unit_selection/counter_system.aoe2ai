@@ -44,12 +44,23 @@
   goal produce-spearmen = 0
 #end if
 
+#if goal good-flemish-militia 1 and goal produce-spearmen 1
+  goal produce-spearmen = 0
+  goal produce-flemish-militia = 1
+#else
+  goal produce-flemish-militia = 0
+#end if
+
 // light counters, do not go through full flow
 
 // make light spearmen?
-#if current-age == feudal-age and goal produce-spearmen 0
+#if current-age == feudal-age and goal produce-spearmen 0 and goal produce-flemish-militia 0
   #if players-unit-type-count target-player scout-cavalry-line >= 2
-    train 4 spearman-line
+    #if goal good-flemish-militia 1
+      train 4 flemish-militia
+    #else
+      train 4 spearman-line
+    #end if
   #end if
 #end if
 

@@ -2,7 +2,7 @@
 #template get-good-units
   insert clear-good-units(prefix="{prefix}")
 
-  goal {prefix}good-unique-units = 1
+  // goal {prefix}good-unique-units = 1
   
   #if players-civ {player} armenians
     goal {prefix}good-warrior-priests = 1
@@ -61,6 +61,7 @@
   #if players-civ {player} burgundians
     goal {prefix}good-hand-cannoneers = 1
     goal {prefix}good-spearmen = 1
+    goal {prefix}good-flemish-militia = 1
     goal {prefix}good-knights = 1
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
@@ -107,9 +108,10 @@
     goal {prefix}good-archers = 1
     goal {prefix}good-skirmishers = 1
     goal {prefix}good-spearmen = 1
-    goal {prefix}good-camels = 1
+    goal {prefix}good-fire-lancers = 1
     goal {prefix}good-battering-rams = 1
     goal {prefix}good-scorpions = 1
+    goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
   #if players-civ {player} cumans
@@ -239,7 +241,8 @@
   #if players-civ {player} korean
     goal {prefix}good-archers = 1
     goal {prefix}good-skirmishers = 1
-    goal {prefix}good-mangonels = 1
+    goal {prefix}good-fire-lancers = 1
+    goal {prefix}good-rocket-carts = 1
     goal {prefix}good-hand-cannoneers = 1
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
@@ -418,6 +421,7 @@
     goal {prefix}good-galleys = 1
   #end if
   #if players-civ {player} vietnamese
+    goal {prefix}good-fire-lancers = 1
     goal {prefix}good-archers = 1
     goal {prefix}good-skirmishers = 1
     goal {prefix}good-battle-elephants = 1

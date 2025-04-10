@@ -1,0 +1,6 @@
+#if not research-completed ri-pirotechnia and civ-selected italian
+  load "../castle/prerequisites.aoe2ai"
+  //load "../town_center/imperial-age.aoe2ai"
+
+  insert attempt-research(research="ri-pirotechnia",importance="importance-medium",building="castle")
+#end if

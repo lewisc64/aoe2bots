@@ -29,8 +29,6 @@ load "../research/barracks/prerequisites.aoe2ai"
   #if current-age >= castle-age
     load "../research/barracks/gambesons.aoe2ai"
     load "../research/castle/bagains.aoe2ai"
-  #else
-    load "../research/barracks/supplies.aoe2ai"
   #end if
   
   load "types/infantry.aoe2ai"
