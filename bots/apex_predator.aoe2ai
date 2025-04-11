@@ -84,7 +84,6 @@ load "templates/diplomacy_engine.aoe2ai"
 
 load "charlotte/stats.aoe2ai"
 load "templates/fast_castle.aoe2ai"
-do basic targeting
 
 #if up-research-status c: castle-age >= research-pending
   #do once
@@ -93,6 +92,9 @@ do basic targeting
     assign 8 builders to castle
     assign 8 builders to town-center-foundation
   #end do
+
+  manage scouting
+  do basic targeting
   
   #if building-type-count-total castle == 0 and strategic-number sn-stone-gatherer-percentage == 10
     #do once
@@ -107,27 +109,23 @@ do basic targeting
   #end if
   
   auto balance wood and food and gold
+
+  #if stone-amount < 650
+    buy stone when gold > 2000
+  #end if
+  trade excess wood and food and gold at 2000
   
   #template escrow-resources
-    #if escrow-amount wood < 275
-      escrow {percentage} wood
-    #else
-      escrow 0 wood
-    #end if
-    #if escrow-amount food < 1000
-      escrow {percentage} food
-    #else
-      escrow 0 food
-    #end if
-    #if escrow-amount gold < 500
-      escrow {percentage} gold
-    #else
-      escrow 0 gold
-    #end if
+    escrow {percentage} wood with maximum 275
+    escrow {percentage} food with maximum 1000
+    escrow {percentage} gold with maximum 500
   #end template
   
   #if military-population < 10 or up-research-status c: my-unique-unit-upgrade >= research-pending
     insert escrow-resources(percentage=0)
+    #if up-research-status c: my-unique-unit-upgrade >= research-pending
+      @up-release-escrow
+    #end if
   #else if military-population < 20
     insert escrow-resources(percentage=10)
   #else if military-population < 30
@@ -204,17 +202,7 @@ do basic targeting
         #if up-pending-objects c: skirmisher-line >= 3
           train my-unique-unit-line
         #else
-          
-          goal skirm-count = 0
-          goal jag-count = 0
-          @up-get-fact unit-type-count-total skirmisher-line skirm-count
-          @up-get-fact unit-type-count-total jaguar-man-line jag-count
-          #if up-compare-goal skirm-count g:>= jag-count
-            train my-unique-unit-line
-          #else
-            train skirmisher-line
-          #end if
-          
+          train balanced 1 my-unique-unit-line 1 skirmisher-line
         #end if
       #else
         train skirmisher-line
@@ -228,22 +216,11 @@ do basic targeting
     goal attacking = 0
   #end if
   
-  sell wood when wood > 2000
-  sell food when food > 2000
-  #if stone-amount < 650
-    buy stone when gold > 2000
-  #end if
-  
-  #if goal attacking 0
-    #if strategic-number sn-maximum-town-size > 30
-      sn-maximum-town-size = 30
-    #end if
-    auto expand town size to 30
-  #else
+  #if goal attacking 1
+    attack with duc
     #do once
       chat to all "THE HUNT BEGINS."
     #end do
-    sn-maximum-town-size = 255
   #end if
   
   #if goal attacking 1 and up-compare-goal target-military-percentage c:>= 200 and military-population >= 30
@@ -251,4 +228,7 @@ do basic targeting
       chat to all "YOU PEEL LIKE A RABBIT."
     #end do
   #end if
+
+  auto expand town size
+
 #end if
