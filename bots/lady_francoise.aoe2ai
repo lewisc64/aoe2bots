@@ -96,22 +96,17 @@ load "templates/fast_castle.aoe2ai"
 load "templates/diplomacy_engine.aoe2ai"
 
 #template escrow-resources
-  #if escrow-amount food < 1300
-    escrow {percentage} food
-  #else
-    escrow 0 food
-  #end if
-  #if escrow-amount gold < 800
-    escrow {percentage} gold
-  #else
-    escrow 0 gold
-  #end if
+  escrow {percentage} food with maximum 1300
+  escrow {percentage} gold with maximum 800
 #end template
 
 #if up-research-status c: castle-age >= research-pending
 
   #if unit-type-count-total knight-line < 10 or up-research-status c: ri-paladin >= research-pending
     insert escrow-resources(percentage=0)
+    #if up-research-status c: ri-paladin >= research-pending
+      @up-release-escrow
+    #end if
   #else if unit-type-count-total knight-line < 20
     insert escrow-resources(percentage=10)
   #else if unit-type-count-total knight-line < 30
@@ -168,6 +163,9 @@ load "templates/diplomacy_engine.aoe2ai"
   
   #if current-age == imperial-age
     build 5 stable
+    #if up-compare-goal non-escrowed-wood c:>= 2000
+      build 16 stable
+    #end if
   #else
     build 2 stable
   #end if
