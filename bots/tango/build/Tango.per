@@ -3720,7 +3720,18 @@
     (up-build place-normal 1 c: mining-camp)
 )
 (defrule
-    (wood-amount >= 400)
+    (not
+      (up-research-status c: feudal-age < research-pending)
+    )
+    (up-research-status c: feudal-age >= research-pending)
+    (up-research-status c: castle-age < research-pending)
+=>
+    (up-get-fact resource-amount wood 10)
+    (up-get-fact escrow-amount wood 1)
+    (up-modify-goal 10 g:- 1)
+)
+(defrule
+    (up-compare-goal 10 c:>= 400)
     (can-sell-commodity wood)
     (not
       (up-research-status c: feudal-age < research-pending)
@@ -3731,7 +3742,18 @@
     (sell-commodity wood)
 )
 (defrule
-    (food-amount >= 900)
+    (not
+      (up-research-status c: feudal-age < research-pending)
+    )
+    (up-research-status c: feudal-age >= research-pending)
+    (up-research-status c: castle-age < research-pending)
+=>
+    (up-get-fact resource-amount food 1)
+    (up-get-fact escrow-amount food 10)
+    (up-modify-goal 1 g:- 10)
+)
+(defrule
+    (up-compare-goal 1 c:>= 900)
     (can-sell-commodity food)
     (not
       (up-research-status c: feudal-age < research-pending)
@@ -3742,7 +3764,18 @@
     (sell-commodity food)
 )
 (defrule
-    (gold-amount >= 400)
+    (not
+      (up-research-status c: feudal-age < research-pending)
+    )
+    (up-research-status c: feudal-age >= research-pending)
+    (up-research-status c: castle-age < research-pending)
+=>
+    (up-get-fact resource-amount gold 10)
+    (up-get-fact escrow-amount gold 1)
+    (up-modify-goal 10 g:- 1)
+)
+(defrule
+    (up-compare-goal 10 c:>= 400)
     (can-buy-commodity food)
     (not
       (up-research-status c: feudal-age < research-pending)
@@ -3816,14 +3849,28 @@
     (enable-timer 1 60)
 )
 (defrule
-    (gold-amount >= 1000)
+    (current-age == castle-age)
+=>
+    (up-get-fact resource-amount gold 1)
+    (up-get-fact escrow-amount gold 10)
+    (up-modify-goal 1 g:- 10)
+)
+(defrule
+    (up-compare-goal 1 c:>= 1000)
     (can-buy-commodity food)
     (current-age == castle-age)
 =>
     (buy-commodity food)
 )
 (defrule
-    (wood-amount >= 800)
+    (current-age == castle-age)
+=>
+    (up-get-fact resource-amount wood 10)
+    (up-get-fact escrow-amount wood 1)
+    (up-modify-goal 10 g:- 1)
+)
+(defrule
+    (up-compare-goal 10 c:>= 800)
     (can-sell-commodity wood)
     (current-age == castle-age)
 =>
@@ -5687,28 +5734,28 @@
     (can-research-with-escrow ri-heresy)
     (players-unit-type-count any-enemy monk >= 10)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-heresy)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-heresy)
 )
 (defrule
     (can-research-with-escrow ri-devotion)
     (players-unit-type-count any-enemy monk >= 10)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-devotion)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-devotion)
 )
 (defrule
     (can-research-with-escrow ri-faith)
     (players-unit-type-count any-enemy monk >= 10)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-faith)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-faith)
 )
 (defrule
     (can-research-with-escrow my-unique-research)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: my-unique-research)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: my-unique-research)
 )
 (defrule
     (nor
@@ -5968,8 +6015,8 @@
       (unit-type-count archer-line >= max-basic-units)
     )
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-crossbow)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-crossbow)
 )
 (defrule
     (can-research-with-escrow ri-arbalest)
@@ -5978,8 +6025,8 @@
       (unit-type-count archer-line >= max-basic-units)
     )
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-arbalest)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-arbalest)
 )
 (defrule
     (can-research-with-escrow ri-elite-skirmisher)
@@ -5988,8 +6035,8 @@
       (unit-type-count skirmisher-line >= max-basic-units)
     )
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-elite-skirmisher)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-elite-skirmisher)
 )
 (defrule
     (can-research-with-escrow ri-imperial-skirmisher)
@@ -5998,8 +6045,8 @@
       (unit-type-count skirmisher-line >= max-basic-units)
     )
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-imperial-skirmisher)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-imperial-skirmisher)
 )
 (defrule
     (can-research-with-escrow ri-heavy-cavalry-archer)
@@ -6008,8 +6055,8 @@
       (unit-type-count cavalry-archer-line >= max-basic-units)
     )
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-heavy-cavalry-archer)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-heavy-cavalry-archer)
 )
 (defrule
     (can-research-with-escrow ri-parthian-tactics)
@@ -6018,8 +6065,8 @@
       (unit-type-count cavalry-archer-line >= max-basic-units)
     )
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-parthian-tactics)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-parthian-tactics)
 )
 (defrule
     (can-build-with-escrow stable)
@@ -6030,8 +6077,8 @@
       (unit-type-count cavalry-archer-line >= max-basic-units)
     )
 =>
-    (set-goal 1 with-escrow)
-    (up-build place-normal 1 c: stable)
+    (set-goal 10 with-escrow)
+    (up-build place-normal 10 c: stable)
 )
 (defrule
     (can-research-with-escrow ri-bloodlines)
@@ -6040,8 +6087,8 @@
       (unit-type-count cavalry-archer-line >= max-basic-units)
     )
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-bloodlines)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-bloodlines)
 )
 (defrule
     (can-research-with-escrow ri-husbandry)
@@ -6050,8 +6097,8 @@
       (unit-type-count cavalry-archer-line >= max-basic-units)
     )
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-husbandry)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-husbandry)
 )
 (defrule
     (true)
@@ -6063,8 +6110,8 @@
     (can-research-with-escrow ri-padded-archer-armor)
     (goal 88 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-padded-archer-armor)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-padded-archer-armor)
     (set-goal 88 0)
 )
 (defrule
@@ -6085,8 +6132,8 @@
     (can-research-with-escrow ri-leather-archer-armor)
     (goal 89 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-leather-archer-armor)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-leather-archer-armor)
     (set-goal 89 0)
 )
 (defrule
@@ -6107,8 +6154,8 @@
     (can-research-with-escrow ri-ring-archer-armor)
     (goal 90 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-ring-archer-armor)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-ring-archer-armor)
     (set-goal 90 0)
 )
 (defrule
@@ -6123,15 +6170,15 @@
     (can-research-with-escrow ri-ballistics)
     (unit-type-count-total ranged-unit-class > max-basic-units)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-ballistics)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-ballistics)
 )
 (defrule
     (can-research-with-escrow ri-thumb-ring)
     (unit-type-count-total ranged-unit-class > max-basic-units)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-thumb-ring)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-thumb-ring)
 )
 (defrule
     (can-build-with-escrow archery-range)
@@ -6143,8 +6190,8 @@
     )
     (goal producing-ranged 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-build place-normal 1 c: archery-range)
+    (set-goal 10 with-escrow)
+    (up-build place-normal 10 c: archery-range)
 )
 (defrule
     (can-build-with-escrow archery-range)
@@ -6159,8 +6206,8 @@
     (current-age == castle-age)
     (goal producing-ranged 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-build place-normal 1 c: archery-range)
+    (set-goal 10 with-escrow)
+    (up-build place-normal 10 c: archery-range)
 )
 (defrule
     (can-build-with-escrow archery-range)
@@ -6179,8 +6226,8 @@
     )
     (goal producing-ranged 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-build place-normal 1 c: archery-range)
+    (set-goal 10 with-escrow)
+    (up-build place-normal 10 c: archery-range)
 )
 (defrule
     (can-build-with-escrow archery-range)
@@ -6203,8 +6250,8 @@
     )
     (goal producing-ranged 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-build place-normal 1 c: archery-range)
+    (set-goal 10 with-escrow)
+    (up-build place-normal 10 c: archery-range)
 )
 (defrule
     (can-build-with-escrow archery-range)
@@ -6229,8 +6276,8 @@
     )
     (goal producing-ranged 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-build place-normal 1 c: archery-range)
+    (set-goal 10 with-escrow)
+    (up-build place-normal 10 c: archery-range)
 )
 (defrule
     (nor
@@ -6468,42 +6515,42 @@
     (can-research-with-escrow ri-capped-ram)
     (goal produce-rams 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-capped-ram)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-capped-ram)
 )
 (defrule
     (can-research-with-escrow ri-siege-ram)
     (goal produce-rams 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-siege-ram)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-siege-ram)
 )
 (defrule
     (can-research-with-escrow ri-onager)
     (goal produce-mangonels 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-onager)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-onager)
 )
 (defrule
     (can-research-with-escrow ri-siege-onager)
     (goal produce-mangonels 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-siege-onager)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-siege-onager)
 )
 (defrule
     (can-research-with-escrow ri-heavy-scorpion)
     (goal produce-scorpions 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-heavy-scorpion)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-heavy-scorpion)
 )
 (defrule
     (can-research-with-escrow ri-siege-engineers)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-siege-engineers)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-siege-engineers)
 )
 (defrule
     (can-build siege-workshop)
@@ -6521,58 +6568,58 @@
       (current-age == imperial-age)
     )
 =>
-    (set-goal 1 with-escrow)
-    (up-build place-normal 1 c: siege-workshop)
+    (set-goal 10 with-escrow)
+    (up-build place-normal 10 c: siege-workshop)
 )
 (defrule
     (can-research-with-escrow ri-redemption)
     (goal produce-monks 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-redemption)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-redemption)
 )
 (defrule
     (can-research-with-escrow ri-sanctity)
     (goal produce-monks 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-sanctity)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-sanctity)
 )
 (defrule
     (can-research-with-escrow ri-fervor)
     (goal produce-monks 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-fervor)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-fervor)
 )
 (defrule
     (can-research-with-escrow ri-illumination)
     (goal produce-monks 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-illumination)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-illumination)
 )
 (defrule
     (can-research-with-escrow ri-block-printing)
     (goal produce-monks 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-block-printing)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-block-printing)
 )
 (defrule
     (can-research-with-escrow ri-theocracy)
     (goal produce-monks 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-theocracy)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-theocracy)
 )
 (defrule
     (can-research-with-escrow ri-atonement)
     (players-unit-type-count any-enemy monk >= 1)
     (goal produce-monks 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: ri-atonement)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: ri-atonement)
 )
 (defrule
     (can-build monastery)
@@ -6586,8 +6633,8 @@
     (can-research-with-escrow my-unique-unit-upgrade)
     (goal produce-unique-unit 1)
 =>
-    (set-goal 1 with-escrow)
-    (up-research 1 c: my-unique-unit-upgrade)
+    (set-goal 10 with-escrow)
+    (up-research 10 c: my-unique-unit-upgrade)
 )
 (defrule
     (not
@@ -7748,7 +7795,7 @@
       (goal militant 1)
     )
 =>
-    (up-jump-rule 65)
+    (up-jump-rule 70)
 )
 (defrule
     (up-allied-resource-amount any-ally wood < max-wood)
@@ -7759,7 +7806,19 @@
     (tribute-to-player this-any-ally wood 100)
 )
 (defrule
-    (gold-amount < max-gold)
+    (not
+      (up-allied-resource-amount any-ally wood < max-wood)
+    )
+    (wood-amount > max-wood)
+    (goal team-game 1)
+    (gold-amount > max-gold)
+=>
+    (up-get-fact resource-amount gold 1)
+    (up-get-fact escrow-amount gold 10)
+    (up-modify-goal 1 g:- 10)
+)
+(defrule
+    (up-compare-goal 1 c:< max-gold)
     (can-sell-commodity wood)
     (not
       (up-allied-resource-amount any-ally wood < max-wood)
@@ -7779,7 +7838,19 @@
     (tribute-to-player this-any-ally food 100)
 )
 (defrule
-    (gold-amount < max-gold)
+    (not
+      (up-allied-resource-amount any-ally food < max-food)
+    )
+    (food-amount > max-food)
+    (goal team-game 1)
+    (gold-amount > max-gold)
+=>
+    (up-get-fact resource-amount gold 10)
+    (up-get-fact escrow-amount gold 1)
+    (up-modify-goal 10 g:- 1)
+)
+(defrule
+    (up-compare-goal 10 c:< max-gold)
     (can-sell-commodity food)
     (not
       (up-allied-resource-amount any-ally food < max-food)
@@ -7798,7 +7869,18 @@
     (tribute-to-player this-any-ally gold 100)
 )
 (defrule
-    (wood-amount > max-wood)
+    (nand
+      (goal team-game 1)
+      (gold-amount > max-gold)
+    )
+    (gold-amount < max-gold)
+=>
+    (up-get-fact resource-amount wood 1)
+    (up-get-fact escrow-amount wood 10)
+    (up-modify-goal 1 g:- 10)
+)
+(defrule
+    (up-compare-goal 1 c:> max-wood)
     (can-sell-commodity wood)
     (nand
       (goal team-game 1)
@@ -7809,7 +7891,18 @@
     (sell-commodity wood)
 )
 (defrule
-    (food-amount > max-food)
+    (nand
+      (goal team-game 1)
+      (gold-amount > max-gold)
+    )
+    (gold-amount < max-gold)
+=>
+    (up-get-fact resource-amount food 10)
+    (up-get-fact escrow-amount food 1)
+    (up-modify-goal 10 g:- 1)
+)
+(defrule
+    (up-compare-goal 10 c:> max-food)
     (can-sell-commodity food)
     (nand
       (goal team-game 1)
@@ -7820,7 +7913,14 @@
     (sell-commodity food)
 )
 (defrule
-    (stone-amount > max-stone)
+    (true)
+=>
+    (up-get-fact resource-amount stone 1)
+    (up-get-fact escrow-amount stone 10)
+    (up-modify-goal 1 g:- 10)
+)
+(defrule
+    (up-compare-goal 1 c:> max-stone)
     (can-sell-commodity stone)
 =>
     (sell-commodity stone)

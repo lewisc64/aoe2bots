@@ -524,6 +524,8 @@ load "templates/lightning_castle.aoe2ai"
   
   #if goal attacking 1 and player-in-game any-enemy
     attack with duc
+  #else
+    defend with duc
   #end if
 
   auto expand town size to 30

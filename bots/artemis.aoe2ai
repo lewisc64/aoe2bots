@@ -1474,6 +1474,8 @@ goal military-required = 0
 
 #if military-population >= 5 and up-compare-goal my-military-population g:> military-required or population >= 195
   attack with duc
+#else
+  defend with duc
 #end if
 
 auto expand town size

@@ -262,6 +262,8 @@ load "templates/diplomacy_engine.aoe2ai"
   #if goal town-size-attack 0
     #if goal attacking 1
       attack with duc
+    #else
+      defend with duc
     #end if
     auto expand town size
   #else

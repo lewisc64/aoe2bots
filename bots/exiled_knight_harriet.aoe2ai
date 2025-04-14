@@ -273,6 +273,8 @@ load "templates/fast_castle.aoe2ai"
 
   #if military-population >= 20 and up-compare-goal my-military-population g:> military-required or population >= 195 and player-in-game any-enemy
     attack with duc
+  #else
+    defend with duc
   #end if
   
   auto expand town size
