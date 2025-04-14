@@ -22,8 +22,9 @@
     sn-enable-training-queue = 1
   #end do
   
-  #if unit-type-count-total villager >= 26
+  #if unit-type-count-total villager >= 20
     sn-enable-training-queue = 0
+    research feudal-age
   #end if
   
   micro sheep
@@ -43,11 +44,7 @@
     build farms
   #end if
   
-  #if unit-type-count-total villager >= 26
-    research feudal-age
-  #end if
-  
-  train 26 villager
+  train 20 villager
   #if game-time >= 60 or civ-selected mayan or civ-selected chinese
     research ri-loom
   #end if
@@ -80,8 +77,13 @@
   sell food when food >= 900
   
   research ri-loom
+
+  #if food-amount >= 750 and gold-amount >= 200 and building-type-count-total blacksmith >= 1 and building-type-count-total market >= 1
+    @up-reset-building 1 c: town-center
+  #end if
+
   research castle-age
   
-  train 28 villager
+  train 22 villager
   
 #end if
