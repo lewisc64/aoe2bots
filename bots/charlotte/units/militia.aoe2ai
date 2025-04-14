@@ -24,11 +24,11 @@ load "../research/barracks/prerequisites.aoe2ai"
   #if current-age == imperial-age
     load "../research/castle/forced_levy.aoe2ai"
     load "../research/castle/comitatenses.aoe2ai"
+    load "../research/castle/bagains.aoe2ai"
   #end if
   
   #if current-age >= castle-age
     load "../research/barracks/gambesons.aoe2ai"
-    load "../research/castle/bagains.aoe2ai"
   #end if
   
   load "types/infantry.aoe2ai"

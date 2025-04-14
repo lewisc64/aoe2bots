@@ -8,7 +8,7 @@ goal disable-town-size-management = 0
   attack with duc
   sn-number-boat-attack-groups = 200
   transport units
-#else if strategic-number sn-number-boat-attack-groups == 200
-  retreat
+#else
+  defend with duc
   sn-number-boat-attack-groups = 0
 #end if

@@ -1,0 +1,18 @@
+//load "../research/town_center/castle_age.aoe2ai"
+load "../research/archery_range/prerequisites.aoe2ai"
+
+#if unit-available slinger
+  load "types/ranged.aoe2ai"
+
+  #if current-age >= castle-age
+    load "../research/castle/andean_sling.aoe2ai"
+  #end if
+
+  #if current-age == imperial-age
+    load "../research/castle/fabric_shields.aoe2ai"
+  #end if
+  
+  #if goal produce-units 1 and goal enough-food-for-units 1 and goal enough-gold-for-units 1
+    train slinger
+  #end if
+#end if

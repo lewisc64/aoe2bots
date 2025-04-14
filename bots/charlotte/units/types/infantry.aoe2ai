@@ -19,6 +19,9 @@
 #if current-age >= castle-age
   load "../../research/barracks/squires.aoe2ai"
   load "../../research/castle/garland_wars.aoe2ai"
+  #respond to 2 cavalry-class
+    load "../../research/castle/chieftains.aoe2ai"
+  #end respond
 #end if
 
 #do once

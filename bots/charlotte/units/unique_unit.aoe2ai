@@ -60,7 +60,10 @@
   #end if
   
   #if civ-selected burmese
-    #respond to 2 archer-line
+    #respond to 2 archery-class
+      load "../research/castle/manipur_cavalry.aoe2ai"
+    #end respond
+    #respond to 2 cavalry-archer-class
       load "../research/castle/manipur_cavalry.aoe2ai"
     #end respond
   #end if
