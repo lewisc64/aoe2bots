@@ -2,72 +2,107 @@
   set name to "Downtown Sluggers"
 #end do
 
+#template diplo-chat-alliance-offer
+#end template
+
+#template diplo-chat-our-betrayal
+#end template
+
+#template diplo-chat-their-betrayal
+#end template
+
+#template diplo-chat-accepted-our-alliance
+#end template
+
+#template diplo-chat-accepted-their-alliance
+#end template
+
+#template diplo-chat-refused-our-alliance
+#end template
+
+#template diplo-chat-refused-their-alliance
+#end template
+
+#template diplo-chat-friendly-fire-warning
+#end template
+
+#template diplo-chat-friendly-fire-betrayal
+#end template
+
+#template diplo-chat-resign
+#end template
+
+#template diplo-should-player-be-marked
+#end template
+
+load "templates/diplomacy_engine.aoe2ai"
+#if can-afford-building castle or building-type-count-total castle >= 1
+  insert diplo-mark-random-ally-if-no-enemies
+#end if
+
 load "templates/fast_castle.aoe2ai"
 
-do basic diplomacy
-
 #if up-research-status c: castle-age >= research-pending
-  
+
   #do once
-    distribute villagers 18 50 15 17
-    escrow 10 food
-    escrow 10 gold
+    distribute villagers 20 40 20 20
     assign 8 builders to castle
-    sn-percent-building-cancellation = 0
-    sn-maximum-attack-group-size = 1
-    sn-minimum-attack-group-size = 1
-    sn-number-attack-groups = 200
+    scout enemy
   #end do
-  
-  manage scouting
-  
-  sell wood when wood > 1500
-  sell food when food > 1500
-  buy stone when gold > 1500
-  
-  build 3 town-center
-  #if up-pending-objects c: castle == 0
-    build forward castle near town-center
-  #else
-    build castle
+
+  auto balance wood and food and gold
+
+  #if building-type-count-total castle == 0 and not can-afford-building castle
+    sell food when food >= 200
+    buy stone
   #end if
-  build houses
-  build farms
+  #if not can-afford-building castle
+    buy stone when gold >= 1000
+  #end if
+
+  escrow 10 food with maximum 1000
+  escrow 10 gold with maximum 800
+
+  build 1 town-center with escrow
+
+  build houses with 10 headroom
   build lumber camps
-  build 1 market
-  build 1 blacksmith
-  build 1 barracks
-  
+
   #when
-    build stone mining camps
     build gold mining camps
+    build stone mining camps
   #then
     sn-camp-max-distance += 8
   #end when
-  
-  research mill upgrades with escrow
-  research lumber camp upgrades with escrow
-  research stone mining camp upgrades with escrow
-  research gold mining camp upgrades with escrow
-  
-  research imperial-age with escrow
-  research blacksmith infantry upgrades with escrow
-  research ri-tracking with escrow
-  research ri-squires with escrow
-  research ri-arson with escrow
-  #when
-    research my-unique-unit-upgrade with escrow
-  #then
-    escrow 0 food
-    escrow 0 gold
-  #end when
-  
-  #if current-age == imperial-age
-    train 120 villagers with 30 trade
-  #else
-    train 120 villager
+
+  #if wood-amount >= 200
+    build farms
+    build mills
   #end if
-  train 3 trebuchet
-  train my-unique-unit
+
+  build 1 barracks
+  build 1 market
+  build 1 blacksmith
+  build forward castle
+
+  research ri-loom with escrow
+  research ri-wheel-barrow with escrow
+  research ri-hand-cart with escrow
+  research lumber camp upgrades with escrow
+  research mining camp upgrades with escrow
+  research imperial-age with escrow
+  research infantry blacksmith upgrades with escrow
+  research ri-arson with escrow
+  research ri-squires with escrow
+  research my-unique-unit-upgrade with escrow
+  research ri-conscription
+
+  train my-unique-unit-line
+  train 120 villager
+
+  do basic targeting
+  attack with duc
+
+  auto expand town size
 
 #end if
