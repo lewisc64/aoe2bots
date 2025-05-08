@@ -1,0 +1,18 @@
+@up-modify-goal produce-hero-unit g:= good-hero-unit
+
+$clear
+$find local 255 infantry-class
+$find local 255 archery-class
+$find local 255 cavalry-class
+$remove from local where 75 != 1 // object-data-hero
+$remove from local where 10 > 150 // object-data-hitpoints
+$set goal hero-count to local list length
+#if not goal hero-count 0
+  //@up-chat-data-to-all "hero count: %d" g: hero-count
+  //chat to all "flee for the hills!"
+  $focus myself
+  $find remote 1 castle
+  $find remote 1 town-center
+  $remove from remote where -1 >= 1
+  $move
+#end if

@@ -9,12 +9,15 @@ load "../research/town_center/prerequisites.aoe2ai"
     #if current-age == feudal-age or (civ-selected burgundians and current-age == dark-age)
       load "../research/lumber_camp/double_bit_axe.aoe2ai"
       load "../research/mill/horse_collar.aoe2ai"
+      load "../research/mill/domestication.aoe2ai"
     #else if current-age == castle-age or (civ-selected burgundians and current-age == feudal-age)
       load "../research/lumber_camp/bow_saw.aoe2ai"
       load "../research/mill/heavy_plow.aoe2ai"
+      load "../research/mill/pastoralism.aoe2ai"
     #else if current-age == imperial-age or (civ-selected burgundians and current-age >= castle-age)
       load "../research/lumber_camp/two_man_saw.aoe2ai"
       load "../research/mill/crop_rotation.aoe2ai"
+      load "../research/mill/transhumance.aoe2ai"
     #end if
   #end if
   

@@ -1,0 +1,23 @@
+//load "../research/town_center/imperial_age.aoe2ai"
+load "../research/castle/prerequisites.aoe2ai"
+
+#if unit-available liu-bei
+
+  #do once
+    goal old-desired-military-buildings-per-type = 0
+  #end do
+  @up-modify-goal old-desired-military-buildings-per-type g:= desired-military-buildings-per-type
+  goal desired-military-buildings-per-type = 0
+
+  #if civ-selected shu
+    load "types/infantry.aoe2ai"
+  #end if
+
+  @up-modify-goal desired-military-buildings-per-type g:= old-desired-military-buildings-per-type
+
+  #if goal produce-units 1
+    #if civ-selected shu and goal enough-food-for-units 1 and goal enough-gold-for-units 1
+      train 1 liu-bei
+    #end if
+  #end if
+#end if

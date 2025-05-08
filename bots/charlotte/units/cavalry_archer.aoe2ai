@@ -3,8 +3,11 @@ load "../research/archery_range/prerequisites.aoe2ai"
 
 #if unit-available cavalry-archer-line
 
-  #if current-age == imperial-age
+  #if current-age == imperial-age or (civ-selected khitans and current-age >= castle-age)
     load "../research/archery_range/heavy_cavalry_archer.aoe2ai"
+  #end if
+
+  #if current-age == imperial-age
     load "../research/castle/recurve_bow.aoe2ai"
   #end if
   

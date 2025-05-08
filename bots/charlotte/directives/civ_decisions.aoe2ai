@@ -229,6 +229,18 @@
     goal {prefix}good-fire-ships = 1
     goal {prefix}good-galleys = 1
   #end if
+  #if players-civ {player} khitans
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-cavalry-archers = 1
+    goal {prefix}good-militia = 1
+    goal {prefix}good-fire-lancers = 1
+    goal {prefix}good-scouts = 1
+    goal {prefix}good-camels = 1
+    goal {prefix}good-steppe-lancers = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-rocket-carts = 1
+    goal {prefix}good-fire-ships = 1
+  #end if
   #if players-civ {player} khmer
     goal {prefix}good-scouts = 1
     goal {prefix}good-battle-elephants = 1
@@ -354,6 +366,16 @@
     goal {prefix}good-battering-rams = 1
     goal {prefix}good-mangonels = 1
     goal {prefix}good-galleys = 1
+  #end if
+  #if players-civ {player} shu
+    goal {prefix}good-archers = 1
+    goal {prefix}good-skirmishers = 1
+    goal {prefix}good-galleys = 1
+    goal {prefix}good-hei-guang = 1
+    goal {prefix}good-battering-rams = 1
+    goal {prefix}good-mangonels = 1
+    goal {prefix}good-war-chariots = 1
+    goal {prefix}good-hero-unit = 1
   #end if
   #if players-civ {player} sicilians
     goal {prefix}good-militia = 1

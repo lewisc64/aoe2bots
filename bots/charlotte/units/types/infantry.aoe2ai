@@ -4,6 +4,7 @@
 #else if current-age == castle-age
   load "../../research/blacksmith/iron_casting.aoe2ai"
   load "../../research/blacksmith/chain_mail.aoe2ai"
+  load "../../research/castle/lamellar_armor.aoe2ai"
 #else if current-age == imperial-age
   load "../../research/blacksmith/blast_furnace.aoe2ai"
   load "../../research/blacksmith/plate_mail.aoe2ai"

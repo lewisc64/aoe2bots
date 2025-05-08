@@ -25,6 +25,8 @@
   @up-modify-goal {goal} g:+ produce-elephant-archers
   @up-modify-goal {goal} g:+ produce-warrior-priests
   @up-modify-goal {goal} g:+ produce-slingers
+  @up-modify-goal {goal} g:+ produce-hei-guang
+  @up-modify-goal {goal} g:+ produce-war-chariots
   // ships do not count towards unit total.
 #end template
 
@@ -95,6 +97,9 @@ insert random-unit-selection-count-units-selected(goal="total-units-selected")
   
   #randor
     @up-modify-goal produce-shrivamsha-riders g:= good-shrivamsha-riders
+
+  #randor
+    @up-modify-goal produce-hei-guang g:= good-hei-guang
   
   #randor
     #if goal produce-scouts 0 and goal produce-knights 0
@@ -113,6 +118,9 @@ insert random-unit-selection-count-units-selected(goal="total-units-selected")
     
   #randor
     @up-modify-goal produce-scorpions g:= good-scorpions
+
+  #randor
+    @up-modify-goal produce-war-chariots g:= good-war-chariots
     
   #randor
     @up-modify-goal produce-unique-units g:= good-unique-units

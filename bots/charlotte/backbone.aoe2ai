@@ -39,9 +39,25 @@ const ri-bimaristan = 28
 const ri-svan-towers = 923
 const ri-aznauri-cavalry = 924
 const ri-pirotechnia = 902
+const ri-coiled-serpent-array = 1070
+const ri-lamellar-armor = 1006
+const ri-ordo-cavalry = 1007
 
 const ri-elite-fire-lancer = 982
 const ri-heavy-rocket-cart = 980
+const ri-heavy-hei-guang-cavalry = 1033
+const ri-domestication = 1014
+const ri-pastoralism = 1013
+const ri-transhumance = 1012
+
+const shu = 49
+const wu = 50
+const wei = 51
+const jurchens = 52
+const khitans = 53
+
+const hei-guang-cavalry-line = -211
+const liu-bei = 1966
 
 const live-sheep = 958
 const sea-fish = 905
@@ -108,6 +124,7 @@ const importance-low = 1
   {before}shrivamsha-riders{after}
   {before}battle-elephants{after}
   {before}steppe-lancers{after}
+  {before}hei-guang{after}
 #end template
 
 #template all-land-siege-unit-goal-names
@@ -118,6 +135,7 @@ const importance-low = 1
   {before}bombard-cannons{after}
   {before}trebuchets{after}
   {before}armored-elephants{after}
+  {before}war-chariots{after}
 #end template
 
 #template all-land-holy-unit-goal-names
@@ -138,6 +156,7 @@ const importance-low = 1
   insert all-land-holy-unit-goal-names(before="{before}",after="{after}")
   insert all-land-economy-unit-goal-names(before="{before}",after="{after}")
   {before}unique-units{after}
+  {before}hero-unit{after}
 #end template
 
 #template all-naval-unit-goal-names
